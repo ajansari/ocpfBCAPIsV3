@@ -1,4 +1,4 @@
-# OCPFAPIs v3.0 — Complete API Reference
+# OnlyCopilotFans Business Central API Catalog v3.0
 
 **Publisher:** OnlyCopilotFans  
 **API Version:** v3.0  
@@ -126,7 +126,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
   - Purchase Line: [ocpfPurchaseQuoteLines (Page 90905)](#ocpfpurchasequotelines)
   - Purchase Header: [ocpfPurchaseBlanketOrders (Page 90906)](#ocpfpurchaseblanketorders)
   - Purchase Line: [ocpfPurchaseBlanketOrderLines (Page 90907)](#ocpfpurchaseblanketorderlines)
-- **Projects & Assets** [(Go to Category)](#projects-assets)
+- **Projects & Assets** [(Go to Category)](#projects--assets)
   - Job: [ocpfProjects (Page 90910)](#ocpfprojects)
   - Job Posting Group: [ocpfProjectPostingGroups (Page 90911)](#ocpfprojectpostinggroups)
   - Job Task: [ocpfProjectTasks (Page 90912)](#ocpfprojecttasks)
@@ -141,7 +141,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
   - Gen. Journal Line: [ocpfGeneralJournalLines (Page 90921)](#ocpfgeneraljournallines)
   - Price List Header: [ocpfPriceListHeaders (Page 90922)](#ocpfpricelistheaders)
   - Price List Line: [ocpfPriceListLines (Page 90923)](#ocpfpricelistlines)
-- **System & Setup** [(Go to Category)](#system-setup)
+- **System & Setup** [(Go to Category)](#system--setup)
   - Document Attachment: [ocpfDocumentAttachments (Page 90930)](#ocpfdocumentattachments)
   - Company Information: [ocpfCompanyInformation (Page 90931)](#ocpfcompanyinformation)
   - Warehouse Entry: [ocpfWarehouseEntries (Page 90932)](#ocpfwarehouseentries)
@@ -155,6 +155,8 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 ---
 
 ## Core Financial
+
+[↑ Table of Contents](#table-of-contents)
 
 **API Group URL segment:** `ocpf_coreFinancial`  
 **Pages:** 25 (17 editable, 8 read-only)  
@@ -246,6 +248,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 69 | `costTypeNo` | Cost Type No. | Cost Type No. | ✅ |
 | 70 | `defaultDeferralTemplateCode` | Default Deferral Template Code | Default Deferral Template Code | ✅ |
 | 71 | `aPIAccountType` | API Account Type | API Account Type | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -339,6 +344,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 72 | `srcCurrNonDedVatAmount` | Src. Curr. Non-Ded. VAT Amount | Source Currency Non-Deductible VAT Amount | — |
 | 73 | `accountId` | Account Id | Account Id | — |
 | 74 | `lastModifiedDatetime` | Last Modified DateTime | Last Modified DateTime | — |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -456,6 +464,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 96 | `checkSourceCurrConsistency` | Check Source Curr. Consistency | Check Source Curr. Consistency | ✅ |
 | 97 | `accPayablesCategory` | Acc. Payables Category | Account Payables G/L Account Category | ✅ |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfAccountingPeriods
@@ -482,6 +493,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 6 | `dateLocked` | Date Locked | Date Locked | ✅ |
 | 7 | `averageCostCalcType` | Average Cost Calc. Type | Average Cost Calc. Type | ✅ |
 | 8 | `averageCostPeriod` | Average Cost Period | Average Cost Period | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -519,6 +533,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 16 | `lastDateModified` | Last Date Modified | Last Date Modified | ✅ |
 | 17 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | ✅ |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfGLRegisters
@@ -550,6 +567,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 11 | `reversed` | Reversed | Reversed | — |
 | 12 | `creationTime` | Creation Time | Creation Time | — |
 | 13 | `journalTemplName` | Journal Templ. Name | Journal Template Name | — |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -649,6 +669,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 78 | `disputeStatus` | Dispute Status | Dispute Status | — |
 | 79 | `promisedPayDate` | Promised Pay Date | Promised Pay Date | — |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfDetailedCustLedgerEntries
@@ -703,6 +726,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 34 | `ledgerEntryAmount` | Ledger Entry Amount | Ledger Entry Amount | — |
 | 35 | `postingGroup` | Posting Group | Customer Posting Group | — |
 | 36 | `exchRateAdjmtRegNo` | Exch. Rate Adjmt. Reg. No. | Exch. Rate Adjmt. Reg. No. | — |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -798,6 +824,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 74 | `shortcutDimension8Code` | Shortcut Dimension 8 Code | Shortcut Dimension 8 Code | — |
 | 75 | `remitToCode` | Remit-to Code | Remit-to Code | — |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfDtldVendorLedgEntries
@@ -852,6 +881,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 34 | `ledgerEntryAmount` | Ledger Entry Amount | Ledger Entry Amount | — |
 | 35 | `postingGroup` | Posting Group | Vendor Posting Group | — |
 | 36 | `exchRateAdjmtRegNo` | Exch. Rate Adjmt. Reg. No. | Exch. Rate Adjmt. Reg. No. | — |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -928,6 +960,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 55 | `shortcutDimension7Code` | Shortcut Dimension 7 Code | Shortcut Dimension 7 Code | — |
 | 56 | `shortcutDimension8Code` | Shortcut Dimension 8 Code | Shortcut Dimension 8 Code | — |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfGenBusPostingGroups
@@ -952,6 +987,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 4 | `defVatBusPostingGroup` | Def. VAT Bus. Posting Group | Def. VAT Bus. Posting Group | ✅ |
 | 5 | `autoInsertDefault` | Auto Insert Default | Auto Insert Default | ✅ |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfGenProdPostingGroups
@@ -975,6 +1013,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 3 | `description` | Description | Description | ✅ |
 | 4 | `defVatProdPostingGroup` | Def. VAT Prod. Posting Group | Def. VAT Prod. Posting Group | ✅ |
 | 5 | `autoInsertDefault` | Auto Insert Default | Auto Insert Default | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -1026,6 +1067,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 30 | `overheadAppliedAccount` | Overhead Applied Account | Overhead Applied Account | ✅ |
 | 31 | `purchaseVarianceAccount` | Purchase Variance Account | Purchase Variance Account | ✅ |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfCustomerPostingGroups
@@ -1063,6 +1107,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 17 | `description` | Description | Description | ✅ |
 | 18 | `viewAllAccountsOnLookup` | View All Accounts on Lookup | View All Accounts on Lookup | ✅ |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfVendorPostingGroups
@@ -1097,6 +1144,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 14 | `description` | Description | Description | ✅ |
 | 15 | `viewAllAccountsOnLookup` | View All Accounts on Lookup | View All Accounts on Lookup | ✅ |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfInventoryPostingGroups
@@ -1118,6 +1168,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 1 | `systemId` | SystemId | System ID | 🔑 Key |
 | 2 | `code` | Code | Code | ✅ |
 | 3 | `description` | Description | Description | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -1142,6 +1195,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 3 | `description` | Description | Description | ✅ |
 | 4 | `lastModifiedDateTime` | Last Modified Date Time | Last Modified Date Time | ✅ |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfVatProductPostingGroups
@@ -1164,6 +1220,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 2 | `code` | Code | Code | ✅ |
 | 3 | `description` | Description | Description | ✅ |
 | 4 | `lastModifiedDatetime` | Last Modified DateTime | Last Modified DateTime | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -1209,6 +1268,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 24 | `nonDedPurchaseVatAccount` | Non-Ded. Purchase VAT Account | Non-Deductible Purchase VAT Account | ✅ |
 | 25 | `allowNonDeductibleVat` | Allow Non-Deductible VAT | Allow Non-Deductible VAT | ✅ |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfDimensions
@@ -1237,6 +1299,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 8 | `consolidationCode` | Consolidation Code | Consolidation Code | ✅ |
 | 9 | `mapToIcDimensionCode` | Map-to IC Dimension Code | Map-to IC Dimension Code | ✅ |
 | 10 | `lastModifiedDateTime` | Last Modified Date Time | Last Modified Date Time | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -1272,6 +1337,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 14 | `lastModifiedDateTime` | Last Modified Date Time | Last Modified Date Time | ✅ |
 | 15 | `dimensionId` | Dimension Id | Dimension Id | ✅ |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfDefaultDimensions
@@ -1305,6 +1373,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 13 | `dimensionId` | DimensionId | DimensionId | ✅ |
 | 14 | `dimensionValueId` | DimensionValueId | DimensionValueId | ✅ |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfDimensionSetEntries
@@ -1331,6 +1402,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 6 | `dimensionName` | Dimension Name | Dimension Name | — |
 | 7 | `dimensionValueName` | Dimension Value Name | Dimension Value Name | — |
 | 8 | `globalDimensionNo` | Global Dimension No. | Shortcut Dimension No. | — |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -1365,9 +1439,14 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 13 | `subcontractedVarianceAccount` | Subcontracted Variance Account | Subcontracted Variance Account | ✅ |
 | 14 | `matNonInvVarianceAcc` | Mat. Non-Inv. Variance Acc. | Material Non-Inventory Variance Account | ✅ |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ## Master Data
+
+[↑ Table of Contents](#table-of-contents)
 
 **API Group URL segment:** `ocpf_masterData`  
 **Pages:** 29 (24 editable, 5 read-only)  
@@ -1465,6 +1544,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 75 | `checkTransmitted` | Check Transmitted | Check Transmitted | ✅ |
 | 76 | `mobilePhoneNo` | Mobile Phone No. | Mobile Phone No. | ✅ |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfBankAccountPostingGroups
@@ -1486,6 +1568,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 1 | `systemId` | SystemId | System ID | 🔑 Key |
 | 2 | `code` | Code | Code | ✅ |
 | 3 | `gLAccountNo` | G/L Account No. | G/L Account No. | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -1551,6 +1636,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 44 | `shortcutDimension7Code` | Shortcut Dimension 7 Code | Shortcut Dimension 7 Code | — |
 | 45 | `shortcutDimension8Code` | Shortcut Dimension 8 Code | Shortcut Dimension 8 Code | — |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfPaymentTerms
@@ -1577,6 +1665,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 6 | `description` | Description | Description | ✅ |
 | 7 | `calcPmtDiscOnCrMemos` | Calc. Pmt. Disc. on Cr. Memos | Calc. Pmt. Disc. on Cr. Memos | ✅ |
 | 8 | `lastModifiedDateTime` | Last Modified Date Time | Last Modified Date Time | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -1605,6 +1696,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 7 | `directDebitPmtTermsCode` | Direct Debit Pmt. Terms Code | Direct Debit Pmt. Terms Code | ✅ |
 | 8 | `pmtExportLineDefinition` | Pmt. Export Line Definition | Pmt. Export Line Definition | ✅ |
 | 9 | `lastModifiedDateTime` | Last Modified Date Time | Last Modified Date Time | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -1674,6 +1768,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 48 | `currencySymbolPosition` | Currency Symbol Position | Currency Symbol Position | ✅ |
 | 49 | `coupledToDataverse` | Coupled to Dataverse | Coupled to Dataverse | ✅ |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfCountriesRegions
@@ -1705,6 +1802,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 11 | `lastModifiedDateTime` | Last Modified Date Time | Last Modified Date Time | ✅ |
 | 12 | `countyName` | County Name | County Name | ✅ |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfUnitsOfMeasure
@@ -1730,6 +1830,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 5 | `symbol` | Symbol | Symbol | ✅ |
 | 6 | `lastModifiedDateTime` | Last Modified Date Time | Last Modified Date Time | ✅ |
 | 7 | `coupledToDataverse` | Coupled to Dataverse | Coupled to Dynamics 365 Sales | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -1760,6 +1863,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 9 | `height` | Height | Height | ✅ |
 | 10 | `cubage` | Cubage | Cubage | ✅ |
 | 11 | `weight` | Weight | Weight | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -1836,6 +1942,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 55 | `baseCalendarCode` | Base Calendar Code | Base Calendar Code | ✅ |
 | 56 | `useAdcs` | Use ADCS | Use ADCS | ✅ |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfItemCategories
@@ -1863,6 +1972,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 7 | `hasChildren` | Has Children | Has Children | ✅ |
 | 8 | `lastModifiedDateTime` | Last Modified Date Time | Last Modified Date Time | ✅ |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfShipmentMethods
@@ -1885,6 +1997,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 2 | `code` | Code | Code | ✅ |
 | 3 | `description` | Description | Description | ✅ |
 | 4 | `lastModifiedDateTime` | Last Modified Date Time | Last Modified Date Time | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -2047,6 +2162,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 141 | `contactId` | Contact ID | Contact ID | ✅ |
 | 142 | `contactGraphId` | Contact Graph Id | Contact Graph Id | ✅ |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfVendors
@@ -2190,6 +2308,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 123 | `paymentMethodId` | Payment Method Id | Payment Method Id | ✅ |
 | 124 | `overReceiptCode` | Over-Receipt Code | Over-Receipt Code | ✅ |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfContacts
@@ -2291,6 +2412,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 81 | `jobResponsibilityFilter` | Job Responsibility Filter | Job Responsibility Filter | ✅ |
 | 82 | `xrmId` | Xrm Id | Xrm Id | ✅ |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfContactBusinessRelations
@@ -2316,6 +2440,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 5 | `no` | No. | No. | ✅ |
 | 6 | `businessRelationDescription` | Business Relation Description | Business Relation Description | ✅ |
 | 7 | `contactName` | Contact Name | Contact Name | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -2518,6 +2645,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 181 | `allowWhseOverpick` | Allow Whse. Overpick | Allow Whse. Overpick | ✅ |
 | 182 | `commonItemNo` | Common Item No. | Common Item No. | ✅ |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfItemLedgerEntries
@@ -2613,6 +2743,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 75 | `returnReasonCode` | Return Reason Code | Return Reason Code | — |
 | 76 | `itemDescription` | Item Description | Item Description | — |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfValueEntries
@@ -2699,6 +2832,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 66 | `returnReasonCode` | Return Reason Code | Return Reason Code | — |
 | 67 | `itemDescription` | Item Description | Item Description | — |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfItemApplicationEntries
@@ -2738,6 +2874,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 19 | `outputCompletelyInvdDate` | Output Completely Invd. Date | Output Completely Invd. Date | — |
 | 20 | `outboundEntryIsUpdated` | Outbound Entry is Updated | Outbound Entry is Updated | — |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfItemVendorCatalogs
@@ -2762,6 +2901,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 4 | `leadTimeCalculation` | Lead Time Calculation | Lead Time Calculation | ✅ |
 | 5 | `vendorItemNo` | Vendor Item No. | Vendor Item No. | ✅ |
 | 6 | `variantCode` | Variant Code | Variant Code | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -2858,6 +3000,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 75 | `rolledUpCapOverheadCost` | Rolled-up Cap. Overhead Cost | Rolled-up Cap. Overhead Cost | ✅ |
 | 76 | `singleLvlMatNonInvtCost` | Single-Lvl Mat. Non-Invt. Cost | Single-Level Material Non-Inventory Cost | ✅ |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfItemTrackingCodes
@@ -2926,6 +3071,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 48 | `packageNegOutbTracking` | Package Neg. Outb. Tracking | Package Neg. Outb. Tracking | ✅ |
 | 49 | `packageTransferTracking` | Package Transfer Tracking | Package Transfer Tracking | ✅ |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfItemCharges
@@ -2953,6 +3101,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 7 | `searchDescription` | Search Description | Search Description | ✅ |
 | 8 | `globalDimension1Code` | Global Dimension 1 Code | Global Dimension 1 Code | ✅ |
 | 9 | `globalDimension2Code` | Global Dimension 2 Code | Global Dimension 2 Code | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -3023,6 +3174,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 49 | `timeSheetApproverUserId` | Time Sheet Approver User ID | Time Sheet Approver User ID | ✅ |
 | 50 | `defaultDeferralTemplateCode` | Default Deferral Template Code | Default Deferral Template Code | ✅ |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfResourceLedgerEntries
@@ -3085,6 +3239,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 42 | `shortcutDimension7Code` | Shortcut Dimension 7 Code | Shortcut Dimension 7 Code | — |
 | 43 | `shortcutDimension8Code` | Shortcut Dimension 8 Code | Shortcut Dimension 8 Code | — |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfResourceGroups
@@ -3113,6 +3270,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 8 | `globalDimension1Code` | Global Dimension 1 Code | Global Dimension 1 Code | ✅ |
 | 9 | `globalDimension2Code` | Global Dimension 2 Code | Global Dimension 2 Code | ✅ |
 | 10 | `noOfResourcesAssigned` | No. of Resources Assigned | No. of Resources Assigned | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -3209,6 +3369,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 75 | `costCenterCode` | Cost Center Code | Cost Center Code | ✅ |
 | 76 | `costObjectCode` | Cost Object Code | Cost Object Code | ✅ |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfSalespeople
@@ -3265,9 +3428,14 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 36 | `eMail2` | E-Mail 2 | Email 2 | ✅ |
 | 37 | `blocked` | Blocked | Blocked | ✅ |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ## Sales
+
+[↑ Table of Contents](#table-of-contents)
 
 **API Group URL segment:** `ocpf_sales`  
 **Pages:** 18 (10 editable, 8 read-only)  
@@ -3471,6 +3639,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 180 | `allowLineDisc` | Allow Line Disc. | Allow Line Disc. | ✅ |
 | 181 | `getShipmentUsed` | Get Shipment Used | Get Shipment Used | ✅ |
 | 182 | `assignedUserId` | Assigned User ID | Assigned User ID | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -3686,6 +3857,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 193 | `attachedLinesCount` | Attached Lines Count | Attached Lines Count | ✅ |
 | 194 | `sellToCustomerName` | Sell-to Customer Name | Sell-to Customer Name | ✅ |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfSalesOrders
@@ -3887,6 +4061,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 180 | `allowLineDisc` | Allow Line Disc. | Allow Line Disc. | ✅ |
 | 181 | `getShipmentUsed` | Get Shipment Used | Get Shipment Used | ✅ |
 | 182 | `assignedUserId` | Assigned User ID | Assigned User ID | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -4102,6 +4279,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 193 | `attachedLinesCount` | Attached Lines Count | Attached Lines Count | ✅ |
 | 194 | `sellToCustomerName` | Sell-to Customer Name | Sell-to Customer Name | ✅ |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfSalesInvoices
@@ -4303,6 +4483,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 180 | `allowLineDisc` | Allow Line Disc. | Allow Line Disc. | ✅ |
 | 181 | `getShipmentUsed` | Get Shipment Used | Get Shipment Used | ✅ |
 | 182 | `assignedUserId` | Assigned User ID | Assigned User ID | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -4518,6 +4701,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 193 | `attachedLinesCount` | Attached Lines Count | Attached Lines Count | ✅ |
 | 194 | `sellToCustomerName` | Sell-to Customer Name | Sell-to Customer Name | ✅ |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfSalesCreditMemos
@@ -4719,6 +4905,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 180 | `allowLineDisc` | Allow Line Disc. | Allow Line Disc. | ✅ |
 | 181 | `getShipmentUsed` | Get Shipment Used | Get Shipment Used | ✅ |
 | 182 | `assignedUserId` | Assigned User ID | Assigned User ID | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -4934,6 +5123,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 193 | `attachedLinesCount` | Attached Lines Count | Attached Lines Count | ✅ |
 | 194 | `sellToCustomerName` | Sell-to Customer Name | Sell-to Customer Name | ✅ |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfPostedSalesInvoices
@@ -5089,6 +5281,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 135 | `draftInvoiceSystemid` | Draft Invoice SystemId | Draft Invoice SystemId | — |
 | 136 | `disputeStatusId` | Dispute Status Id | Dispute Status Id | — |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfPostedSalesInvoiceLines
@@ -5208,6 +5403,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 99 | `customerDiscGroup` | Customer Disc. Group | Customer Disc. Group | — |
 | 100 | `priceDescription` | Price description | Price description | — |
 | 101 | `sellToCustomerName` | Sell-to Customer Name | Sell-to Customer Name | — |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -5351,6 +5549,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 122 | `getReturnReceiptUsed` | Get Return Receipt Used | Get Return Receipt Used | — |
 | 123 | `draftCrMemoSystemid` | Draft Cr. Memo SystemId | Draft Cr. Memo System Id | — |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfPostedSalesCreditMemoLines
@@ -5466,6 +5667,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 95 | `allowLineDisc` | Allow Line Disc. | Allow Line Disc. | — |
 | 96 | `customerDiscGroup` | Customer Disc. Group | Customer Disc. Group | — |
 | 97 | `sellToCustomerName` | Sell-to Customer Name | Sell-to Customer Name | — |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -5593,6 +5797,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 106 | `customerId` | Customer Id | Customer Id | — |
 | 107 | `billToCustomerId` | Bill-to Customer Id | Bill-to Customer Id | — |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfPostedSalesShipmentLines
@@ -5708,6 +5915,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 95 | `allowLineDisc` | Allow Line Disc. | Allow Line Disc. | — |
 | 96 | `customerDiscGroup` | Customer Disc. Group | Customer Disc. Group | — |
 | 97 | `documentId` | Document Id | Document Id | — |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -5830,6 +6040,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 101 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | — |
 | 102 | `allowLineDisc` | Allow Line Disc. | Allow Line Disc. | — |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfPostedReturnReceiptLines
@@ -5933,6 +6146,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 83 | `allowLineDisc` | Allow Line Disc. | Allow Line Disc. | — |
 | 84 | `customerDiscGroup` | Customer Disc. Group | Customer Disc. Group | — |
 | 85 | `sellToCustomerName` | Sell-to Customer Name | Sell-to Customer Name | — |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -6135,6 +6351,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 180 | `allowLineDisc` | Allow Line Disc. | Allow Line Disc. | ✅ |
 | 181 | `getShipmentUsed` | Get Shipment Used | Get Shipment Used | ✅ |
 | 182 | `assignedUserId` | Assigned User ID | Assigned User ID | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -6350,9 +6569,14 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 193 | `attachedLinesCount` | Attached Lines Count | Attached Lines Count | ✅ |
 | 194 | `sellToCustomerName` | Sell-to Customer Name | Sell-to Customer Name | ✅ |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ## Purchasing
+
+[↑ Table of Contents](#table-of-contents)
 
 **API Group URL segment:** `ocpf_purchasing`  
 **Pages:** 18 (10 editable, 8 read-only)  
@@ -6533,6 +6757,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 157 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | ✅ |
 | 158 | `assignedUserId` | Assigned User ID | Assigned User ID | ✅ |
 | 159 | `pendingApprovals` | Pending Approvals | Pending Approvals | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -6765,6 +6992,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 210 | `planningFlexibility` | Planning Flexibility | Planning Flexibility | ✅ |
 | 211 | `safetyLeadTime` | Safety Lead Time | Safety Lead Time | ✅ |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfPurchaseInvoices
@@ -6943,6 +7173,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 157 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | ✅ |
 | 158 | `assignedUserId` | Assigned User ID | Assigned User ID | ✅ |
 | 159 | `pendingApprovals` | Pending Approvals | Pending Approvals | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -7175,6 +7408,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 210 | `planningFlexibility` | Planning Flexibility | Planning Flexibility | ✅ |
 | 211 | `safetyLeadTime` | Safety Lead Time | Safety Lead Time | ✅ |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfPurchaseCreditMemos
@@ -7353,6 +7589,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 157 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | ✅ |
 | 158 | `assignedUserId` | Assigned User ID | Assigned User ID | ✅ |
 | 159 | `pendingApprovals` | Pending Approvals | Pending Approvals | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -7585,6 +7824,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 210 | `planningFlexibility` | Planning Flexibility | Planning Flexibility | ✅ |
 | 211 | `safetyLeadTime` | Safety Lead Time | Safety Lead Time | ✅ |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfPostedPurchaseInvoices
@@ -7714,6 +7956,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 109 | `responsibilityCenter` | Responsibility Center | Responsibility Center | — |
 | 110 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | — |
 | 111 | `draftInvoiceSystemid` | Draft Invoice SystemId | Draft Invoice SystemId | — |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -7852,6 +8097,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 117 | `buyFromVendorName` | Buy-from Vendor Name | Buy-from Vendor Name | — |
 | 118 | `overheadRate` | Overhead Rate | Overhead Rate | — |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfPostedPurchaseCreditMemos
@@ -7975,6 +8223,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 103 | `returnOrderNoSeries` | Return Order No. Series | Return Order No. Series | — |
 | 104 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | — |
 | 105 | `draftCrMemoSystemid` | Draft Cr. Memo SystemId | Draft Cr. Memo System Id | — |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -8110,6 +8361,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 114 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | — |
 | 115 | `buyFromVendorName` | Buy-from Vendor Name | Buy-from Vendor Name | — |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfPostedPurchaseReceipts
@@ -8224,6 +8478,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 94 | `leadTimeCalculation` | Lead Time Calculation | Lead Time Calculation | — |
 | 95 | `inboundWhseHandlingTime` | Inbound Whse. Handling Time | Inbound Whse. Handling Time | — |
 | 96 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | — |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -8361,6 +8618,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 116 | `overReceiptCode2` | Over-Receipt Code 2 | Over-Receipt Code | — |
 | 117 | `overheadRate` | Overhead Rate | Overhead Rate | — |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfPostedReturnShipments
@@ -8469,6 +8729,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 88 | `returnOrderNoSeries` | Return Order No. Series | Return Order No. Series | — |
 | 89 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | — |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfPostedReturnShipmentLines
@@ -8576,6 +8839,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 87 | `returnReasonCode` | Return Reason Code | Return Reason Code | — |
 | 88 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | — |
 | 89 | `buyFromVendorName` | Buy-from Vendor Name | Buy-from Vendor Name | — |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -8755,6 +9021,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 157 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | ✅ |
 | 158 | `assignedUserId` | Assigned User ID | Assigned User ID | ✅ |
 | 159 | `pendingApprovals` | Pending Approvals | Pending Approvals | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -8987,6 +9256,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 210 | `planningFlexibility` | Planning Flexibility | Planning Flexibility | ✅ |
 | 211 | `safetyLeadTime` | Safety Lead Time | Safety Lead Time | ✅ |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfPurchaseBlanketOrders
@@ -9165,6 +9437,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 157 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | ✅ |
 | 158 | `assignedUserId` | Assigned User ID | Assigned User ID | ✅ |
 | 159 | `pendingApprovals` | Pending Approvals | Pending Approvals | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -9397,9 +9672,14 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 210 | `planningFlexibility` | Planning Flexibility | Planning Flexibility | ✅ |
 | 211 | `safetyLeadTime` | Safety Lead Time | Safety Lead Time | ✅ |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ## Projects & Assets
+
+[↑ Table of Contents](#table-of-contents)
 
 **API Group URL segment:** `ocpf_projectsAndAssets`  
 **Pages:** 14 (1 editable, 13 read-only)  
@@ -9527,6 +9807,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 105 | `costCalculationMethod` | Cost Calculation Method | Cost Calculation Method | — |
 | 106 | `completelyPicked` | Completely Picked | Completely Picked | — |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfProjectPostingGroups
@@ -9562,6 +9845,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 15 | `resourceCostsAppliedAccount` | Resource Costs Applied Account | Resource Costs Applied Account | — |
 | 16 | `gLCostsAppliedAccount` | G/L Costs Applied Account | G/L Costs Applied Account | — |
 | 17 | `description` | Description | Description | — |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -9656,6 +9942,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 73 | `yourReference` | Your Reference | Your Reference | — |
 | 74 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | — |
 | 75 | `invoiceCurrencyCode` | Invoice Currency Code | Invoice Currency Code | — |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -9778,6 +10067,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 101 | `pickQtyBase` | Pick Qty. (Base) | Pick Qty. (Base) | — |
 | 102 | `qtyOnJournal` | Qty. on Journal | Qty. on Journal | — |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfProjectLedgerEntries
@@ -9879,6 +10171,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 81 | `quantityBase` | Quantity (Base) | Quantity (Base) | — |
 | 82 | `packageNo` | Package No. | Package No. | — |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfFixedAssets
@@ -9930,6 +10225,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 31 | `image` | Image | Image | — |
 | 32 | `faLocationId` | FA Location Id | FA Location Id | — |
 | 33 | `responsibleEmployeeId` | Responsible Employee Id | Responsible Employee | — |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -9994,6 +10292,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 43 | `allocatedBookValuePctLoss` | Allocated Book Value % (Loss) | Allocated Book Value % (Loss) | — |
 | 44 | `salesAccOnDispLoss` | Sales Acc. on Disp. (Loss) | Sales Acc. on Disp. (Loss) | — |
 | 45 | `bookValAccOnDispLoss` | Book Val. Acc. on Disp. (Loss) | Book Val. Acc. on Disp. (Loss) | — |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -10096,6 +10397,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 81 | `shortcutDimension8Code` | Shortcut Dimension 8 Code | Shortcut Dimension 8 Code | — |
 | 82 | `nonDedVatFaCost` | Non-Ded. VAT FA Cost | Non-Deductible VAT FA Cost | — |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfFaDepreciationBooks
@@ -10179,6 +10483,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 63 | `ignoreDefEndingBookValue` | Ignore Def. Ending Book Value | Ignore Def. Ending Book Value | — |
 | 64 | `defaultFaDepreciationBook` | Default FA Depreciation Book | Default FA Depreciation Book | — |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfGeneralJournalTemplates
@@ -10228,6 +10535,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 29 | `allowPostingDateTo` | Allow Posting Date To | Allow Posting Date To | — |
 | 30 | `unlinkIncDocOnPosting` | Unlink Inc. Doc On Posting | Unlink Incoming Documents On Posting | — |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfGeneralJournalBatches
@@ -10266,6 +10576,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 18 | `copyToPostedJnlLines` | Copy to Posted Jnl. Lines | Copy to Posted Jnl. Lines | — |
 | 19 | `lastModifiedDatetime` | Last Modified DateTime | Last Modified DateTime | — |
 | 20 | `balaccountid` | BalAccountId | BalAccountId | — |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -10499,6 +10812,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 212 | `balanceAccountId` | Balance Account Id | Balance Account Id | ✅ |
 | 213 | `vendorId` | Vendor Id | Vendor Id | ✅ |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfPriceListHeaders
@@ -10540,6 +10856,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 21 | `allowUpdatingDefaults` | Allow Updating Defaults | Allow Updating Defaults | — |
 | 22 | `assignToNo` | Assign-to No. | Assign-to No. | — |
 | 23 | `assignToParentNo` | Assign-to Parent No. | Assign-to Parent No. | — |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -10598,9 +10917,14 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 37 | `variantCodeLookup` | Variant Code Lookup | Variant Code | — |
 | 38 | `unitOfMeasureCodeLookup` | Unit of Measure Code Lookup | Unit of Measure Code | — |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ## System & Setup
+
+[↑ Table of Contents](#table-of-contents)
 
 **API Group URL segment:** `ocpf_systemAndSetup`  
 **Pages:** 9 (0 editable, 9 read-only)  
@@ -10639,6 +10963,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 16 | `vatReportConfigCode` | VAT Report Config. Code | VAT Report Config. Code | — |
 | 17 | `documentFlowService` | Document Flow Service | Flow to Service Trx | — |
 | 18 | `documentFlowProduction` | Document Flow Production | Flow to Production Trx | — |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -10719,6 +11046,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 59 | `baseCalendarCode` | Base Calendar Code | Base Calendar Code | — |
 | 60 | `calConvergenceTimeFrame` | Cal. Convergence Time Frame | Cal. Convergence Time Frame | — |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfWarehouseEntries
@@ -10782,6 +11112,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 43 | `physInvtCountingPeriodCode` | Phys Invt Counting Period Code | Phys Invt Counting Period Code | — |
 | 44 | `physInvtCountingPeriodType` | Phys Invt Counting Period Type | Phys Invt Counting Period Type | — |
 | 45 | `dedicated` | Dedicated | Dedicated | — |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -10853,6 +11186,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 50 | `reminderAutomationCode` | Reminder Automation Code | Reminder Automation Code | — |
 | 51 | `assignedUserId` | Assigned User ID | Assigned User ID | — |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfReminderLines
@@ -10902,6 +11238,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 29 | `appliesToDocumentNo` | Applies-to Document No. | Applies-to Document No. | — |
 | 30 | `detailedInterestRatesEntry` | Detailed Interest Rates Entry | Detailed Interest Rates Entry | — |
 | 31 | `systemCreatedEntry` | System-Created Entry | System-Created Entry | — |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -10966,6 +11305,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 43 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | — |
 | 44 | `assignedUserId` | Assigned User ID | Assigned User ID | — |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfFinanceChargeMemoLines
@@ -11012,6 +11354,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 26 | `vatClauseCode` | VAT Clause Code | VAT Clause Code | — |
 | 27 | `detailedInterestRatesEntry` | Detailed Interest Rates Entry | Detailed Interest Rates Entry | — |
 | 28 | `systemCreatedEntry` | System-Created Entry | System-Created Entry | — |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -11061,6 +11406,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 28 | `workflowStepInstanceId` | Workflow Step Instance ID | Workflow Step Instance ID | — |
 | 29 | `relatedToChange` | Related to Change | Related to Change | — |
 
+
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ### ocpfWorkflowStepInstances
@@ -11099,5 +11447,8 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 18 | `originalWorkflowCode` | Original Workflow Code | Original Workflow Code | — |
 | 19 | `originalWorkflowStepId` | Original Workflow Step ID | Original Workflow Step ID | — |
 | 20 | `sequenceNo` | Sequence No. | Sequence No. | — |
+
+
+[↑ Back to top](#table-of-contents)
 
 ---

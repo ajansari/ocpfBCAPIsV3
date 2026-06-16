@@ -14,125 +14,125 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ## Table of Contents
 
-- [Core Financial](#core-financial)
-  - [G/L Account: ocpfChartOfAccounts (Page 90800)](#ocpfchartofaccounts)
-  - [G/L Entry: ocpfGeneralLedgerEntries (Page 90801)](#ocpfgeneralledgerentries)
-  - [General Ledger Setup: ocpfGeneralLedgerSetup (Page 90802)](#ocpfgeneralledgersetup)
-  - [Accounting Period: ocpfAccountingPeriods (Page 90803)](#ocpfaccountingperiods)
-  - [G/L Budget Entry: ocpfGLBudgetEntries (Page 90804)](#ocpfglbudgetentries)
-  - [G/L Register: ocpfGLRegisters (Page 90805)](#ocpfglregisters)
-  - [Cust. Ledger Entry: ocpfCustLedgerEntries (Page 90806)](#ocpfcustledgerentries)
-  - [Detailed Cust. Ledg. Entry: ocpfDetailedCustLedgerEntries (Page 90807)](#ocpfdetailedcustledgerentries)
-  - [Vendor Ledger Entry: ocpfVendorLedgerEntries (Page 90808)](#ocpfvendorledgerentries)
-  - [Detailed Vendor Ledg. Entry: ocpfDtldVendorLedgEntries (Page 90809)](#ocpfdtldvendorledgentries)
-  - [Employee Ledger Entry: ocpfEmployeeLedgerEntries (Page 90810)](#ocpfemployeeledgerentries)
-  - [Gen. Business Posting Group: ocpfGenBusPostingGroups (Page 90811)](#ocpfgenbuspostinggroups)
-  - [Gen. Product Posting Group: ocpfGenProdPostingGroups (Page 90812)](#ocpfgenprodpostinggroups)
-  - [General Posting Setup: ocpfGeneralPostingSetup (Page 90813)](#ocpfgeneralpostingsetup)
-  - [Customer Posting Group: ocpfCustomerPostingGroups (Page 90814)](#ocpfcustomerpostinggroups)
-  - [Vendor Posting Group: ocpfVendorPostingGroups (Page 90815)](#ocpfvendorpostinggroups)
-  - [Inventory Posting Group: ocpfInventoryPostingGroups (Page 90816)](#ocpfinventorypostinggroups)
-  - [VAT Business Posting Group: ocpfVatBusinessPostingGroups (Page 90817)](#ocpfvatbusinesspostinggroups)
-  - [VAT Product Posting Group: ocpfVatProductPostingGroups (Page 90818)](#ocpfvatproductpostinggroups)
-  - [VAT Posting Setup: ocpfVatPostingSetup (Page 90819)](#ocpfvatpostingsetup)
-  - [: ocpfDimensions (Page 90820)](#ocpfdimensions)
-  - [Dimension Value: ocpfDimensionValues (Page 90821)](#ocpfdimensionvalues)
-  - [Default Dimension: ocpfDefaultDimensions (Page 90822)](#ocpfdefaultdimensions)
-  - [Dimension Set Entry: ocpfDimensionSetEntries (Page 90823)](#ocpfdimensionsetentries)
-  - [Inventory Posting Setup: ocpfInventoryPostingSetup (Page 90824)](#ocpfinventorypostingsetup)
-- [Master Data](#master-data)
-  - [Bank Account: ocpfBankAccounts (Page 90830)](#ocpfbankaccounts)
-  - [Bank Account Posting Group: ocpfBankAccountPostingGroups (Page 90831)](#ocpfbankaccountpostinggroups)
-  - [Bank Account Ledger Entry: ocpfBankAccountLedgerEntries (Page 90832)](#ocpfbankaccountledgerentries)
-  - [Payment Terms: ocpfPaymentTerms (Page 90833)](#ocpfpaymentterms)
-  - [Payment Method: ocpfPaymentMethods (Page 90834)](#ocpfpaymentmethods)
-  - [: ocpfCurrencies (Page 90835)](#ocpfcurrencies)
-  - [Country/Region: ocpfCountriesRegions (Page 90836)](#ocpfcountriesregions)
-  - [Unit of Measure: ocpfUnitsOfMeasure (Page 90837)](#ocpfunitsofmeasure)
-  - [Item Unit of Measure: ocpfItemUnitsOfMeasure (Page 90838)](#ocpfitemunitsofmeasure)
-  - [: ocpfLocations (Page 90839)](#ocpflocations)
-  - [Item Category: ocpfItemCategories (Page 90840)](#ocpfitemcategories)
-  - [Shipment Method: ocpfShipmentMethods (Page 90841)](#ocpfshipmentmethods)
-  - [: ocpfCustomers (Page 90842)](#ocpfcustomers)
-  - [: ocpfVendors (Page 90843)](#ocpfvendors)
-  - [: ocpfContacts (Page 90844)](#ocpfcontacts)
-  - [Contact Business Relation: ocpfContactBusinessRelations (Page 90845)](#ocpfcontactbusinessrelations)
-  - [: ocpfItems (Page 90846)](#ocpfitems)
-  - [Item Ledger Entry: ocpfItemLedgerEntries (Page 90847)](#ocpfitemledgerentries)
-  - [Value Entry: ocpfValueEntries (Page 90848)](#ocpfvalueentries)
-  - [Item Application Entry: ocpfItemApplicationEntries (Page 90849)](#ocpfitemapplicationentries)
-  - [Item Vendor: ocpfItemVendorCatalogs (Page 90850)](#ocpfitemvendorcatalogs)
-  - [Stockkeeping Unit: ocpfStockkeepingUnits (Page 90851)](#ocpfstockkeepingunits)
-  - [Item Tracking Code: ocpfItemTrackingCodes (Page 90852)](#ocpfitemtrackingcodes)
-  - [Item Charge: ocpfItemCharges (Page 90853)](#ocpfitemcharges)
-  - [: ocpfResources (Page 90854)](#ocpfresources)
-  - [Res. Ledger Entry: ocpfResourceLedgerEntries (Page 90855)](#ocpfresourceledgerentries)
-  - [Resource Group: ocpfResourceGroups (Page 90856)](#ocpfresourcegroups)
-  - [: ocpfEmployees (Page 90857)](#ocpfemployees)
-  - [Salesperson/Purchaser: ocpfSalespeople (Page 90858)](#ocpfsalespeople)
-- [Sales](#sales)
-  - [Sales Header: ocpfSalesQuotes (Page 90870)](#ocpfsalesquotes)
-  - [Sales Line: ocpfSalesQuoteLines (Page 90871)](#ocpfsalesquotelines)
-  - [Sales Header: ocpfSalesOrders (Page 90872)](#ocpfsalesorders)
-  - [Sales Line: ocpfSalesOrderLines (Page 90873)](#ocpfsalesorderlines)
-  - [Sales Header: ocpfSalesInvoices (Page 90874)](#ocpfsalesinvoices)
-  - [Sales Line: ocpfSalesInvoiceLines (Page 90875)](#ocpfsalesinvoicelines)
-  - [Sales Header: ocpfSalesCreditMemos (Page 90876)](#ocpfsalescreditmemos)
-  - [Sales Line: ocpfSalesCreditMemoLines (Page 90877)](#ocpfsalescreditmemolines)
-  - [Sales Invoice Header: ocpfPostedSalesInvoices (Page 90878)](#ocpfpostedsalesinvoices)
-  - [Sales Invoice Line: ocpfPostedSalesInvoiceLines (Page 90879)](#ocpfpostedsalesinvoicelines)
-  - [Sales Cr.Memo Header: ocpfPostedSalesCreditMemos (Page 90880)](#ocpfpostedsalescreditmemos)
-  - [Sales Cr.Memo Line: ocpfPostedSalesCreditMemoLines (Page 90881)](#ocpfpostedsalescreditmemolines)
-  - [Sales Shipment Header: ocpfPostedSalesShipments (Page 90882)](#ocpfpostedsalesshipments)
-  - [Sales Shipment Line: ocpfPostedSalesShipmentLines (Page 90883)](#ocpfpostedsalesshipmentlines)
-  - [Return Receipt Header: ocpfPostedReturnReceipts (Page 90884)](#ocpfpostedreturnreceipts)
-  - [Return Receipt Line: ocpfPostedReturnReceiptLines (Page 90885)](#ocpfpostedreturnreceiptlines)
-  - [Sales Header: ocpfSalesBlanketOrders (Page 90886)](#ocpfsalesblanketorders)
-  - [Sales Line: ocpfSalesBlanketOrderLines (Page 90887)](#ocpfsalesblanketorderlines)
-- [Purchasing](#purchasing)
-  - [Purchase Header: ocpfPurchaseOrders (Page 90890)](#ocpfpurchaseorders)
-  - [Purchase Line: ocpfPurchaseOrderLines (Page 90891)](#ocpfpurchaseorderlines)
-  - [Purchase Header: ocpfPurchaseInvoices (Page 90892)](#ocpfpurchaseinvoices)
-  - [Purchase Line: ocpfPurchaseInvoiceLines (Page 90893)](#ocpfpurchaseinvoicelines)
-  - [Purchase Header: ocpfPurchaseCreditMemos (Page 90894)](#ocpfpurchasecreditmemos)
-  - [Purchase Line: ocpfPurchaseCreditMemoLines (Page 90895)](#ocpfpurchasecreditmemolines)
-  - [Purch. Inv. Header: ocpfPostedPurchaseInvoices (Page 90896)](#ocpfpostedpurchaseinvoices)
-  - [Purch. Inv. Line: ocpfPostedPurchaseInvoiceLines (Page 90897)](#ocpfpostedpurchaseinvoicelines)
-  - [Purch. Cr. Memo Hdr.: ocpfPostedPurchaseCreditMemos (Page 90898)](#ocpfpostedpurchasecreditmemos)
-  - [Purch. Cr. Memo Line: ocpfPostedPurchCrMemoLines (Page 90899)](#ocpfpostedpurchcrmemolines)
-  - [Purch. Rcpt. Header: ocpfPostedPurchaseReceipts (Page 90900)](#ocpfpostedpurchasereceipts)
-  - [Purch. Rcpt. Line: ocpfPostedPurchaseReceiptLines (Page 90901)](#ocpfpostedpurchasereceiptlines)
-  - [Return Shipment Header: ocpfPostedReturnShipments (Page 90902)](#ocpfpostedreturnshipments)
-  - [Return Shipment Line: ocpfPostedReturnShipmentLines (Page 90903)](#ocpfpostedreturnshipmentlines)
-  - [Purchase Header: ocpfPurchaseQuotes (Page 90904)](#ocpfpurchasequotes)
-  - [Purchase Line: ocpfPurchaseQuoteLines (Page 90905)](#ocpfpurchasequotelines)
-  - [Purchase Header: ocpfPurchaseBlanketOrders (Page 90906)](#ocpfpurchaseblanketorders)
-  - [Purchase Line: ocpfPurchaseBlanketOrderLines (Page 90907)](#ocpfpurchaseblanketorderlines)
-- [Projects & Assets](#projects-assets)
-  - [: ocpfProjects (Page 90910)](#ocpfprojects)
-  - [Job Posting Group: ocpfProjectPostingGroups (Page 90911)](#ocpfprojectpostinggroups)
-  - [Job Task: ocpfProjectTasks (Page 90912)](#ocpfprojecttasks)
-  - [Job Planning Line: ocpfProjectPlanningLines (Page 90913)](#ocpfprojectplanninglines)
-  - [Job Ledger Entry: ocpfProjectLedgerEntries (Page 90914)](#ocpfprojectledgerentries)
-  - [Fixed Asset: ocpfFixedAssets (Page 90915)](#ocpffixedassets)
-  - [FA Posting Group: ocpfFaPostingGroups (Page 90916)](#ocpffapostinggroups)
-  - [FA Ledger Entry: ocpfFaLedgerEntries (Page 90917)](#ocpffaledgerentries)
-  - [FA Depreciation Book: ocpfFaDepreciationBooks (Page 90918)](#ocpffadepreciationbooks)
-  - [Gen. Journal Template: ocpfGeneralJournalTemplates (Page 90919)](#ocpfgeneraljournaltemplates)
-  - [Gen. Journal Batch: ocpfGeneralJournalBatches (Page 90920)](#ocpfgeneraljournalbatches)
-  - [Gen. Journal Line: ocpfGeneralJournalLines (Page 90921)](#ocpfgeneraljournallines)
-  - [Price List Header: ocpfPriceListHeaders (Page 90922)](#ocpfpricelistheaders)
-  - [Price List Line: ocpfPriceListLines (Page 90923)](#ocpfpricelistlines)
-- [System & Setup](#system-setup)
-  - [Document Attachment: ocpfDocumentAttachments (Page 90930)](#ocpfdocumentattachments)
-  - [Company Information: ocpfCompanyInformation (Page 90931)](#ocpfcompanyinformation)
-  - [Warehouse Entry: ocpfWarehouseEntries (Page 90932)](#ocpfwarehouseentries)
-  - [Reminder Header: ocpfReminderHeaders (Page 90933)](#ocpfreminderheaders)
-  - [Reminder Line: ocpfReminderLines (Page 90934)](#ocpfreminderlines)
-  - [Finance Charge Memo Header: ocpfFinanceChargeMemoHeaders (Page 90935)](#ocpffinancechargememoheaders)
-  - [Finance Charge Memo Line: ocpfFinanceChargeMemoLines (Page 90936)](#ocpffinancechargememolines)
-  - [Approval Entry: ocpfApprovalEntries (Page 90937)](#ocpfapprovalentries)
-  - [Workflow Step Instance: ocpfWorkflowStepInstances (Page 90938)](#ocpfworkflowstepinstances)
+- **Core Financial** [(Go to Category)](#core-financial)
+  - G/L Account: [ocpfChartOfAccounts (Page 90800)](#ocpfchartofaccounts)
+  - G/L Entry: [ocpfGeneralLedgerEntries (Page 90801)](#ocpfgeneralledgerentries)
+  - General Ledger Setup: [ocpfGeneralLedgerSetup (Page 90802)](#ocpfgeneralledgersetup)
+  - Accounting Period: [ocpfAccountingPeriods (Page 90803)](#ocpfaccountingperiods)
+  - G/L Budget Entry: [ocpfGLBudgetEntries (Page 90804)](#ocpfglbudgetentries)
+  - G/L Register: [ocpfGLRegisters (Page 90805)](#ocpfglregisters)
+  - Cust. Ledger Entry: [ocpfCustLedgerEntries (Page 90806)](#ocpfcustledgerentries)
+  - Detailed Cust. Ledg. Entry: [ocpfDetailedCustLedgerEntries (Page 90807)](#ocpfdetailedcustledgerentries)
+  - Vendor Ledger Entry: [ocpfVendorLedgerEntries (Page 90808)](#ocpfvendorledgerentries)
+  - Detailed Vendor Ledg. Entry: [ocpfDtldVendorLedgEntries (Page 90809)](#ocpfdtldvendorledgentries)
+  - Employee Ledger Entry: [ocpfEmployeeLedgerEntries (Page 90810)](#ocpfemployeeledgerentries)
+  - Gen. Business Posting Group: [ocpfGenBusPostingGroups (Page 90811)](#ocpfgenbuspostinggroups)
+  - Gen. Product Posting Group: [ocpfGenProdPostingGroups (Page 90812)](#ocpfgenprodpostinggroups)
+  - General Posting Setup: [ocpfGeneralPostingSetup (Page 90813)](#ocpfgeneralpostingsetup)
+  - Customer Posting Group: [ocpfCustomerPostingGroups (Page 90814)](#ocpfcustomerpostinggroups)
+  - Vendor Posting Group: [ocpfVendorPostingGroups (Page 90815)](#ocpfvendorpostinggroups)
+  - Inventory Posting Group: [ocpfInventoryPostingGroups (Page 90816)](#ocpfinventorypostinggroups)
+  - VAT Business Posting Group: [ocpfVatBusinessPostingGroups (Page 90817)](#ocpfvatbusinesspostinggroups)
+  - VAT Product Posting Group: [ocpfVatProductPostingGroups (Page 90818)](#ocpfvatproductpostinggroups)
+  - VAT Posting Setup: [ocpfVatPostingSetup (Page 90819)](#ocpfvatpostingsetup)
+  - Dimension: [ocpfDimensions (Page 90820)](#ocpfdimensions)
+  - Dimension Value: [ocpfDimensionValues (Page 90821)](#ocpfdimensionvalues)
+  - Default Dimension: [ocpfDefaultDimensions (Page 90822)](#ocpfdefaultdimensions)
+  - Dimension Set Entry: [ocpfDimensionSetEntries (Page 90823)](#ocpfdimensionsetentries)
+  - Inventory Posting Setup: [ocpfInventoryPostingSetup (Page 90824)](#ocpfinventorypostingsetup)
+- **Master Data** [(Go to Category)](#master-data)
+  - Bank Account: [ocpfBankAccounts (Page 90830)](#ocpfbankaccounts)
+  - Bank Account Posting Group: [ocpfBankAccountPostingGroups (Page 90831)](#ocpfbankaccountpostinggroups)
+  - Bank Account Ledger Entry: [ocpfBankAccountLedgerEntries (Page 90832)](#ocpfbankaccountledgerentries)
+  - Payment Terms: [ocpfPaymentTerms (Page 90833)](#ocpfpaymentterms)
+  - Payment Method: [ocpfPaymentMethods (Page 90834)](#ocpfpaymentmethods)
+  - Currency: [ocpfCurrencies (Page 90835)](#ocpfcurrencies)
+  - Country/Region: [ocpfCountriesRegions (Page 90836)](#ocpfcountriesregions)
+  - Unit of Measure: [ocpfUnitsOfMeasure (Page 90837)](#ocpfunitsofmeasure)
+  - Item Unit of Measure: [ocpfItemUnitsOfMeasure (Page 90838)](#ocpfitemunitsofmeasure)
+  - Location: [ocpfLocations (Page 90839)](#ocpflocations)
+  - Item Category: [ocpfItemCategories (Page 90840)](#ocpfitemcategories)
+  - Shipment Method: [ocpfShipmentMethods (Page 90841)](#ocpfshipmentmethods)
+  - Customer: [ocpfCustomers (Page 90842)](#ocpfcustomers)
+  - Vendor: [ocpfVendors (Page 90843)](#ocpfvendors)
+  - Contact: [ocpfContacts (Page 90844)](#ocpfcontacts)
+  - Contact Business Relation: [ocpfContactBusinessRelations (Page 90845)](#ocpfcontactbusinessrelations)
+  - Item: [ocpfItems (Page 90846)](#ocpfitems)
+  - Item Ledger Entry: [ocpfItemLedgerEntries (Page 90847)](#ocpfitemledgerentries)
+  - Value Entry: [ocpfValueEntries (Page 90848)](#ocpfvalueentries)
+  - Item Application Entry: [ocpfItemApplicationEntries (Page 90849)](#ocpfitemapplicationentries)
+  - Item Vendor: [ocpfItemVendorCatalogs (Page 90850)](#ocpfitemvendorcatalogs)
+  - Stockkeeping Unit: [ocpfStockkeepingUnits (Page 90851)](#ocpfstockkeepingunits)
+  - Item Tracking Code: [ocpfItemTrackingCodes (Page 90852)](#ocpfitemtrackingcodes)
+  - Item Charge: [ocpfItemCharges (Page 90853)](#ocpfitemcharges)
+  - Resource: [ocpfResources (Page 90854)](#ocpfresources)
+  - Res. Ledger Entry: [ocpfResourceLedgerEntries (Page 90855)](#ocpfresourceledgerentries)
+  - Resource Group: [ocpfResourceGroups (Page 90856)](#ocpfresourcegroups)
+  - Employee: [ocpfEmployees (Page 90857)](#ocpfemployees)
+  - Salesperson/Purchaser: [ocpfSalespeople (Page 90858)](#ocpfsalespeople)
+- **Sales** [(Go to Category)](#sales)
+  - Sales Header: [ocpfSalesQuotes (Page 90870)](#ocpfsalesquotes)
+  - Sales Line: [ocpfSalesQuoteLines (Page 90871)](#ocpfsalesquotelines)
+  - Sales Header: [ocpfSalesOrders (Page 90872)](#ocpfsalesorders)
+  - Sales Line: [ocpfSalesOrderLines (Page 90873)](#ocpfsalesorderlines)
+  - Sales Header: [ocpfSalesInvoices (Page 90874)](#ocpfsalesinvoices)
+  - Sales Line: [ocpfSalesInvoiceLines (Page 90875)](#ocpfsalesinvoicelines)
+  - Sales Header: [ocpfSalesCreditMemos (Page 90876)](#ocpfsalescreditmemos)
+  - Sales Line: [ocpfSalesCreditMemoLines (Page 90877)](#ocpfsalescreditmemolines)
+  - Sales Invoice Header: [ocpfPostedSalesInvoices (Page 90878)](#ocpfpostedsalesinvoices)
+  - Sales Invoice Line: [ocpfPostedSalesInvoiceLines (Page 90879)](#ocpfpostedsalesinvoicelines)
+  - Sales Cr.Memo Header: [ocpfPostedSalesCreditMemos (Page 90880)](#ocpfpostedsalescreditmemos)
+  - Sales Cr.Memo Line: [ocpfPostedSalesCreditMemoLines (Page 90881)](#ocpfpostedsalescreditmemolines)
+  - Sales Shipment Header: [ocpfPostedSalesShipments (Page 90882)](#ocpfpostedsalesshipments)
+  - Sales Shipment Line: [ocpfPostedSalesShipmentLines (Page 90883)](#ocpfpostedsalesshipmentlines)
+  - Return Receipt Header: [ocpfPostedReturnReceipts (Page 90884)](#ocpfpostedreturnreceipts)
+  - Return Receipt Line: [ocpfPostedReturnReceiptLines (Page 90885)](#ocpfpostedreturnreceiptlines)
+  - Sales Header: [ocpfSalesBlanketOrders (Page 90886)](#ocpfsalesblanketorders)
+  - Sales Line: [ocpfSalesBlanketOrderLines (Page 90887)](#ocpfsalesblanketorderlines)
+- **Purchasing** [(Go to Category)](#purchasing)
+  - Purchase Header: [ocpfPurchaseOrders (Page 90890)](#ocpfpurchaseorders)
+  - Purchase Line: [ocpfPurchaseOrderLines (Page 90891)](#ocpfpurchaseorderlines)
+  - Purchase Header: [ocpfPurchaseInvoices (Page 90892)](#ocpfpurchaseinvoices)
+  - Purchase Line: [ocpfPurchaseInvoiceLines (Page 90893)](#ocpfpurchaseinvoicelines)
+  - Purchase Header: [ocpfPurchaseCreditMemos (Page 90894)](#ocpfpurchasecreditmemos)
+  - Purchase Line: [ocpfPurchaseCreditMemoLines (Page 90895)](#ocpfpurchasecreditmemolines)
+  - Purch. Inv. Header: [ocpfPostedPurchaseInvoices (Page 90896)](#ocpfpostedpurchaseinvoices)
+  - Purch. Inv. Line: [ocpfPostedPurchaseInvoiceLines (Page 90897)](#ocpfpostedpurchaseinvoicelines)
+  - Purch. Cr. Memo Hdr.: [ocpfPostedPurchaseCreditMemos (Page 90898)](#ocpfpostedpurchasecreditmemos)
+  - Purch. Cr. Memo Line: [ocpfPostedPurchCrMemoLines (Page 90899)](#ocpfpostedpurchcrmemolines)
+  - Purch. Rcpt. Header: [ocpfPostedPurchaseReceipts (Page 90900)](#ocpfpostedpurchasereceipts)
+  - Purch. Rcpt. Line: [ocpfPostedPurchaseReceiptLines (Page 90901)](#ocpfpostedpurchasereceiptlines)
+  - Return Shipment Header: [ocpfPostedReturnShipments (Page 90902)](#ocpfpostedreturnshipments)
+  - Return Shipment Line: [ocpfPostedReturnShipmentLines (Page 90903)](#ocpfpostedreturnshipmentlines)
+  - Purchase Header: [ocpfPurchaseQuotes (Page 90904)](#ocpfpurchasequotes)
+  - Purchase Line: [ocpfPurchaseQuoteLines (Page 90905)](#ocpfpurchasequotelines)
+  - Purchase Header: [ocpfPurchaseBlanketOrders (Page 90906)](#ocpfpurchaseblanketorders)
+  - Purchase Line: [ocpfPurchaseBlanketOrderLines (Page 90907)](#ocpfpurchaseblanketorderlines)
+- **Projects & Assets** [(Go to Category)](#projects-assets)
+  - Job: [ocpfProjects (Page 90910)](#ocpfprojects)
+  - Job Posting Group: [ocpfProjectPostingGroups (Page 90911)](#ocpfprojectpostinggroups)
+  - Job Task: [ocpfProjectTasks (Page 90912)](#ocpfprojecttasks)
+  - Job Planning Line: [ocpfProjectPlanningLines (Page 90913)](#ocpfprojectplanninglines)
+  - Job Ledger Entry: [ocpfProjectLedgerEntries (Page 90914)](#ocpfprojectledgerentries)
+  - Fixed Asset: [ocpfFixedAssets (Page 90915)](#ocpffixedassets)
+  - FA Posting Group: [ocpfFaPostingGroups (Page 90916)](#ocpffapostinggroups)
+  - FA Ledger Entry: [ocpfFaLedgerEntries (Page 90917)](#ocpffaledgerentries)
+  - FA Depreciation Book: [ocpfFaDepreciationBooks (Page 90918)](#ocpffadepreciationbooks)
+  - Gen. Journal Template: [ocpfGeneralJournalTemplates (Page 90919)](#ocpfgeneraljournaltemplates)
+  - Gen. Journal Batch: [ocpfGeneralJournalBatches (Page 90920)](#ocpfgeneraljournalbatches)
+  - Gen. Journal Line: [ocpfGeneralJournalLines (Page 90921)](#ocpfgeneraljournallines)
+  - Price List Header: [ocpfPriceListHeaders (Page 90922)](#ocpfpricelistheaders)
+  - Price List Line: [ocpfPriceListLines (Page 90923)](#ocpfpricelistlines)
+- **System & Setup** [(Go to Category)](#system-setup)
+  - Document Attachment: [ocpfDocumentAttachments (Page 90930)](#ocpfdocumentattachments)
+  - Company Information: [ocpfCompanyInformation (Page 90931)](#ocpfcompanyinformation)
+  - Warehouse Entry: [ocpfWarehouseEntries (Page 90932)](#ocpfwarehouseentries)
+  - Reminder Header: [ocpfReminderHeaders (Page 90933)](#ocpfreminderheaders)
+  - Reminder Line: [ocpfReminderLines (Page 90934)](#ocpfreminderlines)
+  - Finance Charge Memo Header: [ocpfFinanceChargeMemoHeaders (Page 90935)](#ocpffinancechargememoheaders)
+  - Finance Charge Memo Line: [ocpfFinanceChargeMemoLines (Page 90936)](#ocpffinancechargememolines)
+  - Approval Entry: [ocpfApprovalEntries (Page 90937)](#ocpfapprovalentries)
+  - Workflow Step Instance: [ocpfWorkflowStepInstances (Page 90938)](#ocpfworkflowstepinstances)
 
 ---
 
@@ -143,17 +143,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfChartOfAccounts
 
+**Description:** Chart of Accounts — G/L accounts that define the financial structure and reporting categories of the company.
+
 | Property | Value |
 |---|---|
+| **Source Table** | G/L Account |
 | Page ID | 90800 |
 | Page Name | `ocpfChartOfAccounts` |
 | Entity Set Name | `ocpfChartOfAccounts` |
-| Source Table | G/L Account |
 | API Group | `ocpf_coreFinancial` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 71 |
-
-**Description:** Chart of Accounts — G/L accounts that define the financial structure and reporting categories of the company.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -233,17 +233,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfGeneralLedgerEntries
 
+**Description:** General Ledger Entries — individual posted transactions that make up the general ledger and form the basis of all financial reporting.
+
 | Property | Value |
 |---|---|
+| **Source Table** | G/L Entry |
 | Page ID | 90801 |
 | Page Name | `ocpfGeneralLedgerEntries` |
 | Entity Set Name | `ocpfGeneralLedgerEntries` |
-| Source Table | G/L Entry |
 | API Group | `ocpf_coreFinancial` |
 | Editable | ❌ No (GET only) |
 | Field Count | 74 |
-
-**Description:** General Ledger Entries — individual posted transactions that make up the general ledger and form the basis of all financial reporting.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -326,17 +326,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfGeneralLedgerSetup
 
+**Description:** General Ledger Setup — company-wide configuration for the general ledger including local currency, rounding, and posting rules. Always returns a single record.
+
 | Property | Value |
 |---|---|
+| **Source Table** | General Ledger Setup |
 | Page ID | 90802 |
 | Page Name | `ocpfGeneralLedgerSetup` |
 | Entity Set Name | `ocpfGeneralLedgerSetup` |
-| Source Table | General Ledger Setup |
 | API Group | `ocpf_coreFinancial` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 97 |
-
-**Description:** General Ledger Setup — company-wide configuration for the general ledger including local currency, rounding, and posting rules. Always returns a single record.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -442,17 +442,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfAccountingPeriods
 
+**Description:** Accounting Periods — fiscal periods that control which dates are open for posting and define the financial year structure.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Accounting Period |
 | Page ID | 90803 |
 | Page Name | `ocpfAccountingPeriods` |
 | Entity Set Name | `ocpfAccountingPeriods` |
-| Source Table | Accounting Period |
 | API Group | `ocpf_coreFinancial` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 8 |
-
-**Description:** Accounting Periods — fiscal periods that control which dates are open for posting and define the financial year structure.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -469,17 +469,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfGLBudgetEntries
 
+**Description:** G/L Budget Entries — budgeted amounts per G/L account, dimension, and period used for budget vs. actual analysis.
+
 | Property | Value |
 |---|---|
+| **Source Table** | G/L Budget Entry |
 | Page ID | 90804 |
 | Page Name | `ocpfGLBudgetEntries` |
 | Entity Set Name | `ocpfGLBudgetEntries` |
-| Source Table | G/L Budget Entry |
 | API Group | `ocpf_coreFinancial` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 17 |
-
-**Description:** G/L Budget Entries — budgeted amounts per G/L account, dimension, and period used for budget vs. actual analysis.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -505,17 +505,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfGLRegisters
 
+**Description:** G/L Registers — audit trail records that group G/L entries posted in the same batch, enabling traceability back to the originating journal.
+
 | Property | Value |
 |---|---|
+| **Source Table** | G/L Register |
 | Page ID | 90805 |
 | Page Name | `ocpfGLRegisters` |
 | Entity Set Name | `ocpfGLRegisters` |
-| Source Table | G/L Register |
 | API Group | `ocpf_coreFinancial` |
 | Editable | ❌ No (GET only) |
 | Field Count | 13 |
-
-**Description:** G/L Registers — audit trail records that group G/L entries posted in the same batch, enabling traceability back to the originating journal.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -537,17 +537,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfCustLedgerEntries
 
+**Description:** Customer Ledger Entries — open and closed receivables transactions per customer including invoices, credit memos, and payments.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Cust. Ledger Entry |
 | Page ID | 90806 |
 | Page Name | `ocpfCustLedgerEntries` |
 | Entity Set Name | `ocpfCustLedgerEntries` |
-| Source Table | Cust. Ledger Entry |
 | API Group | `ocpf_coreFinancial` |
 | Editable | ❌ No (GET only) |
 | Field Count | 79 |
-
-**Description:** Customer Ledger Entries — open and closed receivables transactions per customer including invoices, credit memos, and payments.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -635,17 +635,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfDetailedCustLedgerEntries
 
+**Description:** Detailed Customer Ledger Entries — granular application records showing how customer payments and credit memos are applied to invoices, used for AR aging and reconciliation.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Detailed Cust. Ledg. Entry |
 | Page ID | 90807 |
 | Page Name | `ocpfDetailedCustLedgerEntries` |
 | Entity Set Name | `ocpfDetailedCustLedgerEntries` |
-| Source Table | Detailed Cust. Ledg. Entry |
 | API Group | `ocpf_coreFinancial` |
 | Editable | ❌ No (GET only) |
 | Field Count | 36 |
-
-**Description:** Detailed Customer Ledger Entries — granular application records showing how customer payments and credit memos are applied to invoices, used for AR aging and reconciliation.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -690,17 +690,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfVendorLedgerEntries
 
+**Description:** Vendor Ledger Entries — open and closed payables transactions per vendor including purchase invoices, credit memos, and payments.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Vendor Ledger Entry |
 | Page ID | 90808 |
 | Page Name | `ocpfVendorLedgerEntries` |
 | Entity Set Name | `ocpfVendorLedgerEntries` |
-| Source Table | Vendor Ledger Entry |
 | API Group | `ocpf_coreFinancial` |
 | Editable | ❌ No (GET only) |
 | Field Count | 75 |
-
-**Description:** Vendor Ledger Entries — open and closed payables transactions per vendor including purchase invoices, credit memos, and payments.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -784,17 +784,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfDtldVendorLedgEntries
 
+**Description:** Detailed Vendor Ledger Entries — granular application records showing how vendor payments and credit memos are applied to invoices, used for AP aging and reconciliation.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Detailed Vendor Ledg. Entry |
 | Page ID | 90809 |
 | Page Name | `ocpfDtldVendorLedgEntries` |
 | Entity Set Name | `ocpfDtldVendorLedgEntries` |
-| Source Table | Detailed Vendor Ledg. Entry |
 | API Group | `ocpf_coreFinancial` |
 | Editable | ❌ No (GET only) |
 | Field Count | 36 |
-
-**Description:** Detailed Vendor Ledger Entries — granular application records showing how vendor payments and credit memos are applied to invoices, used for AP aging and reconciliation.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -839,17 +839,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfEmployeeLedgerEntries
 
+**Description:** Employee Ledger Entries — expense and reimbursement transactions per employee.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Employee Ledger Entry |
 | Page ID | 90810 |
 | Page Name | `ocpfEmployeeLedgerEntries` |
 | Entity Set Name | `ocpfEmployeeLedgerEntries` |
-| Source Table | Employee Ledger Entry |
 | API Group | `ocpf_coreFinancial` |
 | Editable | ❌ No (GET only) |
 | Field Count | 56 |
-
-**Description:** Employee Ledger Entries — expense and reimbursement transactions per employee.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -914,17 +914,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfGenBusPostingGroups
 
+**Description:** General Business Posting Groups — customer and vendor classification codes that determine which general posting setup row is used for a transaction.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Gen. Business Posting Group |
 | Page ID | 90811 |
 | Page Name | `ocpfGenBusPostingGroups` |
 | Entity Set Name | `ocpfGenBusPostingGroups` |
-| Source Table | Gen. Business Posting Group |
 | API Group | `ocpf_coreFinancial` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 5 |
-
-**Description:** General Business Posting Groups — customer and vendor classification codes that determine which general posting setup row is used for a transaction.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -938,17 +938,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfGenProdPostingGroups
 
+**Description:** General Product Posting Groups — item and resource classification codes that determine which general posting setup row is used for a transaction.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Gen. Product Posting Group |
 | Page ID | 90812 |
 | Page Name | `ocpfGenProdPostingGroups` |
 | Entity Set Name | `ocpfGenProdPostingGroups` |
-| Source Table | Gen. Product Posting Group |
 | API Group | `ocpf_coreFinancial` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 5 |
-
-**Description:** General Product Posting Groups — item and resource classification codes that determine which general posting setup row is used for a transaction.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -962,17 +962,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfGeneralPostingSetup
 
+**Description:** General Posting Setup — matrix mapping Gen. Business and Gen. Product Posting Groups to the G/L accounts used when posting sales and purchase transactions.
+
 | Property | Value |
 |---|---|
+| **Source Table** | General Posting Setup |
 | Page ID | 90813 |
 | Page Name | `ocpfGeneralPostingSetup` |
 | Entity Set Name | `ocpfGeneralPostingSetup` |
-| Source Table | General Posting Setup |
 | API Group | `ocpf_coreFinancial` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 31 |
-
-**Description:** General Posting Setup — matrix mapping Gen. Business and Gen. Product Posting Groups to the G/L accounts used when posting sales and purchase transactions.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -1012,17 +1012,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfCustomerPostingGroups
 
+**Description:** Customer Posting Groups — define which receivables and other G/L accounts are used when posting customer transactions.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Customer Posting Group |
 | Page ID | 90814 |
 | Page Name | `ocpfCustomerPostingGroups` |
 | Entity Set Name | `ocpfCustomerPostingGroups` |
-| Source Table | Customer Posting Group |
 | API Group | `ocpf_coreFinancial` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 18 |
-
-**Description:** Customer Posting Groups — define which receivables and other G/L accounts are used when posting customer transactions.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -1049,17 +1049,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfVendorPostingGroups
 
+**Description:** Vendor Posting Groups — define which payables and other G/L accounts are used when posting vendor transactions.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Vendor Posting Group |
 | Page ID | 90815 |
 | Page Name | `ocpfVendorPostingGroups` |
 | Entity Set Name | `ocpfVendorPostingGroups` |
-| Source Table | Vendor Posting Group |
 | API Group | `ocpf_coreFinancial` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 15 |
-
-**Description:** Vendor Posting Groups — define which payables and other G/L accounts are used when posting vendor transactions.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -1083,17 +1083,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfInventoryPostingGroups
 
+**Description:** Inventory Posting Groups — classify items for inventory account determination when posting item transactions.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Inventory Posting Group |
 | Page ID | 90816 |
 | Page Name | `ocpfInventoryPostingGroups` |
 | Entity Set Name | `ocpfInventoryPostingGroups` |
-| Source Table | Inventory Posting Group |
 | API Group | `ocpf_coreFinancial` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 3 |
-
-**Description:** Inventory Posting Groups — classify items for inventory account determination when posting item transactions.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -1105,17 +1105,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfVatBusinessPostingGroups
 
+**Description:** VAT Business Posting Groups — classify customers and vendors for VAT calculation, determining which VAT Posting Setup row applies to a transaction.
+
 | Property | Value |
 |---|---|
+| **Source Table** | VAT Business Posting Group |
 | Page ID | 90817 |
 | Page Name | `ocpfVatBusinessPostingGroups` |
 | Entity Set Name | `ocpfVatBusinessPostingGroups` |
-| Source Table | VAT Business Posting Group |
 | API Group | `ocpf_coreFinancial` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 4 |
-
-**Description:** VAT Business Posting Groups — classify customers and vendors for VAT calculation, determining which VAT Posting Setup row applies to a transaction.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -1128,17 +1128,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfVatProductPostingGroups
 
+**Description:** VAT Product Posting Groups — classify items and G/L accounts for VAT calculation, determining which VAT Posting Setup row applies to a transaction.
+
 | Property | Value |
 |---|---|
+| **Source Table** | VAT Product Posting Group |
 | Page ID | 90818 |
 | Page Name | `ocpfVatProductPostingGroups` |
 | Entity Set Name | `ocpfVatProductPostingGroups` |
-| Source Table | VAT Product Posting Group |
 | API Group | `ocpf_coreFinancial` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 4 |
-
-**Description:** VAT Product Posting Groups — classify items and G/L accounts for VAT calculation, determining which VAT Posting Setup row applies to a transaction.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -1151,17 +1151,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfVatPostingSetup
 
+**Description:** VAT Posting Setup — matrix mapping VAT Business and VAT Product Posting Groups to VAT rates, calculation types, and the G/L accounts used when posting VAT.
+
 | Property | Value |
 |---|---|
+| **Source Table** | VAT Posting Setup |
 | Page ID | 90819 |
 | Page Name | `ocpfVatPostingSetup` |
 | Entity Set Name | `ocpfVatPostingSetup` |
-| Source Table | VAT Posting Setup |
 | API Group | `ocpf_coreFinancial` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 25 |
-
-**Description:** VAT Posting Setup — matrix mapping VAT Business and VAT Product Posting Groups to VAT rates, calculation types, and the G/L accounts used when posting VAT.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -1195,17 +1195,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfDimensions
 
+**Description:** Dimensions — named analytical axes (e.g., Department, Project, Cost Center) that can be attached to transactions for multi-dimensional financial reporting.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Dimension |
 | Page ID | 90820 |
 | Page Name | `ocpfDimensions` |
 | Entity Set Name | `ocpfDimensions` |
-| Source Table |  |
 | API Group | `ocpf_coreFinancial` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 10 |
-
-**Description:** Dimensions — named analytical axes (e.g., Department, Project, Cost Center) that can be attached to transactions for multi-dimensional financial reporting.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -1224,17 +1224,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfDimensionValues
 
+**Description:** Dimension Values — the individual codes within a dimension (e.g., SALES, ADMIN within Department) used to tag transactions for reporting.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Dimension Value |
 | Page ID | 90821 |
 | Page Name | `ocpfDimensionValues` |
 | Entity Set Name | `ocpfDimensionValues` |
-| Source Table | Dimension Value |
 | API Group | `ocpf_coreFinancial` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 15 |
-
-**Description:** Dimension Values — the individual codes within a dimension (e.g., SALES, ADMIN within Department) used to tag transactions for reporting.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -1258,17 +1258,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfDefaultDimensions
 
+**Description:** Default Dimensions — rules that define which dimension values are automatically suggested or required when posting transactions for a specific master record such as a customer, vendor, or item.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Default Dimension |
 | Page ID | 90822 |
 | Page Name | `ocpfDefaultDimensions` |
 | Entity Set Name | `ocpfDefaultDimensions` |
-| Source Table | Default Dimension |
 | API Group | `ocpf_coreFinancial` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 14 |
-
-**Description:** Default Dimensions — rules that define which dimension values are automatically suggested or required when posting transactions for a specific master record such as a customer, vendor, or item.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -1291,17 +1291,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfDimensionSetEntries
 
+**Description:** Dimension Set Entries — the resolved dimension value combinations stored against ledger entries and documents. Filter by Dimension Set ID to retrieve the dimensions on any posted transaction.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Dimension Set Entry |
 | Page ID | 90823 |
 | Page Name | `ocpfDimensionSetEntries` |
 | Entity Set Name | `ocpfDimensionSetEntries` |
-| Source Table | Dimension Set Entry |
 | API Group | `ocpf_coreFinancial` |
 | Editable | ❌ No (GET only) |
 | Field Count | 8 |
-
-**Description:** Dimension Set Entries — the resolved dimension value combinations stored against ledger entries and documents. Filter by Dimension Set ID to retrieve the dimensions on any posted transaction.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -1318,17 +1318,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfInventoryPostingSetup
 
+**Description:** Inventory posting setup — maps inventory posting groups and locations to G/L accounts.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Inventory Posting Setup |
 | Page ID | 90824 |
 | Page Name | `ocpfInventoryPostingSetup` |
 | Entity Set Name | `ocpfInventoryPostingSetup` |
-| Source Table | Inventory Posting Setup |
 | API Group | `ocpf_coreFinancial` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 14 |
-
-**Description:** Inventory posting setup — maps inventory posting groups and locations to G/L accounts.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -1356,17 +1356,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfBankAccounts
 
+**Description:** Bank Accounts — company bank accounts used for posting payments and receipts, including balance and statement information.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Bank Account |
 | Page ID | 90830 |
 | Page Name | `ocpfBankAccounts` |
 | Entity Set Name | `ocpfBankAccounts` |
-| Source Table | Bank Account |
 | API Group | `ocpf_masterData` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 76 |
-
-**Description:** Bank Accounts — company bank accounts used for posting payments and receipts, including balance and statement information.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -1451,17 +1451,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfBankAccountPostingGroups
 
+**Description:** Bank Account Posting Groups — map bank accounts to the G/L accounts used when posting bank transactions.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Bank Account Posting Group |
 | Page ID | 90831 |
 | Page Name | `ocpfBankAccountPostingGroups` |
 | Entity Set Name | `ocpfBankAccountPostingGroups` |
-| Source Table | Bank Account Posting Group |
 | API Group | `ocpf_masterData` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 3 |
-
-**Description:** Bank Account Posting Groups — map bank accounts to the G/L accounts used when posting bank transactions.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -1473,17 +1473,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfBankAccountLedgerEntries
 
+**Description:** Bank Account Ledger Entries — posted transactions on bank accounts including payments, receipts, and reconciliation entries.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Bank Account Ledger Entry |
 | Page ID | 90832 |
 | Page Name | `ocpfBankAccountLedgerEntries` |
 | Entity Set Name | `ocpfBankAccountLedgerEntries` |
-| Source Table | Bank Account Ledger Entry |
 | API Group | `ocpf_masterData` |
 | Editable | ❌ No (GET only) |
 | Field Count | 45 |
-
-**Description:** Bank Account Ledger Entries — posted transactions on bank accounts including payments, receipts, and reconciliation entries.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -1537,17 +1537,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfPaymentTerms
 
+**Description:** Payment Terms — define due date calculation rules and early payment discount conditions applied to sales and purchase documents.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Payment Terms |
 | Page ID | 90833 |
 | Page Name | `ocpfPaymentTerms` |
 | Entity Set Name | `ocpfPaymentTerms` |
-| Source Table | Payment Terms |
 | API Group | `ocpf_masterData` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 8 |
-
-**Description:** Payment Terms — define due date calculation rules and early payment discount conditions applied to sales and purchase documents.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -1564,17 +1564,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfPaymentMethods
 
+**Description:** Payment Methods — define how invoices are paid (e.g., cash, bank transfer, cheque) and optionally link to a balancing G/L account.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Payment Method |
 | Page ID | 90834 |
 | Page Name | `ocpfPaymentMethods` |
 | Entity Set Name | `ocpfPaymentMethods` |
-| Source Table | Payment Method |
 | API Group | `ocpf_masterData` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 9 |
-
-**Description:** Payment Methods — define how invoices are paid (e.g., cash, bank transfer, cheque) and optionally link to a balancing G/L account.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -1592,17 +1592,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfCurrencies
 
+**Description:** Currencies — foreign currency codes with exchange rate settings used across sales, purchasing, and banking transactions.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Currency |
 | Page ID | 90835 |
 | Page Name | `ocpfCurrencies` |
 | Entity Set Name | `ocpfCurrencies` |
-| Source Table |  |
 | API Group | `ocpf_masterData` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 49 |
-
-**Description:** Currencies — foreign currency codes with exchange rate settings used across sales, purchasing, and banking transactions.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -1660,17 +1660,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfCountriesRegions
 
+**Description:** Countries and Regions — reference data for country and region codes used on addresses, customers, vendors, and contacts.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Country/Region |
 | Page ID | 90836 |
 | Page Name | `ocpfCountriesRegions` |
 | Entity Set Name | `ocpfCountriesRegions` |
-| Source Table | Country/Region |
 | API Group | `ocpf_masterData` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 12 |
-
-**Description:** Countries and Regions — reference data for country and region codes used on addresses, customers, vendors, and contacts.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -1691,17 +1691,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfUnitsOfMeasure
 
+**Description:** Units of Measure — the base unit codes (e.g., PCS, KG, HR) used to quantify items, resources, and transactions.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Unit of Measure |
 | Page ID | 90837 |
 | Page Name | `ocpfUnitsOfMeasure` |
 | Entity Set Name | `ocpfUnitsOfMeasure` |
-| Source Table | Unit of Measure |
 | API Group | `ocpf_masterData` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 7 |
-
-**Description:** Units of Measure — the base unit codes (e.g., PCS, KG, HR) used to quantify items, resources, and transactions.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -1717,17 +1717,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfItemUnitsOfMeasure
 
+**Description:** Item Units of Measure — per-item unit of measure conversions defining how many base units make up each alternate unit for a specific item.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Item Unit of Measure |
 | Page ID | 90838 |
 | Page Name | `ocpfItemUnitsOfMeasure` |
 | Entity Set Name | `ocpfItemUnitsOfMeasure` |
-| Source Table | Item Unit of Measure |
 | API Group | `ocpf_masterData` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 11 |
-
-**Description:** Item Units of Measure — per-item unit of measure conversions defining how many base units make up each alternate unit for a specific item.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -1747,17 +1747,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfLocations
 
+**Description:** Locations — physical or logical inventory locations (warehouses, bins, stores) where items are stocked and tracked.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Location |
 | Page ID | 90839 |
 | Page Name | `ocpfLocations` |
 | Entity Set Name | `ocpfLocations` |
-| Source Table |  |
 | API Group | `ocpf_masterData` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 56 |
-
-**Description:** Locations — physical or logical inventory locations (warehouses, bins, stores) where items are stocked and tracked.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -1822,17 +1822,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfItemCategories
 
+**Description:** Item Categories — hierarchical classification codes for grouping items, used for reporting, default attributes, and costing.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Item Category |
 | Page ID | 90840 |
 | Page Name | `ocpfItemCategories` |
 | Entity Set Name | `ocpfItemCategories` |
-| Source Table | Item Category |
 | API Group | `ocpf_masterData` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 8 |
-
-**Description:** Item Categories — hierarchical classification codes for grouping items, used for reporting, default attributes, and costing.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -1849,17 +1849,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfShipmentMethods
 
+**Description:** Shipment Methods — define the terms of delivery (e.g., EXW, CIF, FOB) printed on sales and purchase documents.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Shipment Method |
 | Page ID | 90841 |
 | Page Name | `ocpfShipmentMethods` |
 | Entity Set Name | `ocpfShipmentMethods` |
-| Source Table | Shipment Method |
 | API Group | `ocpf_masterData` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 4 |
-
-**Description:** Shipment Methods — define the terms of delivery (e.g., EXW, CIF, FOB) printed on sales and purchase documents.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -1872,17 +1872,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfCustomers
 
+**Description:** Customers — master records for all entities to whom the company sells goods or services, including credit, payment, and posting settings.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Customer |
 | Page ID | 90842 |
 | Page Name | `ocpfCustomers` |
 | Entity Set Name | `ocpfCustomers` |
-| Source Table |  |
 | API Group | `ocpf_masterData` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 142 |
-
-**Description:** Customers — master records for all entities to whom the company sells goods or services, including credit, payment, and posting settings.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -2033,17 +2033,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfVendors
 
+**Description:** Vendors — master records for all entities from whom the company purchases goods or services, including payment and posting settings.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Vendor |
 | Page ID | 90843 |
 | Page Name | `ocpfVendors` |
 | Entity Set Name | `ocpfVendors` |
-| Source Table |  |
 | API Group | `ocpf_masterData` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 124 |
-
-**Description:** Vendors — master records for all entities from whom the company purchases goods or services, including payment and posting settings.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -2176,17 +2176,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfContacts
 
+**Description:** Contacts — individuals and companies in the CRM module, linked to customers, vendors, or standalone for prospecting.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Contact |
 | Page ID | 90844 |
 | Page Name | `ocpfContacts` |
 | Entity Set Name | `ocpfContacts` |
-| Source Table |  |
 | API Group | `ocpf_masterData` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 82 |
-
-**Description:** Contacts — individuals and companies in the CRM module, linked to customers, vendors, or standalone for prospecting.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -2277,17 +2277,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfContactBusinessRelations
 
+**Description:** Contact Business Relations — links between contacts and their associated business entities such as customers, vendors, or bank accounts.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Contact Business Relation |
 | Page ID | 90845 |
 | Page Name | `ocpfContactBusinessRelations` |
 | Entity Set Name | `ocpfContactBusinessRelations` |
-| Source Table | Contact Business Relation |
 | API Group | `ocpf_masterData` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 7 |
-
-**Description:** Contact Business Relations — links between contacts and their associated business entities such as customers, vendors, or bank accounts.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -2303,17 +2303,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfItems
 
+**Description:** Items — master records for all inventory items, non-inventory items, and services bought or sold by the company.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Item |
 | Page ID | 90846 |
 | Page Name | `ocpfItems` |
 | Entity Set Name | `ocpfItems` |
-| Source Table |  |
 | API Group | `ocpf_masterData` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 182 |
-
-**Description:** Items — master records for all inventory items, non-inventory items, and services bought or sold by the company.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -2504,17 +2504,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfItemLedgerEntries
 
+**Description:** Item Ledger Entries — posted inventory transactions recording every inbound and outbound movement of items across all locations.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Item Ledger Entry |
 | Page ID | 90847 |
 | Page Name | `ocpfItemLedgerEntries` |
 | Entity Set Name | `ocpfItemLedgerEntries` |
-| Source Table | Item Ledger Entry |
 | API Group | `ocpf_masterData` |
 | Editable | ❌ No (GET only) |
 | Field Count | 76 |
-
-**Description:** Item Ledger Entries — posted inventory transactions recording every inbound and outbound movement of items across all locations.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -2599,17 +2599,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfValueEntries
 
+**Description:** Value Entries — the cost layer behind every item ledger entry, recording the monetary value of inventory movements for costing and valuation.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Value Entry |
 | Page ID | 90848 |
 | Page Name | `ocpfValueEntries` |
 | Entity Set Name | `ocpfValueEntries` |
-| Source Table | Value Entry |
 | API Group | `ocpf_masterData` |
 | Editable | ❌ No (GET only) |
 | Field Count | 67 |
-
-**Description:** Value Entries — the cost layer behind every item ledger entry, recording the monetary value of inventory movements for costing and valuation.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -2685,17 +2685,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfItemApplicationEntries
 
+**Description:** Item Application Entries — records showing how item ledger entries are applied to each other for cost forwarding and inventory valuation.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Item Application Entry |
 | Page ID | 90849 |
 | Page Name | `ocpfItemApplicationEntries` |
 | Entity Set Name | `ocpfItemApplicationEntries` |
-| Source Table | Item Application Entry |
 | API Group | `ocpf_masterData` |
 | Editable | ❌ No (GET only) |
 | Field Count | 20 |
-
-**Description:** Item Application Entries — records showing how item ledger entries are applied to each other for cost forwarding and inventory valuation.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -2724,17 +2724,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfItemVendorCatalogs
 
+**Description:** Item Vendor Catalog — per-vendor item data including the vendor
+
 | Property | Value |
 |---|---|
+| **Source Table** | Item Vendor |
 | Page ID | 90850 |
 | Page Name | `ocpfItemVendorCatalogs` |
 | Entity Set Name | `ocpfItemVendorCatalogs` |
-| Source Table | Item Vendor |
 | API Group | `ocpf_masterData` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 6 |
-
-**Description:** Item Vendor Catalog — per-vendor item data including the vendor
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -2749,17 +2749,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfStockkeepingUnits
 
+**Description:** Stockkeeping Units — location-specific item settings that override the item card defaults for replenishment, costing, and ordering at a given location.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Stockkeeping Unit |
 | Page ID | 90851 |
 | Page Name | `ocpfStockkeepingUnits` |
 | Entity Set Name | `ocpfStockkeepingUnits` |
-| Source Table | Stockkeeping Unit |
 | API Group | `ocpf_masterData` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 76 |
-
-**Description:** Stockkeeping Units — location-specific item settings that override the item card defaults for replenishment, costing, and ordering at a given location.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -2844,17 +2844,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfItemTrackingCodes
 
+**Description:** Item Tracking Codes — configuration records defining whether and how an item is tracked by serial number or lot number through the supply chain.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Item Tracking Code |
 | Page ID | 90852 |
 | Page Name | `ocpfItemTrackingCodes` |
 | Entity Set Name | `ocpfItemTrackingCodes` |
-| Source Table | Item Tracking Code |
 | API Group | `ocpf_masterData` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 49 |
-
-**Description:** Item Tracking Codes — configuration records defining whether and how an item is tracked by serial number or lot number through the supply chain.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -2912,17 +2912,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfItemCharges
 
+**Description:** Item Charges — additional cost codes (e.g., freight, handling, customs) that can be assigned to purchase or sales lines and posted to inventory value.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Item Charge |
 | Page ID | 90853 |
 | Page Name | `ocpfItemCharges` |
 | Entity Set Name | `ocpfItemCharges` |
-| Source Table | Item Charge |
 | API Group | `ocpf_masterData` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 9 |
-
-**Description:** Item Charges — additional cost codes (e.g., freight, handling, customs) that can be assigned to purchase or sales lines and posted to inventory value.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -2940,17 +2940,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfResources
 
+**Description:** Resources — people or machines whose time and costs can be sold or allocated to projects, with pricing and unit of measure settings.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Resource |
 | Page ID | 90854 |
 | Page Name | `ocpfResources` |
 | Entity Set Name | `ocpfResources` |
-| Source Table |  |
 | API Group | `ocpf_masterData` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 50 |
-
-**Description:** Resources — people or machines whose time and costs can be sold or allocated to projects, with pricing and unit of measure settings.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -3009,17 +3009,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfResourceLedgerEntries
 
+**Description:** Resource Ledger Entries — posted usage and cost entries for resources, recording time spent on projects and service orders.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Res. Ledger Entry |
 | Page ID | 90855 |
 | Page Name | `ocpfResourceLedgerEntries` |
 | Entity Set Name | `ocpfResourceLedgerEntries` |
-| Source Table | Res. Ledger Entry |
 | API Group | `ocpf_masterData` |
 | Editable | ❌ No (GET only) |
 | Field Count | 43 |
-
-**Description:** Resource Ledger Entries — posted usage and cost entries for resources, recording time spent on projects and service orders.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -3071,17 +3071,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfResourceGroups
 
+**Description:** Resource Groups — groupings of resources used for capacity planning, project budgeting, and reporting.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Resource Group |
 | Page ID | 90856 |
 | Page Name | `ocpfResourceGroups` |
 | Entity Set Name | `ocpfResourceGroups` |
-| Source Table | Resource Group |
 | API Group | `ocpf_masterData` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 10 |
-
-**Description:** Resource Groups — groupings of resources used for capacity planning, project budgeting, and reporting.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -3100,17 +3100,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfEmployees
 
+**Description:** Employees — human resources records for company staff, including personal details, employment terms, and payroll-related settings.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Employee |
 | Page ID | 90857 |
 | Page Name | `ocpfEmployees` |
 | Entity Set Name | `ocpfEmployees` |
-| Source Table |  |
 | API Group | `ocpf_masterData` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 76 |
-
-**Description:** Employees — human resources records for company staff, including personal details, employment terms, and payroll-related settings.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -3195,17 +3195,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfSalespeople
 
+**Description:** Salespeople and Purchasers — codes assigned to sales and purchase documents to track responsibility and commission.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Salesperson/Purchaser |
 | Page ID | 90858 |
 | Page Name | `ocpfSalespeople` |
 | Entity Set Name | `ocpfSalespeople` |
-| Source Table | Salesperson/Purchaser |
 | API Group | `ocpf_masterData` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 37 |
-
-**Description:** Salespeople and Purchasers — codes assigned to sales and purchase documents to track responsibility and commission.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -3256,18 +3256,18 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfSalesQuotes
 
+**Description:** Sales quotes (open documents awaiting customer acceptance).
+
 | Property | Value |
 |---|---|
+| **Source Table** | Sales Header |
 | Page ID | 90870 |
 | Page Name | `ocpfSalesQuotes` |
 | Entity Set Name | `ocpfSalesQuotes` |
-| Source Table | Sales Header |
 | API Group | `ocpf_sales` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Source Table View | `where("Document Type" = const(Quote)` |
 | Field Count | 182 |
-
-**Description:** Sales quotes (open documents awaiting customer acceptance).
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -3458,18 +3458,18 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfSalesQuoteLines
 
+**Description:** Lines of open sales quotes.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Sales Line |
 | Page ID | 90871 |
 | Page Name | `ocpfSalesQuoteLines` |
 | Entity Set Name | `ocpfSalesQuoteLines` |
-| Source Table | Sales Line |
 | API Group | `ocpf_sales` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Source Table View | `where("Document Type" = const(Quote)` |
 | Field Count | 194 |
-
-**Description:** Lines of open sales quotes.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -3672,18 +3672,18 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfSalesOrders
 
+**Description:** Sales orders (confirmed customer orders in progress).
+
 | Property | Value |
 |---|---|
+| **Source Table** | Sales Header |
 | Page ID | 90872 |
 | Page Name | `ocpfSalesOrders` |
 | Entity Set Name | `ocpfSalesOrders` |
-| Source Table | Sales Header |
 | API Group | `ocpf_sales` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Source Table View | `where("Document Type" = const(Order)` |
 | Field Count | 182 |
-
-**Description:** Sales orders (confirmed customer orders in progress).
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -3874,18 +3874,18 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfSalesOrderLines
 
+**Description:** Lines of open sales orders.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Sales Line |
 | Page ID | 90873 |
 | Page Name | `ocpfSalesOrderLines` |
 | Entity Set Name | `ocpfSalesOrderLines` |
-| Source Table | Sales Line |
 | API Group | `ocpf_sales` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Source Table View | `where("Document Type" = const(Order)` |
 | Field Count | 194 |
-
-**Description:** Lines of open sales orders.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -4088,18 +4088,18 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfSalesInvoices
 
+**Description:** Sales invoices (open, unposted).
+
 | Property | Value |
 |---|---|
+| **Source Table** | Sales Header |
 | Page ID | 90874 |
 | Page Name | `ocpfSalesInvoices` |
 | Entity Set Name | `ocpfSalesInvoices` |
-| Source Table | Sales Header |
 | API Group | `ocpf_sales` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Source Table View | `where("Document Type" = const(Invoice)` |
 | Field Count | 182 |
-
-**Description:** Sales invoices (open, unposted).
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -4290,18 +4290,18 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfSalesInvoiceLines
 
+**Description:** Lines of open sales invoices.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Sales Line |
 | Page ID | 90875 |
 | Page Name | `ocpfSalesInvoiceLines` |
 | Entity Set Name | `ocpfSalesInvoiceLines` |
-| Source Table | Sales Line |
 | API Group | `ocpf_sales` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Source Table View | `where("Document Type" = const(Invoice)` |
 | Field Count | 194 |
-
-**Description:** Lines of open sales invoices.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -4504,18 +4504,18 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfSalesCreditMemos
 
+**Description:** Sales credit memos (open, unposted).
+
 | Property | Value |
 |---|---|
+| **Source Table** | Sales Header |
 | Page ID | 90876 |
 | Page Name | `ocpfSalesCreditMemos` |
 | Entity Set Name | `ocpfSalesCreditMemos` |
-| Source Table | Sales Header |
 | API Group | `ocpf_sales` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Source Table View | `where("Document Type" = const("Credit Memo")` |
 | Field Count | 182 |
-
-**Description:** Sales credit memos (open, unposted).
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -4706,18 +4706,18 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfSalesCreditMemoLines
 
+**Description:** Lines of open sales credit memos.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Sales Line |
 | Page ID | 90877 |
 | Page Name | `ocpfSalesCreditMemoLines` |
 | Entity Set Name | `ocpfSalesCreditMemoLines` |
-| Source Table | Sales Line |
 | API Group | `ocpf_sales` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Source Table View | `where("Document Type" = const("Credit Memo")` |
 | Field Count | 194 |
-
-**Description:** Lines of open sales credit memos.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -4920,17 +4920,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfPostedSalesInvoices
 
+**Description:** Posted (finalized) sales invoices.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Sales Invoice Header |
 | Page ID | 90878 |
 | Page Name | `ocpfPostedSalesInvoices` |
 | Entity Set Name | `ocpfPostedSalesInvoices` |
-| Source Table | Sales Invoice Header |
 | API Group | `ocpf_sales` |
 | Editable | ❌ No (GET only) |
 | Field Count | 136 |
-
-**Description:** Posted (finalized) sales invoices.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -5075,17 +5075,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfPostedSalesInvoiceLines
 
+**Description:** Lines of posted sales invoices.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Sales Invoice Line |
 | Page ID | 90879 |
 | Page Name | `ocpfPostedSalesInvoiceLines` |
 | Entity Set Name | `ocpfPostedSalesInvoiceLines` |
-| Source Table | Sales Invoice Line |
 | API Group | `ocpf_sales` |
 | Editable | ❌ No (GET only) |
 | Field Count | 101 |
-
-**Description:** Lines of posted sales invoices.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -5195,17 +5195,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfPostedSalesCreditMemos
 
+**Description:** Posted sales credit memos.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Sales Cr.Memo Header |
 | Page ID | 90880 |
 | Page Name | `ocpfPostedSalesCreditMemos` |
 | Entity Set Name | `ocpfPostedSalesCreditMemos` |
-| Source Table | Sales Cr.Memo Header |
 | API Group | `ocpf_sales` |
 | Editable | ❌ No (GET only) |
 | Field Count | 123 |
-
-**Description:** Posted sales credit memos.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -5337,17 +5337,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfPostedSalesCreditMemoLines
 
+**Description:** Lines of posted sales credit memos.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Sales Cr.Memo Line |
 | Page ID | 90881 |
 | Page Name | `ocpfPostedSalesCreditMemoLines` |
 | Entity Set Name | `ocpfPostedSalesCreditMemoLines` |
-| Source Table | Sales Cr.Memo Line |
 | API Group | `ocpf_sales` |
 | Editable | ❌ No (GET only) |
 | Field Count | 97 |
-
-**Description:** Lines of posted sales credit memos.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -5453,17 +5453,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfPostedSalesShipments
 
+**Description:** Posted sales shipments.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Sales Shipment Header |
 | Page ID | 90882 |
 | Page Name | `ocpfPostedSalesShipments` |
 | Entity Set Name | `ocpfPostedSalesShipments` |
-| Source Table | Sales Shipment Header |
 | API Group | `ocpf_sales` |
 | Editable | ❌ No (GET only) |
 | Field Count | 107 |
-
-**Description:** Posted sales shipments.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -5579,17 +5579,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfPostedSalesShipmentLines
 
+**Description:** Lines of posted sales shipments.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Sales Shipment Line |
 | Page ID | 90883 |
 | Page Name | `ocpfPostedSalesShipmentLines` |
 | Entity Set Name | `ocpfPostedSalesShipmentLines` |
-| Source Table | Sales Shipment Line |
 | API Group | `ocpf_sales` |
 | Editable | ❌ No (GET only) |
 | Field Count | 97 |
-
-**Description:** Lines of posted sales shipments.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -5695,17 +5695,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfPostedReturnReceipts
 
+**Description:** Posted return receipts (items received back from customers).
+
 | Property | Value |
 |---|---|
+| **Source Table** | Return Receipt Header |
 | Page ID | 90884 |
 | Page Name | `ocpfPostedReturnReceipts` |
 | Entity Set Name | `ocpfPostedReturnReceipts` |
-| Source Table | Return Receipt Header |
 | API Group | `ocpf_sales` |
 | Editable | ❌ No (GET only) |
 | Field Count | 102 |
-
-**Description:** Posted return receipts (items received back from customers).
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -5816,17 +5816,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfPostedReturnReceiptLines
 
+**Description:** Lines of posted return receipts.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Return Receipt Line |
 | Page ID | 90885 |
 | Page Name | `ocpfPostedReturnReceiptLines` |
 | Entity Set Name | `ocpfPostedReturnReceiptLines` |
-| Source Table | Return Receipt Line |
 | API Group | `ocpf_sales` |
 | Editable | ❌ No (GET only) |
 | Field Count | 85 |
-
-**Description:** Lines of posted return receipts.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -5920,18 +5920,18 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfSalesBlanketOrders
 
+**Description:** Sales blanket orders — long-term framework agreements with customers.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Sales Header |
 | Page ID | 90886 |
 | Page Name | `ocpfSalesBlanketOrders` |
 | Entity Set Name | `ocpfSalesBlanketOrders` |
-| Source Table | Sales Header |
 | API Group | `ocpf_sales` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Source Table View | `where("Document Type" = const("Blanket Order")` |
 | Field Count | 182 |
-
-**Description:** Sales blanket orders — long-term framework agreements with customers.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -6122,18 +6122,18 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfSalesBlanketOrderLines
 
+**Description:** Lines of open sales blanket orders.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Sales Line |
 | Page ID | 90887 |
 | Page Name | `ocpfSalesBlanketOrderLines` |
 | Entity Set Name | `ocpfSalesBlanketOrderLines` |
-| Source Table | Sales Line |
 | API Group | `ocpf_sales` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Source Table View | `where("Document Type" = const("Blanket Order")` |
 | Field Count | 194 |
-
-**Description:** Lines of open sales blanket orders.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -6341,18 +6341,18 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfPurchaseOrders
 
+**Description:** Open purchase orders awaiting receipt or invoicing.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Purchase Header |
 | Page ID | 90890 |
 | Page Name | `ocpfPurchaseOrders` |
 | Entity Set Name | `ocpfPurchaseOrders` |
-| Source Table | Purchase Header |
 | API Group | `ocpf_purchasing` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Source Table View | `where("Document Type" = const(Order)` |
 | Field Count | 159 |
-
-**Description:** Open purchase orders awaiting receipt or invoicing.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -6520,18 +6520,18 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfPurchaseOrderLines
 
+**Description:** Lines of open purchase orders.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Purchase Line |
 | Page ID | 90891 |
 | Page Name | `ocpfPurchaseOrderLines` |
 | Entity Set Name | `ocpfPurchaseOrderLines` |
-| Source Table | Purchase Line |
 | API Group | `ocpf_purchasing` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Source Table View | `where("Document Type" = const(Order)` |
 | Field Count | 211 |
-
-**Description:** Lines of open purchase orders.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -6751,18 +6751,18 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfPurchaseInvoices
 
+**Description:** Open purchase invoices (unposted).
+
 | Property | Value |
 |---|---|
+| **Source Table** | Purchase Header |
 | Page ID | 90892 |
 | Page Name | `ocpfPurchaseInvoices` |
 | Entity Set Name | `ocpfPurchaseInvoices` |
-| Source Table | Purchase Header |
 | API Group | `ocpf_purchasing` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Source Table View | `where("Document Type" = const(Invoice)` |
 | Field Count | 159 |
-
-**Description:** Open purchase invoices (unposted).
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -6930,18 +6930,18 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfPurchaseInvoiceLines
 
+**Description:** Lines of open purchase invoices.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Purchase Line |
 | Page ID | 90893 |
 | Page Name | `ocpfPurchaseInvoiceLines` |
 | Entity Set Name | `ocpfPurchaseInvoiceLines` |
-| Source Table | Purchase Line |
 | API Group | `ocpf_purchasing` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Source Table View | `where("Document Type" = const(Invoice)` |
 | Field Count | 211 |
-
-**Description:** Lines of open purchase invoices.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -7161,18 +7161,18 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfPurchaseCreditMemos
 
+**Description:** Open purchase credit memos (unposted).
+
 | Property | Value |
 |---|---|
+| **Source Table** | Purchase Header |
 | Page ID | 90894 |
 | Page Name | `ocpfPurchaseCreditMemos` |
 | Entity Set Name | `ocpfPurchaseCreditMemos` |
-| Source Table | Purchase Header |
 | API Group | `ocpf_purchasing` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Source Table View | `where("Document Type" = const("Credit Memo")` |
 | Field Count | 159 |
-
-**Description:** Open purchase credit memos (unposted).
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -7340,18 +7340,18 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfPurchaseCreditMemoLines
 
+**Description:** Lines of open purchase credit memos.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Purchase Line |
 | Page ID | 90895 |
 | Page Name | `ocpfPurchaseCreditMemoLines` |
 | Entity Set Name | `ocpfPurchaseCreditMemoLines` |
-| Source Table | Purchase Line |
 | API Group | `ocpf_purchasing` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Source Table View | `where("Document Type" = const("Credit Memo")` |
 | Field Count | 211 |
-
-**Description:** Lines of open purchase credit memos.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -7571,17 +7571,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfPostedPurchaseInvoices
 
+**Description:** Posted (finalized) purchase invoices.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Purch. Inv. Header |
 | Page ID | 90896 |
 | Page Name | `ocpfPostedPurchaseInvoices` |
 | Entity Set Name | `ocpfPostedPurchaseInvoices` |
-| Source Table | Purch. Inv. Header |
 | API Group | `ocpf_purchasing` |
 | Editable | ❌ No (GET only) |
 | Field Count | 111 |
-
-**Description:** Posted (finalized) purchase invoices.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -7701,17 +7701,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfPostedPurchaseInvoiceLines
 
+**Description:** Lines of posted purchase invoices.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Purch. Inv. Line |
 | Page ID | 90897 |
 | Page Name | `ocpfPostedPurchaseInvoiceLines` |
 | Entity Set Name | `ocpfPostedPurchaseInvoiceLines` |
-| Source Table | Purch. Inv. Line |
 | API Group | `ocpf_purchasing` |
 | Editable | ❌ No (GET only) |
 | Field Count | 118 |
-
-**Description:** Lines of posted purchase invoices.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -7838,17 +7838,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfPostedPurchaseCreditMemos
 
+**Description:** Posted purchase credit memos.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Purch. Cr. Memo Hdr. |
 | Page ID | 90898 |
 | Page Name | `ocpfPostedPurchaseCreditMemos` |
 | Entity Set Name | `ocpfPostedPurchaseCreditMemos` |
-| Source Table | Purch. Cr. Memo Hdr. |
 | API Group | `ocpf_purchasing` |
 | Editable | ❌ No (GET only) |
 | Field Count | 105 |
-
-**Description:** Posted purchase credit memos.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -7962,17 +7962,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfPostedPurchCrMemoLines
 
+**Description:** Lines of posted purchase credit memos.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Purch. Cr. Memo Line |
 | Page ID | 90899 |
 | Page Name | `ocpfPostedPurchCrMemoLines` |
 | Entity Set Name | `ocpfPostedPurchCrMemoLines` |
-| Source Table | Purch. Cr. Memo Line |
 | API Group | `ocpf_purchasing` |
 | Editable | ❌ No (GET only) |
 | Field Count | 115 |
-
-**Description:** Lines of posted purchase credit memos.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -8096,17 +8096,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfPostedPurchaseReceipts
 
+**Description:** Posted purchase receipts (goods received).
+
 | Property | Value |
 |---|---|
+| **Source Table** | Purch. Rcpt. Header |
 | Page ID | 90900 |
 | Page Name | `ocpfPostedPurchaseReceipts` |
 | Entity Set Name | `ocpfPostedPurchaseReceipts` |
-| Source Table | Purch. Rcpt. Header |
 | API Group | `ocpf_purchasing` |
 | Editable | ❌ No (GET only) |
 | Field Count | 96 |
-
-**Description:** Posted purchase receipts (goods received).
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -8211,17 +8211,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfPostedPurchaseReceiptLines
 
+**Description:** Lines of posted purchase receipts.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Purch. Rcpt. Line |
 | Page ID | 90901 |
 | Page Name | `ocpfPostedPurchaseReceiptLines` |
 | Entity Set Name | `ocpfPostedPurchaseReceiptLines` |
-| Source Table | Purch. Rcpt. Line |
 | API Group | `ocpf_purchasing` |
 | Editable | ❌ No (GET only) |
 | Field Count | 117 |
-
-**Description:** Lines of posted purchase receipts.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -8347,17 +8347,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfPostedReturnShipments
 
+**Description:** Posted return shipments (goods returned to vendor).
+
 | Property | Value |
 |---|---|
+| **Source Table** | Return Shipment Header |
 | Page ID | 90902 |
 | Page Name | `ocpfPostedReturnShipments` |
 | Entity Set Name | `ocpfPostedReturnShipments` |
-| Source Table | Return Shipment Header |
 | API Group | `ocpf_purchasing` |
 | Editable | ❌ No (GET only) |
 | Field Count | 89 |
-
-**Description:** Posted return shipments (goods returned to vendor).
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -8455,17 +8455,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfPostedReturnShipmentLines
 
+**Description:** Lines of posted return shipments.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Return Shipment Line |
 | Page ID | 90903 |
 | Page Name | `ocpfPostedReturnShipmentLines` |
 | Entity Set Name | `ocpfPostedReturnShipmentLines` |
-| Source Table | Return Shipment Line |
 | API Group | `ocpf_purchasing` |
 | Editable | ❌ No (GET only) |
 | Field Count | 89 |
-
-**Description:** Lines of posted return shipments.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -8563,18 +8563,18 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfPurchaseQuotes
 
+**Description:** Purchase quotes — requests for pricing from vendors before ordering.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Purchase Header |
 | Page ID | 90904 |
 | Page Name | `ocpfPurchaseQuotes` |
 | Entity Set Name | `ocpfPurchaseQuotes` |
-| Source Table | Purchase Header |
 | API Group | `ocpf_purchasing` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Source Table View | `where("Document Type" = const(Quote)` |
 | Field Count | 159 |
-
-**Description:** Purchase quotes — requests for pricing from vendors before ordering.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -8742,18 +8742,18 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfPurchaseQuoteLines
 
+**Description:** Lines of open purchase quotes.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Purchase Line |
 | Page ID | 90905 |
 | Page Name | `ocpfPurchaseQuoteLines` |
 | Entity Set Name | `ocpfPurchaseQuoteLines` |
-| Source Table | Purchase Line |
 | API Group | `ocpf_purchasing` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Source Table View | `where("Document Type" = const(Quote)` |
 | Field Count | 211 |
-
-**Description:** Lines of open purchase quotes.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -8973,18 +8973,18 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfPurchaseBlanketOrders
 
+**Description:** Purchase blanket orders — long-term framework agreements with vendors.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Purchase Header |
 | Page ID | 90906 |
 | Page Name | `ocpfPurchaseBlanketOrders` |
 | Entity Set Name | `ocpfPurchaseBlanketOrders` |
-| Source Table | Purchase Header |
 | API Group | `ocpf_purchasing` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Source Table View | `where("Document Type" = const("Blanket Order")` |
 | Field Count | 159 |
-
-**Description:** Purchase blanket orders — long-term framework agreements with vendors.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -9152,18 +9152,18 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfPurchaseBlanketOrderLines
 
+**Description:** Lines of open purchase blanket orders.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Purchase Line |
 | Page ID | 90907 |
 | Page Name | `ocpfPurchaseBlanketOrderLines` |
 | Entity Set Name | `ocpfPurchaseBlanketOrderLines` |
-| Source Table | Purchase Line |
 | API Group | `ocpf_purchasing` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Source Table View | `where("Document Type" = const("Blanket Order")` |
 | Field Count | 211 |
-
-**Description:** Lines of open purchase blanket orders.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -9388,17 +9388,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfProjects
 
+**Description:** Projects (formerly Jobs) — tracks costs, budgets, and revenue for project work.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Job |
 | Page ID | 90910 |
 | Page Name | `ocpfProjects` |
 | Entity Set Name | `ocpfProjects` |
-| Source Table |  |
 | API Group | `ocpf_projectsAndAssets` |
 | Editable | ❌ No (GET only) |
 | Field Count | 106 |
-
-**Description:** Projects (formerly Jobs) — tracks costs, budgets, and revenue for project work.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -9513,17 +9513,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfProjectPostingGroups
 
+**Description:** Project posting groups — defines G/L accounts for project transactions.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Job Posting Group |
 | Page ID | 90911 |
 | Page Name | `ocpfProjectPostingGroups` |
 | Entity Set Name | `ocpfProjectPostingGroups` |
-| Source Table | Job Posting Group |
 | API Group | `ocpf_projectsAndAssets` |
 | Editable | ❌ No (GET only) |
 | Field Count | 17 |
-
-**Description:** Project posting groups — defines G/L accounts for project transactions.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -9549,17 +9549,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfProjectTasks
 
+**Description:** Project tasks — work breakdown structure lines within a project.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Job Task |
 | Page ID | 90912 |
 | Page Name | `ocpfProjectTasks` |
 | Entity Set Name | `ocpfProjectTasks` |
-| Source Table | Job Task |
 | API Group | `ocpf_projectsAndAssets` |
 | Editable | ❌ No (GET only) |
 | Field Count | 75 |
-
-**Description:** Project tasks — work breakdown structure lines within a project.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -9643,17 +9643,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfProjectPlanningLines
 
+**Description:** Project planning lines — budget and schedule lines for a project task.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Job Planning Line |
 | Page ID | 90913 |
 | Page Name | `ocpfProjectPlanningLines` |
 | Entity Set Name | `ocpfProjectPlanningLines` |
-| Source Table | Job Planning Line |
 | API Group | `ocpf_projectsAndAssets` |
 | Editable | ❌ No (GET only) |
 | Field Count | 102 |
-
-**Description:** Project planning lines — budget and schedule lines for a project task.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -9764,17 +9764,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfProjectLedgerEntries
 
+**Description:** Project ledger entries — posted usage and billing transactions for projects.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Job Ledger Entry |
 | Page ID | 90914 |
 | Page Name | `ocpfProjectLedgerEntries` |
 | Entity Set Name | `ocpfProjectLedgerEntries` |
-| Source Table | Job Ledger Entry |
 | API Group | `ocpf_projectsAndAssets` |
 | Editable | ❌ No (GET only) |
 | Field Count | 82 |
-
-**Description:** Project ledger entries — posted usage and billing transactions for projects.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -9865,17 +9865,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfFixedAssets
 
+**Description:** Fixed assets — capital assets tracked for depreciation and disposal.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Fixed Asset |
 | Page ID | 90915 |
 | Page Name | `ocpfFixedAssets` |
 | Entity Set Name | `ocpfFixedAssets` |
-| Source Table | Fixed Asset |
 | API Group | `ocpf_projectsAndAssets` |
 | Editable | ❌ No (GET only) |
 | Field Count | 33 |
-
-**Description:** Fixed assets — capital assets tracked for depreciation and disposal.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -9917,17 +9917,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfFaPostingGroups
 
+**Description:** Fixed asset posting groups — G/L account mapping for FA transactions.
+
 | Property | Value |
 |---|---|
+| **Source Table** | FA Posting Group |
 | Page ID | 90916 |
 | Page Name | `ocpfFaPostingGroups` |
 | Entity Set Name | `ocpfFaPostingGroups` |
-| Source Table | FA Posting Group |
 | API Group | `ocpf_projectsAndAssets` |
 | Editable | ❌ No (GET only) |
 | Field Count | 45 |
-
-**Description:** Fixed asset posting groups — G/L account mapping for FA transactions.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -9981,17 +9981,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfFaLedgerEntries
 
+**Description:** Fixed asset ledger entries — posted FA acquisition, depreciation, and disposal.
+
 | Property | Value |
 |---|---|
+| **Source Table** | FA Ledger Entry |
 | Page ID | 90917 |
 | Page Name | `ocpfFaLedgerEntries` |
 | Entity Set Name | `ocpfFaLedgerEntries` |
-| Source Table | FA Ledger Entry |
 | API Group | `ocpf_projectsAndAssets` |
 | Editable | ❌ No (GET only) |
 | Field Count | 82 |
-
-**Description:** Fixed asset ledger entries — posted FA acquisition, depreciation, and disposal.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -10082,17 +10082,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfFaDepreciationBooks
 
+**Description:** Fixed asset depreciation books — depreciation method and schedule per asset.
+
 | Property | Value |
 |---|---|
+| **Source Table** | FA Depreciation Book |
 | Page ID | 90918 |
 | Page Name | `ocpfFaDepreciationBooks` |
 | Entity Set Name | `ocpfFaDepreciationBooks` |
-| Source Table | FA Depreciation Book |
 | API Group | `ocpf_projectsAndAssets` |
 | Editable | ❌ No (GET only) |
 | Field Count | 64 |
-
-**Description:** Fixed asset depreciation books — depreciation method and schedule per asset.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -10165,17 +10165,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfGeneralJournalTemplates
 
+**Description:** General journal templates — named journal templates controlling posting behavior.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Gen. Journal Template |
 | Page ID | 90919 |
 | Page Name | `ocpfGeneralJournalTemplates` |
 | Entity Set Name | `ocpfGeneralJournalTemplates` |
-| Source Table | Gen. Journal Template |
 | API Group | `ocpf_projectsAndAssets` |
 | Editable | ❌ No (GET only) |
 | Field Count | 30 |
-
-**Description:** General journal templates — named journal templates controlling posting behavior.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -10214,17 +10214,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfGeneralJournalBatches
 
+**Description:** General journal batches — named batches within a journal template.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Gen. Journal Batch |
 | Page ID | 90920 |
 | Page Name | `ocpfGeneralJournalBatches` |
 | Entity Set Name | `ocpfGeneralJournalBatches` |
-| Source Table | Gen. Journal Batch |
 | API Group | `ocpf_projectsAndAssets` |
 | Editable | ❌ No (GET only) |
 | Field Count | 20 |
-
-**Description:** General journal batches — named batches within a journal template.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -10253,17 +10253,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfGeneralJournalLines
 
+**Description:** General journal lines — unposted journal lines ready for review and posting.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Gen. Journal Line |
 | Page ID | 90921 |
 | Page Name | `ocpfGeneralJournalLines` |
 | Entity Set Name | `ocpfGeneralJournalLines` |
-| Source Table | Gen. Journal Line |
 | API Group | `ocpf_projectsAndAssets` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 213 |
-
-**Description:** General journal lines — unposted journal lines ready for review and posting.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -10485,17 +10485,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfPriceListHeaders
 
+**Description:** Price list headers — named price lists with effectivity dates and assignment scope.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Price List Header |
 | Page ID | 90922 |
 | Page Name | `ocpfPriceListHeaders` |
 | Entity Set Name | `ocpfPriceListHeaders` |
-| Source Table | Price List Header |
 | API Group | `ocpf_projectsAndAssets` |
 | Editable | ❌ No (GET only) |
 | Field Count | 23 |
-
-**Description:** Price list headers — named price lists with effectivity dates and assignment scope.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -10527,17 +10527,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfPriceListLines
 
+**Description:** Price list lines — individual price or discount rules within a price list.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Price List Line |
 | Page ID | 90923 |
 | Page Name | `ocpfPriceListLines` |
 | Entity Set Name | `ocpfPriceListLines` |
-| Source Table | Price List Line |
 | API Group | `ocpf_projectsAndAssets` |
 | Editable | ❌ No (GET only) |
 | Field Count | 38 |
-
-**Description:** Price list lines — individual price or discount rules within a price list.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -10589,17 +10589,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfDocumentAttachments
 
+**Description:** Document attachments — files and links attached to any BC record.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Document Attachment |
 | Page ID | 90930 |
 | Page Name | `ocpfDocumentAttachments` |
 | Entity Set Name | `ocpfDocumentAttachments` |
-| Source Table | Document Attachment |
 | API Group | `ocpf_systemAndSetup` |
 | Editable | ❌ No (GET only) |
 | Field Count | 18 |
-
-**Description:** Document attachments — files and links attached to any BC record.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -10626,17 +10626,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfCompanyInformation
 
+**Description:** Company information — name, address, registration, and contact details for this company.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Company Information |
 | Page ID | 90931 |
 | Page Name | `ocpfCompanyInformation` |
 | Entity Set Name | `ocpfCompanyInformation` |
-| Source Table | Company Information |
 | API Group | `ocpf_systemAndSetup` |
 | Editable | ❌ No (GET only) |
 | Field Count | 60 |
-
-**Description:** Company information — name, address, registration, and contact details for this company.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -10705,17 +10705,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfWarehouseEntries
 
+**Description:** Warehouse entries — posted inventory movements through warehouse locations.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Warehouse Entry |
 | Page ID | 90932 |
 | Page Name | `ocpfWarehouseEntries` |
 | Entity Set Name | `ocpfWarehouseEntries` |
-| Source Table | Warehouse Entry |
 | API Group | `ocpf_systemAndSetup` |
 | Editable | ❌ No (GET only) |
 | Field Count | 45 |
-
-**Description:** Warehouse entries — posted inventory movements through warehouse locations.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -10769,17 +10769,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfReminderHeaders
 
+**Description:** Reminder headers — open reminder documents sent to customers with overdue balances.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Reminder Header |
 | Page ID | 90933 |
 | Page Name | `ocpfReminderHeaders` |
 | Entity Set Name | `ocpfReminderHeaders` |
-| Source Table | Reminder Header |
 | API Group | `ocpf_systemAndSetup` |
 | Editable | ❌ No (GET only) |
 | Field Count | 51 |
-
-**Description:** Reminder headers — open reminder documents sent to customers with overdue balances.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -10839,17 +10839,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfReminderLines
 
+**Description:** Reminder lines — individual overdue invoice lines within a reminder document.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Reminder Line |
 | Page ID | 90934 |
 | Page Name | `ocpfReminderLines` |
 | Entity Set Name | `ocpfReminderLines` |
-| Source Table | Reminder Line |
 | API Group | `ocpf_systemAndSetup` |
 | Editable | ❌ No (GET only) |
 | Field Count | 31 |
-
-**Description:** Reminder lines — individual overdue invoice lines within a reminder document.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -10889,17 +10889,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfFinanceChargeMemoHeaders
 
+**Description:** Finance charge memo headers — open finance charge documents for overdue customers.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Finance Charge Memo Header |
 | Page ID | 90935 |
 | Page Name | `ocpfFinanceChargeMemoHeaders` |
 | Entity Set Name | `ocpfFinanceChargeMemoHeaders` |
-| Source Table | Finance Charge Memo Header |
 | API Group | `ocpf_systemAndSetup` |
 | Editable | ❌ No (GET only) |
 | Field Count | 44 |
-
-**Description:** Finance charge memo headers — open finance charge documents for overdue customers.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -10952,17 +10952,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfFinanceChargeMemoLines
 
+**Description:** Finance charge memo lines — individual charge lines within a finance charge memo.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Finance Charge Memo Line |
 | Page ID | 90936 |
 | Page Name | `ocpfFinanceChargeMemoLines` |
 | Entity Set Name | `ocpfFinanceChargeMemoLines` |
-| Source Table | Finance Charge Memo Line |
 | API Group | `ocpf_systemAndSetup` |
 | Editable | ❌ No (GET only) |
 | Field Count | 28 |
-
-**Description:** Finance charge memo lines — individual charge lines within a finance charge memo.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -10999,17 +10999,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfApprovalEntries
 
+**Description:** Approval entries — workflow approval requests and their current status.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Approval Entry |
 | Page ID | 90937 |
 | Page Name | `ocpfApprovalEntries` |
 | Entity Set Name | `ocpfApprovalEntries` |
-| Source Table | Approval Entry |
 | API Group | `ocpf_systemAndSetup` |
 | Editable | ❌ No (GET only) |
 | Field Count | 29 |
-
-**Description:** Approval entries — workflow approval requests and their current status.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -11047,17 +11047,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ### ocpfWorkflowStepInstances
 
+**Description:** Workflow step instances — active steps within running workflow instances.
+
 | Property | Value |
 |---|---|
+| **Source Table** | Workflow Step Instance |
 | Page ID | 90938 |
 | Page Name | `ocpfWorkflowStepInstances` |
 | Entity Set Name | `ocpfWorkflowStepInstances` |
-| Source Table | Workflow Step Instance |
 | API Group | `ocpf_systemAndSetup` |
 | Editable | ❌ No (GET only) |
 | Field Count | 20 |
-
-**Description:** Workflow step instances — active steps within running workflow instances.
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|

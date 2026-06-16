@@ -6,6 +6,24 @@
 **Object Range:** 90800–90999  
 **Date:** June 9, 2026  
 
+## Overview
+
+**OCPF APIs** is a Business Central extension that exposes over 100 of the most commonly used standard BC tables as OData v4 API endpoints. It is designed to be a comprehensive, ready-to-use API layer for integrations, reporting tools, and external applications that need reliable, structured access to Business Central data without requiring custom development per table.
+
+Each API page maps directly to a standard BC source table and exposes every standard field from that table, with the deliberate exception of fields that are specific to country/region localizations. This keeps the API surface globally portable — the same endpoints and field set work consistently across any BC environment regardless of the localization installed.
+
+### Key characteristics
+
+- **Broad coverage** — 100+ standard BC tables across core financials, master data, sales, purchasing, projects, fixed assets, and system setup
+- **Full field exposure** — every non-localization field on each source table is available, including flow fields and filter fields
+- **Consistent shape** — all pages follow the same API group/entity naming convention and use `SystemId` as the OData key
+- **Selective editability** — pages are marked editable (POST/PATCH/DELETE) or read-only (GET only) based on whether the underlying table is safe to write through an API
+- **Localization-neutral** — fields tied to specific country/region localizations are intentionally excluded so the package installs and behaves identically in any market
+
+---
+
+## About this document
+
 This document lists every API page, its source table, editability, and every exposed field.
 Fields marked **Editable = false** within an editable page are read-only computed or system fields.
 Fields on read-only pages (Editable = false at page level) are all read-only regardless of field-level setting.

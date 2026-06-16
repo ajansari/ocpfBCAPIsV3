@@ -4,7 +4,7 @@
 **API Version:** v3.0  
 **BC Version:** 2025 Wave 2 (v27.5+)  
 **Object Range:** 90800–90999  
-**Date:** 2026-06-09  
+**Date:** June 9, 2026  
 
 This document lists every API page, its source table, editability, and every exposed field.
 Fields marked **Editable = false** within an editable page are read-only computed or system fields.

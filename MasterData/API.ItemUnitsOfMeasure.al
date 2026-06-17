@@ -87,6 +87,12 @@ page 90838 "ocpfItemUnitsOfMeasure"
                     ToolTip = 'Specifies the weight for this item unit of measure record.';
                     ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                {
+                    Caption = 'Last Modified DateTime';
+                    ToolTip = 'Specifies the Last Modified DateTime.';
+                    ApplicationArea = All;
+                }
             }
         }
     }

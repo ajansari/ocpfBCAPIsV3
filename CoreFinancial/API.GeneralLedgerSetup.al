@@ -603,6 +603,12 @@ page 90802 "ocpfGeneralLedgerSetup"
                     ToolTip = 'Specifies the acc. payables category for this general ledger setup record.';
                     ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                {
+                    Caption = 'Last Modified DateTime';
+                    ToolTip = 'Specifies the Last Modified DateTime.';
+                    ApplicationArea = All;
+                }
             }
         }
     }

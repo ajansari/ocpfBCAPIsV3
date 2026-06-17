@@ -81,6 +81,12 @@ page 90856 "ocpfResourceGroups"
                     ToolTip = 'Specifies the no. of resources assigned for this resource group record.';
                     ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                {
+                    Caption = 'Last Modified DateTime';
+                    ToolTip = 'Specifies the Last Modified DateTime.';
+                    ApplicationArea = All;
+                }
             }
         }
     }

@@ -477,6 +477,12 @@ page 90830 "ocpfBankAccounts"
                     ToolTip = 'Specifies the mobile phone no. for this bank account record.';
                     ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                {
+                    Caption = 'Last Modified DateTime';
+                    ToolTip = 'Specifies the Last Modified DateTime.';
+                    ApplicationArea = All;
+                }
             }
         }
     }

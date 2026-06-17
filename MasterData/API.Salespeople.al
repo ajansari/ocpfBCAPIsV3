@@ -243,6 +243,12 @@ page 90858 "ocpfSalespeople"
                     ToolTip = 'Specifies the blocked for this salesperson/purchaser record.';
                     ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                {
+                    Caption = 'Last Modified DateTime';
+                    ToolTip = 'Specifies the Last Modified DateTime.';
+                    ApplicationArea = All;
+                }
             }
         }
     }

@@ -471,6 +471,12 @@ page 90808 "ocpfVendorLedgerEntries"
                     ToolTip = 'Specifies the remit-to code for this vendor ledger entry record.';
                     ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                {
+                    Caption = 'Last Modified DateTime';
+                    ToolTip = 'Specifies the Last Modified DateTime.';
+                    ApplicationArea = All;
+                }
             }
         }
     }

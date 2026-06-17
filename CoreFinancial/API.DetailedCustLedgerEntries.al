@@ -237,6 +237,12 @@ page 90807 "ocpfDetailedCustLedgerEntries"
                     ToolTip = 'Specifies the exch. rate adjmt. reg. no. for this detailed cust. ledg. entry record.';
                     ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                {
+                    Caption = 'Last Modified DateTime';
+                    ToolTip = 'Specifies the Last Modified DateTime.';
+                    ApplicationArea = All;
+                }
             }
         }
     }

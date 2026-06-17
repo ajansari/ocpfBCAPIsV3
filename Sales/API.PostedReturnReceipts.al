@@ -633,6 +633,12 @@ page 90884 "ocpfPostedReturnReceipts"
                         ToolTip = 'Specifies the Allow Line Disc..';
                         ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                    {
+                        Caption = 'Last Modified DateTime';
+                        ToolTip = 'Specifies the Last Modified DateTime.';
+                        ApplicationArea = All;
+                    }
             }
         }
     }

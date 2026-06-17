@@ -201,6 +201,12 @@ page 90919 "ocpfGeneralJournalTemplates"
                         ToolTip = 'Specifies the Unlink Inc. Doc On Posting.';
                         ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                    {
+                        Caption = 'Last Modified DateTime';
+                        ToolTip = 'Specifies the Last Modified DateTime.';
+                        ApplicationArea = All;
+                    }
             }
         }
     }

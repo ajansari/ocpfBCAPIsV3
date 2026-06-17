@@ -81,7 +81,7 @@ page 90836 "ocpfCountriesRegions"
                     ToolTip = 'Specifies the vat scheme for this country/region record.';
                     ApplicationArea = All;
                 }
-                field(lastModifiedDateTime; Rec."Last Modified Date Time")
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
                 {
                     Caption = 'Last Modified Date Time';
                     ToolTip = 'Specifies the last modified date time for this country/region record.';

@@ -51,7 +51,7 @@ page 90837 "ocpfUnitsOfMeasure"
                     ToolTip = 'Specifies the symbol for this unit of measure record.';
                     ApplicationArea = All;
                 }
-                field(lastModifiedDateTime; Rec."Last Modified Date Time")
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
                 {
                     Caption = 'Last Modified Date Time';
                     ToolTip = 'Specifies the last modified date time for this unit of measure record.';

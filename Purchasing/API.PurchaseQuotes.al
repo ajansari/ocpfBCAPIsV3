@@ -976,6 +976,12 @@ page 90904 "ocpfPurchaseQuotes"
                 ToolTip = 'Specifies the Pending Approvals.';
                 ApplicationArea = All;
             }
+            field(lastModifiedDateTime; Rec.SystemModifiedAt)
+            {
+                Caption = 'Last Modified DateTime';
+                ToolTip = 'Specifies the Last Modified DateTime.';
+                ApplicationArea = All;
+            }
             }
         }
     }

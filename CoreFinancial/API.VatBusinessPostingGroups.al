@@ -39,7 +39,7 @@ page 90817 "ocpfVatBusinessPostingGroups"
                     ToolTip = 'Specifies the description for this vat business posting group record.';
                     ApplicationArea = All;
                 }
-                field(lastModifiedDateTime; Rec."Last Modified Date Time")
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
                 {
                     Caption = 'Last Modified Date Time';
                     ToolTip = 'Specifies the last modified date time for this vat business posting group record.';

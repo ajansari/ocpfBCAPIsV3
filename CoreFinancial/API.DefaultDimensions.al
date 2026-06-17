@@ -105,6 +105,12 @@ page 90822 "ocpfDefaultDimensions"
                     ToolTip = 'Specifies the dimensionvalueid for this default dimension record.';
                     ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                {
+                    Caption = 'Last Modified DateTime';
+                    ToolTip = 'Specifies the Last Modified DateTime.';
+                    ApplicationArea = All;
+                }
             }
         }
     }

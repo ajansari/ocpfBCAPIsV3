@@ -327,6 +327,12 @@ page 90933 "ocpfReminderHeaders"
                         ToolTip = 'Specifies the Assigned User ID.';
                         ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                    {
+                        Caption = 'Last Modified DateTime';
+                        ToolTip = 'Specifies the Last Modified DateTime.';
+                        ApplicationArea = All;
+                    }
             }
         }
     }

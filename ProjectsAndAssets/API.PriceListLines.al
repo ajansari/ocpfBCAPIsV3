@@ -249,6 +249,12 @@ page 90923 "ocpfPriceListLines"
                         ToolTip = 'Specifies the Unit of Measure Code Lookup.';
                         ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                    {
+                        Caption = 'Last Modified DateTime';
+                        ToolTip = 'Specifies the Last Modified DateTime.';
+                        ApplicationArea = All;
+                    }
             }
         }
     }

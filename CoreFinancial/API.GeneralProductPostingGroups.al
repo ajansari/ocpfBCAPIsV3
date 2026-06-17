@@ -51,6 +51,12 @@ page 90812 "ocpfGenProdPostingGroups"
                     ToolTip = 'Specifies the auto insert default for this gen. product posting group record.';
                     ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                {
+                    Caption = 'Last Modified DateTime';
+                    ToolTip = 'Specifies the Last Modified DateTime.';
+                    ApplicationArea = All;
+                }
             }
         }
     }

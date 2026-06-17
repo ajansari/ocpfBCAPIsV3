@@ -603,6 +603,12 @@ page 90883 "ocpfPostedSalesShipmentLines"
                         ToolTip = 'Specifies the Document Id.';
                         ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                    {
+                        Caption = 'Last Modified DateTime';
+                        ToolTip = 'Specifies the Last Modified DateTime.';
+                        ApplicationArea = All;
+                    }
             }
         }
     }

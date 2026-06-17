@@ -729,6 +729,12 @@ page 90897 "ocpfPostedPurchaseInvoiceLines"
                         ToolTip = 'Specifies the Overhead Rate.';
                         ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                    {
+                        Caption = 'Last Modified DateTime';
+                        ToolTip = 'Specifies the Last Modified DateTime.';
+                        ApplicationArea = All;
+                    }
             }
         }
     }

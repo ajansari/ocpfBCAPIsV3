@@ -63,6 +63,12 @@ page 90845 "ocpfContactBusinessRelations"
                     ToolTip = 'Specifies the contact name for this contact business relation record.';
                     ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                {
+                    Caption = 'Last Modified DateTime';
+                    ToolTip = 'Specifies the Last Modified DateTime.';
+                    ApplicationArea = All;
+                }
             }
         }
     }

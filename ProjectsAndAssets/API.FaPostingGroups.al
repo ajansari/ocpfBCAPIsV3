@@ -291,6 +291,12 @@ page 90916 "ocpfFaPostingGroups"
                         ToolTip = 'Specifies the Book Val. Acc. on Disp. (Loss).';
                         ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                    {
+                        Caption = 'Last Modified DateTime';
+                        ToolTip = 'Specifies the Last Modified DateTime.';
+                        ApplicationArea = All;
+                    }
             }
         }
     }

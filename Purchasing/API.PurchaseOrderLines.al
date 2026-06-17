@@ -1288,6 +1288,12 @@ page 90891 "ocpfPurchaseOrderLines"
                         ToolTip = 'Specifies the Safety Lead Time.';
                         ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                    {
+                        Caption = 'Last Modified DateTime';
+                        ToolTip = 'Specifies the Last Modified DateTime.';
+                        ApplicationArea = All;
+                    }
             }
         }
     }

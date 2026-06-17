@@ -219,6 +219,12 @@ page 90915 "ocpfFixedAssets"
                         ToolTip = 'Specifies the Responsible Employee Id.';
                         ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                    {
+                        Caption = 'Last Modified DateTime';
+                        ToolTip = 'Specifies the Last Modified DateTime.';
+                        ApplicationArea = All;
+                    }
             }
         }
     }

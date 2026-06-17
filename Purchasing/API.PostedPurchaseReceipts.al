@@ -597,6 +597,12 @@ page 90900 "ocpfPostedPurchaseReceipts"
                         ToolTip = 'Specifies the Price Calculation Method.';
                         ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                    {
+                        Caption = 'Last Modified DateTime';
+                        ToolTip = 'Specifies the Last Modified DateTime.';
+                        ApplicationArea = All;
+                    }
             }
         }
     }

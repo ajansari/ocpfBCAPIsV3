@@ -207,6 +207,12 @@ page 90813 "ocpfGeneralPostingSetup"
                     ToolTip = 'Specifies the purchase variance account for this general posting setup record.';
                     ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                {
+                    Caption = 'Last Modified DateTime';
+                    ToolTip = 'Specifies the Last Modified DateTime.';
+                    ApplicationArea = All;
+                }
             }
         }
     }

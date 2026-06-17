@@ -153,7 +153,7 @@ page 90800 "ocpfChartOfAccounts"
                     ToolTip = 'Specifies the unrealized revaluation for this g/l account record.';
                     ApplicationArea = All;
                 }
-                field(lastModifiedDateTime; Rec."Last Modified Date Time")
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
                 {
                     Caption = 'Last Modified Date Time';
                     ToolTip = 'Specifies the last modified date time for this g/l account record.';

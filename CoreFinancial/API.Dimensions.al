@@ -75,7 +75,7 @@ page 90820 "ocpfDimensions"
                     ToolTip = 'Specifies the map-to ic dimension code for this dimension record.';
                     ApplicationArea = All;
                 }
-                field(lastModifiedDateTime; Rec."Last Modified Date Time")
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
                 {
                     Caption = 'Last Modified Date Time';
                     ToolTip = 'Specifies the last modified date time for this dimension record.';

@@ -297,7 +297,7 @@ page 90835 "ocpfCurrencies"
                     ToolTip = 'Specifies the symbol for this currency record.';
                     ApplicationArea = All;
                 }
-                field(lastModifiedDateTime; Rec."Last Modified Date Time")
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
                 {
                     Caption = 'Last Modified Date Time';
                     ToolTip = 'Specifies the last modified date time for this currency record.';

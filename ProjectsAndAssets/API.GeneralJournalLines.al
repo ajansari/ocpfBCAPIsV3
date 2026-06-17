@@ -1269,7 +1269,7 @@ page 90921 "ocpfGeneralJournalLines"
                         ToolTip = 'Specifies the Contact Graph Id.';
                         ApplicationArea = All;
                 }
-                field(lastModifiedDatetime; Rec."Last Modified DateTime")
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
                     {
                         Caption = 'Last Modified DateTime';
                         ToolTip = 'Specifies the Last Modified DateTime.';

@@ -1186,6 +1186,12 @@ page 90875 "ocpfSalesInvoiceLines"
                         ToolTip = 'Specifies the Sell-to Customer Name.';
                         ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                    {
+                        Caption = 'Last Modified DateTime';
+                        ToolTip = 'Specifies the Last Modified DateTime.';
+                        ApplicationArea = All;
+                    }
             }
         }
     }

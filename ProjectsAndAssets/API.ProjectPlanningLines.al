@@ -633,6 +633,12 @@ page 90913 "ocpfProjectPlanningLines"
                         ToolTip = 'Specifies the Qty. on Journal.';
                         ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                    {
+                        Caption = 'Last Modified DateTime';
+                        ToolTip = 'Specifies the Last Modified DateTime.';
+                        ApplicationArea = All;
+                    }
             }
         }
     }

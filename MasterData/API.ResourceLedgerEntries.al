@@ -279,6 +279,12 @@ page 90855 "ocpfResourceLedgerEntries"
                     ToolTip = 'Specifies the shortcut dimension 8 code for this res. ledger entry record.';
                     ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                {
+                    Caption = 'Last Modified DateTime';
+                    ToolTip = 'Specifies the Last Modified DateTime.';
+                    ApplicationArea = All;
+                }
             }
         }
     }

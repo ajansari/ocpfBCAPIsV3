@@ -687,6 +687,12 @@ page 90896 "ocpfPostedPurchaseInvoices"
                         ToolTip = 'Specifies the Draft Invoice SystemId.';
                         ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                    {
+                        Caption = 'Last Modified DateTime';
+                        ToolTip = 'Specifies the Last Modified DateTime.';
+                        ApplicationArea = All;
+                    }
             }
         }
     }

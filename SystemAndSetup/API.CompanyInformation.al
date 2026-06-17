@@ -315,7 +315,7 @@ page 90931 "ocpfCompanyInformation"
                         ToolTip = 'Specifies the Picture - Last Mod. Date Time.';
                         ApplicationArea = All;
                 }
-                field(lastModifiedDateTime; Rec."Last Modified Date Time")
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
                     {
                         Caption = 'Last Modified Date Time';
                         ToolTip = 'Specifies the Last Modified Date Time.';

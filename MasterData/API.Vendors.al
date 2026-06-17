@@ -231,7 +231,7 @@ page 90843 "ocpfVendors"
                     ToolTip = 'Specifies the date of the first transaction with the vendor.';
                     ApplicationArea = All;
                 }
-                field(lastModifiedDateTime; Rec."Last Modified Date Time")
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
                 {
                     Caption = 'Last Modified Date Time';
                     ToolTip = 'Specifies the last modified date time for this vendor record.';

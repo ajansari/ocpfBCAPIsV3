@@ -63,7 +63,7 @@ page 90833 "ocpfPaymentTerms"
                     ToolTip = 'Specifies the calc. pmt. disc. on cr. memos for this payment terms record.';
                     ApplicationArea = All;
                 }
-                field(lastModifiedDateTime; Rec."Last Modified Date Time")
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
                 {
                     Caption = 'Last Modified Date Time';
                     ToolTip = 'Specifies the last modified date time for this payment terms record.';

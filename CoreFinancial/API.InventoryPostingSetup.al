@@ -105,6 +105,12 @@ page 90824 "ocpfInventoryPostingSetup"
                 ToolTip = 'Specifies the general ledger account number to which to post material non-inventory variance transactions for items in this combination.';
                 ApplicationArea = All;
             }
+            field(lastModifiedDateTime; Rec.SystemModifiedAt)
+            {
+                Caption = 'Last Modified DateTime';
+                ToolTip = 'Specifies the Last Modified DateTime.';
+                ApplicationArea = All;
+            }
             }
         }
     }

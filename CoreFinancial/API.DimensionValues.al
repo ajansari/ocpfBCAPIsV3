@@ -99,7 +99,7 @@ page 90821 "ocpfDimensionValues"
                     ToolTip = 'Specifies the dimension value id for this dimension value record.';
                     ApplicationArea = All;
                 }
-                field(lastModifiedDateTime; Rec."Last Modified Date Time")
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
                 {
                     Caption = 'Last Modified Date Time';
                     ToolTip = 'Specifies the last modified date time for this dimension value record.';

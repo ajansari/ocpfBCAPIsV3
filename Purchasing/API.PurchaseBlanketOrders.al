@@ -22,9 +22,9 @@ page 90906 "ocpfPurchaseBlanketOrders"
         {
             repeater(Group)
             {
-            field(systemId; Rec.SystemId)
+            field(id; Rec.SystemId)
             {
-                Caption = 'System ID';
+                Caption = 'ID';
                 ToolTip = 'Unique system-assigned identifier for this record. Used as the OData key.';
                 ApplicationArea = All;
             }

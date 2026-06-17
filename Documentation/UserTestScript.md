@@ -26,10 +26,10 @@ BC Online uses OAuth 2.0. Obtain a bearer token via your Azure AD app registrati
 ### URL Pattern
 ```
 GET {baseUrl}/ocpf_{group}/v3.0/{entitySetName}
-GET {baseUrl}/ocpf_{group}/v3.0/{entitySetName}({systemId})
+GET {baseUrl}/ocpf_{group}/v3.0/{entitySetName}({id})
 POST {baseUrl}/ocpf_{group}/v3.0/{entitySetName}
-PATCH {baseUrl}/ocpf_{group}/v3.0/{entitySetName}({systemId})
-DELETE {baseUrl}/ocpf_{group}/v3.0/{entitySetName}({systemId})
+PATCH {baseUrl}/ocpf_{group}/v3.0/{entitySetName}({id})
+DELETE {baseUrl}/ocpf_{group}/v3.0/{entitySetName}({id})
 GET {baseUrl}/ocpf_{group}/v3.0/$metadata
 ```
 
@@ -63,8 +63,8 @@ GET {baseUrl}/ocpf_{group}/v3.0/$metadata
 | Step | Action | Expected Result |
 |---|---|---|
 | 1 | GET `.../ocpf_coreFinancial/v3.0/ocpfChartOfAccounts` | HTTP 200, JSON array of G/L accounts |
-| 2 | Note the `systemId` of any account | 36-character GUID (e.g., `"12345678-..."`) |
-| 3 | GET `.../ocpfChartOfAccounts({systemId})` | HTTP 200, single account record |
+| 2 | Note the `id` of any account | 36-character GUID (e.g., `"12345678-..."`) |
+| 3 | GET `.../ocpfChartOfAccounts({id})` | HTTP 200, single account record |
 | 4 | Confirm `no` field matches the G/L account number in BC | Values match |
 | 5 | GET `.../ocpfChartOfAccounts?$select=no,name,accountType&$top=10` | HTTP 200, only 3 fields returned, max 10 records |
 | 6 | GET `.../ocpfChartOfAccounts?$filter=accountType eq 'Posting'` | HTTP 200, only posting-type accounts returned |
@@ -96,9 +96,9 @@ GET {baseUrl}/ocpf_{group}/v3.0/$metadata
 | Step | Action | Expected Result |
 |---|---|---|
 | 1 | GET `.../ocpf_masterData/v3.0/ocpfCustomers?$top=1` | HTTP 200, one customer record |
-| 2 | Note the `systemId` and current `paymentTermsCode` | Record values noted |
-| 3 | PATCH `.../ocpfCustomers({systemId})` with body `{"paymentTermsCode": "10 DAYS"}` | HTTP 200, record updated |
-| 4 | GET `.../ocpfCustomers({systemId})` | Updated `paymentTermsCode` returned |
+| 2 | Note the `id` and current `paymentTermsCode` | Record values noted |
+| 3 | PATCH `.../ocpfCustomers({id})` with body `{"paymentTermsCode": "10 DAYS"}` | HTTP 200, record updated |
+| 4 | GET `.../ocpfCustomers({id})` | Updated `paymentTermsCode` returned |
 | 5 | Revert: PATCH back to original value | HTTP 200, reverted |
 | 6 | Open Customer Card in BC UI | Value matches what was set via API |
 
@@ -128,13 +128,13 @@ GET {baseUrl}/ocpf_{group}/v3.0/$metadata
 | Step | Action | Expected Result |
 |---|---|---|
 | 1 | GET `.../ocpf_sales/v3.0/ocpfSalesOrders?$top=3` | HTTP 200, open sales orders |
-| 2 | POST `.../ocpfSalesOrders` with body: `{"sellToCustomerNo": "<valid customer no>"}` | HTTP 201, new order created, `systemId` returned |
-| 3 | Note the new order's `systemId` | GUID returned in response |
-| 4 | GET `.../ocpfSalesOrders({systemId})` | HTTP 200, new order returned |
+| 2 | POST `.../ocpfSalesOrders` with body: `{"sellToCustomerNo": "<valid customer no>"}` | HTTP 201, new order created, `id` returned |
+| 3 | Note the new order's `id` | GUID returned in response |
+| 4 | GET `.../ocpfSalesOrders({id})` | HTTP 200, new order returned |
 | 5 | PATCH the order with `{"yourReference": "TEST-API-001"}` | HTTP 200 |
 | 6 | Verify order appears in BC → Sales Orders list | Order visible with correct reference |
-| 7 | DELETE `.../ocpfSalesOrders({systemId})` | HTTP 204, no content |
-| 8 | GET `.../ocpfSalesOrders({systemId})` | HTTP 404, order not found |
+| 7 | DELETE `.../ocpfSalesOrders({id})` | HTTP 204, no content |
+| 8 | GET `.../ocpfSalesOrders({id})` | HTTP 404, order not found |
 
 ✅ **Pass criteria:** Full CRUD on open Sales Orders; changes visible in BC UI.
 
@@ -163,10 +163,10 @@ GET {baseUrl}/ocpf_{group}/v3.0/$metadata
 | Step | Action | Expected Result |
 |---|---|---|
 | 1 | GET `.../ocpf_sales/v3.0/ocpfPostedSalesInvoices?$top=3` | HTTP 200, posted invoices returned |
-| 2 | Note a `systemId` | GUID noted |
-| 3 | PATCH `.../ocpfPostedSalesInvoices({systemId})` with any body | HTTP 405 Method Not Allowed (or 400) |
+| 2 | Note a `id` | GUID noted |
+| 3 | PATCH `.../ocpfPostedSalesInvoices({id})` with any body | HTTP 405 Method Not Allowed (or 400) |
 | 4 | POST `.../ocpfPostedSalesInvoices` with any body | HTTP 405 Method Not Allowed |
-| 5 | DELETE `.../ocpfPostedSalesInvoices({systemId})` | HTTP 405 Method Not Allowed |
+| 5 | DELETE `.../ocpfPostedSalesInvoices({id})` | HTTP 405 Method Not Allowed |
 
 ✅ **Pass criteria:** Reads succeed; all writes rejected with appropriate HTTP error.
 
@@ -359,7 +359,7 @@ GET {baseUrl}/ocpf_{group}/v3.0/$metadata
 | Step | Action | Expected Result |
 |---|---|---|
 | 1 | GET `.../ocpfCustomers?$filter=no eq '' or 1 eq 1` | HTTP 200 with filtered results, OR HTTP 400 — either is acceptable; should NOT return all records if the filter syntax is invalid |
-| 2 | GET `.../ocpfCustomers?$filter=systemId ne null` | HTTP 200, standard filter behavior |
+| 2 | GET `.../ocpfCustomers?$filter=id ne null` | HTTP 200, standard filter behavior |
 | 3 | GET `../$metadata?$filter=anything` | HTTP 400 (metadata does not support OData query params) |
 
 ✅ **Pass criteria:** No unexpected data disclosure; standard OData filter rules enforced.
@@ -402,11 +402,11 @@ GET {baseUrl}/ocpf_{group}/v3.0/$metadata
 
 | Step | Action | Expected Result |
 |---|---|---|
-| 1 | Find a Customer with open ledger entries | Note systemId |
-| 2 | DELETE `.../ocpfCustomers({systemId})` | HTTP 400, BC error: customer has open entries |
-| 3 | Find a Customer with no entries or transactions | Note systemId |
-| 4 | DELETE `.../ocpfCustomers({systemId})` | HTTP 204, deleted successfully |
-| 5 | GET `.../ocpfCustomers({systemId})` | HTTP 404, confirmed deleted |
+| 1 | Find a Customer with open ledger entries | Note id |
+| 2 | DELETE `.../ocpfCustomers({id})` | HTTP 400, BC error: customer has open entries |
+| 3 | Find a Customer with no entries or transactions | Note id |
+| 4 | DELETE `.../ocpfCustomers({id})` | HTTP 204, deleted successfully |
+| 5 | GET `.../ocpfCustomers({id})` | HTTP 404, confirmed deleted |
 
 ✅ **Pass criteria:** Business rules enforced via HTTP 400 with meaningful error; clean deletions return 204.
 
@@ -450,4 +450,4 @@ GET {baseUrl}/ocpf_{group}/v3.0/$metadata
 - **Document type filter + $filter AND:** OData `$filter` is applied *in addition to* the server-side `SourceTableView` filter. You cannot retrieve Orders from `ocpfSalesQuotes` regardless of what you put in `$filter`.
 - **$expand not supported (v3.0):** Navigation properties between headers and lines are not configured. Use separate GET calls for header and line data.
 - **ETag behavior:** BC returns ETags on GET responses. PATCH without `If-Match` succeeds (last-write-wins). Provide `If-Match` for optimistic concurrency control.
-- **Deleted records:** Once a record is deleted, its `systemId` is gone permanently. There is no recycle bin in the API.
+- **Deleted records:** Once a record is deleted, its `id` is gone permanently. There is no recycle bin in the API.

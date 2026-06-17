@@ -125,7 +125,7 @@ No missing requirements found. The TDD faithfully implements the FRD's intent, w
 - Single `using` directive on line 3
 - `PageType = API` on all pages
 - `ODataKeyFields = SystemId` on all pages
-- `systemId` always first field in repeater
+- `id` always first field in repeater
 - `ApplicationArea = All` on every field
 - `Caption` on every page
 - `ToolTip` on every field

@@ -79,7 +79,7 @@ Single namespace for all 106 objects. Each file declares exactly one `using` dir
 | FlowFilter fields excluded | Excluded by type check |
 | Raw BLOB fields excluded | Excluded by type check |
 | Media / MediaSet fields | Included (BC API framework streams these) |
-| SystemId first | Field identifier `systemId` always first in repeater |
+| SystemId first | Field identifier `id` always first in repeater |
 | Field identifier format | camelCase, `%` → `Pct`, non-alphanumeric stripped |
 | Reserved keyword conflicts | Append type suffix (e.g., `area` → `areaCode`) |
 | Caption | From BC source table, or field name if absent |

@@ -69,7 +69,7 @@ page 90834 "ocpfPaymentMethods"
                     ToolTip = 'Specifies the pmt. export line definition for this payment method record.';
                     ApplicationArea = All;
                 }
-                field(lastModifiedDateTime; Rec."Last Modified Date Time")
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
                 {
                     Caption = 'Last Modified Date Time';
                     ToolTip = 'Specifies the last modified date time for this payment method record.';

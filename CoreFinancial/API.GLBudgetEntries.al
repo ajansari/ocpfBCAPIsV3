@@ -123,6 +123,12 @@ page 90804 "ocpfGLBudgetEntries"
                     ToolTip = 'Specifies the dimension set id for this g/l budget entry record.';
                     ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                {
+                    Caption = 'Last Modified DateTime';
+                    ToolTip = 'Specifies the Last Modified DateTime.';
+                    ApplicationArea = All;
+                }
             }
         }
     }

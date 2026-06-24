@@ -69,6 +69,12 @@ page 90823 "ocpfDimensionSetEntries"
                     ToolTip = 'Specifies the global dimension no. for this dimension set entry record.';
                     ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                {
+                    Caption = 'Last Modified DateTime';
+                    ToolTip = 'Specifies the Last Modified DateTime.';
+                    ApplicationArea = All;
+                }
             }
         }
     }

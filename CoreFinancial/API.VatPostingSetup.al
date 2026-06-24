@@ -171,6 +171,12 @@ page 90819 "ocpfVatPostingSetup"
                     ToolTip = 'Specifies the allow non-deductible vat for this vat posting setup record.';
                     ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                {
+                    Caption = 'Last Modified DateTime';
+                    ToolTip = 'Specifies the Last Modified DateTime.';
+                    ApplicationArea = All;
+                }
             }
         }
     }

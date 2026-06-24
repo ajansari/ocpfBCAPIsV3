@@ -75,6 +75,12 @@ page 90853 "ocpfItemCharges"
                     ToolTip = 'Specifies the global dimension 2 code for this item charge record.';
                     ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                {
+                    Caption = 'Last Modified DateTime';
+                    ToolTip = 'Specifies the Last Modified DateTime.';
+                    ApplicationArea = All;
+                }
             }
         }
     }

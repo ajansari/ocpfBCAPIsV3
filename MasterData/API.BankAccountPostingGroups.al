@@ -39,6 +39,12 @@ page 90831 "ocpfBankAccountPostingGroups"
                     ToolTip = 'Specifies the g/l account no. for this bank account posting group record.';
                     ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                {
+                    Caption = 'Last Modified DateTime';
+                    ToolTip = 'Specifies the Last Modified DateTime.';
+                    ApplicationArea = All;
+                }
             }
         }
     }

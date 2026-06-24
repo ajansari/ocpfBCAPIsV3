@@ -189,6 +189,12 @@ page 90936 "ocpfFinanceChargeMemoLines"
                         ToolTip = 'Specifies the System-Created Entry.';
                         ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                    {
+                        Caption = 'Last Modified DateTime';
+                        ToolTip = 'Specifies the Last Modified DateTime.';
+                        ApplicationArea = All;
+                    }
             }
         }
     }

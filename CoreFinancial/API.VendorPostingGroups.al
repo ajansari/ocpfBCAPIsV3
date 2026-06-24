@@ -111,6 +111,12 @@ page 90815 "ocpfVendorPostingGroups"
                     ToolTip = 'Specifies the view all accounts on lookup for this vendor posting group record.';
                     ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                {
+                    Caption = 'Last Modified DateTime';
+                    ToolTip = 'Specifies the Last Modified DateTime.';
+                    ApplicationArea = All;
+                }
             }
         }
     }

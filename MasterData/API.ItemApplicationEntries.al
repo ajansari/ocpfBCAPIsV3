@@ -141,6 +141,12 @@ page 90849 "ocpfItemApplicationEntries"
                     ToolTip = 'Specifies the outbound entry is updated for this item application entry record.';
                     ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                {
+                    Caption = 'Last Modified DateTime';
+                    ToolTip = 'Specifies the Last Modified DateTime.';
+                    ApplicationArea = All;
+                }
             }
         }
     }

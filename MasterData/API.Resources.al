@@ -321,6 +321,12 @@ page 90854 "ocpfResources"
                     ToolTip = 'Specifies the default deferral template code for this resource record.';
                     ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                {
+                    Caption = 'Last Modified DateTime';
+                    ToolTip = 'Specifies the Last Modified DateTime.';
+                    ApplicationArea = All;
+                }
             }
         }
     }

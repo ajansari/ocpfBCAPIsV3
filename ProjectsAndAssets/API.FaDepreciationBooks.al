@@ -405,6 +405,12 @@ page 90918 "ocpfFaDepreciationBooks"
                         ToolTip = 'Specifies the Default FA Depreciation Book.';
                         ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                    {
+                        Caption = 'Last Modified DateTime';
+                        ToolTip = 'Specifies the Last Modified DateTime.';
+                        ApplicationArea = All;
+                    }
             }
         }
     }

@@ -471,6 +471,12 @@ page 90912 "ocpfProjectTasks"
                         ToolTip = 'Specifies the Invoice Currency Code.';
                         ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                    {
+                        Caption = 'Last Modified DateTime';
+                        ToolTip = 'Specifies the Last Modified DateTime.';
+                        ApplicationArea = All;
+                    }
             }
         }
     }

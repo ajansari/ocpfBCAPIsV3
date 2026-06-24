@@ -327,7 +327,7 @@ page 90857 "ocpfEmployees"
                     ToolTip = 'Specifies the no. series for this employee record.';
                     ApplicationArea = All;
                 }
-                field(lastModifiedDateTime; Rec."Last Modified Date Time")
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
                 {
                     Caption = 'Last Modified Date Time';
                     ToolTip = 'Specifies the last modified date time for this employee record.';

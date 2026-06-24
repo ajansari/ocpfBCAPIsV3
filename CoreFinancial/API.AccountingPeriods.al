@@ -69,6 +69,12 @@ page 90803 "ocpfAccountingPeriods"
                     ToolTip = 'Specifies the average cost period for this accounting period record.';
                     ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                {
+                    Caption = 'Last Modified DateTime';
+                    ToolTip = 'Specifies the Last Modified DateTime.';
+                    ApplicationArea = All;
+                }
             }
         }
     }

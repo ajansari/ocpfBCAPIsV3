@@ -291,6 +291,12 @@ page 90932 "ocpfWarehouseEntries"
                         ToolTip = 'Specifies the Dedicated.';
                         ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                    {
+                        Caption = 'Last Modified DateTime';
+                        ToolTip = 'Specifies the Last Modified DateTime.';
+                        ApplicationArea = All;
+                    }
             }
         }
     }

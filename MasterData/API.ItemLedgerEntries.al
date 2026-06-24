@@ -477,6 +477,12 @@ page 90847 "ocpfItemLedgerEntries"
                     ToolTip = 'Specifies the item description for this item ledger entry record.';
                     ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                {
+                    Caption = 'Last Modified DateTime';
+                    ToolTip = 'Specifies the Last Modified DateTime.';
+                    ApplicationArea = All;
+                }
             }
         }
     }

@@ -99,6 +99,12 @@ page 90805 "ocpfGLRegisters"
                     ToolTip = 'Specifies the journal templ. name for this g/l register record.';
                     ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                {
+                    Caption = 'Last Modified DateTime';
+                    ToolTip = 'Specifies the Last Modified DateTime.';
+                    ApplicationArea = All;
+                }
             }
         }
     }

@@ -291,6 +291,12 @@ page 90832 "ocpfBankAccountLedgerEntries"
                     ToolTip = 'Specifies the shortcut dimension 8 code for this bank account ledger entry record.';
                     ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                {
+                    Caption = 'Last Modified DateTime';
+                    ToolTip = 'Specifies the Last Modified DateTime.';
+                    ApplicationArea = All;
+                }
             }
         }
     }

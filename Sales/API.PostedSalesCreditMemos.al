@@ -759,6 +759,12 @@ page 90880 "ocpfPostedSalesCreditMemos"
                         ToolTip = 'Specifies the Draft Cr. Memo SystemId.';
                         ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                    {
+                        Caption = 'Last Modified DateTime';
+                        ToolTip = 'Specifies the Last Modified DateTime.';
+                        ApplicationArea = All;
+                    }
             }
         }
     }

@@ -315,6 +315,12 @@ page 90852 "ocpfItemTrackingCodes"
                     ToolTip = 'Specifies the package transfer tracking for this item tracking code record.';
                     ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                {
+                    Caption = 'Last Modified DateTime';
+                    ToolTip = 'Specifies the Last Modified DateTime.';
+                    ApplicationArea = All;
+                }
             }
         }
     }

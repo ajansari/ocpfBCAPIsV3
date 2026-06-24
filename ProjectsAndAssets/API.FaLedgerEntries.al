@@ -513,6 +513,12 @@ page 90917 "ocpfFaLedgerEntries"
                         ToolTip = 'Specifies the Non-Ded. VAT FA Cost.';
                         ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                    {
+                        Caption = 'Last Modified DateTime';
+                        ToolTip = 'Specifies the Last Modified DateTime.';
+                        ApplicationArea = All;
+                    }
             }
         }
     }

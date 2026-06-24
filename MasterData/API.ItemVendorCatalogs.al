@@ -57,6 +57,12 @@ page 90850 "ocpfItemVendorCatalogs"
                     ToolTip = 'Specifies the variant code for this item vendor record.';
                     ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                {
+                    Caption = 'Last Modified DateTime';
+                    ToolTip = 'Specifies the Last Modified DateTime.';
+                    ApplicationArea = All;
+                }
             }
         }
     }

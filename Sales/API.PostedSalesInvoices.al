@@ -837,6 +837,12 @@ page 90878 "ocpfPostedSalesInvoices"
                         ToolTip = 'Specifies the Dispute Status Id.';
                         ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                    {
+                        Caption = 'Last Modified DateTime';
+                        ToolTip = 'Specifies the Last Modified DateTime.';
+                        ApplicationArea = All;
+                    }
             }
         }
     }

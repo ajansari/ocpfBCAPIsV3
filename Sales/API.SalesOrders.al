@@ -1114,6 +1114,12 @@ page 90872 "ocpfSalesOrders"
                         ToolTip = 'Specifies the ID of the user who is responsible for the document.';
                         ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                    {
+                        Caption = 'Last Modified DateTime';
+                        ToolTip = 'Specifies the Last Modified DateTime.';
+                        ApplicationArea = All;
+                    }
             }
         }
     }

@@ -477,6 +477,12 @@ page 90851 "ocpfStockkeepingUnits"
                     ToolTip = 'Specifies the single-lvl mat. non-invt. cost for this stockkeeping unit record.';
                     ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                {
+                    Caption = 'Last Modified DateTime';
+                    ToolTip = 'Specifies the Last Modified DateTime.';
+                    ApplicationArea = All;
+                }
             }
         }
     }

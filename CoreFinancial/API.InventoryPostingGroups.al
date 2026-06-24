@@ -39,6 +39,12 @@ page 90816 "ocpfInventoryPostingGroups"
                     ToolTip = 'Specifies the description for this inventory posting group record.';
                     ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                {
+                    Caption = 'Last Modified DateTime';
+                    ToolTip = 'Specifies the Last Modified DateTime.';
+                    ApplicationArea = All;
+                }
             }
         }
     }

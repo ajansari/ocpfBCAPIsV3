@@ -555,6 +555,12 @@ page 90903 "ocpfPostedReturnShipmentLines"
                         ToolTip = 'Specifies the Buy-from Vendor Name.';
                         ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                    {
+                        Caption = 'Last Modified DateTime';
+                        ToolTip = 'Specifies the Last Modified DateTime.';
+                        ApplicationArea = All;
+                    }
             }
         }
     }

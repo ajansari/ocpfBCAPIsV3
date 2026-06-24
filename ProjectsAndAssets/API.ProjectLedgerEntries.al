@@ -513,6 +513,12 @@ page 90914 "ocpfProjectLedgerEntries"
                         ToolTip = 'Specifies the Package No..';
                         ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                    {
+                        Caption = 'Last Modified DateTime';
+                        ToolTip = 'Specifies the Last Modified DateTime.';
+                        ApplicationArea = All;
+                    }
             }
         }
     }

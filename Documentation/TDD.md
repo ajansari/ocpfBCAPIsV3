@@ -140,6 +140,12 @@ page <ObjectID> "<EntitySetName>"
                     ApplicationArea = All;
                 }
                 // ... all other fields, each with Caption, ToolTip, and ApplicationArea = All
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                {
+                    Caption = 'Last Modified DateTime';
+                    ToolTip = 'Specifies the Last Modified DateTime.';
+                    ApplicationArea = All;
+                }
             }
         }
     }
@@ -197,6 +203,26 @@ field(systemId; Rec.SystemId)
     ApplicationArea = All;
 }
 ```
+
+### 7.3a lastModifiedDateTime Field (Mandatory)
+
+Every API page **must** expose the record's last-modified timestamp so that consumers — and BC's webhook/subscription engine — can detect changes:
+
+- **Identifier:** must be exactly `lastModifiedDateTime` (this casing). The webhook engine resolves this property name on the entity; a different name or casing (for example `lastModifiedDatetime`) silently breaks delta tokens and webhook notifications.
+- **Source:** bind to `Rec.SystemModifiedAt`. The platform maintains it automatically on every insert/modify, so it is always accurate.
+  - Exception: tables that already carry a maintained timestamp field (for example Customer / Vendor / G/L Account `"Last Modified Date Time"`) may bind to that field instead. Either way the exposed identifier must remain `lastModifiedDateTime`.
+- **Placement:** add it as the last field in the repeater.
+
+```al
+field(lastModifiedDateTime; Rec.SystemModifiedAt)
+{
+    Caption = 'Last Modified DateTime';
+    ToolTip = 'Specifies the Last Modified DateTime.';
+    ApplicationArea = All;
+}
+```
+
+Reference: [AL Guidelines — API page mandatory fields](https://alguidelines.dev/docs/bestpractices/api-page/#mandatory-fields).
 
 ### 7.4 ApplicationArea
 

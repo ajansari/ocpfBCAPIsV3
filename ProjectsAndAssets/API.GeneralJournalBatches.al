@@ -129,7 +129,7 @@ page 90920 "ocpfGeneralJournalBatches"
                         ToolTip = 'Specifies the Copy to Posted Jnl. Lines.';
                         ApplicationArea = All;
                 }
-                field(lastModifiedDatetime; Rec."Last Modified DateTime")
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
                     {
                         Caption = 'Last Modified DateTime';
                         ToolTip = 'Specifies the Last Modified DateTime.';

@@ -459,7 +459,7 @@ page 90801 "ocpfGeneralLedgerEntries"
                     ToolTip = 'Specifies the account id for this g/l entry record.';
                     ApplicationArea = All;
                 }
-                field(lastModifiedDatetime; Rec."Last Modified DateTime")
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
                 {
                     Caption = 'Last Modified DateTime';
                     ToolTip = 'Specifies the last modified datetime for this g/l entry record.';

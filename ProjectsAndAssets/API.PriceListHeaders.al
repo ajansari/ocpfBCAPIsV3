@@ -159,6 +159,12 @@ page 90922 "ocpfPriceListHeaders"
                         ToolTip = 'Specifies the Assign-to Parent No..';
                         ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                    {
+                        Caption = 'Last Modified DateTime';
+                        ToolTip = 'Specifies the Last Modified DateTime.';
+                        ApplicationArea = All;
+                    }
             }
         }
     }

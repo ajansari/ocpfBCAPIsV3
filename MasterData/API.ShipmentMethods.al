@@ -39,7 +39,7 @@ page 90841 "ocpfShipmentMethods"
                     ToolTip = 'Specifies the description for this shipment method record.';
                     ApplicationArea = All;
                 }
-                field(lastModifiedDateTime; Rec."Last Modified Date Time")
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
                 {
                     Caption = 'Last Modified Date Time';
                     ToolTip = 'Specifies the last modified date time for this shipment method record.';

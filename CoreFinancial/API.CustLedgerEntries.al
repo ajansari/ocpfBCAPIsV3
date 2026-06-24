@@ -495,6 +495,12 @@ page 90806 "ocpfCustLedgerEntries"
                     ToolTip = 'Specifies the date on which the customer have promised to pay this invoice.';
                     ApplicationArea = All;
                 }
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
+                {
+                    Caption = 'Last Modified DateTime';
+                    ToolTip = 'Specifies the Last Modified DateTime.';
+                    ApplicationArea = All;
+                }
             }
         }
     }

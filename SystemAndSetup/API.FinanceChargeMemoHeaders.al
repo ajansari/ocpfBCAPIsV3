@@ -8,7 +8,7 @@ page 90935 "ocpfFinanceChargeMemoHeaders"
     Caption = 'Finance charge memo headers — open finance charge documents for overdue customers.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_systemAndSetup';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfFinanceChargeMemoHeader';
     EntitySetName = 'ocpfFinanceChargeMemoHeaders';
     SourceTable = "Finance Charge Memo Header";

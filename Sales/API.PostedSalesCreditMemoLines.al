@@ -8,7 +8,7 @@ page 90881 "ocpfPostedSalesCreditMemoLines"
     Caption = 'Lines of posted sales credit memos.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_sales';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfPostedSalesCreditMemoLine';
     EntitySetName = 'ocpfPostedSalesCreditMemoLines';
     SourceTable = "Sales Cr.Memo Line";

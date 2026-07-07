@@ -8,7 +8,7 @@ page 90907 "ocpfPurchaseBlanketOrderLines"
     Caption = 'Lines of open purchase blanket orders.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_purchasing';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfPurchaseBlanketOrderLine';
     EntitySetName = 'ocpfPurchaseBlanketOrderLines';
     SourceTable = "Purchase Line";

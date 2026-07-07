@@ -8,7 +8,7 @@ page 90811 "ocpfGenBusPostingGroups"
     Caption = 'General Business Posting Groups — customer and vendor classification codes that determine which general posting setup row is used for a transaction.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_coreFinancial';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfGenBusPostingGroup';
     EntitySetName = 'ocpfGenBusPostingGroups';
     SourceTable = "Gen. Business Posting Group";

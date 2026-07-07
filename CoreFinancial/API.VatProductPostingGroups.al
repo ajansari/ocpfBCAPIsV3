@@ -8,7 +8,7 @@ page 90818 "ocpfVatProductPostingGroups"
     Caption = 'VAT Product Posting Groups — classify items and G/L accounts for VAT calculation, determining which VAT Posting Setup row applies to a transaction.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_coreFinancial';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfVatProductPostingGroup';
     EntitySetName = 'ocpfVatProductPostingGroups';
     SourceTable = "VAT Product Posting Group";

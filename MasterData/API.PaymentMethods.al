@@ -8,7 +8,7 @@ page 90834 "ocpfPaymentMethods"
     Caption = 'Payment Methods — define how invoices are paid (e.g., cash, bank transfer, cheque) and optionally link to a balancing G/L account.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_masterData';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfPaymentMethod';
     EntitySetName = 'ocpfPaymentMethods';
     SourceTable = "Payment Method";

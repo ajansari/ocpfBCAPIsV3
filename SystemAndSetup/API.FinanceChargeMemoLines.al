@@ -8,7 +8,7 @@ page 90936 "ocpfFinanceChargeMemoLines"
     Caption = 'Finance charge memo lines — individual charge lines within a finance charge memo.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_systemAndSetup';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfFinanceChargeMemoLine';
     EntitySetName = 'ocpfFinanceChargeMemoLines';
     SourceTable = "Finance Charge Memo Line";

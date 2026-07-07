@@ -8,7 +8,7 @@ page 90858 "ocpfSalespeople"
     Caption = 'Salespeople and Purchasers — codes assigned to sales and purchase documents to track responsibility and commission.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_masterData';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfSalesperson';
     EntitySetName = 'ocpfSalespeople';
     SourceTable = "Salesperson/Purchaser";
@@ -241,6 +241,42 @@ page 90858 "ocpfSalespeople"
                 {
                     Caption = 'Blocked';
                     ToolTip = 'Specifies the blocked for this salesperson/purchaser record.';
+                    ApplicationArea = All;
+                }
+                field(estimatedValueLcy; Rec."Estimated Value (LCY)")
+                {
+                    Caption = 'Estimated Value (LCY)';
+                    ToolTip = 'Specifies the total estimated value of all the opportunities handled by the salesperson. The field is not editable.';
+                    ApplicationArea = All;
+                }
+                field(calcdCurrentValueLcy; Rec."Calcd. Current Value (LCY)")
+                {
+                    Caption = 'Calcd. Current Value (LCY)';
+                    ToolTip = 'Specifies the total calculated current value of all the opportunities handled by the salesperson. The field is not editable.';
+                    ApplicationArea = All;
+                }
+                field(costLcy; Rec."Cost (LCY)")
+                {
+                    Caption = 'Cost (LCY)';
+                    ToolTip = 'Specifies the total cost of all the interactions handled by the salesperson. The field is not editable.';
+                    ApplicationArea = All;
+                }
+                field(durationMin; Rec."Duration (Min.)")
+                {
+                    Caption = 'Duration (Min.)';
+                    ToolTip = 'Specifies the total duration of all the interactions handled by the salesperson. The field is not editable.';
+                    ApplicationArea = All;
+                }
+                field(avgEstimatedValueLcy; Rec."Avg. Estimated Value (LCY)")
+                {
+                    Caption = 'Avg. Estimated Value (LCY)';
+                    ToolTip = 'Specifies the average estimated value of the opportunities handled by the salesperson.';
+                    ApplicationArea = All;
+                }
+                field(avgCalcdCurrentValueLcy; Rec."Avg.Calcd. Current Value (LCY)")
+                {
+                    Caption = 'Avg.Calcd. Current Value (LCY)';
+                    ToolTip = 'Specifies the average calculated current value of the opportunities handled by that salesperson.';
                     ApplicationArea = All;
                 }
             }

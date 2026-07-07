@@ -8,7 +8,7 @@ page 90846 "ocpfItems"
     Caption = 'Items — master records for all inventory items, non-inventory items, and services bought or sold by the company.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_masterData';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfItem';
     EntitySetName = 'ocpfItems';
     SourceTable = Item;
@@ -1111,6 +1111,138 @@ page 90846 "ocpfItems"
                 {
                     Caption = 'Common Item No.';
                     ToolTip = 'Specifies the common item no. for this item record.';
+                    ApplicationArea = All;
+                }
+                field(purchasesQty; Rec."Purchases (Qty.)")
+                {
+                    Caption = 'Purchases (Qty.)';
+                    ToolTip = 'Specifies the Purchases (Qty.).';
+                    ApplicationArea = All;
+                }
+                field(salesQty; Rec."Sales (Qty.)")
+                {
+                    Caption = 'Sales (Qty.)';
+                    ToolTip = 'Specifies the Sales (Qty.).';
+                    ApplicationArea = All;
+                }
+                field(positiveAdjmtQty; Rec."Positive Adjmt. (Qty.)")
+                {
+                    Caption = 'Positive Adjmt. (Qty.)';
+                    ToolTip = 'Specifies the Positive Adjmt. (Qty.).';
+                    ApplicationArea = All;
+                }
+                field(negativeAdjmtQty; Rec."Negative Adjmt. (Qty.)")
+                {
+                    Caption = 'Negative Adjmt. (Qty.)';
+                    ToolTip = 'Specifies the Negative Adjmt. (Qty.).';
+                    ApplicationArea = All;
+                }
+                field(purchasesLcy; Rec."Purchases (LCY)")
+                {
+                    Caption = 'Purchases (LCY)';
+                    ToolTip = 'Specifies the Purchases (LCY).';
+                    ApplicationArea = All;
+                }
+                field(salesLcy; Rec."Sales (LCY)")
+                {
+                    Caption = 'Sales (LCY)';
+                    ToolTip = 'Specifies the Sales (LCY).';
+                    ApplicationArea = All;
+                }
+                field(positiveAdjmtLcy; Rec."Positive Adjmt. (LCY)")
+                {
+                    Caption = 'Positive Adjmt. (LCY)';
+                    ToolTip = 'Specifies the Positive Adjmt. (LCY).';
+                    ApplicationArea = All;
+                }
+                field(negativeAdjmtLcy; Rec."Negative Adjmt. (LCY)")
+                {
+                    Caption = 'Negative Adjmt. (LCY)';
+                    ToolTip = 'Specifies the Negative Adjmt. (LCY).';
+                    ApplicationArea = All;
+                }
+                field(cogsLcy; Rec."COGS (LCY)")
+                {
+                    Caption = 'COGS (LCY)';
+                    ToolTip = 'Specifies the COGS (LCY).';
+                    ApplicationArea = All;
+                }
+                field(vatBusPostingGrPrice; Rec."VAT Bus. Posting Gr. (Price)")
+                {
+                    Caption = 'VAT Bus. Posting Gr. (Price)';
+                    ToolTip = 'Specifies the VAT business posting group for customers for whom you want the sales price including VAT to apply.';
+                    ApplicationArea = All;
+                }
+                field(transferredQty; Rec."Transferred (Qty.)")
+                {
+                    Caption = 'Transferred (Qty.)';
+                    ToolTip = 'Specifies the Transferred (Qty.).';
+                    ApplicationArea = All;
+                }
+                field(transferredLcy; Rec."Transferred (LCY)")
+                {
+                    Caption = 'Transferred (LCY)';
+                    ToolTip = 'Specifies the Transferred (LCY).';
+                    ApplicationArea = All;
+                }
+                field(planningTransferShipQty; Rec."Planning Transfer Ship. (Qty).")
+                {
+                    Caption = 'Planning Transfer Ship. (Qty).';
+                    ToolTip = 'Specifies the Planning Transfer Ship. (Qty)..';
+                    ApplicationArea = All;
+                }
+                field(planningWorksheetQty; Rec."Planning Worksheet (Qty.)")
+                {
+                    Caption = 'Planning Worksheet (Qty.)';
+                    ToolTip = 'Specifies the Planning Worksheet (Qty.).';
+                    ApplicationArea = All;
+                }
+                field(transOrdReceiptQty; Rec."Trans. Ord. Receipt (Qty.)")
+                {
+                    Caption = 'Trans. Ord. Receipt (Qty.)';
+                    ToolTip = 'Specifies the quantity of the items that remains to be received but are not yet shipped as the difference between the Quantity and the Quantity Shipped fields.';
+                    ApplicationArea = All;
+                }
+                field(transOrdShipmentQty; Rec."Trans. Ord. Shipment (Qty.)")
+                {
+                    Caption = 'Trans. Ord. Shipment (Qty.)';
+                    ToolTip = 'Specifies the quantity of the items that remains to be shipped as the difference between the Quantity and the Quantity Shipped fields.';
+                    ApplicationArea = All;
+                }
+                field(planningIssuesQty; Rec."Planning Issues (Qty.)")
+                {
+                    Caption = 'Planning Issues (Qty.)';
+                    ToolTip = 'Specifies the Planning Issues (Qty.).';
+                    ApplicationArea = All;
+                }
+                field(planningReceiptQty; Rec."Planning Receipt (Qty.)")
+                {
+                    Caption = 'Planning Receipt (Qty.)';
+                    ToolTip = 'Specifies the Planning Receipt (Qty.).';
+                    ApplicationArea = All;
+                }
+                field(planningReleaseQty; Rec."Planning Release (Qty.)")
+                {
+                    Caption = 'Planning Release (Qty.)';
+                    ToolTip = 'Specifies the Planning Release (Qty.).';
+                    ApplicationArea = All;
+                }
+                field(purchReqReceiptQty; Rec."Purch. Req. Receipt (Qty.)")
+                {
+                    Caption = 'Purch. Req. Receipt (Qty.)';
+                    ToolTip = 'Specifies the Purch. Req. Receipt (Qty.).';
+                    ApplicationArea = All;
+                }
+                field(purchReqReleaseQty; Rec."Purch. Req. Release (Qty.)")
+                {
+                    Caption = 'Purch. Req. Release (Qty.)';
+                    ToolTip = 'Specifies the Purch. Req. Release (Qty.).';
+                    ApplicationArea = All;
+                }
+                field(prodForecastQuantityBase; Rec."Prod. Forecast Quantity (Base)")
+                {
+                    Caption = 'Prod. Forecast Quantity (Base)';
+                    ToolTip = 'Specifies the Prod. Forecast Quantity (Base).';
                     ApplicationArea = All;
                 }
             }

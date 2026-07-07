@@ -8,7 +8,7 @@ page 90841 "ocpfShipmentMethods"
     Caption = 'Shipment Methods — define the terms of delivery (e.g., EXW, CIF, FOB) printed on sales and purchase documents.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_masterData';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfShipmentMethod';
     EntitySetName = 'ocpfShipmentMethods';
     SourceTable = "Shipment Method";

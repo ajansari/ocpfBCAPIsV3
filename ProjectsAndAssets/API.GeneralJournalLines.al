@@ -8,7 +8,7 @@ page 90921 "ocpfGeneralJournalLines"
     Caption = 'General journal lines — unposted journal lines ready for review and posting.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_projectsAndAssets';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfGeneralJournalLine';
     EntitySetName = 'ocpfGeneralJournalLines';
     SourceTable = "Gen. Journal Line";

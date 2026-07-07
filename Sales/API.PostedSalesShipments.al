@@ -8,7 +8,7 @@ page 90882 "ocpfPostedSalesShipments"
     Caption = 'Posted sales shipments.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_sales';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfPostedSalesShipment';
     EntitySetName = 'ocpfPostedSalesShipments';
     SourceTable = "Sales Shipment Header";

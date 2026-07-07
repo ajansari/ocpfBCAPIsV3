@@ -8,7 +8,7 @@ page 90813 "ocpfGeneralPostingSetup"
     Caption = 'General Posting Setup — matrix mapping Gen. Business and Gen. Product Posting Groups to the G/L accounts used when posting sales and purchase transactions.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_coreFinancial';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfGeneralPostingSetup';
     EntitySetName = 'ocpfGeneralPostingSetup';
     SourceTable = "General Posting Setup";
@@ -205,6 +205,18 @@ page 90813 "ocpfGeneralPostingSetup"
                 {
                     Caption = 'Purchase Variance Account';
                     ToolTip = 'Specifies the purchase variance account for this general posting setup record.';
+                    ApplicationArea = All;
+                }
+                field(invtAccrualAccInterim; Rec."Invt. Accrual Acc. (Interim)")
+                {
+                    Caption = 'Invt. Accrual Acc. (Interim)';
+                    ToolTip = 'Specifies the number of the G/L account to which you want the program to post expected inventory adjustments (positive and negative).';
+                    ApplicationArea = All;
+                }
+                field(cogsAccountInterim; Rec."COGS Account (Interim)")
+                {
+                    Caption = 'COGS Account (Interim)';
+                    ToolTip = 'Specifies the number of the interim G/L account to which you want the program to post the expected cost of goods sold with this combination of business group and product group.';
                     ApplicationArea = All;
                 }
             }

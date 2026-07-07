@@ -8,7 +8,7 @@ page 90930 "ocpfDocumentAttachments"
     Caption = 'Document attachments — files and links attached to any BC record.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_systemAndSetup';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfDocumentAttachment';
     EntitySetName = 'ocpfDocumentAttachments';
     SourceTable = "Document Attachment";

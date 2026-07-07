@@ -1,10 +1,10 @@
-# OnlyCopilotFans Business Central API Catalog v3.0
+# OnlyCopilotFans Business Central API Catalog v3.1
 
 **Publisher:** OnlyCopilotFans  
-**API Version:** v3.0  
+**API Version:** v3.1 (all endpoints also served at v3.0; see ChangeLog)  
 **BC Version:** 2025 Wave 2 (v27.5+)  
 **Object Range:** 90800–90999  
-**Date:** June 9, 2026  
+**Date:** June 9, 2026 (v3.0) — updated July 7, 2026 (v3.1)  
 **Created by:** AJ Ansari ( [Email](mailto:aj@onlycopilotfans.com) | [LinkedIn](https://linkedin.com/in/ajansari) )
 
 ## Overview
@@ -15,7 +15,7 @@ Each API page maps directly to a standard BC source table and exposes every stan
 
 ### Key characteristics
 
-- **Broad coverage** — 100+ standard BC tables across core financials, master data, sales, purchasing, projects, fixed assets, and system setup
+- **Broad coverage** — 175+ standard BC tables across core financials, master data, sales, purchasing, projects, fixed assets, manufacturing, assembly, service management, and system setup
 - **Full field exposure** — every non-localization field on each source table is available, including flow fields and filter fields
 - **Consistent shape** — all pages follow the same API group/entity naming convention and use `SystemId` as the OData key
 - **Selective editability** — pages are marked editable (POST/PATCH/DELETE) or read-only (GET only) based on whether the underlying table is safe to write through an API
@@ -89,6 +89,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
   - Resource Group: [ocpfResourceGroups (Page 90856)](#ocpfresourcegroups)
   - Employee: [ocpfEmployees (Page 90857)](#ocpfemployees)
   - Salesperson/Purchaser: [ocpfSalespeople (Page 90858)](#ocpfsalespeople)
+  - Ship-to Address: [ocpfShipToAddresses (Page 90859)](#ocpfshiptoaddresses)
 - **Sales** [(Go to Category)](#sales)
   - Sales Header: [ocpfSalesQuotes (Page 90870)](#ocpfsalesquotes)
   - Sales Line: [ocpfSalesQuoteLines (Page 90871)](#ocpfsalesquotelines)
@@ -154,6 +155,72 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
   - Workflow Step Instance: [ocpfWorkflowStepInstances (Page 90938)](#ocpfworkflowstepinstances)
 
 ---
+- **Manufacturing** [(Go to Category)](#manufacturing) *(new in v3.1)*
+  - Manufacturing Setup: [ocpfManufacturingSetup (Page 90939)](#ocpfmanufacturingsetup)
+  - Work Shift: [ocpfWorkShifts (Page 90940)](#ocpfworkshifts)
+  - Shop Calendar: [ocpfShopCalendars (Page 90941)](#ocpfshopcalendars)
+  - Shop Calendar Working Days: [ocpfShopCalendarWorkingDays (Page 90942)](#ocpfshopcalendarworkingdays)
+  - Work Center Group: [ocpfWorkCenterGroups (Page 90943)](#ocpfworkcentergroups)
+  - Work Center: [ocpfWorkCenters (Page 90944)](#ocpfworkcenters)
+  - Machine Center: [ocpfMachineCenters (Page 90945)](#ocpfmachinecenters)
+  - Capacity Unit of Measure: [ocpfCapacityUnitsOfMeasure (Page 90946)](#ocpfcapacityunitsofmeasure)
+  - Calendar Entry: [ocpfCalendarEntries (Page 90947)](#ocpfcalendarentries)
+  - Calendar Absence Entry: [ocpfCalendarAbsenceEntries (Page 90948)](#ocpfcalendarabsenceentries)
+  - Stop: [ocpfStops (Page 90949)](#ocpfstops)
+  - Scrap: [ocpfScraps (Page 90950)](#ocpfscraps)
+  - Routing Link: [ocpfRoutingLinks (Page 90951)](#ocpfroutinglinks)
+  - Standard Task: [ocpfStandardTasks (Page 90952)](#ocpfstandardtasks)
+  - Routing Header: [ocpfRoutingHeaders (Page 90953)](#ocpfroutingheaders)
+  - Routing Line: [ocpfRoutingLines (Page 90954)](#ocpfroutinglines)
+  - Routing Version: [ocpfRoutingVersions (Page 90955)](#ocpfroutingversions)
+  - Production BOM Header: [ocpfProductionBomHeaders (Page 90956)](#ocpfproductionbomheaders)
+  - Production BOM Line: [ocpfProductionBomLines (Page 90957)](#ocpfproductionbomlines)
+  - Production BOM Version: [ocpfProductionBomVersions (Page 90958)](#ocpfproductionbomversions)
+  - Family: [ocpfFamilies (Page 90959)](#ocpffamilies)
+  - Family Line: [ocpfFamilyLines (Page 90960)](#ocpffamilylines)
+  - Production Order: [ocpfProductionOrders (Page 90961)](#ocpfproductionorders)
+  - Prod. Order Line: [ocpfProdOrderLines (Page 90962)](#ocpfprodorderlines)
+  - Prod. Order Component: [ocpfProdOrderComponents (Page 90963)](#ocpfprodordercomponents)
+  - Prod. Order Routing Line: [ocpfProdOrderRoutingLines (Page 90964)](#ocpfprodorderroutinglines)
+  - Prod. Order Capacity Need: [ocpfProdOrderCapacityNeeds (Page 90965)](#ocpfprodordercapacityneeds)
+  - Capacity Ledger Entry: [ocpfCapacityLedgerEntries (Page 90966)](#ocpfcapacityledgerentries)
+  - Assembly Setup: [ocpfAssemblySetup (Page 90967)](#ocpfassemblysetup)
+  - BOM Component: [ocpfBomComponents (Page 90968)](#ocpfbomcomponents)
+  - Assembly Header: [ocpfAssemblyHeaders (Page 90969)](#ocpfassemblyheaders)
+  - Assembly Line: [ocpfAssemblyLines (Page 90970)](#ocpfassemblylines)
+  - Posted Assembly Header: [ocpfPostedAssemblyHeaders (Page 90971)](#ocpfpostedassemblyheaders)
+  - Posted Assembly Line: [ocpfPostedAssemblyLines (Page 90972)](#ocpfpostedassemblylines)
+- **Service Management** [(Go to Category)](#service-management) *(new in v3.1)*
+  - Service Mgt. Setup: [ocpfServiceMgtSetup (Page 90924)](#ocpfservicemgtsetup)
+  - Service Order Type: [ocpfServiceOrderTypes (Page 90925)](#ocpfserviceordertypes)
+  - Service Cost: [ocpfServiceCosts (Page 90926)](#ocpfservicecosts)
+  - Service Zone: [ocpfServiceZones (Page 90973)](#ocpfservicezones)
+  - Service Item Group: [ocpfServiceItemGroups (Page 90974)](#ocpfserviceitemgroups)
+  - Repair Status: [ocpfRepairStatuses (Page 90975)](#ocpfrepairstatuses)
+  - Fault Area: [ocpfFaultAreas (Page 90976)](#ocpffaultareas)
+  - Symptom Code: [ocpfSymptomCodes (Page 90977)](#ocpfsymptomcodes)
+  - Fault Code: [ocpfFaultCodes (Page 90978)](#ocpffaultcodes)
+  - Fault Reason Code: [ocpfFaultReasonCodes (Page 90979)](#ocpffaultreasoncodes)
+  - Resolution Code: [ocpfResolutionCodes (Page 90980)](#ocpfresolutioncodes)
+  - Loaner: [ocpfLoaners (Page 90981)](#ocpfloaners)
+  - Loaner Entry: [ocpfLoanerEntries (Page 90982)](#ocpfloanerentries)
+  - Service Item: [ocpfServiceItems (Page 90983)](#ocpfserviceitems)
+  - Service Item Component: [ocpfServiceItemComponents (Page 90984)](#ocpfserviceitemcomponents)
+  - Service Header: [ocpfServiceHeaders (Page 90985)](#ocpfserviceheaders)
+  - Service Item Line: [ocpfServiceItemLines (Page 90986)](#ocpfserviceitemlines)
+  - Service Line: [ocpfServiceLines (Page 90987)](#ocpfservicelines)
+  - Service Ledger Entry: [ocpfServiceLedgerEntries (Page 90988)](#ocpfserviceledgerentries)
+  - Warranty Ledger Entry: [ocpfWarrantyLedgerEntries (Page 90989)](#ocpfwarrantyledgerentries)
+  - Service Register: [ocpfServiceRegisters (Page 90990)](#ocpfserviceregisters)
+  - Service Contract Header: [ocpfServiceContractHeaders (Page 90991)](#ocpfservicecontractheaders)
+  - Service Contract Line: [ocpfServiceContractLines (Page 90992)](#ocpfservicecontractlines)
+  - Contract Group: [ocpfContractGroups (Page 90993)](#ocpfcontractgroups)
+  - Service Shipment Header: [ocpfServiceShipmentHeaders (Page 90994)](#ocpfserviceshipmentheaders)
+  - Service Shipment Line: [ocpfServiceShipmentLines (Page 90995)](#ocpfserviceshipmentlines)
+  - Service Invoice Header: [ocpfServiceInvoiceHeaders (Page 90996)](#ocpfserviceinvoiceheaders)
+  - Service Invoice Line: [ocpfServiceInvoiceLines (Page 90997)](#ocpfserviceinvoicelines)
+  - Service Cr.Memo Header: [ocpfServiceCrMemoHeaders (Page 90998)](#ocpfservicecrmemoheaders)
+  - Service Cr.Memo Line: [ocpfServiceCrMemoLines (Page 90999)](#ocpfservicecrmemolines)
 
 ## Core Financial
 
@@ -363,7 +430,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | Entity Set Name | `ocpfGeneralLedgerSetup` |
 | API Group | `ocpf_coreFinancial` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
-| Field Count | 97 |
+| Field Count | 99 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -464,6 +531,10 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 95 | `hideCompanyBankAccount` | Hide Company Bank Account | Hide Company Bank Account | ✅ |
 | 96 | `checkSourceCurrConsistency` | Check Source Curr. Consistency | Check Source Curr. Consistency | ✅ |
 | 97 | `accPayablesCategory` | Acc. Payables Category | Account Payables G/L Account Category | ✅ |
+| 98 | `invRoundingPrecisionLcy` | Inv. Rounding Precision (LCY) | Inv. Rounding Precision (LCY) | ✅ |
+| 99 | `invRoundingTypeLcy` | Inv. Rounding Type (LCY) | Inv. Rounding Type (LCY) | ✅ |
+
+> **Added in API v3.1:** fields 98–99 above (previously omitted parenthesized-name standard fields).
 
 
 [↑ Back to top](#table-of-contents)
@@ -586,7 +657,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | Entity Set Name | `ocpfCustLedgerEntries` |
 | API Group | `ocpf_coreFinancial` |
 | Editable | ❌ No (GET only) |
-| Field Count | 79 |
+| Field Count | 91 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -669,6 +740,20 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 77 | `directDebitMandateId` | Direct Debit Mandate ID | Direct Debit Mandate ID | — |
 | 78 | `disputeStatus` | Dispute Status | Dispute Status | — |
 | 79 | `promisedPayDate` | Promised Pay Date | Promised Pay Date | — |
+| 80 | `originalAmtLcy` | Original Amt. (LCY) | Original Amt. (LCY) | — |
+| 81 | `remainingAmtLcy` | Remaining Amt. (LCY) | Remaining Amt. (LCY) | — |
+| 82 | `amountLcy` | Amount (LCY) | Amount (LCY) | — |
+| 83 | `salesLcy` | Sales (LCY) | Sales (LCY) | — |
+| 84 | `profitLcy` | Profit (LCY) | Profit (LCY) | — |
+| 85 | `invDiscountLcy` | Inv. Discount (LCY) | Inv. Discount (LCY) | — |
+| 86 | `pmtDiscGivenLcy` | Pmt. Disc. Given (LCY) | Pmt. Disc. Given (LCY) | — |
+| 87 | `origPmtDiscPossibleLcy` | Orig. Pmt. Disc. Possible(LCY) | Orig. Pmt. Disc. Possible (LCY) | — |
+| 88 | `closedByAmountLcy` | Closed by Amount (LCY) | Closed by Amount (LCY) | — |
+| 89 | `debitAmountLcy` | Debit Amount (LCY) | Debit Amount (LCY) | — |
+| 90 | `creditAmountLcy` | Credit Amount (LCY) | Credit Amount (LCY) | — |
+| 91 | `pmtToleranceLcy` | Pmt. Tolerance (LCY) | Pmt. Tolerance (LCY) | — |
+
+> **Added in API v3.1:** fields 80–91 above (previously omitted parenthesized-name standard fields).
 
 
 [↑ Back to top](#table-of-contents)
@@ -687,7 +772,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | Entity Set Name | `ocpfDetailedCustLedgerEntries` |
 | API Group | `ocpf_coreFinancial` |
 | Editable | ❌ No (GET only) |
-| Field Count | 36 |
+| Field Count | 39 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -727,6 +812,11 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 34 | `ledgerEntryAmount` | Ledger Entry Amount | Ledger Entry Amount | — |
 | 35 | `postingGroup` | Posting Group | Customer Posting Group | — |
 | 36 | `exchRateAdjmtRegNo` | Exch. Rate Adjmt. Reg. No. | Exch. Rate Adjmt. Reg. No. | — |
+| 37 | `amountLcy` | Amount (LCY) | Amount (LCY) | — |
+| 38 | `debitAmountLcy` | Debit Amount (LCY) | Debit Amount (LCY) | — |
+| 39 | `creditAmountLcy` | Credit Amount (LCY) | Credit Amount (LCY) | — |
+
+> **Added in API v3.1:** fields 37–39 above (previously omitted parenthesized-name standard fields).
 
 
 [↑ Back to top](#table-of-contents)
@@ -745,7 +835,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | Entity Set Name | `ocpfVendorLedgerEntries` |
 | API Group | `ocpf_coreFinancial` |
 | Editable | ❌ No (GET only) |
-| Field Count | 75 |
+| Field Count | 86 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -824,6 +914,19 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 73 | `shortcutDimension7Code` | Shortcut Dimension 7 Code | Shortcut Dimension 7 Code | — |
 | 74 | `shortcutDimension8Code` | Shortcut Dimension 8 Code | Shortcut Dimension 8 Code | — |
 | 75 | `remitToCode` | Remit-to Code | Remit-to Code | — |
+| 76 | `originalAmtLcy` | Original Amt. (LCY) | Original Amt. (LCY) | — |
+| 77 | `remainingAmtLcy` | Remaining Amt. (LCY) | Remaining Amt. (LCY) | — |
+| 78 | `amountLcy` | Amount (LCY) | Amount (LCY) | — |
+| 79 | `purchaseLcy` | Purchase (LCY) | Purchase (LCY) | — |
+| 80 | `invDiscountLcy` | Inv. Discount (LCY) | Inv. Discount (LCY) | — |
+| 81 | `pmtDiscRcdLcy` | Pmt. Disc. Rcd.(LCY) | Pmt. Disc. Rcd.(LCY) | — |
+| 82 | `origPmtDiscPossibleLcy` | Orig. Pmt. Disc. Possible(LCY) | Org. Pmt. Disc. Possible (LCY) | — |
+| 83 | `closedByAmountLcy` | Closed by Amount (LCY) | Closed by Amount (LCY) | — |
+| 84 | `debitAmountLcy` | Debit Amount (LCY) | Debit Amount (LCY) | — |
+| 85 | `creditAmountLcy` | Credit Amount (LCY) | Credit Amount (LCY) | — |
+| 86 | `pmtToleranceLcy` | Pmt. Tolerance (LCY) | Pmt. Tolerance (LCY) | — |
+
+> **Added in API v3.1:** fields 76–86 above (previously omitted parenthesized-name standard fields).
 
 
 [↑ Back to top](#table-of-contents)
@@ -842,7 +945,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | Entity Set Name | `ocpfDtldVendorLedgEntries` |
 | API Group | `ocpf_coreFinancial` |
 | Editable | ❌ No (GET only) |
-| Field Count | 36 |
+| Field Count | 39 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -882,6 +985,11 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 34 | `ledgerEntryAmount` | Ledger Entry Amount | Ledger Entry Amount | — |
 | 35 | `postingGroup` | Posting Group | Vendor Posting Group | — |
 | 36 | `exchRateAdjmtRegNo` | Exch. Rate Adjmt. Reg. No. | Exch. Rate Adjmt. Reg. No. | — |
+| 37 | `amountLcy` | Amount (LCY) | Amount (LCY) | — |
+| 38 | `debitAmountLcy` | Debit Amount (LCY) | Debit Amount (LCY) | — |
+| 39 | `creditAmountLcy` | Credit Amount (LCY) | Credit Amount (LCY) | — |
+
+> **Added in API v3.1:** fields 37–39 above (previously omitted parenthesized-name standard fields).
 
 
 [↑ Back to top](#table-of-contents)
@@ -900,7 +1008,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | Entity Set Name | `ocpfEmployeeLedgerEntries` |
 | API Group | `ocpf_coreFinancial` |
 | Editable | ❌ No (GET only) |
-| Field Count | 56 |
+| Field Count | 62 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -960,6 +1068,14 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 54 | `shortcutDimension6Code` | Shortcut Dimension 6 Code | Shortcut Dimension 6 Code | — |
 | 55 | `shortcutDimension7Code` | Shortcut Dimension 7 Code | Shortcut Dimension 7 Code | — |
 | 56 | `shortcutDimension8Code` | Shortcut Dimension 8 Code | Shortcut Dimension 8 Code | — |
+| 57 | `originalAmtLcy` | Original Amt. (LCY) | Original Amt. (LCY) | — |
+| 58 | `remainingAmtLcy` | Remaining Amt. (LCY) | Remaining Amt. (LCY) | — |
+| 59 | `amountLcy` | Amount (LCY) | Amount (LCY) | — |
+| 60 | `closedByAmountLcy` | Closed by Amount (LCY) | Closed by Amount (LCY) | — |
+| 61 | `debitAmountLcy` | Debit Amount (LCY) | Debit Amount (LCY) | — |
+| 62 | `creditAmountLcy` | Credit Amount (LCY) | Credit Amount (LCY) | — |
+
+> **Added in API v3.1:** fields 57–62 above (previously omitted parenthesized-name standard fields).
 
 
 [↑ Back to top](#table-of-contents)
@@ -1032,7 +1148,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | Entity Set Name | `ocpfGeneralPostingSetup` |
 | API Group | `ocpf_coreFinancial` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
-| Field Count | 31 |
+| Field Count | 33 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -1067,6 +1183,10 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 29 | `directCostAppliedAccount` | Direct Cost Applied Account | Direct Cost Applied Account | ✅ |
 | 30 | `overheadAppliedAccount` | Overhead Applied Account | Overhead Applied Account | ✅ |
 | 31 | `purchaseVarianceAccount` | Purchase Variance Account | Purchase Variance Account | ✅ |
+| 32 | `invtAccrualAccInterim` | Invt. Accrual Acc. (Interim) | Invt. Accrual Acc. (Interim) | ✅ |
+| 33 | `cogsAccountInterim` | COGS Account (Interim) | COGS Account (Interim) | ✅ |
+
+> **Added in API v3.1:** fields 32–33 above (previously omitted parenthesized-name standard fields).
 
 
 [↑ Back to top](#table-of-contents)
@@ -1464,7 +1584,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | Entity Set Name | `ocpfBankAccounts` |
 | API Group | `ocpf_masterData` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
-| Field Count | 76 |
+| Field Count | 81 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -1544,6 +1664,13 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 74 | `positivePayExportCode` | Positive Pay Export Code | Positive Pay Export Code | ✅ |
 | 75 | `checkTransmitted` | Check Transmitted | Check Transmitted | ✅ |
 | 76 | `mobilePhoneNo` | Mobile Phone No. | Mobile Phone No. | ✅ |
+| 77 | `balanceLcy` | Balance (LCY) | Balance (LCY) | ✅ |
+| 78 | `netChangeLcy` | Net Change (LCY) | Net Change (LCY) | ✅ |
+| 79 | `balanceAtDateLcy` | Balance at Date (LCY) | Balance at Date (LCY) | ✅ |
+| 80 | `debitAmountLcy` | Debit Amount (LCY) | Debit Amount (LCY) | ✅ |
+| 81 | `creditAmountLcy` | Credit Amount (LCY) | Credit Amount (LCY) | ✅ |
+
+> **Added in API v3.1:** fields 77–81 above (previously omitted parenthesized-name standard fields).
 
 
 [↑ Back to top](#table-of-contents)
@@ -1587,7 +1714,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | Entity Set Name | `ocpfBankAccountLedgerEntries` |
 | API Group | `ocpf_masterData` |
 | Editable | ❌ No (GET only) |
-| Field Count | 45 |
+| Field Count | 48 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -1636,6 +1763,11 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 43 | `shortcutDimension6Code` | Shortcut Dimension 6 Code | Shortcut Dimension 6 Code | — |
 | 44 | `shortcutDimension7Code` | Shortcut Dimension 7 Code | Shortcut Dimension 7 Code | — |
 | 45 | `shortcutDimension8Code` | Shortcut Dimension 8 Code | Shortcut Dimension 8 Code | — |
+| 46 | `amountLcy` | Amount (LCY) | Amount (LCY) | — |
+| 47 | `debitAmountLcy` | Debit Amount (LCY) | Debit Amount (LCY) | — |
+| 48 | `creditAmountLcy` | Credit Amount (LCY) | Credit Amount (LCY) | — |
+
+> **Added in API v3.1:** fields 46–48 above (previously omitted parenthesized-name standard fields).
 
 
 [↑ Back to top](#table-of-contents)
@@ -1715,7 +1847,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | Entity Set Name | `ocpfCurrencies` |
 | API Group | `ocpf_masterData` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
-| Field Count | 49 |
+| Field Count | 51 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -1768,6 +1900,10 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 47 | `lastModifiedDateTime` | Last Modified Date Time | Last Modified Date Time | ✅ |
 | 48 | `currencySymbolPosition` | Currency Symbol Position | Currency Symbol Position | ✅ |
 | 49 | `coupledToDataverse` | Coupled to Dataverse | Coupled to Dataverse | ✅ |
+| 50 | `customerBalanceLcy` | Customer Balance (LCY) | Customer Balance (LCY) | ✅ |
+| 51 | `vendorBalanceLcy` | Vendor Balance (LCY) | Vendor Balance (LCY) | ✅ |
+
+> **Added in API v3.1:** fields 50–51 above (previously omitted parenthesized-name standard fields).
 
 
 [↑ Back to top](#table-of-contents)
@@ -2016,7 +2152,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | Entity Set Name | `ocpfCustomers` |
 | API Group | `ocpf_masterData` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
-| Field Count | 142 |
+| Field Count | 164 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -2162,6 +2298,30 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 140 | `taxAreaId` | Tax Area ID | Tax Area ID | ✅ |
 | 141 | `contactId` | Contact ID | Contact ID | ✅ |
 | 142 | `contactGraphId` | Contact Graph Id | Contact Graph Id | ✅ |
+| 143 | `creditLimitLcy` | Credit Limit (LCY) | Credit Limit (LCY) | ✅ |
+| 144 | `balanceLcy` | Balance (LCY) | Balance (LCY) | ✅ |
+| 145 | `netChangeLcy` | Net Change (LCY) | Net Change (LCY) | ✅ |
+| 146 | `salesLcy` | Sales (LCY) | Sales (LCY) | ✅ |
+| 147 | `profitLcy` | Profit (LCY) | Profit (LCY) | ✅ |
+| 148 | `invDiscountsLcy` | Inv. Discounts (LCY) | Inv. Discounts (LCY) | ✅ |
+| 149 | `pmtDiscountsLcy` | Pmt. Discounts (LCY) | Pmt. Discounts (LCY) | ✅ |
+| 150 | `balanceDueLcy` | Balance Due (LCY) | Overdue Balance (LCY) | ✅ |
+| 151 | `paymentsLcy` | Payments (LCY) | Payments (LCY) | ✅ |
+| 152 | `invAmountsLcy` | Inv. Amounts (LCY) | Inv. Amounts (LCY) | ✅ |
+| 153 | `crMemoAmountsLcy` | Cr. Memo Amounts (LCY) | Cr. Memo Amounts (LCY) | ✅ |
+| 154 | `finChargeMemoAmountsLcy` | Fin. Charge Memo Amounts (LCY) | Fin. Charge Memo Amounts (LCY) | ✅ |
+| 155 | `debitAmountLcy` | Debit Amount (LCY) | Debit Amount (LCY) | ✅ |
+| 156 | `creditAmountLcy` | Credit Amount (LCY) | Credit Amount (LCY) | ✅ |
+| 157 | `reminderAmountsLcy` | Reminder Amounts (LCY) | Reminder Amounts (LCY) | ✅ |
+| 158 | `outstandingOrdersLcy` | Outstanding Orders (LCY) | Outstanding Orders (LCY) | ✅ |
+| 159 | `shippedNotInvoicedLcy` | Shipped Not Invoiced (LCY) | Shipped Not Invoiced (LCY) | ✅ |
+| 160 | `pmtDiscToleranceLcy` | Pmt. Disc. Tolerance (LCY) | Pmt. Disc. Tolerance (LCY) | ✅ |
+| 161 | `pmtToleranceLcy` | Pmt. Tolerance (LCY) | Pmt. Tolerance (LCY) | ✅ |
+| 162 | `refundsLcy` | Refunds (LCY) | Refunds (LCY) | ✅ |
+| 163 | `otherAmountsLcy` | Other Amounts (LCY) | Other Amounts (LCY) | ✅ |
+| 164 | `outstandingInvoicesLcy` | Outstanding Invoices (LCY) | Outstanding Invoices (LCY) | ✅ |
+
+> **Added in API v3.1:** fields 143–164 above (previously omitted parenthesized-name standard fields).
 
 
 [↑ Back to top](#table-of-contents)
@@ -2180,7 +2340,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | Entity Set Name | `ocpfVendors` |
 | API Group | `ocpf_masterData` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
-| Field Count | 124 |
+| Field Count | 144 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -2308,6 +2468,28 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 122 | `paymentTermsId` | Payment Terms Id | Payment Terms Id | ✅ |
 | 123 | `paymentMethodId` | Payment Method Id | Payment Method Id | ✅ |
 | 124 | `overReceiptCode` | Over-Receipt Code | Over-Receipt Code | ✅ |
+| 125 | `balanceLcy` | Balance (LCY) | Balance (LCY) | ✅ |
+| 126 | `netChangeLcy` | Net Change (LCY) | Net Change (LCY) | ✅ |
+| 127 | `purchasesLcy` | Purchases (LCY) | Purchases (LCY) | ✅ |
+| 128 | `invDiscountsLcy` | Inv. Discounts (LCY) | Inv. Discounts (LCY) | ✅ |
+| 129 | `pmtDiscountsLcy` | Pmt. Discounts (LCY) | Pmt. Discounts (LCY) | ✅ |
+| 130 | `balanceDueLcy` | Balance Due (LCY) | Balance Due (LCY) | ✅ |
+| 131 | `paymentsLcy` | Payments (LCY) | Payments (LCY) | ✅ |
+| 132 | `invAmountsLcy` | Inv. Amounts (LCY) | Inv. Amounts (LCY) | ✅ |
+| 133 | `crMemoAmountsLcy` | Cr. Memo Amounts (LCY) | Cr. Memo Amounts (LCY) | ✅ |
+| 134 | `finChargeMemoAmountsLcy` | Fin. Charge Memo Amounts (LCY) | Fin. Charge Memo Amounts (LCY) | ✅ |
+| 135 | `debitAmountLcy` | Debit Amount (LCY) | Debit Amount (LCY) | ✅ |
+| 136 | `creditAmountLcy` | Credit Amount (LCY) | Credit Amount (LCY) | ✅ |
+| 137 | `reminderAmountsLcy` | Reminder Amounts (LCY) | Reminder Amounts (LCY) | ✅ |
+| 138 | `outstandingOrdersLcy` | Outstanding Orders (LCY) | Outstanding Orders (LCY) | ✅ |
+| 139 | `amtRcdNotInvoicedLcy` | Amt. Rcd. Not Invoiced (LCY) | Amt. Rcd. Not Invoiced (LCY) | ✅ |
+| 140 | `pmtDiscToleranceLcy` | Pmt. Disc. Tolerance (LCY) | Pmt. Disc. Tolerance (LCY) | ✅ |
+| 141 | `pmtToleranceLcy` | Pmt. Tolerance (LCY) | Pmt. Tolerance (LCY) | ✅ |
+| 142 | `refundsLcy` | Refunds (LCY) | Refunds (LCY) | ✅ |
+| 143 | `otherAmountsLcy` | Other Amounts (LCY) | Other Amounts (LCY) | ✅ |
+| 144 | `outstandingInvoicesLcy` | Outstanding Invoices (LCY) | Outstanding Invoices (LCY) | ✅ |
+
+> **Added in API v3.1:** fields 125–144 above (previously omitted parenthesized-name standard fields).
 
 
 [↑ Back to top](#table-of-contents)
@@ -2326,7 +2508,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | Entity Set Name | `ocpfContacts` |
 | API Group | `ocpf_masterData` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
-| Field Count | 82 |
+| Field Count | 86 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -2412,6 +2594,12 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 80 | `eMail2` | E-Mail 2 | Email 2 | ✅ |
 | 81 | `jobResponsibilityFilter` | Job Responsibility Filter | Job Responsibility Filter | ✅ |
 | 82 | `xrmId` | Xrm Id | Xrm Id | ✅ |
+| 83 | `costLcy` | Cost (LCY) | Cost (LCY) | ✅ |
+| 84 | `durationMin` | Duration (Min.) | Duration (Min.) | ✅ |
+| 85 | `estimatedValueLcy` | Estimated Value (LCY) | Estimated Value (LCY) | ✅ |
+| 86 | `calcdCurrentValueLcy` | Calcd. Current Value (LCY) | Calcd. Current Value (LCY) | ✅ |
+
+> **Added in API v3.1:** fields 83–86 above (previously omitted parenthesized-name standard fields).
 
 
 [↑ Back to top](#table-of-contents)
@@ -2459,7 +2647,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | Entity Set Name | `ocpfItems` |
 | API Group | `ocpf_masterData` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
-| Field Count | 182 |
+| Field Count | 204 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -2645,6 +2833,30 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 180 | `singleLvlMatNonInvtCost` | Single-Lvl Mat. Non-Invt. Cost | Single-Level Material Non-Inventory Cost | ✅ |
 | 181 | `allowWhseOverpick` | Allow Whse. Overpick | Allow Whse. Overpick | ✅ |
 | 182 | `commonItemNo` | Common Item No. | Common Item No. | ✅ |
+| 183 | `purchasesQty` | Purchases (Qty.) | Purchases (Qty.) | ✅ |
+| 184 | `salesQty` | Sales (Qty.) | Sales (Qty.) | ✅ |
+| 185 | `positiveAdjmtQty` | Positive Adjmt. (Qty.) | Positive Adjmt. (Qty.) | ✅ |
+| 186 | `negativeAdjmtQty` | Negative Adjmt. (Qty.) | Negative Adjmt. (Qty.) | ✅ |
+| 187 | `purchasesLcy` | Purchases (LCY) | Purchases (LCY) | ✅ |
+| 188 | `salesLcy` | Sales (LCY) | Sales (LCY) | ✅ |
+| 189 | `positiveAdjmtLcy` | Positive Adjmt. (LCY) | Positive Adjmt. (LCY) | ✅ |
+| 190 | `negativeAdjmtLcy` | Negative Adjmt. (LCY) | Negative Adjmt. (LCY) | ✅ |
+| 191 | `cogsLcy` | COGS (LCY) | COGS (LCY) | ✅ |
+| 192 | `vatBusPostingGrPrice` | VAT Bus. Posting Gr. (Price) | VAT Bus. Posting Gr. (Price) | ✅ |
+| 193 | `transferredQty` | Transferred (Qty.) | Transferred (Qty.) | ✅ |
+| 194 | `transferredLcy` | Transferred (LCY) | Transferred (LCY) | ✅ |
+| 195 | `planningTransferShipQty` | Planning Transfer Ship. (Qty). | Planning Transfer Ship. (Qty). | ✅ |
+| 196 | `planningWorksheetQty` | Planning Worksheet (Qty.) | Planning Worksheet (Qty.) | ✅ |
+| 197 | `transOrdReceiptQty` | Trans. Ord. Receipt (Qty.) | Trans. Ord. Receipt (Qty.) | ✅ |
+| 198 | `transOrdShipmentQty` | Trans. Ord. Shipment (Qty.) | Trans. Ord. Shipment (Qty.) | ✅ |
+| 199 | `planningIssuesQty` | Planning Issues (Qty.) | Planning Issues (Qty.) | ✅ |
+| 200 | `planningReceiptQty` | Planning Receipt (Qty.) | Planning Receipt (Qty.) | ✅ |
+| 201 | `planningReleaseQty` | Planning Release (Qty.) | Planning Release (Qty.) | ✅ |
+| 202 | `purchReqReceiptQty` | Purch. Req. Receipt (Qty.) | Purch. Req. Receipt (Qty.) | ✅ |
+| 203 | `purchReqReleaseQty` | Purch. Req. Release (Qty.) | Purch. Req. Release (Qty.) | ✅ |
+| 204 | `prodForecastQuantityBase` | Prod. Forecast Quantity (Base) | Prod. Forecast Quantity (Base) | ✅ |
+
+> **Added in API v3.1:** fields 183–204 above (previously omitted parenthesized-name standard fields).
 
 
 [↑ Back to top](#table-of-contents)
@@ -2663,7 +2875,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | Entity Set Name | `ocpfItemLedgerEntries` |
 | API Group | `ocpf_masterData` |
 | Editable | ❌ No (GET only) |
-| Field Count | 76 |
+| Field Count | 86 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -2743,6 +2955,18 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 74 | `packageNo` | Package No. | Package No. | — |
 | 75 | `returnReasonCode` | Return Reason Code | Return Reason Code | — |
 | 76 | `itemDescription` | Item Description | Item Description | — |
+| 77 | `costAmountExpected` | Cost Amount (Expected) | Cost Amount (Expected) | — |
+| 78 | `costAmountActual` | Cost Amount (Actual) | Cost Amount (Actual) | — |
+| 79 | `costAmountNonInvtbl` | Cost Amount (Non-Invtbl.) | Cost Amount (Non-Invtbl.) | — |
+| 80 | `costAmountExpectedAcy` | Cost Amount (Expected) (ACY) | Cost Amount (Expected) (ACY) | — |
+| 81 | `costAmountActualAcy` | Cost Amount (Actual) (ACY) | Cost Amount (Actual) (ACY) | — |
+| 82 | `costAmountNonInvtblAcy` | Cost Amount (Non-Invtbl.)(ACY) | Cost Amount (Non-Invtbl.)(ACY) | — |
+| 83 | `purchaseAmountExpected` | Purchase Amount (Expected) | Purchase Amount (Expected) | — |
+| 84 | `purchaseAmountActual` | Purchase Amount (Actual) | Purchase Amount (Actual) | — |
+| 85 | `salesAmountExpected` | Sales Amount (Expected) | Sales Amount (Expected) | — |
+| 86 | `salesAmountActual` | Sales Amount (Actual) | Sales Amount (Actual) | — |
+
+> **Added in API v3.1:** fields 77–86 above (previously omitted parenthesized-name standard fields).
 
 
 [↑ Back to top](#table-of-contents)
@@ -2761,7 +2985,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | Entity Set Name | `ocpfValueEntries` |
 | API Group | `ocpf_masterData` |
 | Editable | ❌ No (GET only) |
-| Field Count | 67 |
+| Field Count | 80 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -2832,6 +3056,21 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 65 | `no` | No. | No. | — |
 | 66 | `returnReasonCode` | Return Reason Code | Return Reason Code | — |
 | 67 | `itemDescription` | Item Description | Item Description | — |
+| 68 | `salesAmountActual` | Sales Amount (Actual) | Sales Amount (Actual) | — |
+| 69 | `costAmountActual` | Cost Amount (Actual) | Cost Amount (Actual) | — |
+| 70 | `costAmountActualAcy` | Cost Amount (Actual) (ACY) | Cost Amount (Actual) (ACY) | — |
+| 71 | `costPostedToGLAcy` | Cost Posted to G/L (ACY) | Cost Posted to G/L (ACY) | — |
+| 72 | `costPerUnitAcy` | Cost per Unit (ACY) | Cost per Unit (ACY) | — |
+| 73 | `purchaseAmountActual` | Purchase Amount (Actual) | Purchase Amount (Actual) | — |
+| 74 | `purchaseAmountExpected` | Purchase Amount (Expected) | Purchase Amount (Expected) | — |
+| 75 | `salesAmountExpected` | Sales Amount (Expected) | Sales Amount (Expected) | — |
+| 76 | `costAmountExpected` | Cost Amount (Expected) | Cost Amount (Expected) | — |
+| 77 | `costAmountNonInvtbl` | Cost Amount (Non-Invtbl.) | Cost Amount (Non-Invtbl.) | — |
+| 78 | `costAmountExpectedAcy` | Cost Amount (Expected) (ACY) | Cost Amount (Expected) (ACY) | — |
+| 79 | `costAmountNonInvtblAcy` | Cost Amount (Non-Invtbl.)(ACY) | Cost Amount (Non-Invtbl.)(ACY) | — |
+| 80 | `expCostPostedToGLAcy` | Exp. Cost Posted to G/L (ACY) | Exp. Cost Posted to G/L (ACY) | — |
+
+> **Added in API v3.1:** fields 68–80 above (previously omitted parenthesized-name standard fields).
 
 
 [↑ Back to top](#table-of-contents)
@@ -2920,7 +3159,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | Entity Set Name | `ocpfStockkeepingUnits` |
 | API Group | `ocpf_masterData` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
-| Field Count | 76 |
+| Field Count | 80 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -3000,6 +3239,12 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 74 | `rolledUpMfgOvhdCost` | Rolled-up Mfg. Ovhd Cost | Rolled-up Mfg. Ovhd Cost | ✅ |
 | 75 | `rolledUpCapOverheadCost` | Rolled-up Cap. Overhead Cost | Rolled-up Cap. Overhead Cost | ✅ |
 | 76 | `singleLvlMatNonInvtCost` | Single-Lvl Mat. Non-Invt. Cost | Single-Level Material Non-Inventory Cost | ✅ |
+| 77 | `transOrdReceiptQty` | Trans. Ord. Receipt (Qty.) | Trans. Ord. Receipt (Qty.) | ✅ |
+| 78 | `transOrdShipmentQty` | Trans. Ord. Shipment (Qty.) | Trans. Ord. Shipment (Qty.) | ✅ |
+| 79 | `purchReqReceiptQty` | Purch. Req. Receipt (Qty.) | Purch. Req. Receipt (Qty.) | ✅ |
+| 80 | `purchReqReleaseQty` | Purch. Req. Release (Qty.) | Purch. Req. Release (Qty.) | ✅ |
+
+> **Added in API v3.1:** fields 77–80 above (previously omitted parenthesized-name standard fields).
 
 
 [↑ Back to top](#table-of-contents)
@@ -3120,7 +3365,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | Entity Set Name | `ocpfResources` |
 | API Group | `ocpf_masterData` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
-| Field Count | 50 |
+| Field Count | 58 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -3174,6 +3419,16 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 48 | `timeSheetOwnerUserId` | Time Sheet Owner User ID | Time Sheet Owner User ID | ✅ |
 | 49 | `timeSheetApproverUserId` | Time Sheet Approver User ID | Time Sheet Approver User ID | ✅ |
 | 50 | `defaultDeferralTemplateCode` | Default Deferral Template Code | Default Deferral Template Code | ✅ |
+| 51 | `qtyOnOrderJob` | Qty. on Order (Job) | Qty. on Order (Project) | ✅ |
+| 52 | `qtyQuotedJob` | Qty. Quoted (Job) | Qty. Quoted (Project) | ✅ |
+| 53 | `usageQty` | Usage (Qty.) | Usage (Qty.) | ✅ |
+| 54 | `usageCost` | Usage (Cost) | Usage (Cost) | ✅ |
+| 55 | `usagePrice` | Usage (Price) | Usage (Price) | ✅ |
+| 56 | `salesQty` | Sales (Qty.) | Sales (Qty.) | ✅ |
+| 57 | `salesCost` | Sales (Cost) | Sales (Cost) | ✅ |
+| 58 | `salesPrice` | Sales (Price) | Sales (Price) | ✅ |
+
+> **Added in API v3.1:** fields 51–58 above (previously omitted parenthesized-name standard fields).
 
 
 [↑ Back to top](#table-of-contents)
@@ -3192,7 +3447,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | Entity Set Name | `ocpfResourceLedgerEntries` |
 | API Group | `ocpf_masterData` |
 | Editable | ❌ No (GET only) |
-| Field Count | 43 |
+| Field Count | 44 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -3239,6 +3494,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 41 | `shortcutDimension6Code` | Shortcut Dimension 6 Code | Shortcut Dimension 6 Code | — |
 | 42 | `shortcutDimension7Code` | Shortcut Dimension 7 Code | Shortcut Dimension 7 Code | — |
 | 43 | `shortcutDimension8Code` | Shortcut Dimension 8 Code | Shortcut Dimension 8 Code | — |
+| 44 | `quantityBase` | Quantity (Base) | Quantity (Base) | — |
+
+> **Added in API v3.1:** fields 44–44 above (previously omitted parenthesized-name standard fields).
 
 
 [↑ Back to top](#table-of-contents)
@@ -3257,7 +3515,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | Entity Set Name | `ocpfResourceGroups` |
 | API Group | `ocpf_masterData` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
-| Field Count | 10 |
+| Field Count | 18 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -3271,6 +3529,16 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 8 | `globalDimension1Code` | Global Dimension 1 Code | Global Dimension 1 Code | ✅ |
 | 9 | `globalDimension2Code` | Global Dimension 2 Code | Global Dimension 2 Code | ✅ |
 | 10 | `noOfResourcesAssigned` | No. of Resources Assigned | No. of Resources Assigned | ✅ |
+| 11 | `qtyOnOrderJob` | Qty. on Order (Job) | Qty. on Order (Project) | ✅ |
+| 12 | `qtyQuotedJob` | Qty. Quoted (Job) | Qty. Quoted (Project) | ✅ |
+| 13 | `usageQty` | Usage (Qty.) | Usage (Qty.) | ✅ |
+| 14 | `usageCost` | Usage (Cost) | Usage (Cost) | ✅ |
+| 15 | `usagePrice` | Usage (Price) | Usage (Price) | ✅ |
+| 16 | `salesQty` | Sales (Qty.) | Sales (Qty.) | ✅ |
+| 17 | `salesCost` | Sales (Cost) | Sales (Cost) | ✅ |
+| 18 | `salesPrice` | Sales (Price) | Sales (Price) | ✅ |
+
+> **Added in API v3.1:** fields 11–18 above (previously omitted parenthesized-name standard fields).
 
 
 [↑ Back to top](#table-of-contents)
@@ -3289,7 +3557,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | Entity Set Name | `ocpfEmployees` |
 | API Group | `ocpf_masterData` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
-| Field Count | 76 |
+| Field Count | 79 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -3369,6 +3637,11 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 74 | `allowMultiplePostingGroups` | Allow Multiple Posting Groups | Allow Multiple Posting Groups | ✅ |
 | 75 | `costCenterCode` | Cost Center Code | Cost Center Code | ✅ |
 | 76 | `costObjectCode` | Cost Object Code | Cost Object Code | ✅ |
+| 77 | `totalAbsenceBase` | Total Absence (Base) | Total Absence (Base) | ✅ |
+| 78 | `balanceLcy` | Balance (LCY) | Balance (LCY) | ✅ |
+| 79 | `payrollLcy` | Payroll (LCY) | Payroll (LCY) | ✅ |
+
+> **Added in API v3.1:** fields 77–79 above (previously omitted parenthesized-name standard fields).
 
 
 [↑ Back to top](#table-of-contents)
@@ -3387,7 +3660,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | Entity Set Name | `ocpfSalespeople` |
 | API Group | `ocpf_masterData` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
-| Field Count | 37 |
+| Field Count | 43 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -3428,6 +3701,65 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 35 | `searchEMail` | Search E-Mail | Search Email | ✅ |
 | 36 | `eMail2` | E-Mail 2 | Email 2 | ✅ |
 | 37 | `blocked` | Blocked | Blocked | ✅ |
+| 38 | `estimatedValueLcy` | Estimated Value (LCY) | Estimated Value (LCY) | ✅ |
+| 39 | `calcdCurrentValueLcy` | Calcd. Current Value (LCY) | Calcd. Current Value (LCY) | ✅ |
+| 40 | `costLcy` | Cost (LCY) | Cost (LCY) | ✅ |
+| 41 | `durationMin` | Duration (Min.) | Duration (Min.) | ✅ |
+| 42 | `avgEstimatedValueLcy` | Avg. Estimated Value (LCY) | Avg. Estimated Value (LCY) | ✅ |
+| 43 | `avgCalcdCurrentValueLcy` | Avg.Calcd. Current Value (LCY) | Avg.Calcd. Current Value (LCY) | ✅ |
+
+> **Added in API v3.1:** fields 38–43 above (previously omitted parenthesized-name standard fields).
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfShipToAddresses
+
+**Description:** Ship-to Addresses — alternate delivery addresses defined per customer for use on sales and service documents.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Ship-to Address |
+| Page ID | 90859 |
+| Page Name | `ocpfShipToAddresses` |
+| Entity Set Name | `ocpfShipToAddresses` |
+| API Group | `ocpf_masterData` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 28 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `customerNo` | Customer No. | Customer No. | ✅ |
+| 3 | `code` | Code | Code | ✅ |
+| 4 | `name` | Name | Name | ✅ |
+| 5 | `name2` | Name 2 | Name 2 | ✅ |
+| 6 | `address` | Address | Address | ✅ |
+| 7 | `address2` | Address 2 | Address 2 | ✅ |
+| 8 | `city` | City | City | ✅ |
+| 9 | `contact` | Contact | Contact | ✅ |
+| 10 | `phoneNo` | Phone No. | Phone No. | ✅ |
+| 11 | `telexNo` | Telex No. | Telex No. | ✅ |
+| 12 | `salespersonCode` | Salesperson Code | Salesperson Code | ✅ |
+| 13 | `shipmentMethodCode` | Shipment Method Code | Shipment Method Code | ✅ |
+| 14 | `shippingAgentCode` | Shipping Agent Code | Shipping Agent Code | ✅ |
+| 15 | `placeOfExport` | Place of Export | Place of Export | ✅ |
+| 16 | `countryRegionCode` | Country/Region Code | Country/Region Code | ✅ |
+| 17 | `lastDateModified` | Last Date Modified | Last Date Modified | ✅ |
+| 18 | `locationCode` | Location Code | Location Code | ✅ |
+| 19 | `faxNo` | Fax No. | Fax No. | ✅ |
+| 20 | `telexAnswerBack` | Telex Answer Back | Telex Answer Back | ✅ |
+| 21 | `gln` | GLN | GLN | ✅ |
+| 22 | `postCode` | Post Code | Post Code | ✅ |
+| 23 | `county` | County | County | ✅ |
+| 24 | `eMail` | E-Mail | Email | ✅ |
+| 25 | `homePage` | Home Page | Home Page | ✅ |
+| 26 | `taxAreaCode` | Tax Area Code | Tax Area Code | ✅ |
+| 27 | `taxLiable` | Tax Liable | Tax Liable | ✅ |
+| 28 | `shippingAgentServiceCode` | Shipping Agent Service Code | Shipping Agent Service Code | ✅ |
 
 
 [↑ Back to top](#table-of-contents)
@@ -11448,6 +11780,3934 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 18 | `originalWorkflowCode` | Original Workflow Code | Original Workflow Code | — |
 | 19 | `originalWorkflowStepId` | Original Workflow Step ID | Original Workflow Step ID | — |
 | 20 | `sequenceNo` | Sequence No. | Sequence No. | — |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+## Manufacturing
+
+*Category introduced in API v3.1 (`ocpf_manufacturing`). Covers production BOMs, routings, capacities, production orders, and assembly management.*
+
+### ocpfManufacturingSetup
+
+**Description:** Manufacturing Setup — company-wide settings that control planning, scheduling, and numbering for production.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Manufacturing Setup |
+| Page ID | 90939 |
+| Page Name | `ocpfManufacturingSetup` |
+| Entity Set Name | `ocpfManufacturingSetup` |
+| API Group | `ocpf_manufacturing` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 27 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `primaryKey` | Primary Key | Primary Key | ✅ |
+| 3 | `normalStartingTime` | Normal Starting Time | Normal Starting Time | ✅ |
+| 4 | `normalEndingTime` | Normal Ending Time | Normal Ending Time | ✅ |
+| 5 | `docNoIsProdOrderNo` | Doc. No. Is Prod. Order No. | Doc. No. Is Prod. Order No. | ✅ |
+| 6 | `costInclSetup` | Cost Incl. Setup | Cost Incl. Setup | ✅ |
+| 7 | `dynamicLowLevelCode` | Dynamic Low-Level Code | Dynamic Low-Level Code | ✅ |
+| 8 | `planningWarning` | Planning Warning | Planning Warning | ✅ |
+| 9 | `simulatedOrderNos` | Simulated Order Nos. | Simulated Order Nos. | ✅ |
+| 10 | `plannedOrderNos` | Planned Order Nos. | Planned Order Nos. | ✅ |
+| 11 | `firmPlannedOrderNos` | Firm Planned Order Nos. | Firm Planned Order Nos. | ✅ |
+| 12 | `releasedOrderNos` | Released Order Nos. | Released Order Nos. | ✅ |
+| 13 | `workCenterNos` | Work Center Nos. | Work Center Nos. | ✅ |
+| 14 | `machineCenterNos` | Machine Center Nos. | Machine Center Nos. | ✅ |
+| 15 | `productionBomNos` | Production BOM Nos. | Production BOM Nos. | ✅ |
+| 16 | `routingNos` | Routing Nos. | Routing Nos. | ✅ |
+| 17 | `componentsAtLocation` | Components at Location | Components at Location | ✅ |
+| 18 | `showCapacityIn` | Show Capacity In | Show Capacity In | ✅ |
+| 19 | `defaultConsumCalcBasedOn` | Default Consum. Calc. Based on | Default Consumption Calculation Based on | ✅ |
+| 20 | `finishOrderWithoutOutput` | Finish Order without Output | Allow Finishing Prod. Order with no Output | ✅ |
+| 21 | `incNonInvCostToProd` | Inc. Non. Inv. Cost To Prod | Include Non-Inventory Items to Produced Items | ✅ |
+| 22 | `loadSkuCostOnManufacturing` | Load SKU Cost on Manufacturing | Load SKU Cost on Manufacturing | ✅ |
+| 23 | `manualScheduling` | Manual Scheduling | Manual Scheduling | ✅ |
+| 24 | `safetyLeadTimeForManSch` | Safety Lead Time for Man. Sch. | Safety Lead Time for Manual Scheduling | ✅ |
+| 25 | `defaultGenBusPostGroup` | Default Gen. Bus. Post. Group | Default General Business Posting Group | ✅ |
+| 26 | `defaultFlushingMethod` | Default Flushing Method | Default Flushing Method | ✅ |
+| 27 | `presetOutputQuantity` | Preset Output Quantity | Preset Output Quantity | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfWorkShifts
+
+**Description:** Work Shifts — named shifts used to define working time in shop calendars.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Work Shift |
+| Page ID | 90940 |
+| Page Name | `ocpfWorkShifts` |
+| Entity Set Name | `ocpfWorkShifts` |
+| API Group | `ocpf_manufacturing` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 3 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `code` | Code | Code | ✅ |
+| 3 | `description` | Description | Description | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfShopCalendars
+
+**Description:** Shop Calendars — base calendars that define the working days and shifts available to capacity resources.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Shop Calendar |
+| Page ID | 90941 |
+| Page Name | `ocpfShopCalendars` |
+| Entity Set Name | `ocpfShopCalendars` |
+| API Group | `ocpf_manufacturing` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 3 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `code` | Code | Code | ✅ |
+| 3 | `description` | Description | Description | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfShopCalendarWorkingDays
+
+**Description:** Shop Calendar Working Days — the weekday/shift lines that make up each shop calendar.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Shop Calendar Working Days |
+| Page ID | 90942 |
+| Page Name | `ocpfShopCalendarWorkingDays` |
+| Entity Set Name | `ocpfShopCalendarWorkingDays` |
+| API Group | `ocpf_manufacturing` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 6 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `shopCalendarCode` | Shop Calendar Code | Shop Calendar Code | ✅ |
+| 3 | `day` | Day | Day | ✅ |
+| 4 | `workShiftCode` | Work Shift Code | Work Shift Code | ✅ |
+| 5 | `startingTime` | Starting Time | Starting Time | ✅ |
+| 6 | `endingTime` | Ending Time | Ending Time | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfWorkCenterGroups
+
+**Description:** Work Center Groups — groupings of work centers for consolidated capacity views.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Work Center Group |
+| Page ID | 90943 |
+| Page Name | `ocpfWorkCenterGroups` |
+| Entity Set Name | `ocpfWorkCenterGroups` |
+| API Group | `ocpf_manufacturing` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 9 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `code` | Code | Code | ✅ |
+| 3 | `name` | Name | Name | ✅ |
+| 4 | `dateFilter` | Date Filter | Date Filter | ✅ |
+| 5 | `workShiftFilter` | Work Shift Filter | Work Shift Filter | ✅ |
+| 6 | `capacityTotal` | Capacity (Total) | Capacity (Total) | ✅ |
+| 7 | `capacityEffective` | Capacity (Effective) | Capacity (Effective) | ✅ |
+| 8 | `prodOrderNeedQty` | Prod. Order Need (Qty.) | Prod. Order Need (Qty.) | ✅ |
+| 9 | `prodOrderStatusFilter` | Prod. Order Status Filter | Prod. Order Status Filter | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfWorkCenters
+
+**Description:** Work Centers — capacity resources (departments, lines, or cells) on which routing operations are performed, including costing and calendar settings.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Work Center |
+| Page ID | 90944 |
+| Page Name | `ocpfWorkCenters` |
+| Entity Set Name | `ocpfWorkCenters` |
+| API Group | `ocpf_manufacturing` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 50 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `no` | No. | No. | ✅ |
+| 3 | `name` | Name | Name | ✅ |
+| 4 | `searchName` | Search Name | Search Name | ✅ |
+| 5 | `name2` | Name 2 | Name 2 | ✅ |
+| 6 | `address` | Address | Address | ✅ |
+| 7 | `address2` | Address 2 | Address 2 | ✅ |
+| 8 | `city` | City | City | ✅ |
+| 9 | `postCode` | Post Code | Post Code | ✅ |
+| 10 | `alternateWorkCenter` | Alternate Work Center | Alternate Work Center | ✅ |
+| 11 | `workCenterGroupCode` | Work Center Group Code | Work Center Group Code | ✅ |
+| 12 | `globalDimension1Code` | Global Dimension 1 Code | Global Dimension 1 Code | ✅ |
+| 13 | `globalDimension2Code` | Global Dimension 2 Code | Global Dimension 2 Code | ✅ |
+| 14 | `subcontractorNo` | Subcontractor No. | Subcontractor No. | ✅ |
+| 15 | `directUnitCost` | Direct Unit Cost | Direct Unit Cost | ✅ |
+| 16 | `indirectCostPct` | Indirect Cost % | Indirect Cost % | ✅ |
+| 17 | `unitCost` | Unit Cost | Unit Cost | ✅ |
+| 18 | `queueTime` | Queue Time | Queue Time | ✅ |
+| 19 | `queueTimeUnitOfMeasCode` | Queue Time Unit of Meas. Code | Queue Time Unit of Meas. Code | ✅ |
+| 20 | `lastDateModified` | Last Date Modified | Last Date Modified | ✅ |
+| 21 | `comment` | Comment | Comment | ✅ |
+| 22 | `unitOfMeasureCode` | Unit of Measure Code | Unit of Measure Code | ✅ |
+| 23 | `capacity` | Capacity | Capacity | ✅ |
+| 24 | `efficiency` | Efficiency | Efficiency | ✅ |
+| 25 | `maximumEfficiency` | Maximum Efficiency | Maximum Efficiency | ✅ |
+| 26 | `minimumEfficiency` | Minimum Efficiency | Minimum Efficiency | ✅ |
+| 27 | `calendarRoundingPrecision` | Calendar Rounding Precision | Calendar Rounding Precision | ✅ |
+| 28 | `simulationType` | Simulation Type | Simulation Type | ✅ |
+| 29 | `shopCalendarCode` | Shop Calendar Code | Shop Calendar Code | ✅ |
+| 30 | `blocked` | Blocked | Blocked | ✅ |
+| 31 | `dateFilter` | Date Filter | Date Filter | ✅ |
+| 32 | `workShiftFilter` | Work Shift Filter | Work Shift Filter | ✅ |
+| 33 | `capacityTotal` | Capacity (Total) | Capacity (Total) | ✅ |
+| 34 | `capacityEffective` | Capacity (Effective) | Capacity (Effective) | ✅ |
+| 35 | `prodOrderNeedQty` | Prod. Order Need (Qty.) | Prod. Order Need (Qty.) | ✅ |
+| 36 | `prodOrderNeedAmount` | Prod. Order Need Amount | Prod. Order Need Amount | ✅ |
+| 37 | `prodOrderStatusFilter` | Prod. Order Status Filter | Prod. Order Status Filter | ✅ |
+| 38 | `unitCostCalculation` | Unit Cost Calculation | Unit Cost Calculation | ✅ |
+| 39 | `specificUnitCost` | Specific Unit Cost | Specific Unit Cost | ✅ |
+| 40 | `consolidatedCalendar` | Consolidated Calendar | Consolidated Calendar | ✅ |
+| 41 | `flushingMethod` | Flushing Method | Flushing Method | ✅ |
+| 42 | `noSeries` | No. Series | No. Series | ✅ |
+| 43 | `overheadRate` | Overhead Rate | Overhead Rate | ✅ |
+| 44 | `genProdPostingGroup` | Gen. Prod. Posting Group | Gen. Prod. Posting Group | ✅ |
+| 45 | `county` | County | County | ✅ |
+| 46 | `countryRegionCode` | Country/Region Code | Country/Region Code | ✅ |
+| 47 | `locationCode` | Location Code | Location Code | ✅ |
+| 48 | `openShopFloorBinCode` | Open Shop Floor Bin Code | Open Shop Floor Bin Code | ✅ |
+| 49 | `toProductionBinCode` | To-Production Bin Code | To-Production Bin Code | ✅ |
+| 50 | `fromProductionBinCode` | From-Production Bin Code | From-Production Bin Code | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfMachineCenters
+
+**Description:** Machine Centers — individual machines belonging to a work center, with their own capacity, efficiency, and cost settings.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Machine Center |
+| Page ID | 90945 |
+| Page Name | `ocpfMachineCenters` |
+| Entity Set Name | `ocpfMachineCenters` |
+| API Group | `ocpf_manufacturing` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 54 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `no` | No. | No. | ✅ |
+| 3 | `name` | Name | Name | ✅ |
+| 4 | `searchName` | Search Name | Search Name | ✅ |
+| 5 | `name2` | Name 2 | Name 2 | ✅ |
+| 6 | `address` | Address | Address | ✅ |
+| 7 | `address2` | Address 2 | Address 2 | ✅ |
+| 8 | `city` | City | City | ✅ |
+| 9 | `postCode` | Post Code | Post Code | ✅ |
+| 10 | `workCenterNo` | Work Center No. | Work Center No. | ✅ |
+| 11 | `directUnitCost` | Direct Unit Cost | Direct Unit Cost | ✅ |
+| 12 | `indirectCostPct` | Indirect Cost % | Indirect Cost % | ✅ |
+| 13 | `unitCost` | Unit Cost | Unit Cost | ✅ |
+| 14 | `queueTime` | Queue Time | Queue Time | ✅ |
+| 15 | `queueTimeUnitOfMeasCode` | Queue Time Unit of Meas. Code | Queue Time Unit of Meas. Code | ✅ |
+| 16 | `lastDateModified` | Last Date Modified | Last Date Modified | ✅ |
+| 17 | `comment` | Comment | Comment | ✅ |
+| 18 | `capacity` | Capacity | Capacity | ✅ |
+| 19 | `efficiency` | Efficiency | Efficiency | ✅ |
+| 20 | `maximumEfficiency` | Maximum Efficiency | Maximum Efficiency | ✅ |
+| 21 | `minimumEfficiency` | Minimum Efficiency | Minimum Efficiency | ✅ |
+| 22 | `blocked` | Blocked | Blocked | ✅ |
+| 23 | `dateFilter` | Date Filter | Date Filter | ✅ |
+| 24 | `workShiftFilter` | Work Shift Filter | Work Shift Filter | ✅ |
+| 25 | `capacityTotal` | Capacity (Total) | Capacity (Total) | ✅ |
+| 26 | `capacityEffective` | Capacity (Effective) | Capacity (Effective) | ✅ |
+| 27 | `prodOrderNeedQty` | Prod. Order Need (Qty.) | Prod. Order Need (Qty.) | ✅ |
+| 28 | `prodOrderNeedAmount` | Prod. Order Need Amount | Prod. Order Need Amount | ✅ |
+| 29 | `prodOrderStatusFilter` | Prod. Order Status Filter | Prod. Order Status Filter | ✅ |
+| 30 | `setupTime` | Setup Time | Setup Time | ✅ |
+| 31 | `waitTime` | Wait Time | Wait Time | ✅ |
+| 32 | `moveTime` | Move Time | Move Time | ✅ |
+| 33 | `fixedScrapQuantity` | Fixed Scrap Quantity | Fixed Scrap Quantity | ✅ |
+| 34 | `scrapPct` | Scrap % | Scrap % | ✅ |
+| 35 | `setupTimeUnitOfMeasCode` | Setup Time Unit of Meas. Code | Setup Time Unit of Meas. Code | ✅ |
+| 36 | `waitTimeUnitOfMeasCode` | Wait Time Unit of Meas. Code | Wait Time Unit of Meas. Code | ✅ |
+| 37 | `sendAheadQuantity` | Send-Ahead Quantity | Send-Ahead Quantity | ✅ |
+| 38 | `moveTimeUnitOfMeasCode` | Move Time Unit of Meas. Code | Move Time Unit of Meas. Code | ✅ |
+| 39 | `flushingMethod` | Flushing Method | Flushing Method | ✅ |
+| 40 | `minimumProcessTime` | Minimum Process Time | Minimum Process Time | ✅ |
+| 41 | `maximumProcessTime` | Maximum Process Time | Maximum Process Time | ✅ |
+| 42 | `concurrentCapacities` | Concurrent Capacities | Concurrent Capacities | ✅ |
+| 43 | `itemFilter` | Item Filter | Item Filter | ✅ |
+| 44 | `stopCodeFilter` | Stop Code Filter | Stop Code Filter | ✅ |
+| 45 | `scrapCodeFilter` | Scrap Code Filter | Scrap Code Filter | ✅ |
+| 46 | `noSeries` | No. Series | No. Series | ✅ |
+| 47 | `overheadRate` | Overhead Rate | Overhead Rate | ✅ |
+| 48 | `genProdPostingGroup` | Gen. Prod. Posting Group | Gen. Prod. Posting Group | ✅ |
+| 49 | `county` | County | County | ✅ |
+| 50 | `countryRegionCode` | Country/Region Code | Country/Region Code | ✅ |
+| 51 | `locationCode` | Location Code | Location Code | ✅ |
+| 52 | `openShopFloorBinCode` | Open Shop Floor Bin Code | Open Shop Floor Bin Code | ✅ |
+| 53 | `toProductionBinCode` | To-Production Bin Code | To-Production Bin Code | ✅ |
+| 54 | `fromProductionBinCode` | From-Production Bin Code | From-Production Bin Code | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfCapacityUnitsOfMeasure
+
+**Description:** Capacity Units of Measure — time units (minutes, hours, days) used to express capacity and run times.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Capacity Unit of Measure |
+| Page ID | 90946 |
+| Page Name | `ocpfCapacityUnitsOfMeasure` |
+| Entity Set Name | `ocpfCapacityUnitsOfMeasure` |
+| API Group | `ocpf_manufacturing` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 4 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `code` | Code | Code | ✅ |
+| 3 | `description` | Description | Description | ✅ |
+| 4 | `type` | Type | Type | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfCalendarEntries
+
+**Description:** Calendar Entries — calculated available capacity per work/machine center, date, and shift. Read-only.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Calendar Entry |
+| Page ID | 90947 |
+| Page Name | `ocpfCalendarEntries` |
+| Entity Set Name | `ocpfCalendarEntries` |
+| API Group | `ocpf_manufacturing` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ❌ No (GET only) |
+| Field Count | 17 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `capacityType` | Capacity Type | Capacity Type | — |
+| 3 | `no` | No. | No. | — |
+| 4 | `date` | Date | Date | — |
+| 5 | `workShiftCode` | Work Shift Code | Work Shift Code | — |
+| 6 | `startingTime` | Starting Time | Starting Time | — |
+| 7 | `endingTime` | Ending Time | Ending Time | — |
+| 8 | `workCenterNo` | Work Center No. | Work Center No. | — |
+| 9 | `workCenterGroupCode` | Work Center Group Code | Work Center Group Code | — |
+| 10 | `capacityTotal` | Capacity (Total) | Capacity (Total) | — |
+| 11 | `capacityEffective` | Capacity (Effective) | Capacity (Effective) | — |
+| 12 | `efficiency` | Efficiency | Efficiency | — |
+| 13 | `capacity` | Capacity | Capacity | — |
+| 14 | `absenceEfficiency` | Absence Efficiency | Absence Efficiency | — |
+| 15 | `absenceCapacity` | Absence Capacity | Absence Capacity | — |
+| 16 | `startingDateTime` | Starting Date-Time | Starting Date-Time | — |
+| 17 | `endingDateTime` | Ending Date-Time | Ending Date-Time | — |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfCalendarAbsenceEntries
+
+**Description:** Calendar Absence Entries — registered capacity downtime (maintenance, holidays) per work/machine center. Read-only.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Calendar Absence Entry |
+| Page ID | 90948 |
+| Page Name | `ocpfCalendarAbsenceEntries` |
+| Entity Set Name | `ocpfCalendarAbsenceEntries` |
+| API Group | `ocpf_manufacturing` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ❌ No (GET only) |
+| Field Count | 13 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `capacityType` | Capacity Type | Capacity Type | — |
+| 3 | `no` | No. | No. | — |
+| 4 | `date` | Date | Date | — |
+| 5 | `startingTime` | Starting Time | Starting Time | — |
+| 6 | `endingTime` | Ending Time | Ending Time | — |
+| 7 | `workCenterNo` | Work Center No. | Work Center No. | — |
+| 8 | `workCenterGroupCode` | Work Center Group Code | Work Center Group Code | — |
+| 9 | `capacity` | Capacity | Capacity | — |
+| 10 | `startingDateTime` | Starting Date-Time | Starting Date-Time | — |
+| 11 | `endingDateTime` | Ending Date-Time | Ending Date-Time | — |
+| 12 | `description` | Description | Description | — |
+| 13 | `updated` | Updated | Updated | — |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfStops
+
+**Description:** Stop Codes — reasons for production stops, used on output journal lines and capacity ledger entries.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Stop |
+| Page ID | 90949 |
+| Page Name | `ocpfStops` |
+| Entity Set Name | `ocpfStops` |
+| API Group | `ocpf_manufacturing` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 3 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `code` | Code | Code | ✅ |
+| 3 | `description` | Description | Description | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfScraps
+
+**Description:** Scrap Codes — reasons for scrapped quantities in production output.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Scrap |
+| Page ID | 90950 |
+| Page Name | `ocpfScraps` |
+| Entity Set Name | `ocpfScraps` |
+| API Group | `ocpf_manufacturing` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 3 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `code` | Code | Code | ✅ |
+| 3 | `description` | Description | Description | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfRoutingLinks
+
+**Description:** Routing Links — codes that connect production BOM components to specific routing operations for just-in-time consumption.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Routing Link |
+| Page ID | 90951 |
+| Page Name | `ocpfRoutingLinks` |
+| Entity Set Name | `ocpfRoutingLinks` |
+| API Group | `ocpf_manufacturing` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 3 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `code` | Code | Code | ✅ |
+| 3 | `description` | Description | Description | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfStandardTasks
+
+**Description:** Standard Tasks — reusable operation descriptions that can be assigned to routing lines.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Standard Task |
+| Page ID | 90952 |
+| Page Name | `ocpfStandardTasks` |
+| Entity Set Name | `ocpfStandardTasks` |
+| API Group | `ocpf_manufacturing` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 3 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `code` | Code | Code | ✅ |
+| 3 | `description` | Description | Description | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfRoutingHeaders
+
+**Description:** Routings — headers describing the sequence of operations required to produce an item.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Routing Header |
+| Page ID | 90953 |
+| Page Name | `ocpfRoutingHeaders` |
+| Entity Set Name | `ocpfRoutingHeaders` |
+| API Group | `ocpf_manufacturing` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 11 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `no` | No. | No. | ✅ |
+| 3 | `description` | Description | Description | ✅ |
+| 4 | `description2` | Description 2 | Description 2 | ✅ |
+| 5 | `searchDescription` | Search Description | Search Description | ✅ |
+| 6 | `lastDateModified` | Last Date Modified | Last Date Modified | ✅ |
+| 7 | `comment` | Comment | Comment | ✅ |
+| 8 | `status` | Status | Status | ✅ |
+| 9 | `type` | Type | Type | ✅ |
+| 10 | `versionNos` | Version Nos. | Version Nos. | ✅ |
+| 11 | `noSeries` | No. Series | No. Series | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfRoutingLines
+
+**Description:** Routing Lines — the individual operations of a routing: work/machine center, times, and scheduling parameters.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Routing Line |
+| Page ID | 90954 |
+| Page Name | `ocpfRoutingLines` |
+| Entity Set Name | `ocpfRoutingLines` |
+| API Group | `ocpf_manufacturing` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 35 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `routingNo` | Routing No. | Routing No. | ✅ |
+| 3 | `versionCode` | Version Code | Version Code | ✅ |
+| 4 | `operationNo` | Operation No. | Operation No. | ✅ |
+| 5 | `nextOperationNo` | Next Operation No. | Next Operation No. | ✅ |
+| 6 | `previousOperationNo` | Previous Operation No. | Previous Operation No. | ✅ |
+| 7 | `type` | Type | Type | ✅ |
+| 8 | `no` | No. | No. | ✅ |
+| 9 | `workCenterNo` | Work Center No. | Work Center No. | ✅ |
+| 10 | `workCenterGroupCode` | Work Center Group Code | Work Center Group Code | ✅ |
+| 11 | `description` | Description | Description | ✅ |
+| 12 | `setupTime` | Setup Time | Setup Time | ✅ |
+| 13 | `runTime` | Run Time | Run Time | ✅ |
+| 14 | `waitTime` | Wait Time | Wait Time | ✅ |
+| 15 | `moveTime` | Move Time | Move Time | ✅ |
+| 16 | `fixedScrapQuantity` | Fixed Scrap Quantity | Fixed Scrap Quantity | ✅ |
+| 17 | `lotSize` | Lot Size | Lot Size | ✅ |
+| 18 | `scrapFactorPct` | Scrap Factor % | Scrap Factor % | ✅ |
+| 19 | `setupTimeUnitOfMeasCode` | Setup Time Unit of Meas. Code | Setup Time Unit of Meas. Code | ✅ |
+| 20 | `runTimeUnitOfMeasCode` | Run Time Unit of Meas. Code | Run Time Unit of Meas. Code | ✅ |
+| 21 | `waitTimeUnitOfMeasCode` | Wait Time Unit of Meas. Code | Wait Time Unit of Meas. Code | ✅ |
+| 22 | `moveTimeUnitOfMeasCode` | Move Time Unit of Meas. Code | Move Time Unit of Meas. Code | ✅ |
+| 23 | `minimumProcessTime` | Minimum Process Time | Minimum Process Time | ✅ |
+| 24 | `maximumProcessTime` | Maximum Process Time | Maximum Process Time | ✅ |
+| 25 | `concurrentCapacities` | Concurrent Capacities | Concurrent Capacities | ✅ |
+| 26 | `sendAheadQuantity` | Send-Ahead Quantity | Send-Ahead Quantity | ✅ |
+| 27 | `routingLinkCode` | Routing Link Code | Routing Link Code | ✅ |
+| 28 | `standardTaskCode` | Standard Task Code | Standard Task Code | ✅ |
+| 29 | `unitCostPer` | Unit Cost per | Unit Cost per | ✅ |
+| 30 | `recalculate` | Recalculate | Recalculate | ✅ |
+| 31 | `comment` | Comment | Comment | ✅ |
+| 32 | `sequenceNoForward` | Sequence No. (Forward) | Sequence No. (Forward) | ✅ |
+| 33 | `sequenceNoBackward` | Sequence No. (Backward) | Sequence No. (Backward) | ✅ |
+| 34 | `fixedScrapQtyAccum` | Fixed Scrap Qty. (Accum.) | Fixed Scrap Qty. (Accum.) | ✅ |
+| 35 | `scrapFactorPctAccumulated` | Scrap Factor % (Accumulated) | Scrap Factor % (Accumulated) | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfRoutingVersions
+
+**Description:** Routing Versions — dated alternative versions of a routing.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Routing Version |
+| Page ID | 90955 |
+| Page Name | `ocpfRoutingVersions` |
+| Entity Set Name | `ocpfRoutingVersions` |
+| API Group | `ocpf_manufacturing` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 9 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `routingNo` | Routing No. | Routing No. | ✅ |
+| 3 | `versionCode` | Version Code | Version Code | ✅ |
+| 4 | `description` | Description | Description | ✅ |
+| 5 | `startingDate` | Starting Date | Starting Date | ✅ |
+| 6 | `status` | Status | Status | ✅ |
+| 7 | `type` | Type | Type | ✅ |
+| 8 | `lastDateModified` | Last Date Modified | Last Date Modified | ✅ |
+| 9 | `noSeries` | No. Series | No. Series | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfProductionBomHeaders
+
+**Description:** Production BOMs — headers listing the materials and components required to produce an item.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Production BOM Header |
+| Page ID | 90956 |
+| Page Name | `ocpfProductionBomHeaders` |
+| Entity Set Name | `ocpfProductionBomHeaders` |
+| API Group | `ocpf_manufacturing` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 13 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `no` | No. | No. | ✅ |
+| 3 | `description` | Description | Description | ✅ |
+| 4 | `description2` | Description 2 | Description 2 | ✅ |
+| 5 | `searchName` | Search Name | Search Name | ✅ |
+| 6 | `unitOfMeasureCode` | Unit of Measure Code | Unit of Measure Code | ✅ |
+| 7 | `lowLevelCode` | Low-Level Code | Low-Level Code | ✅ |
+| 8 | `comment` | Comment | Comment | ✅ |
+| 9 | `creationDate` | Creation Date | Creation Date | ✅ |
+| 10 | `lastDateModified` | Last Date Modified | Last Date Modified | ✅ |
+| 11 | `status` | Status | Status | ✅ |
+| 12 | `versionNos` | Version Nos. | Version Nos. | ✅ |
+| 13 | `noSeries` | No. Series | No. Series | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfProductionBomLines
+
+**Description:** Production BOM Lines — the component lines of a production BOM, with quantity per, scrap, and routing link.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Production BOM Line |
+| Page ID | 90957 |
+| Page Name | `ocpfProductionBomLines` |
+| Entity Set Name | `ocpfProductionBomLines` |
+| API Group | `ocpf_manufacturing` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 25 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `productionBomNo` | Production BOM No. | Production BOM No. | ✅ |
+| 3 | `lineNo` | Line No. | Line No. | ✅ |
+| 4 | `versionCode` | Version Code | Version Code | ✅ |
+| 5 | `type` | Type | Type | ✅ |
+| 6 | `no` | No. | No. | ✅ |
+| 7 | `description` | Description | Description | ✅ |
+| 8 | `unitOfMeasureCode` | Unit of Measure Code | Unit of Measure Code | ✅ |
+| 9 | `quantity` | Quantity | Quantity | ✅ |
+| 10 | `position` | Position | Position | ✅ |
+| 11 | `position2` | Position 2 | Position 2 | ✅ |
+| 12 | `position3` | Position 3 | Position 3 | ✅ |
+| 13 | `leadTimeOffset` | Lead-Time Offset | Lead-Time Offset | ✅ |
+| 14 | `routingLinkCode` | Routing Link Code | Routing Link Code | ✅ |
+| 15 | `scrapPct` | Scrap % | Scrap % | ✅ |
+| 16 | `variantCode` | Variant Code | Variant Code | ✅ |
+| 17 | `comment` | Comment | Comment | ✅ |
+| 18 | `startingDate` | Starting Date | Starting Date | ✅ |
+| 19 | `endingDate` | Ending Date | Ending Date | ✅ |
+| 20 | `length` | Length | Length | ✅ |
+| 21 | `width` | Width | Width | ✅ |
+| 22 | `weight` | Weight | Weight | ✅ |
+| 23 | `depth` | Depth | Depth | ✅ |
+| 24 | `calculationFormula` | Calculation Formula | Calculation Formula | ✅ |
+| 25 | `quantityPer` | Quantity per | Quantity per | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfProductionBomVersions
+
+**Description:** Production BOM Versions — dated alternative versions of a production BOM.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Production BOM Version |
+| Page ID | 90958 |
+| Page Name | `ocpfProductionBomVersions` |
+| Entity Set Name | `ocpfProductionBomVersions` |
+| API Group | `ocpf_manufacturing` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 9 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `productionBomNo` | Production BOM No. | Production BOM No. | ✅ |
+| 3 | `versionCode` | Version Code | Version Code | ✅ |
+| 4 | `description` | Description | Description | ✅ |
+| 5 | `startingDate` | Starting Date | Starting Date | ✅ |
+| 6 | `unitOfMeasureCode` | Unit of Measure Code | Unit of Measure Code | ✅ |
+| 7 | `lastDateModified` | Last Date Modified | Last Date Modified | ✅ |
+| 8 | `status` | Status | Status | ✅ |
+| 9 | `noSeries` | No. Series | No. Series | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfFamilies
+
+**Description:** Families — groups of items produced together in a single production run.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Family |
+| Page ID | 90959 |
+| Page Name | `ocpfFamilies` |
+| Entity Set Name | `ocpfFamilies` |
+| API Group | `ocpf_manufacturing` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 8 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `no` | No. | No. | ✅ |
+| 3 | `description` | Description | Description | ✅ |
+| 4 | `description2` | Description 2 | Description 2 | ✅ |
+| 5 | `searchName` | Search Name | Search Name | ✅ |
+| 6 | `blocked` | Blocked | Blocked | ✅ |
+| 7 | `lastDateModified` | Last Date Modified | Last Date Modified | ✅ |
+| 8 | `routingNo` | Routing No. | Routing No. | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfFamilyLines
+
+**Description:** Family Lines — the items and quantities that make up a production family.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Family Line |
+| Page ID | 90960 |
+| Page Name | `ocpfFamilyLines` |
+| Entity Set Name | `ocpfFamilyLines` |
+| API Group | `ocpf_manufacturing` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 9 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `familyNo` | Family No. | Family No. | ✅ |
+| 3 | `lineNo` | Line No. | Line No. | ✅ |
+| 4 | `itemNo` | Item No. | Item No. | ✅ |
+| 5 | `description` | Description | Description | ✅ |
+| 6 | `description2` | Description 2 | Description 2 | ✅ |
+| 7 | `unitOfMeasureCode` | Unit of Measure Code | Unit of Measure Code | ✅ |
+| 8 | `quantity` | Quantity | Quantity | ✅ |
+| 9 | `lowLevelCode` | Low-Level Code | Low-Level Code | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfProductionOrders
+
+**Description:** Production Orders — orders (simulated through finished) that drive manufacturing of items, with status, dates, and quantities.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Production Order |
+| Page ID | 90961 |
+| Page Name | `ocpfProductionOrders` |
+| Entity Set Name | `ocpfProductionOrders` |
+| API Group | `ocpf_manufacturing` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 56 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `status` | Status | Status | ✅ |
+| 3 | `no` | No. | No. | ✅ |
+| 4 | `description` | Description | Description | ✅ |
+| 5 | `searchDescription` | Search Description | Search Description | ✅ |
+| 6 | `description2` | Description 2 | Description 2 | ✅ |
+| 7 | `creationDate` | Creation Date | Creation Date | ✅ |
+| 8 | `lastDateModified` | Last Date Modified | Last Date Modified | ✅ |
+| 9 | `sourceType` | Source Type | Source Type | ✅ |
+| 10 | `sourceNo` | Source No. | Source No. | ✅ |
+| 11 | `routingNo` | Routing No. | Routing No. | ✅ |
+| 12 | `variantCode` | Variant Code | Variant Code | ✅ |
+| 13 | `inventoryPostingGroup` | Inventory Posting Group | Inventory Posting Group | ✅ |
+| 14 | `genProdPostingGroup` | Gen. Prod. Posting Group | Gen. Prod. Posting Group | ✅ |
+| 15 | `genBusPostingGroup` | Gen. Bus. Posting Group | Gen. Bus. Posting Group | ✅ |
+| 16 | `comment` | Comment | Comment | ✅ |
+| 17 | `startingTime` | Starting Time | Starting Time | ✅ |
+| 18 | `startingDate` | Starting Date | Starting Date | ✅ |
+| 19 | `endingTime` | Ending Time | Ending Time | ✅ |
+| 20 | `endingDate` | Ending Date | Ending Date | ✅ |
+| 21 | `dueDate` | Due Date | Due Date | ✅ |
+| 22 | `finishedDate` | Finished Date | Finished Date | ✅ |
+| 23 | `blocked` | Blocked | Blocked | ✅ |
+| 24 | `shortcutDimension1Code` | Shortcut Dimension 1 Code | Shortcut Dimension 1 Code | ✅ |
+| 25 | `shortcutDimension2Code` | Shortcut Dimension 2 Code | Shortcut Dimension 2 Code | ✅ |
+| 26 | `locationCode` | Location Code | Location Code | ✅ |
+| 27 | `binCode` | Bin Code | Bin Code | ✅ |
+| 28 | `replanRefNo` | Replan Ref. No. | Replan Ref. No. | ✅ |
+| 29 | `replanRefStatus` | Replan Ref. Status | Replan Ref. Status | ✅ |
+| 30 | `lowLevelCode` | Low-Level Code | Low-Level Code | ✅ |
+| 31 | `quantity` | Quantity | Quantity | ✅ |
+| 32 | `unitCost` | Unit Cost | Unit Cost | ✅ |
+| 33 | `costAmount` | Cost Amount | Cost Amount | ✅ |
+| 34 | `workCenterFilter` | Work Center Filter | Work Center Filter | ✅ |
+| 35 | `capacityTypeFilter` | Capacity Type Filter | Capacity Type Filter | ✅ |
+| 36 | `capacityNoFilter` | Capacity No. Filter | Capacity No. Filter | ✅ |
+| 37 | `dateFilter` | Date Filter | Date Filter | ✅ |
+| 38 | `expectedOperationCostAmt` | Expected Operation Cost Amt. | Expected Operation Cost Amt. | ✅ |
+| 39 | `expectedComponentCostAmt` | Expected Component Cost Amt. | Expected Component Cost Amt. | ✅ |
+| 40 | `actualTimeUsed` | Actual Time Used | Actual Time Used | ✅ |
+| 41 | `allocatedCapacityNeed` | Allocated Capacity Need | Allocated Capacity Need | ✅ |
+| 42 | `expectedCapacityNeed` | Expected Capacity Need | Expected Capacity Need | ✅ |
+| 43 | `noSeries` | No. Series | No. Series | ✅ |
+| 44 | `plannedOrderNo` | Planned Order No. | Planned Order No. | ✅ |
+| 45 | `firmPlannedOrderNo` | Firm Planned Order No. | Firm Planned Order No. | ✅ |
+| 46 | `simulatedOrderNo` | Simulated Order No. | Simulated Order No. | ✅ |
+| 47 | `expectedMaterialOvhdCost` | Expected Material Ovhd. Cost | Expected Material Ovhd. Cost | ✅ |
+| 48 | `expectedCapacityOvhdCost` | Expected Capacity Ovhd. Cost | Expected Capacity Ovhd. Cost | ✅ |
+| 49 | `startingDateTime` | Starting Date-Time | Starting Date-Time | ✅ |
+| 50 | `endingDateTime` | Ending Date-Time | Ending Date-Time | ✅ |
+| 51 | `documentPutAwayStatus` | Document Put-away Status | Document Put-away Status | ✅ |
+| 52 | `reopened` | Reopened | Reopened | ✅ |
+| 53 | `manualScheduling` | Manual Scheduling | Manual Scheduling | ✅ |
+| 54 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | ✅ |
+| 55 | `completelyPicked` | Completely Picked | Completely Picked | ✅ |
+| 56 | `assignedUserId` | Assigned User ID | Assigned User ID | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfProdOrderLines
+
+**Description:** Production Order Lines — the items being produced on a production order, with scheduled dates and quantities.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Prod. Order Line |
+| Page ID | 90962 |
+| Page Name | `ocpfProdOrderLines` |
+| Entity Set Name | `ocpfProdOrderLines` |
+| API Group | `ocpf_manufacturing` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 65 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `status` | Status | Status | ✅ |
+| 3 | `prodOrderNo` | Prod. Order No. | Prod. Order No. | ✅ |
+| 4 | `lineNo` | Line No. | Line No. | ✅ |
+| 5 | `itemNo` | Item No. | Item No. | ✅ |
+| 6 | `variantCode` | Variant Code | Variant Code | ✅ |
+| 7 | `description` | Description | Description | ✅ |
+| 8 | `description2` | Description 2 | Description 2 | ✅ |
+| 9 | `locationCode` | Location Code | Location Code | ✅ |
+| 10 | `shortcutDimension1Code` | Shortcut Dimension 1 Code | Shortcut Dimension 1 Code | ✅ |
+| 11 | `shortcutDimension2Code` | Shortcut Dimension 2 Code | Shortcut Dimension 2 Code | ✅ |
+| 12 | `binCode` | Bin Code | Bin Code | ✅ |
+| 13 | `quantity` | Quantity | Quantity | ✅ |
+| 14 | `finishedQuantity` | Finished Quantity | Finished Quantity | ✅ |
+| 15 | `remainingQuantity` | Remaining Quantity | Remaining Quantity | ✅ |
+| 16 | `scrapPct` | Scrap % | Scrap % | ✅ |
+| 17 | `dueDate` | Due Date | Due Date | ✅ |
+| 18 | `startingDate` | Starting Date | Starting Date | ✅ |
+| 19 | `startingTime` | Starting Time | Starting Time | ✅ |
+| 20 | `endingDate` | Ending Date | Ending Date | ✅ |
+| 21 | `endingTime` | Ending Time | Ending Time | ✅ |
+| 22 | `planningLevelCode` | Planning Level Code | Planning Level Code | ✅ |
+| 23 | `priority` | Priority | Priority | ✅ |
+| 24 | `productionBomNo` | Production BOM No. | Production BOM No. | ✅ |
+| 25 | `routingNo` | Routing No. | Routing No. | ✅ |
+| 26 | `inventoryPostingGroup` | Inventory Posting Group | Inventory Posting Group | ✅ |
+| 27 | `routingReferenceNo` | Routing Reference No. | Routing Reference No. | ✅ |
+| 28 | `unitCost` | Unit Cost | Unit Cost | ✅ |
+| 29 | `putAwayStatus` | Put-away Status | Put-away Status | ✅ |
+| 30 | `costAmount` | Cost Amount | Cost Amount | ✅ |
+| 31 | `reservedQuantity` | Reserved Quantity | Reserved Quantity | ✅ |
+| 32 | `capacityTypeFilter` | Capacity Type Filter | Capacity Type Filter | ✅ |
+| 33 | `capacityNoFilter` | Capacity No. Filter | Capacity No. Filter | ✅ |
+| 34 | `dateFilter` | Date Filter | Date Filter | ✅ |
+| 35 | `qtyRoundingPrecision` | Qty. Rounding Precision | Qty. Rounding Precision | ✅ |
+| 36 | `qtyRoundingPrecisionBase` | Qty. Rounding Precision (Base) | Qty. Rounding Precision (Base) | ✅ |
+| 37 | `manualScheduling` | Manual Scheduling | Manual Scheduling | ✅ |
+| 38 | `unitOfMeasureCode` | Unit of Measure Code | Unit of Measure Code | ✅ |
+| 39 | `quantityBase` | Quantity (Base) | Quantity (Base) | ✅ |
+| 40 | `finishedQtyBase` | Finished Qty. (Base) | Finished Qty. (Base) | ✅ |
+| 41 | `remainingQtyBase` | Remaining Qty. (Base) | Remaining Qty. (Base) | ✅ |
+| 42 | `reservedQtyBase` | Reserved Qty. (Base) | Reserved Qty. (Base) | ✅ |
+| 43 | `expectedOperationCostAmt` | Expected Operation Cost Amt. | Expected Operation Cost Amt. | ✅ |
+| 44 | `totalExpOperOutputQty` | Total Exp. Oper. Output (Qty.) | Total Exp. Oper. Output (Qty.) | ✅ |
+| 45 | `expectedComponentCostAmt` | Expected Component Cost Amt. | Expected Component Cost Amt. | ✅ |
+| 46 | `startingDateTime` | Starting Date-Time | Starting Date-Time | ✅ |
+| 47 | `endingDateTime` | Ending Date-Time | Ending Date-Time | ✅ |
+| 48 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | ✅ |
+| 49 | `costAmountAcy` | Cost Amount (ACY) | Cost Amount (ACY) | ✅ |
+| 50 | `unitCostAcy` | Unit Cost (ACY) | Unit Cost (ACY) | ✅ |
+| 51 | `qtyPutAway` | Qty. Put Away | Qty. Put Away | ✅ |
+| 52 | `qtyPutAwayBase` | Qty. Put Away (Base) | Qty. Put Away (Base) | ✅ |
+| 53 | `putAwayQty` | Put-away Qty. | Put-away Qty. | ✅ |
+| 54 | `putAwayQtyBase` | Put-away Qty. (Base) | Put-away Qty. (Base) | ✅ |
+| 55 | `lotNoFilter` | Lot No. Filter | Lot No. Filter | ✅ |
+| 56 | `serialNoFilter` | Serial No. Filter | Serial No. Filter | ✅ |
+| 57 | `packageNoFilter` | Package No. Filter | Package No. Filter | ✅ |
+| 58 | `productionBomVersionCode` | Production BOM Version Code | Production BOM Version Code | ✅ |
+| 59 | `routingVersionCode` | Routing Version Code | Routing Version Code | ✅ |
+| 60 | `routingType` | Routing Type | Routing Type | ✅ |
+| 61 | `qtyPerUnitOfMeasure` | Qty. per Unit of Measure | Qty. per Unit of Measure | ✅ |
+| 62 | `mpsOrder` | MPS Order | MPS Order | ✅ |
+| 63 | `planningFlexibility` | Planning Flexibility | Planning Flexibility | ✅ |
+| 64 | `indirectCostPct` | Indirect Cost % | Indirect Cost % | ✅ |
+| 65 | `overheadRate` | Overhead Rate | Overhead Rate | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfProdOrderComponents
+
+**Description:** Production Order Components — the material requirements of each production order line.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Prod. Order Component |
+| Page ID | 90963 |
+| Page Name | `ocpfProdOrderComponents` |
+| Entity Set Name | `ocpfProdOrderComponents` |
+| API Group | `ocpf_manufacturing` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 60 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `status` | Status | Status | ✅ |
+| 3 | `prodOrderNo` | Prod. Order No. | Prod. Order No. | ✅ |
+| 4 | `prodOrderLineNo` | Prod. Order Line No. | Prod. Order Line No. | ✅ |
+| 5 | `lineNo` | Line No. | Line No. | ✅ |
+| 6 | `itemNo` | Item No. | Item No. | ✅ |
+| 7 | `description` | Description | Description | ✅ |
+| 8 | `unitOfMeasureCode` | Unit of Measure Code | Unit of Measure Code | ✅ |
+| 9 | `quantity` | Quantity | Quantity | ✅ |
+| 10 | `position` | Position | Position | ✅ |
+| 11 | `position2` | Position 2 | Position 2 | ✅ |
+| 12 | `position3` | Position 3 | Position 3 | ✅ |
+| 13 | `leadTimeOffset` | Lead-Time Offset | Lead-Time Offset | ✅ |
+| 14 | `routingLinkCode` | Routing Link Code | Routing Link Code | ✅ |
+| 15 | `scrapPct` | Scrap % | Scrap % | ✅ |
+| 16 | `variantCode` | Variant Code | Variant Code | ✅ |
+| 17 | `qtyRoundingPrecision` | Qty. Rounding Precision | Qty. Rounding Precision | ✅ |
+| 18 | `qtyRoundingPrecisionBase` | Qty. Rounding Precision (Base) | Qty. Rounding Precision (Base) | ✅ |
+| 19 | `expectedQuantity` | Expected Quantity | Expected Quantity | ✅ |
+| 20 | `remainingQuantity` | Remaining Quantity | Remaining Quantity | ✅ |
+| 21 | `actConsumptionQty` | Act. Consumption (Qty) | Act. Consumption (Qty) | ✅ |
+| 22 | `flushingMethod` | Flushing Method | Flushing Method | ✅ |
+| 23 | `locationCode` | Location Code | Location Code | ✅ |
+| 24 | `shortcutDimension1Code` | Shortcut Dimension 1 Code | Shortcut Dimension 1 Code | ✅ |
+| 25 | `shortcutDimension2Code` | Shortcut Dimension 2 Code | Shortcut Dimension 2 Code | ✅ |
+| 26 | `binCode` | Bin Code | Bin Code | ✅ |
+| 27 | `suppliedByLineNo` | Supplied-by Line No. | Supplied-by Line No. | ✅ |
+| 28 | `planningLevelCode` | Planning Level Code | Planning Level Code | ✅ |
+| 29 | `itemLowLevelCode` | Item Low-Level Code | Item Low-Level Code | ✅ |
+| 30 | `length` | Length | Length | ✅ |
+| 31 | `width` | Width | Width | ✅ |
+| 32 | `weight` | Weight | Weight | ✅ |
+| 33 | `depth` | Depth | Depth | ✅ |
+| 34 | `calculationFormula` | Calculation Formula | Calculation Formula | ✅ |
+| 35 | `quantityPer` | Quantity per | Quantity per | ✅ |
+| 36 | `unitCost` | Unit Cost | Unit Cost | ✅ |
+| 37 | `costAmount` | Cost Amount | Cost Amount | ✅ |
+| 38 | `dueDate` | Due Date | Due Date | ✅ |
+| 39 | `dueTime` | Due Time | Due Time | ✅ |
+| 40 | `qtyPerUnitOfMeasure` | Qty. per Unit of Measure | Qty. per Unit of Measure | ✅ |
+| 41 | `remainingQtyBase` | Remaining Qty. (Base) | Remaining Qty. (Base) | ✅ |
+| 42 | `quantityBase` | Quantity (Base) | Quantity (Base) | ✅ |
+| 43 | `reservedQtyBase` | Reserved Qty. (Base) | Reserved Qty. (Base) | ✅ |
+| 44 | `reservedQuantity` | Reserved Quantity | Reserved Quantity | ✅ |
+| 45 | `expectedQtyBase` | Expected Qty. (Base) | Expected Qty. (Base) | ✅ |
+| 46 | `dueDateTime` | Due Date-Time | Due Date-Time | ✅ |
+| 47 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | ✅ |
+| 48 | `substitutionAvailable` | Substitution Available | Substitution Available | ✅ |
+| 49 | `originalItemNo` | Original Item No. | Original Item No. | ✅ |
+| 50 | `originalVariantCode` | Original Variant Code | Original Variant Code | ✅ |
+| 51 | `pickQty` | Pick Qty. | Pick Qty. | ✅ |
+| 52 | `qtyPicked` | Qty. Picked | Qty. Picked | ✅ |
+| 53 | `qtyPickedBase` | Qty. Picked (Base) | Qty. Picked (Base) | ✅ |
+| 54 | `completelyPicked` | Completely Picked | Completely Picked | ✅ |
+| 55 | `pickQtyBase` | Pick Qty. (Base) | Pick Qty. (Base) | ✅ |
+| 56 | `directUnitCost` | Direct Unit Cost | Direct Unit Cost | ✅ |
+| 57 | `indirectCostPct` | Indirect Cost % | Indirect Cost % | ✅ |
+| 58 | `overheadRate` | Overhead Rate | Overhead Rate | ✅ |
+| 59 | `directCostAmount` | Direct Cost Amount | Direct Cost Amount | ✅ |
+| 60 | `overheadAmount` | Overhead Amount | Overhead Amount | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfProdOrderRoutingLines
+
+**Description:** Production Order Routing Lines — the scheduled operations for each production order.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Prod. Order Routing Line |
+| Page ID | 90964 |
+| Page Name | `ocpfProdOrderRoutingLines` |
+| Entity Set Name | `ocpfProdOrderRoutingLines` |
+| API Group | `ocpf_manufacturing` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 63 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `routingNo` | Routing No. | Routing No. | ✅ |
+| 3 | `routingReferenceNo` | Routing Reference No. | Routing Reference No. | ✅ |
+| 4 | `operationNo` | Operation No. | Operation No. | ✅ |
+| 5 | `nextOperationNo` | Next Operation No. | Next Operation No. | ✅ |
+| 6 | `previousOperationNo` | Previous Operation No. | Previous Operation No. | ✅ |
+| 7 | `type` | Type | Type | ✅ |
+| 8 | `no` | No. | No. | ✅ |
+| 9 | `workCenterNo` | Work Center No. | Work Center No. | ✅ |
+| 10 | `workCenterGroupCode` | Work Center Group Code | Work Center Group Code | ✅ |
+| 11 | `description` | Description | Description | ✅ |
+| 12 | `setupTime` | Setup Time | Setup Time | ✅ |
+| 13 | `runTime` | Run Time | Run Time | ✅ |
+| 14 | `waitTime` | Wait Time | Wait Time | ✅ |
+| 15 | `moveTime` | Move Time | Move Time | ✅ |
+| 16 | `fixedScrapQuantity` | Fixed Scrap Quantity | Fixed Scrap Quantity | ✅ |
+| 17 | `lotSize` | Lot Size | Lot Size | ✅ |
+| 18 | `scrapFactorPct` | Scrap Factor % | Scrap Factor % | ✅ |
+| 19 | `setupTimeUnitOfMeasCode` | Setup Time Unit of Meas. Code | Setup Time Unit of Meas. Code | ✅ |
+| 20 | `runTimeUnitOfMeasCode` | Run Time Unit of Meas. Code | Run Time Unit of Meas. Code | ✅ |
+| 21 | `waitTimeUnitOfMeasCode` | Wait Time Unit of Meas. Code | Wait Time Unit of Meas. Code | ✅ |
+| 22 | `moveTimeUnitOfMeasCode` | Move Time Unit of Meas. Code | Move Time Unit of Meas. Code | ✅ |
+| 23 | `minimumProcessTime` | Minimum Process Time | Minimum Process Time | ✅ |
+| 24 | `maximumProcessTime` | Maximum Process Time | Maximum Process Time | ✅ |
+| 25 | `concurrentCapacities` | Concurrent Capacities | Concurrent Capacities | ✅ |
+| 26 | `sendAheadQuantity` | Send-Ahead Quantity | Send-Ahead Quantity | ✅ |
+| 27 | `routingLinkCode` | Routing Link Code | Routing Link Code | ✅ |
+| 28 | `standardTaskCode` | Standard Task Code | Standard Task Code | ✅ |
+| 29 | `unitCostPer` | Unit Cost per | Unit Cost per | ✅ |
+| 30 | `recalculate` | Recalculate | Recalculate | ✅ |
+| 31 | `sequenceNoForward` | Sequence No. (Forward) | Sequence No. (Forward) | ✅ |
+| 32 | `sequenceNoBackward` | Sequence No. (Backward) | Sequence No. (Backward) | ✅ |
+| 33 | `fixedScrapQtyAccum` | Fixed Scrap Qty. (Accum.) | Fixed Scrap Qty. (Accum.) | ✅ |
+| 34 | `scrapFactorPctAccumulated` | Scrap Factor % (Accumulated) | Scrap Factor % (Accumulated) | ✅ |
+| 35 | `sequenceNoActual` | Sequence No. (Actual) | Sequence No. (Actual) | ✅ |
+| 36 | `directUnitCost` | Direct Unit Cost | Direct Unit Cost | ✅ |
+| 37 | `indirectCostPct` | Indirect Cost % | Indirect Cost % | ✅ |
+| 38 | `overheadRate` | Overhead Rate | Overhead Rate | ✅ |
+| 39 | `startingTime` | Starting Time | Starting Time | ✅ |
+| 40 | `startingDate` | Starting Date | Starting Date | ✅ |
+| 41 | `endingTime` | Ending Time | Ending Time | ✅ |
+| 42 | `endingDate` | Ending Date | Ending Date | ✅ |
+| 43 | `status` | Status | Status | ✅ |
+| 44 | `prodOrderNo` | Prod. Order No. | Prod. Order No. | ✅ |
+| 45 | `unitCostCalculation` | Unit Cost Calculation | Unit Cost Calculation | ✅ |
+| 46 | `inputQuantity` | Input Quantity | Input Quantity | ✅ |
+| 47 | `criticalPath` | Critical Path | Critical Path | ✅ |
+| 48 | `routingStatus` | Routing Status | Routing Status | ✅ |
+| 49 | `flushingMethod` | Flushing Method | Flushing Method | ✅ |
+| 50 | `expectedOperationCostAmt` | Expected Operation Cost Amt. | Expected Operation Cost Amt. | ✅ |
+| 51 | `expectedCapacityNeed` | Expected Capacity Need | Expected Capacity Need | ✅ |
+| 52 | `expectedCapacityOvhdCost` | Expected Capacity Ovhd. Cost | Expected Capacity Ovhd. Cost | ✅ |
+| 53 | `startingDateTime` | Starting Date-Time | Starting Date-Time | ✅ |
+| 54 | `endingDateTime` | Ending Date-Time | Ending Date-Time | ✅ |
+| 55 | `scheduleManually` | Schedule Manually | Schedule Manually | ✅ |
+| 56 | `locationCode` | Location Code | Location Code | ✅ |
+| 57 | `openShopFloorBinCode` | Open Shop Floor Bin Code | Open Shop Floor Bin Code | ✅ |
+| 58 | `toProductionBinCode` | To-Production Bin Code | To-Production Bin Code | ✅ |
+| 59 | `fromProductionBinCode` | From-Production Bin Code | From-Production Bin Code | ✅ |
+| 60 | `postedOutputQuantity` | Posted Output Quantity | Posted Output Quantity | ✅ |
+| 61 | `postedScrapQuantity` | Posted Scrap Quantity | Posted Scrap Quantity | ✅ |
+| 62 | `postedRunTime` | Posted Run Time | Posted Run Time | ✅ |
+| 63 | `postedSetupTime` | Posted Setup Time | Posted Setup Time | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfProdOrderCapacityNeeds
+
+**Description:** Production Order Capacity Needs — calculated capacity requirements per operation and time bucket. Read-only.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Prod. Order Capacity Need |
+| Page ID | 90965 |
+| Page Name | `ocpfProdOrderCapacityNeeds` |
+| Entity Set Name | `ocpfProdOrderCapacityNeeds` |
+| API Group | `ocpf_manufacturing` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ❌ No (GET only) |
+| Field Count | 29 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `status` | Status | Status | — |
+| 3 | `prodOrderNo` | Prod. Order No. | Prod. Order No. | — |
+| 4 | `routingNo` | Routing No. | Routing No. | — |
+| 5 | `lineNo` | Line No. | Line No. | — |
+| 6 | `operationNo` | Operation No. | Operation No. | — |
+| 7 | `type` | Type | Type | — |
+| 8 | `no` | No. | No. | — |
+| 9 | `workCenterNo` | Work Center No. | Work Center No. | — |
+| 10 | `workCenterGroupCode` | Work Center Group Code | Work Center Group Code | — |
+| 11 | `routingReferenceNo` | Routing Reference No. | Routing Reference No. | — |
+| 12 | `date` | Date | Date | — |
+| 13 | `startingTime` | Starting Time | Starting Time | — |
+| 14 | `endingTime` | Ending Time | Ending Time | — |
+| 15 | `allocatedTime` | Allocated Time | Allocated Time | — |
+| 16 | `sendAheadType` | Send-Ahead Type | Send-Ahead Type | — |
+| 17 | `timeType` | Time Type | Time Type | — |
+| 18 | `neededTime` | Needed Time | Needed Time | — |
+| 19 | `neededTimeMs` | Needed Time (ms) | Needed Time (ms) | — |
+| 20 | `lotSize` | Lot Size | Lot Size | — |
+| 21 | `concurrentCapacities` | Concurrent Capacities | Concurrent Capacities | — |
+| 22 | `efficiency` | Efficiency | Efficiency | — |
+| 23 | `startingDateTime` | Starting Date-Time | Starting Date-Time | — |
+| 24 | `endingDateTime` | Ending Date-Time | Ending Date-Time | — |
+| 25 | `worksheetTemplateName` | Worksheet Template Name | Worksheet Template Name | — |
+| 26 | `worksheetBatchName` | Worksheet Batch Name | Worksheet Batch Name | — |
+| 27 | `worksheetLineNo` | Worksheet Line No. | Worksheet Line No. | — |
+| 28 | `active` | Active | Active | — |
+| 29 | `requestedOnly` | Requested Only | Requested Only | — |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfCapacityLedgerEntries
+
+**Description:** Capacity Ledger Entries — posted output, run times, and stop/scrap quantities per operation. Read-only.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Capacity Ledger Entry |
+| Page ID | 90966 |
+| Page Name | `ocpfCapacityLedgerEntries` |
+| Entity Set Name | `ocpfCapacityLedgerEntries` |
+| API Group | `ocpf_manufacturing` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ❌ No (GET only) |
+| Field Count | 40 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `entryNo` | Entry No. | Entry No. | — |
+| 3 | `no` | No. | No. | — |
+| 4 | `postingDate` | Posting Date | Posting Date | — |
+| 5 | `type` | Type | Type | — |
+| 6 | `documentNo` | Document No. | Document No. | — |
+| 7 | `description` | Description | Description | — |
+| 8 | `quantity` | Quantity | Quantity | — |
+| 9 | `invoicedQuantity` | Invoiced Quantity | Invoiced Quantity | — |
+| 10 | `itemRegisterNo` | Item Register No. | Item Register No. | — |
+| 11 | `siftBucketNo` | SIFT Bucket No. | SIFT Bucket No. | — |
+| 12 | `capUnitOfMeasureCode` | Cap. Unit of Measure Code | Cap. Unit of Measure Code | — |
+| 13 | `qtyPerCapUnitOfMeasure` | Qty. per Cap. Unit of Measure | Qty. per Cap. Unit of Measure | — |
+| 14 | `globalDimension1Code` | Global Dimension 1 Code | Global Dimension 1 Code | — |
+| 15 | `globalDimension2Code` | Global Dimension 2 Code | Global Dimension 2 Code | — |
+| 16 | `completelyInvoiced` | Completely Invoiced | Completely Invoiced | — |
+| 17 | `itemNo` | Item No. | Item No. | — |
+| 18 | `variantCode` | Variant Code | Variant Code | — |
+| 19 | `unitOfMeasureCode` | Unit of Measure Code | Unit of Measure Code | — |
+| 20 | `qtyPerUnitOfMeasure` | Qty. per Unit of Measure | Qty. per Unit of Measure | — |
+| 21 | `documentDate` | Document Date | Document Date | — |
+| 22 | `externalDocumentNo` | External Document No. | External Document No. | — |
+| 23 | `directCost` | Direct Cost | Direct Cost | — |
+| 24 | `overheadCost` | Overhead Cost | Overhead Cost | — |
+| 25 | `directCostAcy` | Direct Cost (ACY) | Direct Cost (ACY) | — |
+| 26 | `overheadCostAcy` | Overhead Cost (ACY) | Overhead Cost (ACY) | — |
+| 27 | `subcontracting` | Subcontracting | Subcontracting | — |
+| 28 | `reversed` | Reversed | Reversed | — |
+| 29 | `reversedByEntryNo` | Reversed by Entry No. | Reversed by Entry No. | — |
+| 30 | `reversedEntryNo` | Reversed Entry No. | Reversed Entry No. | — |
+| 31 | `orderType` | Order Type | Order Type | — |
+| 32 | `orderNo` | Order No. | Order No. | — |
+| 33 | `orderLineNo` | Order Line No. | Order Line No. | — |
+| 34 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | — |
+| 35 | `shortcutDimension3Code` | Shortcut Dimension 3 Code | Shortcut Dimension 3 Code | — |
+| 36 | `shortcutDimension4Code` | Shortcut Dimension 4 Code | Shortcut Dimension 4 Code | — |
+| 37 | `shortcutDimension5Code` | Shortcut Dimension 5 Code | Shortcut Dimension 5 Code | — |
+| 38 | `shortcutDimension6Code` | Shortcut Dimension 6 Code | Shortcut Dimension 6 Code | — |
+| 39 | `shortcutDimension7Code` | Shortcut Dimension 7 Code | Shortcut Dimension 7 Code | — |
+| 40 | `shortcutDimension8Code` | Shortcut Dimension 8 Code | Shortcut Dimension 8 Code | — |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfAssemblySetup
+
+**Description:** Assembly Setup — company-wide settings and number series for assembly management.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Assembly Setup |
+| Page ID | 90967 |
+| Page Name | `ocpfAssemblySetup` |
+| Entity Set Name | `ocpfAssemblySetup` |
+| API Group | `ocpf_manufacturing` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 12 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `primaryKey` | Primary Key | Primary Key | ✅ |
+| 3 | `stockoutWarning` | Stockout Warning | Stockout Warning | ✅ |
+| 4 | `assemblyOrderNos` | Assembly Order Nos. | Assembly Order Nos. | ✅ |
+| 5 | `assemblyQuoteNos` | Assembly Quote Nos. | Assembly Quote Nos. | ✅ |
+| 6 | `blanketAssemblyOrderNos` | Blanket Assembly Order Nos. | Blanket Assembly Order Nos. | ✅ |
+| 7 | `postedAssemblyOrderNos` | Posted Assembly Order Nos. | Posted Assembly Order Nos. | ✅ |
+| 8 | `copyComponentDimensionsFrom` | Copy Component Dimensions from | Copy Component Dimensions from | ✅ |
+| 9 | `defaultLocationForOrders` | Default Location for Orders | Default Location for Orders | ✅ |
+| 10 | `copyCommentsWhenPosting` | Copy Comments when Posting | Copy Comments when Posting | ✅ |
+| 11 | `createMovementsAutomatically` | Create Movements Automatically | Create Movements Automatically | ✅ |
+| 12 | `defaultGenBusPostGroup` | Default Gen. Bus. Post. Group | Default General Business Posting Group | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfBomComponents
+
+**Description:** Assembly BOM Components — the component lines (items or resources) that define an assembly item's bill of materials.
+
+| Property | Value |
+|---|---|
+| **Source Table** | BOM Component |
+| Page ID | 90968 |
+| Page Name | `ocpfBomComponents` |
+| Entity Set Name | `ocpfBomComponents` |
+| API Group | `ocpf_manufacturing` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 19 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `parentItemNo` | Parent Item No. | Parent Item No. | ✅ |
+| 3 | `lineNo` | Line No. | Line No. | ✅ |
+| 4 | `type` | Type | Type | ✅ |
+| 5 | `no` | No. | No. | ✅ |
+| 6 | `assemblyBom` | Assembly BOM | Assembly BOM | ✅ |
+| 7 | `description` | Description | Description | ✅ |
+| 8 | `unitOfMeasureCode` | Unit of Measure Code | Unit of Measure Code | ✅ |
+| 9 | `quantityPer` | Quantity per | Quantity per | ✅ |
+| 10 | `position` | Position | Position | ✅ |
+| 11 | `position2` | Position 2 | Position 2 | ✅ |
+| 12 | `position3` | Position 3 | Position 3 | ✅ |
+| 13 | `machineNo` | Machine No. | Machine No. | ✅ |
+| 14 | `leadTimeOffset` | Lead-Time Offset | Lead-Time Offset | ✅ |
+| 15 | `bomDescription` | BOM Description | BOM Description | ✅ |
+| 16 | `resourceUsageType` | Resource Usage Type | Resource Usage Type | ✅ |
+| 17 | `variantCode` | Variant Code | Variant Code | ✅ |
+| 18 | `installedInLineNo` | Installed in Line No. | Installed in Line No. | ✅ |
+| 19 | `installedInItemNo` | Installed in Item No. | Installed in Item No. | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfAssemblyHeaders
+
+**Description:** Assembly Orders — open assembly order and quote headers for assemble-to-stock and assemble-to-order flows.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Assembly Header |
+| Page ID | 90969 |
+| Page Name | `ocpfAssemblyHeaders` |
+| Entity Set Name | `ocpfAssemblyHeaders` |
+| API Group | `ocpf_manufacturing` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 50 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `documentType` | Document Type | Document Type | ✅ |
+| 3 | `no` | No. | No. | ✅ |
+| 4 | `description` | Description | Description | ✅ |
+| 5 | `searchDescription` | Search Description | Search Description | ✅ |
+| 6 | `description2` | Description 2 | Description 2 | ✅ |
+| 7 | `creationDate` | Creation Date | Creation Date | ✅ |
+| 8 | `lastDateModified` | Last Date Modified | Last Date Modified | ✅ |
+| 9 | `itemNo` | Item No. | Item No. | ✅ |
+| 10 | `variantCode` | Variant Code | Variant Code | ✅ |
+| 11 | `inventoryPostingGroup` | Inventory Posting Group | Inventory Posting Group | ✅ |
+| 12 | `genProdPostingGroup` | Gen. Prod. Posting Group | Gen. Prod. Posting Group | ✅ |
+| 13 | `genBusPostingGroup` | Gen. Bus. Posting Group | Gen. Bus. Posting Group | ✅ |
+| 14 | `comment` | Comment | Comment | ✅ |
+| 15 | `locationCode` | Location Code | Location Code | ✅ |
+| 16 | `shortcutDimension1Code` | Shortcut Dimension 1 Code | Shortcut Dimension 1 Code | ✅ |
+| 17 | `shortcutDimension2Code` | Shortcut Dimension 2 Code | Shortcut Dimension 2 Code | ✅ |
+| 18 | `postingDate` | Posting Date | Posting Date | ✅ |
+| 19 | `dueDate` | Due Date | Due Date | ✅ |
+| 20 | `startingDate` | Starting Date | Starting Date | ✅ |
+| 21 | `endingDate` | Ending Date | Ending Date | ✅ |
+| 22 | `binCode` | Bin Code | Bin Code | ✅ |
+| 23 | `quantity` | Quantity | Quantity | ✅ |
+| 24 | `quantityBase` | Quantity (Base) | Quantity (Base) | ✅ |
+| 25 | `remainingQuantity` | Remaining Quantity | Remaining Quantity | ✅ |
+| 26 | `remainingQuantityBase` | Remaining Quantity (Base) | Remaining Quantity (Base) | ✅ |
+| 27 | `assembledQuantity` | Assembled Quantity | Assembled Quantity | ✅ |
+| 28 | `assembledQuantityBase` | Assembled Quantity (Base) | Assembled Quantity (Base) | ✅ |
+| 29 | `quantityToAssemble` | Quantity to Assemble | Quantity to Assemble | ✅ |
+| 30 | `quantityToAssembleBase` | Quantity to Assemble (Base) | Quantity to Assemble (Base) | ✅ |
+| 31 | `reservedQuantity` | Reserved Quantity | Reserved Quantity | ✅ |
+| 32 | `reservedQtyBase` | Reserved Qty. (Base) | Reserved Qty. (Base) | ✅ |
+| 33 | `planningFlexibility` | Planning Flexibility | Planning Flexibility | ✅ |
+| 34 | `mpsOrder` | MPS Order | MPS Order | ✅ |
+| 35 | `assembleToOrder` | Assemble to Order | Assemble to Order | ✅ |
+| 36 | `postingNo` | Posting No. | Posting No. | ✅ |
+| 37 | `unitCost` | Unit Cost | Unit Cost | ✅ |
+| 38 | `costAmount` | Cost Amount | Cost Amount | ✅ |
+| 39 | `rolledUpAssemblyCost` | Rolled-up Assembly Cost | Rolled-up Assembly Cost | ✅ |
+| 40 | `indirectCostPct` | Indirect Cost % | Indirect Cost % | ✅ |
+| 41 | `overheadRate` | Overhead Rate | Overhead Rate | ✅ |
+| 42 | `unitOfMeasureCode` | Unit of Measure Code | Unit of Measure Code | ✅ |
+| 43 | `qtyPerUnitOfMeasure` | Qty. per Unit of Measure | Qty. per Unit of Measure | ✅ |
+| 44 | `qtyRoundingPrecision` | Qty. Rounding Precision | Qty. Rounding Precision | ✅ |
+| 45 | `qtyRoundingPrecisionBase` | Qty. Rounding Precision (Base) | Qty. Rounding Precision (Base) | ✅ |
+| 46 | `noSeries` | No. Series | No. Series | ✅ |
+| 47 | `postingNoSeries` | Posting No. Series | Posting No. Series | ✅ |
+| 48 | `status` | Status | Status | ✅ |
+| 49 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | ✅ |
+| 50 | `assignedUserId` | Assigned User ID | Assigned User ID | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfAssemblyLines
+
+**Description:** Assembly Lines — component consumption lines of open assembly orders.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Assembly Line |
+| Page ID | 90970 |
+| Page Name | `ocpfAssemblyLines` |
+| Entity Set Name | `ocpfAssemblyLines` |
+| API Group | `ocpf_manufacturing` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 50 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `documentType` | Document Type | Document Type | ✅ |
+| 3 | `documentNo` | Document No. | Document No. | ✅ |
+| 4 | `lineNo` | Line No. | Line No. | ✅ |
+| 5 | `type` | Type | Type | ✅ |
+| 6 | `no` | No. | No. | ✅ |
+| 7 | `variantCode` | Variant Code | Variant Code | ✅ |
+| 8 | `description` | Description | Description | ✅ |
+| 9 | `description2` | Description 2 | Description 2 | ✅ |
+| 10 | `leadTimeOffset` | Lead-Time Offset | Lead-Time Offset | ✅ |
+| 11 | `resourceUsageType` | Resource Usage Type | Resource Usage Type | ✅ |
+| 12 | `locationCode` | Location Code | Location Code | ✅ |
+| 13 | `shortcutDimension1Code` | Shortcut Dimension 1 Code | Shortcut Dimension 1 Code | ✅ |
+| 14 | `shortcutDimension2Code` | Shortcut Dimension 2 Code | Shortcut Dimension 2 Code | ✅ |
+| 15 | `binCode` | Bin Code | Bin Code | ✅ |
+| 16 | `position` | Position | Position | ✅ |
+| 17 | `position2` | Position 2 | Position 2 | ✅ |
+| 18 | `position3` | Position 3 | Position 3 | ✅ |
+| 19 | `applToItemEntry` | Appl.-to Item Entry | Appl.-to Item Entry | ✅ |
+| 20 | `applFromItemEntry` | Appl.-from Item Entry | Appl.-from Item Entry | ✅ |
+| 21 | `quantity` | Quantity | Quantity | ✅ |
+| 22 | `quantityBase` | Quantity (Base) | Quantity (Base) | ✅ |
+| 23 | `remainingQuantity` | Remaining Quantity | Remaining Quantity | ✅ |
+| 24 | `remainingQuantityBase` | Remaining Quantity (Base) | Remaining Quantity (Base) | ✅ |
+| 25 | `consumedQuantity` | Consumed Quantity | Consumed Quantity | ✅ |
+| 26 | `consumedQuantityBase` | Consumed Quantity (Base) | Consumed Quantity (Base) | ✅ |
+| 27 | `quantityToConsume` | Quantity to Consume | Quantity to Consume | ✅ |
+| 28 | `quantityToConsumeBase` | Quantity to Consume (Base) | Quantity to Consume (Base) | ✅ |
+| 29 | `reservedQuantity` | Reserved Quantity | Reserved Quantity | ✅ |
+| 30 | `reservedQtyBase` | Reserved Qty. (Base) | Reserved Qty. (Base) | ✅ |
+| 31 | `availWarning` | Avail. Warning | Avail. Warning | ✅ |
+| 32 | `substitutionAvailable` | Substitution Available | Substitution Available | ✅ |
+| 33 | `dueDate` | Due Date | Due Date | ✅ |
+| 34 | `reserve` | Reserve | Reserve | ✅ |
+| 35 | `quantityPer` | Quantity per | Quantity per | ✅ |
+| 36 | `qtyPerUnitOfMeasure` | Qty. per Unit of Measure | Qty. per Unit of Measure | ✅ |
+| 37 | `inventoryPostingGroup` | Inventory Posting Group | Inventory Posting Group | ✅ |
+| 38 | `genProdPostingGroup` | Gen. Prod. Posting Group | Gen. Prod. Posting Group | ✅ |
+| 39 | `genBusPostingGroup` | Gen. Bus. Posting Group | Gen. Bus. Posting Group | ✅ |
+| 40 | `unitCost` | Unit Cost | Unit Cost | ✅ |
+| 41 | `costAmount` | Cost Amount | Cost Amount | ✅ |
+| 42 | `dateFilter` | Date Filter | Date Filter | ✅ |
+| 43 | `unitOfMeasureCode` | Unit of Measure Code | Unit of Measure Code | ✅ |
+| 44 | `qtyRoundingPrecision` | Qty. Rounding Precision | Qty. Rounding Precision | ✅ |
+| 45 | `qtyRoundingPrecisionBase` | Qty. Rounding Precision (Base) | Qty. Rounding Precision (Base) | ✅ |
+| 46 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | ✅ |
+| 47 | `pickQty` | Pick Qty. | Pick Qty. | ✅ |
+| 48 | `pickQtyBase` | Pick Qty. (Base) | Pick Qty. (Base) | ✅ |
+| 49 | `qtyPicked` | Qty. Picked | Qty. Picked | ✅ |
+| 50 | `qtyPickedBase` | Qty. Picked (Base) | Qty. Picked (Base) | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfPostedAssemblyHeaders
+
+**Description:** Posted Assembly Orders — headers of posted (completed) assembly orders. Read-only.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Posted Assembly Header |
+| Page ID | 90971 |
+| Page Name | `ocpfPostedAssemblyHeaders` |
+| Entity Set Name | `ocpfPostedAssemblyHeaders` |
+| API Group | `ocpf_manufacturing` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ❌ No (GET only) |
+| Field Count | 37 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `no` | No. | No. | — |
+| 3 | `description` | Description | Description | — |
+| 4 | `searchDescription` | Search Description | Search Description | — |
+| 5 | `description2` | Description 2 | Description 2 | — |
+| 6 | `orderNo` | Order No. | Order No. | — |
+| 7 | `itemNo` | Item No. | Item No. | — |
+| 8 | `variantCode` | Variant Code | Variant Code | — |
+| 9 | `inventoryPostingGroup` | Inventory Posting Group | Inventory Posting Group | — |
+| 10 | `genProdPostingGroup` | Gen. Prod. Posting Group | Gen. Prod. Posting Group | — |
+| 11 | `genBusPostingGroup` | Gen. Bus. Posting Group | Gen. Bus. Posting Group | — |
+| 12 | `comment` | Comment | Comment | — |
+| 13 | `locationCode` | Location Code | Location Code | — |
+| 14 | `shortcutDimension1Code` | Shortcut Dimension 1 Code | Shortcut Dimension 1 Code | — |
+| 15 | `shortcutDimension2Code` | Shortcut Dimension 2 Code | Shortcut Dimension 2 Code | — |
+| 16 | `postingDate` | Posting Date | Posting Date | — |
+| 17 | `dueDate` | Due Date | Due Date | — |
+| 18 | `startingDate` | Starting Date | Starting Date | — |
+| 19 | `endingDate` | Ending Date | Ending Date | — |
+| 20 | `binCode` | Bin Code | Bin Code | — |
+| 21 | `itemRcptEntryNo` | Item Rcpt. Entry No. | Item Rcpt. Entry No. | — |
+| 22 | `quantity` | Quantity | Quantity | — |
+| 23 | `quantityBase` | Quantity (Base) | Quantity (Base) | — |
+| 24 | `assembleToOrder` | Assemble to Order | Assemble to Order | — |
+| 25 | `unitCost` | Unit Cost | Unit Cost | — |
+| 26 | `costAmount` | Cost Amount | Cost Amount | — |
+| 27 | `indirectCostPct` | Indirect Cost % | Indirect Cost % | — |
+| 28 | `overheadRate` | Overhead Rate | Overhead Rate | — |
+| 29 | `unitOfMeasureCode` | Unit of Measure Code | Unit of Measure Code | — |
+| 30 | `qtyPerUnitOfMeasure` | Qty. per Unit of Measure | Qty. per Unit of Measure | — |
+| 31 | `reversed` | Reversed | Reversed | — |
+| 32 | `noSeries` | No. Series | No. Series | — |
+| 33 | `postingNoSeries` | Posting No. Series | Posting No. Series | — |
+| 34 | `orderNoSeries` | Order No. Series | Order No. Series | — |
+| 35 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | — |
+| 36 | `userId` | User ID | User ID | — |
+| 37 | `sourceCode` | Source Code | Source Code | — |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfPostedAssemblyLines
+
+**Description:** Posted Assembly Lines — component lines of posted assembly orders. Read-only.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Posted Assembly Line |
+| Page ID | 90972 |
+| Page Name | `ocpfPostedAssemblyLines` |
+| Entity Set Name | `ocpfPostedAssemblyLines` |
+| API Group | `ocpf_manufacturing` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ❌ No (GET only) |
+| Field Count | 32 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `documentNo` | Document No. | Document No. | — |
+| 3 | `lineNo` | Line No. | Line No. | — |
+| 4 | `orderNo` | Order No. | Order No. | — |
+| 5 | `orderLineNo` | Order Line No. | Order Line No. | — |
+| 6 | `type` | Type | Type | — |
+| 7 | `no` | No. | No. | — |
+| 8 | `variantCode` | Variant Code | Variant Code | — |
+| 9 | `description` | Description | Description | — |
+| 10 | `description2` | Description 2 | Description 2 | — |
+| 11 | `leadTimeOffset` | Lead-Time Offset | Lead-Time Offset | — |
+| 12 | `resourceUsageType` | Resource Usage Type | Resource Usage Type | — |
+| 13 | `locationCode` | Location Code | Location Code | — |
+| 14 | `shortcutDimension1Code` | Shortcut Dimension 1 Code | Shortcut Dimension 1 Code | — |
+| 15 | `shortcutDimension2Code` | Shortcut Dimension 2 Code | Shortcut Dimension 2 Code | — |
+| 16 | `binCode` | Bin Code | Bin Code | — |
+| 17 | `position` | Position | Position | — |
+| 18 | `position2` | Position 2 | Position 2 | — |
+| 19 | `position3` | Position 3 | Position 3 | — |
+| 20 | `itemShptEntryNo` | Item Shpt. Entry No. | Item Shpt. Entry No. | — |
+| 21 | `quantity` | Quantity | Quantity | — |
+| 22 | `quantityBase` | Quantity (Base) | Quantity (Base) | — |
+| 23 | `dueDate` | Due Date | Due Date | — |
+| 24 | `quantityPer` | Quantity per | Quantity per | — |
+| 25 | `qtyPerUnitOfMeasure` | Qty. per Unit of Measure | Qty. per Unit of Measure | — |
+| 26 | `inventoryPostingGroup` | Inventory Posting Group | Inventory Posting Group | — |
+| 27 | `genProdPostingGroup` | Gen. Prod. Posting Group | Gen. Prod. Posting Group | — |
+| 28 | `genBusPostingGroup` | Gen. Bus. Posting Group | Gen. Bus. Posting Group | — |
+| 29 | `unitCost` | Unit Cost | Unit Cost | — |
+| 30 | `costAmount` | Cost Amount | Cost Amount | — |
+| 31 | `unitOfMeasureCode` | Unit of Measure Code | Unit of Measure Code | — |
+| 32 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | — |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+## Service Management
+
+*Category introduced in API v3.1 (`ocpf_serviceManagement`). Covers service items, service documents, contracts, fault/resolution codes, and posted service documents.*
+
+### ocpfServiceMgtSetup
+
+**Description:** Service Management Setup — company-wide settings, defaults, and number series for service management.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Service Mgt. Setup |
+| Page ID | 90924 |
+| Page Name | `ocpfServiceMgtSetup` |
+| Entity Set Name | `ocpfServiceMgtSetup` |
+| API Group | `ocpf_serviceManagement` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 71 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `primaryKey` | Primary Key | Primary Key | ✅ |
+| 3 | `faultReportingLevel` | Fault Reporting Level | Fault Reporting Level | ✅ |
+| 4 | `linkServiceToServiceItem` | Link Service to Service Item | Link Service to Service Item | ✅ |
+| 5 | `salespersonMandatory` | Salesperson Mandatory | Salesperson Mandatory | ✅ |
+| 6 | `warrantyDiscPctParts` | Warranty Disc. % (Parts) | Warranty Disc. % (Parts) | ✅ |
+| 7 | `warrantyDiscPctLabor` | Warranty Disc. % (Labor) | Warranty Disc. % (Labor) | ✅ |
+| 8 | `contractRspTimeMandatory` | Contract Rsp. Time Mandatory | Contract Rsp. Time Mandatory | ✅ |
+| 9 | `serviceOrderStartingFee` | Service Order Starting Fee | Service Order Starting Fee | ✅ |
+| 10 | `registerContractChanges` | Register Contract Changes | Register Contract Changes | ✅ |
+| 11 | `contractInvLineTextCode` | Contract Inv. Line Text Code | Contract Inv. Line Text Code | ✅ |
+| 12 | `contractLineInvTextCode` | Contract Line Inv. Text Code | Contract Line Inv. Text Code | ✅ |
+| 13 | `contractInvPeriodTextCode` | Contract Inv. Period Text Code | Contract Inv. Period Text Code | ✅ |
+| 14 | `contractCreditLineTextCode` | Contract Credit Line Text Code | Contract Credit Line Text Code | ✅ |
+| 15 | `sendFirstWarningTo` | Send First Warning To | Send First Warning To | ✅ |
+| 16 | `sendSecondWarningTo` | Send Second Warning To | Send Second Warning To | ✅ |
+| 17 | `sendThirdWarningTo` | Send Third Warning To | Send Third Warning To | ✅ |
+| 18 | `firstWarningWithinHours` | First Warning Within (Hours) | First Warning Within (Hours) | ✅ |
+| 19 | `secondWarningWithinHours` | Second Warning Within (Hours) | Second Warning Within (Hours) | ✅ |
+| 20 | `thirdWarningWithinHours` | Third Warning Within (Hours) | Third Warning Within (Hours) | ✅ |
+| 21 | `nextServiceCalcMethod` | Next Service Calc. Method | Next Service Calc. Method | ✅ |
+| 22 | `serviceOrderTypeMandatory` | Service Order Type Mandatory | Service Order Type Mandatory | ✅ |
+| 23 | `serviceZonesOption` | Service Zones Option | Service Zones Option | ✅ |
+| 24 | `serviceOrderStartMandatory` | Service Order Start Mandatory | Service Order Start Mandatory | ✅ |
+| 25 | `serviceOrderFinishMandatory` | Service Order Finish Mandatory | Service Order Finish Mandatory | ✅ |
+| 26 | `resourceSkillsOption` | Resource Skills Option | Resource Skills Option | ✅ |
+| 27 | `oneServiceItemLineOrder` | One Service Item Line/Order | One Service Item Line/Order | ✅ |
+| 28 | `unitOfMeasureMandatory` | Unit of Measure Mandatory | Unit of Measure Mandatory | ✅ |
+| 29 | `faultReasonCodeMandatory` | Fault Reason Code Mandatory | Fault Reason Code Mandatory | ✅ |
+| 30 | `contractServOrdMaxDays` | Contract Serv. Ord.  Max. Days | Contract Serv. Ord.  Max. Days | ✅ |
+| 31 | `lastContractServiceDate` | Last Contract Service Date | Last Contract Service Date | ✅ |
+| 32 | `workTypeCodeMandatory` | Work Type Code Mandatory | Work Type Code Mandatory | ✅ |
+| 33 | `logoPositionOnDocuments` | Logo Position on Documents | Logo Position on Documents | ✅ |
+| 34 | `useContractCancelReason` | Use Contract Cancel Reason | Use Contract Cancel Reason | ✅ |
+| 35 | `defaultResponseTimeHours` | Default Response Time (Hours) | Default Response Time (Hours) | ✅ |
+| 36 | `extDocNoMandatory` | Ext. Doc. No. Mandatory | Ext. Doc. No. Mandatory | ✅ |
+| 37 | `defaultWarrantyDuration` | Default Warranty Duration | Default Warranty Duration | ✅ |
+| 38 | `serviceInvoiceNos` | Service Invoice Nos. | Service Invoice Nos. | ✅ |
+| 39 | `contractInvoiceNos` | Contract Invoice Nos. | Contract Invoice Nos. | ✅ |
+| 40 | `serviceItemNos` | Service Item Nos. | Service Item Nos. | ✅ |
+| 41 | `serviceOrderNos` | Service Order Nos. | Service Order Nos. | ✅ |
+| 42 | `serviceContractNos` | Service Contract Nos. | Service Contract Nos. | ✅ |
+| 43 | `contractTemplateNos` | Contract Template Nos. | Contract Template Nos. | ✅ |
+| 44 | `troubleshootingNos` | Troubleshooting Nos. | Troubleshooting Nos. | ✅ |
+| 45 | `prepaidPostingDocumentNos` | Prepaid Posting Document Nos. | Prepaid Posting Document Nos. | ✅ |
+| 46 | `loanerNos` | Loaner Nos. | Loaner Nos. | ✅ |
+| 47 | `servJobResponsibilityCode` | Serv. Job Responsibility Code | Serv. Job Responsibility Code | ✅ |
+| 48 | `contractValueCalcMethod` | Contract Value Calc. Method | Contract Value Calc. Method | ✅ |
+| 49 | `contractValuePct` | Contract Value % | Contract Value % | ✅ |
+| 50 | `serviceQuoteNos` | Service Quote Nos. | Service Quote Nos. | ✅ |
+| 51 | `postedServiceInvoiceNos` | Posted Service Invoice Nos. | Posted Service Invoice Nos. | ✅ |
+| 52 | `postedServCreditMemoNos` | Posted Serv. Credit Memo Nos. | Posted Serv. Credit Memo Nos. | ✅ |
+| 53 | `postedServiceShipmentNos` | Posted Service Shipment Nos. | Posted Service Shipment Nos. | ✅ |
+| 54 | `shipmentOnInvoice` | Shipment on Invoice | Shipment on Invoice | ✅ |
+| 55 | `skipManualReservation` | Skip Manual Reservation | Skip Manual Reservation | ✅ |
+| 56 | `copyCommentsOrderToInvoice` | Copy Comments Order to Invoice | Copy Comments Order to Invoice | ✅ |
+| 57 | `copyCommentsOrderToShpt` | Copy Comments Order to Shpt. | Copy Comments Order to Shpt. | ✅ |
+| 58 | `serviceCreditMemoNos` | Service Credit Memo Nos. | Service Credit Memo Nos. | ✅ |
+| 59 | `allowMultiplePostingGroups` | Allow Multiple Posting Groups | Allow Multiple Posting Groups | ✅ |
+| 60 | `checkMultiplePostingGroups` | Check Multiple Posting Groups | Check Multiple Posting Groups | ✅ |
+| 61 | `archiveQuotes` | Archive Quotes | Archive Quotes | ✅ |
+| 62 | `archiveOrders` | Archive Orders | Archive Orders | ✅ |
+| 63 | `delFiledContWMainCont` | Del. Filed Cont. w. main Cont. | Delete Filed Contracts with related main Contract | ✅ |
+| 64 | `servInvTemplateName` | Serv. Inv. Template Name | Serv. Invoice Template Name | ✅ |
+| 65 | `servContrInvTemplName` | Serv. Contr. Inv. Templ. Name | Serv. Contract Invoice Template Name | ✅ |
+| 66 | `servContrCrMTemplName` | Serv. Contr. Cr.M. Templ. Name | Serv. Contract Cr. Memo Template Name | ✅ |
+| 67 | `servCrMemoTemplName` | Serv. Cr. Memo Templ. Name | Serv. Cr. Memo Template Name | ✅ |
+| 68 | `copyLineDescrToGLEntry` | Copy Line Descr. to G/L Entry | Copy Line Descr. to G/L Entry | ✅ |
+| 69 | `copyTimeSheetToOrder` | Copy Time Sheet to Order | Copy Time Sheet to Order | ✅ |
+| 70 | `baseCalendarCode` | Base Calendar Code | Base Calendar Code | ✅ |
+| 71 | `contractCreditMemoNos` | Contract Credit Memo Nos. | Contract Credit Memo Nos. | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfServiceOrderTypes
+
+**Description:** Service Order Types — categories for classifying service orders.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Service Order Type |
+| Page ID | 90925 |
+| Page Name | `ocpfServiceOrderTypes` |
+| Entity Set Name | `ocpfServiceOrderTypes` |
+| API Group | `ocpf_serviceManagement` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 3 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `code` | Code | Code | ✅ |
+| 3 | `description` | Description | Description | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfServiceCosts
+
+**Description:** Service Costs — predefined cost lines (travel, call-out fees) that can be added to service documents.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Service Cost |
+| Page ID | 90926 |
+| Page Name | `ocpfServiceCosts` |
+| Entity Set Name | `ocpfServiceCosts` |
+| API Group | `ocpf_serviceManagement` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 10 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `code` | Code | Code | ✅ |
+| 3 | `description` | Description | Description | ✅ |
+| 4 | `accountNo` | Account No. | Account No. | ✅ |
+| 5 | `defaultUnitPrice` | Default Unit Price | Default Unit Price | ✅ |
+| 6 | `defaultQuantity` | Default Quantity | Default Quantity | ✅ |
+| 7 | `unitOfMeasureCode` | Unit of Measure Code | Unit of Measure Code | ✅ |
+| 8 | `costType` | Cost Type | Cost Type | ✅ |
+| 9 | `serviceZoneCode` | Service Zone Code | Service Zone Code | ✅ |
+| 10 | `defaultUnitCost` | Default Unit Cost | Default Unit Cost | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfServiceZones
+
+**Description:** Service Zones — geographic zones used to assign resources to customer service areas.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Service Zone |
+| Page ID | 90973 |
+| Page Name | `ocpfServiceZones` |
+| Entity Set Name | `ocpfServiceZones` |
+| API Group | `ocpf_serviceManagement` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 3 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `code` | Code | Code | ✅ |
+| 3 | `description` | Description | Description | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfServiceItemGroups
+
+**Description:** Service Item Groups — groupings of service items with shared defaults for contracts, warranty, and response time.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Service Item Group |
+| Page ID | 90974 |
+| Page Name | `ocpfServiceItemGroups` |
+| Entity Set Name | `ocpfServiceItemGroups` |
+| API Group | `ocpf_serviceManagement` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 7 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `code` | Code | Code | ✅ |
+| 3 | `description` | Description | Description | ✅ |
+| 4 | `createServiceItem` | Create Service Item | Create Service Item | ✅ |
+| 5 | `defaultContractDiscountPct` | Default Contract Discount % | Default Contract Discount % | ✅ |
+| 6 | `defaultServPriceGroupCode` | Default Serv. Price Group Code | Default Serv. Price Group Code | ✅ |
+| 7 | `defaultResponseTimeHours` | Default Response Time (Hours) | Default Response Time (Hours) | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfRepairStatuses
+
+**Description:** Repair Statuses — stages of repair work on service item lines and how they affect service order status.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Repair Status |
+| Page ID | 90975 |
+| Page Name | `ocpfRepairStatuses` |
+| Entity Set Name | `ocpfRepairStatuses` |
+| API Group | `ocpf_serviceManagement` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 19 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `code` | Code | Code | ✅ |
+| 3 | `description` | Description | Description | ✅ |
+| 4 | `serviceOrderStatus` | Service Order Status | Service Order Status | ✅ |
+| 5 | `priority` | Priority | Priority | ✅ |
+| 6 | `initial` | Initial | Initial | ✅ |
+| 7 | `partlyServiced` | Partly Serviced | Partly Serviced | ✅ |
+| 8 | `inProcess` | In Process | In Process | ✅ |
+| 9 | `finished` | Finished | Finished | ✅ |
+| 10 | `referred` | Referred | Referred | ✅ |
+| 11 | `sparePartOrdered` | Spare Part Ordered | Spare Part Ordered | ✅ |
+| 12 | `sparePartReceived` | Spare Part Received | Spare Part Received | ✅ |
+| 13 | `waitingForCustomer` | Waiting for Customer | Waiting for Customer | ✅ |
+| 14 | `quoteFinished` | Quote Finished | Quote Finished | ✅ |
+| 15 | `postingAllowed` | Posting Allowed | Posting Allowed | ✅ |
+| 16 | `pendingStatusAllowed` | Pending Status Allowed | Pending Status Allowed | ✅ |
+| 17 | `inProcessStatusAllowed` | In Process Status Allowed | In Process Status Allowed | ✅ |
+| 18 | `finishedStatusAllowed` | Finished Status Allowed | Finished Status Allowed | ✅ |
+| 19 | `onHoldStatusAllowed` | On Hold Status Allowed | On Hold Status Allowed | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfFaultAreas
+
+**Description:** Fault Areas — areas of a service item where faults occur, used in fault reporting.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Fault Area |
+| Page ID | 90976 |
+| Page Name | `ocpfFaultAreas` |
+| Entity Set Name | `ocpfFaultAreas` |
+| API Group | `ocpf_serviceManagement` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 3 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `code` | Code | Code | ✅ |
+| 3 | `description` | Description | Description | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfSymptomCodes
+
+**Description:** Symptom Codes — customer-reported symptoms used in service fault reporting.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Symptom Code |
+| Page ID | 90977 |
+| Page Name | `ocpfSymptomCodes` |
+| Entity Set Name | `ocpfSymptomCodes` |
+| API Group | `ocpf_serviceManagement` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 3 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `code` | Code | Code | ✅ |
+| 3 | `description` | Description | Description | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfFaultCodes
+
+**Description:** Fault Codes — identified faults, optionally per fault area and symptom, used in service fault reporting.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Fault Code |
+| Page ID | 90978 |
+| Page Name | `ocpfFaultCodes` |
+| Entity Set Name | `ocpfFaultCodes` |
+| API Group | `ocpf_serviceManagement` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 5 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `faultAreaCode` | Fault Area Code | Fault Area Code | ✅ |
+| 3 | `symptomCode` | Symptom Code | Symptom Code | ✅ |
+| 4 | `code` | Code | Code | ✅ |
+| 5 | `description` | Description | Description | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfFaultReasonCodes
+
+**Description:** Fault Reason Codes — root-cause reasons for faults, with options to exclude warranty or contract discounts.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Fault Reason Code |
+| Page ID | 90979 |
+| Page Name | `ocpfFaultReasonCodes` |
+| Entity Set Name | `ocpfFaultReasonCodes` |
+| API Group | `ocpf_serviceManagement` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 5 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `code` | Code | Code | ✅ |
+| 3 | `description` | Description | Description | ✅ |
+| 4 | `excludeWarrantyDiscount` | Exclude Warranty Discount | Exclude Warranty Discount | ✅ |
+| 5 | `excludeContractDiscount` | Exclude Contract Discount | Exclude Contract Discount | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfResolutionCodes
+
+**Description:** Resolution Codes — how faults were resolved, used in service fault/resolution reporting.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Resolution Code |
+| Page ID | 90980 |
+| Page Name | `ocpfResolutionCodes` |
+| Entity Set Name | `ocpfResolutionCodes` |
+| API Group | `ocpf_serviceManagement` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 3 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `code` | Code | Code | ✅ |
+| 3 | `description` | Description | Description | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfLoaners
+
+**Description:** Loaners — units lent to customers while their service items are being repaired.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Loaner |
+| Page ID | 90981 |
+| Page Name | `ocpfLoaners` |
+| Entity Set Name | `ocpfLoaners` |
+| API Group | `ocpf_serviceManagement` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 14 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `no` | No. | No. | ✅ |
+| 3 | `description` | Description | Description | ✅ |
+| 4 | `description2` | Description 2 | Description 2 | ✅ |
+| 5 | `unitOfMeasureCode` | Unit of Measure Code | Unit of Measure Code | ✅ |
+| 6 | `itemNo` | Item No. | Item No. | ✅ |
+| 7 | `lastDateModified` | Last Date Modified | Last Date Modified | ✅ |
+| 8 | `comment` | Comment | Comment | ✅ |
+| 9 | `blocked` | Blocked | Blocked | ✅ |
+| 10 | `noSeries` | No. Series | No. Series | ✅ |
+| 11 | `documentNo` | Document No. | Document No. | ✅ |
+| 12 | `lent` | Lent | Lent | ✅ |
+| 13 | `serialNo` | Serial No. | Serial No. | ✅ |
+| 14 | `documentType` | Document Type | Document Type | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfLoanerEntries
+
+**Description:** Loaner Entries — the lending and receiving history of loaner units. Read-only.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Loaner Entry |
+| Page ID | 90982 |
+| Page Name | `ocpfLoanerEntries` |
+| Entity Set Name | `ocpfLoanerEntries` |
+| API Group | `ocpf_serviceManagement` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ❌ No (GET only) |
+| Field Count | 14 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `entryNo` | Entry No. | Entry No. | — |
+| 3 | `loanerNo` | Loaner No. | Loaner No. | — |
+| 4 | `documentNo` | Document No. | Document No. | — |
+| 5 | `serviceItemLineNo` | Service Item Line No. | Service Item Line No. | — |
+| 6 | `serviceItemNo` | Service Item No. | Service Item No. | — |
+| 7 | `serviceItemGroupCode` | Service Item Group Code | Service Item Group Code | — |
+| 8 | `customerNo` | Customer No. | Customer No. | — |
+| 9 | `dateLent` | Date Lent | Date Lent | — |
+| 10 | `timeLent` | Time Lent | Time Lent | — |
+| 11 | `dateReceived` | Date Received | Date Received | — |
+| 12 | `timeReceived` | Time Received | Time Received | — |
+| 13 | `lent` | Lent | Lent | — |
+| 14 | `documentType` | Document Type | Document Type | — |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfServiceItems
+
+**Description:** Service Items — customer-owned equipment units that are serviced, with warranty, contract, and installation details.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Service Item |
+| Page ID | 90983 |
+| Page Name | `ocpfServiceItems` |
+| Entity Set Name | `ocpfServiceItems` |
+| API Group | `ocpf_serviceManagement` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 82 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `no` | No. | No. | ✅ |
+| 3 | `serialNo` | Serial No. | Serial No. | ✅ |
+| 4 | `serviceItemGroupCode` | Service Item Group Code | Service Item Group Code | ✅ |
+| 5 | `description` | Description | Description | ✅ |
+| 6 | `description2` | Description 2 | Description 2 | ✅ |
+| 7 | `status` | Status | Status | ✅ |
+| 8 | `priority` | Priority | Priority | ✅ |
+| 9 | `customerNo` | Customer No. | Customer No. | ✅ |
+| 10 | `shipToCode` | Ship-to Code | Ship-to Code | ✅ |
+| 11 | `itemNo` | Item No. | Item No. | ✅ |
+| 12 | `unitOfMeasureCode` | Unit of Measure Code | Unit of Measure Code | ✅ |
+| 13 | `locationOfServiceItem` | Location of Service Item | Location of Service Item | ✅ |
+| 14 | `salesUnitPrice` | Sales Unit Price | Sales Unit Price | ✅ |
+| 15 | `salesUnitCost` | Sales Unit Cost | Sales Unit Cost | ✅ |
+| 16 | `warrantyStartingDateLabor` | Warranty Starting Date (Labor) | Warranty Starting Date (Labor) | ✅ |
+| 17 | `warrantyEndingDateLabor` | Warranty Ending Date (Labor) | Warranty Ending Date (Labor) | ✅ |
+| 18 | `warrantyStartingDateParts` | Warranty Starting Date (Parts) | Warranty Starting Date (Parts) | ✅ |
+| 19 | `warrantyEndingDateParts` | Warranty Ending Date (Parts) | Warranty Ending Date (Parts) | ✅ |
+| 20 | `warrantyPctParts` | Warranty % (Parts) | Warranty % (Parts) | ✅ |
+| 21 | `warrantyPctLabor` | Warranty % (Labor) | Warranty % (Labor) | ✅ |
+| 22 | `responseTimeHours` | Response Time (Hours) | Response Time (Hours) | ✅ |
+| 23 | `installationDate` | Installation Date | Installation Date | ✅ |
+| 24 | `salesDate` | Sales Date | Sales Date | ✅ |
+| 25 | `lastServiceDate` | Last Service Date | Last Service Date | ✅ |
+| 26 | `defaultContractValue` | Default Contract Value | Default Contract Value | ✅ |
+| 27 | `defaultContractDiscountPct` | Default Contract Discount % | Default Contract Discount % | ✅ |
+| 28 | `noOfActiveContracts` | No. of Active Contracts | No. of Active Contracts | ✅ |
+| 29 | `vendorNo` | Vendor No. | Vendor No. | ✅ |
+| 30 | `vendorItemNo` | Vendor Item No. | Vendor Item No. | ✅ |
+| 31 | `blocked` | Blocked | Blocked | ✅ |
+| 32 | `noSeries` | No. Series | No. Series | ✅ |
+| 33 | `itemDescription` | Item Description | Item Description | ✅ |
+| 34 | `name` | Name | Name | ✅ |
+| 35 | `address` | Address | Address | ✅ |
+| 36 | `address2` | Address 2 | Address 2 | ✅ |
+| 37 | `postCode` | Post Code | Post Code | ✅ |
+| 38 | `city` | City | City | ✅ |
+| 39 | `contact` | Contact | Contact | ✅ |
+| 40 | `phoneNo` | Phone No. | Phone No. | ✅ |
+| 41 | `shipToName` | Ship-to Name | Ship-to Name | ✅ |
+| 42 | `shipToAddress` | Ship-to Address | Ship-to Address | ✅ |
+| 43 | `shipToAddress2` | Ship-to Address 2 | Ship-to Address 2 | ✅ |
+| 44 | `shipToPostCode` | Ship-to Post Code | Ship-to Post Code | ✅ |
+| 45 | `shipToCity` | Ship-to City | Ship-to City | ✅ |
+| 46 | `shipToContact` | Ship-to Contact | Ship-to Contact | ✅ |
+| 47 | `shipToPhoneNo` | Ship-to Phone No. | Ship-to Phone No. | ✅ |
+| 48 | `usageCost` | Usage (Cost) | Usage (Cost) | ✅ |
+| 49 | `usageAmount` | Usage (Amount) | Usage (Amount) | ✅ |
+| 50 | `invoicedAmount` | Invoiced Amount | Invoiced Amount | ✅ |
+| 51 | `totalQuantity` | Total Quantity | Total Quantity | ✅ |
+| 52 | `totalQtyInvoiced` | Total Qty. Invoiced | Total Qty. Invoiced | ✅ |
+| 53 | `resourcesUsed` | Resources Used | Resources Used | ✅ |
+| 54 | `partsUsed` | Parts Used | Parts Used | ✅ |
+| 55 | `costUsed` | Cost Used | Cost Used | ✅ |
+| 56 | `vendorName` | Vendor Name | Vendor Name | ✅ |
+| 57 | `vendorItemName` | Vendor Item Name | Vendor Item Name | ✅ |
+| 58 | `comment` | Comment | Comment | ✅ |
+| 59 | `serviceItemComponents` | Service Item Components | Service Item Components | ✅ |
+| 60 | `preferredResource` | Preferred Resource | Preferred Resource | ✅ |
+| 61 | `variantCode` | Variant Code | Variant Code | ✅ |
+| 62 | `county` | County | County | ✅ |
+| 63 | `shipToCounty` | Ship-to County | Ship-to County | ✅ |
+| 64 | `contractCost` | Contract Cost | Contract Cost | ✅ |
+| 65 | `countryRegionCode` | Country/Region Code | Country/Region Code | ✅ |
+| 66 | `shipToCountryRegionCode` | Ship-to Country/Region Code | Ship-to Country/Region Code | ✅ |
+| 67 | `name2` | Name 2 | Name 2 | ✅ |
+| 68 | `shipToName2` | Ship-to Name 2 | Ship-to Name 2 | ✅ |
+| 69 | `servicePriceGroupCode` | Service Price Group Code | Service Price Group Code | ✅ |
+| 70 | `defaultContractCost` | Default Contract Cost | Default Contract Cost | ✅ |
+| 71 | `prepaidAmount` | Prepaid Amount | Prepaid Amount | ✅ |
+| 72 | `searchDescription` | Search Description | Search Description | ✅ |
+| 73 | `serviceContracts` | Service Contracts | Service Contracts | ✅ |
+| 74 | `totalQtyConsumed` | Total Qty. Consumed | Total Qty. Consumed | ✅ |
+| 75 | `dateFilter` | Date Filter | Date Filter | ✅ |
+| 76 | `typeFilter` | Type Filter | Type Filter | ✅ |
+| 77 | `contractFilter` | Contract Filter | Contract Filter | ✅ |
+| 78 | `serviceOrderFilter` | Service Order Filter | Service Order Filter | ✅ |
+| 79 | `salesServShptDocumentNo` | Sales/Serv. Shpt. Document No. | Sales/Serv. Shpt. Document No. | ✅ |
+| 80 | `salesServShptLineNo` | Sales/Serv. Shpt. Line No. | Sales/Serv. Shpt. Line No. | ✅ |
+| 81 | `shipmentType` | Shipment Type | Shipment Type | ✅ |
+| 82 | `shipToEMail` | Ship-to E-Mail | Ship-to Email | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfServiceItemComponents
+
+**Description:** Service Item Components — the parts that make up a service item, tracked for replacement history.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Service Item Component |
+| Page ID | 90984 |
+| Page Name | `ocpfServiceItemComponents` |
+| Entity Set Name | `ocpfServiceItemComponents` |
+| API Group | `ocpf_serviceManagement` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 14 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `parentServiceItemNo` | Parent Service Item No. | Parent Service Item No. | ✅ |
+| 3 | `lineNo` | Line No. | Line No. | ✅ |
+| 4 | `active` | Active | Active | ✅ |
+| 5 | `type` | Type | Type | ✅ |
+| 6 | `no` | No. | No. | ✅ |
+| 7 | `dateInstalled` | Date Installed | Date Installed | ✅ |
+| 8 | `variantCode` | Variant Code | Variant Code | ✅ |
+| 9 | `serialNo` | Serial No. | Serial No. | ✅ |
+| 10 | `description` | Description | Description | ✅ |
+| 11 | `description2` | Description 2 | Description 2 | ✅ |
+| 12 | `serviceOrderNo` | Service Order No. | Service Order No. | ✅ |
+| 13 | `fromLineNo` | From Line No. | From Line No. | ✅ |
+| 14 | `lastDateModified` | Last Date Modified | Last Date Modified | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfServiceHeaders
+
+**Description:** Service Documents — open service quotes, orders, invoices, and credit memos with customer, status, and response details.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Service Header |
+| Page ID | 90985 |
+| Page Name | `ocpfServiceHeaders` |
+| Entity Set Name | `ocpfServiceHeaders` |
+| API Group | `ocpf_serviceManagement` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 156 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `documentType` | Document Type | Document Type | ✅ |
+| 3 | `customerNo` | Customer No. | Customer No. | ✅ |
+| 4 | `no` | No. | No. | ✅ |
+| 5 | `billToCustomerNo` | Bill-to Customer No. | Bill-to Customer No. | ✅ |
+| 6 | `billToName` | Bill-to Name | Bill-to Name | ✅ |
+| 7 | `billToName2` | Bill-to Name 2 | Bill-to Name 2 | ✅ |
+| 8 | `billToAddress` | Bill-to Address | Bill-to Address | ✅ |
+| 9 | `billToAddress2` | Bill-to Address 2 | Bill-to Address 2 | ✅ |
+| 10 | `billToCity` | Bill-to City | Bill-to City | ✅ |
+| 11 | `billToContact` | Bill-to Contact | Bill-to Contact | ✅ |
+| 12 | `yourReference` | Your Reference | Your Reference | ✅ |
+| 13 | `shipToCode` | Ship-to Code | Ship-to Code | ✅ |
+| 14 | `shipToName` | Ship-to Name | Ship-to Name | ✅ |
+| 15 | `shipToName2` | Ship-to Name 2 | Ship-to Name 2 | ✅ |
+| 16 | `shipToAddress` | Ship-to Address | Ship-to Address | ✅ |
+| 17 | `shipToAddress2` | Ship-to Address 2 | Ship-to Address 2 | ✅ |
+| 18 | `shipToCity` | Ship-to City | Ship-to City | ✅ |
+| 19 | `shipToContact` | Ship-to Contact | Ship-to Contact | ✅ |
+| 20 | `orderDate` | Order Date | Order Date | ✅ |
+| 21 | `postingDate` | Posting Date | Posting Date | ✅ |
+| 22 | `postingDescription` | Posting Description | Posting Description | ✅ |
+| 23 | `paymentTermsCode` | Payment Terms Code | Payment Terms Code | ✅ |
+| 24 | `dueDate` | Due Date | Due Date | ✅ |
+| 25 | `paymentDiscountPct` | Payment Discount % | Payment Discount % | ✅ |
+| 26 | `pmtDiscountDate` | Pmt. Discount Date | Pmt. Discount Date | ✅ |
+| 27 | `shipmentMethodCode` | Shipment Method Code | Shipment Method Code | ✅ |
+| 28 | `locationCode` | Location Code | Location Code | ✅ |
+| 29 | `shortcutDimension1Code` | Shortcut Dimension 1 Code | Shortcut Dimension 1 Code | ✅ |
+| 30 | `shortcutDimension2Code` | Shortcut Dimension 2 Code | Shortcut Dimension 2 Code | ✅ |
+| 31 | `customerPostingGroup` | Customer Posting Group | Customer Posting Group | ✅ |
+| 32 | `currencyCode` | Currency Code | Currency Code | ✅ |
+| 33 | `currencyFactor` | Currency Factor | Currency Factor | ✅ |
+| 34 | `customerPriceGroup` | Customer Price Group | Customer Price Group | ✅ |
+| 35 | `pricesIncludingVat` | Prices Including VAT | Prices Including VAT | ✅ |
+| 36 | `invoiceDiscCode` | Invoice Disc. Code | Invoice Disc. Code | ✅ |
+| 37 | `customerDiscGroup` | Customer Disc. Group | Customer Disc. Group | ✅ |
+| 38 | `languageCode` | Language Code | Language Code | ✅ |
+| 39 | `formatRegion` | Format Region | Format Region | ✅ |
+| 40 | `salespersonCode` | Salesperson Code | Salesperson Code | ✅ |
+| 41 | `comment` | Comment | Comment | ✅ |
+| 42 | `noPrinted` | No. Printed | No. Printed | ✅ |
+| 43 | `appliesToDocType` | Applies-to Doc. Type | Applies-to Doc. Type | ✅ |
+| 44 | `appliesToDocNo` | Applies-to Doc. No. | Applies-to Doc. No. | ✅ |
+| 45 | `balAccountNo` | Bal. Account No. | Bal. Account No. | ✅ |
+| 46 | `amount` | Amount | Amount | ✅ |
+| 47 | `amountIncludingVat` | Amount Including VAT | Amount Including VAT | ✅ |
+| 48 | `shippingNo` | Shipping No. | Shipping No. | ✅ |
+| 49 | `postingNo` | Posting No. | Posting No. | ✅ |
+| 50 | `lastShippingNo` | Last Shipping No. | Last Shipping No. | ✅ |
+| 51 | `lastPostingNo` | Last Posting No. | Last Posting No. | ✅ |
+| 52 | `vatRegistrationNo` | VAT Registration No. | VAT Registration No. | ✅ |
+| 53 | `combineShipments` | Combine Shipments | Combine Shipments | ✅ |
+| 54 | `reasonCode` | Reason Code | Reason Code | ✅ |
+| 55 | `genBusPostingGroup` | Gen. Bus. Posting Group | Gen. Bus. Posting Group | ✅ |
+| 56 | `eu3PartyTrade` | EU 3-Party Trade | EU 3-Party Trade | ✅ |
+| 57 | `transactionType` | Transaction Type | Transaction Type | ✅ |
+| 58 | `transportMethod` | Transport Method | Transport Method | ✅ |
+| 59 | `vatCountryRegionCode` | VAT Country/Region Code | VAT Country/Region Code | ✅ |
+| 60 | `name` | Name | Name | ✅ |
+| 61 | `name2` | Name 2 | Name 2 | ✅ |
+| 62 | `address` | Address | Address | ✅ |
+| 63 | `address2` | Address 2 | Address 2 | ✅ |
+| 64 | `city` | City | City | ✅ |
+| 65 | `contactName` | Contact Name | Contact Name | ✅ |
+| 66 | `billToPostCode` | Bill-to Post Code | Bill-to Post Code | ✅ |
+| 67 | `billToCounty` | Bill-to County | Bill-to County | ✅ |
+| 68 | `billToCountryRegionCode` | Bill-to Country/Region Code | Bill-to Country/Region Code | ✅ |
+| 69 | `postCode` | Post Code | Post Code | ✅ |
+| 70 | `county` | County | County | ✅ |
+| 71 | `countryRegionCode` | Country/Region Code | Country/Region Code | ✅ |
+| 72 | `shipToPostCode` | Ship-to Post Code | Ship-to Post Code | ✅ |
+| 73 | `shipToCounty` | Ship-to County | Ship-to County | ✅ |
+| 74 | `shipToCountryRegionCode` | Ship-to Country/Region Code | Ship-to Country/Region Code | ✅ |
+| 75 | `balAccountType` | Bal. Account Type | Bal. Account Type | ✅ |
+| 76 | `exitPoint` | Exit Point | Exit Point | ✅ |
+| 77 | `correction` | Correction | Correction | ✅ |
+| 78 | `documentDate` | Document Date | Document Date | ✅ |
+| 79 | `externalDocumentNo` | External Document No. | External Document No. | ✅ |
+| 80 | `area` | Area | Area | ✅ |
+| 81 | `transactionSpecification` | Transaction Specification | Transaction Specification | ✅ |
+| 82 | `paymentMethodCode` | Payment Method Code | Payment Method Code | ✅ |
+| 83 | `shippingAgentCode` | Shipping Agent Code | Shipping Agent Code | ✅ |
+| 84 | `noSeries` | No. Series | No. Series | ✅ |
+| 85 | `postingNoSeries` | Posting No. Series | Posting No. Series | ✅ |
+| 86 | `shippingNoSeries` | Shipping No. Series | Shipping No. Series | ✅ |
+| 87 | `taxAreaCode` | Tax Area Code | Tax Area Code | ✅ |
+| 88 | `taxLiable` | Tax Liable | Tax Liable | ✅ |
+| 89 | `vatBusPostingGroup` | VAT Bus. Posting Group | VAT Bus. Posting Group | ✅ |
+| 90 | `reserve` | Reserve | Reserve | ✅ |
+| 91 | `appliesToId` | Applies-to ID | Applies-to ID | ✅ |
+| 92 | `vatBaseDiscountPct` | VAT Base Discount % | VAT Base Discount % | ✅ |
+| 93 | `status` | Status | Status | ✅ |
+| 94 | `invoiceDiscountCalculation` | Invoice Discount Calculation | Invoice Discount Calculation | ✅ |
+| 95 | `invoiceDiscountValue` | Invoice Discount Value | Invoice Discount Value | ✅ |
+| 96 | `companyBankAccountCode` | Company Bank Account Code | Bank Account Code | ✅ |
+| 97 | `releaseStatus` | Release Status | Release Status | ✅ |
+| 98 | `vatReportingDate` | VAT Reporting Date | VAT Date | ✅ |
+| 99 | `incomingDocumentEntryNo` | Incoming Document Entry No. | Incoming Document Entry No. | ✅ |
+| 100 | `journalTemplName` | Journal Templ. Name | Journal Template Name | ✅ |
+| 101 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | ✅ |
+| 102 | `directDebitMandateId` | Direct Debit Mandate ID | Direct Debit Mandate ID | ✅ |
+| 103 | `noOfArchivedVersions` | No. of Archived Versions | No. of Archived Versions | ✅ |
+| 104 | `docNoOccurrence` | Doc. No. Occurrence | Doc. No. Occurrence | ✅ |
+| 105 | `contactNo` | Contact No. | Contact No. | ✅ |
+| 106 | `billToContactNo` | Bill-to Contact No. | Bill-to Contact No. | ✅ |
+| 107 | `responsibilityCenter` | Responsibility Center | Responsibility Center | ✅ |
+| 108 | `shippingAdvice` | Shipping Advice | Shipping Advice | ✅ |
+| 109 | `completelyShipped` | Completely Shipped | Completely Shipped | ✅ |
+| 110 | `locationFilter` | Location Filter | Location Filter | ✅ |
+| 111 | `shippingTime` | Shipping Time | Shipping Time | ✅ |
+| 112 | `shippingAgentServiceCode` | Shipping Agent Service Code | Shipping Agent Service Code | ✅ |
+| 113 | `dateFilter` | Date Filter | Date Filter | ✅ |
+| 114 | `description` | Description | Description | ✅ |
+| 115 | `serviceOrderType` | Service Order Type | Service Order Type | ✅ |
+| 116 | `linkServiceToServiceItem` | Link Service to Service Item | Link Service to Service Item | ✅ |
+| 117 | `priority` | Priority | Priority | ✅ |
+| 118 | `allocatedHours` | Allocated Hours | Allocated Hours | ✅ |
+| 119 | `phoneNo` | Phone No. | Phone No. | ✅ |
+| 120 | `eMail` | E-Mail | Email | ✅ |
+| 121 | `phoneNo2` | Phone No. 2 | Phone No. 2 | ✅ |
+| 122 | `faxNo` | Fax No. | Fax No. | ✅ |
+| 123 | `noOfUnallocatedItems` | No. of Unallocated Items | No. of Unallocated Items | ✅ |
+| 124 | `orderTime` | Order Time | Order Time | ✅ |
+| 125 | `defaultResponseTimeHours` | Default Response Time (Hours) | Default Response Time (Hours) | ✅ |
+| 126 | `actualResponseTimeHours` | Actual Response Time (Hours) | Actual Response Time (Hours) | ✅ |
+| 127 | `serviceTimeHours` | Service Time (Hours) | Service Time (Hours) | ✅ |
+| 128 | `responseDate` | Response Date | Response Date | ✅ |
+| 129 | `responseTime` | Response Time | Response Time | ✅ |
+| 130 | `startingDate` | Starting Date | Starting Date | ✅ |
+| 131 | `startingTime` | Starting Time | Starting Time | ✅ |
+| 132 | `finishingDate` | Finishing Date | Finishing Date | ✅ |
+| 133 | `finishingTime` | Finishing Time | Finishing Time | ✅ |
+| 134 | `contractServHoursExist` | Contract Serv. Hours Exist | Contract Serv. Hours Exist | ✅ |
+| 135 | `reallocationNeeded` | Reallocation Needed | Reallocation Needed | ✅ |
+| 136 | `notifyCustomer` | Notify Customer | Notify Customer | ✅ |
+| 137 | `maxLaborUnitPrice` | Max. Labor Unit Price | Max. Labor Unit Price | ✅ |
+| 138 | `warningStatus` | Warning Status | Warning Status | ✅ |
+| 139 | `noOfAllocations` | No. of Allocations | No. of Allocations | ✅ |
+| 140 | `contractNo` | Contract No. | Contract No. | ✅ |
+| 141 | `typeFilter` | Type Filter | Type Filter | ✅ |
+| 142 | `customerFilter` | Customer Filter | Customer Filter | ✅ |
+| 143 | `resourceFilter` | Resource Filter | Resource Filter | ✅ |
+| 144 | `contractFilter` | Contract Filter | Contract Filter | ✅ |
+| 145 | `shipToFaxNo` | Ship-to Fax No. | Ship-to Fax No. | ✅ |
+| 146 | `shipToEMail` | Ship-to E-Mail | Ship-to Email | ✅ |
+| 147 | `resourceGroupFilter` | Resource Group Filter | Resource Group Filter | ✅ |
+| 148 | `shipToPhone` | Ship-to Phone | Ship-to Phone | ✅ |
+| 149 | `shipToPhone2` | Ship-to Phone 2 | Ship-to Phone 2 | ✅ |
+| 150 | `serviceZoneFilter` | Service Zone Filter | Service Zone Filter | ✅ |
+| 151 | `serviceZoneCode` | Service Zone Code | Service Zone Code | ✅ |
+| 152 | `expectedFinishingDate` | Expected Finishing Date | Expected Finishing Date | ✅ |
+| 153 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | ✅ |
+| 154 | `allowLineDisc` | Allow Line Disc. | Allow Line Disc. | ✅ |
+| 155 | `assignedUserId` | Assigned User ID | Assigned User ID | ✅ |
+| 156 | `quoteNo` | Quote No. | Quote No. | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfServiceItemLines
+
+**Description:** Service Item Lines — the service items being worked on within a service order, with fault/resolution and repair status.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Service Item Line |
+| Page ID | 90986 |
+| Page Name | `ocpfServiceItemLines` |
+| Entity Set Name | `ocpfServiceItemLines` |
+| API Group | `ocpf_serviceManagement` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 64 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `documentNo` | Document No. | Document No. | ✅ |
+| 3 | `lineNo` | Line No. | Line No. | ✅ |
+| 4 | `serviceItemNo` | Service Item No. | Service Item No. | ✅ |
+| 5 | `serviceItemGroupCode` | Service Item Group Code | Service Item Group Code | ✅ |
+| 6 | `itemNo` | Item No. | Item No. | ✅ |
+| 7 | `serialNo` | Serial No. | Serial No. | ✅ |
+| 8 | `description` | Description | Description | ✅ |
+| 9 | `description2` | Description 2 | Description 2 | ✅ |
+| 10 | `repairStatusCode` | Repair Status Code | Repair Status Code | ✅ |
+| 11 | `priority` | Priority | Priority | ✅ |
+| 12 | `responseTimeHours` | Response Time (Hours) | Response Time (Hours) | ✅ |
+| 13 | `responseDate` | Response Date | Response Date | ✅ |
+| 14 | `responseTime` | Response Time | Response Time | ✅ |
+| 15 | `startingDate` | Starting Date | Starting Date | ✅ |
+| 16 | `startingTime` | Starting Time | Starting Time | ✅ |
+| 17 | `finishingDate` | Finishing Date | Finishing Date | ✅ |
+| 18 | `finishingTime` | Finishing Time | Finishing Time | ✅ |
+| 19 | `serviceShelfNo` | Service Shelf No. | Service Shelf No. | ✅ |
+| 20 | `warrantyStartingDateParts` | Warranty Starting Date (Parts) | Warranty Starting Date (Parts) | ✅ |
+| 21 | `warrantyEndingDateParts` | Warranty Ending Date (Parts) | Warranty Ending Date (Parts) | ✅ |
+| 22 | `warranty` | Warranty | Warranty | ✅ |
+| 23 | `warrantyPctParts` | Warranty % (Parts) | Warranty % (Parts) | ✅ |
+| 24 | `warrantyPctLabor` | Warranty % (Labor) | Warranty % (Labor) | ✅ |
+| 25 | `warrantyStartingDateLabor` | Warranty Starting Date (Labor) | Warranty Starting Date (Labor) | ✅ |
+| 26 | `warrantyEndingDateLabor` | Warranty Ending Date (Labor) | Warranty Ending Date (Labor) | ✅ |
+| 27 | `contractNo` | Contract No. | Contract No. | ✅ |
+| 28 | `locationOfServiceItem` | Location of Service Item | Location of Service Item | ✅ |
+| 29 | `loanerNo` | Loaner No. | Loaner No. | ✅ |
+| 30 | `vendorNo` | Vendor No. | Vendor No. | ✅ |
+| 31 | `vendorItemNo` | Vendor Item No. | Vendor Item No. | ✅ |
+| 32 | `faultReasonCode` | Fault Reason Code | Fault Reason Code | ✅ |
+| 33 | `servicePriceGroupCode` | Service Price Group Code | Service Price Group Code | ✅ |
+| 34 | `faultAreaCode` | Fault Area Code | Fault Area Code | ✅ |
+| 35 | `symptomCode` | Symptom Code | Symptom Code | ✅ |
+| 36 | `faultCode` | Fault Code | Fault Code | ✅ |
+| 37 | `resolutionCode` | Resolution Code | Resolution Code | ✅ |
+| 38 | `faultComment` | Fault Comment | Fault Comment | ✅ |
+| 39 | `resolutionComment` | Resolution Comment | Resolution Comment | ✅ |
+| 40 | `variantCode` | Variant Code | Variant Code | ✅ |
+| 41 | `serviceItemLoanerComment` | Service Item Loaner Comment | Service Item Loaner Comment | ✅ |
+| 42 | `actualResponseTimeHours` | Actual Response Time (Hours) | Actual Response Time (Hours) | ✅ |
+| 43 | `documentType` | Document Type | Document Type | ✅ |
+| 44 | `servPriceAdjmtGrCode` | Serv. Price Adjmt. Gr. Code | Serv. Price Adjmt. Gr. Code | ✅ |
+| 45 | `adjustmentType` | Adjustment Type | Adjustment Type | ✅ |
+| 46 | `baseAmountToAdjust` | Base Amount to Adjust | Base Amount to Adjust | ✅ |
+| 47 | `noOfActiveFinishedAllocs` | No. of Active/Finished Allocs | No. of Active/Finished Allocs | ✅ |
+| 48 | `noOfAllocations` | No. of Allocations | No. of Allocations | ✅ |
+| 49 | `noOfPreviousServices` | No. of Previous Services | No. of Previous Services | ✅ |
+| 50 | `contractLineNo` | Contract Line No. | Contract Line No. | ✅ |
+| 51 | `shipToCode` | Ship-to Code | Ship-to Code | ✅ |
+| 52 | `customerNo` | Customer No. | Customer No. | ✅ |
+| 53 | `dateFilter` | Date Filter | Date Filter | ✅ |
+| 54 | `resourceFilter` | Resource Filter | Resource Filter | ✅ |
+| 55 | `allocationDateFilter` | Allocation Date Filter | Allocation Date Filter | ✅ |
+| 56 | `repairStatusCodeFilter` | Repair Status Code Filter | Repair Status Code Filter | ✅ |
+| 57 | `allocationStatusFilter` | Allocation Status Filter | Allocation Status Filter | ✅ |
+| 58 | `responsibilityCenter` | Responsibility Center | Responsibility Center | ✅ |
+| 59 | `serviceOrderFilter` | Service Order Filter | Service Order Filter | ✅ |
+| 60 | `resourceGroupFilter` | Resource Group Filter | Resource Group Filter | ✅ |
+| 61 | `shortcutDimension1Code` | Shortcut Dimension 1 Code | Shortcut Dimension 1 Code | ✅ |
+| 62 | `shortcutDimension2Code` | Shortcut Dimension 2 Code | Shortcut Dimension 2 Code | ✅ |
+| 63 | `releaseStatus` | Release Status | Release Status | ✅ |
+| 64 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfServiceLines
+
+**Description:** Service Lines — the items, resources, and costs consumed or invoiced on service documents.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Service Line |
+| Page ID | 90987 |
+| Page Name | `ocpfServiceLines` |
+| Entity Set Name | `ocpfServiceLines` |
+| API Group | `ocpf_serviceManagement` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 157 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `documentType` | Document Type | Document Type | ✅ |
+| 3 | `customerNo` | Customer No. | Customer No. | ✅ |
+| 4 | `documentNo` | Document No. | Document No. | ✅ |
+| 5 | `lineNo` | Line No. | Line No. | ✅ |
+| 6 | `type` | Type | Type | ✅ |
+| 7 | `no` | No. | No. | ✅ |
+| 8 | `locationCode` | Location Code | Location Code | ✅ |
+| 9 | `postingGroup` | Posting Group | Posting Group | ✅ |
+| 10 | `description` | Description | Description | ✅ |
+| 11 | `description2` | Description 2 | Description 2 | ✅ |
+| 12 | `unitOfMeasure` | Unit of Measure | Unit of Measure | ✅ |
+| 13 | `quantity` | Quantity | Quantity | ✅ |
+| 14 | `outstandingQuantity` | Outstanding Quantity | Outstanding Quantity | ✅ |
+| 15 | `qtyToInvoice` | Qty. to Invoice | Qty. to Invoice | ✅ |
+| 16 | `qtyToShip` | Qty. to Ship | Qty. to Ship | ✅ |
+| 17 | `unitPrice` | Unit Price | Unit Price | ✅ |
+| 18 | `unitCostLcy` | Unit Cost (LCY) | Unit Cost (LCY) | ✅ |
+| 19 | `vatPct` | VAT % | VAT % | ✅ |
+| 20 | `lineDiscountPct` | Line Discount % | Line Discount % | ✅ |
+| 21 | `lineDiscountAmount` | Line Discount Amount | Line Discount Amount | ✅ |
+| 22 | `amount` | Amount | Amount | ✅ |
+| 23 | `amountIncludingVat` | Amount Including VAT | Amount Including VAT | ✅ |
+| 24 | `allowInvoiceDisc` | Allow Invoice Disc. | Allow Invoice Disc. | ✅ |
+| 25 | `grossWeight` | Gross Weight | Gross Weight | ✅ |
+| 26 | `netWeight` | Net Weight | Net Weight | ✅ |
+| 27 | `unitsPerParcel` | Units per Parcel | Units per Parcel | ✅ |
+| 28 | `unitVolume` | Unit Volume | Unit Volume | ✅ |
+| 29 | `applToItemEntry` | Appl.-to Item Entry | Appl.-to Item Entry | ✅ |
+| 30 | `shortcutDimension1Code` | Shortcut Dimension 1 Code | Shortcut Dimension 1 Code | ✅ |
+| 31 | `shortcutDimension2Code` | Shortcut Dimension 2 Code | Shortcut Dimension 2 Code | ✅ |
+| 32 | `customerPriceGroup` | Customer Price Group | Customer Price Group | ✅ |
+| 33 | `jobNo` | Job No. | Project No. | ✅ |
+| 34 | `jobTaskNo` | Job Task No. | Project Task No. | ✅ |
+| 35 | `jobLineType` | Job Line Type | Project Line Type | ✅ |
+| 36 | `workTypeCode` | Work Type Code | Work Type Code | ✅ |
+| 37 | `outstandingAmount` | Outstanding Amount | Outstanding Amount | ✅ |
+| 38 | `qtyShippedNotInvoiced` | Qty. Shipped Not Invoiced | Qty. Shipped Not Invoiced | ✅ |
+| 39 | `shippedNotInvoiced` | Shipped Not Invoiced | Shipped Not Invoiced | ✅ |
+| 40 | `quantityShipped` | Quantity Shipped | Quantity Shipped | ✅ |
+| 41 | `quantityInvoiced` | Quantity Invoiced | Quantity Invoiced | ✅ |
+| 42 | `shipmentNo` | Shipment No. | Shipment No. | ✅ |
+| 43 | `shipmentLineNo` | Shipment Line No. | Shipment Line No. | ✅ |
+| 44 | `orderNo` | Order No. | Order No. | ✅ |
+| 45 | `billToCustomerNo` | Bill-to Customer No. | Bill-to Customer No. | ✅ |
+| 46 | `invDiscountAmount` | Inv. Discount Amount | Inv. Discount Amount | ✅ |
+| 47 | `genBusPostingGroup` | Gen. Bus. Posting Group | Gen. Bus. Posting Group | ✅ |
+| 48 | `genProdPostingGroup` | Gen. Prod. Posting Group | Gen. Prod. Posting Group | ✅ |
+| 49 | `vatCalculationType` | VAT Calculation Type | VAT Calculation Type | ✅ |
+| 50 | `transactionType` | Transaction Type | Transaction Type | ✅ |
+| 51 | `transportMethod` | Transport Method | Transport Method | ✅ |
+| 52 | `attachedToLineNo` | Attached to Line No. | Attached to Line No. | ✅ |
+| 53 | `exitPoint` | Exit Point | Exit Point | ✅ |
+| 54 | `area` | Area | Area | ✅ |
+| 55 | `transactionSpecification` | Transaction Specification | Transaction Specification | ✅ |
+| 56 | `taxAreaCode` | Tax Area Code | Tax Area Code | ✅ |
+| 57 | `taxLiable` | Tax Liable | Tax Liable | ✅ |
+| 58 | `taxGroupCode` | Tax Group Code | Tax Group Code | ✅ |
+| 59 | `vatClauseCode` | VAT Clause Code | VAT Clause Code | ✅ |
+| 60 | `vatBusPostingGroup` | VAT Bus. Posting Group | VAT Bus. Posting Group | ✅ |
+| 61 | `vatProdPostingGroup` | VAT Prod. Posting Group | VAT Prod. Posting Group | ✅ |
+| 62 | `currencyCode` | Currency Code | Currency Code | ✅ |
+| 63 | `outstandingAmountLcy` | Outstanding Amount (LCY) | Outstanding Amount (LCY) | ✅ |
+| 64 | `shippedNotInvoicedLcy` | Shipped Not Invoiced (LCY) | Shipped Not Invoiced (LCY) | ✅ |
+| 65 | `reservedQuantity` | Reserved Quantity | Reserved Quantity | ✅ |
+| 66 | `reserve` | Reserve | Reserve | ✅ |
+| 67 | `vatBaseAmount` | VAT Base Amount | VAT Base Amount | ✅ |
+| 68 | `unitCost` | Unit Cost | Unit Cost | ✅ |
+| 69 | `systemCreatedEntry` | System-Created Entry | System-Created Entry | ✅ |
+| 70 | `lineAmount` | Line Amount | Line Amount | ✅ |
+| 71 | `vatDifference` | VAT Difference | VAT Difference | ✅ |
+| 72 | `invDiscAmountToInvoice` | Inv. Disc. Amount to Invoice | Inv. Disc. Amount to Invoice | ✅ |
+| 73 | `vatIdentifier` | VAT Identifier | VAT Identifier | ✅ |
+| 74 | `pmtDiscountAmount` | Pmt. Discount Amount | Pmt. Discount Amount | ✅ |
+| 75 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | ✅ |
+| 76 | `timeSheetNo` | Time Sheet No. | Time Sheet No. | ✅ |
+| 77 | `timeSheetLineNo` | Time Sheet Line No. | Time Sheet Line No. | ✅ |
+| 78 | `timeSheetDate` | Time Sheet Date | Time Sheet Date | ✅ |
+| 79 | `jobPlanningLineNo` | Job Planning Line No. | Project Planning Line No. | ✅ |
+| 80 | `jobRemainingQty` | Job Remaining Qty. | Project Remaining Qty. | ✅ |
+| 81 | `jobRemainingQtyBase` | Job Remaining Qty. (Base) | Project Remaining Qty. (Base) | ✅ |
+| 82 | `jobRemainingTotalCost` | Job Remaining Total Cost | Project Remaining Total Cost | ✅ |
+| 83 | `jobRemainingTotalCostLcy` | Job Remaining Total Cost (LCY) | Project Remaining Total Cost (LCY) | ✅ |
+| 84 | `jobRemainingLineAmount` | Job Remaining Line Amount | Project Remaining Line Amount | ✅ |
+| 85 | `variantCode` | Variant Code | Variant Code | ✅ |
+| 86 | `binCode` | Bin Code | Bin Code | ✅ |
+| 87 | `qtyPerUnitOfMeasure` | Qty. per Unit of Measure | Qty. per Unit of Measure | ✅ |
+| 88 | `planned` | Planned | Planned | ✅ |
+| 89 | `unitOfMeasureCode` | Unit of Measure Code | Unit of Measure Code | ✅ |
+| 90 | `qtyRoundingPrecision` | Qty. Rounding Precision | Qty. Rounding Precision | ✅ |
+| 91 | `qtyRoundingPrecisionBase` | Qty. Rounding Precision (Base) | Qty. Rounding Precision (Base) | ✅ |
+| 92 | `quantityBase` | Quantity (Base) | Quantity (Base) | ✅ |
+| 93 | `outstandingQtyBase` | Outstanding Qty. (Base) | Outstanding Qty. (Base) | ✅ |
+| 94 | `qtyToInvoiceBase` | Qty. to Invoice (Base) | Qty. to Invoice (Base) | ✅ |
+| 95 | `qtyToShipBase` | Qty. to Ship (Base) | Qty. to Ship (Base) | ✅ |
+| 96 | `qtyShippedNotInvdBase` | Qty. Shipped Not Invd. (Base) | Qty. Shipped Not Invd. (Base) | ✅ |
+| 97 | `qtyShippedBase` | Qty. Shipped (Base) | Qty. Shipped (Base) | ✅ |
+| 98 | `qtyInvoicedBase` | Qty. Invoiced (Base) | Qty. Invoiced (Base) | ✅ |
+| 99 | `reservedQtyBase` | Reserved Qty. (Base) | Reserved Qty. (Base) | ✅ |
+| 100 | `responsibilityCenter` | Responsibility Center | Responsibility Center | ✅ |
+| 101 | `substitutionAvailable` | Substitution Available | Substitution Available | ✅ |
+| 102 | `itemCategoryCode` | Item Category Code | Item Category Code | ✅ |
+| 103 | `nonstock` | Nonstock | Catalog | ✅ |
+| 104 | `itemReferenceNo` | Item Reference No. | Item Reference No. | ✅ |
+| 105 | `itemReferenceUnitOfMeasure` | Item Reference Unit of Measure | Reference Unit of Measure | ✅ |
+| 106 | `itemReferenceType` | Item Reference Type | Item Reference Type | ✅ |
+| 107 | `itemReferenceTypeNo` | Item Reference Type No. | Item Reference Type No. | ✅ |
+| 108 | `whseOutstandingQtyBase` | Whse. Outstanding Qty. (Base) | Whse. Outstanding Qty. (Base) | ✅ |
+| 109 | `completelyShipped` | Completely Shipped | Completely Shipped | ✅ |
+| 110 | `requestedDeliveryDate` | Requested Delivery Date | Requested Delivery Date | ✅ |
+| 111 | `promisedDeliveryDate` | Promised Delivery Date | Promised Delivery Date | ✅ |
+| 112 | `shippingTime` | Shipping Time | Shipping Time | ✅ |
+| 113 | `plannedDeliveryDate` | Planned Delivery Date | Planned Delivery Date | ✅ |
+| 114 | `shippingAgentCode` | Shipping Agent Code | Shipping Agent Code | ✅ |
+| 115 | `shippingAgentServiceCode` | Shipping Agent Service Code | Shipping Agent Service Code | ✅ |
+| 116 | `applFromItemEntry` | Appl.-from Item Entry | Appl.-from Item Entry | ✅ |
+| 117 | `serviceItemNo` | Service Item No. | Service Item No. | ✅ |
+| 118 | `applToServiceEntry` | Appl.-to Service Entry | Appl.-to Service Entry | ✅ |
+| 119 | `serviceItemLineNo` | Service Item Line No. | Service Item Line No. | ✅ |
+| 120 | `serviceItemSerialNo` | Service Item Serial No. | Service Item Serial No. | ✅ |
+| 121 | `serviceItemLineDescription` | Service Item Line Description | Service Item Line Description | ✅ |
+| 122 | `servPriceAdjmtGrCode` | Serv. Price Adjmt. Gr. Code | Serv. Price Adjmt. Gr. Code | ✅ |
+| 123 | `postingDate` | Posting Date | Posting Date | ✅ |
+| 124 | `orderDate` | Order Date | Order Date | ✅ |
+| 125 | `neededByDate` | Needed by Date | Needed by Date | ✅ |
+| 126 | `shipToCode` | Ship-to Code | Ship-to Code | ✅ |
+| 127 | `qtyToConsume` | Qty. to Consume | Qty. to Consume | ✅ |
+| 128 | `quantityConsumed` | Quantity Consumed | Quantity Consumed | ✅ |
+| 129 | `qtyToConsumeBase` | Qty. to Consume (Base) | Qty. to Consume (Base) | ✅ |
+| 130 | `qtyConsumedBase` | Qty. Consumed (Base) | Qty. Consumed (Base) | ✅ |
+| 131 | `servicePriceGroupCode` | Service Price Group Code | Service Price Group Code | ✅ |
+| 132 | `faultAreaCode` | Fault Area Code | Fault Area Code | ✅ |
+| 133 | `symptomCode` | Symptom Code | Symptom Code | ✅ |
+| 134 | `faultCode` | Fault Code | Fault Code | ✅ |
+| 135 | `resolutionCode` | Resolution Code | Resolution Code | ✅ |
+| 136 | `excludeWarranty` | Exclude Warranty | Exclude Warranty | ✅ |
+| 137 | `warranty` | Warranty | Warranty | ✅ |
+| 138 | `contractNo` | Contract No. | Contract No. | ✅ |
+| 139 | `contractDiscPct` | Contract Disc. % | Contract Disc. % | ✅ |
+| 140 | `warrantyDiscPct` | Warranty Disc. % | Warranty Disc. % | ✅ |
+| 141 | `componentLineNo` | Component Line No. | Component Line No. | ✅ |
+| 142 | `sparePartAction` | Spare Part Action | Spare Part Action | ✅ |
+| 143 | `faultReasonCode` | Fault Reason Code | Fault Reason Code | ✅ |
+| 144 | `replacedItemNo` | Replaced Item No. | Replaced Item No. | ✅ |
+| 145 | `excludeContractDiscount` | Exclude Contract Discount | Exclude Contract Discount | ✅ |
+| 146 | `replacedItemType` | Replaced Item Type | Replaced Item Type | ✅ |
+| 147 | `priceAdjmtStatus` | Price Adjmt. Status | Price Adjmt. Status | ✅ |
+| 148 | `lineDiscountType` | Line Discount Type | Line Discount Type | ✅ |
+| 149 | `copyComponentsFrom` | Copy Components From | Copy Components From | ✅ |
+| 150 | `returnReasonCode` | Return Reason Code | Return Reason Code | ✅ |
+| 151 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | ✅ |
+| 152 | `allowLineDisc` | Allow Line Disc. | Allow Line Disc. | ✅ |
+| 153 | `customerDiscGroup` | Customer Disc. Group | Customer Disc. Group | ✅ |
+| 154 | `qtyPicked` | Qty. Picked | Qty. Picked | ✅ |
+| 155 | `qtyPickedBase` | Qty. Picked (Base) | Qty. Picked (Base) | ✅ |
+| 156 | `completelyPicked` | Completely Picked | Completely Picked | ✅ |
+| 157 | `pickQtyBase` | Pick Qty. (Base) | Pick Qty. (Base) | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfServiceLedgerEntries
+
+**Description:** Service Ledger Entries — posted usage, sales, and contract transactions from service management. Read-only.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Service Ledger Entry |
+| Page ID | 90988 |
+| Page Name | `ocpfServiceLedgerEntries` |
+| Entity Set Name | `ocpfServiceLedgerEntries` |
+| API Group | `ocpf_serviceManagement` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ❌ No (GET only) |
+| Field Count | 64 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `entryNo` | Entry No. | Entry No. | — |
+| 3 | `serviceContractNo` | Service Contract No. | Service Contract No. | — |
+| 4 | `documentType` | Document Type | Document Type | — |
+| 5 | `documentNo` | Document No. | Document No. | — |
+| 6 | `servContractAccGrCode` | Serv. Contract Acc. Gr. Code | Serv. Contract Acc. Gr. Code | — |
+| 7 | `documentLineNo` | Document Line No. | Document Line No. | — |
+| 8 | `movedFromPrepaidAcc` | Moved from Prepaid Acc. | Moved from Prepaid Acc. | — |
+| 9 | `postingDate` | Posting Date | Posting Date | — |
+| 10 | `amountLcy` | Amount (LCY) | Amount (LCY) | — |
+| 11 | `customerNo` | Customer No. | Customer No. | — |
+| 12 | `shipToCode` | Ship-to Code | Ship-to Code | — |
+| 13 | `itemNoServiced` | Item No. (Serviced) | Item No. (Serviced) | — |
+| 14 | `serialNoServiced` | Serial No. (Serviced) | Serial No. (Serviced) | — |
+| 15 | `userId` | User ID | User ID | — |
+| 16 | `contractInvoicePeriod` | Contract Invoice Period | Contract Invoice Period | — |
+| 17 | `globalDimension1Code` | Global Dimension 1 Code | Global Dimension 1 Code | — |
+| 18 | `globalDimension2Code` | Global Dimension 2 Code | Global Dimension 2 Code | — |
+| 19 | `serviceItemNoServiced` | Service Item No. (Serviced) | Service Item No. (Serviced) | — |
+| 20 | `variantCodeServiced` | Variant Code (Serviced) | Variant Code (Serviced) | — |
+| 21 | `contractGroupCode` | Contract Group Code | Contract Group Code | — |
+| 22 | `type` | Type | Type | — |
+| 23 | `no` | No. | No. | — |
+| 24 | `costAmount` | Cost Amount | Cost Amount | — |
+| 25 | `discountAmount` | Discount Amount | Discount Amount | — |
+| 26 | `unitCost` | Unit Cost | Unit Cost | — |
+| 27 | `quantity` | Quantity | Quantity | — |
+| 28 | `chargedQty` | Charged Qty. | Charged Qty. | — |
+| 29 | `unitPrice` | Unit Price | Unit Price | — |
+| 30 | `discountPct` | Discount % | Discount % | — |
+| 31 | `contractDiscAmount` | Contract Disc. Amount | Contract Disc. Amount | — |
+| 32 | `billToCustomerNo` | Bill-to Customer No. | Bill-to Customer No. | — |
+| 33 | `faultReasonCode` | Fault Reason Code | Fault Reason Code | — |
+| 34 | `description` | Description | Description | — |
+| 35 | `serviceOrderType` | Service Order Type | Service Order Type | — |
+| 36 | `serviceOrderNo` | Service Order No. | Service Order No. | — |
+| 37 | `jobNo` | Job No. | Project No. | — |
+| 38 | `genBusPostingGroup` | Gen. Bus. Posting Group | Gen. Bus. Posting Group | — |
+| 39 | `genProdPostingGroup` | Gen. Prod. Posting Group | Gen. Prod. Posting Group | — |
+| 40 | `locationCode` | Location Code | Location Code | — |
+| 41 | `unitOfMeasureCode` | Unit of Measure Code | Unit of Measure Code | — |
+| 42 | `workTypeCode` | Work Type Code | Work Type Code | — |
+| 43 | `binCode` | Bin Code | Bin Code | — |
+| 44 | `responsibilityCenter` | Responsibility Center | Responsibility Center | — |
+| 45 | `variantCode` | Variant Code | Variant Code | — |
+| 46 | `entryType` | Entry Type | Entry Type | — |
+| 47 | `open` | Open | Open | — |
+| 48 | `servPriceAdjmtGrCode` | Serv. Price Adjmt. Gr. Code | Serv. Price Adjmt. Gr. Code | — |
+| 49 | `servicePriceGroupCode` | Service Price Group Code | Service Price Group Code | — |
+| 50 | `prepaid` | Prepaid | Prepaid | — |
+| 51 | `applyUntilEntryNo` | Apply Until Entry No. | Apply Until Entry No. | — |
+| 52 | `appliesToEntryNo` | Applies-to Entry No. | Applies-to Entry No. | — |
+| 53 | `amount` | Amount | Amount | — |
+| 54 | `jobTaskNo` | Job Task No. | Project Task No. | — |
+| 55 | `jobLineType` | Job Line Type | Project Line Type | — |
+| 56 | `jobPosted` | Job Posted | Project Posted | — |
+| 57 | `externalDocumentNo` | External Document No. | External Document No. | — |
+| 58 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | — |
+| 59 | `shortcutDimension3Code` | Shortcut Dimension 3 Code | Shortcut Dimension 3 Code | — |
+| 60 | `shortcutDimension4Code` | Shortcut Dimension 4 Code | Shortcut Dimension 4 Code | — |
+| 61 | `shortcutDimension5Code` | Shortcut Dimension 5 Code | Shortcut Dimension 5 Code | — |
+| 62 | `shortcutDimension6Code` | Shortcut Dimension 6 Code | Shortcut Dimension 6 Code | — |
+| 63 | `shortcutDimension7Code` | Shortcut Dimension 7 Code | Shortcut Dimension 7 Code | — |
+| 64 | `shortcutDimension8Code` | Shortcut Dimension 8 Code | Shortcut Dimension 8 Code | — |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfWarrantyLedgerEntries
+
+**Description:** Warranty Ledger Entries — posted warranty coverage transactions for service items. Read-only.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Warranty Ledger Entry |
+| Page ID | 90989 |
+| Page Name | `ocpfWarrantyLedgerEntries` |
+| Entity Set Name | `ocpfWarrantyLedgerEntries` |
+| API Group | `ocpf_serviceManagement` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ❌ No (GET only) |
+| Field Count | 42 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `entryNo` | Entry No. | Entry No. | — |
+| 3 | `documentNo` | Document No. | Document No. | — |
+| 4 | `postingDate` | Posting Date | Posting Date | — |
+| 5 | `customerNo` | Customer No. | Customer No. | — |
+| 6 | `shipToCode` | Ship-to Code | Ship-to Code | — |
+| 7 | `billToCustomerNo` | Bill-to Customer No. | Bill-to Customer No. | — |
+| 8 | `variantCodeServiced` | Variant Code (Serviced) | Variant Code (Serviced) | — |
+| 9 | `serviceItemNoServiced` | Service Item No. (Serviced) | Service Item No. (Serviced) | — |
+| 10 | `itemNoServiced` | Item No. (Serviced) | Item No. (Serviced) | — |
+| 11 | `serialNoServiced` | Serial No. (Serviced) | Serial No. (Serviced) | — |
+| 12 | `serviceItemGroupServiced` | Service Item Group (Serviced) | Service Item Group (Serviced) | — |
+| 13 | `serviceOrderNo` | Service Order No. | Service Order No. | — |
+| 14 | `serviceContractNo` | Service Contract No. | Service Contract No. | — |
+| 15 | `faultReasonCode` | Fault Reason Code | Fault Reason Code | — |
+| 16 | `faultAreaCode` | Fault Area Code | Fault Area Code | — |
+| 17 | `faultCode` | Fault Code | Fault Code | — |
+| 18 | `symptomCode` | Symptom Code | Symptom Code | — |
+| 19 | `resolutionCode` | Resolution Code | Resolution Code | — |
+| 20 | `type` | Type | Type | — |
+| 21 | `no` | No. | No. | — |
+| 22 | `quantity` | Quantity | Quantity | — |
+| 23 | `workTypeCode` | Work Type Code | Work Type Code | — |
+| 24 | `unitOfMeasureCode` | Unit of Measure Code | Unit of Measure Code | — |
+| 25 | `amount` | Amount | Amount | — |
+| 26 | `description` | Description | Description | — |
+| 27 | `genBusPostingGroup` | Gen. Bus. Posting Group | Gen. Bus. Posting Group | — |
+| 28 | `genProdPostingGroup` | Gen. Prod. Posting Group | Gen. Prod. Posting Group | — |
+| 29 | `globalDimension1Code` | Global Dimension 1 Code | Global Dimension 1 Code | — |
+| 30 | `globalDimension2Code` | Global Dimension 2 Code | Global Dimension 2 Code | — |
+| 31 | `open` | Open | Open | — |
+| 32 | `vendorNo` | Vendor No. | Vendor No. | — |
+| 33 | `vendorItemNo` | Vendor Item No. | Vendor Item No. | — |
+| 34 | `variantCode` | Variant Code | Variant Code | — |
+| 35 | `serviceOrderLineNo` | Service Order Line No. | Service Order Line No. | — |
+| 36 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | — |
+| 37 | `shortcutDimension3Code` | Shortcut Dimension 3 Code | Shortcut Dimension 3 Code | — |
+| 38 | `shortcutDimension4Code` | Shortcut Dimension 4 Code | Shortcut Dimension 4 Code | — |
+| 39 | `shortcutDimension5Code` | Shortcut Dimension 5 Code | Shortcut Dimension 5 Code | — |
+| 40 | `shortcutDimension6Code` | Shortcut Dimension 6 Code | Shortcut Dimension 6 Code | — |
+| 41 | `shortcutDimension7Code` | Shortcut Dimension 7 Code | Shortcut Dimension 7 Code | — |
+| 42 | `shortcutDimension8Code` | Shortcut Dimension 8 Code | Shortcut Dimension 8 Code | — |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfServiceRegisters
+
+**Description:** Service Registers — audit registers linking ranges of posted service ledger entries. Read-only.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Service Register |
+| Page ID | 90990 |
+| Page Name | `ocpfServiceRegisters` |
+| Entity Set Name | `ocpfServiceRegisters` |
+| API Group | `ocpf_serviceManagement` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ❌ No (GET only) |
+| Field Count | 10 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `no` | No. | No. | — |
+| 3 | `fromEntryNo` | From Entry No. | From Entry No. | — |
+| 4 | `toEntryNo` | To Entry No. | To Entry No. | — |
+| 5 | `fromWarrantyEntryNo` | From Warranty Entry No. | From Warranty Entry No. | — |
+| 6 | `toWarrantyEntryNo` | To Warranty Entry No. | To Warranty Entry No. | — |
+| 7 | `creationDate` | Creation Date | Creation Date | — |
+| 8 | `sourceCode` | Source Code | Source Code | — |
+| 9 | `userId` | User ID | User ID | — |
+| 10 | `creationTime` | Creation Time | Creation Time | — |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfServiceContractHeaders
+
+**Description:** Service Contracts — contract and quote headers covering service items, with invoicing, response, and renewal terms.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Service Contract Header |
+| Page ID | 90991 |
+| Page Name | `ocpfServiceContractHeaders` |
+| Entity Set Name | `ocpfServiceContractHeaders` |
+| API Group | `ocpf_serviceManagement` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 107 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `contractNo` | Contract No. | Contract No. | ✅ |
+| 3 | `contractType` | Contract Type | Contract Type | ✅ |
+| 4 | `description` | Description | Description | ✅ |
+| 5 | `description2` | Description 2 | Description 2 | ✅ |
+| 6 | `status` | Status | Status | ✅ |
+| 7 | `changeStatus` | Change Status | Change Status | ✅ |
+| 8 | `customerNo` | Customer No. | Customer No. | ✅ |
+| 9 | `name` | Name | Name | ✅ |
+| 10 | `address` | Address | Address | ✅ |
+| 11 | `address2` | Address 2 | Address 2 | ✅ |
+| 12 | `postCode` | Post Code | Post Code | ✅ |
+| 13 | `city` | City | City | ✅ |
+| 14 | `contactName` | Contact Name | Contact Name | ✅ |
+| 15 | `yourReference` | Your Reference | Your Reference | ✅ |
+| 16 | `salespersonCode` | Salesperson Code | Salesperson Code | ✅ |
+| 17 | `billToCustomerNo` | Bill-to Customer No. | Bill-to Customer No. | ✅ |
+| 18 | `billToName` | Bill-to Name | Bill-to Name | ✅ |
+| 19 | `billToAddress` | Bill-to Address | Bill-to Address | ✅ |
+| 20 | `billToAddress2` | Bill-to Address 2 | Bill-to Address 2 | ✅ |
+| 21 | `billToPostCode` | Bill-to Post Code | Bill-to Post Code | ✅ |
+| 22 | `billToCity` | Bill-to City | Bill-to City | ✅ |
+| 23 | `shipToCode` | Ship-to Code | Ship-to Code | ✅ |
+| 24 | `shipToName` | Ship-to Name | Ship-to Name | ✅ |
+| 25 | `shipToAddress` | Ship-to Address | Ship-to Address | ✅ |
+| 26 | `shipToAddress2` | Ship-to Address 2 | Ship-to Address 2 | ✅ |
+| 27 | `shipToPostCode` | Ship-to Post Code | Ship-to Post Code | ✅ |
+| 28 | `shipToCity` | Ship-to City | Ship-to City | ✅ |
+| 29 | `servContractAccGrCode` | Serv. Contract Acc. Gr. Code | Serv. Contract Acc. Gr. Code | ✅ |
+| 30 | `invoicePeriod` | Invoice Period | Invoice Period | ✅ |
+| 31 | `lastInvoiceDate` | Last Invoice Date | Last Invoice Date | ✅ |
+| 32 | `nextInvoiceDate` | Next Invoice Date | Next Invoice Date | ✅ |
+| 33 | `startingDate` | Starting Date | Starting Date | ✅ |
+| 34 | `expirationDate` | Expiration Date | Expiration Date | ✅ |
+| 35 | `firstServiceDate` | First Service Date | First Service Date | ✅ |
+| 36 | `maxLaborUnitPrice` | Max. Labor Unit Price | Max. Labor Unit Price | ✅ |
+| 37 | `calcdAnnualAmount` | Calcd. Annual Amount | Calcd. Annual Amount | ✅ |
+| 38 | `annualAmount` | Annual Amount | Annual Amount | ✅ |
+| 39 | `amountPerPeriod` | Amount per Period | Amount per Period | ✅ |
+| 40 | `combineInvoices` | Combine Invoices | Combine Invoices | ✅ |
+| 41 | `prepaid` | Prepaid | Prepaid | ✅ |
+| 42 | `nextInvoicePeriod` | Next Invoice Period | Next Invoice Period | ✅ |
+| 43 | `serviceZoneCode` | Service Zone Code | Service Zone Code | ✅ |
+| 44 | `languageCode` | Language Code | Language Code | ✅ |
+| 45 | `formatRegion` | Format Region | Format Region | ✅ |
+| 46 | `cancelReasonCode` | Cancel Reason Code | Cancel Reason Code | ✅ |
+| 47 | `lastPriceUpdateDate` | Last Price Update Date | Last Price Update Date | ✅ |
+| 48 | `nextPriceUpdateDate` | Next Price Update Date | Next Price Update Date | ✅ |
+| 49 | `lastPriceUpdatePct` | Last Price Update % | Last Price Update % | ✅ |
+| 50 | `responseTimeHours` | Response Time (Hours) | Response Time (Hours) | ✅ |
+| 51 | `contractLinesOnInvoice` | Contract Lines on Invoice | Contract Lines on Invoice | ✅ |
+| 52 | `noOfPostedInvoices` | No. of Posted Invoices | No. of Posted Invoices | ✅ |
+| 53 | `noOfUnpostedInvoices` | No. of Unposted Invoices | No. of Unposted Invoices | ✅ |
+| 54 | `servicePeriod` | Service Period | Service Period | ✅ |
+| 55 | `paymentTermsCode` | Payment Terms Code | Payment Terms Code | ✅ |
+| 56 | `invoiceAfterService` | Invoice after Service | Invoice after Service | ✅ |
+| 57 | `quoteType` | Quote Type | Quote Type | ✅ |
+| 58 | `allowUnbalancedAmounts` | Allow Unbalanced Amounts | Allow Unbalanced Amounts | ✅ |
+| 59 | `contractGroupCode` | Contract Group Code | Contract Group Code | ✅ |
+| 60 | `serviceOrderType` | Service Order Type | Service Order Type | ✅ |
+| 61 | `shortcutDimension1Code` | Shortcut Dimension 1 Code | Shortcut Dimension 1 Code | ✅ |
+| 62 | `shortcutDimension2Code` | Shortcut Dimension 2 Code | Shortcut Dimension 2 Code | ✅ |
+| 63 | `acceptBefore` | Accept Before | Accept Before | ✅ |
+| 64 | `automaticCreditMemos` | Automatic Credit Memos | Automatic Credit Memos | ✅ |
+| 65 | `templateNo` | Template No. | Template No. | ✅ |
+| 66 | `priceUpdatePeriod` | Price Update Period | Price Update Period | ✅ |
+| 67 | `priceInvIncreaseCode` | Price Inv. Increase Code | Price Inv. Increase Code | ✅ |
+| 68 | `printIncreaseText` | Print Increase Text | Print Increase Text | ✅ |
+| 69 | `currencyCode` | Currency Code | Currency Code | ✅ |
+| 70 | `noSeries` | No. Series | No. Series | ✅ |
+| 71 | `probability` | Probability | Probability | ✅ |
+| 72 | `comment` | Comment | Comment | ✅ |
+| 73 | `responsibilityCenter` | Responsibility Center | Responsibility Center | ✅ |
+| 74 | `phoneNo` | Phone No. | Phone No. | ✅ |
+| 75 | `faxNo` | Fax No. | Fax No. | ✅ |
+| 76 | `eMail` | E-Mail | Email | ✅ |
+| 77 | `billToCounty` | Bill-to County | Bill-to County | ✅ |
+| 78 | `county` | County | County | ✅ |
+| 79 | `shipToCounty` | Ship-to County | Ship-to County | ✅ |
+| 80 | `countryRegionCode` | Country/Region Code | Country/Region Code | ✅ |
+| 81 | `billToCountryRegionCode` | Bill-to Country/Region Code | Bill-to Country/Region Code | ✅ |
+| 82 | `shipToCountryRegionCode` | Ship-to Country/Region Code | Ship-to Country/Region Code | ✅ |
+| 83 | `name2` | Name 2 | Name 2 | ✅ |
+| 84 | `billToName2` | Bill-to Name 2 | Bill-to Name 2 | ✅ |
+| 85 | `shipToName2` | Ship-to Name 2 | Ship-to Name 2 | ✅ |
+| 86 | `nextInvoicePeriodStart` | Next Invoice Period Start | Next Invoice Period Start | ✅ |
+| 87 | `nextInvoicePeriodEnd` | Next Invoice Period End | Next Invoice Period End | ✅ |
+| 88 | `contractInvoiceAmount` | Contract Invoice Amount | Contract Invoice Amount | ✅ |
+| 89 | `contractPrepaidAmount` | Contract Prepaid Amount | Contract Prepaid Amount | ✅ |
+| 90 | `contractDiscountAmount` | Contract Discount Amount | Contract Discount Amount | ✅ |
+| 91 | `contractCostAmount` | Contract Cost Amount | Contract Cost Amount | ✅ |
+| 92 | `contractGainLossAmount` | Contract Gain/Loss Amount | Contract Gain/Loss Amount | ✅ |
+| 93 | `noOfPostedCreditMemos` | No. of Posted Credit Memos | No. of Posted Credit Memos | ✅ |
+| 94 | `noOfUnpostedCreditMemos` | No. of Unposted Credit Memos | No. of Unposted Credit Memos | ✅ |
+| 95 | `typeFilter` | Type Filter | Type Filter | ✅ |
+| 96 | `reasonCodeFilter` | Reason Code Filter | Reason Code Filter | ✅ |
+| 97 | `postedServiceOrderFilter` | Posted Service Order Filter | Posted Service Order Filter | ✅ |
+| 98 | `dateFilter` | Date Filter | Date Filter | ✅ |
+| 99 | `itemFilter` | Item Filter | Item Filter | ✅ |
+| 100 | `paymentMethodCode` | Payment Method Code | Payment Method Code | ✅ |
+| 101 | `shipToPhoneNo` | Ship-to Phone No. | Ship-to Phone No. | ✅ |
+| 102 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | ✅ |
+| 103 | `directDebitMandateId` | Direct Debit Mandate ID | Direct Debit Mandate ID | ✅ |
+| 104 | `contactNo` | Contact No. | Contact No. | ✅ |
+| 105 | `billToContactNo` | Bill-to Contact No. | Bill-to Contact No. | ✅ |
+| 106 | `billToContact` | Bill-to Contact | Bill-to Contact | ✅ |
+| 107 | `lastInvoicePeriodEnd` | Last Invoice Period End | Last Invoice Period End | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfServiceContractLines
+
+**Description:** Service Contract Lines — the service items covered by each service contract.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Service Contract Line |
+| Page ID | 90992 |
+| Page Name | `ocpfServiceContractLines` |
+| Entity Set Name | `ocpfServiceContractLines` |
+| API Group | `ocpf_serviceManagement` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 32 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `contractType` | Contract Type | Contract Type | ✅ |
+| 3 | `contractNo` | Contract No. | Contract No. | ✅ |
+| 4 | `lineNo` | Line No. | Line No. | ✅ |
+| 5 | `contractStatus` | Contract Status | Contract Status | ✅ |
+| 6 | `serviceItemNo` | Service Item No. | Service Item No. | ✅ |
+| 7 | `description` | Description | Description | ✅ |
+| 8 | `serialNo` | Serial No. | Serial No. | ✅ |
+| 9 | `serviceItemGroupCode` | Service Item Group Code | Service Item Group Code | ✅ |
+| 10 | `customerNo` | Customer No. | Customer No. | ✅ |
+| 11 | `shipToCode` | Ship-to Code | Ship-to Code | ✅ |
+| 12 | `itemNo` | Item No. | Item No. | ✅ |
+| 13 | `unitOfMeasureCode` | Unit of Measure Code | Unit of Measure Code | ✅ |
+| 14 | `responseTimeHours` | Response Time (Hours) | Response Time (Hours) | ✅ |
+| 15 | `lastPlannedServiceDate` | Last Planned Service Date | Last Planned Service Date | ✅ |
+| 16 | `nextPlannedServiceDate` | Next Planned Service Date | Next Planned Service Date | ✅ |
+| 17 | `lastServiceDate` | Last Service Date | Last Service Date | ✅ |
+| 18 | `lastPreventiveMaintDate` | Last Preventive Maint. Date | Last Preventive Maint. Date | ✅ |
+| 19 | `invoicedToDate` | Invoiced to Date | Invoiced to Date | ✅ |
+| 20 | `creditMemoDate` | Credit Memo Date | Credit Memo Date | ✅ |
+| 21 | `contractExpirationDate` | Contract Expiration Date | Contract Expiration Date | ✅ |
+| 22 | `servicePeriod` | Service Period | Service Period | ✅ |
+| 23 | `lineValue` | Line Value | Line Value | ✅ |
+| 24 | `lineDiscountPct` | Line Discount % | Line Discount % | ✅ |
+| 25 | `lineAmount` | Line Amount | Line Amount | ✅ |
+| 26 | `variantCode` | Variant Code | Variant Code | ✅ |
+| 27 | `startingDate` | Starting Date | Starting Date | ✅ |
+| 28 | `newLine` | New Line | New Line | ✅ |
+| 29 | `credited` | Credited | Credited | ✅ |
+| 30 | `lineCost` | Line Cost | Line Cost | ✅ |
+| 31 | `lineDiscountAmount` | Line Discount Amount | Line Discount Amount | ✅ |
+| 32 | `profit` | Profit | Profit | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfContractGroups
+
+**Description:** Contract Groups — groupings of service contracts for filtering and bulk operations.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Contract Group |
+| Page ID | 90993 |
+| Page Name | `ocpfContractGroups` |
+| Entity Set Name | `ocpfContractGroups` |
+| API Group | `ocpf_serviceManagement` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 6 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `code` | Code | Code | ✅ |
+| 3 | `description` | Description | Description | ✅ |
+| 4 | `discOnContrOrdersOnly` | Disc. on Contr. Orders Only | Disc. on Contr. Orders Only | ✅ |
+| 5 | `dateFilter` | Date Filter | Date Filter | ✅ |
+| 6 | `contractGainLossAmount` | Contract Gain/Loss Amount | Contract Gain/Loss Amount | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfServiceShipmentHeaders
+
+**Description:** Posted Service Shipments — headers of posted service shipments. Read-only.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Service Shipment Header |
+| Page ID | 90994 |
+| Page Name | `ocpfServiceShipmentHeaders` |
+| Entity Set Name | `ocpfServiceShipmentHeaders` |
+| API Group | `ocpf_serviceManagement` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ❌ No (GET only) |
+| Field Count | 133 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `customerNo` | Customer No. | Customer No. | — |
+| 3 | `no` | No. | No. | — |
+| 4 | `billToCustomerNo` | Bill-to Customer No. | Bill-to Customer No. | — |
+| 5 | `billToName` | Bill-to Name | Bill-to Name | — |
+| 6 | `billToName2` | Bill-to Name 2 | Bill-to Name 2 | — |
+| 7 | `billToAddress` | Bill-to Address | Bill-to Address | — |
+| 8 | `billToAddress2` | Bill-to Address 2 | Bill-to Address 2 | — |
+| 9 | `billToCity` | Bill-to City | Bill-to City | — |
+| 10 | `billToContact` | Bill-to Contact | Bill-to Contact | — |
+| 11 | `yourReference` | Your Reference | Your Reference | — |
+| 12 | `shipToCode` | Ship-to Code | Ship-to Code | — |
+| 13 | `shipToName` | Ship-to Name | Ship-to Name | — |
+| 14 | `shipToName2` | Ship-to Name 2 | Ship-to Name 2 | — |
+| 15 | `shipToAddress` | Ship-to Address | Ship-to Address | — |
+| 16 | `shipToAddress2` | Ship-to Address 2 | Ship-to Address 2 | — |
+| 17 | `shipToCity` | Ship-to City | Ship-to City | — |
+| 18 | `shipToContact` | Ship-to Contact | Ship-to Contact | — |
+| 19 | `orderDate` | Order Date | Order Date | — |
+| 20 | `postingDate` | Posting Date | Posting Date | — |
+| 21 | `postingDescription` | Posting Description | Posting Description | — |
+| 22 | `paymentTermsCode` | Payment Terms Code | Payment Terms Code | — |
+| 23 | `dueDate` | Due Date | Due Date | — |
+| 24 | `paymentDiscountPct` | Payment Discount % | Payment Discount % | — |
+| 25 | `pmtDiscountDate` | Pmt. Discount Date | Pmt. Discount Date | — |
+| 26 | `shipmentMethodCode` | Shipment Method Code | Shipment Method Code | — |
+| 27 | `locationCode` | Location Code | Location Code | — |
+| 28 | `shortcutDimension1Code` | Shortcut Dimension 1 Code | Shortcut Dimension 1 Code | — |
+| 29 | `shortcutDimension2Code` | Shortcut Dimension 2 Code | Shortcut Dimension 2 Code | — |
+| 30 | `customerPostingGroup` | Customer Posting Group | Customer Posting Group | — |
+| 31 | `currencyCode` | Currency Code | Currency Code | — |
+| 32 | `currencyFactor` | Currency Factor | Currency Factor | — |
+| 33 | `customerPriceGroup` | Customer Price Group | Customer Price Group | — |
+| 34 | `pricesIncludingVat` | Prices Including VAT | Prices Including VAT | — |
+| 35 | `invoiceDiscCode` | Invoice Disc. Code | Invoice Disc. Code | — |
+| 36 | `customerDiscGroup` | Customer Disc. Group | Customer Disc. Group | — |
+| 37 | `languageCode` | Language Code | Language Code | — |
+| 38 | `formatRegion` | Format Region | Format Region | — |
+| 39 | `salespersonCode` | Salesperson Code | Salesperson Code | — |
+| 40 | `orderNo` | Order No. | Order No. | — |
+| 41 | `comment` | Comment | Comment | — |
+| 42 | `noPrinted` | No. Printed | No. Printed | — |
+| 43 | `appliesToDocType` | Applies-to Doc. Type | Applies-to Doc. Type | — |
+| 44 | `appliesToDocNo` | Applies-to Doc. No. | Applies-to Doc. No. | — |
+| 45 | `balAccountNo` | Bal. Account No. | Bal. Account No. | — |
+| 46 | `vatRegistrationNo` | VAT Registration No. | VAT Registration No. | — |
+| 47 | `reasonCode` | Reason Code | Reason Code | — |
+| 48 | `genBusPostingGroup` | Gen. Bus. Posting Group | Gen. Bus. Posting Group | — |
+| 49 | `eu3PartyTrade` | EU 3-Party Trade | EU 3-Party Trade | — |
+| 50 | `transactionType` | Transaction Type | Transaction Type | — |
+| 51 | `transportMethod` | Transport Method | Transport Method | — |
+| 52 | `vatCountryRegionCode` | VAT Country/Region Code | VAT Country/Region Code | — |
+| 53 | `name` | Name | Name | — |
+| 54 | `name2` | Name 2 | Name 2 | — |
+| 55 | `address` | Address | Address | — |
+| 56 | `address2` | Address 2 | Address 2 | — |
+| 57 | `city` | City | City | — |
+| 58 | `contactName` | Contact Name | Contact Name | — |
+| 59 | `billToPostCode` | Bill-to Post Code | Bill-to Post Code | — |
+| 60 | `billToCounty` | Bill-to County | Bill-to County | — |
+| 61 | `billToCountryRegionCode` | Bill-to Country/Region Code | Bill-to Country/Region Code | — |
+| 62 | `postCode` | Post Code | Post Code | — |
+| 63 | `county` | County | County | — |
+| 64 | `countryRegionCode` | Country/Region Code | Country/Region Code | — |
+| 65 | `shipToPostCode` | Ship-to Post Code | Ship-to Post Code | — |
+| 66 | `shipToCounty` | Ship-to County | Ship-to County | — |
+| 67 | `shipToCountryRegionCode` | Ship-to Country/Region Code | Ship-to Country/Region Code | — |
+| 68 | `balAccountType` | Bal. Account Type | Bal. Account Type | — |
+| 69 | `exitPoint` | Exit Point | Exit Point | — |
+| 70 | `correction` | Correction | Correction | — |
+| 71 | `documentDate` | Document Date | Document Date | — |
+| 72 | `externalDocumentNo` | External Document No. | External Document No. | — |
+| 73 | `area` | Area | Area | — |
+| 74 | `transactionSpecification` | Transaction Specification | Transaction Specification | — |
+| 75 | `paymentMethodCode` | Payment Method Code | Payment Method Code | — |
+| 76 | `shippingAgentCode` | Shipping Agent Code | Shipping Agent Code | — |
+| 77 | `noSeries` | No. Series | No. Series | — |
+| 78 | `orderNoSeries` | Order No. Series | Order No. Series | — |
+| 79 | `userId` | User ID | User ID | — |
+| 80 | `sourceCode` | Source Code | Source Code | — |
+| 81 | `taxAreaCode` | Tax Area Code | Tax Area Code | — |
+| 82 | `taxLiable` | Tax Liable | Tax Liable | — |
+| 83 | `vatBusPostingGroup` | VAT Bus. Posting Group | VAT Bus. Posting Group | — |
+| 84 | `vatBaseDiscountPct` | VAT Base Discount % | VAT Base Discount % | — |
+| 85 | `companyBankAccountCode` | Company Bank Account Code | Company Bank Account Code | — |
+| 86 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | — |
+| 87 | `contactNo` | Contact No. | Contact No. | — |
+| 88 | `billToContactNo` | Bill-to Contact No. | Bill-to Contact No. | — |
+| 89 | `responsibilityCenter` | Responsibility Center | Responsibility Center | — |
+| 90 | `shippingAgentServiceCode` | Shipping Agent Service Code | Shipping Agent Service Code | — |
+| 91 | `dateFilter` | Date Filter | Date Filter | — |
+| 92 | `description` | Description | Description | — |
+| 93 | `serviceOrderType` | Service Order Type | Service Order Type | — |
+| 94 | `linkServiceToServiceItem` | Link Service to Service Item | Link Service to Service Item | — |
+| 95 | `priority` | Priority | Priority | — |
+| 96 | `allocatedHours` | Allocated Hours | Allocated Hours | — |
+| 97 | `phoneNo` | Phone No. | Phone No. | — |
+| 98 | `eMail` | E-Mail | Email | — |
+| 99 | `phoneNo2` | Phone No. 2 | Phone No. 2 | — |
+| 100 | `faxNo` | Fax No. | Fax No. | — |
+| 101 | `noOfUnallocatedItems` | No. of Unallocated Items | No. of Unallocated Items | — |
+| 102 | `orderTime` | Order Time | Order Time | — |
+| 103 | `defaultResponseTimeHours` | Default Response Time (Hours) | Default Response Time (Hours) | — |
+| 104 | `actualResponseTimeHours` | Actual Response Time (Hours) | Actual Response Time (Hours) | — |
+| 105 | `serviceTimeHours` | Service Time (Hours) | Service Time (Hours) | — |
+| 106 | `responseDate` | Response Date | Response Date | — |
+| 107 | `responseTime` | Response Time | Response Time | — |
+| 108 | `startingDate` | Starting Date | Starting Date | — |
+| 109 | `startingTime` | Starting Time | Starting Time | — |
+| 110 | `finishingDate` | Finishing Date | Finishing Date | — |
+| 111 | `finishingTime` | Finishing Time | Finishing Time | — |
+| 112 | `contractServHoursExist` | Contract Serv. Hours Exist | Contract Serv. Hours Exist | — |
+| 113 | `reallocationNeeded` | Reallocation Needed | Reallocation Needed | — |
+| 114 | `notifyCustomer` | Notify Customer | Notify Customer | — |
+| 115 | `maxLaborUnitPrice` | Max. Labor Unit Price | Max. Labor Unit Price | — |
+| 116 | `warningStatus` | Warning Status | Warning Status | — |
+| 117 | `noOfAllocations` | No. of Allocations | No. of Allocations | — |
+| 118 | `contractNo` | Contract No. | Contract No. | — |
+| 119 | `typeFilter` | Type Filter | Type Filter | — |
+| 120 | `customerFilter` | Customer Filter | Customer Filter | — |
+| 121 | `resourceFilter` | Resource Filter | Resource Filter | — |
+| 122 | `contractFilter` | Contract Filter | Contract Filter | — |
+| 123 | `shipToFaxNo` | Ship-to Fax No. | Ship-to Fax No. | — |
+| 124 | `shipToEMail` | Ship-to E-Mail | Ship-to Email | — |
+| 125 | `resourceGroupFilter` | Resource Group Filter | Resource Group Filter | — |
+| 126 | `shipToPhone` | Ship-to Phone | Ship-to Phone | — |
+| 127 | `shipToPhone2` | Ship-to Phone 2 | Ship-to Phone 2 | — |
+| 128 | `serviceZoneFilter` | Service Zone Filter | Service Zone Filter | — |
+| 129 | `serviceZoneCode` | Service Zone Code | Service Zone Code | — |
+| 130 | `expectedFinishingDate` | Expected Finishing Date | Expected Finishing Date | — |
+| 131 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | — |
+| 132 | `allowLineDisc` | Allow Line Disc. | Allow Line Disc. | — |
+| 133 | `quoteNo` | Quote No. | Quote No. | — |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfServiceShipmentLines
+
+**Description:** Posted Service Shipment Lines — lines of posted service shipments. Read-only.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Service Shipment Line |
+| Page ID | 90995 |
+| Page Name | `ocpfServiceShipmentLines` |
+| Entity Set Name | `ocpfServiceShipmentLines` |
+| API Group | `ocpf_serviceManagement` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ❌ No (GET only) |
+| Field Count | 102 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `customerNo` | Customer No. | Customer No. | — |
+| 3 | `documentNo` | Document No. | Document No. | — |
+| 4 | `lineNo` | Line No. | Line No. | — |
+| 5 | `type` | Type | Type | — |
+| 6 | `no` | No. | No. | — |
+| 7 | `locationCode` | Location Code | Location Code | — |
+| 8 | `postingGroup` | Posting Group | Posting Group | — |
+| 9 | `description` | Description | Description | — |
+| 10 | `description2` | Description 2 | Description 2 | — |
+| 11 | `unitOfMeasure` | Unit of Measure | Unit of Measure | — |
+| 12 | `quantity` | Quantity | Quantity | — |
+| 13 | `unitPrice` | Unit Price | Unit Price | — |
+| 14 | `unitCostLcy` | Unit Cost (LCY) | Unit Cost (LCY) | — |
+| 15 | `vatPct` | VAT % | VAT % | — |
+| 16 | `lineDiscountPct` | Line Discount % | Line Discount % | — |
+| 17 | `allowInvoiceDisc` | Allow Invoice Disc. | Allow Invoice Disc. | — |
+| 18 | `grossWeight` | Gross Weight | Gross Weight | — |
+| 19 | `netWeight` | Net Weight | Net Weight | — |
+| 20 | `unitsPerParcel` | Units per Parcel | Units per Parcel | — |
+| 21 | `unitVolume` | Unit Volume | Unit Volume | — |
+| 22 | `applToItemEntry` | Appl.-to Item Entry | Appl.-to Item Entry | — |
+| 23 | `itemShptEntryNo` | Item Shpt. Entry No. | Item Shpt. Entry No. | — |
+| 24 | `shortcutDimension1Code` | Shortcut Dimension 1 Code | Shortcut Dimension 1 Code | — |
+| 25 | `shortcutDimension2Code` | Shortcut Dimension 2 Code | Shortcut Dimension 2 Code | — |
+| 26 | `customerPriceGroup` | Customer Price Group | Customer Price Group | — |
+| 27 | `jobNo` | Job No. | Project No. | — |
+| 28 | `jobTaskNo` | Job Task No. | Project Task No. | — |
+| 29 | `workTypeCode` | Work Type Code | Work Type Code | — |
+| 30 | `qtyShippedNotInvoiced` | Qty. Shipped Not Invoiced | Qty. Shipped Not Invoiced | — |
+| 31 | `quantityInvoiced` | Quantity Invoiced | Quantity Invoiced | — |
+| 32 | `orderNo` | Order No. | Order No. | — |
+| 33 | `orderLineNo` | Order Line No. | Order Line No. | — |
+| 34 | `billToCustomerNo` | Bill-to Customer No. | Bill-to Customer No. | — |
+| 35 | `genBusPostingGroup` | Gen. Bus. Posting Group | Gen. Bus. Posting Group | — |
+| 36 | `genProdPostingGroup` | Gen. Prod. Posting Group | Gen. Prod. Posting Group | — |
+| 37 | `vatCalculationType` | VAT Calculation Type | VAT Calculation Type | — |
+| 38 | `transactionType` | Transaction Type | Transaction Type | — |
+| 39 | `transportMethod` | Transport Method | Transport Method | — |
+| 40 | `attachedToLineNo` | Attached to Line No. | Attached to Line No. | — |
+| 41 | `exitPoint` | Exit Point | Exit Point | — |
+| 42 | `area` | Area | Area | — |
+| 43 | `transactionSpecification` | Transaction Specification | Transaction Specification | — |
+| 44 | `taxAreaCode` | Tax Area Code | Tax Area Code | — |
+| 45 | `taxLiable` | Tax Liable | Tax Liable | — |
+| 46 | `taxGroupCode` | Tax Group Code | Tax Group Code | — |
+| 47 | `vatBusPostingGroup` | VAT Bus. Posting Group | VAT Bus. Posting Group | — |
+| 48 | `vatProdPostingGroup` | VAT Prod. Posting Group | VAT Prod. Posting Group | — |
+| 49 | `currencyCode` | Currency Code | Currency Code | — |
+| 50 | `vatBaseAmount` | VAT Base Amount | VAT Base Amount | — |
+| 51 | `unitCost` | Unit Cost | Unit Cost | — |
+| 52 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | — |
+| 53 | `timeSheetNo` | Time Sheet No. | Time Sheet No. | — |
+| 54 | `timeSheetLineNo` | Time Sheet Line No. | Time Sheet Line No. | — |
+| 55 | `timeSheetDate` | Time Sheet Date | Time Sheet Date | — |
+| 56 | `jobPlanningLineNo` | Job Planning Line No. | Project Planning Line No. | — |
+| 57 | `variantCode` | Variant Code | Variant Code | — |
+| 58 | `binCode` | Bin Code | Bin Code | — |
+| 59 | `qtyPerUnitOfMeasure` | Qty. per Unit of Measure | Qty. per Unit of Measure | — |
+| 60 | `unitOfMeasureCode` | Unit of Measure Code | Unit of Measure Code | — |
+| 61 | `quantityBase` | Quantity (Base) | Quantity (Base) | — |
+| 62 | `qtyShippedNotInvdBase` | Qty. Shipped Not Invd. (Base) | Qty. Shipped Not Invd. (Base) | — |
+| 63 | `qtyInvoicedBase` | Qty. Invoiced (Base) | Qty. Invoiced (Base) | — |
+| 64 | `responsibilityCenter` | Responsibility Center | Responsibility Center | — |
+| 65 | `itemCategoryCode` | Item Category Code | Item Category Code | — |
+| 66 | `nonstock` | Nonstock | Catalog | — |
+| 67 | `correction` | Correction | Correction | — |
+| 68 | `applToWarrantyEntry` | Appl.-to Warranty Entry | Appl.-to Warranty Entry | — |
+| 69 | `serviceItemNo` | Service Item No. | Service Item No. | — |
+| 70 | `applToServiceEntry` | Appl.-to Service Entry | Appl.-to Service Entry | — |
+| 71 | `serviceItemLineNo` | Service Item Line No. | Service Item Line No. | — |
+| 72 | `serviceItemSerialNo` | Service Item Serial No. | Service Item Serial No. | — |
+| 73 | `serviceItemLineDescription` | Service Item Line Description | Service Item Line Description | — |
+| 74 | `postingDate` | Posting Date | Posting Date | — |
+| 75 | `orderDate` | Order Date | Order Date | — |
+| 76 | `neededByDate` | Needed by Date | Needed by Date | — |
+| 77 | `shipToCode` | Ship-to Code | Ship-to Code | — |
+| 78 | `quantityConsumed` | Quantity Consumed | Quantity Consumed | — |
+| 79 | `qtyConsumedBase` | Qty. Consumed (Base) | Qty. Consumed (Base) | — |
+| 80 | `servicePriceGroupCode` | Service Price Group Code | Service Price Group Code | — |
+| 81 | `faultAreaCode` | Fault Area Code | Fault Area Code | — |
+| 82 | `symptomCode` | Symptom Code | Symptom Code | — |
+| 83 | `faultCode` | Fault Code | Fault Code | — |
+| 84 | `resolutionCode` | Resolution Code | Resolution Code | — |
+| 85 | `excludeWarranty` | Exclude Warranty | Exclude Warranty | — |
+| 86 | `warranty` | Warranty | Warranty | — |
+| 87 | `contractNo` | Contract No. | Contract No. | — |
+| 88 | `contractDiscPct` | Contract Disc. % | Contract Disc. % | — |
+| 89 | `warrantyDiscPct` | Warranty Disc. % | Warranty Disc. % | — |
+| 90 | `componentLineNo` | Component Line No. | Component Line No. | — |
+| 91 | `sparePartAction` | Spare Part Action | Spare Part Action | — |
+| 92 | `faultReasonCode` | Fault Reason Code | Fault Reason Code | — |
+| 93 | `replacedItemNo` | Replaced Item No. | Replaced Item No. | — |
+| 94 | `excludeContractDiscount` | Exclude Contract Discount | Exclude Contract Discount | — |
+| 95 | `replacedItemType` | Replaced Item Type | Replaced Item Type | — |
+| 96 | `priceAdjmtStatus` | Price Adjmt. Status | Price Adjmt. Status | — |
+| 97 | `lineDiscountType` | Line Discount Type | Line Discount Type | — |
+| 98 | `copyComponentsFrom` | Copy Components From | Copy Components From | — |
+| 99 | `returnReasonCode` | Return Reason Code | Return Reason Code | — |
+| 100 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | — |
+| 101 | `allowLineDisc` | Allow Line Disc. | Allow Line Disc. | — |
+| 102 | `customerDiscGroup` | Customer Disc. Group | Customer Disc. Group | — |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfServiceInvoiceHeaders
+
+**Description:** Posted Service Invoices — headers of posted service invoices. Read-only.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Service Invoice Header |
+| Page ID | 90996 |
+| Page Name | `ocpfServiceInvoiceHeaders` |
+| Entity Set Name | `ocpfServiceInvoiceHeaders` |
+| API Group | `ocpf_serviceManagement` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ❌ No (GET only) |
+| Field Count | 147 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `customerNo` | Customer No. | Customer No. | — |
+| 3 | `no` | No. | No. | — |
+| 4 | `billToCustomerNo` | Bill-to Customer No. | Bill-to Customer No. | — |
+| 5 | `billToName` | Bill-to Name | Bill-to Name | — |
+| 6 | `billToName2` | Bill-to Name 2 | Bill-to Name 2 | — |
+| 7 | `billToAddress` | Bill-to Address | Bill-to Address | — |
+| 8 | `billToAddress2` | Bill-to Address 2 | Bill-to Address 2 | — |
+| 9 | `billToCity` | Bill-to City | Bill-to City | — |
+| 10 | `billToContact` | Bill-to Contact | Bill-to Contact | — |
+| 11 | `yourReference` | Your Reference | Your Reference | — |
+| 12 | `shipToCode` | Ship-to Code | Ship-to Code | — |
+| 13 | `shipToName` | Ship-to Name | Ship-to Name | — |
+| 14 | `shipToName2` | Ship-to Name 2 | Ship-to Name 2 | — |
+| 15 | `shipToAddress` | Ship-to Address | Ship-to Address | — |
+| 16 | `shipToAddress2` | Ship-to Address 2 | Ship-to Address 2 | — |
+| 17 | `shipToCity` | Ship-to City | Ship-to City | — |
+| 18 | `shipToContact` | Ship-to Contact | Ship-to Contact | — |
+| 19 | `orderDate` | Order Date | Order Date | — |
+| 20 | `postingDate` | Posting Date | Posting Date | — |
+| 21 | `postingDescription` | Posting Description | Posting Description | — |
+| 22 | `paymentTermsCode` | Payment Terms Code | Payment Terms Code | — |
+| 23 | `dueDate` | Due Date | Due Date | — |
+| 24 | `paymentDiscountPct` | Payment Discount % | Payment Discount % | — |
+| 25 | `pmtDiscountDate` | Pmt. Discount Date | Pmt. Discount Date | — |
+| 26 | `shipmentMethodCode` | Shipment Method Code | Shipment Method Code | — |
+| 27 | `locationCode` | Location Code | Location Code | — |
+| 28 | `shortcutDimension1Code` | Shortcut Dimension 1 Code | Shortcut Dimension 1 Code | — |
+| 29 | `shortcutDimension2Code` | Shortcut Dimension 2 Code | Shortcut Dimension 2 Code | — |
+| 30 | `customerPostingGroup` | Customer Posting Group | Customer Posting Group | — |
+| 31 | `currencyCode` | Currency Code | Currency Code | — |
+| 32 | `currencyFactor` | Currency Factor | Currency Factor | — |
+| 33 | `customerPriceGroup` | Customer Price Group | Customer Price Group | — |
+| 34 | `pricesIncludingVat` | Prices Including VAT | Prices Including VAT | — |
+| 35 | `invoiceDiscCode` | Invoice Disc. Code | Invoice Disc. Code | — |
+| 36 | `customerDiscGroup` | Customer Disc. Group | Customer Disc. Group | — |
+| 37 | `languageCode` | Language Code | Language Code | — |
+| 38 | `formatRegion` | Format Region | Format Region | — |
+| 39 | `salespersonCode` | Salesperson Code | Salesperson Code | — |
+| 40 | `orderNo` | Order No. | Order No. | — |
+| 41 | `comment` | Comment | Comment | — |
+| 42 | `noPrinted` | No. Printed | No. Printed | — |
+| 43 | `appliesToDocType` | Applies-to Doc. Type | Applies-to Doc. Type | — |
+| 44 | `appliesToDocNo` | Applies-to Doc. No. | Applies-to Doc. No. | — |
+| 45 | `balAccountNo` | Bal. Account No. | Bal. Account No. | — |
+| 46 | `amount` | Amount | Amount | — |
+| 47 | `amountIncludingVat` | Amount Including VAT | Amount Including VAT | — |
+| 48 | `shippingNo` | Shipping No. | Shipping No. | — |
+| 49 | `postingNo` | Posting No. | Posting No. | — |
+| 50 | `lastShippingNo` | Last Shipping No. | Last Shipping No. | — |
+| 51 | `lastPostingNo` | Last Posting No. | Last Posting No. | — |
+| 52 | `vatRegistrationNo` | VAT Registration No. | VAT Registration No. | — |
+| 53 | `reasonCode` | Reason Code | Reason Code | — |
+| 54 | `genBusPostingGroup` | Gen. Bus. Posting Group | Gen. Bus. Posting Group | — |
+| 55 | `eu3PartyTrade` | EU 3-Party Trade | EU 3-Party Trade | — |
+| 56 | `transactionType` | Transaction Type | Transaction Type | — |
+| 57 | `transportMethod` | Transport Method | Transport Method | — |
+| 58 | `vatCountryRegionCode` | VAT Country/Region Code | VAT Country/Region Code | — |
+| 59 | `name` | Name | Name | — |
+| 60 | `name2` | Name 2 | Name 2 | — |
+| 61 | `address` | Address | Address | — |
+| 62 | `address2` | Address 2 | Address 2 | — |
+| 63 | `city` | City | City | — |
+| 64 | `contactName` | Contact Name | Contact Name | — |
+| 65 | `billToPostCode` | Bill-to Post Code | Bill-to Post Code | — |
+| 66 | `billToCounty` | Bill-to County | Bill-to County | — |
+| 67 | `billToCountryRegionCode` | Bill-to Country/Region Code | Bill-to Country/Region Code | — |
+| 68 | `postCode` | Post Code | Post Code | — |
+| 69 | `county` | County | County | — |
+| 70 | `countryRegionCode` | Country/Region Code | Country/Region Code | — |
+| 71 | `shipToPostCode` | Ship-to Post Code | Ship-to Post Code | — |
+| 72 | `shipToCounty` | Ship-to County | Ship-to County | — |
+| 73 | `shipToCountryRegionCode` | Ship-to Country/Region Code | Ship-to Country/Region Code | — |
+| 74 | `balAccountType` | Bal. Account Type | Bal. Account Type | — |
+| 75 | `exitPoint` | Exit Point | Exit Point | — |
+| 76 | `correction` | Correction | Correction | — |
+| 77 | `documentDate` | Document Date | Document Date | — |
+| 78 | `externalDocumentNo` | External Document No. | External Document No. | — |
+| 79 | `area` | Area | Area | — |
+| 80 | `transactionSpecification` | Transaction Specification | Transaction Specification | — |
+| 81 | `paymentMethodCode` | Payment Method Code | Payment Method Code | — |
+| 82 | `shippingAgentCode` | Shipping Agent Code | Shipping Agent Code | — |
+| 83 | `preAssignedNoSeries` | Pre-Assigned No. Series | Pre-Assigned No. Series | — |
+| 84 | `noSeries` | No. Series | No. Series | — |
+| 85 | `shippingNoSeries` | Shipping No. Series | Shipping No. Series | — |
+| 86 | `orderNoSeries` | Order No. Series | Order No. Series | — |
+| 87 | `preAssignedNo` | Pre-Assigned No. | Pre-Assigned No. | — |
+| 88 | `userId` | User ID | User ID | — |
+| 89 | `sourceCode` | Source Code | Source Code | — |
+| 90 | `taxAreaCode` | Tax Area Code | Tax Area Code | — |
+| 91 | `taxLiable` | Tax Liable | Tax Liable | — |
+| 92 | `vatBusPostingGroup` | VAT Bus. Posting Group | VAT Bus. Posting Group | — |
+| 93 | `vatBaseDiscountPct` | VAT Base Discount % | VAT Base Discount % | — |
+| 94 | `companyBankAccountCode` | Company Bank Account Code | Company Bank Account Code | — |
+| 95 | `vatReportingDate` | VAT Reporting Date | VAT Date | — |
+| 96 | `paymentReference` | Payment Reference | Payment Reference | — |
+| 97 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | — |
+| 98 | `documentExchangeIdentifier` | Document Exchange Identifier | Document Exchange Identifier | — |
+| 99 | `documentExchangeStatus` | Document Exchange Status | Document Exchange Status | — |
+| 100 | `docExchOriginalIdentifier` | Doc. Exch. Original Identifier | Doc. Exch. Original Identifier | — |
+| 101 | `directDebitMandateId` | Direct Debit Mandate ID | Direct Debit Mandate ID | — |
+| 102 | `contactNo` | Contact No. | Contact No. | — |
+| 103 | `billToContactNo` | Bill-to Contact No. | Bill-to Contact No. | — |
+| 104 | `responsibilityCenter` | Responsibility Center | Responsibility Center | — |
+| 105 | `shippingAgentServiceCode` | Shipping Agent Service Code | Shipping Agent Service Code | — |
+| 106 | `description` | Description | Description | — |
+| 107 | `serviceOrderType` | Service Order Type | Service Order Type | — |
+| 108 | `linkServiceToServiceItem` | Link Service to Service Item | Link Service to Service Item | — |
+| 109 | `priority` | Priority | Priority | — |
+| 110 | `allocatedHours` | Allocated Hours | Allocated Hours | — |
+| 111 | `phoneNo` | Phone No. | Phone No. | — |
+| 112 | `eMail` | E-Mail | Email | — |
+| 113 | `phoneNo2` | Phone No. 2 | Phone No. 2 | — |
+| 114 | `faxNo` | Fax No. | Fax No. | — |
+| 115 | `noOfUnallocatedItems` | No. of Unallocated Items | No. of Unallocated Items | — |
+| 116 | `orderTime` | Order Time | Order Time | — |
+| 117 | `defaultResponseTimeHours` | Default Response Time (Hours) | Default Response Time (Hours) | — |
+| 118 | `actualResponseTimeHours` | Actual Response Time (Hours) | Actual Response Time (Hours) | — |
+| 119 | `serviceTimeHours` | Service Time (Hours) | Service Time (Hours) | — |
+| 120 | `responseDate` | Response Date | Response Date | — |
+| 121 | `responseTime` | Response Time | Response Time | — |
+| 122 | `startingDate` | Starting Date | Starting Date | — |
+| 123 | `startingTime` | Starting Time | Starting Time | — |
+| 124 | `finishingDate` | Finishing Date | Finishing Date | — |
+| 125 | `finishingTime` | Finishing Time | Finishing Time | — |
+| 126 | `contractServHoursExist` | Contract Serv. Hours Exist | Contract Serv. Hours Exist | — |
+| 127 | `reallocationNeeded` | Reallocation Needed | Reallocation Needed | — |
+| 128 | `notifyCustomer` | Notify Customer | Notify Customer | — |
+| 129 | `maxLaborUnitPrice` | Max. Labor Unit Price | Max. Labor Unit Price | — |
+| 130 | `warningStatus` | Warning Status | Warning Status | — |
+| 131 | `noOfAllocations` | No. of Allocations | No. of Allocations | — |
+| 132 | `contractNo` | Contract No. | Contract No. | — |
+| 133 | `typeFilter` | Type Filter | Type Filter | — |
+| 134 | `customerFilter` | Customer Filter | Customer Filter | — |
+| 135 | `resourceFilter` | Resource Filter | Resource Filter | — |
+| 136 | `contractFilter` | Contract Filter | Contract Filter | — |
+| 137 | `shipToFaxNo` | Ship-to Fax No. | Ship-to Fax No. | — |
+| 138 | `shipToEMail` | Ship-to E-Mail | Ship-to Email | — |
+| 139 | `resourceGroupFilter` | Resource Group Filter | Resource Group Filter | — |
+| 140 | `shipToPhone` | Ship-to Phone | Ship-to Phone | — |
+| 141 | `shipToPhone2` | Ship-to Phone 2 | Ship-to Phone 2 | — |
+| 142 | `serviceZoneFilter` | Service Zone Filter | Service Zone Filter | — |
+| 143 | `serviceZoneCode` | Service Zone Code | Service Zone Code | — |
+| 144 | `expectedFinishingDate` | Expected Finishing Date | Expected Finishing Date | — |
+| 145 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | — |
+| 146 | `allowLineDisc` | Allow Line Disc. | Allow Line Disc. | — |
+| 147 | `quoteNo` | Quote No. | Quote No. | — |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfServiceInvoiceLines
+
+**Description:** Posted Service Invoice Lines — lines of posted service invoices. Read-only.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Service Invoice Line |
+| Page ID | 90997 |
+| Page Name | `ocpfServiceInvoiceLines` |
+| Entity Set Name | `ocpfServiceInvoiceLines` |
+| API Group | `ocpf_serviceManagement` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ❌ No (GET only) |
+| Field Count | 106 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `customerNo` | Customer No. | Customer No. | — |
+| 3 | `documentNo` | Document No. | Document No. | — |
+| 4 | `lineNo` | Line No. | Line No. | — |
+| 5 | `type` | Type | Type | — |
+| 6 | `no` | No. | No. | — |
+| 7 | `locationCode` | Location Code | Location Code | — |
+| 8 | `postingGroup` | Posting Group | Posting Group | — |
+| 9 | `description` | Description | Description | — |
+| 10 | `description2` | Description 2 | Description 2 | — |
+| 11 | `unitOfMeasure` | Unit of Measure | Unit of Measure | — |
+| 12 | `quantity` | Quantity | Quantity | — |
+| 13 | `unitPrice` | Unit Price | Unit Price | — |
+| 14 | `unitCostLcy` | Unit Cost (LCY) | Unit Cost (LCY) | — |
+| 15 | `vatPct` | VAT % | VAT % | — |
+| 16 | `lineDiscountPct` | Line Discount % | Line Discount % | — |
+| 17 | `lineDiscountAmount` | Line Discount Amount | Line Discount Amount | — |
+| 18 | `amount` | Amount | Amount | — |
+| 19 | `amountIncludingVat` | Amount Including VAT | Amount Including VAT | — |
+| 20 | `allowInvoiceDisc` | Allow Invoice Disc. | Allow Invoice Disc. | — |
+| 21 | `grossWeight` | Gross Weight | Gross Weight | — |
+| 22 | `netWeight` | Net Weight | Net Weight | — |
+| 23 | `unitsPerParcel` | Units per Parcel | Units per Parcel | — |
+| 24 | `unitVolume` | Unit Volume | Unit Volume | — |
+| 25 | `applToItemEntry` | Appl.-to Item Entry | Appl.-to Item Entry | — |
+| 26 | `shortcutDimension1Code` | Shortcut Dimension 1 Code | Shortcut Dimension 1 Code | — |
+| 27 | `shortcutDimension2Code` | Shortcut Dimension 2 Code | Shortcut Dimension 2 Code | — |
+| 28 | `customerPriceGroup` | Customer Price Group | Customer Price Group | — |
+| 29 | `jobNo` | Job No. | Project No. | — |
+| 30 | `jobTaskNo` | Job Task No. | Project Task No. | — |
+| 31 | `workTypeCode` | Work Type Code | Work Type Code | — |
+| 32 | `shipmentNo` | Shipment No. | Shipment No. | — |
+| 33 | `shipmentLineNo` | Shipment Line No. | Shipment Line No. | — |
+| 34 | `orderNo` | Order No. | Order No. | — |
+| 35 | `billToCustomerNo` | Bill-to Customer No. | Bill-to Customer No. | — |
+| 36 | `invDiscountAmount` | Inv. Discount Amount | Inv. Discount Amount | — |
+| 37 | `genBusPostingGroup` | Gen. Bus. Posting Group | Gen. Bus. Posting Group | — |
+| 38 | `genProdPostingGroup` | Gen. Prod. Posting Group | Gen. Prod. Posting Group | — |
+| 39 | `vatCalculationType` | VAT Calculation Type | VAT Calculation Type | — |
+| 40 | `transactionType` | Transaction Type | Transaction Type | — |
+| 41 | `transportMethod` | Transport Method | Transport Method | — |
+| 42 | `attachedToLineNo` | Attached to Line No. | Attached to Line No. | — |
+| 43 | `exitPoint` | Exit Point | Exit Point | — |
+| 44 | `area` | Area | Area | — |
+| 45 | `transactionSpecification` | Transaction Specification | Transaction Specification | — |
+| 46 | `taxAreaCode` | Tax Area Code | Tax Area Code | — |
+| 47 | `taxLiable` | Tax Liable | Tax Liable | — |
+| 48 | `taxGroupCode` | Tax Group Code | Tax Group Code | — |
+| 49 | `vatClauseCode` | VAT Clause Code | VAT Clause Code | — |
+| 50 | `vatBusPostingGroup` | VAT Bus. Posting Group | VAT Bus. Posting Group | — |
+| 51 | `vatProdPostingGroup` | VAT Prod. Posting Group | VAT Prod. Posting Group | — |
+| 52 | `vatBaseAmount` | VAT Base Amount | VAT Base Amount | — |
+| 53 | `systemCreatedEntry` | System-Created Entry | System-Created Entry | — |
+| 54 | `lineAmount` | Line Amount | Line Amount | — |
+| 55 | `vatDifference` | VAT Difference | VAT Difference | — |
+| 56 | `vatIdentifier` | VAT Identifier | VAT Identifier | — |
+| 57 | `pmtDiscountAmount` | Pmt. Discount Amount | Pmt. Discount Amount | — |
+| 58 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | — |
+| 59 | `jobPlanningLineNo` | Job Planning Line No. | Project Planning Line No. | — |
+| 60 | `variantCode` | Variant Code | Variant Code | — |
+| 61 | `binCode` | Bin Code | Bin Code | — |
+| 62 | `qtyPerUnitOfMeasure` | Qty. per Unit of Measure | Qty. per Unit of Measure | — |
+| 63 | `unitOfMeasureCode` | Unit of Measure Code | Unit of Measure Code | — |
+| 64 | `quantityBase` | Quantity (Base) | Quantity (Base) | — |
+| 65 | `responsibilityCenter` | Responsibility Center | Responsibility Center | — |
+| 66 | `substitutionAvailable` | Substitution Available | Substitution Available | — |
+| 67 | `itemCategoryCode` | Item Category Code | Item Category Code | — |
+| 68 | `nonstock` | Nonstock | Catalog | — |
+| 69 | `itemReferenceNo` | Item Reference No. | Item Reference No. | — |
+| 70 | `itemReferenceUnitOfMeasure` | Item Reference Unit of Measure | Unit of Measure (Item Ref.) | — |
+| 71 | `itemReferenceType` | Item Reference Type | Item Reference Type | — |
+| 72 | `itemReferenceTypeNo` | Item Reference Type No. | Item Reference Type No. | — |
+| 73 | `serviceItemNo` | Service Item No. | Service Item No. | — |
+| 74 | `applToServiceEntry` | Appl.-to Service Entry | Appl.-to Service Entry | — |
+| 75 | `serviceItemLineNo` | Service Item Line No. | Service Item Line No. | — |
+| 76 | `serviceItemSerialNo` | Service Item Serial No. | Service Item Serial No. | — |
+| 77 | `serviceItemLineDescription` | Service Item Line Description | Service Item Line Description | — |
+| 78 | `servPriceAdjmtGrCode` | Serv. Price Adjmt. Gr. Code | Serv. Price Adjmt. Gr. Code | — |
+| 79 | `postingDate` | Posting Date | Posting Date | — |
+| 80 | `neededByDate` | Needed by Date | Needed by Date | — |
+| 81 | `shipToCode` | Ship-to Code | Ship-to Code | — |
+| 82 | `quantityConsumed` | Quantity Consumed | Quantity Consumed | — |
+| 83 | `qtyConsumedBase` | Qty. Consumed (Base) | Qty. Consumed (Base) | — |
+| 84 | `servicePriceGroupCode` | Service Price Group Code | Service Price Group Code | — |
+| 85 | `faultAreaCode` | Fault Area Code | Fault Area Code | — |
+| 86 | `symptomCode` | Symptom Code | Symptom Code | — |
+| 87 | `faultCode` | Fault Code | Fault Code | — |
+| 88 | `resolutionCode` | Resolution Code | Resolution Code | — |
+| 89 | `excludeWarranty` | Exclude Warranty | Exclude Warranty | — |
+| 90 | `warranty` | Warranty | Warranty | — |
+| 91 | `contractNo` | Contract No. | Contract No. | — |
+| 92 | `contractDiscPct` | Contract Disc. % | Contract Disc. % | — |
+| 93 | `warrantyDiscPct` | Warranty Disc. % | Warranty Disc. % | — |
+| 94 | `componentLineNo` | Component Line No. | Component Line No. | — |
+| 95 | `sparePartAction` | Spare Part Action | Spare Part Action | — |
+| 96 | `faultReasonCode` | Fault Reason Code | Fault Reason Code | — |
+| 97 | `replacedItemNo` | Replaced Item No. | Replaced Item No. | — |
+| 98 | `excludeContractDiscount` | Exclude Contract Discount | Exclude Contract Discount | — |
+| 99 | `replacedItemType` | Replaced Item Type | Replaced Item Type | — |
+| 100 | `priceAdjmtStatus` | Price Adjmt. Status | Price Adjmt. Status | — |
+| 101 | `lineDiscountType` | Line Discount Type | Line Discount Type | — |
+| 102 | `copyComponentsFrom` | Copy Components From | Copy Components From | — |
+| 103 | `returnReasonCode` | Return Reason Code | Return Reason Code | — |
+| 104 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | — |
+| 105 | `allowLineDisc` | Allow Line Disc. | Allow Line Disc. | — |
+| 106 | `customerDiscGroup` | Customer Disc. Group | Customer Disc. Group | — |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfServiceCrMemoHeaders
+
+**Description:** Posted Service Credit Memos — headers of posted service credit memos. Read-only.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Service Cr.Memo Header |
+| Page ID | 90998 |
+| Page Name | `ocpfServiceCrMemoHeaders` |
+| Entity Set Name | `ocpfServiceCrMemoHeaders` |
+| API Group | `ocpf_serviceManagement` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ❌ No (GET only) |
+| Field Count | 137 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `customerNo` | Customer No. | Customer No. | — |
+| 3 | `no` | No. | No. | — |
+| 4 | `billToCustomerNo` | Bill-to Customer No. | Bill-to Customer No. | — |
+| 5 | `billToName` | Bill-to Name | Bill-to Name | — |
+| 6 | `billToName2` | Bill-to Name 2 | Bill-to Name 2 | — |
+| 7 | `billToAddress` | Bill-to Address | Bill-to Address | — |
+| 8 | `billToAddress2` | Bill-to Address 2 | Bill-to Address 2 | — |
+| 9 | `billToCity` | Bill-to City | Bill-to City | — |
+| 10 | `billToContact` | Bill-to Contact | Bill-to Contact | — |
+| 11 | `yourReference` | Your Reference | Your Reference | — |
+| 12 | `shipToCode` | Ship-to Code | Ship-to Code | — |
+| 13 | `shipToName` | Ship-to Name | Ship-to Name | — |
+| 14 | `shipToName2` | Ship-to Name 2 | Ship-to Name 2 | — |
+| 15 | `shipToAddress` | Ship-to Address | Ship-to Address | — |
+| 16 | `shipToAddress2` | Ship-to Address 2 | Ship-to Address 2 | — |
+| 17 | `shipToCity` | Ship-to City | Ship-to City | — |
+| 18 | `shipToContact` | Ship-to Contact | Ship-to Contact | — |
+| 19 | `postingDate` | Posting Date | Posting Date | — |
+| 20 | `postingDescription` | Posting Description | Posting Description | — |
+| 21 | `paymentTermsCode` | Payment Terms Code | Payment Terms Code | — |
+| 22 | `dueDate` | Due Date | Due Date | — |
+| 23 | `paymentDiscountPct` | Payment Discount % | Payment Discount % | — |
+| 24 | `pmtDiscountDate` | Pmt. Discount Date | Pmt. Discount Date | — |
+| 25 | `shipmentMethodCode` | Shipment Method Code | Shipment Method Code | — |
+| 26 | `locationCode` | Location Code | Location Code | — |
+| 27 | `shortcutDimension1Code` | Shortcut Dimension 1 Code | Shortcut Dimension 1 Code | — |
+| 28 | `shortcutDimension2Code` | Shortcut Dimension 2 Code | Shortcut Dimension 2 Code | — |
+| 29 | `customerPostingGroup` | Customer Posting Group | Customer Posting Group | — |
+| 30 | `currencyCode` | Currency Code | Currency Code | — |
+| 31 | `currencyFactor` | Currency Factor | Currency Factor | — |
+| 32 | `customerPriceGroup` | Customer Price Group | Customer Price Group | — |
+| 33 | `pricesIncludingVat` | Prices Including VAT | Prices Including VAT | — |
+| 34 | `invoiceDiscCode` | Invoice Disc. Code | Invoice Disc. Code | — |
+| 35 | `customerDiscGroup` | Customer Disc. Group | Customer Disc. Group | — |
+| 36 | `languageCode` | Language Code | Language Code | — |
+| 37 | `formatRegion` | Format Region | Format Region | — |
+| 38 | `salespersonCode` | Salesperson Code | Salesperson Code | — |
+| 39 | `comment` | Comment | Comment | — |
+| 40 | `noPrinted` | No. Printed | No. Printed | — |
+| 41 | `appliesToDocType` | Applies-to Doc. Type | Applies-to Doc. Type | — |
+| 42 | `appliesToDocNo` | Applies-to Doc. No. | Applies-to Doc. No. | — |
+| 43 | `balAccountNo` | Bal. Account No. | Bal. Account No. | — |
+| 44 | `amount` | Amount | Amount | — |
+| 45 | `amountIncludingVat` | Amount Including VAT | Amount Including VAT | — |
+| 46 | `vatRegistrationNo` | VAT Registration No. | VAT Registration No. | — |
+| 47 | `reasonCode` | Reason Code | Reason Code | — |
+| 48 | `genBusPostingGroup` | Gen. Bus. Posting Group | Gen. Bus. Posting Group | — |
+| 49 | `eu3PartyTrade` | EU 3-Party Trade | EU 3-Party Trade | — |
+| 50 | `transactionType` | Transaction Type | Transaction Type | — |
+| 51 | `transportMethod` | Transport Method | Transport Method | — |
+| 52 | `vatCountryRegionCode` | VAT Country/Region Code | VAT Country/Region Code | — |
+| 53 | `name` | Name | Name | — |
+| 54 | `name2` | Name 2 | Name 2 | — |
+| 55 | `address` | Address | Address | — |
+| 56 | `address2` | Address 2 | Address 2 | — |
+| 57 | `city` | City | City | — |
+| 58 | `contactName` | Contact Name | Contact Name | — |
+| 59 | `billToPostCode` | Bill-to Post Code | Bill-to Post Code | — |
+| 60 | `billToCounty` | Bill-to County | Bill-to County | — |
+| 61 | `billToCountryRegionCode` | Bill-to Country/Region Code | Bill-to Country/Region Code | — |
+| 62 | `postCode` | Post Code | Post Code | — |
+| 63 | `county` | County | County | — |
+| 64 | `countryRegionCode` | Country/Region Code | Country/Region Code | — |
+| 65 | `shipToPostCode` | Ship-to Post Code | Ship-to Post Code | — |
+| 66 | `shipToCounty` | Ship-to County | Ship-to County | — |
+| 67 | `shipToCountryRegionCode` | Ship-to Country/Region Code | Ship-to Country/Region Code | — |
+| 68 | `balAccountType` | Bal. Account Type | Bal. Account Type | — |
+| 69 | `exitPoint` | Exit Point | Exit Point | — |
+| 70 | `correction` | Correction | Correction | — |
+| 71 | `documentDate` | Document Date | Document Date | — |
+| 72 | `externalDocumentNo` | External Document No. | External Document No. | — |
+| 73 | `area` | Area | Area | — |
+| 74 | `transactionSpecification` | Transaction Specification | Transaction Specification | — |
+| 75 | `paymentMethodCode` | Payment Method Code | Payment Method Code | — |
+| 76 | `shippingAgentCode` | Shipping Agent Code | Shipping Agent Code | — |
+| 77 | `preAssignedNoSeries` | Pre-Assigned No. Series | Pre-Assigned No. Series | — |
+| 78 | `noSeries` | No. Series | No. Series | — |
+| 79 | `preAssignedNo` | Pre-Assigned No. | Pre-Assigned No. | — |
+| 80 | `userId` | User ID | User ID | — |
+| 81 | `sourceCode` | Source Code | Source Code | — |
+| 82 | `taxAreaCode` | Tax Area Code | Tax Area Code | — |
+| 83 | `taxLiable` | Tax Liable | Tax Liable | — |
+| 84 | `vatBusPostingGroup` | VAT Bus. Posting Group | VAT Bus. Posting Group | — |
+| 85 | `vatBaseDiscountPct` | VAT Base Discount % | VAT Base Discount % | — |
+| 86 | `companyBankAccountCode` | Company Bank Account Code | Company Bank Account Code | — |
+| 87 | `vatReportingDate` | VAT Reporting Date | VAT Date | — |
+| 88 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | — |
+| 89 | `documentExchangeIdentifier` | Document Exchange Identifier | Document Exchange Identifier | — |
+| 90 | `documentExchangeStatus` | Document Exchange Status | Document Exchange Status | — |
+| 91 | `docExchOriginalIdentifier` | Doc. Exch. Original Identifier | Doc. Exch. Original Identifier | — |
+| 92 | `contactNo` | Contact No. | Contact No. | — |
+| 93 | `billToContactNo` | Bill-to Contact No. | Bill-to Contact No. | — |
+| 94 | `responsibilityCenter` | Responsibility Center | Responsibility Center | — |
+| 95 | `shippingAgentServiceCode` | Shipping Agent Service Code | Shipping Agent Service Code | — |
+| 96 | `description` | Description | Description | — |
+| 97 | `serviceOrderType` | Service Order Type | Service Order Type | — |
+| 98 | `linkServiceToServiceItem` | Link Service to Service Item | Link Service to Service Item | — |
+| 99 | `priority` | Priority | Priority | — |
+| 100 | `allocatedHours` | Allocated Hours | Allocated Hours | — |
+| 101 | `phoneNo` | Phone No. | Phone No. | — |
+| 102 | `eMail` | E-Mail | Email | — |
+| 103 | `phoneNo2` | Phone No. 2 | Phone No. 2 | — |
+| 104 | `faxNo` | Fax No. | Fax No. | — |
+| 105 | `noOfUnallocatedItems` | No. of Unallocated Items | No. of Unallocated Items | — |
+| 106 | `orderTime` | Order Time | Order Time | — |
+| 107 | `defaultResponseTimeHours` | Default Response Time (Hours) | Default Response Time (Hours) | — |
+| 108 | `actualResponseTimeHours` | Actual Response Time (Hours) | Actual Response Time (Hours) | — |
+| 109 | `serviceTimeHours` | Service Time (Hours) | Service Time (Hours) | — |
+| 110 | `responseDate` | Response Date | Response Date | — |
+| 111 | `responseTime` | Response Time | Response Time | — |
+| 112 | `startingDate` | Starting Date | Starting Date | — |
+| 113 | `startingTime` | Starting Time | Starting Time | — |
+| 114 | `finishingDate` | Finishing Date | Finishing Date | — |
+| 115 | `finishingTime` | Finishing Time | Finishing Time | — |
+| 116 | `contractServHoursExist` | Contract Serv. Hours Exist | Contract Serv. Hours Exist | — |
+| 117 | `reallocationNeeded` | Reallocation Needed | Reallocation Needed | — |
+| 118 | `notifyCustomer` | Notify Customer | Notify Customer | — |
+| 119 | `maxLaborUnitPrice` | Max. Labor Unit Price | Max. Labor Unit Price | — |
+| 120 | `warningStatus` | Warning Status | Warning Status | — |
+| 121 | `noOfAllocations` | No. of Allocations | No. of Allocations | — |
+| 122 | `contractNo` | Contract No. | Contract No. | — |
+| 123 | `typeFilter` | Type Filter | Type Filter | — |
+| 124 | `customerFilter` | Customer Filter | Customer Filter | — |
+| 125 | `resourceFilter` | Resource Filter | Resource Filter | — |
+| 126 | `contractFilter` | Contract Filter | Contract Filter | — |
+| 127 | `shipToFaxNo` | Ship-to Fax No. | Ship-to Fax No. | — |
+| 128 | `shipToEMail` | Ship-to E-Mail | Ship-to Email | — |
+| 129 | `resourceGroupFilter` | Resource Group Filter | Resource Group Filter | — |
+| 130 | `shipToPhone` | Ship-to Phone | Ship-to Phone | — |
+| 131 | `shipToPhone2` | Ship-to Phone 2 | Ship-to Phone 2 | — |
+| 132 | `serviceZoneFilter` | Service Zone Filter | Service Zone Filter | — |
+| 133 | `serviceZoneCode` | Service Zone Code | Service Zone Code | — |
+| 134 | `expectedFinishingDate` | Expected Finishing Date | Expected Finishing Date | — |
+| 135 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | — |
+| 136 | `allowLineDisc` | Allow Line Disc. | Allow Line Disc. | — |
+| 137 | `quoteNo` | Quote No. | Quote No. | — |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfServiceCrMemoLines
+
+**Description:** Posted Service Credit Memo Lines — lines of posted service credit memos. Read-only.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Service Cr.Memo Line |
+| Page ID | 90999 |
+| Page Name | `ocpfServiceCrMemoLines` |
+| Entity Set Name | `ocpfServiceCrMemoLines` |
+| API Group | `ocpf_serviceManagement` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ❌ No (GET only) |
+| Field Count | 99 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `customerNo` | Customer No. | Customer No. | — |
+| 3 | `documentNo` | Document No. | Document No. | — |
+| 4 | `lineNo` | Line No. | Line No. | — |
+| 5 | `type` | Type | Type | — |
+| 6 | `no` | No. | No. | — |
+| 7 | `locationCode` | Location Code | Location Code | — |
+| 8 | `postingGroup` | Posting Group | Posting Group | — |
+| 9 | `description` | Description | Description | — |
+| 10 | `description2` | Description 2 | Description 2 | — |
+| 11 | `unitOfMeasure` | Unit of Measure | Unit of Measure | — |
+| 12 | `quantity` | Quantity | Quantity | — |
+| 13 | `unitPrice` | Unit Price | Unit Price | — |
+| 14 | `unitCostLcy` | Unit Cost (LCY) | Unit Cost (LCY) | — |
+| 15 | `vatPct` | VAT % | VAT % | — |
+| 16 | `lineDiscountPct` | Line Discount % | Line Discount % | — |
+| 17 | `lineDiscountAmount` | Line Discount Amount | Line Discount Amount | — |
+| 18 | `amount` | Amount | Amount | — |
+| 19 | `amountIncludingVat` | Amount Including VAT | Amount Including VAT | — |
+| 20 | `allowInvoiceDisc` | Allow Invoice Disc. | Allow Invoice Disc. | — |
+| 21 | `grossWeight` | Gross Weight | Gross Weight | — |
+| 22 | `netWeight` | Net Weight | Net Weight | — |
+| 23 | `unitsPerParcel` | Units per Parcel | Units per Parcel | — |
+| 24 | `unitVolume` | Unit Volume | Unit Volume | — |
+| 25 | `shortcutDimension1Code` | Shortcut Dimension 1 Code | Shortcut Dimension 1 Code | — |
+| 26 | `shortcutDimension2Code` | Shortcut Dimension 2 Code | Shortcut Dimension 2 Code | — |
+| 27 | `customerPriceGroup` | Customer Price Group | Customer Price Group | — |
+| 28 | `jobNo` | Job No. | Project No. | — |
+| 29 | `jobTaskNo` | Job Task No. | Project Task No. | — |
+| 30 | `workTypeCode` | Work Type Code | Work Type Code | — |
+| 31 | `shipmentNo` | Shipment No. | Shipment No. | — |
+| 32 | `billToCustomerNo` | Bill-to Customer No. | Bill-to Customer No. | — |
+| 33 | `invDiscountAmount` | Inv. Discount Amount | Inv. Discount Amount | — |
+| 34 | `genBusPostingGroup` | Gen. Bus. Posting Group | Gen. Bus. Posting Group | — |
+| 35 | `genProdPostingGroup` | Gen. Prod. Posting Group | Gen. Prod. Posting Group | — |
+| 36 | `vatCalculationType` | VAT Calculation Type | VAT Calculation Type | — |
+| 37 | `transactionType` | Transaction Type | Transaction Type | — |
+| 38 | `transportMethod` | Transport Method | Transport Method | — |
+| 39 | `attachedToLineNo` | Attached to Line No. | Attached to Line No. | — |
+| 40 | `exitPoint` | Exit Point | Exit Point | — |
+| 41 | `area` | Area | Area | — |
+| 42 | `transactionSpecification` | Transaction Specification | Transaction Specification | — |
+| 43 | `taxAreaCode` | Tax Area Code | Tax Area Code | — |
+| 44 | `taxLiable` | Tax Liable | Tax Liable | — |
+| 45 | `taxGroupCode` | Tax Group Code | Tax Group Code | — |
+| 46 | `vatClauseCode` | VAT Clause Code | VAT Clause Code | — |
+| 47 | `vatBusPostingGroup` | VAT Bus. Posting Group | VAT Bus. Posting Group | — |
+| 48 | `vatProdPostingGroup` | VAT Prod. Posting Group | VAT Prod. Posting Group | — |
+| 49 | `vatBaseAmount` | VAT Base Amount | VAT Base Amount | — |
+| 50 | `unitCost` | Unit Cost | Unit Cost | — |
+| 51 | `systemCreatedEntry` | System-Created Entry | System-Created Entry | — |
+| 52 | `lineAmount` | Line Amount | Line Amount | — |
+| 53 | `vatDifference` | VAT Difference | VAT Difference | — |
+| 54 | `vatIdentifier` | VAT Identifier | VAT Identifier | — |
+| 55 | `pmtDiscountAmount` | Pmt. Discount Amount | Pmt. Discount Amount | — |
+| 56 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | — |
+| 57 | `jobPlanningLineNo` | Job Planning Line No. | Project Planning Line No. | — |
+| 58 | `variantCode` | Variant Code | Variant Code | — |
+| 59 | `binCode` | Bin Code | Bin Code | — |
+| 60 | `qtyPerUnitOfMeasure` | Qty. per Unit of Measure | Qty. per Unit of Measure | — |
+| 61 | `unitOfMeasureCode` | Unit of Measure Code | Unit of Measure Code | — |
+| 62 | `quantityBase` | Quantity (Base) | Quantity (Base) | — |
+| 63 | `responsibilityCenter` | Responsibility Center | Responsibility Center | — |
+| 64 | `itemCategoryCode` | Item Category Code | Item Category Code | — |
+| 65 | `nonstock` | Nonstock | Catalog | — |
+| 66 | `itemReferenceNo` | Item Reference No. | Item Reference No. | — |
+| 67 | `itemReferenceUnitOfMeasure` | Item Reference Unit of Measure | Unit of Measure (Item Ref.) | — |
+| 68 | `itemReferenceType` | Item Reference Type | Item Reference Type | — |
+| 69 | `itemReferenceTypeNo` | Item Reference Type No. | Item Reference Type No. | — |
+| 70 | `applFromItemEntry` | Appl.-from Item Entry | Appl.-from Item Entry | — |
+| 71 | `serviceItemNo` | Service Item No. | Service Item No. | — |
+| 72 | `applToServiceEntry` | Appl.-to Service Entry | Appl.-to Service Entry | — |
+| 73 | `serviceItemSerialNo` | Service Item Serial No. | Service Item Serial No. | — |
+| 74 | `serviceItemLineDescription` | Service Item Line Description | Service Item Line Description | — |
+| 75 | `postingDate` | Posting Date | Posting Date | — |
+| 76 | `neededByDate` | Needed by Date | Needed by Date | — |
+| 77 | `shipToCode` | Ship-to Code | Ship-to Code | — |
+| 78 | `servicePriceGroupCode` | Service Price Group Code | Service Price Group Code | — |
+| 79 | `faultAreaCode` | Fault Area Code | Fault Area Code | — |
+| 80 | `symptomCode` | Symptom Code | Symptom Code | — |
+| 81 | `faultCode` | Fault Code | Fault Code | — |
+| 82 | `resolutionCode` | Resolution Code | Resolution Code | — |
+| 83 | `excludeWarranty` | Exclude Warranty | Exclude Warranty | — |
+| 84 | `warranty` | Warranty | Warranty | — |
+| 85 | `contractNo` | Contract No. | Contract No. | — |
+| 86 | `contractDiscPct` | Contract Disc. % | Contract Disc. % | — |
+| 87 | `warrantyDiscPct` | Warranty Disc. % | Warranty Disc. % | — |
+| 88 | `componentLineNo` | Component Line No. | Component Line No. | — |
+| 89 | `sparePartAction` | Spare Part Action | Spare Part Action | — |
+| 90 | `faultReasonCode` | Fault Reason Code | Fault Reason Code | — |
+| 91 | `replacedItemNo` | Replaced Item No. | Replaced Item No. | — |
+| 92 | `excludeContractDiscount` | Exclude Contract Discount | Exclude Contract Discount | — |
+| 93 | `priceAdjmtStatus` | Price Adjmt. Status | Price Adjmt. Status | — |
+| 94 | `lineDiscountType` | Line Discount Type | Line Discount Type | — |
+| 95 | `copyComponentsFrom` | Copy Components From | Copy Components From | — |
+| 96 | `returnReasonCode` | Return Reason Code | Return Reason Code | — |
+| 97 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | — |
+| 98 | `allowLineDisc` | Allow Line Disc. | Allow Line Disc. | — |
+| 99 | `customerDiscGroup` | Customer Disc. Group | Customer Disc. Group | — |
 
 
 [↑ Back to top](#table-of-contents)

@@ -8,7 +8,7 @@ page 90809 "ocpfDtldVendorLedgEntries"
     Caption = 'Detailed Vendor Ledger Entries — granular application records showing how vendor payments and credit memos are applied to invoices, used for AP aging and reconciliation.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_coreFinancial';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfDetailedVendorLedgerEntry';
     EntitySetName = 'ocpfDtldVendorLedgEntries';
     SourceTable = "Detailed Vendor Ledg. Entry";
@@ -235,6 +235,24 @@ page 90809 "ocpfDtldVendorLedgEntries"
                 {
                     Caption = 'Exch. Rate Adjmt. Reg. No.';
                     ToolTip = 'Specifies the exch. rate adjmt. reg. no. for this detailed vendor ledg. entry record.';
+                    ApplicationArea = All;
+                }
+                field(amountLcy; Rec."Amount (LCY)")
+                {
+                    Caption = 'Amount (LCY)';
+                    ToolTip = 'Specifies the amount of the entry in LCY.';
+                    ApplicationArea = All;
+                }
+                field(debitAmountLcy; Rec."Debit Amount (LCY)")
+                {
+                    Caption = 'Debit Amount (LCY)';
+                    ToolTip = 'Specifies the total of the ledger entries that represent debits, expressed in LCY.';
+                    ApplicationArea = All;
+                }
+                field(creditAmountLcy; Rec."Credit Amount (LCY)")
+                {
+                    Caption = 'Credit Amount (LCY)';
+                    ToolTip = 'Specifies the total of the ledger entries that represent credits, expressed in LCY.';
                     ApplicationArea = All;
                 }
             }

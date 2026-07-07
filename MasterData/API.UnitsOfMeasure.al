@@ -8,7 +8,7 @@ page 90837 "ocpfUnitsOfMeasure"
     Caption = 'Units of Measure — the base unit codes (e.g., PCS, KG, HR) used to quantify items, resources, and transactions.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_masterData';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfUnitOfMeasure';
     EntitySetName = 'ocpfUnitsOfMeasure';
     SourceTable = "Unit of Measure";

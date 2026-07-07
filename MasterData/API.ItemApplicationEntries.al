@@ -8,7 +8,7 @@ page 90849 "ocpfItemApplicationEntries"
     Caption = 'Item Application Entries — records showing how item ledger entries are applied to each other for cost forwarding and inventory valuation.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_masterData';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfItemApplicationEntry';
     EntitySetName = 'ocpfItemApplicationEntries';
     SourceTable = "Item Application Entry";

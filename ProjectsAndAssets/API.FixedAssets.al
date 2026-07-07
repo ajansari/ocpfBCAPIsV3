@@ -8,7 +8,7 @@ page 90915 "ocpfFixedAssets"
     Caption = 'Fixed assets — capital assets tracked for depreciation and disposal.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_projectsAndAssets';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfFixedAsset';
     EntitySetName = 'ocpfFixedAssets';
     SourceTable = "Fixed Asset";

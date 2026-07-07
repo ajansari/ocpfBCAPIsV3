@@ -8,7 +8,7 @@ page 90895 "ocpfPurchaseCreditMemoLines"
     Caption = 'Lines of open purchase credit memos.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_purchasing';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfPurchaseCreditMemoLine';
     EntitySetName = 'ocpfPurchaseCreditMemoLines';
     SourceTable = "Purchase Line";

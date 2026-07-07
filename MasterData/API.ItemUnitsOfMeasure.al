@@ -8,7 +8,7 @@ page 90838 "ocpfItemUnitsOfMeasure"
     Caption = 'Item Units of Measure — per-item unit of measure conversions defining how many base units make up each alternate unit for a specific item.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_masterData';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfItemUnitOfMeasure';
     EntitySetName = 'ocpfItemUnitsOfMeasure';
     SourceTable = "Item Unit of Measure";

@@ -8,7 +8,7 @@ page 90854 "ocpfResources"
     Caption = 'Resources — people or machines whose time and costs can be sold or allocated to projects, with pricing and unit of measure settings.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_masterData';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfResource';
     EntitySetName = 'ocpfResources';
     SourceTable = Resource;
@@ -319,6 +319,54 @@ page 90854 "ocpfResources"
                 {
                     Caption = 'Default Deferral Template Code';
                     ToolTip = 'Specifies the default deferral template code for this resource record.';
+                    ApplicationArea = All;
+                }
+                field(qtyOnOrderJob; Rec."Qty. on Order (Job)")
+                {
+                    Caption = 'Qty. on Order (Project)';
+                    ToolTip = 'Specifies the Qty. on Order (Project).';
+                    ApplicationArea = All;
+                }
+                field(qtyQuotedJob; Rec."Qty. Quoted (Job)")
+                {
+                    Caption = 'Qty. Quoted (Project)';
+                    ToolTip = 'Specifies the Qty. Quoted (Project).';
+                    ApplicationArea = All;
+                }
+                field(usageQty; Rec."Usage (Qty.)")
+                {
+                    Caption = 'Usage (Qty.)';
+                    ToolTip = 'Specifies the Usage (Qty.).';
+                    ApplicationArea = All;
+                }
+                field(usageCost; Rec."Usage (Cost)")
+                {
+                    Caption = 'Usage (Cost)';
+                    ToolTip = 'Specifies the Usage (Cost).';
+                    ApplicationArea = All;
+                }
+                field(usagePrice; Rec."Usage (Price)")
+                {
+                    Caption = 'Usage (Price)';
+                    ToolTip = 'Specifies the Usage (Price).';
+                    ApplicationArea = All;
+                }
+                field(salesQty; Rec."Sales (Qty.)")
+                {
+                    Caption = 'Sales (Qty.)';
+                    ToolTip = 'Specifies the Sales (Qty.).';
+                    ApplicationArea = All;
+                }
+                field(salesCost; Rec."Sales (Cost)")
+                {
+                    Caption = 'Sales (Cost)';
+                    ToolTip = 'Specifies the Sales (Cost).';
+                    ApplicationArea = All;
+                }
+                field(salesPrice; Rec."Sales (Price)")
+                {
+                    Caption = 'Sales (Price)';
+                    ToolTip = 'Specifies the Sales (Price).';
                     ApplicationArea = All;
                 }
             }

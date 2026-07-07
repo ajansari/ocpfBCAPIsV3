@@ -8,7 +8,7 @@ page 90886 "ocpfSalesBlanketOrders"
     Caption = 'Sales blanket orders — long-term framework agreements with customers.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_sales';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfSalesBlanketOrder';
     EntitySetName = 'ocpfSalesBlanketOrders';
     SourceTable = "Sales Header";

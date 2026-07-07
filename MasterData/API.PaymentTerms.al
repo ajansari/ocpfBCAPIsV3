@@ -8,7 +8,7 @@ page 90833 "ocpfPaymentTerms"
     Caption = 'Payment Terms — define due date calculation rules and early payment discount conditions applied to sales and purchase documents.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_masterData';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfPaymentTerm';
     EntitySetName = 'ocpfPaymentTerms';
     SourceTable = "Payment Terms";

@@ -8,7 +8,7 @@ page 90802 "ocpfGeneralLedgerSetup"
     Caption = 'General Ledger Setup — company-wide configuration for the general ledger including local currency, rounding, and posting rules. Always returns a single record.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_coreFinancial';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfGeneralLedgerSetup';
     EntitySetName = 'ocpfGeneralLedgerSetup';
     SourceTable = "General Ledger Setup";
@@ -601,6 +601,18 @@ page 90802 "ocpfGeneralLedgerSetup"
                 {
                     Caption = 'Account Payables G/L Account Category';
                     ToolTip = 'Specifies the acc. payables category for this general ledger setup record.';
+                    ApplicationArea = All;
+                }
+                field(invRoundingPrecisionLcy; Rec."Inv. Rounding Precision (LCY)")
+                {
+                    Caption = 'Inv. Rounding Precision (LCY)';
+                    ToolTip = 'Specifies the size of the interval to be used when rounding invoice amounts in LCY. Examples: 1.00: Round to whole numbers (no decimals - divisible by 1.00), 0.05: Round to a number divisible by 0.05, 0.01: No rounding (ordinary currency decimals). On the Currencies page, you specify how to round invoices in foreign currencies.';
+                    ApplicationArea = All;
+                }
+                field(invRoundingTypeLcy; Rec."Inv. Rounding Type (LCY)")
+                {
+                    Caption = 'Inv. Rounding Type (LCY)';
+                    ToolTip = 'Specifies how to round invoice amounts. The contents of this field determine whether the invoice amount to be rounded will be rounded up or down to the nearest interval as specified in the Invoice Rounding Precision field. If you select Nearest, digits that are higher than or equal to 5 will be rounded up, and digits that are lower than or equal to 5 will be rounded down.';
                     ApplicationArea = All;
                 }
             }

@@ -8,7 +8,7 @@ page 90903 "ocpfPostedReturnShipmentLines"
     Caption = 'Lines of posted return shipments.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_purchasing';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfPostedReturnShipmentLine';
     EntitySetName = 'ocpfPostedReturnShipmentLines';
     SourceTable = "Return Shipment Line";

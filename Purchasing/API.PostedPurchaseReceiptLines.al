@@ -8,7 +8,7 @@ page 90901 "ocpfPostedPurchaseReceiptLines"
     Caption = 'Lines of posted purchase receipts.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_purchasing';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfPostedPurchaseReceiptLine';
     EntitySetName = 'ocpfPostedPurchaseReceiptLines';
     SourceTable = "Purch. Rcpt. Line";

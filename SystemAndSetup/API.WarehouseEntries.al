@@ -8,7 +8,7 @@ page 90932 "ocpfWarehouseEntries"
     Caption = 'Warehouse entries — posted inventory movements through warehouse locations.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_systemAndSetup';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfWarehouseEntry';
     EntitySetName = 'ocpfWarehouseEntries';
     SourceTable = "Warehouse Entry";

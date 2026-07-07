@@ -8,7 +8,7 @@ page 90817 "ocpfVatBusinessPostingGroups"
     Caption = 'VAT Business Posting Groups — classify customers and vendors for VAT calculation, determining which VAT Posting Setup row applies to a transaction.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_coreFinancial';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfVatBusinessPostingGroup';
     EntitySetName = 'ocpfVatBusinessPostingGroups';
     SourceTable = "VAT Business Posting Group";

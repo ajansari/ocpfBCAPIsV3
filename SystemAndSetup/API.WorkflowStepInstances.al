@@ -8,7 +8,7 @@ page 90938 "ocpfWorkflowStepInstances"
     Caption = 'Workflow step instances — active steps within running workflow instances.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_systemAndSetup';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfWorkflowStepInstance';
     EntitySetName = 'ocpfWorkflowStepInstances';
     SourceTable = "Workflow Step Instance";

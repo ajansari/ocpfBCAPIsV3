@@ -8,7 +8,7 @@ page 90856 "ocpfResourceGroups"
     Caption = 'Resource Groups — groupings of resources used for capacity planning, project budgeting, and reporting.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_masterData';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfResourceGroup';
     EntitySetName = 'ocpfResourceGroups';
     SourceTable = "Resource Group";
@@ -79,6 +79,54 @@ page 90856 "ocpfResourceGroups"
                 {
                     Caption = 'No. of Resources Assigned';
                     ToolTip = 'Specifies the no. of resources assigned for this resource group record.';
+                    ApplicationArea = All;
+                }
+                field(qtyOnOrderJob; Rec."Qty. on Order (Job)")
+                {
+                    Caption = 'Qty. on Order (Project)';
+                    ToolTip = 'Specifies the Qty. on Order (Project).';
+                    ApplicationArea = All;
+                }
+                field(qtyQuotedJob; Rec."Qty. Quoted (Job)")
+                {
+                    Caption = 'Qty. Quoted (Project)';
+                    ToolTip = 'Specifies the Qty. Quoted (Project).';
+                    ApplicationArea = All;
+                }
+                field(usageQty; Rec."Usage (Qty.)")
+                {
+                    Caption = 'Usage (Qty.)';
+                    ToolTip = 'Specifies the Usage (Qty.).';
+                    ApplicationArea = All;
+                }
+                field(usageCost; Rec."Usage (Cost)")
+                {
+                    Caption = 'Usage (Cost)';
+                    ToolTip = 'Specifies the Usage (Cost).';
+                    ApplicationArea = All;
+                }
+                field(usagePrice; Rec."Usage (Price)")
+                {
+                    Caption = 'Usage (Price)';
+                    ToolTip = 'Specifies the Usage (Price).';
+                    ApplicationArea = All;
+                }
+                field(salesQty; Rec."Sales (Qty.)")
+                {
+                    Caption = 'Sales (Qty.)';
+                    ToolTip = 'Specifies the Sales (Qty.).';
+                    ApplicationArea = All;
+                }
+                field(salesCost; Rec."Sales (Cost)")
+                {
+                    Caption = 'Sales (Cost)';
+                    ToolTip = 'Specifies the Sales (Cost).';
+                    ApplicationArea = All;
+                }
+                field(salesPrice; Rec."Sales (Price)")
+                {
+                    Caption = 'Sales (Price)';
+                    ToolTip = 'Specifies the Sales (Price).';
                     ApplicationArea = All;
                 }
             }

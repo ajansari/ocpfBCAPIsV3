@@ -8,7 +8,7 @@ page 90931 "ocpfCompanyInformation"
     Caption = 'Company information — name, address, registration, and contact details for this company.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_systemAndSetup';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfCompanyInformation';
     EntitySetName = 'ocpfCompanyInformation';
     SourceTable = "Company Information";

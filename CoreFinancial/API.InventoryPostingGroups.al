@@ -8,7 +8,7 @@ page 90816 "ocpfInventoryPostingGroups"
     Caption = 'Inventory Posting Groups — classify items for inventory account determination when posting item transactions.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_coreFinancial';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfInventoryPostingGroup';
     EntitySetName = 'ocpfInventoryPostingGroups';
     SourceTable = "Inventory Posting Group";

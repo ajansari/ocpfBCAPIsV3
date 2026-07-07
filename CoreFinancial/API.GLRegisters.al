@@ -8,7 +8,7 @@ page 90805 "ocpfGLRegisters"
     Caption = 'G/L Registers — audit trail records that group G/L entries posted in the same batch, enabling traceability back to the originating journal.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_coreFinancial';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfGLRegister';
     EntitySetName = 'ocpfGLRegisters';
     SourceTable = "G/L Register";

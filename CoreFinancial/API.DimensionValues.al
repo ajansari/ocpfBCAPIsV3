@@ -8,7 +8,7 @@ page 90821 "ocpfDimensionValues"
     Caption = 'Dimension Values — the individual codes within a dimension (e.g., SALES, ADMIN within Department) used to tag transactions for reporting.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_coreFinancial';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfDimensionValue';
     EntitySetName = 'ocpfDimensionValues';
     SourceTable = "Dimension Value";

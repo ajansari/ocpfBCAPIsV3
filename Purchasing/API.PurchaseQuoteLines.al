@@ -8,7 +8,7 @@ page 90905 "ocpfPurchaseQuoteLines"
     Caption = 'Lines of open purchase quotes.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_purchasing';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfPurchaseQuoteLine';
     EntitySetName = 'ocpfPurchaseQuoteLines';
     SourceTable = "Purchase Line";

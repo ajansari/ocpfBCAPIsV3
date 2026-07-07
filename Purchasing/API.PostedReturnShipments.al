@@ -8,7 +8,7 @@ page 90902 "ocpfPostedReturnShipments"
     Caption = 'Posted return shipments (goods returned to vendor).';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_purchasing';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfPostedReturnShipment';
     EntitySetName = 'ocpfPostedReturnShipments';
     SourceTable = "Return Shipment Header";

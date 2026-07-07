@@ -8,7 +8,7 @@ page 90801 "ocpfGeneralLedgerEntries"
     Caption = 'General Ledger Entries — individual posted transactions that make up the general ledger and form the basis of all financial reporting.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_coreFinancial';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfGeneralLedgerEntry';
     EntitySetName = 'ocpfGeneralLedgerEntries';
     SourceTable = "G/L Entry";

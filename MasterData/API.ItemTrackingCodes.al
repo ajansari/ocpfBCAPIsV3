@@ -8,7 +8,7 @@ page 90852 "ocpfItemTrackingCodes"
     Caption = 'Item Tracking Codes — configuration records defining whether and how an item is tracked by serial number or lot number through the supply chain.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_masterData';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfItemTrackingCode';
     EntitySetName = 'ocpfItemTrackingCodes';
     SourceTable = "Item Tracking Code";

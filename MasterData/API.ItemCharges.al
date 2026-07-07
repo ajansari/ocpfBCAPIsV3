@@ -8,7 +8,7 @@ page 90853 "ocpfItemCharges"
     Caption = 'Item Charges — additional cost codes (e.g., freight, handling, customs) that can be assigned to purchase or sales lines and posted to inventory value.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_masterData';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfItemCharge';
     EntitySetName = 'ocpfItemCharges';
     SourceTable = "Item Charge";

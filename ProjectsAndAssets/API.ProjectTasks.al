@@ -8,7 +8,7 @@ page 90912 "ocpfProjectTasks"
     Caption = 'Project tasks — work breakdown structure lines within a project.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_projectsAndAssets';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfProjectTask';
     EntitySetName = 'ocpfProjectTasks';
     SourceTable = "Job Task";

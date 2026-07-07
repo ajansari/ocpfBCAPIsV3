@@ -8,7 +8,7 @@ page 90807 "ocpfDetailedCustLedgerEntries"
     Caption = 'Detailed Customer Ledger Entries — granular application records showing how customer payments and credit memos are applied to invoices, used for AR aging and reconciliation.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_coreFinancial';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfDetailedCustLedgerEntry';
     EntitySetName = 'ocpfDetailedCustLedgerEntries';
     SourceTable = "Detailed Cust. Ledg. Entry";
@@ -235,6 +235,24 @@ page 90807 "ocpfDetailedCustLedgerEntries"
                 {
                     Caption = 'Exch. Rate Adjmt. Reg. No.';
                     ToolTip = 'Specifies the exch. rate adjmt. reg. no. for this detailed cust. ledg. entry record.';
+                    ApplicationArea = All;
+                }
+                field(amountLcy; Rec."Amount (LCY)")
+                {
+                    Caption = 'Amount (LCY)';
+                    ToolTip = 'Specifies the amount of the entry in LCY.';
+                    ApplicationArea = All;
+                }
+                field(debitAmountLcy; Rec."Debit Amount (LCY)")
+                {
+                    Caption = 'Debit Amount (LCY)';
+                    ToolTip = 'Specifies the total of the ledger entries that represent debits, expressed in LCY.';
+                    ApplicationArea = All;
+                }
+                field(creditAmountLcy; Rec."Credit Amount (LCY)")
+                {
+                    Caption = 'Credit Amount (LCY)';
+                    ToolTip = 'Specifies the total of the ledger entries that represent credits, expressed in LCY.';
                     ApplicationArea = All;
                 }
             }

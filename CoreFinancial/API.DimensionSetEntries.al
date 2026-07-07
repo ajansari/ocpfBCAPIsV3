@@ -8,7 +8,7 @@ page 90823 "ocpfDimensionSetEntries"
     Caption = 'Dimension Set Entries — the resolved dimension value combinations stored against ledger entries and documents. Filter by Dimension Set ID to retrieve the dimensions on any posted transaction.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_coreFinancial';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfDimensionSetEntry';
     EntitySetName = 'ocpfDimensionSetEntries';
     SourceTable = "Dimension Set Entry";

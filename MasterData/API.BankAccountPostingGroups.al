@@ -8,7 +8,7 @@ page 90831 "ocpfBankAccountPostingGroups"
     Caption = 'Bank Account Posting Groups — map bank accounts to the G/L accounts used when posting bank transactions.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_masterData';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfBankAccountPostingGroup';
     EntitySetName = 'ocpfBankAccountPostingGroups';
     SourceTable = "Bank Account Posting Group";

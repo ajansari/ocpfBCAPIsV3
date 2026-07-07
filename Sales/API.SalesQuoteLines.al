@@ -8,7 +8,7 @@ page 90871 "ocpfSalesQuoteLines"
     Caption = 'Lines of open sales quotes.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_sales';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfSalesQuoteLine';
     EntitySetName = 'ocpfSalesQuoteLines';
     SourceTable = "Sales Line";

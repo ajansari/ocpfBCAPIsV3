@@ -8,7 +8,7 @@ page 90923 "ocpfPriceListLines"
     Caption = 'Price list lines — individual price or discount rules within a price list.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_projectsAndAssets';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfPriceListLine';
     EntitySetName = 'ocpfPriceListLines';
     SourceTable = "Price List Line";

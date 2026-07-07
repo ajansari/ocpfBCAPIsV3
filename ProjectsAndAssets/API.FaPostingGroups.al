@@ -8,7 +8,7 @@ page 90916 "ocpfFaPostingGroups"
     Caption = 'Fixed asset posting groups — G/L account mapping for FA transactions.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_projectsAndAssets';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfFaPostingGroup';
     EntitySetName = 'ocpfFaPostingGroups';
     SourceTable = "FA Posting Group";

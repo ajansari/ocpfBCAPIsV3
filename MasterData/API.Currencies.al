@@ -8,7 +8,7 @@ page 90835 "ocpfCurrencies"
     Caption = 'Currencies — foreign currency codes with exchange rate settings used across sales, purchasing, and banking transactions.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_masterData';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfCurrency';
     EntitySetName = 'ocpfCurrencies';
     SourceTable = Currency;
@@ -313,6 +313,18 @@ page 90835 "ocpfCurrencies"
                 {
                     Caption = 'Coupled to Dataverse';
                     ToolTip = 'Specifies the coupled to dataverse for this currency record.';
+                    ApplicationArea = All;
+                }
+                field(customerBalanceLcy; Rec."Customer Balance (LCY)")
+                {
+                    Caption = 'Customer Balance (LCY)';
+                    ToolTip = 'Specifies the Customer Balance (LCY).';
+                    ApplicationArea = All;
+                }
+                field(vendorBalanceLcy; Rec."Vendor Balance (LCY)")
+                {
+                    Caption = 'Vendor Balance (LCY)';
+                    ToolTip = 'Specifies the Vendor Balance (LCY).';
                     ApplicationArea = All;
                 }
             }

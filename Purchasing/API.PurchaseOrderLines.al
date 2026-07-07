@@ -8,7 +8,7 @@ page 90891 "ocpfPurchaseOrderLines"
     Caption = 'Lines of open purchase orders.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_purchasing';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfPurchaseOrderLine';
     EntitySetName = 'ocpfPurchaseOrderLines';
     SourceTable = "Purchase Line";

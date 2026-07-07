@@ -8,7 +8,7 @@ page 90919 "ocpfGeneralJournalTemplates"
     Caption = 'General journal templates — named journal templates controlling posting behavior.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_projectsAndAssets';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfGeneralJournalTemplate';
     EntitySetName = 'ocpfGeneralJournalTemplates';
     SourceTable = "Gen. Journal Template";

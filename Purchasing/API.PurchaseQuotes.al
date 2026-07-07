@@ -8,7 +8,7 @@ page 90904 "ocpfPurchaseQuotes"
     Caption = 'Purchase quotes — requests for pricing from vendors before ordering.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_purchasing';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfPurchaseQuote';
     EntitySetName = 'ocpfPurchaseQuotes';
     SourceTable = "Purchase Header";

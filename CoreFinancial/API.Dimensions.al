@@ -8,7 +8,7 @@ page 90820 "ocpfDimensions"
     Caption = 'Dimensions — named analytical axes (e.g., Department, Project, Cost Center) that can be attached to transactions for multi-dimensional financial reporting.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_coreFinancial';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfDimension';
     EntitySetName = 'ocpfDimensions';
     SourceTable = Dimension;

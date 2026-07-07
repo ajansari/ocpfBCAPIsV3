@@ -8,7 +8,7 @@ page 90832 "ocpfBankAccountLedgerEntries"
     Caption = 'Bank Account Ledger Entries — posted transactions on bank accounts including payments, receipts, and reconciliation entries.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_masterData';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfBankAccountLedgerEntry';
     EntitySetName = 'ocpfBankAccountLedgerEntries';
     SourceTable = "Bank Account Ledger Entry";
@@ -289,6 +289,24 @@ page 90832 "ocpfBankAccountLedgerEntries"
                 {
                     Caption = 'Shortcut Dimension 8 Code';
                     ToolTip = 'Specifies the shortcut dimension 8 code for this bank account ledger entry record.';
+                    ApplicationArea = All;
+                }
+                field(amountLcy; Rec."Amount (LCY)")
+                {
+                    Caption = 'Amount (LCY)';
+                    ToolTip = 'Specifies the amount of the entry in LCY.';
+                    ApplicationArea = All;
+                }
+                field(debitAmountLcy; Rec."Debit Amount (LCY)")
+                {
+                    Caption = 'Debit Amount (LCY)';
+                    ToolTip = 'Specifies the total of the ledger entries that represent debits, expressed in LCY.';
+                    ApplicationArea = All;
+                }
+                field(creditAmountLcy; Rec."Credit Amount (LCY)")
+                {
+                    Caption = 'Credit Amount (LCY)';
+                    ToolTip = 'Specifies the total of the ledger entries that represent credits, expressed in LCY.';
                     ApplicationArea = All;
                 }
             }

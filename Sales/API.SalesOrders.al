@@ -8,7 +8,7 @@ page 90872 "ocpfSalesOrders"
     Caption = 'Sales orders (confirmed customer orders in progress).';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_sales';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfSalesOrder';
     EntitySetName = 'ocpfSalesOrders';
     SourceTable = "Sales Header";

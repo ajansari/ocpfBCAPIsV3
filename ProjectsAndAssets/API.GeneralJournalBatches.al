@@ -8,7 +8,7 @@ page 90920 "ocpfGeneralJournalBatches"
     Caption = 'General journal batches — named batches within a journal template.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_projectsAndAssets';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfGeneralJournalBatch';
     EntitySetName = 'ocpfGeneralJournalBatches';
     SourceTable = "Gen. Journal Batch";

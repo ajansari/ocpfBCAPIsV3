@@ -8,7 +8,7 @@ page 90918 "ocpfFaDepreciationBooks"
     Caption = 'Fixed asset depreciation books — depreciation method and schedule per asset.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_projectsAndAssets';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfFaDepreciationBook';
     EntitySetName = 'ocpfFaDepreciationBooks';
     SourceTable = "FA Depreciation Book";

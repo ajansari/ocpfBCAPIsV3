@@ -8,7 +8,7 @@ page 90885 "ocpfPostedReturnReceiptLines"
     Caption = 'Lines of posted return receipts.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_sales';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfPostedReturnReceiptLine';
     EntitySetName = 'ocpfPostedReturnReceiptLines';
     SourceTable = "Return Receipt Line";

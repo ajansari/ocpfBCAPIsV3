@@ -8,7 +8,7 @@ page 90822 "ocpfDefaultDimensions"
     Caption = 'Default Dimensions — rules that define which dimension values are automatically suggested or required when posting transactions for a specific master record such as a customer, vendor, or item.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_coreFinancial';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfDefaultDimension';
     EntitySetName = 'ocpfDefaultDimensions';
     SourceTable = "Default Dimension";

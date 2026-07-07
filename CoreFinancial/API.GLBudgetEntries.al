@@ -8,7 +8,7 @@ page 90804 "ocpfGLBudgetEntries"
     Caption = 'G/L Budget Entries — budgeted amounts per G/L account, dimension, and period used for budget vs. actual analysis.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_coreFinancial';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfGLBudgetEntry';
     EntitySetName = 'ocpfGLBudgetEntries';
     SourceTable = "G/L Budget Entry";

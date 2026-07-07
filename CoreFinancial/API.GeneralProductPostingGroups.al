@@ -8,7 +8,7 @@ page 90812 "ocpfGenProdPostingGroups"
     Caption = 'General Product Posting Groups — item and resource classification codes that determine which general posting setup row is used for a transaction.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_coreFinancial';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfGeneralProductPostingGroup';
     EntitySetName = 'ocpfGenProdPostingGroups';
     SourceTable = "Gen. Product Posting Group";

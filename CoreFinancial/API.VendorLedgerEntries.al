@@ -8,7 +8,7 @@ page 90808 "ocpfVendorLedgerEntries"
     Caption = 'Vendor Ledger Entries — open and closed payables transactions per vendor including purchase invoices, credit memos, and payments.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_coreFinancial';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfVendorLedgerEntry';
     EntitySetName = 'ocpfVendorLedgerEntries';
     SourceTable = "Vendor Ledger Entry";
@@ -469,6 +469,72 @@ page 90808 "ocpfVendorLedgerEntries"
                 {
                     Caption = 'Remit-to Code';
                     ToolTip = 'Specifies the remit-to code for this vendor ledger entry record.';
+                    ApplicationArea = All;
+                }
+                field(originalAmtLcy; Rec."Original Amt. (LCY)")
+                {
+                    Caption = 'Original Amt. (LCY)';
+                    ToolTip = 'Specifies the amount that the entry originally consisted of, in LCY.';
+                    ApplicationArea = All;
+                }
+                field(remainingAmtLcy; Rec."Remaining Amt. (LCY)")
+                {
+                    Caption = 'Remaining Amt. (LCY)';
+                    ToolTip = 'Specifies the net amount of in the local currency. The amount is calculated using the Remaining Quantity, Line Discount %, and Unit Price (LCY) fields. ';
+                    ApplicationArea = All;
+                }
+                field(amountLcy; Rec."Amount (LCY)")
+                {
+                    Caption = 'Amount (LCY)';
+                    ToolTip = 'Specifies the amount of the entry in LCY.';
+                    ApplicationArea = All;
+                }
+                field(purchaseLcy; Rec."Purchase (LCY)")
+                {
+                    Caption = 'Purchase (LCY)';
+                    ToolTip = 'Specifies the Purchase (LCY).';
+                    ApplicationArea = All;
+                }
+                field(invDiscountLcy; Rec."Inv. Discount (LCY)")
+                {
+                    Caption = 'Inv. Discount (LCY)';
+                    ToolTip = 'Specifies the Inv. Discount (LCY).';
+                    ApplicationArea = All;
+                }
+                field(pmtDiscRcdLcy; Rec."Pmt. Disc. Rcd.(LCY)")
+                {
+                    Caption = 'Pmt. Disc. Rcd.(LCY)';
+                    ToolTip = 'Specifies the Pmt. Disc. Rcd.(LCY).';
+                    ApplicationArea = All;
+                }
+                field(origPmtDiscPossibleLcy; Rec."Orig. Pmt. Disc. Possible(LCY)")
+                {
+                    Caption = 'Org. Pmt. Disc. Possible (LCY)';
+                    ToolTip = 'Specifies the Org. Pmt. Disc. Possible (LCY).';
+                    ApplicationArea = All;
+                }
+                field(closedByAmountLcy; Rec."Closed by Amount (LCY)")
+                {
+                    Caption = 'Closed by Amount (LCY)';
+                    ToolTip = 'Specifies the Closed by Amount (LCY).';
+                    ApplicationArea = All;
+                }
+                field(debitAmountLcy; Rec."Debit Amount (LCY)")
+                {
+                    Caption = 'Debit Amount (LCY)';
+                    ToolTip = 'Specifies the total of the ledger entries that represent debits, expressed in LCY.';
+                    ApplicationArea = All;
+                }
+                field(creditAmountLcy; Rec."Credit Amount (LCY)")
+                {
+                    Caption = 'Credit Amount (LCY)';
+                    ToolTip = 'Specifies the total of the ledger entries that represent credits, expressed in LCY.';
+                    ApplicationArea = All;
+                }
+                field(pmtToleranceLcy; Rec."Pmt. Tolerance (LCY)")
+                {
+                    Caption = 'Pmt. Tolerance (LCY)';
+                    ToolTip = 'Specifies the Pmt. Tolerance (LCY).';
                     ApplicationArea = All;
                 }
             }

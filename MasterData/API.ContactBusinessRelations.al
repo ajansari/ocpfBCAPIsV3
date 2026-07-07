@@ -8,7 +8,7 @@ page 90845 "ocpfContactBusinessRelations"
     Caption = 'Contact Business Relations — links between contacts and their associated business entities such as customers, vendors, or bank accounts.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_masterData';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfContactBusinessRelation';
     EntitySetName = 'ocpfContactBusinessRelations';
     SourceTable = "Contact Business Relation";

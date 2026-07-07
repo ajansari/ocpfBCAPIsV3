@@ -8,7 +8,7 @@ page 90876 "ocpfSalesCreditMemos"
     Caption = 'Sales credit memos (open, unposted).';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_sales';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfSalesCreditMemo';
     EntitySetName = 'ocpfSalesCreditMemos';
     SourceTable = "Sales Header";

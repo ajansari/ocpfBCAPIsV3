@@ -8,7 +8,7 @@ page 90840 "ocpfItemCategories"
     Caption = 'Item Categories — hierarchical classification codes for grouping items, used for reporting, default attributes, and costing.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_masterData';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfItemCategory';
     EntitySetName = 'ocpfItemCategories';
     SourceTable = "Item Category";

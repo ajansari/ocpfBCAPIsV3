@@ -3,9 +3,9 @@ namespace OnlyCopilotFans.OCPFAPIsv3;
 permissionset 90951 "OCPF - READ/WRITE"
 {
     Assignable = true;
-    Caption = 'OCPFAPIs v3.0 - Read/Write Access';
-    // Grants access to all OCPFAPIs v3.0 pages with write capability
-    // on the 62 editable API pages (master data, setup, open documents,
+    Caption = 'OCPFAPIs v3.1 - Read/Write Access';
+    // Grants access to all OCPFAPIs v3.x pages with write capability
+    // on the 111 editable API pages (master data, setup, open documents,
     // and general journal lines).
     // NOTE: Consumers also require insert/modify/delete permissions on the
     // underlying BC base application tables. Assign alongside the relevant
@@ -76,5 +76,54 @@ permissionset 90951 "OCPF - READ/WRITE"
         page "ocpfPurchaseQuoteLines" = X,
         page "ocpfPurchaseBlanketOrders" = X,
         page "ocpfPurchaseBlanketOrderLines" = X,
-        page "ocpfGeneralJournalLines" = X;
+        page "ocpfGeneralJournalLines" = X,
+        page "ocpfShipToAddresses" = X,
+        page "ocpfManufacturingSetup" = X,
+        page "ocpfWorkShifts" = X,
+        page "ocpfShopCalendars" = X,
+        page "ocpfShopCalendarWorkingDays" = X,
+        page "ocpfWorkCenterGroups" = X,
+        page "ocpfWorkCenters" = X,
+        page "ocpfMachineCenters" = X,
+        page "ocpfCapacityUnitsOfMeasure" = X,
+        page "ocpfStops" = X,
+        page "ocpfScraps" = X,
+        page "ocpfRoutingLinks" = X,
+        page "ocpfStandardTasks" = X,
+        page "ocpfRoutingHeaders" = X,
+        page "ocpfRoutingLines" = X,
+        page "ocpfRoutingVersions" = X,
+        page "ocpfProductionBomHeaders" = X,
+        page "ocpfProductionBomLines" = X,
+        page "ocpfProductionBomVersions" = X,
+        page "ocpfFamilies" = X,
+        page "ocpfFamilyLines" = X,
+        page "ocpfProductionOrders" = X,
+        page "ocpfProdOrderLines" = X,
+        page "ocpfProdOrderComponents" = X,
+        page "ocpfProdOrderRoutingLines" = X,
+        page "ocpfAssemblySetup" = X,
+        page "ocpfBomComponents" = X,
+        page "ocpfAssemblyHeaders" = X,
+        page "ocpfAssemblyLines" = X,
+        page "ocpfServiceMgtSetup" = X,
+        page "ocpfServiceOrderTypes" = X,
+        page "ocpfServiceCosts" = X,
+        page "ocpfServiceZones" = X,
+        page "ocpfServiceItemGroups" = X,
+        page "ocpfRepairStatuses" = X,
+        page "ocpfFaultAreas" = X,
+        page "ocpfSymptomCodes" = X,
+        page "ocpfFaultCodes" = X,
+        page "ocpfFaultReasonCodes" = X,
+        page "ocpfResolutionCodes" = X,
+        page "ocpfLoaners" = X,
+        page "ocpfServiceItems" = X,
+        page "ocpfServiceItemComponents" = X,
+        page "ocpfServiceHeaders" = X,
+        page "ocpfServiceItemLines" = X,
+        page "ocpfServiceLines" = X,
+        page "ocpfServiceContractHeaders" = X,
+        page "ocpfServiceContractLines" = X,
+        page "ocpfContractGroups" = X;
 }

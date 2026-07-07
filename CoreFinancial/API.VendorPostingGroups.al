@@ -8,7 +8,7 @@ page 90815 "ocpfVendorPostingGroups"
     Caption = 'Vendor Posting Groups — define which payables and other G/L accounts are used when posting vendor transactions.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_coreFinancial';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfVendorPostingGroup';
     EntitySetName = 'ocpfVendorPostingGroups';
     SourceTable = "Vendor Posting Group";

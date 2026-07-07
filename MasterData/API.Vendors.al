@@ -8,7 +8,7 @@ page 90843 "ocpfVendors"
     Caption = 'Vendors — master records for all entities from whom the company purchases goods or services, including payment and posting settings.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_masterData';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfVendor';
     EntitySetName = 'ocpfVendors';
     SourceTable = Vendor;
@@ -763,6 +763,126 @@ page 90843 "ocpfVendors"
                 {
                     Caption = 'Over-Receipt Code';
                     ToolTip = 'Specifies the over-receipt code for this vendor record.';
+                    ApplicationArea = All;
+                }
+                field(balanceLcy; Rec."Balance (LCY)")
+                {
+                    Caption = 'Balance (LCY)';
+                    ToolTip = 'Specifies the total value of your completed purchases from the vendor in the current fiscal year. It is calculated from amounts including VAT on all completed purchase invoices and credit memos.';
+                    ApplicationArea = All;
+                }
+                field(netChangeLcy; Rec."Net Change (LCY)")
+                {
+                    Caption = 'Net Change (LCY)';
+                    ToolTip = 'Specifies the Net Change (LCY).';
+                    ApplicationArea = All;
+                }
+                field(purchasesLcy; Rec."Purchases (LCY)")
+                {
+                    Caption = 'Purchases (LCY)';
+                    ToolTip = 'Specifies the Purchases (LCY).';
+                    ApplicationArea = All;
+                }
+                field(invDiscountsLcy; Rec."Inv. Discounts (LCY)")
+                {
+                    Caption = 'Inv. Discounts (LCY)';
+                    ToolTip = 'Specifies the Inv. Discounts (LCY).';
+                    ApplicationArea = All;
+                }
+                field(pmtDiscountsLcy; Rec."Pmt. Discounts (LCY)")
+                {
+                    Caption = 'Pmt. Discounts (LCY)';
+                    ToolTip = 'Specifies the Pmt. Discounts (LCY).';
+                    ApplicationArea = All;
+                }
+                field(balanceDueLcy; Rec."Balance Due (LCY)")
+                {
+                    Caption = 'Balance Due (LCY)';
+                    ToolTip = 'Specifies the total value of your unpaid purchases from the vendor in the current fiscal year. It is calculated from amounts including VAT on all open purchase invoices and credit memos.';
+                    ApplicationArea = All;
+                }
+                field(paymentsLcy; Rec."Payments (LCY)")
+                {
+                    Caption = 'Payments (LCY)';
+                    ToolTip = 'Specifies the sum of payments paid to the vendor.';
+                    ApplicationArea = All;
+                }
+                field(invAmountsLcy; Rec."Inv. Amounts (LCY)")
+                {
+                    Caption = 'Inv. Amounts (LCY)';
+                    ToolTip = 'Specifies the Inv. Amounts (LCY).';
+                    ApplicationArea = All;
+                }
+                field(crMemoAmountsLcy; Rec."Cr. Memo Amounts (LCY)")
+                {
+                    Caption = 'Cr. Memo Amounts (LCY)';
+                    ToolTip = 'Specifies the Cr. Memo Amounts (LCY).';
+                    ApplicationArea = All;
+                }
+                field(finChargeMemoAmountsLcy; Rec."Fin. Charge Memo Amounts (LCY)")
+                {
+                    Caption = 'Fin. Charge Memo Amounts (LCY)';
+                    ToolTip = 'Specifies the Fin. Charge Memo Amounts (LCY).';
+                    ApplicationArea = All;
+                }
+                field(debitAmountLcy; Rec."Debit Amount (LCY)")
+                {
+                    Caption = 'Debit Amount (LCY)';
+                    ToolTip = 'Specifies the Debit Amount (LCY).';
+                    ApplicationArea = All;
+                }
+                field(creditAmountLcy; Rec."Credit Amount (LCY)")
+                {
+                    Caption = 'Credit Amount (LCY)';
+                    ToolTip = 'Specifies the Credit Amount (LCY).';
+                    ApplicationArea = All;
+                }
+                field(reminderAmountsLcy; Rec."Reminder Amounts (LCY)")
+                {
+                    Caption = 'Reminder Amounts (LCY)';
+                    ToolTip = 'Specifies the Reminder Amounts (LCY).';
+                    ApplicationArea = All;
+                }
+                field(outstandingOrdersLcy; Rec."Outstanding Orders (LCY)")
+                {
+                    Caption = 'Outstanding Orders (LCY)';
+                    ToolTip = 'Specifies the sum of outstanding orders (in LCY) to this vendor.';
+                    ApplicationArea = All;
+                }
+                field(amtRcdNotInvoicedLcy; Rec."Amt. Rcd. Not Invoiced (LCY)")
+                {
+                    Caption = 'Amt. Rcd. Not Invoiced (LCY)';
+                    ToolTip = 'Specifies the total invoice amount (in LCY) for the items you have received but not yet been invoiced for.';
+                    ApplicationArea = All;
+                }
+                field(pmtDiscToleranceLcy; Rec."Pmt. Disc. Tolerance (LCY)")
+                {
+                    Caption = 'Pmt. Disc. Tolerance (LCY)';
+                    ToolTip = 'Specifies the Pmt. Disc. Tolerance (LCY).';
+                    ApplicationArea = All;
+                }
+                field(pmtToleranceLcy; Rec."Pmt. Tolerance (LCY)")
+                {
+                    Caption = 'Pmt. Tolerance (LCY)';
+                    ToolTip = 'Specifies the Pmt. Tolerance (LCY).';
+                    ApplicationArea = All;
+                }
+                field(refundsLcy; Rec."Refunds (LCY)")
+                {
+                    Caption = 'Refunds (LCY)';
+                    ToolTip = 'Specifies the sum of refunds paid to the vendor.';
+                    ApplicationArea = All;
+                }
+                field(otherAmountsLcy; Rec."Other Amounts (LCY)")
+                {
+                    Caption = 'Other Amounts (LCY)';
+                    ToolTip = 'Specifies the Other Amounts (LCY).';
+                    ApplicationArea = All;
+                }
+                field(outstandingInvoicesLcy; Rec."Outstanding Invoices (LCY)")
+                {
+                    Caption = 'Outstanding Invoices (LCY)';
+                    ToolTip = 'Specifies the sum of the vendor''s outstanding purchase invoices in LCY.';
                     ApplicationArea = All;
                 }
             }

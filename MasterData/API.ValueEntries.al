@@ -8,7 +8,7 @@ page 90848 "ocpfValueEntries"
     Caption = 'Value Entries — the cost layer behind every item ledger entry, recording the monetary value of inventory movements for costing and valuation.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_masterData';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfValueEntry';
     EntitySetName = 'ocpfValueEntries';
     SourceTable = "Value Entry";
@@ -421,6 +421,84 @@ page 90848 "ocpfValueEntries"
                 {
                     Caption = 'Item Description';
                     ToolTip = 'Specifies the item description for this value entry record.';
+                    ApplicationArea = All;
+                }
+                field(salesAmountActual; Rec."Sales Amount (Actual)")
+                {
+                    Caption = 'Sales Amount (Actual)';
+                    ToolTip = 'Specifies the price of the item for a sales entry.';
+                    ApplicationArea = All;
+                }
+                field(costAmountActual; Rec."Cost Amount (Actual)")
+                {
+                    Caption = 'Cost Amount (Actual)';
+                    ToolTip = 'Specifies the cost of invoiced items.';
+                    ApplicationArea = All;
+                }
+                field(costAmountActualAcy; Rec."Cost Amount (Actual) (ACY)")
+                {
+                    Caption = 'Cost Amount (Actual) (ACY)';
+                    ToolTip = 'Specifies the cost of the items that have been invoiced, if you post in an additional reporting currency.';
+                    ApplicationArea = All;
+                }
+                field(costPostedToGLAcy; Rec."Cost Posted to G/L (ACY)")
+                {
+                    Caption = 'Cost Posted to G/L (ACY)';
+                    ToolTip = 'Specifies the amount that has been posted to the general ledger if you post in an additional reporting currency.';
+                    ApplicationArea = All;
+                }
+                field(costPerUnitAcy; Rec."Cost per Unit (ACY)")
+                {
+                    Caption = 'Cost per Unit (ACY)';
+                    ToolTip = 'Specifies the cost of one unit of the item in the entry.';
+                    ApplicationArea = All;
+                }
+                field(purchaseAmountActual; Rec."Purchase Amount (Actual)")
+                {
+                    Caption = 'Purchase Amount (Actual)';
+                    ToolTip = 'Specifies the Purchase Amount (Actual).';
+                    ApplicationArea = All;
+                }
+                field(purchaseAmountExpected; Rec."Purchase Amount (Expected)")
+                {
+                    Caption = 'Purchase Amount (Expected)';
+                    ToolTip = 'Specifies the Purchase Amount (Expected).';
+                    ApplicationArea = All;
+                }
+                field(salesAmountExpected; Rec."Sales Amount (Expected)")
+                {
+                    Caption = 'Sales Amount (Expected)';
+                    ToolTip = 'Specifies the expected price of the item for a sales entry, which means that it has not been invoiced yet.';
+                    ApplicationArea = All;
+                }
+                field(costAmountExpected; Rec."Cost Amount (Expected)")
+                {
+                    Caption = 'Cost Amount (Expected)';
+                    ToolTip = 'Specifies the expected cost of the items, which is calculated by multiplying the Cost per Unit by the Valued Quantity.';
+                    ApplicationArea = All;
+                }
+                field(costAmountNonInvtbl; Rec."Cost Amount (Non-Invtbl.)")
+                {
+                    Caption = 'Cost Amount (Non-Invtbl.)';
+                    ToolTip = 'Specifies the non-inventoriable cost, that is an item charge assigned to an outbound entry.';
+                    ApplicationArea = All;
+                }
+                field(costAmountExpectedAcy; Rec."Cost Amount (Expected) (ACY)")
+                {
+                    Caption = 'Cost Amount (Expected) (ACY)';
+                    ToolTip = 'Specifies the expected cost of the items in the additional reporting currency.';
+                    ApplicationArea = All;
+                }
+                field(costAmountNonInvtblAcy; Rec."Cost Amount (Non-Invtbl.)(ACY)")
+                {
+                    Caption = 'Cost Amount (Non-Invtbl.)(ACY)';
+                    ToolTip = 'Specifies the non-inventoriable cost, that is an item charge assigned to an outbound entry in the additional reporting currency.';
+                    ApplicationArea = All;
+                }
+                field(expCostPostedToGLAcy; Rec."Exp. Cost Posted to G/L (ACY)")
+                {
+                    Caption = 'Exp. Cost Posted to G/L (ACY)';
+                    ToolTip = 'Specifies the Exp. Cost Posted to G/L (ACY).';
                     ApplicationArea = All;
                 }
             }

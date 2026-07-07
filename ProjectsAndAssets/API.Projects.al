@@ -8,7 +8,7 @@ page 90910 "ocpfProjects"
     Caption = 'Projects (formerly Jobs) — tracks costs, budgets, and revenue for project work.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_projectsAndAssets';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfProject';
     EntitySetName = 'ocpfProjects';
     SourceTable = Job;

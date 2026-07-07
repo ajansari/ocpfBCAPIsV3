@@ -8,7 +8,7 @@ page 90830 "ocpfBankAccounts"
     Caption = 'Bank Accounts — company bank accounts used for posting payments and receipts, including balance and statement information.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_masterData';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfBankAccount';
     EntitySetName = 'ocpfBankAccounts';
     SourceTable = "Bank Account";
@@ -475,6 +475,36 @@ page 90830 "ocpfBankAccounts"
                 {
                     Caption = 'Mobile Phone No.';
                     ToolTip = 'Specifies the mobile phone no. for this bank account record.';
+                    ApplicationArea = All;
+                }
+                field(balanceLcy; Rec."Balance (LCY)")
+                {
+                    Caption = 'Balance (LCY)';
+                    ToolTip = 'Specifies the bank account''s current balance in LCY.';
+                    ApplicationArea = All;
+                }
+                field(netChangeLcy; Rec."Net Change (LCY)")
+                {
+                    Caption = 'Net Change (LCY)';
+                    ToolTip = 'Specifies the Net Change (LCY).';
+                    ApplicationArea = All;
+                }
+                field(balanceAtDateLcy; Rec."Balance at Date (LCY)")
+                {
+                    Caption = 'Balance at Date (LCY)';
+                    ToolTip = 'Specifies the bank account''s balance in LCY on the last date included in the Date Filter field.';
+                    ApplicationArea = All;
+                }
+                field(debitAmountLcy; Rec."Debit Amount (LCY)")
+                {
+                    Caption = 'Debit Amount (LCY)';
+                    ToolTip = 'Specifies the Debit Amount (LCY).';
+                    ApplicationArea = All;
+                }
+                field(creditAmountLcy; Rec."Credit Amount (LCY)")
+                {
+                    Caption = 'Credit Amount (LCY)';
+                    ToolTip = 'Specifies the Credit Amount (LCY).';
                     ApplicationArea = All;
                 }
             }

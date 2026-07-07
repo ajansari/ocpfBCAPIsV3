@@ -8,7 +8,7 @@ page 90913 "ocpfProjectPlanningLines"
     Caption = 'Project planning lines — budget and schedule lines for a project task.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_projectsAndAssets';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfProjectPlanningLine';
     EntitySetName = 'ocpfProjectPlanningLines';
     SourceTable = "Job Planning Line";

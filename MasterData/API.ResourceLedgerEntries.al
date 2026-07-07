@@ -8,7 +8,7 @@ page 90855 "ocpfResourceLedgerEntries"
     Caption = 'Resource Ledger Entries — posted usage and cost entries for resources, recording time spent on projects and service orders.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_masterData';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfResourceLedgerEntry';
     EntitySetName = 'ocpfResourceLedgerEntries';
     SourceTable = "Res. Ledger Entry";
@@ -277,6 +277,12 @@ page 90855 "ocpfResourceLedgerEntries"
                 {
                     Caption = 'Shortcut Dimension 8 Code';
                     ToolTip = 'Specifies the shortcut dimension 8 code for this res. ledger entry record.';
+                    ApplicationArea = All;
+                }
+                field(quantityBase; Rec."Quantity (Base)")
+                {
+                    Caption = 'Quantity (Base)';
+                    ToolTip = 'Specifies the Quantity (Base).';
                     ApplicationArea = All;
                 }
             }

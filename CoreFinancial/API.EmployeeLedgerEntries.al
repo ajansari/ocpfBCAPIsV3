@@ -8,7 +8,7 @@ page 90810 "ocpfEmployeeLedgerEntries"
     Caption = 'Employee Ledger Entries — expense and reimbursement transactions per employee.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_coreFinancial';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfEmployeeLedgerEntry';
     EntitySetName = 'ocpfEmployeeLedgerEntries';
     SourceTable = "Employee Ledger Entry";
@@ -355,6 +355,42 @@ page 90810 "ocpfEmployeeLedgerEntries"
                 {
                     Caption = 'Shortcut Dimension 8 Code';
                     ToolTip = 'Specifies the shortcut dimension 8 code for this employee ledger entry record.';
+                    ApplicationArea = All;
+                }
+                field(originalAmtLcy; Rec."Original Amt. (LCY)")
+                {
+                    Caption = 'Original Amt. (LCY)';
+                    ToolTip = 'Specifies the amount that the entry originally consisted of, in LCY.';
+                    ApplicationArea = All;
+                }
+                field(remainingAmtLcy; Rec."Remaining Amt. (LCY)")
+                {
+                    Caption = 'Remaining Amt. (LCY)';
+                    ToolTip = 'Specifies the amount that remains to be applied to before the entry is totally applied to.';
+                    ApplicationArea = All;
+                }
+                field(amountLcy; Rec."Amount (LCY)")
+                {
+                    Caption = 'Amount (LCY)';
+                    ToolTip = 'Specifies the amount of the entry in LCY.';
+                    ApplicationArea = All;
+                }
+                field(closedByAmountLcy; Rec."Closed by Amount (LCY)")
+                {
+                    Caption = 'Closed by Amount (LCY)';
+                    ToolTip = 'Specifies the Closed by Amount (LCY).';
+                    ApplicationArea = All;
+                }
+                field(debitAmountLcy; Rec."Debit Amount (LCY)")
+                {
+                    Caption = 'Debit Amount (LCY)';
+                    ToolTip = 'Specifies the Debit Amount (LCY).';
+                    ApplicationArea = All;
+                }
+                field(creditAmountLcy; Rec."Credit Amount (LCY)")
+                {
+                    Caption = 'Credit Amount (LCY)';
+                    ToolTip = 'Specifies the Credit Amount (LCY).';
                     ApplicationArea = All;
                 }
             }

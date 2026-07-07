@@ -8,7 +8,7 @@ page 90844 "ocpfContacts"
     Caption = 'Contacts — individuals and companies in the CRM module, linked to customers, vendors, or standalone for prospecting.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_masterData';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfContact';
     EntitySetName = 'ocpfContacts';
     SourceTable = Contact;
@@ -511,6 +511,30 @@ page 90844 "ocpfContacts"
                 {
                     Caption = 'Xrm Id';
                     ToolTip = 'Specifies the xrm id for this contact record.';
+                    ApplicationArea = All;
+                }
+                field(costLcy; Rec."Cost (LCY)")
+                {
+                    Caption = 'Cost (LCY)';
+                    ToolTip = 'Specifies the total cost of all the interactions involving the contact. The field is not editable.';
+                    ApplicationArea = All;
+                }
+                field(durationMin; Rec."Duration (Min.)")
+                {
+                    Caption = 'Duration (Min.)';
+                    ToolTip = 'Specifies the total duration of all the interactions involving the contact. The field is not editable.';
+                    ApplicationArea = All;
+                }
+                field(estimatedValueLcy; Rec."Estimated Value (LCY)")
+                {
+                    Caption = 'Estimated Value (LCY)';
+                    ToolTip = 'Specifies the total estimated value of all the opportunities involving the contact. The field is not editable.';
+                    ApplicationArea = All;
+                }
+                field(calcdCurrentValueLcy; Rec."Calcd. Current Value (LCY)")
+                {
+                    Caption = 'Calcd. Current Value (LCY)';
+                    ToolTip = 'Specifies the total calculated current value of all the opportunities involving the contact. The field is not editable.';
                     ApplicationArea = All;
                 }
             }

@@ -8,7 +8,7 @@ page 90922 "ocpfPriceListHeaders"
     Caption = 'Price list headers — named price lists with effectivity dates and assignment scope.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_projectsAndAssets';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfPriceListHeader';
     EntitySetName = 'ocpfPriceListHeaders';
     SourceTable = "Price List Header";

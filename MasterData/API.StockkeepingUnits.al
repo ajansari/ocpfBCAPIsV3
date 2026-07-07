@@ -8,7 +8,7 @@ page 90851 "ocpfStockkeepingUnits"
     Caption = 'Stockkeeping Units — location-specific item settings that override the item card defaults for replenishment, costing, and ordering at a given location.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_masterData';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfStockkeepingUnit';
     EntitySetName = 'ocpfStockkeepingUnits';
     SourceTable = "Stockkeeping Unit";
@@ -475,6 +475,30 @@ page 90851 "ocpfStockkeepingUnits"
                 {
                     Caption = 'Single-Level Material Non-Inventory Cost';
                     ToolTip = 'Specifies the single-lvl mat. non-invt. cost for this stockkeeping unit record.';
+                    ApplicationArea = All;
+                }
+                field(transOrdReceiptQty; Rec."Trans. Ord. Receipt (Qty.)")
+                {
+                    Caption = 'Trans. Ord. Receipt (Qty.)';
+                    ToolTip = 'Specifies the quantity of the item units that remains to be received but are not yet shipped as the difference between the Quantity and the Quantity Shipped fields.';
+                    ApplicationArea = All;
+                }
+                field(transOrdShipmentQty; Rec."Trans. Ord. Shipment (Qty.)")
+                {
+                    Caption = 'Trans. Ord. Shipment (Qty.)';
+                    ToolTip = 'Specifies the quantity of the item units that remains to be shipped as the difference between the Quantity and the Quantity Shipped fields.';
+                    ApplicationArea = All;
+                }
+                field(purchReqReceiptQty; Rec."Purch. Req. Receipt (Qty.)")
+                {
+                    Caption = 'Purch. Req. Receipt (Qty.)';
+                    ToolTip = 'Specifies the Purch. Req. Receipt (Qty.).';
+                    ApplicationArea = All;
+                }
+                field(purchReqReleaseQty; Rec."Purch. Req. Release (Qty.)")
+                {
+                    Caption = 'Purch. Req. Release (Qty.)';
+                    ToolTip = 'Specifies the Purch. Req. Release (Qty.).';
                     ApplicationArea = All;
                 }
             }

@@ -8,7 +8,7 @@ page 90934 "ocpfReminderLines"
     Caption = 'Reminder lines — individual overdue invoice lines within a reminder document.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_systemAndSetup';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfReminderLine';
     EntitySetName = 'ocpfReminderLines';
     SourceTable = "Reminder Line";

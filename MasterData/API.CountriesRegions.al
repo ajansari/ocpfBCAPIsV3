@@ -8,7 +8,7 @@ page 90836 "ocpfCountriesRegions"
     Caption = 'Countries and Regions — reference data for country and region codes used on addresses, customers, vendors, and contacts.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_masterData';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfCountryRegion';
     EntitySetName = 'ocpfCountriesRegions';
     SourceTable = "Country/Region";

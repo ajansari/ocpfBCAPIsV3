@@ -8,7 +8,7 @@ page 90897 "ocpfPostedPurchaseInvoiceLines"
     Caption = 'Lines of posted purchase invoices.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_purchasing';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfPostedPurchaseInvoiceLine';
     EntitySetName = 'ocpfPostedPurchaseInvoiceLines';
     SourceTable = "Purch. Inv. Line";

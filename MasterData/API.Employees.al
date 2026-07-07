@@ -8,7 +8,7 @@ page 90857 "ocpfEmployees"
     Caption = 'Employees — human resources records for company staff, including personal details, employment terms, and payroll-related settings.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_masterData';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfEmployee';
     EntitySetName = 'ocpfEmployees';
     SourceTable = Employee;
@@ -366,7 +366,7 @@ page 90857 "ocpfEmployees"
                 field(sWIFTCode; Rec."SWIFT Code")
                 {
                     Caption = 'SWIFT Code';
-                    ToolTip = 'Specifies the amount the employee owes the company, or the company owes them in local currency. For example, for an overpayment, or for expenses, respectively. The word "balance" indicates the amount ';
+                    ToolTip = 'Specifies the SWIFT code (international bank identifier code) of the bank where the employee has the account.';
                     ApplicationArea = All;
                 }
                 field(currencyCode; Rec."Currency Code")
@@ -475,6 +475,24 @@ page 90857 "ocpfEmployees"
                 {
                     Caption = 'Cost Object Code';
                     ToolTip = 'Specifies the cost object code for this employee record.';
+                    ApplicationArea = All;
+                }
+                field(totalAbsenceBase; Rec."Total Absence (Base)")
+                {
+                    Caption = 'Total Absence (Base)';
+                    ToolTip = 'Specifies the Total Absence (Base).';
+                    ApplicationArea = All;
+                }
+                field(balanceLcy; Rec."Balance (LCY)")
+                {
+                    Caption = 'Balance (LCY)';
+                    ToolTip = 'Specifies the amount the employee owes the company, or the company owes them in local currency. For example, for an overpayment, or for expenses, respectively. The word "balance" indicates the amount can be positive (employee owes the company) or negative (the company owes the employee).';
+                    ApplicationArea = All;
+                }
+                field(payrollLcy; Rec."Payroll (LCY)")
+                {
+                    Caption = 'Payroll (LCY)';
+                    ToolTip = 'Specifies the value of the Payroll (LCY) field.';
                     ApplicationArea = All;
                 }
             }

@@ -8,7 +8,7 @@ page 90890 "ocpfPurchaseOrders"
     Caption = 'Open purchase orders awaiting receipt or invoicing.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_purchasing';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfPurchaseOrder';
     EntitySetName = 'ocpfPurchaseOrders';
     SourceTable = "Purchase Header";

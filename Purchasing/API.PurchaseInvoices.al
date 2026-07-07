@@ -8,7 +8,7 @@ page 90892 "ocpfPurchaseInvoices"
     Caption = 'Open purchase invoices (unposted).';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_purchasing';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfPurchaseInvoice';
     EntitySetName = 'ocpfPurchaseInvoices';
     SourceTable = "Purchase Header";

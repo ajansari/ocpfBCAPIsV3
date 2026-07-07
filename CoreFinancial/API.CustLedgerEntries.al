@@ -8,7 +8,7 @@ page 90806 "ocpfCustLedgerEntries"
     Caption = 'Customer Ledger Entries — open and closed receivables transactions per customer including invoices, credit memos, and payments.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_coreFinancial';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfCustLedgerEntry';
     EntitySetName = 'ocpfCustLedgerEntries';
     SourceTable = "Cust. Ledger Entry";
@@ -493,6 +493,78 @@ page 90806 "ocpfCustLedgerEntries"
                 {
                     Caption = 'Promised Pay Date';
                     ToolTip = 'Specifies the date on which the customer have promised to pay this invoice.';
+                    ApplicationArea = All;
+                }
+                field(originalAmtLcy; Rec."Original Amt. (LCY)")
+                {
+                    Caption = 'Original Amt. (LCY)';
+                    ToolTip = 'Specifies the amount that the entry originally consisted of, in LCY.';
+                    ApplicationArea = All;
+                }
+                field(remainingAmtLcy; Rec."Remaining Amt. (LCY)")
+                {
+                    Caption = 'Remaining Amt. (LCY)';
+                    ToolTip = 'Specifies the amount that remains to be applied to before the entry is totally applied to.';
+                    ApplicationArea = All;
+                }
+                field(amountLcy; Rec."Amount (LCY)")
+                {
+                    Caption = 'Amount (LCY)';
+                    ToolTip = 'Specifies the amount of the entry in LCY.';
+                    ApplicationArea = All;
+                }
+                field(salesLcy; Rec."Sales (LCY)")
+                {
+                    Caption = 'Sales (LCY)';
+                    ToolTip = 'Specifies the total sales amount excl. VAT to the customer in LCY.';
+                    ApplicationArea = All;
+                }
+                field(profitLcy; Rec."Profit (LCY)")
+                {
+                    Caption = 'Profit (LCY)';
+                    ToolTip = 'Specifies the Profit (LCY).';
+                    ApplicationArea = All;
+                }
+                field(invDiscountLcy; Rec."Inv. Discount (LCY)")
+                {
+                    Caption = 'Inv. Discount (LCY)';
+                    ToolTip = 'Specifies the Inv. Discount (LCY).';
+                    ApplicationArea = All;
+                }
+                field(pmtDiscGivenLcy; Rec."Pmt. Disc. Given (LCY)")
+                {
+                    Caption = 'Pmt. Disc. Given (LCY)';
+                    ToolTip = 'Specifies the Pmt. Disc. Given (LCY).';
+                    ApplicationArea = All;
+                }
+                field(origPmtDiscPossibleLcy; Rec."Orig. Pmt. Disc. Possible(LCY)")
+                {
+                    Caption = 'Orig. Pmt. Disc. Possible (LCY)';
+                    ToolTip = 'Specifies the Orig. Pmt. Disc. Possible (LCY).';
+                    ApplicationArea = All;
+                }
+                field(closedByAmountLcy; Rec."Closed by Amount (LCY)")
+                {
+                    Caption = 'Closed by Amount (LCY)';
+                    ToolTip = 'Specifies the Closed by Amount (LCY).';
+                    ApplicationArea = All;
+                }
+                field(debitAmountLcy; Rec."Debit Amount (LCY)")
+                {
+                    Caption = 'Debit Amount (LCY)';
+                    ToolTip = 'Specifies the total of the ledger entries that represent debits, expressed in LCY.';
+                    ApplicationArea = All;
+                }
+                field(creditAmountLcy; Rec."Credit Amount (LCY)")
+                {
+                    Caption = 'Credit Amount (LCY)';
+                    ToolTip = 'Specifies the total of the ledger entries that represent credits, expressed in LCY.';
+                    ApplicationArea = All;
+                }
+                field(pmtToleranceLcy; Rec."Pmt. Tolerance (LCY)")
+                {
+                    Caption = 'Pmt. Tolerance (LCY)';
+                    ToolTip = 'Specifies the Pmt. Tolerance (LCY).';
                     ApplicationArea = All;
                 }
             }

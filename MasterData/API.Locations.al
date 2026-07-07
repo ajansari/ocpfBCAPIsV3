@@ -8,7 +8,7 @@ page 90839 "ocpfLocations"
     Caption = 'Locations — physical or logical inventory locations (warehouses, bins, stores) where items are stocked and tracked.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_masterData';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfLocation';
     EntitySetName = 'ocpfLocations';
     SourceTable = Location;

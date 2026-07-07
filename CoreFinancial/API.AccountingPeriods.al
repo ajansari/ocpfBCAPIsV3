@@ -8,7 +8,7 @@ page 90803 "ocpfAccountingPeriods"
     Caption = 'Accounting Periods — fiscal periods that control which dates are open for posting and define the financial year structure.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_coreFinancial';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfAccountingPeriod';
     EntitySetName = 'ocpfAccountingPeriods';
     SourceTable = "Accounting Period";

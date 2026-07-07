@@ -8,7 +8,7 @@ page 90814 "ocpfCustomerPostingGroups"
     Caption = 'Customer Posting Groups — define which receivables and other G/L accounts are used when posting customer transactions.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_coreFinancial';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfCustomerPostingGroup';
     EntitySetName = 'ocpfCustomerPostingGroups';
     SourceTable = "Customer Posting Group";

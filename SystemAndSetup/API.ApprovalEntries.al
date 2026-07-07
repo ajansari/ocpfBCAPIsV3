@@ -8,7 +8,7 @@ page 90937 "ocpfApprovalEntries"
     Caption = 'Approval entries — workflow approval requests and their current status.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_systemAndSetup';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfApprovalEntry';
     EntitySetName = 'ocpfApprovalEntries';
     SourceTable = "Approval Entry";

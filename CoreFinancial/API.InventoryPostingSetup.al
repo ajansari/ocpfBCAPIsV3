@@ -8,7 +8,7 @@ page 90824 "ocpfInventoryPostingSetup"
     Caption = 'Inventory posting setup — maps inventory posting groups and locations to G/L accounts.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_coreFinancial';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfInventoryPostingSetup';
     EntitySetName = 'ocpfInventoryPostingSetup';
     SourceTable = "Inventory Posting Setup";

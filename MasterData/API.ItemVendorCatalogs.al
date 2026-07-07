@@ -8,7 +8,7 @@ page 90850 "ocpfItemVendorCatalogs"
     Caption = 'Item Vendor Catalog — per-vendor item data including the vendor''s own item number, lead time, and minimum order quantity for each item.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_masterData';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfItemVendorCatalog';
     EntitySetName = 'ocpfItemVendorCatalogs';
     SourceTable = "Item Vendor";

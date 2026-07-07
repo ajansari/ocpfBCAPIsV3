@@ -8,7 +8,7 @@ page 90898 "ocpfPostedPurchaseCreditMemos"
     Caption = 'Posted purchase credit memos.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_purchasing';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfPostedPurchaseCreditMemo';
     EntitySetName = 'ocpfPostedPurchaseCreditMemos';
     SourceTable = "Purch. Cr. Memo Hdr.";

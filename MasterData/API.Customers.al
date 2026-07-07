@@ -8,7 +8,7 @@ page 90842 "ocpfCustomers"
     Caption = 'Customers — master records for all entities to whom the company sells goods or services, including credit, payment, and posting settings.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_masterData';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfCustomer';
     EntitySetName = 'ocpfCustomers';
     SourceTable = Customer;
@@ -132,7 +132,7 @@ page 90842 "ocpfCustomers"
                 field(budgetedAmount; Rec."Budgeted Amount")
                 {
                     Caption = 'Budgeted Amount';
-                    ToolTip = 'Specifies the maximum amount of credit that you extend to the customer for their purchases before you issue warnings. The value 0 represents unlimited credit.';
+                    ToolTip = 'Specifies the Budgeted Amount.';
                     ApplicationArea = All;
                 }
                 field(customerPostingGroup; Rec."Customer Posting Group")
@@ -324,19 +324,19 @@ page 90842 "ocpfCustomers"
                 field(balance; Rec.Balance)
                 {
                     Caption = 'Balance';
-                    ToolTip = 'Specifies the total amount the customer owes you, or you owe them, based on all sales and credits for the customer. A positive amount means they owe you, and a negative amount means you owe them. The ';
+                    ToolTip = 'Specifies the Balance.';
                     ApplicationArea = All;
                 }
                 field(netChange; Rec."Net Change")
                 {
                     Caption = 'Net Change';
-                    ToolTip = 'Specifies the total net amount of sales to the customer in LCY.';
+                    ToolTip = 'Specifies the Net Change.';
                     ApplicationArea = All;
                 }
                 field(balanceDue; Rec."Balance Due")
                 {
                     Caption = 'Balance Due';
-                    ToolTip = 'Specifies the total amount that';
+                    ToolTip = 'Specifies the sum of outstanding payments from the customer.';
                     ApplicationArea = All;
                 }
                 field(payments; Rec.Payments)
@@ -360,7 +360,7 @@ page 90842 "ocpfCustomers"
                 field(financeChargeMemoAmounts; Rec."Finance Charge Memo Amounts")
                 {
                     Caption = 'Finance Charge Memo Amounts';
-                    ToolTip = 'Specifies the sum of payments received from the customer.';
+                    ToolTip = 'Specifies the Finance Charge Memo Amounts.';
                     ApplicationArea = All;
                 }
                 field(outstandingOrders; Rec."Outstanding Orders")
@@ -516,7 +516,7 @@ page 90842 "ocpfCustomers"
                 field(currencyFilter; Rec."Currency Filter")
                 {
                     Caption = 'Currency Filter';
-                    ToolTip = 'Specifies your expected sales income from the customer in LCY based on ongoing sales orders.';
+                    ToolTip = 'Specifies the Currency Filter.';
                     ApplicationArea = All;
                 }
                 field(reserve; Rec.Reserve)
@@ -540,7 +540,7 @@ page 90842 "ocpfCustomers"
                 field(refunds; Rec.Refunds)
                 {
                     Caption = 'Refunds';
-                    ToolTip = 'Specifies the sum of refunds received from the customer.';
+                    ToolTip = 'Specifies the Refunds.';
                     ApplicationArea = All;
                 }
                 field(otherAmounts; Rec."Other Amounts")
@@ -871,6 +871,138 @@ page 90842 "ocpfCustomers"
                 {
                     Caption = 'Contact Graph Id';
                     ToolTip = 'Specifies the contact graph id for this customer record.';
+                    ApplicationArea = All;
+                }
+                field(creditLimitLcy; Rec."Credit Limit (LCY)")
+                {
+                    Caption = 'Credit Limit (LCY)';
+                    ToolTip = 'Specifies the maximum amount of credit that you extend to the customer for their purchases before you issue warnings. The value 0 represents unlimited credit.';
+                    ApplicationArea = All;
+                }
+                field(balanceLcy; Rec."Balance (LCY)")
+                {
+                    Caption = 'Balance (LCY)';
+                    ToolTip = 'Specifies the payment amount that the customer owes for completed sales. This value is also known as the customer''s balance.';
+                    ApplicationArea = All;
+                }
+                field(netChangeLcy; Rec."Net Change (LCY)")
+                {
+                    Caption = 'Net Change (LCY)';
+                    ToolTip = 'Specifies the Net Change (LCY).';
+                    ApplicationArea = All;
+                }
+                field(salesLcy; Rec."Sales (LCY)")
+                {
+                    Caption = 'Sales (LCY)';
+                    ToolTip = 'Specifies the sales, in local currency.';
+                    ApplicationArea = All;
+                }
+                field(profitLcy; Rec."Profit (LCY)")
+                {
+                    Caption = 'Profit (LCY)';
+                    ToolTip = 'Specifies the profit, in local currency.';
+                    ApplicationArea = All;
+                }
+                field(invDiscountsLcy; Rec."Inv. Discounts (LCY)")
+                {
+                    Caption = 'Inv. Discounts (LCY)';
+                    ToolTip = 'Specifies the Inv. Discounts (LCY).';
+                    ApplicationArea = All;
+                }
+                field(pmtDiscountsLcy; Rec."Pmt. Discounts (LCY)")
+                {
+                    Caption = 'Pmt. Discounts (LCY)';
+                    ToolTip = 'Specifies the Pmt. Discounts (LCY).';
+                    ApplicationArea = All;
+                }
+                field(balanceDueLcy; Rec."Balance Due (LCY)")
+                {
+                    Caption = 'Overdue Balance (LCY)';
+                    ToolTip = 'Specifies payments from the customer that are overdue per today''s date.';
+                    ApplicationArea = All;
+                }
+                field(paymentsLcy; Rec."Payments (LCY)")
+                {
+                    Caption = 'Payments (LCY)';
+                    ToolTip = 'Specifies the sum of payments received from the customer in the current fiscal year. Current fiscal year is determined by the system date. The value shown here is calculated asynchronously so there might be a delay in updating this field.';
+                    ApplicationArea = All;
+                }
+                field(invAmountsLcy; Rec."Inv. Amounts (LCY)")
+                {
+                    Caption = 'Inv. Amounts (LCY)';
+                    ToolTip = 'Specifies the Inv. Amounts (LCY).';
+                    ApplicationArea = All;
+                }
+                field(crMemoAmountsLcy; Rec."Cr. Memo Amounts (LCY)")
+                {
+                    Caption = 'Cr. Memo Amounts (LCY)';
+                    ToolTip = 'Specifies the Cr. Memo Amounts (LCY).';
+                    ApplicationArea = All;
+                }
+                field(finChargeMemoAmountsLcy; Rec."Fin. Charge Memo Amounts (LCY)")
+                {
+                    Caption = 'Fin. Charge Memo Amounts (LCY)';
+                    ToolTip = 'Specifies the Fin. Charge Memo Amounts (LCY).';
+                    ApplicationArea = All;
+                }
+                field(debitAmountLcy; Rec."Debit Amount (LCY)")
+                {
+                    Caption = 'Debit Amount (LCY)';
+                    ToolTip = 'Specifies the Debit Amount (LCY).';
+                    ApplicationArea = All;
+                }
+                field(creditAmountLcy; Rec."Credit Amount (LCY)")
+                {
+                    Caption = 'Credit Amount (LCY)';
+                    ToolTip = 'Specifies the Credit Amount (LCY).';
+                    ApplicationArea = All;
+                }
+                field(reminderAmountsLcy; Rec."Reminder Amounts (LCY)")
+                {
+                    Caption = 'Reminder Amounts (LCY)';
+                    ToolTip = 'Specifies the Reminder Amounts (LCY).';
+                    ApplicationArea = All;
+                }
+                field(outstandingOrdersLcy; Rec."Outstanding Orders (LCY)")
+                {
+                    Caption = 'Outstanding Orders (LCY)';
+                    ToolTip = 'Specifies your expected sales income from the customer in LCY based on ongoing sales orders.';
+                    ApplicationArea = All;
+                }
+                field(shippedNotInvoicedLcy; Rec."Shipped Not Invoiced (LCY)")
+                {
+                    Caption = 'Shipped Not Invoiced (LCY)';
+                    ToolTip = 'Specifies your expected sales income from the customer in LCY based on ongoing sales orders where items have been shipped.';
+                    ApplicationArea = All;
+                }
+                field(pmtDiscToleranceLcy; Rec."Pmt. Disc. Tolerance (LCY)")
+                {
+                    Caption = 'Pmt. Disc. Tolerance (LCY)';
+                    ToolTip = 'Specifies the Pmt. Disc. Tolerance (LCY).';
+                    ApplicationArea = All;
+                }
+                field(pmtToleranceLcy; Rec."Pmt. Tolerance (LCY)")
+                {
+                    Caption = 'Pmt. Tolerance (LCY)';
+                    ToolTip = 'Specifies the Pmt. Tolerance (LCY).';
+                    ApplicationArea = All;
+                }
+                field(refundsLcy; Rec."Refunds (LCY)")
+                {
+                    Caption = 'Refunds (LCY)';
+                    ToolTip = 'Specifies the sum of refunds received from the customer.';
+                    ApplicationArea = All;
+                }
+                field(otherAmountsLcy; Rec."Other Amounts (LCY)")
+                {
+                    Caption = 'Other Amounts (LCY)';
+                    ToolTip = 'Specifies the Other Amounts (LCY).';
+                    ApplicationArea = All;
+                }
+                field(outstandingInvoicesLcy; Rec."Outstanding Invoices (LCY)")
+                {
+                    Caption = 'Outstanding Invoices (LCY)';
+                    ToolTip = 'Specifies your expected sales income from the customer in LCY based on unpaid sales invoices.';
                     ApplicationArea = All;
                 }
             }

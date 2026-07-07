@@ -8,7 +8,7 @@ page 90847 "ocpfItemLedgerEntries"
     Caption = 'Item Ledger Entries — posted inventory transactions recording every inbound and outbound movement of items across all locations.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_masterData';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfItemLedgerEntry';
     EntitySetName = 'ocpfItemLedgerEntries';
     SourceTable = "Item Ledger Entry";
@@ -475,6 +475,66 @@ page 90847 "ocpfItemLedgerEntries"
                 {
                     Caption = 'Item Description';
                     ToolTip = 'Specifies the item description for this item ledger entry record.';
+                    ApplicationArea = All;
+                }
+                field(costAmountExpected; Rec."Cost Amount (Expected)")
+                {
+                    Caption = 'Cost Amount (Expected)';
+                    ToolTip = 'Specifies the expected cost, in LCY, of the quantity posting.';
+                    ApplicationArea = All;
+                }
+                field(costAmountActual; Rec."Cost Amount (Actual)")
+                {
+                    Caption = 'Cost Amount (Actual)';
+                    ToolTip = 'Specifies the adjusted cost, in LCY, of the quantity posting.';
+                    ApplicationArea = All;
+                }
+                field(costAmountNonInvtbl; Rec."Cost Amount (Non-Invtbl.)")
+                {
+                    Caption = 'Cost Amount (Non-Invtbl.)';
+                    ToolTip = 'Specifies the adjusted non-inventoriable cost, that is an item charge assigned to an outbound entry.';
+                    ApplicationArea = All;
+                }
+                field(costAmountExpectedAcy; Rec."Cost Amount (Expected) (ACY)")
+                {
+                    Caption = 'Cost Amount (Expected) (ACY)';
+                    ToolTip = 'Specifies the expected cost, in ACY, of the quantity posting.';
+                    ApplicationArea = All;
+                }
+                field(costAmountActualAcy; Rec."Cost Amount (Actual) (ACY)")
+                {
+                    Caption = 'Cost Amount (Actual) (ACY)';
+                    ToolTip = 'Specifies the adjusted cost of the entry, in the additional reporting currency.';
+                    ApplicationArea = All;
+                }
+                field(costAmountNonInvtblAcy; Rec."Cost Amount (Non-Invtbl.)(ACY)")
+                {
+                    Caption = 'Cost Amount (Non-Invtbl.)(ACY)';
+                    ToolTip = 'Specifies the adjusted non-inventoriable cost, that is, an item charge assigned to an outbound entry in the additional reporting currency.';
+                    ApplicationArea = All;
+                }
+                field(purchaseAmountExpected; Rec."Purchase Amount (Expected)")
+                {
+                    Caption = 'Purchase Amount (Expected)';
+                    ToolTip = 'Specifies the Purchase Amount (Expected).';
+                    ApplicationArea = All;
+                }
+                field(purchaseAmountActual; Rec."Purchase Amount (Actual)")
+                {
+                    Caption = 'Purchase Amount (Actual)';
+                    ToolTip = 'Specifies the Purchase Amount (Actual).';
+                    ApplicationArea = All;
+                }
+                field(salesAmountExpected; Rec."Sales Amount (Expected)")
+                {
+                    Caption = 'Sales Amount (Expected)';
+                    ToolTip = 'Specifies the expected sales amount, in LCY.';
+                    ApplicationArea = All;
+                }
+                field(salesAmountActual; Rec."Sales Amount (Actual)")
+                {
+                    Caption = 'Sales Amount (Actual)';
+                    ToolTip = 'Specifies the sales amount, in LCY.';
                     ApplicationArea = All;
                 }
             }

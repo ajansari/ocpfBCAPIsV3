@@ -8,7 +8,7 @@ page 90906 "ocpfPurchaseBlanketOrders"
     Caption = 'Purchase blanket orders — long-term framework agreements with vendors.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_purchasing';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfPurchaseBlanketOrder';
     EntitySetName = 'ocpfPurchaseBlanketOrders';
     SourceTable = "Purchase Header";

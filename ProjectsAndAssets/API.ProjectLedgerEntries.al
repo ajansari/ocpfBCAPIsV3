@@ -8,7 +8,7 @@ page 90914 "ocpfProjectLedgerEntries"
     Caption = 'Project ledger entries — posted usage and billing transactions for projects.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_projectsAndAssets';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfProjectLedgerEntry';
     EntitySetName = 'ocpfProjectLedgerEntries';
     SourceTable = "Job Ledger Entry";

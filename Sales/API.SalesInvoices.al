@@ -8,7 +8,7 @@ page 90874 "ocpfSalesInvoices"
     Caption = 'Sales invoices (open, unposted).';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_sales';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfSalesInvoice';
     EntitySetName = 'ocpfSalesInvoices';
     SourceTable = "Sales Header";

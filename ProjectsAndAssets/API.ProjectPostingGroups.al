@@ -8,7 +8,7 @@ page 90911 "ocpfProjectPostingGroups"
     Caption = 'Project posting groups — defines G/L accounts for project transactions.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_projectsAndAssets';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfProjectPostingGroup';
     EntitySetName = 'ocpfProjectPostingGroups';
     SourceTable = "Job Posting Group";

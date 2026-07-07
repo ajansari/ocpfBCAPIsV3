@@ -8,7 +8,7 @@ page 90933 "ocpfReminderHeaders"
     Caption = 'Reminder headers — open reminder documents sent to customers with overdue balances.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_systemAndSetup';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfReminderHeader';
     EntitySetName = 'ocpfReminderHeaders';
     SourceTable = "Reminder Header";

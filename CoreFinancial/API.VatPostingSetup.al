@@ -8,7 +8,7 @@ page 90819 "ocpfVatPostingSetup"
     Caption = 'VAT Posting Setup — matrix mapping VAT Business and VAT Product Posting Groups to VAT rates, calculation types, and the G/L accounts used when posting VAT.';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_coreFinancial';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfVatPostingSetup';
     EntitySetName = 'ocpfVatPostingSetup';
     SourceTable = "VAT Posting Setup";

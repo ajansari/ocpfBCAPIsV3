@@ -8,7 +8,7 @@ page 90900 "ocpfPostedPurchaseReceipts"
     Caption = 'Posted purchase receipts (goods received).';
     APIPublisher = 'OnlyCopilotFans';
     APIGroup = 'ocpf_purchasing';
-    APIVersion = 'v3.0';
+    APIVersion = 'v3.0', 'v3.1';
     EntityName = 'ocpfPostedPurchaseReceipt';
     EntitySetName = 'ocpfPostedPurchaseReceipts';
     SourceTable = "Purch. Rcpt. Header";
@@ -30,7 +30,7 @@ page 90900 "ocpfPostedPurchaseReceipts"
                 field(buyFromVendorNo; Rec."Buy-from Vendor No.")
                     {
                         Caption = 'Buy-from Vendor No.';
-                        ToolTip = 'Specifies the name of the vendor who delivered the items.';
+                        ToolTip = 'Specifies the Buy-from Vendor No..';
                         ApplicationArea = All;
                 }
                 field(no; Rec."No.")

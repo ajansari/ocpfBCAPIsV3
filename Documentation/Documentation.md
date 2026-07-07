@@ -42,8 +42,9 @@ The complete field-by-field delta is recorded in [ChangeLog.md](ChangeLog.md).
 ## About this document
 
 This document lists every API page, its source table, editability, and every exposed field.
-Fields marked **Editable = false** within an editable page are read-only computed or system fields.
-Fields on read-only pages (Editable = false at page level) are all read-only regardless of field-level setting.
+
+**Field-level Editable legend:** 🔑 Key (OData key, read-only) · ✅ writable stored field · 🧮 computed (FlowField — calculated on read, never writable) · 🔍 filter (FlowFilter — not stored; used only to parameterize computed fields) · — stored field on a read-only page.
+On read-only pages (❌ at page level) every field is read-only regardless of its glyph.
 
 ---
 
@@ -339,7 +340,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 9 | `incomeBalance` | Income/Balance | Income/Balance | ✅ |
 | 10 | `debitCredit` | Debit/Credit | Debit/Credit | ✅ |
 | 11 | `no2` | No. 2 | No. 2 | ✅ |
-| 12 | `comment` | Comment | Comment | ✅ |
+| 12 | `comment` | Comment | Comment | 🧮 computed |
 | 13 | `blocked` | Blocked | Blocked | ✅ |
 | 14 | `directPosting` | Direct Posting | Direct Posting | ✅ |
 | 15 | `reconciliationAccount` | Reconciliation Account | Reconciliation Account | ✅ |
@@ -352,50 +353,50 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 22 | `unrealizedRevaluation` | Unrealized Revaluation | Unrealized Revaluation | ✅ |
 | 23 | `lastModifiedDateTime` | Last Modified Date Time | Last Modified Date Time | ✅ |
 | 24 | `lastDateModified` | Last Date Modified | Last Date Modified | ✅ |
-| 25 | `dateFilter` | Date Filter | Date Filter | ✅ |
-| 26 | `globalDimension1Filter` | Global Dimension 1 Filter | Global Dimension 1 Filter | ✅ |
-| 27 | `globalDimension2Filter` | Global Dimension 2 Filter | Global Dimension 2 Filter | ✅ |
-| 28 | `balanceAtDate` | Balance at Date | Balance at Date | ✅ |
-| 29 | `netChange` | Net Change | Net Change | ✅ |
-| 30 | `budgetedAmount` | Budgeted Amount | Budgeted Amount | ✅ |
+| 25 | `dateFilter` | Date Filter | Date Filter | 🔍 filter |
+| 26 | `globalDimension1Filter` | Global Dimension 1 Filter | Global Dimension 1 Filter | 🔍 filter |
+| 27 | `globalDimension2Filter` | Global Dimension 2 Filter | Global Dimension 2 Filter | 🔍 filter |
+| 28 | `balanceAtDate` | Balance at Date | Balance at Date | 🧮 computed |
+| 29 | `netChange` | Net Change | Net Change | 🧮 computed |
+| 30 | `budgetedAmount` | Budgeted Amount | Budgeted Amount | 🧮 computed |
 | 31 | `totaling` | Totaling | Totaling | ✅ |
-| 32 | `budgetFilter` | Budget Filter | Budget Filter | ✅ |
-| 33 | `balance` | Balance | Balance | ✅ |
-| 34 | `budgetAtDate` | Budget at Date | Budget at Date | ✅ |
+| 32 | `budgetFilter` | Budget Filter | Budget Filter | 🔍 filter |
+| 33 | `balance` | Balance | Balance | 🧮 computed |
+| 34 | `budgetAtDate` | Budget at Date | Budget at Date | 🧮 computed |
 | 35 | `consolTranslationMethod` | Consol. Translation Method | Consol. Translation Method | ✅ |
 | 36 | `consolDebitAcc` | Consol. Debit Acc. | Consol. Debit Acc. | ✅ |
 | 37 | `consolCreditAcc` | Consol. Credit Acc. | Consol. Credit Acc. | ✅ |
-| 38 | `businessUnitFilter` | Business Unit Filter | Business Unit Filter | ✅ |
+| 38 | `businessUnitFilter` | Business Unit Filter | Business Unit Filter | 🔍 filter |
 | 39 | `genPostingType` | Gen. Posting Type | Gen. Posting Type | ✅ |
 | 40 | `genBusPostingGroup` | Gen. Bus. Posting Group | Gen. Bus. Posting Group | ✅ |
 | 41 | `genProdPostingGroup` | Gen. Prod. Posting Group | Gen. Prod. Posting Group | ✅ |
-| 42 | `debitAmount` | Debit Amount | Debit Amount | ✅ |
-| 43 | `creditAmount` | Credit Amount | Credit Amount | ✅ |
+| 42 | `debitAmount` | Debit Amount | Debit Amount | 🧮 computed |
+| 43 | `creditAmount` | Credit Amount | Credit Amount | 🧮 computed |
 | 44 | `automaticExtTexts` | Automatic Ext. Texts | Automatic Ext. Texts | ✅ |
-| 45 | `budgetedDebitAmount` | Budgeted Debit Amount | Budgeted Debit Amount | ✅ |
-| 46 | `budgetedCreditAmount` | Budgeted Credit Amount | Budgeted Credit Amount | ✅ |
+| 45 | `budgetedDebitAmount` | Budgeted Debit Amount | Budgeted Debit Amount | 🧮 computed |
+| 46 | `budgetedCreditAmount` | Budgeted Credit Amount | Budgeted Credit Amount | 🧮 computed |
 | 47 | `taxAreaCode` | Tax Area Code | Tax Area Code | ✅ |
 | 48 | `taxLiable` | Tax Liable | Tax Liable | ✅ |
 | 49 | `taxGroupCode` | Tax Group Code | Tax Group Code | ✅ |
 | 50 | `vATBusPostingGroup` | VAT Bus. Posting Group | VAT Bus. Posting Group | ✅ |
 | 51 | `vATProdPostingGroup` | VAT Prod. Posting Group | VAT Prod. Posting Group | ✅ |
-| 52 | `vATAmt` | VAT Amt. | VAT Amt. | ✅ |
-| 53 | `additionalCurrencyNetChange` | Additional-Currency Net Change | Additional-Currency Net Change | ✅ |
-| 54 | `addCurrencyBalanceAtDate` | Add.-Currency Balance at Date | Add.-Currency Balance at Date | ✅ |
-| 55 | `additionalCurrencyBalance` | Additional-Currency Balance | Additional-Currency Balance | ✅ |
+| 52 | `vATAmt` | VAT Amt. | VAT Amt. | 🧮 computed |
+| 53 | `additionalCurrencyNetChange` | Additional-Currency Net Change | Additional-Currency Net Change | 🧮 computed |
+| 54 | `addCurrencyBalanceAtDate` | Add.-Currency Balance at Date | Add.-Currency Balance at Date | 🧮 computed |
+| 55 | `additionalCurrencyBalance` | Additional-Currency Balance | Additional-Currency Balance | 🧮 computed |
 | 56 | `exchangeRateAdjustment` | Exchange Rate Adjustment | Exchange Rate Adjustment | ✅ |
-| 57 | `addCurrencyDebitAmount` | Add.-Currency Debit Amount | Add.-Currency Debit Amount | ✅ |
-| 58 | `addCurrencyCreditAmount` | Add.-Currency Credit Amount | Add.-Currency Credit Amount | ✅ |
+| 57 | `addCurrencyDebitAmount` | Add.-Currency Debit Amount | Add.-Currency Debit Amount | 🧮 computed |
+| 58 | `addCurrencyCreditAmount` | Add.-Currency Credit Amount | Add.-Currency Credit Amount | 🧮 computed |
 | 59 | `defaultIcPartnerGLAccNo` | Default IC Partner G/L Acc. No | Default IC Partner G/L Acc. No | ✅ |
 | 60 | `omitDefaultDescrInJnl` | Omit Default Descr. in Jnl. | Omit Default Descr. in Jnl. | ✅ |
-| 61 | `sourceCurrencyNetChange` | Source Currency Net Change | Source Currency Net Change | ✅ |
-| 62 | `sourceCurrBalanceAtDate` | Source Curr. Balance at Date | Source Curr. Balance at Date | ✅ |
-| 63 | `sourceCurrencyBalance` | Source Currency Balance | Source Currency Balance | ✅ |
+| 61 | `sourceCurrencyNetChange` | Source Currency Net Change | Source Currency Net Change | 🧮 computed |
+| 62 | `sourceCurrBalanceAtDate` | Source Curr. Balance at Date | Source Curr. Balance at Date | 🧮 computed |
+| 63 | `sourceCurrencyBalance` | Source Currency Balance | Source Currency Balance | 🧮 computed |
 | 64 | `accountSubcategoryEntryNo` | Account Subcategory Entry No. | Account Subcategory Entry No. | ✅ |
-| 65 | `accountSubcategoryDescript` | Account Subcategory Descript. | Account Subcategory Descript. | ✅ |
-| 66 | `vATReportingDateFilter` | VAT Reporting Date Filter | VAT Reporting Date Filter | ✅ |
+| 65 | `accountSubcategoryDescript` | Account Subcategory Descript. | Account Subcategory Descript. | 🧮 computed |
+| 66 | `vATReportingDateFilter` | VAT Reporting Date Filter | VAT Reporting Date Filter | 🔍 filter |
 | 67 | `excludeFromConsolidation` | Exclude From Consolidation | Exclude from Consolidation | ✅ |
-| 68 | `dimensionSetIdFilter` | Dimension Set ID Filter | Dimension Set ID Filter | ✅ |
+| 68 | `dimensionSetIdFilter` | Dimension Set ID Filter | Dimension Set ID Filter | 🔍 filter |
 | 69 | `costTypeNo` | Cost Type No. | Cost Type No. | ✅ |
 | 70 | `defaultDeferralTemplateCode` | Default Deferral Template Code | Default Deferral Template Code | ✅ |
 | 71 | `aPIAccountType` | API Account Type | API Account Type | ✅ |
@@ -471,16 +472,16 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 48 | `reversed` | Reversed | Reversed | — |
 | 49 | `reversedByEntryNo` | Reversed by Entry No. | Reversed by Entry No. | — |
 | 50 | `reversedEntryNo` | Reversed Entry No. | Reversed Entry No. | — |
-| 51 | `gLAccountName` | G/L Account Name | G/L Account Name | — |
+| 51 | `gLAccountName` | G/L Account Name | G/L Account Name | 🧮 computed |
 | 52 | `journalTemplName` | Journal Templ. Name | Journal Template Name | — |
 | 53 | `vATReportingDate` | VAT Reporting Date | VAT Date | — |
 | 54 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | — |
-| 55 | `shortcutDimension3Code` | Shortcut Dimension 3 Code | Shortcut Dimension 3 Code | — |
-| 56 | `shortcutDimension4Code` | Shortcut Dimension 4 Code | Shortcut Dimension 4 Code | — |
-| 57 | `shortcutDimension5Code` | Shortcut Dimension 5 Code | Shortcut Dimension 5 Code | — |
-| 58 | `shortcutDimension6Code` | Shortcut Dimension 6 Code | Shortcut Dimension 6 Code | — |
-| 59 | `shortcutDimension7Code` | Shortcut Dimension 7 Code | Shortcut Dimension 7 Code | — |
-| 60 | `shortcutDimension8Code` | Shortcut Dimension 8 Code | Shortcut Dimension 8 Code | — |
+| 55 | `shortcutDimension3Code` | Shortcut Dimension 3 Code | Shortcut Dimension 3 Code | 🧮 computed |
+| 56 | `shortcutDimension4Code` | Shortcut Dimension 4 Code | Shortcut Dimension 4 Code | 🧮 computed |
+| 57 | `shortcutDimension5Code` | Shortcut Dimension 5 Code | Shortcut Dimension 5 Code | 🧮 computed |
+| 58 | `shortcutDimension6Code` | Shortcut Dimension 6 Code | Shortcut Dimension 6 Code | 🧮 computed |
+| 59 | `shortcutDimension7Code` | Shortcut Dimension 7 Code | Shortcut Dimension 7 Code | 🧮 computed |
+| 60 | `shortcutDimension8Code` | Shortcut Dimension 8 Code | Shortcut Dimension 8 Code | 🧮 computed |
 | 61 | `lastDimCorrectionEntryNo` | Last Dim. Correction Entry No. | Last Dim. Correction Entry No. | — |
 | 62 | `lastDimCorrectionNode` | Last Dim. Correction Node | Last Dim. Correction Node | — |
 | 63 | `dimensionChangesCount` | Dimension Changes Count | Count of Dimension Changes | — |
@@ -493,7 +494,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 70 | `nonDeductibleVatAmount` | Non-Deductible VAT Amount | Non-Deductible VAT Amount | — |
 | 71 | `nonDeductibleVatAmountAcy` | Non-Deductible VAT Amount ACY | Non-Deductible VAT Amount ACY | — |
 | 72 | `srcCurrNonDedVatAmount` | Src. Curr. Non-Ded. VAT Amount | Source Currency Non-Deductible VAT Amount | — |
-| 73 | `accountId` | Account Id | Account Id | — |
+| 73 | `accountId` | Account Id | Account Id | 🧮 computed |
 | 74 | `lastModifiedDatetime` | Last Modified DateTime | Last Modified DateTime | — |
 
 
@@ -527,11 +528,11 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 8 | `vATReportingDate` | VAT Reporting Date | Default VAT Date | ✅ |
 | 9 | `vATReportingDateUsage` | VAT Reporting Date Usage | VAT Date Usage | ✅ |
 | 10 | `pmtDiscExclVat` | Pmt. Disc. Excl. VAT | Pmt. Disc. Excl. VAT | ✅ |
-| 11 | `dateFilter` | Date Filter | Date Filter | ✅ |
-| 12 | `globalDimension1Filter` | Global Dimension 1 Filter | Global Dimension 1 Filter | ✅ |
-| 13 | `globalDimension2Filter` | Global Dimension 2 Filter | Global Dimension 2 Filter | ✅ |
-| 14 | `custBalancesDue` | Cust. Balances Due | Cust. Balances Due | ✅ |
-| 15 | `vendorBalancesDue` | Vendor Balances Due | Vendor Balances Due | ✅ |
+| 11 | `dateFilter` | Date Filter | Date Filter | 🔍 filter |
+| 12 | `globalDimension1Filter` | Global Dimension 1 Filter | Global Dimension 1 Filter | 🔍 filter |
+| 13 | `globalDimension2Filter` | Global Dimension 2 Filter | Global Dimension 2 Filter | 🔍 filter |
+| 14 | `custBalancesDue` | Cust. Balances Due | Cust. Balances Due | 🧮 computed |
+| 15 | `vendorBalancesDue` | Vendor Balances Due | Vendor Balances Due | 🧮 computed |
 | 16 | `unrealizedVat` | Unrealized VAT | Unrealized VAT | ✅ |
 | 17 | `adjustForPaymentDisc` | Adjust for Payment Disc. | Adjust for Payment Disc. | ✅ |
 | 18 | `postWithJobQueue` | Post with Job Queue | Post with Job Queue | ✅ |
@@ -754,8 +755,8 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 8 | `customerName` | Customer Name | Customer Name | — |
 | 9 | `yourReference` | Your Reference | Your Reference | — |
 | 10 | `currencyCode` | Currency Code | Currency Code | — |
-| 11 | `amount` | Amount | Amount | — |
-| 12 | `remainingAmount` | Remaining Amount | Remaining Amount | — |
+| 11 | `amount` | Amount | Amount | 🧮 computed |
+| 12 | `remainingAmount` | Remaining Amount | Remaining Amount | 🧮 computed |
 | 13 | `sellToCustomerNo` | Sell-to Customer No. | Sell-to Customer No. | — |
 | 14 | `customerPostingGroup` | Customer Posting Group | Customer Posting Group | — |
 | 15 | `globalDimension1Code` | Global Dimension 1 Code | Global Dimension 1 Code | — |
@@ -781,8 +782,8 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 35 | `balAccountType` | Bal. Account Type | Bal. Account Type | — |
 | 36 | `balAccountNo` | Bal. Account No. | Bal. Account No. | — |
 | 37 | `transactionNo` | Transaction No. | Transaction No. | — |
-| 38 | `debitAmount` | Debit Amount | Debit Amount | — |
-| 39 | `creditAmount` | Credit Amount | Credit Amount | — |
+| 38 | `debitAmount` | Debit Amount | Debit Amount | 🧮 computed |
+| 39 | `creditAmount` | Credit Amount | Credit Amount | 🧮 computed |
 | 40 | `documentDate` | Document Date | Document Date | — |
 | 41 | `externalDocumentNo` | External Document No. | External Document No. | — |
 | 42 | `calculateInterest` | Calculate Interest | Calculate Interest | — |
@@ -792,8 +793,8 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 46 | `closedByCurrencyAmount` | Closed by Currency Amount | Closed by Currency Amount | — |
 | 47 | `adjustedCurrencyFactor` | Adjusted Currency Factor | Adjusted Currency Factor | — |
 | 48 | `originalCurrencyFactor` | Original Currency Factor | Original Currency Factor | — |
-| 49 | `originalAmount` | Original Amount | Original Amount | — |
-| 50 | `dateFilter` | Date Filter | Date Filter | — |
+| 49 | `originalAmount` | Original Amount | Original Amount | 🧮 computed |
+| 50 | `dateFilter` | Date Filter | Date Filter | 🔍 filter |
 | 51 | `remainingPmtDiscPossible` | Remaining Pmt. Disc. Possible | Remaining Pmt. Disc. Possible | — |
 | 52 | `pmtDiscToleranceDate` | Pmt. Disc. Tolerance Date | Pmt. Disc. Tolerance Date | — |
 | 53 | `maxPaymentTolerance` | Max. Payment Tolerance | Max. Payment Tolerance | — |
@@ -814,26 +815,26 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 68 | `messageToRecipient` | Message to Recipient | Message to Recipient | — |
 | 69 | `exportedToPaymentFile` | Exported to Payment File | Exported to Payment File | — |
 | 70 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | — |
-| 71 | `shortcutDimension3Code` | Shortcut Dimension 3 Code | Shortcut Dimension 3 Code | — |
-| 72 | `shortcutDimension4Code` | Shortcut Dimension 4 Code | Shortcut Dimension 4 Code | — |
-| 73 | `shortcutDimension5Code` | Shortcut Dimension 5 Code | Shortcut Dimension 5 Code | — |
-| 74 | `shortcutDimension6Code` | Shortcut Dimension 6 Code | Shortcut Dimension 6 Code | — |
-| 75 | `shortcutDimension7Code` | Shortcut Dimension 7 Code | Shortcut Dimension 7 Code | — |
-| 76 | `shortcutDimension8Code` | Shortcut Dimension 8 Code | Shortcut Dimension 8 Code | — |
+| 71 | `shortcutDimension3Code` | Shortcut Dimension 3 Code | Shortcut Dimension 3 Code | 🧮 computed |
+| 72 | `shortcutDimension4Code` | Shortcut Dimension 4 Code | Shortcut Dimension 4 Code | 🧮 computed |
+| 73 | `shortcutDimension5Code` | Shortcut Dimension 5 Code | Shortcut Dimension 5 Code | 🧮 computed |
+| 74 | `shortcutDimension6Code` | Shortcut Dimension 6 Code | Shortcut Dimension 6 Code | 🧮 computed |
+| 75 | `shortcutDimension7Code` | Shortcut Dimension 7 Code | Shortcut Dimension 7 Code | 🧮 computed |
+| 76 | `shortcutDimension8Code` | Shortcut Dimension 8 Code | Shortcut Dimension 8 Code | 🧮 computed |
 | 77 | `directDebitMandateId` | Direct Debit Mandate ID | Direct Debit Mandate ID | — |
 | 78 | `disputeStatus` | Dispute Status | Dispute Status | — |
 | 79 | `promisedPayDate` | Promised Pay Date | Promised Pay Date | — |
-| 80 | `originalAmtLcy` | Original Amt. (LCY) | Original Amt. (LCY) | — |
-| 81 | `remainingAmtLcy` | Remaining Amt. (LCY) | Remaining Amt. (LCY) | — |
-| 82 | `amountLcy` | Amount (LCY) | Amount (LCY) | — |
+| 80 | `originalAmtLcy` | Original Amt. (LCY) | Original Amt. (LCY) | 🧮 computed |
+| 81 | `remainingAmtLcy` | Remaining Amt. (LCY) | Remaining Amt. (LCY) | 🧮 computed |
+| 82 | `amountLcy` | Amount (LCY) | Amount (LCY) | 🧮 computed |
 | 83 | `salesLcy` | Sales (LCY) | Sales (LCY) | — |
 | 84 | `profitLcy` | Profit (LCY) | Profit (LCY) | — |
 | 85 | `invDiscountLcy` | Inv. Discount (LCY) | Inv. Discount (LCY) | — |
 | 86 | `pmtDiscGivenLcy` | Pmt. Disc. Given (LCY) | Pmt. Disc. Given (LCY) | — |
 | 87 | `origPmtDiscPossibleLcy` | Orig. Pmt. Disc. Possible(LCY) | Orig. Pmt. Disc. Possible (LCY) | — |
 | 88 | `closedByAmountLcy` | Closed by Amount (LCY) | Closed by Amount (LCY) | — |
-| 89 | `debitAmountLcy` | Debit Amount (LCY) | Debit Amount (LCY) | — |
-| 90 | `creditAmountLcy` | Credit Amount (LCY) | Credit Amount (LCY) | — |
+| 89 | `debitAmountLcy` | Debit Amount (LCY) | Debit Amount (LCY) | 🧮 computed |
+| 90 | `creditAmountLcy` | Credit Amount (LCY) | Credit Amount (LCY) | 🧮 computed |
 | 91 | `pmtToleranceLcy` | Pmt. Tolerance (LCY) | Pmt. Tolerance (LCY) | — |
 
 > **Added in API v3.1:** fields 80–91 above (previously omitted parenthesized-name standard fields).
@@ -931,8 +932,8 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 7 | `description` | Description | Description | — |
 | 8 | `vendorName` | Vendor Name | Vendor Name | — |
 | 9 | `currencyCode` | Currency Code | Currency Code | — |
-| 10 | `amount` | Amount | Amount | — |
-| 11 | `remainingAmount` | Remaining Amount | Remaining Amount | — |
+| 10 | `amount` | Amount | Amount | 🧮 computed |
+| 11 | `remainingAmount` | Remaining Amount | Remaining Amount | 🧮 computed |
 | 12 | `buyFromVendorNo` | Buy-from Vendor No. | Buy-from Vendor No. | — |
 | 13 | `vendorPostingGroup` | Vendor Posting Group | Vendor Posting Group | — |
 | 14 | `globalDimension1Code` | Global Dimension 1 Code | Global Dimension 1 Code | — |
@@ -958,8 +959,8 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 34 | `balAccountType` | Bal. Account Type | Bal. Account Type | — |
 | 35 | `balAccountNo` | Bal. Account No. | Bal. Account No. | — |
 | 36 | `transactionNo` | Transaction No. | Transaction No. | — |
-| 37 | `debitAmount` | Debit Amount | Debit Amount | — |
-| 38 | `creditAmount` | Credit Amount | Credit Amount | — |
+| 37 | `debitAmount` | Debit Amount | Debit Amount | 🧮 computed |
+| 38 | `creditAmount` | Credit Amount | Credit Amount | 🧮 computed |
 | 39 | `documentDate` | Document Date | Document Date | — |
 | 40 | `externalDocumentNo` | External Document No. | External Document No. | — |
 | 41 | `noSeries` | No. Series | No. Series | — |
@@ -967,8 +968,8 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 43 | `closedByCurrencyAmount` | Closed by Currency Amount | Closed by Currency Amount | — |
 | 44 | `adjustedCurrencyFactor` | Adjusted Currency Factor | Adjusted Currency Factor | — |
 | 45 | `originalCurrencyFactor` | Original Currency Factor | Original Currency Factor | — |
-| 46 | `originalAmount` | Original Amount | Original Amount | — |
-| 47 | `dateFilter` | Date Filter | Date Filter | — |
+| 46 | `originalAmount` | Original Amount | Original Amount | 🧮 computed |
+| 47 | `dateFilter` | Date Filter | Date Filter | 🔍 filter |
 | 48 | `remainingPmtDiscPossible` | Remaining Pmt. Disc. Possible | Remaining Pmt. Disc. Possible | — |
 | 49 | `pmtDiscToleranceDate` | Pmt. Disc. Tolerance Date | Pmt. Disc. Tolerance Date | — |
 | 50 | `maxPaymentTolerance` | Max. Payment Tolerance | Max. Payment Tolerance | — |
@@ -990,23 +991,23 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 66 | `messageToRecipient` | Message to Recipient | Message to Recipient | — |
 | 67 | `exportedToPaymentFile` | Exported to Payment File | Exported to Payment File | — |
 | 68 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | — |
-| 69 | `shortcutDimension3Code` | Shortcut Dimension 3 Code | Shortcut Dimension 3 Code | — |
-| 70 | `shortcutDimension4Code` | Shortcut Dimension 4 Code | Shortcut Dimension 4 Code | — |
-| 71 | `shortcutDimension5Code` | Shortcut Dimension 5 Code | Shortcut Dimension 5 Code | — |
-| 72 | `shortcutDimension6Code` | Shortcut Dimension 6 Code | Shortcut Dimension 6 Code | — |
-| 73 | `shortcutDimension7Code` | Shortcut Dimension 7 Code | Shortcut Dimension 7 Code | — |
-| 74 | `shortcutDimension8Code` | Shortcut Dimension 8 Code | Shortcut Dimension 8 Code | — |
+| 69 | `shortcutDimension3Code` | Shortcut Dimension 3 Code | Shortcut Dimension 3 Code | 🧮 computed |
+| 70 | `shortcutDimension4Code` | Shortcut Dimension 4 Code | Shortcut Dimension 4 Code | 🧮 computed |
+| 71 | `shortcutDimension5Code` | Shortcut Dimension 5 Code | Shortcut Dimension 5 Code | 🧮 computed |
+| 72 | `shortcutDimension6Code` | Shortcut Dimension 6 Code | Shortcut Dimension 6 Code | 🧮 computed |
+| 73 | `shortcutDimension7Code` | Shortcut Dimension 7 Code | Shortcut Dimension 7 Code | 🧮 computed |
+| 74 | `shortcutDimension8Code` | Shortcut Dimension 8 Code | Shortcut Dimension 8 Code | 🧮 computed |
 | 75 | `remitToCode` | Remit-to Code | Remit-to Code | — |
-| 76 | `originalAmtLcy` | Original Amt. (LCY) | Original Amt. (LCY) | — |
-| 77 | `remainingAmtLcy` | Remaining Amt. (LCY) | Remaining Amt. (LCY) | — |
-| 78 | `amountLcy` | Amount (LCY) | Amount (LCY) | — |
+| 76 | `originalAmtLcy` | Original Amt. (LCY) | Original Amt. (LCY) | 🧮 computed |
+| 77 | `remainingAmtLcy` | Remaining Amt. (LCY) | Remaining Amt. (LCY) | 🧮 computed |
+| 78 | `amountLcy` | Amount (LCY) | Amount (LCY) | 🧮 computed |
 | 79 | `purchaseLcy` | Purchase (LCY) | Purchase (LCY) | — |
 | 80 | `invDiscountLcy` | Inv. Discount (LCY) | Inv. Discount (LCY) | — |
 | 81 | `pmtDiscRcdLcy` | Pmt. Disc. Rcd.(LCY) | Pmt. Disc. Rcd.(LCY) | — |
 | 82 | `origPmtDiscPossibleLcy` | Orig. Pmt. Disc. Possible(LCY) | Org. Pmt. Disc. Possible (LCY) | — |
 | 83 | `closedByAmountLcy` | Closed by Amount (LCY) | Closed by Amount (LCY) | — |
-| 84 | `debitAmountLcy` | Debit Amount (LCY) | Debit Amount (LCY) | — |
-| 85 | `creditAmountLcy` | Credit Amount (LCY) | Credit Amount (LCY) | — |
+| 84 | `debitAmountLcy` | Debit Amount (LCY) | Debit Amount (LCY) | 🧮 computed |
+| 85 | `creditAmountLcy` | Credit Amount (LCY) | Credit Amount (LCY) | 🧮 computed |
 | 86 | `pmtToleranceLcy` | Pmt. Tolerance (LCY) | Pmt. Tolerance (LCY) | — |
 
 > **Added in API v3.1:** fields 76–86 above (previously omitted parenthesized-name standard fields).
@@ -1103,8 +1104,8 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 6 | `documentNo` | Document No. | Document No. | — |
 | 7 | `description` | Description | Description | — |
 | 8 | `currencyCode` | Currency Code | Currency Code | — |
-| 9 | `amount` | Amount | Amount | — |
-| 10 | `remainingAmount` | Remaining Amount | Remaining Amount | — |
+| 9 | `amount` | Amount | Amount | 🧮 computed |
+| 10 | `remainingAmount` | Remaining Amount | Remaining Amount | 🧮 computed |
 | 11 | `employeePostingGroup` | Employee Posting Group | Employee Posting Group | — |
 | 12 | `globalDimension1Code` | Global Dimension 1 Code | Global Dimension 1 Code | — |
 | 13 | `globalDimension2Code` | Global Dimension 2 Code | Global Dimension 2 Code | — |
@@ -1125,15 +1126,15 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 28 | `balAccountType` | Bal. Account Type | Bal. Account Type | — |
 | 29 | `balAccountNo` | Bal. Account No. | Bal. Account No. | — |
 | 30 | `transactionNo` | Transaction No. | Transaction No. | — |
-| 31 | `debitAmount` | Debit Amount | Debit Amount | — |
-| 32 | `creditAmount` | Credit Amount | Credit Amount | — |
+| 31 | `debitAmount` | Debit Amount | Debit Amount | 🧮 computed |
+| 32 | `creditAmount` | Credit Amount | Credit Amount | 🧮 computed |
 | 33 | `noSeries` | No. Series | No. Series | — |
 | 34 | `closedByCurrencyCode` | Closed by Currency Code | Closed by Currency Code | — |
 | 35 | `closedByCurrencyAmount` | Closed by Currency Amount | Closed by Currency Amount | — |
 | 36 | `adjustedCurrencyFactor` | Adjusted Currency Factor | Adjusted Currency Factor | — |
 | 37 | `originalCurrencyFactor` | Original Currency Factor | Original Currency Factor | — |
-| 38 | `originalAmount` | Original Amount | Original Amount | — |
-| 39 | `dateFilter` | Date Filter | Date Filter | — |
+| 38 | `originalAmount` | Original Amount | Original Amount | 🧮 computed |
+| 39 | `dateFilter` | Date Filter | Date Filter | 🔍 filter |
 | 40 | `amountToApply` | Amount to Apply | Amount to Apply | — |
 | 41 | `applyingEntry` | Applying Entry | Applying Entry | — |
 | 42 | `reversed` | Reversed | Reversed | — |
@@ -1145,18 +1146,18 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 48 | `messageToRecipient` | Message to Recipient | Message to Recipient | — |
 | 49 | `exportedToPaymentFile` | Exported to Payment File | Exported to Payment File | — |
 | 50 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | — |
-| 51 | `shortcutDimension3Code` | Shortcut Dimension 3 Code | Shortcut Dimension 3 Code | — |
-| 52 | `shortcutDimension4Code` | Shortcut Dimension 4 Code | Shortcut Dimension 4 Code | — |
-| 53 | `shortcutDimension5Code` | Shortcut Dimension 5 Code | Shortcut Dimension 5 Code | — |
-| 54 | `shortcutDimension6Code` | Shortcut Dimension 6 Code | Shortcut Dimension 6 Code | — |
-| 55 | `shortcutDimension7Code` | Shortcut Dimension 7 Code | Shortcut Dimension 7 Code | — |
-| 56 | `shortcutDimension8Code` | Shortcut Dimension 8 Code | Shortcut Dimension 8 Code | — |
-| 57 | `originalAmtLcy` | Original Amt. (LCY) | Original Amt. (LCY) | — |
-| 58 | `remainingAmtLcy` | Remaining Amt. (LCY) | Remaining Amt. (LCY) | — |
-| 59 | `amountLcy` | Amount (LCY) | Amount (LCY) | — |
+| 51 | `shortcutDimension3Code` | Shortcut Dimension 3 Code | Shortcut Dimension 3 Code | 🧮 computed |
+| 52 | `shortcutDimension4Code` | Shortcut Dimension 4 Code | Shortcut Dimension 4 Code | 🧮 computed |
+| 53 | `shortcutDimension5Code` | Shortcut Dimension 5 Code | Shortcut Dimension 5 Code | 🧮 computed |
+| 54 | `shortcutDimension6Code` | Shortcut Dimension 6 Code | Shortcut Dimension 6 Code | 🧮 computed |
+| 55 | `shortcutDimension7Code` | Shortcut Dimension 7 Code | Shortcut Dimension 7 Code | 🧮 computed |
+| 56 | `shortcutDimension8Code` | Shortcut Dimension 8 Code | Shortcut Dimension 8 Code | 🧮 computed |
+| 57 | `originalAmtLcy` | Original Amt. (LCY) | Original Amt. (LCY) | 🧮 computed |
+| 58 | `remainingAmtLcy` | Remaining Amt. (LCY) | Remaining Amt. (LCY) | 🧮 computed |
+| 59 | `amountLcy` | Amount (LCY) | Amount (LCY) | 🧮 computed |
 | 60 | `closedByAmountLcy` | Closed by Amount (LCY) | Closed by Amount (LCY) | — |
-| 61 | `debitAmountLcy` | Debit Amount (LCY) | Debit Amount (LCY) | — |
-| 62 | `creditAmountLcy` | Credit Amount (LCY) | Credit Amount (LCY) | — |
+| 61 | `debitAmountLcy` | Debit Amount (LCY) | Debit Amount (LCY) | 🧮 computed |
+| 62 | `creditAmountLcy` | Credit Amount (LCY) | Credit Amount (LCY) | 🧮 computed |
 
 > **Added in API v3.1:** fields 57–62 above (previously omitted parenthesized-name standard fields).
 
@@ -1568,11 +1569,11 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 4 | `dimensionCode` | Dimension Code | Dimension Code | ✅ |
 | 5 | `dimensionValueCode` | Dimension Value Code | Dimension Value Code | ✅ |
 | 6 | `valuePosting` | Value Posting | Value Posting | ✅ |
-| 7 | `tableCaption` | Table Caption | Table Caption | ✅ |
+| 7 | `tableCaption` | Table Caption | Table Caption | 🧮 computed |
 | 8 | `multiSelectionAction` | Multi Selection Action | Multi Selection Action | ✅ |
 | 9 | `parentType` | Parent Type | Parent Type | ✅ |
 | 10 | `allowedValuesFilter` | Allowed Values Filter | Allowed Values Filter | ✅ |
-| 11 | `dimensionValueName` | Dimension Value Name | Dimension Value Name | ✅ |
+| 11 | `dimensionValueName` | Dimension Value Name | Dimension Value Name | 🧮 computed |
 | 12 | `parentId` | ParentId | ParentId | ✅ |
 | 13 | `dimensionId` | DimensionId | DimensionId | ✅ |
 | 14 | `dimensionValueId` | DimensionValueId | DimensionValueId | ✅ |
@@ -1603,8 +1604,8 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 3 | `dimensionCode` | Dimension Code | Dimension Code | — |
 | 4 | `dimensionValueCode` | Dimension Value Code | Dimension Value Code | — |
 | 5 | `dimensionValueId` | Dimension Value ID | Dimension Value ID | — |
-| 6 | `dimensionName` | Dimension Name | Dimension Name | — |
-| 7 | `dimensionValueName` | Dimension Value Name | Dimension Value Name | — |
+| 6 | `dimensionName` | Dimension Name | Dimension Name | 🧮 computed |
+| 7 | `dimensionValueName` | Dimension Value Name | Dimension Value Name | 🧮 computed |
 | 8 | `globalDimensionNo` | Global Dimension No. | Shortcut Dimension No. | — |
 
 
@@ -1697,18 +1698,18 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 24 | `ourContactCode` | Our Contact Code | Our Contact Code | ✅ |
 | 25 | `countryRegionCode` | Country/Region Code | Country/Region Code | ✅ |
 | 26 | `amount` | Amount | Amount | ✅ |
-| 27 | `comment` | Comment | Comment | ✅ |
+| 27 | `comment` | Comment | Comment | 🧮 computed |
 | 28 | `blocked` | Blocked | Blocked | ✅ |
 | 29 | `lastStatementNo` | Last Statement No. | Last Statement No. | ✅ |
 | 30 | `lastPaymentStatementNo` | Last Payment Statement No. | Last Payment Statement No. | ✅ |
 | 31 | `pmtRecNoSeries` | Pmt. Rec. No. Series | Payment Reconciliation No. Series | ✅ |
 | 32 | `lastDateModified` | Last Date Modified | Last Date Modified | ✅ |
-| 33 | `dateFilter` | Date Filter | Date Filter | ✅ |
-| 34 | `globalDimension1Filter` | Global Dimension 1 Filter | Global Dimension 1 Filter | ✅ |
-| 35 | `globalDimension2Filter` | Global Dimension 2 Filter | Global Dimension 2 Filter | ✅ |
-| 36 | `balance` | Balance | Balance | ✅ |
-| 37 | `netChange` | Net Change | Net Change | ✅ |
-| 38 | `totalOnChecks` | Total on Checks | Total on Checks | ✅ |
+| 33 | `dateFilter` | Date Filter | Date Filter | 🔍 filter |
+| 34 | `globalDimension1Filter` | Global Dimension 1 Filter | Global Dimension 1 Filter | 🔍 filter |
+| 35 | `globalDimension2Filter` | Global Dimension 2 Filter | Global Dimension 2 Filter | 🔍 filter |
+| 36 | `balance` | Balance | Balance | 🧮 computed |
+| 37 | `netChange` | Net Change | Net Change | 🧮 computed |
+| 38 | `totalOnChecks` | Total on Checks | Total on Checks | 🧮 computed |
 | 39 | `useAsDefaultForCurrency` | Use as Default for Currency | Use as Default for Currency | ✅ |
 | 40 | `faxNo` | Fax No. | Fax No. | ✅ |
 | 41 | `telexAnswerBack` | Telex Answer Back | Telex Answer Back | ✅ |
@@ -1716,15 +1717,15 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 43 | `county` | County | County | ✅ |
 | 44 | `lastCheckNo` | Last Check No. | Last Check No. | ✅ |
 | 45 | `balanceLastStatement` | Balance Last Statement | Balance Last Statement | ✅ |
-| 46 | `balanceAtDate` | Balance at Date | Balance at Date | ✅ |
-| 47 | `debitAmount` | Debit Amount | Debit Amount | ✅ |
-| 48 | `creditAmount` | Credit Amount | Credit Amount | ✅ |
+| 46 | `balanceAtDate` | Balance at Date | Balance at Date | 🧮 computed |
+| 47 | `debitAmount` | Debit Amount | Debit Amount | 🧮 computed |
+| 48 | `creditAmount` | Credit Amount | Credit Amount | 🧮 computed |
 | 49 | `bankBranchNo` | Bank Branch No. | Bank Branch No. | ✅ |
 | 50 | `eMail` | E-Mail | Email | ✅ |
 | 51 | `homePage` | Home Page | Home Page | ✅ |
 | 52 | `noSeries` | No. Series | No. Series | ✅ |
 | 53 | `checkReportId` | Check Report ID | Check Report ID | ✅ |
-| 54 | `checkReportName` | Check Report Name | Check Report Name | ✅ |
+| 54 | `checkReportName` | Check Report Name | Check Report Name | 🧮 computed |
 | 55 | `iBAN` | IBAN | IBAN | ✅ |
 | 56 | `sWIFTCode` | SWIFT Code | SWIFT Code | ✅ |
 | 57 | `bankStatementImportFormat` | Bank Statement Import Format | Bank Statement Import Format | ✅ |
@@ -1747,11 +1748,11 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 74 | `positivePayExportCode` | Positive Pay Export Code | Positive Pay Export Code | ✅ |
 | 75 | `checkTransmitted` | Check Transmitted | Check Transmitted | ✅ |
 | 76 | `mobilePhoneNo` | Mobile Phone No. | Mobile Phone No. | ✅ |
-| 77 | `balanceLcy` | Balance (LCY) | Balance (LCY) | ✅ |
-| 78 | `netChangeLcy` | Net Change (LCY) | Net Change (LCY) | ✅ |
-| 79 | `balanceAtDateLcy` | Balance at Date (LCY) | Balance at Date (LCY) | ✅ |
-| 80 | `debitAmountLcy` | Debit Amount (LCY) | Debit Amount (LCY) | ✅ |
-| 81 | `creditAmountLcy` | Credit Amount (LCY) | Credit Amount (LCY) | ✅ |
+| 77 | `balanceLcy` | Balance (LCY) | Balance (LCY) | 🧮 computed |
+| 78 | `netChangeLcy` | Net Change (LCY) | Net Change (LCY) | 🧮 computed |
+| 79 | `balanceAtDateLcy` | Balance at Date (LCY) | Balance at Date (LCY) | 🧮 computed |
+| 80 | `debitAmountLcy` | Debit Amount (LCY) | Debit Amount (LCY) | 🧮 computed |
+| 81 | `creditAmountLcy` | Credit Amount (LCY) | Credit Amount (LCY) | 🧮 computed |
 
 > **Added in API v3.1:** fields 77–81 above (previously omitted parenthesized-name standard fields).
 
@@ -1837,15 +1838,15 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 34 | `reversed` | Reversed | Reversed | — |
 | 35 | `reversedByEntryNo` | Reversed by Entry No. | Reversed by Entry No. | — |
 | 36 | `reversedEntryNo` | Reversed Entry No. | Reversed Entry No. | — |
-| 37 | `statementDate` | Statement Date | Statement Date | — |
-| 38 | `checkLedgerEntries` | Check Ledger Entries | Check Ledger Entries | — |
+| 37 | `statementDate` | Statement Date | Statement Date | 🧮 computed |
+| 38 | `checkLedgerEntries` | Check Ledger Entries | Check Ledger Entries | 🧮 computed |
 | 39 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | — |
-| 40 | `shortcutDimension3Code` | Shortcut Dimension 3 Code | Shortcut Dimension 3 Code | — |
-| 41 | `shortcutDimension4Code` | Shortcut Dimension 4 Code | Shortcut Dimension 4 Code | — |
-| 42 | `shortcutDimension5Code` | Shortcut Dimension 5 Code | Shortcut Dimension 5 Code | — |
-| 43 | `shortcutDimension6Code` | Shortcut Dimension 6 Code | Shortcut Dimension 6 Code | — |
-| 44 | `shortcutDimension7Code` | Shortcut Dimension 7 Code | Shortcut Dimension 7 Code | — |
-| 45 | `shortcutDimension8Code` | Shortcut Dimension 8 Code | Shortcut Dimension 8 Code | — |
+| 40 | `shortcutDimension3Code` | Shortcut Dimension 3 Code | Shortcut Dimension 3 Code | 🧮 computed |
+| 41 | `shortcutDimension4Code` | Shortcut Dimension 4 Code | Shortcut Dimension 4 Code | 🧮 computed |
+| 42 | `shortcutDimension5Code` | Shortcut Dimension 5 Code | Shortcut Dimension 5 Code | 🧮 computed |
+| 43 | `shortcutDimension6Code` | Shortcut Dimension 6 Code | Shortcut Dimension 6 Code | 🧮 computed |
+| 44 | `shortcutDimension7Code` | Shortcut Dimension 7 Code | Shortcut Dimension 7 Code | 🧮 computed |
+| 45 | `shortcutDimension8Code` | Shortcut Dimension 8 Code | Shortcut Dimension 8 Code | 🧮 computed |
 | 46 | `amountLcy` | Amount (LCY) | Amount (LCY) | — |
 | 47 | `debitAmountLcy` | Debit Amount (LCY) | Debit Amount (LCY) | — |
 | 48 | `creditAmountLcy` | Credit Amount (LCY) | Credit Amount (LCY) | — |
@@ -1951,21 +1952,21 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 15 | `description` | Description | Description | ✅ |
 | 16 | `amountDecimalPlaces` | Amount Decimal Places | Amount Decimal Places | ✅ |
 | 17 | `unitAmountDecimalPlaces` | Unit-Amount Decimal Places | Unit-Amount Decimal Places | ✅ |
-| 18 | `customerFilter` | Customer Filter | Customer Filter | ✅ |
-| 19 | `vendorFilter` | Vendor Filter | Vendor Filter | ✅ |
-| 20 | `globalDimension1Filter` | Global Dimension 1 Filter | Global Dimension 1 Filter | ✅ |
-| 21 | `globalDimension2Filter` | Global Dimension 2 Filter | Global Dimension 2 Filter | ✅ |
-| 22 | `dateFilter` | Date Filter | Date Filter | ✅ |
-| 23 | `custLedgEntriesInFilter` | Cust. Ledg. Entries in Filter | Cust. Ledg. Entries in Filter | ✅ |
-| 24 | `customerBalance` | Customer Balance | Customer Balance | ✅ |
-| 25 | `customerOutstandingOrders` | Customer Outstanding Orders | Customer Outstanding Orders | ✅ |
-| 26 | `customerShippedNotInvoiced` | Customer Shipped Not Invoiced | Customer Shipped Not Invoiced | ✅ |
-| 27 | `customerBalanceDue` | Customer Balance Due | Customer Balance Due | ✅ |
-| 28 | `vendorLedgEntriesInFilter` | Vendor Ledg. Entries in Filter | Vendor Ledg. Entries in Filter | ✅ |
-| 29 | `vendorBalance` | Vendor Balance | Vendor Balance | ✅ |
-| 30 | `vendorOutstandingOrders` | Vendor Outstanding Orders | Vendor Outstanding Orders | ✅ |
-| 31 | `vendorAmtRcdNotInvoiced` | Vendor Amt. Rcd. Not Invoiced | Vendor Amt. Rcd. Not Invoiced | ✅ |
-| 32 | `vendorBalanceDue` | Vendor Balance Due | Vendor Balance Due | ✅ |
+| 18 | `customerFilter` | Customer Filter | Customer Filter | 🔍 filter |
+| 19 | `vendorFilter` | Vendor Filter | Vendor Filter | 🔍 filter |
+| 20 | `globalDimension1Filter` | Global Dimension 1 Filter | Global Dimension 1 Filter | 🔍 filter |
+| 21 | `globalDimension2Filter` | Global Dimension 2 Filter | Global Dimension 2 Filter | 🔍 filter |
+| 22 | `dateFilter` | Date Filter | Date Filter | 🔍 filter |
+| 23 | `custLedgEntriesInFilter` | Cust. Ledg. Entries in Filter | Cust. Ledg. Entries in Filter | 🧮 computed |
+| 24 | `customerBalance` | Customer Balance | Customer Balance | 🧮 computed |
+| 25 | `customerOutstandingOrders` | Customer Outstanding Orders | Customer Outstanding Orders | 🧮 computed |
+| 26 | `customerShippedNotInvoiced` | Customer Shipped Not Invoiced | Customer Shipped Not Invoiced | 🧮 computed |
+| 27 | `customerBalanceDue` | Customer Balance Due | Customer Balance Due | 🧮 computed |
+| 28 | `vendorLedgEntriesInFilter` | Vendor Ledg. Entries in Filter | Vendor Ledg. Entries in Filter | 🧮 computed |
+| 29 | `vendorBalance` | Vendor Balance | Vendor Balance | 🧮 computed |
+| 30 | `vendorOutstandingOrders` | Vendor Outstanding Orders | Vendor Outstanding Orders | 🧮 computed |
+| 31 | `vendorAmtRcdNotInvoiced` | Vendor Amt. Rcd. Not Invoiced | Vendor Amt. Rcd. Not Invoiced | 🧮 computed |
+| 32 | `vendorBalanceDue` | Vendor Balance Due | Vendor Balance Due | 🧮 computed |
 | 33 | `realizedGLGainsAccount` | Realized G/L Gains Account | Realized G/L Gains Account | ✅ |
 | 34 | `realizedGLLossesAccount` | Realized G/L Losses Account | Realized G/L Losses Account | ✅ |
 | 35 | `applnRoundingPrecision` | Appln. Rounding Precision | Appln. Rounding Precision | ✅ |
@@ -1982,9 +1983,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 46 | `symbol` | Symbol | Symbol | ✅ |
 | 47 | `lastModifiedDateTime` | Last Modified Date Time | Last Modified Date Time | ✅ |
 | 48 | `currencySymbolPosition` | Currency Symbol Position | Currency Symbol Position | ✅ |
-| 49 | `coupledToDataverse` | Coupled to Dataverse | Coupled to Dataverse | ✅ |
-| 50 | `customerBalanceLcy` | Customer Balance (LCY) | Customer Balance (LCY) | ✅ |
-| 51 | `vendorBalanceLcy` | Vendor Balance (LCY) | Vendor Balance (LCY) | ✅ |
+| 49 | `coupledToDataverse` | Coupled to Dataverse | Coupled to Dataverse | 🧮 computed |
+| 50 | `customerBalanceLcy` | Customer Balance (LCY) | Customer Balance (LCY) | 🧮 computed |
+| 51 | `vendorBalanceLcy` | Vendor Balance (LCY) | Vendor Balance (LCY) | 🧮 computed |
 
 > **Added in API v3.1:** fields 50–51 above (previously omitted parenthesized-name standard fields).
 
@@ -2049,7 +2050,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 4 | `internationalStandardCode` | International Standard Code | International Standard Code | ✅ |
 | 5 | `symbol` | Symbol | Symbol | ✅ |
 | 6 | `lastModifiedDateTime` | Last Modified Date Time | Last Modified Date Time | ✅ |
-| 7 | `coupledToDataverse` | Coupled to Dataverse | Coupled to Dynamics 365 Sales | ✅ |
+| 7 | `coupledToDataverse` | Coupled to Dataverse | Coupled to Dynamics 365 Sales | 🧮 computed |
 
 
 [↑ Back to top](#table-of-contents)
@@ -2077,7 +2078,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 3 | `code` | Code | Code | ✅ |
 | 4 | `qtyPerUnitOfMeasure` | Qty. per Unit of Measure | Qty. per Unit of Measure | ✅ |
 | 5 | `qtyRoundingPrecision` | Qty. Rounding Precision | Qty. Rounding Precision | ✅ |
-| 6 | `coupledToDataverse` | Coupled to Dataverse | Coupled to Dynamics 365 Sales | ✅ |
+| 6 | `coupledToDataverse` | Coupled to Dataverse | Coupled to Dynamics 365 Sales | 🧮 computed |
 | 7 | `length` | Length | Length | ✅ |
 | 8 | `width` | Width | Width | ✅ |
 | 9 | `height` | Height | Height | ✅ |
@@ -2275,7 +2276,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 34 | `countryRegionCode` | Country/Region Code | Country/Region Code | ✅ |
 | 35 | `collectionMethod` | Collection Method | Collection Method | ✅ |
 | 36 | `amount` | Amount | Amount | ✅ |
-| 37 | `comment` | Comment | Comment | ✅ |
+| 37 | `comment` | Comment | Comment | 🧮 computed |
 | 38 | `blocked` | Blocked | Blocked | ✅ |
 | 39 | `lastStatementNo` | Last Statement No. | Last Statement No. | ✅ |
 | 40 | `printStatements` | Print Statements | Print Statements | ✅ |
@@ -2283,21 +2284,21 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 42 | `priority` | Priority | Priority | ✅ |
 | 43 | `paymentMethodCode` | Payment Method Code | Payment Method Code | ✅ |
 | 44 | `formatRegion` | Format Region | Format Region | ✅ |
-| 45 | `firstTransactionDate` | First Transaction Date | Customer Since | ✅ |
+| 45 | `firstTransactionDate` | First Transaction Date | Customer Since | 🧮 computed |
 | 46 | `lastModifiedDateTime` | Last Modified Date Time | Last Modified Date Time | ✅ |
 | 47 | `lastDateModified` | Last Date Modified | Last Date Modified | ✅ |
-| 48 | `dateFilter` | Date Filter | Date Filter | ✅ |
-| 49 | `globalDimension1Filter` | Global Dimension 1 Filter | Global Dimension 1 Filter | ✅ |
-| 50 | `globalDimension2Filter` | Global Dimension 2 Filter | Global Dimension 2 Filter | ✅ |
-| 51 | `balance` | Balance | Balance | ✅ |
-| 52 | `netChange` | Net Change | Net Change | ✅ |
-| 53 | `balanceDue` | Balance Due | Balance Due | ✅ |
-| 54 | `payments` | Payments | Payments | ✅ |
-| 55 | `invoiceAmounts` | Invoice Amounts | Invoice Amounts | ✅ |
-| 56 | `crMemoAmounts` | Cr. Memo Amounts | Cr. Memo Amounts | ✅ |
-| 57 | `financeChargeMemoAmounts` | Finance Charge Memo Amounts | Finance Charge Memo Amounts | ✅ |
-| 58 | `outstandingOrders` | Outstanding Orders | Outstanding Orders | ✅ |
-| 59 | `shippedNotInvoiced` | Shipped Not Invoiced | Shipped Not Invoiced | ✅ |
+| 48 | `dateFilter` | Date Filter | Date Filter | 🔍 filter |
+| 49 | `globalDimension1Filter` | Global Dimension 1 Filter | Global Dimension 1 Filter | 🔍 filter |
+| 50 | `globalDimension2Filter` | Global Dimension 2 Filter | Global Dimension 2 Filter | 🔍 filter |
+| 51 | `balance` | Balance | Balance | 🧮 computed |
+| 52 | `netChange` | Net Change | Net Change | 🧮 computed |
+| 53 | `balanceDue` | Balance Due | Balance Due | 🧮 computed |
+| 54 | `payments` | Payments | Payments | 🧮 computed |
+| 55 | `invoiceAmounts` | Invoice Amounts | Invoice Amounts | 🧮 computed |
+| 56 | `crMemoAmounts` | Cr. Memo Amounts | Cr. Memo Amounts | 🧮 computed |
+| 57 | `financeChargeMemoAmounts` | Finance Charge Memo Amounts | Finance Charge Memo Amounts | 🧮 computed |
+| 58 | `outstandingOrders` | Outstanding Orders | Outstanding Orders | 🧮 computed |
+| 59 | `shippedNotInvoiced` | Shipped Not Invoiced | Shipped Not Invoiced | 🧮 computed |
 | 60 | `applicationMethod` | Application Method | Application Method | ✅ |
 | 61 | `pricesIncludingVat` | Prices Including VAT | Prices Including VAT | ✅ |
 | 62 | `locationCode` | Location Code | Location Code | ✅ |
@@ -2311,26 +2312,26 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 70 | `county` | County | County | ✅ |
 | 71 | `eORINumber` | EORI Number | EORI Number | ✅ |
 | 72 | `useGlnInElectronicDocument` | Use GLN in Electronic Document | Use GLN in Electronic Documents | ✅ |
-| 73 | `debitAmount` | Debit Amount | Debit Amount | ✅ |
-| 74 | `creditAmount` | Credit Amount | Credit Amount | ✅ |
+| 73 | `debitAmount` | Debit Amount | Debit Amount | 🧮 computed |
+| 74 | `creditAmount` | Credit Amount | Credit Amount | 🧮 computed |
 | 75 | `eMail` | E-Mail | Email | ✅ |
 | 76 | `homePage` | Home Page | Home Page | ✅ |
 | 77 | `reminderTermsCode` | Reminder Terms Code | Reminder Terms Code | ✅ |
-| 78 | `reminderAmounts` | Reminder Amounts | Reminder Amounts | ✅ |
+| 78 | `reminderAmounts` | Reminder Amounts | Reminder Amounts | 🧮 computed |
 | 79 | `noSeries` | No. Series | No. Series | ✅ |
 | 80 | `taxAreaCode` | Tax Area Code | Tax Area Code | ✅ |
 | 81 | `taxLiable` | Tax Liable | Tax Liable | ✅ |
 | 82 | `vATBusPostingGroup` | VAT Bus. Posting Group | VAT Bus. Posting Group | ✅ |
-| 83 | `currencyFilter` | Currency Filter | Currency Filter | ✅ |
+| 83 | `currencyFilter` | Currency Filter | Currency Filter | 🔍 filter |
 | 84 | `reserve` | Reserve | Reserve | ✅ |
 | 85 | `blockPaymentTolerance` | Block Payment Tolerance | Block Payment Tolerance | ✅ |
 | 86 | `iCPartnerCode` | IC Partner Code | IC Partner Code | ✅ |
-| 87 | `refunds` | Refunds | Refunds | ✅ |
-| 88 | `otherAmounts` | Other Amounts | Other Amounts | ✅ |
+| 87 | `refunds` | Refunds | Refunds | 🧮 computed |
+| 88 | `otherAmounts` | Other Amounts | Other Amounts | 🧮 computed |
 | 89 | `prepayment` | Prepayment % | Prepayment % | ✅ |
-| 90 | `outstandingInvoices` | Outstanding Invoices | Outstanding Invoices | ✅ |
-| 91 | `billToNoOfArchivedDoc` | Bill-to No. Of Archived Doc. | Bill-to No. Of Sales Archived Doc. | ✅ |
-| 92 | `sellToNoOfArchivedDoc` | Sell-to No. Of Archived Doc. | Sell-to No. Of Sales Archived Doc. | ✅ |
+| 90 | `outstandingInvoices` | Outstanding Invoices | Outstanding Invoices | 🧮 computed |
+| 91 | `billToNoOfArchivedDoc` | Bill-to No. Of Archived Doc. | Bill-to No. Of Sales Archived Doc. | 🧮 computed |
+| 92 | `sellToNoOfArchivedDoc` | Sell-to No. Of Archived Doc. | Sell-to No. Of Sales Archived Doc. | 🧮 computed |
 | 93 | `partnerType` | Partner Type | Partner Type | ✅ |
 | 94 | `intrastatPartnerType` | Intrastat Partner Type | Intrastat Partner Type | ✅ |
 | 95 | `excludeFromPmtPractices` | Exclude from Pmt. Practices | Exclude from Payment Practices | ✅ |
@@ -2339,7 +2340,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 98 | `disableSearchByName` | Disable Search by Name | Disable Search by Name | ✅ |
 | 99 | `allowMultiplePostingGroups` | Allow Multiple Posting Groups | Allow Multiple Posting Groups | ✅ |
 | 100 | `preferredBankAccountCode` | Preferred Bank Account Code | Preferred Bank Account Code | ✅ |
-| 101 | `coupledToDataverse` | Coupled to Dataverse | Coupled to Dataverse | ✅ |
+| 101 | `coupledToDataverse` | Coupled to Dataverse | Coupled to Dataverse | 🧮 computed |
 | 102 | `cashFlowPaymentTermsCode` | Cash Flow Payment Terms Code | Cash Flow Payment Terms Code | ✅ |
 | 103 | `primaryContactNo` | Primary Contact No. | Primary Contact No. | ✅ |
 | 104 | `contactType` | Contact Type | Contact Type | ✅ |
@@ -2350,27 +2351,27 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 109 | `shippingAgentServiceCode` | Shipping Agent Service Code | Shipping Agent Service Code | ✅ |
 | 110 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | ✅ |
 | 111 | `allowLineDisc` | Allow Line Disc. | Allow Line Disc. | ✅ |
-| 112 | `noOfQuotes` | No. of Quotes | No. of Quotes | ✅ |
-| 113 | `noOfBlanketOrders` | No. of Blanket Orders | No. of Blanket Orders | ✅ |
-| 114 | `noOfOrders` | No. of Orders | No. of Orders | ✅ |
-| 115 | `noOfInvoices` | No. of Invoices | No. of Invoices | ✅ |
-| 116 | `noOfReturnOrders` | No. of Return Orders | No. of Return Orders | ✅ |
-| 117 | `noOfCreditMemos` | No. of Credit Memos | No. of Credit Memos | ✅ |
-| 118 | `noOfPstdShipments` | No. of Pstd. Shipments | No. of Pstd. Shipments | ✅ |
-| 119 | `noOfPstdInvoices` | No. of Pstd. Invoices | No. of Pstd. Invoices | ✅ |
-| 120 | `noOfPstdReturnReceipts` | No. of Pstd. Return Receipts | No. of Pstd. Return Receipts | ✅ |
-| 121 | `noOfPstdCreditMemos` | No. of Pstd. Credit Memos | No. of Pstd. Credit Memos | ✅ |
-| 122 | `noOfShipToAddresses` | No. of Ship-to Addresses | No. of Ship-to Addresses | ✅ |
-| 123 | `billToNoOfQuotes` | Bill-To No. of Quotes | Bill-To No. of Quotes | ✅ |
-| 124 | `billToNoOfBlanketOrders` | Bill-To No. of Blanket Orders | Bill-To No. of Blanket Orders | ✅ |
-| 125 | `billToNoOfOrders` | Bill-To No. of Orders | Bill-To No. of Orders | ✅ |
-| 126 | `billToNoOfInvoices` | Bill-To No. of Invoices | Bill-To No. of Invoices | ✅ |
-| 127 | `billToNoOfReturnOrders` | Bill-To No. of Return Orders | Bill-To No. of Return Orders | ✅ |
-| 128 | `billToNoOfCreditMemos` | Bill-To No. of Credit Memos | Bill-To No. of Credit Memos | ✅ |
-| 129 | `billToNoOfPstdShipments` | Bill-To No. of Pstd. Shipments | Bill-To No. of Pstd. Shipments | ✅ |
-| 130 | `billToNoOfPstdInvoices` | Bill-To No. of Pstd. Invoices | Bill-To No. of Pstd. Invoices | ✅ |
-| 131 | `billToNoOfPstdReturnR` | Bill-To No. of Pstd. Return R. | Bill-To No. of Pstd. Return R. | ✅ |
-| 132 | `billToNoOfPstdCrMemos` | Bill-To No. of Pstd. Cr. Memos | Bill-To No. of Pstd. Cr. Memos | ✅ |
+| 112 | `noOfQuotes` | No. of Quotes | No. of Quotes | 🧮 computed |
+| 113 | `noOfBlanketOrders` | No. of Blanket Orders | No. of Blanket Orders | 🧮 computed |
+| 114 | `noOfOrders` | No. of Orders | No. of Orders | 🧮 computed |
+| 115 | `noOfInvoices` | No. of Invoices | No. of Invoices | 🧮 computed |
+| 116 | `noOfReturnOrders` | No. of Return Orders | No. of Return Orders | 🧮 computed |
+| 117 | `noOfCreditMemos` | No. of Credit Memos | No. of Credit Memos | 🧮 computed |
+| 118 | `noOfPstdShipments` | No. of Pstd. Shipments | No. of Pstd. Shipments | 🧮 computed |
+| 119 | `noOfPstdInvoices` | No. of Pstd. Invoices | No. of Pstd. Invoices | 🧮 computed |
+| 120 | `noOfPstdReturnReceipts` | No. of Pstd. Return Receipts | No. of Pstd. Return Receipts | 🧮 computed |
+| 121 | `noOfPstdCreditMemos` | No. of Pstd. Credit Memos | No. of Pstd. Credit Memos | 🧮 computed |
+| 122 | `noOfShipToAddresses` | No. of Ship-to Addresses | No. of Ship-to Addresses | 🧮 computed |
+| 123 | `billToNoOfQuotes` | Bill-To No. of Quotes | Bill-To No. of Quotes | 🧮 computed |
+| 124 | `billToNoOfBlanketOrders` | Bill-To No. of Blanket Orders | Bill-To No. of Blanket Orders | 🧮 computed |
+| 125 | `billToNoOfOrders` | Bill-To No. of Orders | Bill-To No. of Orders | 🧮 computed |
+| 126 | `billToNoOfInvoices` | Bill-To No. of Invoices | Bill-To No. of Invoices | 🧮 computed |
+| 127 | `billToNoOfReturnOrders` | Bill-To No. of Return Orders | Bill-To No. of Return Orders | 🧮 computed |
+| 128 | `billToNoOfCreditMemos` | Bill-To No. of Credit Memos | Bill-To No. of Credit Memos | 🧮 computed |
+| 129 | `billToNoOfPstdShipments` | Bill-To No. of Pstd. Shipments | Bill-To No. of Pstd. Shipments | 🧮 computed |
+| 130 | `billToNoOfPstdInvoices` | Bill-To No. of Pstd. Invoices | Bill-To No. of Pstd. Invoices | 🧮 computed |
+| 131 | `billToNoOfPstdReturnR` | Bill-To No. of Pstd. Return R. | Bill-To No. of Pstd. Return R. | 🧮 computed |
+| 132 | `billToNoOfPstdCrMemos` | Bill-To No. of Pstd. Cr. Memos | Bill-To No. of Pstd. Cr. Memos | 🧮 computed |
 | 133 | `baseCalendarCode` | Base Calendar Code | Base Calendar Code | ✅ |
 | 134 | `copySellToAddrToQteFrom` | Copy Sell-to Addr. to Qte From | Copy Sell-to Addr. to Qte From | ✅ |
 | 135 | `validateEuVatRegNo` | Validate EU Vat Reg. No. | Validate EU VAT Reg. No. | ✅ |
@@ -2382,27 +2383,27 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 141 | `contactId` | Contact ID | Contact ID | ✅ |
 | 142 | `contactGraphId` | Contact Graph Id | Contact Graph Id | ✅ |
 | 143 | `creditLimitLcy` | Credit Limit (LCY) | Credit Limit (LCY) | ✅ |
-| 144 | `balanceLcy` | Balance (LCY) | Balance (LCY) | ✅ |
-| 145 | `netChangeLcy` | Net Change (LCY) | Net Change (LCY) | ✅ |
-| 146 | `salesLcy` | Sales (LCY) | Sales (LCY) | ✅ |
-| 147 | `profitLcy` | Profit (LCY) | Profit (LCY) | ✅ |
-| 148 | `invDiscountsLcy` | Inv. Discounts (LCY) | Inv. Discounts (LCY) | ✅ |
-| 149 | `pmtDiscountsLcy` | Pmt. Discounts (LCY) | Pmt. Discounts (LCY) | ✅ |
-| 150 | `balanceDueLcy` | Balance Due (LCY) | Overdue Balance (LCY) | ✅ |
-| 151 | `paymentsLcy` | Payments (LCY) | Payments (LCY) | ✅ |
-| 152 | `invAmountsLcy` | Inv. Amounts (LCY) | Inv. Amounts (LCY) | ✅ |
-| 153 | `crMemoAmountsLcy` | Cr. Memo Amounts (LCY) | Cr. Memo Amounts (LCY) | ✅ |
-| 154 | `finChargeMemoAmountsLcy` | Fin. Charge Memo Amounts (LCY) | Fin. Charge Memo Amounts (LCY) | ✅ |
-| 155 | `debitAmountLcy` | Debit Amount (LCY) | Debit Amount (LCY) | ✅ |
-| 156 | `creditAmountLcy` | Credit Amount (LCY) | Credit Amount (LCY) | ✅ |
-| 157 | `reminderAmountsLcy` | Reminder Amounts (LCY) | Reminder Amounts (LCY) | ✅ |
-| 158 | `outstandingOrdersLcy` | Outstanding Orders (LCY) | Outstanding Orders (LCY) | ✅ |
-| 159 | `shippedNotInvoicedLcy` | Shipped Not Invoiced (LCY) | Shipped Not Invoiced (LCY) | ✅ |
-| 160 | `pmtDiscToleranceLcy` | Pmt. Disc. Tolerance (LCY) | Pmt. Disc. Tolerance (LCY) | ✅ |
-| 161 | `pmtToleranceLcy` | Pmt. Tolerance (LCY) | Pmt. Tolerance (LCY) | ✅ |
-| 162 | `refundsLcy` | Refunds (LCY) | Refunds (LCY) | ✅ |
-| 163 | `otherAmountsLcy` | Other Amounts (LCY) | Other Amounts (LCY) | ✅ |
-| 164 | `outstandingInvoicesLcy` | Outstanding Invoices (LCY) | Outstanding Invoices (LCY) | ✅ |
+| 144 | `balanceLcy` | Balance (LCY) | Balance (LCY) | 🧮 computed |
+| 145 | `netChangeLcy` | Net Change (LCY) | Net Change (LCY) | 🧮 computed |
+| 146 | `salesLcy` | Sales (LCY) | Sales (LCY) | 🧮 computed |
+| 147 | `profitLcy` | Profit (LCY) | Profit (LCY) | 🧮 computed |
+| 148 | `invDiscountsLcy` | Inv. Discounts (LCY) | Inv. Discounts (LCY) | 🧮 computed |
+| 149 | `pmtDiscountsLcy` | Pmt. Discounts (LCY) | Pmt. Discounts (LCY) | 🧮 computed |
+| 150 | `balanceDueLcy` | Balance Due (LCY) | Overdue Balance (LCY) | 🧮 computed |
+| 151 | `paymentsLcy` | Payments (LCY) | Payments (LCY) | 🧮 computed |
+| 152 | `invAmountsLcy` | Inv. Amounts (LCY) | Inv. Amounts (LCY) | 🧮 computed |
+| 153 | `crMemoAmountsLcy` | Cr. Memo Amounts (LCY) | Cr. Memo Amounts (LCY) | 🧮 computed |
+| 154 | `finChargeMemoAmountsLcy` | Fin. Charge Memo Amounts (LCY) | Fin. Charge Memo Amounts (LCY) | 🧮 computed |
+| 155 | `debitAmountLcy` | Debit Amount (LCY) | Debit Amount (LCY) | 🧮 computed |
+| 156 | `creditAmountLcy` | Credit Amount (LCY) | Credit Amount (LCY) | 🧮 computed |
+| 157 | `reminderAmountsLcy` | Reminder Amounts (LCY) | Reminder Amounts (LCY) | 🧮 computed |
+| 158 | `outstandingOrdersLcy` | Outstanding Orders (LCY) | Outstanding Orders (LCY) | 🧮 computed |
+| 159 | `shippedNotInvoicedLcy` | Shipped Not Invoiced (LCY) | Shipped Not Invoiced (LCY) | 🧮 computed |
+| 160 | `pmtDiscToleranceLcy` | Pmt. Disc. Tolerance (LCY) | Pmt. Disc. Tolerance (LCY) | 🧮 computed |
+| 161 | `pmtToleranceLcy` | Pmt. Tolerance (LCY) | Pmt. Tolerance (LCY) | 🧮 computed |
+| 162 | `refundsLcy` | Refunds (LCY) | Refunds (LCY) | 🧮 computed |
+| 163 | `otherAmountsLcy` | Other Amounts (LCY) | Other Amounts (LCY) | 🧮 computed |
+| 164 | `outstandingInvoicesLcy` | Outstanding Invoices (LCY) | Outstanding Invoices (LCY) | 🧮 computed |
 
 > **Added in API v3.1:** fields 143–164 above (previously omitted parenthesized-name standard fields).
 
@@ -2455,27 +2456,27 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 26 | `shippingAgentCode` | Shipping Agent Code | Shipping Agent Code | ✅ |
 | 27 | `invoiceDiscCode` | Invoice Disc. Code | Invoice Disc. Code | ✅ |
 | 28 | `countryRegionCode` | Country/Region Code | Country/Region Code | ✅ |
-| 29 | `comment` | Comment | Comment | ✅ |
+| 29 | `comment` | Comment | Comment | 🧮 computed |
 | 30 | `blocked` | Blocked | Blocked | ✅ |
 | 31 | `payToVendorNo` | Pay-to Vendor No. | Pay-to Vendor No. | ✅ |
 | 32 | `priority` | Priority | Priority | ✅ |
 | 33 | `paymentMethodCode` | Payment Method Code | Payment Method Code | ✅ |
 | 34 | `formatRegion` | Format Region | Format Region | ✅ |
-| 35 | `firstTransactionDate` | First Transaction Date | Vendor Since | ✅ |
+| 35 | `firstTransactionDate` | First Transaction Date | Vendor Since | 🧮 computed |
 | 36 | `lastModifiedDateTime` | Last Modified Date Time | Last Modified Date Time | ✅ |
 | 37 | `lastDateModified` | Last Date Modified | Last Date Modified | ✅ |
-| 38 | `dateFilter` | Date Filter | Date Filter | ✅ |
-| 39 | `globalDimension1Filter` | Global Dimension 1 Filter | Global Dimension 1 Filter | ✅ |
-| 40 | `globalDimension2Filter` | Global Dimension 2 Filter | Global Dimension 2 Filter | ✅ |
-| 41 | `balance` | Balance | Balance | ✅ |
-| 42 | `netChange` | Net Change | Net Change | ✅ |
-| 43 | `balanceDue` | Balance Due | Balance Due | ✅ |
-| 44 | `payments` | Payments | Payments | ✅ |
-| 45 | `invoiceAmounts` | Invoice Amounts | Invoice Amounts | ✅ |
-| 46 | `crMemoAmounts` | Cr. Memo Amounts | Cr. Memo Amounts | ✅ |
-| 47 | `financeChargeMemoAmounts` | Finance Charge Memo Amounts | Finance Charge Memo Amounts | ✅ |
-| 48 | `outstandingOrders` | Outstanding Orders | Outstanding Orders | ✅ |
-| 49 | `amtRcdNotInvoiced` | Amt. Rcd. Not Invoiced | Amt. Rcd. Not Invoiced | ✅ |
+| 38 | `dateFilter` | Date Filter | Date Filter | 🔍 filter |
+| 39 | `globalDimension1Filter` | Global Dimension 1 Filter | Global Dimension 1 Filter | 🔍 filter |
+| 40 | `globalDimension2Filter` | Global Dimension 2 Filter | Global Dimension 2 Filter | 🔍 filter |
+| 41 | `balance` | Balance | Balance | 🧮 computed |
+| 42 | `netChange` | Net Change | Net Change | 🧮 computed |
+| 43 | `balanceDue` | Balance Due | Balance Due | 🧮 computed |
+| 44 | `payments` | Payments | Payments | 🧮 computed |
+| 45 | `invoiceAmounts` | Invoice Amounts | Invoice Amounts | 🧮 computed |
+| 46 | `crMemoAmounts` | Cr. Memo Amounts | Cr. Memo Amounts | 🧮 computed |
+| 47 | `financeChargeMemoAmounts` | Finance Charge Memo Amounts | Finance Charge Memo Amounts | 🧮 computed |
+| 48 | `outstandingOrders` | Outstanding Orders | Outstanding Orders | 🧮 computed |
+| 49 | `amtRcdNotInvoiced` | Amt. Rcd. Not Invoiced | Amt. Rcd. Not Invoiced | 🧮 computed |
 | 50 | `applicationMethod` | Application Method | Application Method | ✅ |
 | 51 | `pricesIncludingVat` | Prices Including VAT | Prices Including VAT | ✅ |
 | 52 | `faxNo` | Fax No. | Fax No. | ✅ |
@@ -2486,24 +2487,24 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 57 | `postCode` | Post Code | Post Code | ✅ |
 | 58 | `county` | County | County | ✅ |
 | 59 | `eORINumber` | EORI Number | EORI Number | ✅ |
-| 60 | `debitAmount` | Debit Amount | Debit Amount | ✅ |
-| 61 | `creditAmount` | Credit Amount | Credit Amount | ✅ |
+| 60 | `debitAmount` | Debit Amount | Debit Amount | 🧮 computed |
+| 61 | `creditAmount` | Credit Amount | Credit Amount | 🧮 computed |
 | 62 | `eMail` | E-Mail | Email | ✅ |
 | 63 | `homePage` | Home Page | Home Page | ✅ |
-| 64 | `reminderAmounts` | Reminder Amounts | Reminder Amounts | ✅ |
+| 64 | `reminderAmounts` | Reminder Amounts | Reminder Amounts | 🧮 computed |
 | 65 | `noSeries` | No. Series | No. Series | ✅ |
 | 66 | `taxAreaCode` | Tax Area Code | Tax Area Code | ✅ |
 | 67 | `taxLiable` | Tax Liable | Tax Liable | ✅ |
 | 68 | `vATBusPostingGroup` | VAT Bus. Posting Group | VAT Bus. Posting Group | ✅ |
-| 69 | `currencyFilter` | Currency Filter | Currency Filter | ✅ |
+| 69 | `currencyFilter` | Currency Filter | Currency Filter | 🔍 filter |
 | 70 | `blockPaymentTolerance` | Block Payment Tolerance | Block Payment Tolerance | ✅ |
 | 71 | `iCPartnerCode` | IC Partner Code | IC Partner Code | ✅ |
-| 72 | `refunds` | Refunds | Refunds | ✅ |
-| 73 | `otherAmounts` | Other Amounts | Other Amounts | ✅ |
+| 72 | `refunds` | Refunds | Refunds | 🧮 computed |
+| 73 | `otherAmounts` | Other Amounts | Other Amounts | 🧮 computed |
 | 74 | `prepayment` | Prepayment % | Prepayment % | ✅ |
-| 75 | `outstandingInvoices` | Outstanding Invoices | Outstanding Invoices | ✅ |
-| 76 | `payToNoOfArchivedDoc` | Pay-to No. Of Archived Doc. | Pay-to No. Of Archived Doc. | ✅ |
-| 77 | `buyFromNoOfArchivedDoc` | Buy-from No. Of Archived Doc. | Buy-from No. Of Archived Doc. | ✅ |
+| 75 | `outstandingInvoices` | Outstanding Invoices | Outstanding Invoices | 🧮 computed |
+| 76 | `payToNoOfArchivedDoc` | Pay-to No. Of Archived Doc. | Pay-to No. Of Archived Doc. | 🧮 computed |
+| 77 | `buyFromNoOfArchivedDoc` | Buy-from No. Of Archived Doc. | Buy-from No. Of Archived Doc. | 🧮 computed |
 | 78 | `partnerType` | Partner Type | Partner Type | ✅ |
 | 79 | `intrastatPartnerType` | Intrastat Partner Type | Intrastat Partner Type | ✅ |
 | 80 | `excludeFromPmtPractices` | Exclude from Pmt. Practices | Exclude from Payment Practices | ✅ |
@@ -2514,7 +2515,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 85 | `creditorNo` | Creditor No. | Creditor No. | ✅ |
 | 86 | `allowMultiplePostingGroups` | Allow Multiple Posting Groups | Allow Multiple Posting Groups | ✅ |
 | 87 | `preferredBankAccountCode` | Preferred Bank Account Code | Preferred Bank Account Code | ✅ |
-| 88 | `coupledToDataverse` | Coupled to Dataverse | Coupled to Dataverse | ✅ |
+| 88 | `coupledToDataverse` | Coupled to Dataverse | Coupled to Dataverse | 🧮 computed |
 | 89 | `cashFlowPaymentTermsCode` | Cash Flow Payment Terms Code | Cash Flow Payment Terms Code | ✅ |
 | 90 | `primaryContactNo` | Primary Contact No. | Primary Contact No. | ✅ |
 | 91 | `mobilePhoneNo` | Mobile Phone No. | Mobile Phone No. | ✅ |
@@ -2522,28 +2523,28 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 93 | `locationCode` | Location Code | Location Code | ✅ |
 | 94 | `leadTimeCalculation` | Lead Time Calculation | Lead Time Calculation | ✅ |
 | 95 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | ✅ |
-| 96 | `noOfPstdReceipts` | No. of Pstd. Receipts | No. of Pstd. Receipts | ✅ |
-| 97 | `noOfPstdInvoices` | No. of Pstd. Invoices | No. of Pstd. Invoices | ✅ |
-| 98 | `noOfPstdReturnShipments` | No. of Pstd. Return Shipments | No. of Pstd. Return Shipments | ✅ |
-| 99 | `noOfPstdCreditMemos` | No. of Pstd. Credit Memos | No. of Pstd. Credit Memos | ✅ |
-| 100 | `payToNoOfOrders` | Pay-to No. of Orders | Pay-to No. of Orders | ✅ |
-| 101 | `payToNoOfInvoices` | Pay-to No. of Invoices | Pay-to No. of Invoices | ✅ |
-| 102 | `payToNoOfReturnOrders` | Pay-to No. of Return Orders | Pay-to No. of Return Orders | ✅ |
-| 103 | `payToNoOfCreditMemos` | Pay-to No. of Credit Memos | Pay-to No. of Credit Memos | ✅ |
-| 104 | `payToNoOfPstdReceipts` | Pay-to No. of Pstd. Receipts | Pay-to No. of Pstd. Receipts | ✅ |
-| 105 | `payToNoOfPstdInvoices` | Pay-to No. of Pstd. Invoices | Pay-to No. of Pstd. Invoices | ✅ |
-| 106 | `payToNoOfPstdReturnS` | Pay-to No. of Pstd. Return S. | Pay-to No. of Pstd. Return S. | ✅ |
-| 107 | `payToNoOfPstdCrMemos` | Pay-to No. of Pstd. Cr. Memos | Pay-to No. of Pstd. Cr. Memos | ✅ |
-| 108 | `noOfQuotes` | No. of Quotes | No. of Quotes | ✅ |
-| 109 | `noOfBlanketOrders` | No. of Blanket Orders | No. of Blanket Orders | ✅ |
-| 110 | `noOfOrders` | No. of Orders | No. of Orders | ✅ |
-| 111 | `noOfInvoices` | No. of Invoices | No. of Invoices | ✅ |
-| 112 | `noOfReturnOrders` | No. of Return Orders | No. of Return Orders | ✅ |
-| 113 | `noOfCreditMemos` | No. of Credit Memos | No. of Credit Memos | ✅ |
-| 114 | `noOfOrderAddresses` | No. of Order Addresses | No. of Order Addresses | ✅ |
-| 115 | `payToNoOfQuotes` | Pay-to No. of Quotes | Pay-to No. of Quotes | ✅ |
-| 116 | `payToNoOfBlanketOrders` | Pay-to No. of Blanket Orders | Pay-to No. of Blanket Orders | ✅ |
-| 117 | `noOfIncomingDocuments` | No. of Incoming Documents | No. of Incoming Documents | ✅ |
+| 96 | `noOfPstdReceipts` | No. of Pstd. Receipts | No. of Pstd. Receipts | 🧮 computed |
+| 97 | `noOfPstdInvoices` | No. of Pstd. Invoices | No. of Pstd. Invoices | 🧮 computed |
+| 98 | `noOfPstdReturnShipments` | No. of Pstd. Return Shipments | No. of Pstd. Return Shipments | 🧮 computed |
+| 99 | `noOfPstdCreditMemos` | No. of Pstd. Credit Memos | No. of Pstd. Credit Memos | 🧮 computed |
+| 100 | `payToNoOfOrders` | Pay-to No. of Orders | Pay-to No. of Orders | 🧮 computed |
+| 101 | `payToNoOfInvoices` | Pay-to No. of Invoices | Pay-to No. of Invoices | 🧮 computed |
+| 102 | `payToNoOfReturnOrders` | Pay-to No. of Return Orders | Pay-to No. of Return Orders | 🧮 computed |
+| 103 | `payToNoOfCreditMemos` | Pay-to No. of Credit Memos | Pay-to No. of Credit Memos | 🧮 computed |
+| 104 | `payToNoOfPstdReceipts` | Pay-to No. of Pstd. Receipts | Pay-to No. of Pstd. Receipts | 🧮 computed |
+| 105 | `payToNoOfPstdInvoices` | Pay-to No. of Pstd. Invoices | Pay-to No. of Pstd. Invoices | 🧮 computed |
+| 106 | `payToNoOfPstdReturnS` | Pay-to No. of Pstd. Return S. | Pay-to No. of Pstd. Return S. | 🧮 computed |
+| 107 | `payToNoOfPstdCrMemos` | Pay-to No. of Pstd. Cr. Memos | Pay-to No. of Pstd. Cr. Memos | 🧮 computed |
+| 108 | `noOfQuotes` | No. of Quotes | No. of Quotes | 🧮 computed |
+| 109 | `noOfBlanketOrders` | No. of Blanket Orders | No. of Blanket Orders | 🧮 computed |
+| 110 | `noOfOrders` | No. of Orders | No. of Orders | 🧮 computed |
+| 111 | `noOfInvoices` | No. of Invoices | No. of Invoices | 🧮 computed |
+| 112 | `noOfReturnOrders` | No. of Return Orders | No. of Return Orders | 🧮 computed |
+| 113 | `noOfCreditMemos` | No. of Credit Memos | No. of Credit Memos | 🧮 computed |
+| 114 | `noOfOrderAddresses` | No. of Order Addresses | No. of Order Addresses | 🧮 computed |
+| 115 | `payToNoOfQuotes` | Pay-to No. of Quotes | Pay-to No. of Quotes | 🧮 computed |
+| 116 | `payToNoOfBlanketOrders` | Pay-to No. of Blanket Orders | Pay-to No. of Blanket Orders | 🧮 computed |
+| 117 | `noOfIncomingDocuments` | No. of Incoming Documents | No. of Incoming Documents | 🧮 computed |
 | 118 | `baseCalendarCode` | Base Calendar Code | Base Calendar Code | ✅ |
 | 119 | `documentSendingProfile` | Document Sending Profile | Document Sending Profile | ✅ |
 | 120 | `validateEuVatRegNo` | Validate EU Vat Reg. No. | Validate EU VAT Reg. No. | ✅ |
@@ -2551,26 +2552,26 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 122 | `paymentTermsId` | Payment Terms Id | Payment Terms Id | ✅ |
 | 123 | `paymentMethodId` | Payment Method Id | Payment Method Id | ✅ |
 | 124 | `overReceiptCode` | Over-Receipt Code | Over-Receipt Code | ✅ |
-| 125 | `balanceLcy` | Balance (LCY) | Balance (LCY) | ✅ |
-| 126 | `netChangeLcy` | Net Change (LCY) | Net Change (LCY) | ✅ |
-| 127 | `purchasesLcy` | Purchases (LCY) | Purchases (LCY) | ✅ |
-| 128 | `invDiscountsLcy` | Inv. Discounts (LCY) | Inv. Discounts (LCY) | ✅ |
-| 129 | `pmtDiscountsLcy` | Pmt. Discounts (LCY) | Pmt. Discounts (LCY) | ✅ |
-| 130 | `balanceDueLcy` | Balance Due (LCY) | Balance Due (LCY) | ✅ |
-| 131 | `paymentsLcy` | Payments (LCY) | Payments (LCY) | ✅ |
-| 132 | `invAmountsLcy` | Inv. Amounts (LCY) | Inv. Amounts (LCY) | ✅ |
-| 133 | `crMemoAmountsLcy` | Cr. Memo Amounts (LCY) | Cr. Memo Amounts (LCY) | ✅ |
-| 134 | `finChargeMemoAmountsLcy` | Fin. Charge Memo Amounts (LCY) | Fin. Charge Memo Amounts (LCY) | ✅ |
-| 135 | `debitAmountLcy` | Debit Amount (LCY) | Debit Amount (LCY) | ✅ |
-| 136 | `creditAmountLcy` | Credit Amount (LCY) | Credit Amount (LCY) | ✅ |
-| 137 | `reminderAmountsLcy` | Reminder Amounts (LCY) | Reminder Amounts (LCY) | ✅ |
-| 138 | `outstandingOrdersLcy` | Outstanding Orders (LCY) | Outstanding Orders (LCY) | ✅ |
-| 139 | `amtRcdNotInvoicedLcy` | Amt. Rcd. Not Invoiced (LCY) | Amt. Rcd. Not Invoiced (LCY) | ✅ |
-| 140 | `pmtDiscToleranceLcy` | Pmt. Disc. Tolerance (LCY) | Pmt. Disc. Tolerance (LCY) | ✅ |
-| 141 | `pmtToleranceLcy` | Pmt. Tolerance (LCY) | Pmt. Tolerance (LCY) | ✅ |
-| 142 | `refundsLcy` | Refunds (LCY) | Refunds (LCY) | ✅ |
-| 143 | `otherAmountsLcy` | Other Amounts (LCY) | Other Amounts (LCY) | ✅ |
-| 144 | `outstandingInvoicesLcy` | Outstanding Invoices (LCY) | Outstanding Invoices (LCY) | ✅ |
+| 125 | `balanceLcy` | Balance (LCY) | Balance (LCY) | 🧮 computed |
+| 126 | `netChangeLcy` | Net Change (LCY) | Net Change (LCY) | 🧮 computed |
+| 127 | `purchasesLcy` | Purchases (LCY) | Purchases (LCY) | 🧮 computed |
+| 128 | `invDiscountsLcy` | Inv. Discounts (LCY) | Inv. Discounts (LCY) | 🧮 computed |
+| 129 | `pmtDiscountsLcy` | Pmt. Discounts (LCY) | Pmt. Discounts (LCY) | 🧮 computed |
+| 130 | `balanceDueLcy` | Balance Due (LCY) | Balance Due (LCY) | 🧮 computed |
+| 131 | `paymentsLcy` | Payments (LCY) | Payments (LCY) | 🧮 computed |
+| 132 | `invAmountsLcy` | Inv. Amounts (LCY) | Inv. Amounts (LCY) | 🧮 computed |
+| 133 | `crMemoAmountsLcy` | Cr. Memo Amounts (LCY) | Cr. Memo Amounts (LCY) | 🧮 computed |
+| 134 | `finChargeMemoAmountsLcy` | Fin. Charge Memo Amounts (LCY) | Fin. Charge Memo Amounts (LCY) | 🧮 computed |
+| 135 | `debitAmountLcy` | Debit Amount (LCY) | Debit Amount (LCY) | 🧮 computed |
+| 136 | `creditAmountLcy` | Credit Amount (LCY) | Credit Amount (LCY) | 🧮 computed |
+| 137 | `reminderAmountsLcy` | Reminder Amounts (LCY) | Reminder Amounts (LCY) | 🧮 computed |
+| 138 | `outstandingOrdersLcy` | Outstanding Orders (LCY) | Outstanding Orders (LCY) | 🧮 computed |
+| 139 | `amtRcdNotInvoicedLcy` | Amt. Rcd. Not Invoiced (LCY) | Amt. Rcd. Not Invoiced (LCY) | 🧮 computed |
+| 140 | `pmtDiscToleranceLcy` | Pmt. Disc. Tolerance (LCY) | Pmt. Disc. Tolerance (LCY) | 🧮 computed |
+| 141 | `pmtToleranceLcy` | Pmt. Tolerance (LCY) | Pmt. Tolerance (LCY) | 🧮 computed |
+| 142 | `refundsLcy` | Refunds (LCY) | Refunds (LCY) | 🧮 computed |
+| 143 | `otherAmountsLcy` | Other Amounts (LCY) | Other Amounts (LCY) | 🧮 computed |
+| 144 | `outstandingInvoicesLcy` | Outstanding Invoices (LCY) | Outstanding Invoices (LCY) | 🧮 computed |
 
 > **Added in API v3.1:** fields 125–144 above (previously omitted parenthesized-name standard fields).
 
@@ -2611,7 +2612,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 14 | `registrationNumber` | Registration Number | Registration No. | ✅ |
 | 15 | `salespersonCode` | Salesperson Code | Salesperson Code | ✅ |
 | 16 | `countryRegionCode` | Country/Region Code | Country/Region Code | ✅ |
-| 17 | `comment` | Comment | Comment | ✅ |
+| 17 | `comment` | Comment | Comment | 🧮 computed |
 | 18 | `formatRegion` | Format Region | Format Region | ✅ |
 | 19 | `lastDateModified` | Last Date Modified | Last Date Modified | ✅ |
 | 20 | `faxNo` | Fax No. | Fax No. | ✅ |
@@ -2626,7 +2627,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 29 | `privacyBlocked` | Privacy Blocked | Privacy Blocked | ✅ |
 | 30 | `minor` | Minor | Minor | ✅ |
 | 31 | `parentalConsentReceived` | Parental Consent Received | Parental Consent Received | ✅ |
-| 32 | `coupledToDataverse` | Coupled to Dataverse | Coupled to Dataverse | ✅ |
+| 32 | `coupledToDataverse` | Coupled to Dataverse | Coupled to Dataverse | 🧮 computed |
 | 33 | `type` | Type | Type | ✅ |
 | 34 | `companyNo` | Company No. | Company No. | ✅ |
 | 35 | `companyName` | Company Name | Company Name | ✅ |
@@ -2641,46 +2642,46 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 44 | `pager` | Pager | Pager | ✅ |
 | 45 | `organizationalLevelCode` | Organizational Level Code | Organizational Level Code | ✅ |
 | 46 | `excludeFromSegment` | Exclude from Segment | Exclude from Segment | ✅ |
-| 47 | `dateFilter` | Date Filter | Date Filter | ✅ |
-| 48 | `nextTaskDate` | Next Task Date | Next Task Date | ✅ |
-| 49 | `lastDateAttempted` | Last Date Attempted | Last Date Attempted | ✅ |
-| 50 | `dateOfLastInteraction` | Date of Last Interaction | Date of Last Interaction | ✅ |
-| 51 | `noOfJobResponsibilities` | No. of Job Responsibilities | No. of Job Responsibilities | ✅ |
-| 52 | `noOfIndustryGroups` | No. of Industry Groups | No. of Industry Groups | ✅ |
-| 53 | `noOfBusinessRelations` | No. of Business Relations | No. of Business Relations | ✅ |
-| 54 | `noOfMailingGroups` | No. of Mailing Groups | No. of Mailing Groups | ✅ |
+| 47 | `dateFilter` | Date Filter | Date Filter | 🔍 filter |
+| 48 | `nextTaskDate` | Next Task Date | Next Task Date | 🧮 computed |
+| 49 | `lastDateAttempted` | Last Date Attempted | Last Date Attempted | 🧮 computed |
+| 50 | `dateOfLastInteraction` | Date of Last Interaction | Date of Last Interaction | 🧮 computed |
+| 51 | `noOfJobResponsibilities` | No. of Job Responsibilities | No. of Job Responsibilities | 🧮 computed |
+| 52 | `noOfIndustryGroups` | No. of Industry Groups | No. of Industry Groups | 🧮 computed |
+| 53 | `noOfBusinessRelations` | No. of Business Relations | No. of Business Relations | 🧮 computed |
+| 54 | `noOfMailingGroups` | No. of Mailing Groups | No. of Mailing Groups | 🧮 computed |
 | 55 | `externalId` | External ID | External ID | ✅ |
-| 56 | `noOfInteractions` | No. of Interactions | No. of Interactions | ✅ |
-| 57 | `noOfOpportunities` | No. of Opportunities | No. of Opportunities | ✅ |
-| 58 | `opportunityEntryExists` | Opportunity Entry Exists | Opportunity Entry Exists | ✅ |
-| 59 | `taskEntryExists` | Task Entry Exists | Task Entry Exists | ✅ |
-| 60 | `salespersonFilter` | Salesperson Filter | Salesperson Filter | ✅ |
-| 61 | `campaignFilter` | Campaign Filter | Campaign Filter | ✅ |
+| 56 | `noOfInteractions` | No. of Interactions | No. of Interactions | 🧮 computed |
+| 57 | `noOfOpportunities` | No. of Opportunities | No. of Opportunities | 🧮 computed |
+| 58 | `opportunityEntryExists` | Opportunity Entry Exists | Opportunity Entry Exists | 🧮 computed |
+| 59 | `taskEntryExists` | Task Entry Exists | Task Entry Exists | 🧮 computed |
+| 60 | `salespersonFilter` | Salesperson Filter | Salesperson Filter | 🔍 filter |
+| 61 | `campaignFilter` | Campaign Filter | Campaign Filter | 🔍 filter |
 | 62 | `contactBusinessRelation` | Contact Business Relation | Contact Business Relation | ✅ |
-| 63 | `actionTakenFilter` | Action Taken Filter | Action Taken Filter | ✅ |
-| 64 | `salesCycleFilter` | Sales Cycle Filter | Sales Cycle Filter | ✅ |
-| 65 | `salesCycleStageFilter` | Sales Cycle Stage Filter | Sales Cycle Stage Filter | ✅ |
-| 66 | `probabilityFilter` | Probability % Filter | Probability % Filter | ✅ |
-| 67 | `completedFilter` | Completed % Filter | Completed % Filter | ✅ |
-| 68 | `estimatedValueFilter` | Estimated Value Filter | Estimated Value Filter | ✅ |
-| 69 | `calcdCurrentValueFilter` | Calcd. Current Value Filter | Calcd. Current Value Filter | ✅ |
-| 70 | `chancesOfSuccessFilter` | Chances of Success % Filter | Chances of Success % Filter | ✅ |
-| 71 | `taskStatusFilter` | Task Status Filter | Task Status Filter | ✅ |
-| 72 | `taskClosedFilter` | Task Closed Filter | Task Closed Filter | ✅ |
-| 73 | `priorityFilter` | Priority Filter | Priority Filter | ✅ |
-| 74 | `teamFilter` | Team Filter | Team Filter | ✅ |
-| 75 | `closeOpportunityFilter` | Close Opportunity Filter | Close Opportunity Filter | ✅ |
+| 63 | `actionTakenFilter` | Action Taken Filter | Action Taken Filter | 🔍 filter |
+| 64 | `salesCycleFilter` | Sales Cycle Filter | Sales Cycle Filter | 🔍 filter |
+| 65 | `salesCycleStageFilter` | Sales Cycle Stage Filter | Sales Cycle Stage Filter | 🔍 filter |
+| 66 | `probabilityFilter` | Probability % Filter | Probability % Filter | 🔍 filter |
+| 67 | `completedFilter` | Completed % Filter | Completed % Filter | 🔍 filter |
+| 68 | `estimatedValueFilter` | Estimated Value Filter | Estimated Value Filter | 🔍 filter |
+| 69 | `calcdCurrentValueFilter` | Calcd. Current Value Filter | Calcd. Current Value Filter | 🔍 filter |
+| 70 | `chancesOfSuccessFilter` | Chances of Success % Filter | Chances of Success % Filter | 🔍 filter |
+| 71 | `taskStatusFilter` | Task Status Filter | Task Status Filter | 🔍 filter |
+| 72 | `taskClosedFilter` | Task Closed Filter | Task Closed Filter | 🔍 filter |
+| 73 | `priorityFilter` | Priority Filter | Priority Filter | 🔍 filter |
+| 74 | `teamFilter` | Team Filter | Team Filter | 🔍 filter |
+| 75 | `closeOpportunityFilter` | Close Opportunity Filter | Close Opportunity Filter | 🔍 filter |
 | 76 | `correspondenceType` | Correspondence Type | Correspondence Type | ✅ |
 | 77 | `salutationCode` | Salutation Code | Salutation Code | ✅ |
 | 78 | `searchEMail` | Search E-Mail | Search Email | ✅ |
 | 79 | `lastTimeModified` | Last Time Modified | Last Time Modified | ✅ |
 | 80 | `eMail2` | E-Mail 2 | Email 2 | ✅ |
-| 81 | `jobResponsibilityFilter` | Job Responsibility Filter | Job Responsibility Filter | ✅ |
+| 81 | `jobResponsibilityFilter` | Job Responsibility Filter | Job Responsibility Filter | 🔍 filter |
 | 82 | `xrmId` | Xrm Id | Xrm Id | ✅ |
-| 83 | `costLcy` | Cost (LCY) | Cost (LCY) | ✅ |
-| 84 | `durationMin` | Duration (Min.) | Duration (Min.) | ✅ |
-| 85 | `estimatedValueLcy` | Estimated Value (LCY) | Estimated Value (LCY) | ✅ |
-| 86 | `calcdCurrentValueLcy` | Calcd. Current Value (LCY) | Calcd. Current Value (LCY) | ✅ |
+| 83 | `costLcy` | Cost (LCY) | Cost (LCY) | 🧮 computed |
+| 84 | `durationMin` | Duration (Min.) | Duration (Min.) | 🧮 computed |
+| 85 | `estimatedValueLcy` | Estimated Value (LCY) | Estimated Value (LCY) | 🧮 computed |
+| 86 | `calcdCurrentValueLcy` | Calcd. Current Value (LCY) | Calcd. Current Value (LCY) | 🧮 computed |
 
 > **Added in API v3.1:** fields 83–86 above (previously omitted parenthesized-name standard fields).
 
@@ -2710,8 +2711,8 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 3 | `businessRelationCode` | Business Relation Code | Business Relation Code | ✅ |
 | 4 | `linkToTable` | Link to Table | Link to Table | ✅ |
 | 5 | `no` | No. | No. | ✅ |
-| 6 | `businessRelationDescription` | Business Relation Description | Business Relation Description | ✅ |
-| 7 | `contactName` | Contact Name | Contact Name | ✅ |
+| 6 | `businessRelationDescription` | Business Relation Description | Business Relation Description | 🧮 computed |
+| 7 | `contactName` | Contact Name | Contact Name | 🧮 computed |
 
 
 [↑ Back to top](#table-of-contents)
@@ -2740,7 +2741,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 4 | `description` | Description | Description | ✅ |
 | 5 | `searchDescription` | Search Description | Search Description | ✅ |
 | 6 | `description2` | Description 2 | Description 2 | ✅ |
-| 7 | `assemblyBom` | Assembly BOM | Assembly BOM | ✅ |
+| 7 | `assemblyBom` | Assembly BOM | Assembly BOM | 🧮 computed |
 | 8 | `baseUnitOfMeasure` | Base Unit of Measure | Base Unit of Measure | ✅ |
 | 9 | `priceUnitConversion` | Price Unit Conversion | Price Unit Conversion | ✅ |
 | 10 | `type` | Type | Type | ✅ |
@@ -2782,24 +2783,24 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 46 | `budgetQuantity` | Budget Quantity | Budget Quantity | ✅ |
 | 47 | `budgetedAmount` | Budgeted Amount | Budgeted Amount | ✅ |
 | 48 | `budgetProfit` | Budget Profit | Budget Profit | ✅ |
-| 49 | `comment` | Comment | Comment | ✅ |
+| 49 | `comment` | Comment | Comment | 🧮 computed |
 | 50 | `blocked` | Blocked | Blocked | ✅ |
-| 51 | `costIsPostedToGL` | Cost is Posted to G/L | Cost is Posted to G/L | ✅ |
+| 51 | `costIsPostedToGL` | Cost is Posted to G/L | Cost is Posted to G/L | 🧮 computed |
 | 52 | `blockReason` | Block Reason | Block Reason | ✅ |
 | 53 | `lastDatetimeModified` | Last DateTime Modified | Last DateTime Modified | ✅ |
 | 54 | `lastDateModified` | Last Date Modified | Last Date Modified | ✅ |
 | 55 | `lastTimeModified` | Last Time Modified | Last Time Modified | ✅ |
-| 56 | `dateFilter` | Date Filter | Date Filter | ✅ |
-| 57 | `globalDimension1Filter` | Global Dimension 1 Filter | Global Dimension 1 Filter | ✅ |
-| 58 | `globalDimension2Filter` | Global Dimension 2 Filter | Global Dimension 2 Filter | ✅ |
-| 59 | `locationFilter` | Location Filter | Location Filter | ✅ |
-| 60 | `inventory` | Inventory | Inventory | ✅ |
-| 61 | `netInvoicedQty` | Net Invoiced Qty. | Net Invoiced Qty. | ✅ |
-| 62 | `netChange` | Net Change | Net Change | ✅ |
-| 63 | `qtyOnPurchOrder` | Qty. on Purch. Order | Qty. on Purch. Order | ✅ |
-| 64 | `qtyOnSalesOrder` | Qty. on Sales Order | Qty. on Sales Order | ✅ |
+| 56 | `dateFilter` | Date Filter | Date Filter | 🔍 filter |
+| 57 | `globalDimension1Filter` | Global Dimension 1 Filter | Global Dimension 1 Filter | 🔍 filter |
+| 58 | `globalDimension2Filter` | Global Dimension 2 Filter | Global Dimension 2 Filter | 🔍 filter |
+| 59 | `locationFilter` | Location Filter | Location Filter | 🔍 filter |
+| 60 | `inventory` | Inventory | Inventory | 🧮 computed |
+| 61 | `netInvoicedQty` | Net Invoiced Qty. | Net Invoiced Qty. | 🧮 computed |
+| 62 | `netChange` | Net Change | Net Change | 🧮 computed |
+| 63 | `qtyOnPurchOrder` | Qty. on Purch. Order | Qty. on Purch. Order | 🧮 computed |
+| 64 | `qtyOnSalesOrder` | Qty. on Sales Order | Qty. on Sales Order | 🧮 computed |
 | 65 | `priceIncludesVat` | Price Includes VAT | Price Includes VAT | ✅ |
-| 66 | `dropShipmentFilter` | Drop Shipment Filter | Drop Shipment Filter | ✅ |
+| 66 | `dropShipmentFilter` | Drop Shipment Filter | Drop Shipment Filter | 🔍 filter |
 | 67 | `genProdPostingGroup` | Gen. Prod. Posting Group | Gen. Prod. Posting Group | ✅ |
 | 68 | `picture` | Picture | Picture | ✅ |
 | 69 | `countryRegionOfOriginCode` | Country/Region of Origin Code | Country/Region of Origin Code | ✅ |
@@ -2808,23 +2809,23 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 72 | `taxGroupCode` | Tax Group Code | Tax Group Code | ✅ |
 | 73 | `vATProdPostingGroup` | VAT Prod. Posting Group | VAT Prod. Posting Group | ✅ |
 | 74 | `reserve` | Reserve | Reserve | ✅ |
-| 75 | `reservedQtyOnInventory` | Reserved Qty. on Inventory | Reserved Qty. on Inventory | ✅ |
-| 76 | `reservedQtyOnPurchOrders` | Reserved Qty. on Purch. Orders | Reserved Qty. on Purch. Orders | ✅ |
-| 77 | `reservedQtyOnSalesOrders` | Reserved Qty. on Sales Orders | Reserved Qty. on Sales Orders | ✅ |
+| 75 | `reservedQtyOnInventory` | Reserved Qty. on Inventory | Reserved Qty. on Inventory | 🧮 computed |
+| 76 | `reservedQtyOnPurchOrders` | Reserved Qty. on Purch. Orders | Reserved Qty. on Purch. Orders | 🧮 computed |
+| 77 | `reservedQtyOnSalesOrders` | Reserved Qty. on Sales Orders | Reserved Qty. on Sales Orders | 🧮 computed |
 | 78 | `globalDimension1Code` | Global Dimension 1 Code | Global Dimension 1 Code | ✅ |
 | 79 | `globalDimension2Code` | Global Dimension 2 Code | Global Dimension 2 Code | ✅ |
-| 80 | `resQtyOnOutboundTransfer` | Res. Qty. on Outbound Transfer | Res. Qty. on Outbound Transfer | ✅ |
-| 81 | `resQtyOnInboundTransfer` | Res. Qty. on Inbound Transfer | Res. Qty. on Inbound Transfer | ✅ |
-| 82 | `resQtyOnSalesReturns` | Res. Qty. on Sales Returns | Res. Qty. on Sales Returns | ✅ |
-| 83 | `resQtyOnPurchReturns` | Res. Qty. on Purch. Returns | Res. Qty. on Purch. Returns | ✅ |
+| 80 | `resQtyOnOutboundTransfer` | Res. Qty. on Outbound Transfer | Res. Qty. on Outbound Transfer | 🧮 computed |
+| 81 | `resQtyOnInboundTransfer` | Res. Qty. on Inbound Transfer | Res. Qty. on Inbound Transfer | 🧮 computed |
+| 82 | `resQtyOnSalesReturns` | Res. Qty. on Sales Returns | Res. Qty. on Sales Returns | 🧮 computed |
+| 83 | `resQtyOnPurchReturns` | Res. Qty. on Purch. Returns | Res. Qty. on Purch. Returns | 🧮 computed |
 | 84 | `stockoutWarning` | Stockout Warning | Stockout Warning | ✅ |
 | 85 | `preventNegativeInventory` | Prevent Negative Inventory | Prevent Negative Inventory | ✅ |
 | 86 | `variantMandatoryIfExists` | Variant Mandatory if Exists | Variant Mandatory if Exists | ✅ |
 | 87 | `applicationWkshUserId` | Application Wksh. User ID | Application Wksh. User ID | ✅ |
-| 88 | `coupledToDataverse` | Coupled to Dataverse | Coupled to Dynamics 365 Sales | ✅ |
+| 88 | `coupledToDataverse` | Coupled to Dataverse | Coupled to Dynamics 365 Sales | 🧮 computed |
 | 89 | `assemblyPolicy` | Assembly Policy | Assembly Policy | ✅ |
-| 90 | `qtyOnJobOrder` | Qty. on Job Order | Qty. on Project Order | ✅ |
-| 91 | `resQtyOnJobOrder` | Res. Qty. on Job Order | Res. Qty. on Project Order | ✅ |
+| 90 | `qtyOnJobOrder` | Qty. on Job Order | Qty. on Project Order | 🧮 computed |
+| 91 | `resQtyOnJobOrder` | Res. Qty. on Job Order | Res. Qty. on Project Order | 🧮 computed |
 | 92 | `gTIN` | GTIN | GTIN | ✅ |
 | 93 | `defaultDeferralTemplateCode` | Default Deferral Template Code | Default Deferral Template Code | ✅ |
 | 94 | `lowLevelCode` | Low-Level Code | Low-Level Code | ✅ |
@@ -2845,13 +2846,13 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 109 | `flushingMethod` | Flushing Method | Flushing Method | ✅ |
 | 110 | `replenishmentSystem` | Replenishment System | Replenishment System | ✅ |
 | 111 | `roundingPrecision` | Rounding Precision | Rounding Precision | ✅ |
-| 112 | `binFilter` | Bin Filter | Bin Filter | ✅ |
-| 113 | `variantFilter` | Variant Filter | Variant Filter | ✅ |
+| 112 | `binFilter` | Bin Filter | Bin Filter | 🔍 filter |
+| 113 | `variantFilter` | Variant Filter | Variant Filter | 🔍 filter |
 | 114 | `salesUnitOfMeasure` | Sales Unit of Measure | Sales Unit of Measure | ✅ |
 | 115 | `purchUnitOfMeasure` | Purch. Unit of Measure | Purch. Unit of Measure | ✅ |
-| 116 | `unitOfMeasureFilter` | Unit of Measure Filter | Unit of Measure Filter | ✅ |
+| 116 | `unitOfMeasureFilter` | Unit of Measure Filter | Unit of Measure Filter | 🔍 filter |
 | 117 | `timeBucket` | Time Bucket | Time Bucket | ✅ |
-| 118 | `resQtyOnReqLine` | Res. Qty. on Req. Line | Res. Qty. on Req. Line | ✅ |
+| 118 | `resQtyOnReqLine` | Res. Qty. on Req. Line | Res. Qty. on Req. Line | 🧮 computed |
 | 119 | `reorderingPolicy` | Reordering Policy | Reordering Policy | ✅ |
 | 120 | `includeInventory` | Include Inventory | Include Inventory | ✅ |
 | 121 | `manufacturingPolicy` | Manufacturing Policy | Manufacturing Policy | ✅ |
@@ -2860,37 +2861,37 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 124 | `dampenerPeriod` | Dampener Period | Dampener Period | ✅ |
 | 125 | `dampenerQuantity` | Dampener Quantity | Dampener Quantity | ✅ |
 | 126 | `overflowLevel` | Overflow Level | Overflow Level | ✅ |
-| 127 | `stockkeepingUnitExists` | Stockkeeping Unit Exists | Stockkeeping Unit Exists | ✅ |
+| 127 | `stockkeepingUnitExists` | Stockkeeping Unit Exists | Stockkeeping Unit Exists | 🧮 computed |
 | 128 | `manufacturerCode` | Manufacturer Code | Manufacturer Code | ✅ |
 | 129 | `itemCategoryCode` | Item Category Code | Item Category Code | ✅ |
 | 130 | `createdFromNonstockItem` | Created From Nonstock Item | Created From Catalog Item | ✅ |
-| 131 | `substitutesExist` | Substitutes Exist | Substitutes Exist | ✅ |
-| 132 | `qtyInTransit` | Qty. in Transit | Qty. in Transit | ✅ |
+| 131 | `substitutesExist` | Substitutes Exist | Substitutes Exist | 🧮 computed |
+| 132 | `qtyInTransit` | Qty. in Transit | Qty. in Transit | 🧮 computed |
 | 133 | `purchasingCode` | Purchasing Code | Purchasing Code | ✅ |
-| 134 | `qtyAssignedToShip` | Qty. Assigned to ship | Qty. Assigned to ship | ✅ |
-| 135 | `qtyPicked` | Qty. Picked | Qty. Picked | ✅ |
+| 134 | `qtyAssignedToShip` | Qty. Assigned to ship | Qty. Assigned to ship | 🧮 computed |
+| 135 | `qtyPicked` | Qty. Picked | Qty. Picked | 🧮 computed |
 | 136 | `excludedFromCostAdjustment` | Excluded from Cost Adjustment | Excluded from Cost Adjustment | ✅ |
 | 137 | `itemTrackingCode` | Item Tracking Code | Item Tracking Code | ✅ |
 | 138 | `lotNos` | Lot Nos. | Lot Nos. | ✅ |
 | 139 | `expirationCalculation` | Expiration Calculation | Expiration Calculation | ✅ |
-| 140 | `lotNoFilter` | Lot No. Filter | Lot No. Filter | ✅ |
-| 141 | `serialNoFilter` | Serial No. Filter | Serial No. Filter | ✅ |
-| 142 | `packageNoFilter` | Package No. Filter | Package No. Filter | ✅ |
-| 143 | `qtyOnPurchReturn` | Qty. on Purch. Return | Qty. on Purch. Return | ✅ |
-| 144 | `qtyOnSalesReturn` | Qty. on Sales Return | Qty. on Sales Return | ✅ |
-| 145 | `noOfSubstitutes` | No. of Substitutes | No. of Substitutes | ✅ |
+| 140 | `lotNoFilter` | Lot No. Filter | Lot No. Filter | 🔍 filter |
+| 141 | `serialNoFilter` | Serial No. Filter | Serial No. Filter | 🔍 filter |
+| 142 | `packageNoFilter` | Package No. Filter | Package No. Filter | 🔍 filter |
+| 143 | `qtyOnPurchReturn` | Qty. on Purch. Return | Qty. on Purch. Return | 🧮 computed |
+| 144 | `qtyOnSalesReturn` | Qty. on Sales Return | Qty. on Sales Return | 🧮 computed |
+| 145 | `noOfSubstitutes` | No. of Substitutes | No. of Substitutes | 🧮 computed |
 | 146 | `warehouseClassCode` | Warehouse Class Code | Warehouse Class Code | ✅ |
 | 147 | `specialEquipmentCode` | Special Equipment Code | Special Equipment Code | ✅ |
 | 148 | `putAwayTemplateCode` | Put-away Template Code | Put-away Template Code | ✅ |
 | 149 | `putAwayUnitOfMeasureCode` | Put-away Unit of Measure Code | Put-away Unit of Measure Code | ✅ |
 | 150 | `physInvtCountingPeriodCode` | Phys Invt Counting Period Code | Phys Invt Counting Period Code | ✅ |
 | 151 | `lastCountingPeriodUpdate` | Last Counting Period Update | Last Counting Period Update | ✅ |
-| 152 | `lastPhysInvtDate` | Last Phys. Invt. Date | Last Phys. Invt. Date | ✅ |
+| 152 | `lastPhysInvtDate` | Last Phys. Invt. Date | Last Phys. Invt. Date | 🧮 computed |
 | 153 | `useCrossDocking` | Use Cross-Docking | Use Cross-Docking | ✅ |
 | 154 | `nextCountingStartDate` | Next Counting Start Date | Next Counting Start Date | ✅ |
 | 155 | `nextCountingEndDate` | Next Counting End Date | Next Counting End Date | ✅ |
-| 156 | `unitGroupExists` | Unit Group Exists | Unit Group Exists | ✅ |
-| 157 | `identifierCode` | Identifier Code | Identifier Code | ✅ |
+| 156 | `unitGroupExists` | Unit Group Exists | Unit Group Exists | 🧮 computed |
+| 157 | `identifierCode` | Identifier Code | Identifier Code | 🧮 computed |
 | 158 | `unitOfMeasureId` | Unit of Measure Id | Unit of Measure Id | ✅ |
 | 159 | `taxGroupId` | Tax Group Id | Tax Group Id | ✅ |
 | 160 | `salesBlocked` | Sales Blocked | Sales Blocked | ✅ |
@@ -2910,34 +2911,34 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 174 | `rolledUpMfgOvhdCost` | Rolled-up Mfg. Ovhd Cost | Rolled-up Mfg. Ovhd Cost | ✅ |
 | 175 | `rolledUpCapOverheadCost` | Rolled-up Cap. Overhead Cost | Rolled-up Cap. Overhead Cost | ✅ |
 | 176 | `orderTrackingPolicy` | Order Tracking Policy | Order Tracking Policy | ✅ |
-| 177 | `productionForecastName` | Production Forecast Name | Production Forecast Name | ✅ |
-| 178 | `componentForecast` | Component Forecast | Component Forecast | ✅ |
+| 177 | `productionForecastName` | Production Forecast Name | Production Forecast Name | 🔍 filter |
+| 178 | `componentForecast` | Component Forecast | Component Forecast | 🔍 filter |
 | 179 | `critical` | Critical | Critical | ✅ |
 | 180 | `singleLvlMatNonInvtCost` | Single-Lvl Mat. Non-Invt. Cost | Single-Level Material Non-Inventory Cost | ✅ |
 | 181 | `allowWhseOverpick` | Allow Whse. Overpick | Allow Whse. Overpick | ✅ |
 | 182 | `commonItemNo` | Common Item No. | Common Item No. | ✅ |
-| 183 | `purchasesQty` | Purchases (Qty.) | Purchases (Qty.) | ✅ |
-| 184 | `salesQty` | Sales (Qty.) | Sales (Qty.) | ✅ |
-| 185 | `positiveAdjmtQty` | Positive Adjmt. (Qty.) | Positive Adjmt. (Qty.) | ✅ |
-| 186 | `negativeAdjmtQty` | Negative Adjmt. (Qty.) | Negative Adjmt. (Qty.) | ✅ |
-| 187 | `purchasesLcy` | Purchases (LCY) | Purchases (LCY) | ✅ |
-| 188 | `salesLcy` | Sales (LCY) | Sales (LCY) | ✅ |
-| 189 | `positiveAdjmtLcy` | Positive Adjmt. (LCY) | Positive Adjmt. (LCY) | ✅ |
-| 190 | `negativeAdjmtLcy` | Negative Adjmt. (LCY) | Negative Adjmt. (LCY) | ✅ |
-| 191 | `cogsLcy` | COGS (LCY) | COGS (LCY) | ✅ |
+| 183 | `purchasesQty` | Purchases (Qty.) | Purchases (Qty.) | 🧮 computed |
+| 184 | `salesQty` | Sales (Qty.) | Sales (Qty.) | 🧮 computed |
+| 185 | `positiveAdjmtQty` | Positive Adjmt. (Qty.) | Positive Adjmt. (Qty.) | 🧮 computed |
+| 186 | `negativeAdjmtQty` | Negative Adjmt. (Qty.) | Negative Adjmt. (Qty.) | 🧮 computed |
+| 187 | `purchasesLcy` | Purchases (LCY) | Purchases (LCY) | 🧮 computed |
+| 188 | `salesLcy` | Sales (LCY) | Sales (LCY) | 🧮 computed |
+| 189 | `positiveAdjmtLcy` | Positive Adjmt. (LCY) | Positive Adjmt. (LCY) | 🧮 computed |
+| 190 | `negativeAdjmtLcy` | Negative Adjmt. (LCY) | Negative Adjmt. (LCY) | 🧮 computed |
+| 191 | `cogsLcy` | COGS (LCY) | COGS (LCY) | 🧮 computed |
 | 192 | `vatBusPostingGrPrice` | VAT Bus. Posting Gr. (Price) | VAT Bus. Posting Gr. (Price) | ✅ |
-| 193 | `transferredQty` | Transferred (Qty.) | Transferred (Qty.) | ✅ |
-| 194 | `transferredLcy` | Transferred (LCY) | Transferred (LCY) | ✅ |
-| 195 | `planningTransferShipQty` | Planning Transfer Ship. (Qty). | Planning Transfer Ship. (Qty). | ✅ |
-| 196 | `planningWorksheetQty` | Planning Worksheet (Qty.) | Planning Worksheet (Qty.) | ✅ |
-| 197 | `transOrdReceiptQty` | Trans. Ord. Receipt (Qty.) | Trans. Ord. Receipt (Qty.) | ✅ |
-| 198 | `transOrdShipmentQty` | Trans. Ord. Shipment (Qty.) | Trans. Ord. Shipment (Qty.) | ✅ |
-| 199 | `planningIssuesQty` | Planning Issues (Qty.) | Planning Issues (Qty.) | ✅ |
-| 200 | `planningReceiptQty` | Planning Receipt (Qty.) | Planning Receipt (Qty.) | ✅ |
-| 201 | `planningReleaseQty` | Planning Release (Qty.) | Planning Release (Qty.) | ✅ |
-| 202 | `purchReqReceiptQty` | Purch. Req. Receipt (Qty.) | Purch. Req. Receipt (Qty.) | ✅ |
-| 203 | `purchReqReleaseQty` | Purch. Req. Release (Qty.) | Purch. Req. Release (Qty.) | ✅ |
-| 204 | `prodForecastQuantityBase` | Prod. Forecast Quantity (Base) | Prod. Forecast Quantity (Base) | ✅ |
+| 193 | `transferredQty` | Transferred (Qty.) | Transferred (Qty.) | 🧮 computed |
+| 194 | `transferredLcy` | Transferred (LCY) | Transferred (LCY) | 🧮 computed |
+| 195 | `planningTransferShipQty` | Planning Transfer Ship. (Qty). | Planning Transfer Ship. (Qty). | 🧮 computed |
+| 196 | `planningWorksheetQty` | Planning Worksheet (Qty.) | Planning Worksheet (Qty.) | 🧮 computed |
+| 197 | `transOrdReceiptQty` | Trans. Ord. Receipt (Qty.) | Trans. Ord. Receipt (Qty.) | 🧮 computed |
+| 198 | `transOrdShipmentQty` | Trans. Ord. Shipment (Qty.) | Trans. Ord. Shipment (Qty.) | 🧮 computed |
+| 199 | `planningIssuesQty` | Planning Issues (Qty.) | Planning Issues (Qty.) | 🧮 computed |
+| 200 | `planningReceiptQty` | Planning Receipt (Qty.) | Planning Receipt (Qty.) | 🧮 computed |
+| 201 | `planningReleaseQty` | Planning Release (Qty.) | Planning Release (Qty.) | 🧮 computed |
+| 202 | `purchReqReceiptQty` | Purch. Req. Receipt (Qty.) | Purch. Req. Receipt (Qty.) | 🧮 computed |
+| 203 | `purchReqReleaseQty` | Purch. Req. Release (Qty.) | Purch. Req. Release (Qty.) | 🧮 computed |
+| 204 | `prodForecastQuantityBase` | Prod. Forecast Quantity (Base) | Prod. Forecast Quantity (Base) | 🧮 computed |
 
 > **Added in API v3.1:** fields 183–204 above (previously omitted parenthesized-name standard fields).
 
@@ -2993,19 +2994,19 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 29 | `areaCode` | Area | Area | — |
 | 30 | `transactionSpecification` | Transaction Specification | Transaction Specification | — |
 | 31 | `noSeries` | No. Series | No. Series | — |
-| 32 | `reservedQuantity` | Reserved Quantity | Reserved Quantity | — |
+| 32 | `reservedQuantity` | Reserved Quantity | Reserved Quantity | 🧮 computed |
 | 33 | `documentType` | Document Type | Document Type | — |
 | 34 | `documentLineNo` | Document Line No. | Document Line No. | — |
 | 35 | `orderType` | Order Type | Order Type | — |
 | 36 | `orderNo` | Order No. | Order No. | — |
 | 37 | `orderLineNo` | Order Line No. | Order Line No. | — |
 | 38 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | — |
-| 39 | `shortcutDimension3Code` | Shortcut Dimension 3 Code | Shortcut Dimension 3 Code | — |
-| 40 | `shortcutDimension4Code` | Shortcut Dimension 4 Code | Shortcut Dimension 4 Code | — |
-| 41 | `shortcutDimension5Code` | Shortcut Dimension 5 Code | Shortcut Dimension 5 Code | — |
-| 42 | `shortcutDimension6Code` | Shortcut Dimension 6 Code | Shortcut Dimension 6 Code | — |
-| 43 | `shortcutDimension7Code` | Shortcut Dimension 7 Code | Shortcut Dimension 7 Code | — |
-| 44 | `shortcutDimension8Code` | Shortcut Dimension 8 Code | Shortcut Dimension 8 Code | — |
+| 39 | `shortcutDimension3Code` | Shortcut Dimension 3 Code | Shortcut Dimension 3 Code | 🧮 computed |
+| 40 | `shortcutDimension4Code` | Shortcut Dimension 4 Code | Shortcut Dimension 4 Code | 🧮 computed |
+| 41 | `shortcutDimension5Code` | Shortcut Dimension 5 Code | Shortcut Dimension 5 Code | 🧮 computed |
+| 42 | `shortcutDimension6Code` | Shortcut Dimension 6 Code | Shortcut Dimension 6 Code | 🧮 computed |
+| 43 | `shortcutDimension7Code` | Shortcut Dimension 7 Code | Shortcut Dimension 7 Code | 🧮 computed |
+| 44 | `shortcutDimension8Code` | Shortcut Dimension 8 Code | Shortcut Dimension 8 Code | 🧮 computed |
 | 45 | `assembleToOrder` | Assemble to Order | Assemble to Order | — |
 | 46 | `jobNo` | Job No. | Project No. | — |
 | 47 | `jobTaskNo` | Job Task No. | Project Task No. | — |
@@ -3026,9 +3027,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 62 | `appliedEntryToAdjust` | Applied Entry to Adjust | Applied Entry to Adjust | — |
 | 63 | `correction` | Correction | Correction | — |
 | 64 | `shippedQtyNotReturned` | Shipped Qty. Not Returned | Shipped Qty. Not Returned | — |
-| 65 | `itemLedgerEntryQuantity` | Item Ledger Entry Quantity | Item Ledger Entry Quantity on Value Entry | — |
-| 66 | `remainingQtyByDate` | Remaining Qty. by Date | Remaining Quantity by Date | — |
-| 67 | `dateFilter` | Date Filter | Date Filter | — |
+| 65 | `itemLedgerEntryQuantity` | Item Ledger Entry Quantity | Item Ledger Entry Quantity on Value Entry | 🧮 computed |
+| 66 | `remainingQtyByDate` | Remaining Qty. by Date | Remaining Quantity by Date | 🧮 computed |
+| 67 | `dateFilter` | Date Filter | Date Filter | 🔍 filter |
 | 68 | `prodOrderCompLineNo` | Prod. Order Comp. Line No. | Prod. Order Comp. Line No. | — |
 | 69 | `serialNo` | Serial No. | Serial No. | — |
 | 70 | `lotNo` | Lot No. | Lot No. | — |
@@ -3037,17 +3038,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 73 | `itemTracking` | Item Tracking | Item Tracking | — |
 | 74 | `packageNo` | Package No. | Package No. | — |
 | 75 | `returnReasonCode` | Return Reason Code | Return Reason Code | — |
-| 76 | `itemDescription` | Item Description | Item Description | — |
-| 77 | `costAmountExpected` | Cost Amount (Expected) | Cost Amount (Expected) | — |
-| 78 | `costAmountActual` | Cost Amount (Actual) | Cost Amount (Actual) | — |
-| 79 | `costAmountNonInvtbl` | Cost Amount (Non-Invtbl.) | Cost Amount (Non-Invtbl.) | — |
-| 80 | `costAmountExpectedAcy` | Cost Amount (Expected) (ACY) | Cost Amount (Expected) (ACY) | — |
-| 81 | `costAmountActualAcy` | Cost Amount (Actual) (ACY) | Cost Amount (Actual) (ACY) | — |
-| 82 | `costAmountNonInvtblAcy` | Cost Amount (Non-Invtbl.)(ACY) | Cost Amount (Non-Invtbl.)(ACY) | — |
-| 83 | `purchaseAmountExpected` | Purchase Amount (Expected) | Purchase Amount (Expected) | — |
-| 84 | `purchaseAmountActual` | Purchase Amount (Actual) | Purchase Amount (Actual) | — |
-| 85 | `salesAmountExpected` | Sales Amount (Expected) | Sales Amount (Expected) | — |
-| 86 | `salesAmountActual` | Sales Amount (Actual) | Sales Amount (Actual) | — |
+| 76 | `itemDescription` | Item Description | Item Description | 🧮 computed |
+| 77 | `costAmountExpected` | Cost Amount (Expected) | Cost Amount (Expected) | 🧮 computed |
+| 78 | `costAmountActual` | Cost Amount (Actual) | Cost Amount (Actual) | 🧮 computed |
+| 79 | `costAmountNonInvtbl` | Cost Amount (Non-Invtbl.) | Cost Amount (Non-Invtbl.) | 🧮 computed |
+| 80 | `costAmountExpectedAcy` | Cost Amount (Expected) (ACY) | Cost Amount (Expected) (ACY) | 🧮 computed |
+| 81 | `costAmountActualAcy` | Cost Amount (Actual) (ACY) | Cost Amount (Actual) (ACY) | 🧮 computed |
+| 82 | `costAmountNonInvtblAcy` | Cost Amount (Non-Invtbl.)(ACY) | Cost Amount (Non-Invtbl.)(ACY) | 🧮 computed |
+| 83 | `purchaseAmountExpected` | Purchase Amount (Expected) | Purchase Amount (Expected) | 🧮 computed |
+| 84 | `purchaseAmountActual` | Purchase Amount (Actual) | Purchase Amount (Actual) | 🧮 computed |
+| 85 | `salesAmountExpected` | Sales Amount (Expected) | Sales Amount (Expected) | 🧮 computed |
+| 86 | `salesAmountActual` | Sales Amount (Actual) | Sales Amount (Actual) | 🧮 computed |
 
 > **Added in API v3.1:** fields 77–86 above (previously omitted parenthesized-name standard fields).
 
@@ -3122,12 +3123,12 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 48 | `varianceType` | Variance Type | Variance Type | — |
 | 49 | `expectedCostPostedToGL` | Expected Cost Posted to G/L | Expected Cost Posted to G/L | — |
 | 50 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | — |
-| 51 | `shortcutDimension3Code` | Shortcut Dimension 3 Code | Shortcut Dimension 3 Code | — |
-| 52 | `shortcutDimension4Code` | Shortcut Dimension 4 Code | Shortcut Dimension 4 Code | — |
-| 53 | `shortcutDimension5Code` | Shortcut Dimension 5 Code | Shortcut Dimension 5 Code | — |
-| 54 | `shortcutDimension6Code` | Shortcut Dimension 6 Code | Shortcut Dimension 6 Code | — |
-| 55 | `shortcutDimension7Code` | Shortcut Dimension 7 Code | Shortcut Dimension 7 Code | — |
-| 56 | `shortcutDimension8Code` | Shortcut Dimension 8 Code | Shortcut Dimension 8 Code | — |
+| 51 | `shortcutDimension3Code` | Shortcut Dimension 3 Code | Shortcut Dimension 3 Code | 🧮 computed |
+| 52 | `shortcutDimension4Code` | Shortcut Dimension 4 Code | Shortcut Dimension 4 Code | 🧮 computed |
+| 53 | `shortcutDimension5Code` | Shortcut Dimension 5 Code | Shortcut Dimension 5 Code | 🧮 computed |
+| 54 | `shortcutDimension6Code` | Shortcut Dimension 6 Code | Shortcut Dimension 6 Code | 🧮 computed |
+| 55 | `shortcutDimension7Code` | Shortcut Dimension 7 Code | Shortcut Dimension 7 Code | 🧮 computed |
+| 56 | `shortcutDimension8Code` | Shortcut Dimension 8 Code | Shortcut Dimension 8 Code | 🧮 computed |
 | 57 | `jobNo` | Job No. | Project No. | — |
 | 58 | `jobTaskNo` | Job Task No. | Project Task No. | — |
 | 59 | `jobLedgerEntryNo` | Job Ledger Entry No. | Project Ledger Entry No. | — |
@@ -3138,7 +3139,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 64 | `type` | Type | Type | — |
 | 65 | `no` | No. | No. | — |
 | 66 | `returnReasonCode` | Return Reason Code | Return Reason Code | — |
-| 67 | `itemDescription` | Item Description | Item Description | — |
+| 67 | `itemDescription` | Item Description | Item Description | 🧮 computed |
 | 68 | `salesAmountActual` | Sales Amount (Actual) | Sales Amount (Actual) | — |
 | 69 | `costAmountActual` | Cost Amount (Actual) | Cost Amount (Actual) | — |
 | 70 | `costAmountActualAcy` | Cost Amount (Actual) (ACY) | Cost Amount (Actual) (ACY) | — |
@@ -3189,10 +3190,10 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 11 | `createdByUser` | Created By User | Created By User | — |
 | 12 | `lastModifiedDate` | Last Modified Date | Last Modified Date | — |
 | 13 | `lastModifiedByUser` | Last Modified By User | Last Modified By User | — |
-| 14 | `itemNo` | Item No. | Item No. | — |
-| 15 | `locationCode` | Location Code | Location Code | — |
-| 16 | `variantCode` | Variant Code | Variant Code | — |
-| 17 | `latestValuationDate` | Latest Valuation Date | Latest Valuation Date | — |
+| 14 | `itemNo` | Item No. | Item No. | 🧮 computed |
+| 15 | `locationCode` | Location Code | Location Code | 🧮 computed |
+| 16 | `variantCode` | Variant Code | Variant Code | 🧮 computed |
+| 17 | `latestValuationDate` | Latest Valuation Date | Latest Valuation Date | 🧮 computed |
 | 18 | `costApplication` | Cost Application | Cost Application | — |
 | 19 | `outputCompletelyInvdDate` | Output Completely Invd. Date | Output Completely Invd. Date | — |
 | 20 | `outboundEntryIsUpdated` | Outbound Entry is Updated | Outbound Entry is Updated | — |
@@ -3250,9 +3251,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 2 | `itemNo` | Item No. | Item No. | ✅ |
 | 3 | `variantCode` | Variant Code | Variant Code | ✅ |
 | 4 | `locationCode` | Location Code | Location Code | ✅ |
-| 5 | `description` | Description | Description | ✅ |
-| 6 | `description2` | Description 2 | Description 2 | ✅ |
-| 7 | `assemblyBom` | Assembly BOM | Assembly BOM | ✅ |
+| 5 | `description` | Description | Description | 🧮 computed |
+| 6 | `description2` | Description 2 | Description 2 | 🧮 computed |
+| 7 | `assemblyBom` | Assembly BOM | Assembly BOM | 🧮 computed |
 | 8 | `shelfNo` | Shelf No. | Shelf No. | ✅ |
 | 9 | `unitCost` | Unit Cost | Unit Cost | ✅ |
 | 10 | `standardCost` | Standard Cost | Standard Cost | ✅ |
@@ -3263,19 +3264,19 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 15 | `reorderPoint` | Reorder Point | Reorder Point | ✅ |
 | 16 | `maximumInventory` | Maximum Inventory | Maximum Inventory | ✅ |
 | 17 | `reorderQuantity` | Reorder Quantity | Reorder Quantity | ✅ |
-| 18 | `comment` | Comment | Comment | ✅ |
+| 18 | `comment` | Comment | Comment | 🧮 computed |
 | 19 | `lastDateModified` | Last Date Modified | Last Date Modified | ✅ |
-| 20 | `dateFilter` | Date Filter | Date Filter | ✅ |
-| 21 | `globalDimension1Filter` | Global Dimension 1 Filter | Global Dimension 1 Filter | ✅ |
-| 22 | `globalDimension2Filter` | Global Dimension 2 Filter | Global Dimension 2 Filter | ✅ |
-| 23 | `inventory` | Inventory | Inventory | ✅ |
-| 24 | `qtyOnPurchOrder` | Qty. on Purch. Order | Qty. on Purch. Order | ✅ |
-| 25 | `qtyOnSalesOrder` | Qty. on Sales Order | Qty. on Sales Order | ✅ |
-| 26 | `dropShipmentFilter` | Drop Shipment Filter | Drop Shipment Filter | ✅ |
+| 20 | `dateFilter` | Date Filter | Date Filter | 🔍 filter |
+| 21 | `globalDimension1Filter` | Global Dimension 1 Filter | Global Dimension 1 Filter | 🔍 filter |
+| 22 | `globalDimension2Filter` | Global Dimension 2 Filter | Global Dimension 2 Filter | 🔍 filter |
+| 23 | `inventory` | Inventory | Inventory | 🧮 computed |
+| 24 | `qtyOnPurchOrder` | Qty. on Purch. Order | Qty. on Purch. Order | 🧮 computed |
+| 25 | `qtyOnSalesOrder` | Qty. on Sales Order | Qty. on Sales Order | 🧮 computed |
+| 26 | `dropShipmentFilter` | Drop Shipment Filter | Drop Shipment Filter | 🔍 filter |
 | 27 | `assemblyPolicy` | Assembly Policy | Assembly Policy | ✅ |
-| 28 | `qtyOnAssemblyOrder` | Qty. on Assembly Order | Qty. on Assembly Order | ✅ |
-| 29 | `qtyOnAsmComponent` | Qty. on Asm. Component | Qty. on Asm. Component | ✅ |
-| 30 | `qtyOnJobOrder` | Qty. on Job Order | Qty. on Project Order | ✅ |
+| 28 | `qtyOnAssemblyOrder` | Qty. on Assembly Order | Qty. on Assembly Order | 🧮 computed |
+| 29 | `qtyOnAsmComponent` | Qty. on Asm. Component | Qty. on Asm. Component | 🧮 computed |
+| 30 | `qtyOnJobOrder` | Qty. on Job Order | Qty. on Project Order | 🧮 computed |
 | 31 | `transferLevelCode` | Transfer-Level Code | Transfer-Level Code | ✅ |
 | 32 | `lotSize` | Lot Size | Lot Size | ✅ |
 | 33 | `discreteOrderQuantity` | Discrete Order Quantity | Discrete Order Quantity | ✅ |
@@ -3287,7 +3288,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 39 | `componentsAtLocation` | Components at Location | Components at Location | ✅ |
 | 40 | `flushingMethod` | Flushing Method | Flushing Method | ✅ |
 | 41 | `replenishmentSystem` | Replenishment System | Replenishment System | ✅ |
-| 42 | `binFilter` | Bin Filter | Bin Filter | ✅ |
+| 42 | `binFilter` | Bin Filter | Bin Filter | 🔍 filter |
 | 43 | `timeBucket` | Time Bucket | Time Bucket | ✅ |
 | 44 | `reorderingPolicy` | Reordering Policy | Reordering Policy | ✅ |
 | 45 | `includeInventory` | Include Inventory | Include Inventory | ✅ |
@@ -3299,13 +3300,13 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 51 | `overflowLevel` | Overflow Level | Overflow Level | ✅ |
 | 52 | `planMinimalSupply` | Plan Minimal Supply | Plan Minimal Supply | ✅ |
 | 53 | `transferFromCode` | Transfer-from Code | Transfer-from Code | ✅ |
-| 54 | `qtyInTransit` | Qty. in Transit | Qty. in Transit | ✅ |
+| 54 | `qtyInTransit` | Qty. in Transit | Qty. in Transit | 🧮 computed |
 | 55 | `specialEquipmentCode` | Special Equipment Code | Special Equipment Code | ✅ |
 | 56 | `putAwayTemplateCode` | Put-away Template Code | Put-away Template Code | ✅ |
 | 57 | `putAwayUnitOfMeasureCode` | Put-away Unit of Measure Code | Put-away Unit of Measure Code | ✅ |
 | 58 | `physInvtCountingPeriodCode` | Phys Invt Counting Period Code | Phys Invt Counting Period Code | ✅ |
 | 59 | `lastCountingPeriodUpdate` | Last Counting Period Update | Last Counting Period Update | ✅ |
-| 60 | `lastPhysInvtDate` | Last Phys. Invt. Date | Last Phys. Invt. Date | ✅ |
+| 60 | `lastPhysInvtDate` | Last Phys. Invt. Date | Last Phys. Invt. Date | 🧮 computed |
 | 61 | `useCrossDocking` | Use Cross-Docking | Use Cross-Docking | ✅ |
 | 62 | `nextCountingStartDate` | Next Counting Start Date | Next Counting Start Date | ✅ |
 | 63 | `nextCountingEndDate` | Next Counting End Date | Next Counting End Date | ✅ |
@@ -3322,10 +3323,10 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 74 | `rolledUpMfgOvhdCost` | Rolled-up Mfg. Ovhd Cost | Rolled-up Mfg. Ovhd Cost | ✅ |
 | 75 | `rolledUpCapOverheadCost` | Rolled-up Cap. Overhead Cost | Rolled-up Cap. Overhead Cost | ✅ |
 | 76 | `singleLvlMatNonInvtCost` | Single-Lvl Mat. Non-Invt. Cost | Single-Level Material Non-Inventory Cost | ✅ |
-| 77 | `transOrdReceiptQty` | Trans. Ord. Receipt (Qty.) | Trans. Ord. Receipt (Qty.) | ✅ |
-| 78 | `transOrdShipmentQty` | Trans. Ord. Shipment (Qty.) | Trans. Ord. Shipment (Qty.) | ✅ |
-| 79 | `purchReqReceiptQty` | Purch. Req. Receipt (Qty.) | Purch. Req. Receipt (Qty.) | ✅ |
-| 80 | `purchReqReleaseQty` | Purch. Req. Release (Qty.) | Purch. Req. Release (Qty.) | ✅ |
+| 77 | `transOrdReceiptQty` | Trans. Ord. Receipt (Qty.) | Trans. Ord. Receipt (Qty.) | 🧮 computed |
+| 78 | `transOrdShipmentQty` | Trans. Ord. Shipment (Qty.) | Trans. Ord. Shipment (Qty.) | 🧮 computed |
+| 79 | `purchReqReceiptQty` | Purch. Req. Receipt (Qty.) | Purch. Req. Receipt (Qty.) | 🧮 computed |
+| 80 | `purchReqReleaseQty` | Purch. Req. Release (Qty.) | Purch. Req. Release (Qty.) | 🧮 computed |
 
 > **Added in API v3.1:** fields 77–80 above (previously omitted parenthesized-name standard fields).
 
@@ -3478,12 +3479,12 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 24 | `unitPrice` | Unit Price | Unit Price | ✅ |
 | 25 | `vendorNo` | Vendor No. | Vendor No. | ✅ |
 | 26 | `lastDateModified` | Last Date Modified | Last Date Modified | ✅ |
-| 27 | `comment` | Comment | Comment | ✅ |
+| 27 | `comment` | Comment | Comment | 🧮 computed |
 | 28 | `blocked` | Blocked | Blocked | ✅ |
-| 29 | `dateFilter` | Date Filter | Date Filter | ✅ |
-| 30 | `unitOfMeasureFilter` | Unit of Measure Filter | Unit of Measure Filter | ✅ |
-| 31 | `capacity` | Capacity | Capacity | ✅ |
-| 32 | `chargeableFilter` | Chargeable Filter | Chargeable Filter | ✅ |
+| 29 | `dateFilter` | Date Filter | Date Filter | 🔍 filter |
+| 30 | `unitOfMeasureFilter` | Unit of Measure Filter | Unit of Measure Filter | 🔍 filter |
+| 31 | `capacity` | Capacity | Capacity | 🧮 computed |
+| 32 | `chargeableFilter` | Chargeable Filter | Chargeable Filter | 🔍 filter |
 | 33 | `genProdPostingGroup` | Gen. Prod. Posting Group | Gen. Prod. Posting Group | ✅ |
 | 34 | `postCode` | Post Code | Post Code | ✅ |
 | 35 | `county` | County | County | ✅ |
@@ -3493,23 +3494,23 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 39 | `vATProdPostingGroup` | VAT Prod. Posting Group | VAT Prod. Posting Group | ✅ |
 | 40 | `countryRegionCode` | Country/Region Code | Country/Region Code | ✅ |
 | 41 | `iCPartnerPurchGLAccNo` | IC Partner Purch. G/L Acc. No. | IC Partner Purch. G/L Acc. No. | ✅ |
-| 42 | `unitGroupExists` | Unit Group Exists | Unit Group Exists | ✅ |
+| 42 | `unitGroupExists` | Unit Group Exists | Unit Group Exists | 🧮 computed |
 | 43 | `image` | Image | Image | ✅ |
 | 44 | `privacyBlocked` | Privacy Blocked | Privacy Blocked | ✅ |
-| 45 | `coupledToDataverse` | Coupled to Dataverse | Coupled to Dynamics 365 Sales | ✅ |
-| 46 | `qtyOnAssemblyOrder` | Qty. on Assembly Order | Qty. on Assembly Order | ✅ |
+| 45 | `coupledToDataverse` | Coupled to Dataverse | Coupled to Dynamics 365 Sales | 🧮 computed |
+| 46 | `qtyOnAssemblyOrder` | Qty. on Assembly Order | Qty. on Assembly Order | 🧮 computed |
 | 47 | `useTimeSheet` | Use Time Sheet | Use Time Sheet | ✅ |
 | 48 | `timeSheetOwnerUserId` | Time Sheet Owner User ID | Time Sheet Owner User ID | ✅ |
 | 49 | `timeSheetApproverUserId` | Time Sheet Approver User ID | Time Sheet Approver User ID | ✅ |
 | 50 | `defaultDeferralTemplateCode` | Default Deferral Template Code | Default Deferral Template Code | ✅ |
-| 51 | `qtyOnOrderJob` | Qty. on Order (Job) | Qty. on Order (Project) | ✅ |
-| 52 | `qtyQuotedJob` | Qty. Quoted (Job) | Qty. Quoted (Project) | ✅ |
-| 53 | `usageQty` | Usage (Qty.) | Usage (Qty.) | ✅ |
-| 54 | `usageCost` | Usage (Cost) | Usage (Cost) | ✅ |
-| 55 | `usagePrice` | Usage (Price) | Usage (Price) | ✅ |
-| 56 | `salesQty` | Sales (Qty.) | Sales (Qty.) | ✅ |
-| 57 | `salesCost` | Sales (Cost) | Sales (Cost) | ✅ |
-| 58 | `salesPrice` | Sales (Price) | Sales (Price) | ✅ |
+| 51 | `qtyOnOrderJob` | Qty. on Order (Job) | Qty. on Order (Project) | 🧮 computed |
+| 52 | `qtyQuotedJob` | Qty. Quoted (Job) | Qty. Quoted (Project) | 🧮 computed |
+| 53 | `usageQty` | Usage (Qty.) | Usage (Qty.) | 🧮 computed |
+| 54 | `usageCost` | Usage (Cost) | Usage (Cost) | 🧮 computed |
+| 55 | `usagePrice` | Usage (Price) | Usage (Price) | 🧮 computed |
+| 56 | `salesQty` | Sales (Qty.) | Sales (Qty.) | 🧮 computed |
+| 57 | `salesCost` | Sales (Cost) | Sales (Cost) | 🧮 computed |
+| 58 | `salesPrice` | Sales (Price) | Sales (Price) | 🧮 computed |
 
 > **Added in API v3.1:** fields 51–58 above (previously omitted parenthesized-name standard fields).
 
@@ -3571,12 +3572,12 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 35 | `orderNo` | Order No. | Order No. | — |
 | 36 | `orderLineNo` | Order Line No. | Order Line No. | — |
 | 37 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | — |
-| 38 | `shortcutDimension3Code` | Shortcut Dimension 3 Code | Shortcut Dimension 3 Code | — |
-| 39 | `shortcutDimension4Code` | Shortcut Dimension 4 Code | Shortcut Dimension 4 Code | — |
-| 40 | `shortcutDimension5Code` | Shortcut Dimension 5 Code | Shortcut Dimension 5 Code | — |
-| 41 | `shortcutDimension6Code` | Shortcut Dimension 6 Code | Shortcut Dimension 6 Code | — |
-| 42 | `shortcutDimension7Code` | Shortcut Dimension 7 Code | Shortcut Dimension 7 Code | — |
-| 43 | `shortcutDimension8Code` | Shortcut Dimension 8 Code | Shortcut Dimension 8 Code | — |
+| 38 | `shortcutDimension3Code` | Shortcut Dimension 3 Code | Shortcut Dimension 3 Code | 🧮 computed |
+| 39 | `shortcutDimension4Code` | Shortcut Dimension 4 Code | Shortcut Dimension 4 Code | 🧮 computed |
+| 40 | `shortcutDimension5Code` | Shortcut Dimension 5 Code | Shortcut Dimension 5 Code | 🧮 computed |
+| 41 | `shortcutDimension6Code` | Shortcut Dimension 6 Code | Shortcut Dimension 6 Code | 🧮 computed |
+| 42 | `shortcutDimension7Code` | Shortcut Dimension 7 Code | Shortcut Dimension 7 Code | 🧮 computed |
+| 43 | `shortcutDimension8Code` | Shortcut Dimension 8 Code | Shortcut Dimension 8 Code | 🧮 computed |
 | 44 | `quantityBase` | Quantity (Base) | Quantity (Base) | — |
 
 > **Added in API v3.1:** fields 44–44 above (previously omitted parenthesized-name standard fields).
@@ -3605,21 +3606,21 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 1 | `systemId` | SystemId | System ID | 🔑 Key |
 | 2 | `no` | No. | No. | ✅ |
 | 3 | `name` | Name | Name | ✅ |
-| 4 | `dateFilter` | Date Filter | Date Filter | ✅ |
-| 5 | `capacity` | Capacity | Capacity | ✅ |
-| 6 | `unitOfMeasureFilter` | Unit of Measure Filter | Unit of Measure Filter | ✅ |
-| 7 | `chargeableFilter` | Chargeable Filter | Chargeable Filter | ✅ |
+| 4 | `dateFilter` | Date Filter | Date Filter | 🔍 filter |
+| 5 | `capacity` | Capacity | Capacity | 🧮 computed |
+| 6 | `unitOfMeasureFilter` | Unit of Measure Filter | Unit of Measure Filter | 🔍 filter |
+| 7 | `chargeableFilter` | Chargeable Filter | Chargeable Filter | 🔍 filter |
 | 8 | `globalDimension1Code` | Global Dimension 1 Code | Global Dimension 1 Code | ✅ |
 | 9 | `globalDimension2Code` | Global Dimension 2 Code | Global Dimension 2 Code | ✅ |
-| 10 | `noOfResourcesAssigned` | No. of Resources Assigned | No. of Resources Assigned | ✅ |
-| 11 | `qtyOnOrderJob` | Qty. on Order (Job) | Qty. on Order (Project) | ✅ |
-| 12 | `qtyQuotedJob` | Qty. Quoted (Job) | Qty. Quoted (Project) | ✅ |
-| 13 | `usageQty` | Usage (Qty.) | Usage (Qty.) | ✅ |
-| 14 | `usageCost` | Usage (Cost) | Usage (Cost) | ✅ |
-| 15 | `usagePrice` | Usage (Price) | Usage (Price) | ✅ |
-| 16 | `salesQty` | Sales (Qty.) | Sales (Qty.) | ✅ |
-| 17 | `salesCost` | Sales (Cost) | Sales (Cost) | ✅ |
-| 18 | `salesPrice` | Sales (Price) | Sales (Price) | ✅ |
+| 10 | `noOfResourcesAssigned` | No. of Resources Assigned | No. of Resources Assigned | 🧮 computed |
+| 11 | `qtyOnOrderJob` | Qty. on Order (Job) | Qty. on Order (Project) | 🧮 computed |
+| 12 | `qtyQuotedJob` | Qty. Quoted (Job) | Qty. Quoted (Project) | 🧮 computed |
+| 13 | `usageQty` | Usage (Qty.) | Usage (Qty.) | 🧮 computed |
+| 14 | `usageCost` | Usage (Cost) | Usage (Cost) | 🧮 computed |
+| 15 | `usagePrice` | Usage (Price) | Usage (Price) | 🧮 computed |
+| 16 | `salesQty` | Sales (Qty.) | Sales (Qty.) | 🧮 computed |
+| 17 | `salesCost` | Sales (Cost) | Sales (Cost) | 🧮 computed |
+| 18 | `salesPrice` | Sales (Price) | Sales (Price) | 🧮 computed |
 
 > **Added in API v3.1:** fields 11–18 above (previously omitted parenthesized-name standard fields).
 
@@ -3681,14 +3682,14 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 35 | `globalDimension1Code` | Global Dimension 1 Code | Global Dimension 1 Code | ✅ |
 | 36 | `globalDimension2Code` | Global Dimension 2 Code | Global Dimension 2 Code | ✅ |
 | 37 | `resourceNo` | Resource No. | Resource No. | ✅ |
-| 38 | `comment` | Comment | Comment | ✅ |
+| 38 | `comment` | Comment | Comment | 🧮 computed |
 | 39 | `lastDateModified` | Last Date Modified | Last Date Modified | ✅ |
-| 40 | `dateFilter` | Date Filter | Date Filter | ✅ |
-| 41 | `globalDimension1Filter` | Global Dimension 1 Filter | Global Dimension 1 Filter | ✅ |
-| 42 | `globalDimension2Filter` | Global Dimension 2 Filter | Global Dimension 2 Filter | ✅ |
-| 43 | `causeOfAbsenceFilter` | Cause of Absence Filter | Cause of Absence Filter | ✅ |
+| 40 | `dateFilter` | Date Filter | Date Filter | 🔍 filter |
+| 41 | `globalDimension1Filter` | Global Dimension 1 Filter | Global Dimension 1 Filter | 🔍 filter |
+| 42 | `globalDimension2Filter` | Global Dimension 2 Filter | Global Dimension 2 Filter | 🔍 filter |
+| 43 | `causeOfAbsenceFilter` | Cause of Absence Filter | Cause of Absence Filter | 🔍 filter |
 | 44 | `extension` | Extension | Extension | ✅ |
-| 45 | `employeeNoFilter` | Employee No. Filter | Employee No. Filter | ✅ |
+| 45 | `employeeNoFilter` | Employee No. Filter | Employee No. Filter | 🔍 filter |
 | 46 | `pager` | Pager | Pager | ✅ |
 | 47 | `faxNo` | Fax No. | Fax No. | ✅ |
 | 48 | `companyEMail` | Company E-Mail | Company Email | ✅ |
@@ -3700,11 +3701,11 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 54 | `bankBranchNo` | Bank Branch No. | Bank Branch No. | ✅ |
 | 55 | `bankAccountNo` | Bank Account No. | Bank Account No. | ✅ |
 | 56 | `iBAN` | IBAN | IBAN | ✅ |
-| 57 | `balance` | Balance | Balance | ✅ |
+| 57 | `balance` | Balance | Balance | 🧮 computed |
 | 58 | `sWIFTCode` | SWIFT Code | SWIFT Code | ✅ |
 | 59 | `currencyCode` | Currency Code | Currency Code | ✅ |
 | 60 | `applicationMethod` | Application Method | Application Method | ✅ |
-| 61 | `currencyFilter` | Currency Filter | Currency Filter | ✅ |
+| 61 | `currencyFilter` | Currency Filter | Currency Filter | 🔍 filter |
 | 62 | `engagementType` | Engagement Type | Engagement Type | ✅ |
 | 63 | `collectiveBargainAgmtInfo` | Collective Bargain. Agmt. Info | Collective Bargaining Agreement Info | ✅ |
 | 64 | `boardMember` | Board Member | Board Member | ✅ |
@@ -3720,8 +3721,8 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 74 | `allowMultiplePostingGroups` | Allow Multiple Posting Groups | Allow Multiple Posting Groups | ✅ |
 | 75 | `costCenterCode` | Cost Center Code | Cost Center Code | ✅ |
 | 76 | `costObjectCode` | Cost Object Code | Cost Object Code | ✅ |
-| 77 | `totalAbsenceBase` | Total Absence (Base) | Total Absence (Base) | ✅ |
-| 78 | `balanceLcy` | Balance (LCY) | Balance (LCY) | ✅ |
+| 77 | `totalAbsenceBase` | Total Absence (Base) | Total Absence (Base) | 🧮 computed |
+| 78 | `balanceLcy` | Balance (LCY) | Balance (LCY) | 🧮 computed |
 | 79 | `payrollLcy` | Payroll (LCY) | Payroll (LCY) | ✅ |
 
 > **Added in API v3.1:** fields 77–79 above (previously omitted parenthesized-name standard fields).
@@ -3753,43 +3754,43 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 4 | `commission` | Commission % | Commission % | ✅ |
 | 5 | `image` | Image | Image | ✅ |
 | 6 | `privacyBlocked` | Privacy Blocked | Privacy Blocked | ✅ |
-| 7 | `coupledToDataverse` | Coupled to Dataverse | Coupled to Dataverse | ✅ |
+| 7 | `coupledToDataverse` | Coupled to Dataverse | Coupled to Dataverse | 🧮 computed |
 | 8 | `globalDimension1Code` | Global Dimension 1 Code | Global Dimension 1 Code | ✅ |
 | 9 | `globalDimension2Code` | Global Dimension 2 Code | Global Dimension 2 Code | ✅ |
 | 10 | `eMail` | E-Mail | Email | ✅ |
 | 11 | `phoneNo` | Phone No. | Phone No. | ✅ |
-| 12 | `nextTaskDate` | Next Task Date | Next Task Date | ✅ |
-| 13 | `noOfOpportunities` | No. of Opportunities | No. of Opportunities | ✅ |
-| 14 | `dateFilter` | Date Filter | Date Filter | ✅ |
-| 15 | `noOfInteractions` | No. of Interactions | No. of Interactions | ✅ |
+| 12 | `nextTaskDate` | Next Task Date | Next Task Date | 🧮 computed |
+| 13 | `noOfOpportunities` | No. of Opportunities | No. of Opportunities | 🧮 computed |
+| 14 | `dateFilter` | Date Filter | Date Filter | 🔍 filter |
+| 15 | `noOfInteractions` | No. of Interactions | No. of Interactions | 🧮 computed |
 | 16 | `jobTitle` | Job Title | Job Title | ✅ |
-| 17 | `actionTakenFilter` | Action Taken Filter | Action Taken Filter | ✅ |
-| 18 | `salesCycleFilter` | Sales Cycle Filter | Sales Cycle Filter | ✅ |
-| 19 | `salesCycleStageFilter` | Sales Cycle Stage Filter | Sales Cycle Stage Filter | ✅ |
-| 20 | `probabilityFilter` | Probability % Filter | Probability % Filter | ✅ |
-| 21 | `completedFilter` | Completed % Filter | Completed % Filter | ✅ |
-| 22 | `contactFilter` | Contact Filter | Contact Filter | ✅ |
-| 23 | `contactCompanyFilter` | Contact Company Filter | Contact Company Filter | ✅ |
-| 24 | `campaignFilter` | Campaign Filter | Campaign Filter | ✅ |
-| 25 | `estimatedValueFilter` | Estimated Value Filter | Estimated Value Filter | ✅ |
-| 26 | `calcdCurrentValueFilter` | Calcd. Current Value Filter | Calcd. Current Value Filter | ✅ |
-| 27 | `chancesOfSuccessFilter` | Chances of Success % Filter | Chances of Success % Filter | ✅ |
-| 28 | `taskStatusFilter` | Task Status Filter | Task Status Filter | ✅ |
-| 29 | `closedTaskFilter` | Closed Task Filter | Closed Task Filter | ✅ |
-| 30 | `priorityFilter` | Priority Filter | Priority Filter | ✅ |
-| 31 | `teamFilter` | Team Filter | Team Filter | ✅ |
-| 32 | `opportunityEntryExists` | Opportunity Entry Exists | Opportunity Entry Exists | ✅ |
-| 33 | `taskEntryExists` | Task Entry Exists | Task Entry Exists | ✅ |
-| 34 | `closeOpportunityFilter` | Close Opportunity Filter | Close Opportunity Filter | ✅ |
+| 17 | `actionTakenFilter` | Action Taken Filter | Action Taken Filter | 🔍 filter |
+| 18 | `salesCycleFilter` | Sales Cycle Filter | Sales Cycle Filter | 🔍 filter |
+| 19 | `salesCycleStageFilter` | Sales Cycle Stage Filter | Sales Cycle Stage Filter | 🔍 filter |
+| 20 | `probabilityFilter` | Probability % Filter | Probability % Filter | 🔍 filter |
+| 21 | `completedFilter` | Completed % Filter | Completed % Filter | 🔍 filter |
+| 22 | `contactFilter` | Contact Filter | Contact Filter | 🔍 filter |
+| 23 | `contactCompanyFilter` | Contact Company Filter | Contact Company Filter | 🔍 filter |
+| 24 | `campaignFilter` | Campaign Filter | Campaign Filter | 🔍 filter |
+| 25 | `estimatedValueFilter` | Estimated Value Filter | Estimated Value Filter | 🔍 filter |
+| 26 | `calcdCurrentValueFilter` | Calcd. Current Value Filter | Calcd. Current Value Filter | 🔍 filter |
+| 27 | `chancesOfSuccessFilter` | Chances of Success % Filter | Chances of Success % Filter | 🔍 filter |
+| 28 | `taskStatusFilter` | Task Status Filter | Task Status Filter | 🔍 filter |
+| 29 | `closedTaskFilter` | Closed Task Filter | Closed Task Filter | 🔍 filter |
+| 30 | `priorityFilter` | Priority Filter | Priority Filter | 🔍 filter |
+| 31 | `teamFilter` | Team Filter | Team Filter | 🔍 filter |
+| 32 | `opportunityEntryExists` | Opportunity Entry Exists | Opportunity Entry Exists | 🧮 computed |
+| 33 | `taskEntryExists` | Task Entry Exists | Task Entry Exists | 🧮 computed |
+| 34 | `closeOpportunityFilter` | Close Opportunity Filter | Close Opportunity Filter | 🔍 filter |
 | 35 | `searchEMail` | Search E-Mail | Search Email | ✅ |
 | 36 | `eMail2` | E-Mail 2 | Email 2 | ✅ |
 | 37 | `blocked` | Blocked | Blocked | ✅ |
-| 38 | `estimatedValueLcy` | Estimated Value (LCY) | Estimated Value (LCY) | ✅ |
-| 39 | `calcdCurrentValueLcy` | Calcd. Current Value (LCY) | Calcd. Current Value (LCY) | ✅ |
-| 40 | `costLcy` | Cost (LCY) | Cost (LCY) | ✅ |
-| 41 | `durationMin` | Duration (Min.) | Duration (Min.) | ✅ |
-| 42 | `avgEstimatedValueLcy` | Avg. Estimated Value (LCY) | Avg. Estimated Value (LCY) | ✅ |
-| 43 | `avgCalcdCurrentValueLcy` | Avg.Calcd. Current Value (LCY) | Avg.Calcd. Current Value (LCY) | ✅ |
+| 38 | `estimatedValueLcy` | Estimated Value (LCY) | Estimated Value (LCY) | 🧮 computed |
+| 39 | `calcdCurrentValueLcy` | Calcd. Current Value (LCY) | Calcd. Current Value (LCY) | 🧮 computed |
+| 40 | `costLcy` | Cost (LCY) | Cost (LCY) | 🧮 computed |
+| 41 | `durationMin` | Duration (Min.) | Duration (Min.) | 🧮 computed |
+| 42 | `avgEstimatedValueLcy` | Avg. Estimated Value (LCY) | Avg. Estimated Value (LCY) | 🧮 computed |
+| 43 | `avgCalcdCurrentValueLcy` | Avg.Calcd. Current Value (LCY) | Avg.Calcd. Current Value (LCY) | 🧮 computed |
 
 > **Added in API v3.1:** fields 38–43 above (previously omitted parenthesized-name standard fields).
 
@@ -3915,18 +3916,18 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 40 | `formatRegion` | Format Region | Format Region | ✅ |
 | 41 | `salespersonCode` | Salesperson Code | Salesperson Code | ✅ |
 | 42 | `orderClass` | Order Class | Order Class | ✅ |
-| 43 | `comment` | Comment | Comment | ✅ |
+| 43 | `comment` | Comment | Comment | 🧮 computed |
 | 44 | `noPrinted` | No. Printed | No. Printed | ✅ |
 | 45 | `onHold` | On Hold | On Hold | ✅ |
 | 46 | `appliesToDocType` | Applies-to Doc. Type | Applies-to Doc. Type | ✅ |
 | 47 | `appliesToDocNo` | Applies-to Doc. No. | Applies-to Doc. No. | ✅ |
 | 48 | `balAccountNo` | Bal. Account No. | Bal. Account No. | ✅ |
-| 49 | `recalculateInvoiceDisc` | Recalculate Invoice Disc. | Recalculate Invoice Disc. | ✅ |
+| 49 | `recalculateInvoiceDisc` | Recalculate Invoice Disc. | Recalculate Invoice Disc. | 🧮 computed |
 | 50 | `ship` | Ship | Ship | ✅ |
 | 51 | `invoice` | Invoice | Invoice | ✅ |
 | 52 | `printPostedDocuments` | Print Posted Documents | Print Posted Documents | ✅ |
-| 53 | `amount` | Amount | Amount | ✅ |
-| 54 | `amountIncludingVat` | Amount Including VAT | Amount Including VAT | ✅ |
+| 53 | `amount` | Amount | Amount | 🧮 computed |
+| 54 | `amountIncludingVat` | Amount Including VAT | Amount Including VAT | 🧮 computed |
 | 55 | `shippingNo` | Shipping No. | Shipping No. | ✅ |
 | 56 | `postingNo` | Posting No. | Posting No. | ✅ |
 | 57 | `lastShippingNo` | Last Shipping No. | Last Shipping No. | ✅ |
@@ -4014,17 +4015,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 139 | `journalTemplName` | Journal Templ. Name | Journal Template Name | ✅ |
 | 140 | `vatReportingDate` | VAT Reporting Date | VAT Date | ✅ |
 | 141 | `rcvdFromCountRegionCode` | Rcvd.-from Count./Region Code | Received-from Country/Region Code | ✅ |
-| 142 | `lastEmailSentTime` | Last Email Sent Time | Last Email Sent Time | ✅ |
-| 143 | `lastEmailSentMessageId` | Last Email Sent Message Id | Last Email Sent Message Id | ✅ |
+| 142 | `lastEmailSentTime` | Last Email Sent Time | Last Email Sent Time | 🧮 computed |
+| 143 | `lastEmailSentMessageId` | Last Email Sent Message Id | Last Email Sent Message Id | 🧮 computed |
 | 144 | `shipToPhoneNo` | Ship-to Phone No. | Ship-to Phone No. | ✅ |
-| 145 | `amtShipNotInvLcy` | Amt. Ship. Not Inv. (LCY) | Amount Shipped Not Invoiced (LCY) Incl. VAT | ✅ |
-| 146 | `amtShipNotInvLcyBase` | Amt. Ship. Not Inv. (LCY) Base | Amount Shipped Not Invoiced (LCY) | ✅ |
+| 145 | `amtShipNotInvLcy` | Amt. Ship. Not Inv. (LCY) | Amount Shipped Not Invoiced (LCY) Incl. VAT | 🧮 computed |
+| 146 | `amtShipNotInvLcyBase` | Amt. Ship. Not Inv. (LCY) Base | Amount Shipped Not Invoiced (LCY) | 🧮 computed |
 | 147 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | ✅ |
 | 148 | `paymentServiceSetId` | Payment Service Set ID | Payment Service Set ID | ✅ |
-| 149 | `coupledToDataverse` | Coupled to Dataverse | Coupled to Dynamics 365 Sales | ✅ |
+| 149 | `coupledToDataverse` | Coupled to Dataverse | Coupled to Dynamics 365 Sales | 🧮 computed |
 | 150 | `directDebitMandateId` | Direct Debit Mandate ID | Direct Debit Mandate ID | ✅ |
-| 151 | `invoiceDiscountAmount` | Invoice Discount Amount | Invoice Discount Amount | ✅ |
-| 152 | `noOfArchivedVersions` | No. of Archived Versions | No. of Archived Versions | ✅ |
+| 151 | `invoiceDiscountAmount` | Invoice Discount Amount | Invoice Discount Amount | 🧮 computed |
+| 152 | `noOfArchivedVersions` | No. of Archived Versions | No. of Archived Versions | 🧮 computed |
 | 153 | `docNoOccurrence` | Doc. No. Occurrence | Doc. No. Occurrence | ✅ |
 | 154 | `campaignNo` | Campaign No. | Campaign No. | ✅ |
 | 155 | `sellToContactNo` | Sell-to Contact No. | Sell-to Contact No. | ✅ |
@@ -4034,19 +4035,19 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 159 | `billToCustomerTemplCode` | Bill-to Customer Templ. Code | Bill-to Customer Template Code | ✅ |
 | 160 | `responsibilityCenter` | Responsibility Center | Responsibility Center | ✅ |
 | 161 | `shippingAdvice` | Shipping Advice | Shipping Advice | ✅ |
-| 162 | `shippedNotInvoiced` | Shipped Not Invoiced | Shipped Not Invoiced | ✅ |
-| 163 | `completelyShipped` | Completely Shipped | Completely Shipped | ✅ |
+| 162 | `shippedNotInvoiced` | Shipped Not Invoiced | Shipped Not Invoiced | 🧮 computed |
+| 163 | `completelyShipped` | Completely Shipped | Completely Shipped | 🧮 computed |
 | 164 | `postingFromWhseRef` | Posting from Whse. Ref. | Posting from Whse. Ref. | ✅ |
-| 165 | `locationFilter` | Location Filter | Location Filter | ✅ |
-| 166 | `shipped` | Shipped | Shipped | ✅ |
-| 167 | `lastShipmentDate` | Last Shipment Date | Last Shipment Date | ✅ |
+| 165 | `locationFilter` | Location Filter | Location Filter | 🔍 filter |
+| 166 | `shipped` | Shipped | Shipped | 🧮 computed |
+| 167 | `lastShipmentDate` | Last Shipment Date | Last Shipment Date | 🧮 computed |
 | 168 | `requestedDeliveryDate` | Requested Delivery Date | Requested Delivery Date | ✅ |
 | 169 | `promisedDeliveryDate` | Promised Delivery Date | Promised Delivery Date | ✅ |
 | 170 | `shippingTime` | Shipping Time | Shipping Time | ✅ |
 | 171 | `outboundWhseHandlingTime` | Outbound Whse. Handling Time | Outbound Whse. Handling Time | ✅ |
 | 172 | `shippingAgentServiceCode` | Shipping Agent Service Code | Shipping Agent Service Code | ✅ |
-| 173 | `lateOrderShipping` | Late Order Shipping | Late Order Shipping | ✅ |
-| 174 | `dateFilter` | Date Filter | Date Filter | ✅ |
+| 173 | `lateOrderShipping` | Late Order Shipping | Late Order Shipping | 🧮 computed |
+| 174 | `dateFilter` | Date Filter | Date Filter | 🔍 filter |
 | 175 | `receive` | Receive | Receive | ✅ |
 | 176 | `returnReceiptNo` | Return Receipt No. | Return Receipt No. | ✅ |
 | 177 | `returnReceiptNoSeries` | Return Receipt No. Series | Return Receipt No. Series | ✅ |
@@ -4147,7 +4148,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 67 | `outstandingAmountLcy` | Outstanding Amount (LCY) | Outstanding Amount (LCY) | ✅ |
 | 68 | `shippedNotInvoicedLcy` | Shipped Not Invoiced (LCY) | Shipped Not Invoiced (LCY) Incl. VAT | ✅ |
 | 69 | `shippedNotInvLcyNoVat` | Shipped Not Inv. (LCY) No VAT | Shipped Not Invoiced (LCY) | ✅ |
-| 70 | `reservedQuantity` | Reserved Quantity | Reserved Quantity | ✅ |
+| 70 | `reservedQuantity` | Reserved Quantity | Reserved Quantity | 🧮 computed |
 | 71 | `reserve` | Reserve | Reserve | ✅ |
 | 72 | `blanketOrderNo` | Blanket Order No. | Blanket Order No. | ✅ |
 | 73 | `blanketOrderLineNo` | Blanket Order Line No. | Blanket Order Line No. | ✅ |
@@ -4189,15 +4190,15 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 109 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | ✅ |
 | 110 | `qtyToAssembleToOrder` | Qty. to Assemble to Order | Qty. to Assemble to Order | ✅ |
 | 111 | `qtyToAsmToOrderBase` | Qty. to Asm. to Order (Base) | Qty. to Asm. to Order (Base) | ✅ |
-| 112 | `atoWhseOutstandingQty` | ATO Whse. Outstanding Qty. | ATO Whse. Outstanding Qty. | ✅ |
-| 113 | `atoWhseOutstdQtyBase` | ATO Whse. Outstd. Qty. (Base) | ATO Whse. Outstd. Qty. (Base) | ✅ |
+| 112 | `atoWhseOutstandingQty` | ATO Whse. Outstanding Qty. | ATO Whse. Outstanding Qty. | 🧮 computed |
+| 113 | `atoWhseOutstdQtyBase` | ATO Whse. Outstd. Qty. (Base) | ATO Whse. Outstd. Qty. (Base) | 🧮 computed |
 | 114 | `jobTaskNo` | Job Task No. | Project Task No. | ✅ |
 | 115 | `jobContractEntryNo` | Job Contract Entry No. | Project Contract Entry No. | ✅ |
-| 116 | `postingDate` | Posting Date | Posting Date | ✅ |
+| 116 | `postingDate` | Posting Date | Posting Date | 🧮 computed |
 | 117 | `deferralCode` | Deferral Code | Deferral Code | ✅ |
 | 118 | `returnsDeferralStartDate` | Returns Deferral Start Date | Returns Deferral Start Date | ✅ |
 | 119 | `selectedAllocAccountNo` | Selected Alloc. Account No. | Allocation Account No. | ✅ |
-| 120 | `allocAccModifiedByUser` | Alloc. Acc. Modified by User | Allocation Account Distributions Modified | ✅ |
+| 120 | `allocAccModifiedByUser` | Alloc. Acc. Modified by User | Allocation Account Distributions Modified | 🧮 computed |
 | 121 | `allocationAccountNo` | Allocation Account No. | Posting Allocation Account No. | ✅ |
 | 122 | `allocSalesLineSystemid` | Alloc. Sales Line SystemId | Allocation Sales Line SystemId | ✅ |
 | 123 | `variantCode` | Variant Code | Variant Code | ✅ |
@@ -4214,7 +4215,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 134 | `qtyShippedNotInvdBase` | Qty. Shipped Not Invd. (Base) | Qty. Shipped Not Invd. (Base) | ✅ |
 | 135 | `qtyShippedBase` | Qty. Shipped (Base) | Qty. Shipped (Base) | ✅ |
 | 136 | `qtyInvoicedBase` | Qty. Invoiced (Base) | Qty. Invoiced (Base) | ✅ |
-| 137 | `reservedQtyBase` | Reserved Qty. (Base) | Reserved Qty. (Base) | ✅ |
+| 137 | `reservedQtyBase` | Reserved Qty. (Base) | Reserved Qty. (Base) | 🧮 computed |
 | 138 | `faPostingDate` | FA Posting Date | FA Posting Date | ✅ |
 | 139 | `depreciationBookCode` | Depreciation Book Code | Depreciation Book Code | ✅ |
 | 140 | `deprUntilFaPostingDate` | Depr. until FA Posting Date | Depr. until FA Posting Date | ✅ |
@@ -4222,7 +4223,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 142 | `useDuplicationList` | Use Duplication List | Use Duplication List | ✅ |
 | 143 | `responsibilityCenter` | Responsibility Center | Responsibility Center | ✅ |
 | 144 | `outOfStockSubstitution` | Out-of-Stock Substitution | Out-of-Stock Substitution | ✅ |
-| 145 | `substitutionAvailable` | Substitution Available | Substitution Available | ✅ |
+| 145 | `substitutionAvailable` | Substitution Available | Substitution Available | 🧮 computed |
 | 146 | `originallyOrderedNo` | Originally Ordered No. | Originally Ordered No. | ✅ |
 | 147 | `originallyOrderedVarCode` | Originally Ordered Var. Code | Originally Ordered Var. Code | ✅ |
 | 148 | `itemCategoryCode` | Item Category Code | Item Category Code | ✅ |
@@ -4235,8 +4236,8 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 155 | `itemReferenceUnitOfMeasure` | Item Reference Unit of Measure | Reference Unit of Measure | ✅ |
 | 156 | `itemReferenceType` | Item Reference Type | Item Reference Type | ✅ |
 | 157 | `itemReferenceTypeNo` | Item Reference Type No. | Item Reference Type No. | ✅ |
-| 158 | `whseOutstandingQty` | Whse. Outstanding Qty. | Whse. Outstanding Qty. | ✅ |
-| 159 | `whseOutstandingQtyBase` | Whse. Outstanding Qty. (Base) | Whse. Outstanding Qty. (Base) | ✅ |
+| 158 | `whseOutstandingQty` | Whse. Outstanding Qty. | Whse. Outstanding Qty. | 🧮 computed |
+| 159 | `whseOutstandingQtyBase` | Whse. Outstanding Qty. (Base) | Whse. Outstanding Qty. (Base) | 🧮 computed |
 | 160 | `completelyShipped` | Completely Shipped | Completely Shipped | ✅ |
 | 161 | `requestedDeliveryDate` | Requested Delivery Date | Requested Delivery Date | ✅ |
 | 162 | `promisedDeliveryDate` | Promised Delivery Date | Promised Delivery Date | ✅ |
@@ -4247,8 +4248,8 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 167 | `shippingAgentCode` | Shipping Agent Code | Shipping Agent Code | ✅ |
 | 168 | `shippingAgentServiceCode` | Shipping Agent Service Code | Shipping Agent Service Code | ✅ |
 | 169 | `allowItemChargeAssignment` | Allow Item Charge Assignment | Allow Item Charge Assignment | ✅ |
-| 170 | `qtyToAssign` | Qty. to Assign | Qty. to Assign | ✅ |
-| 171 | `qtyAssigned` | Qty. Assigned | Qty. Assigned | ✅ |
+| 170 | `qtyToAssign` | Qty. to Assign | Qty. to Assign | 🧮 computed |
+| 171 | `qtyAssigned` | Qty. Assigned | Qty. Assigned | 🧮 computed |
 | 172 | `returnQtyToReceive` | Return Qty. to Receive | Return Qty. to Receive | ✅ |
 | 173 | `returnQtyToReceiveBase` | Return Qty. to Receive (Base) | Return Qty. to Receive (Base) | ✅ |
 | 174 | `returnQtyRcdNotInvd` | Return Qty. Rcd. Not Invd. | Return Qty. Rcd. Not Invd. | ✅ |
@@ -4258,7 +4259,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 178 | `returnQtyReceived` | Return Qty. Received | Return Qty. Received | ✅ |
 | 179 | `returnQtyReceivedBase` | Return Qty. Received (Base) | Return Qty. Received (Base) | ✅ |
 | 180 | `applFromItemEntry` | Appl.-from Item Entry | Appl.-from Item Entry | ✅ |
-| 181 | `itemChargeQtyToHandle` | Item Charge Qty. to Handle | Item Charge Qty. to Handle | ✅ |
+| 181 | `itemChargeQtyToHandle` | Item Charge Qty. to Handle | Item Charge Qty. to Handle | 🧮 computed |
 | 182 | `bomItemNo` | BOM Item No. | BOM Item No. | ✅ |
 | 183 | `returnReceiptNo` | Return Receipt No. | Return Receipt No. | ✅ |
 | 184 | `returnReceiptLineNo` | Return Receipt Line No. | Return Receipt Line No. | ✅ |
@@ -4269,9 +4270,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 189 | `customerDiscGroup` | Customer Disc. Group | Customer Disc. Group | ✅ |
 | 190 | `subtype` | Subtype | Subtype | ✅ |
 | 191 | `priceDescription` | Price description | Price description | ✅ |
-| 192 | `attachedDocCount` | Attached Doc Count | Attached Doc Count | ✅ |
-| 193 | `attachedLinesCount` | Attached Lines Count | Attached Lines Count | ✅ |
-| 194 | `sellToCustomerName` | Sell-to Customer Name | Sell-to Customer Name | ✅ |
+| 192 | `attachedDocCount` | Attached Doc Count | Attached Doc Count | 🧮 computed |
+| 193 | `attachedLinesCount` | Attached Lines Count | Attached Lines Count | 🧮 computed |
+| 194 | `sellToCustomerName` | Sell-to Customer Name | Sell-to Customer Name | 🧮 computed |
 
 
 [↑ Back to top](#table-of-contents)
@@ -4337,18 +4338,18 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 40 | `formatRegion` | Format Region | Format Region | ✅ |
 | 41 | `salespersonCode` | Salesperson Code | Salesperson Code | ✅ |
 | 42 | `orderClass` | Order Class | Order Class | ✅ |
-| 43 | `comment` | Comment | Comment | ✅ |
+| 43 | `comment` | Comment | Comment | 🧮 computed |
 | 44 | `noPrinted` | No. Printed | No. Printed | ✅ |
 | 45 | `onHold` | On Hold | On Hold | ✅ |
 | 46 | `appliesToDocType` | Applies-to Doc. Type | Applies-to Doc. Type | ✅ |
 | 47 | `appliesToDocNo` | Applies-to Doc. No. | Applies-to Doc. No. | ✅ |
 | 48 | `balAccountNo` | Bal. Account No. | Bal. Account No. | ✅ |
-| 49 | `recalculateInvoiceDisc` | Recalculate Invoice Disc. | Recalculate Invoice Disc. | ✅ |
+| 49 | `recalculateInvoiceDisc` | Recalculate Invoice Disc. | Recalculate Invoice Disc. | 🧮 computed |
 | 50 | `ship` | Ship | Ship | ✅ |
 | 51 | `invoice` | Invoice | Invoice | ✅ |
 | 52 | `printPostedDocuments` | Print Posted Documents | Print Posted Documents | ✅ |
-| 53 | `amount` | Amount | Amount | ✅ |
-| 54 | `amountIncludingVat` | Amount Including VAT | Amount Including VAT | ✅ |
+| 53 | `amount` | Amount | Amount | 🧮 computed |
+| 54 | `amountIncludingVat` | Amount Including VAT | Amount Including VAT | 🧮 computed |
 | 55 | `shippingNo` | Shipping No. | Shipping No. | ✅ |
 | 56 | `postingNo` | Posting No. | Posting No. | ✅ |
 | 57 | `lastShippingNo` | Last Shipping No. | Last Shipping No. | ✅ |
@@ -4436,17 +4437,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 139 | `journalTemplName` | Journal Templ. Name | Journal Template Name | ✅ |
 | 140 | `vatReportingDate` | VAT Reporting Date | VAT Date | ✅ |
 | 141 | `rcvdFromCountRegionCode` | Rcvd.-from Count./Region Code | Received-from Country/Region Code | ✅ |
-| 142 | `lastEmailSentTime` | Last Email Sent Time | Last Email Sent Time | ✅ |
-| 143 | `lastEmailSentMessageId` | Last Email Sent Message Id | Last Email Sent Message Id | ✅ |
+| 142 | `lastEmailSentTime` | Last Email Sent Time | Last Email Sent Time | 🧮 computed |
+| 143 | `lastEmailSentMessageId` | Last Email Sent Message Id | Last Email Sent Message Id | 🧮 computed |
 | 144 | `shipToPhoneNo` | Ship-to Phone No. | Ship-to Phone No. | ✅ |
-| 145 | `amtShipNotInvLcy` | Amt. Ship. Not Inv. (LCY) | Amount Shipped Not Invoiced (LCY) Incl. VAT | ✅ |
-| 146 | `amtShipNotInvLcyBase` | Amt. Ship. Not Inv. (LCY) Base | Amount Shipped Not Invoiced (LCY) | ✅ |
+| 145 | `amtShipNotInvLcy` | Amt. Ship. Not Inv. (LCY) | Amount Shipped Not Invoiced (LCY) Incl. VAT | 🧮 computed |
+| 146 | `amtShipNotInvLcyBase` | Amt. Ship. Not Inv. (LCY) Base | Amount Shipped Not Invoiced (LCY) | 🧮 computed |
 | 147 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | ✅ |
 | 148 | `paymentServiceSetId` | Payment Service Set ID | Payment Service Set ID | ✅ |
-| 149 | `coupledToDataverse` | Coupled to Dataverse | Coupled to Dynamics 365 Sales | ✅ |
+| 149 | `coupledToDataverse` | Coupled to Dataverse | Coupled to Dynamics 365 Sales | 🧮 computed |
 | 150 | `directDebitMandateId` | Direct Debit Mandate ID | Direct Debit Mandate ID | ✅ |
-| 151 | `invoiceDiscountAmount` | Invoice Discount Amount | Invoice Discount Amount | ✅ |
-| 152 | `noOfArchivedVersions` | No. of Archived Versions | No. of Archived Versions | ✅ |
+| 151 | `invoiceDiscountAmount` | Invoice Discount Amount | Invoice Discount Amount | 🧮 computed |
+| 152 | `noOfArchivedVersions` | No. of Archived Versions | No. of Archived Versions | 🧮 computed |
 | 153 | `docNoOccurrence` | Doc. No. Occurrence | Doc. No. Occurrence | ✅ |
 | 154 | `campaignNo` | Campaign No. | Campaign No. | ✅ |
 | 155 | `sellToContactNo` | Sell-to Contact No. | Sell-to Contact No. | ✅ |
@@ -4456,19 +4457,19 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 159 | `billToCustomerTemplCode` | Bill-to Customer Templ. Code | Bill-to Customer Template Code | ✅ |
 | 160 | `responsibilityCenter` | Responsibility Center | Responsibility Center | ✅ |
 | 161 | `shippingAdvice` | Shipping Advice | Shipping Advice | ✅ |
-| 162 | `shippedNotInvoiced` | Shipped Not Invoiced | Shipped Not Invoiced | ✅ |
-| 163 | `completelyShipped` | Completely Shipped | Completely Shipped | ✅ |
+| 162 | `shippedNotInvoiced` | Shipped Not Invoiced | Shipped Not Invoiced | 🧮 computed |
+| 163 | `completelyShipped` | Completely Shipped | Completely Shipped | 🧮 computed |
 | 164 | `postingFromWhseRef` | Posting from Whse. Ref. | Posting from Whse. Ref. | ✅ |
-| 165 | `locationFilter` | Location Filter | Location Filter | ✅ |
-| 166 | `shipped` | Shipped | Shipped | ✅ |
-| 167 | `lastShipmentDate` | Last Shipment Date | Last Shipment Date | ✅ |
+| 165 | `locationFilter` | Location Filter | Location Filter | 🔍 filter |
+| 166 | `shipped` | Shipped | Shipped | 🧮 computed |
+| 167 | `lastShipmentDate` | Last Shipment Date | Last Shipment Date | 🧮 computed |
 | 168 | `requestedDeliveryDate` | Requested Delivery Date | Requested Delivery Date | ✅ |
 | 169 | `promisedDeliveryDate` | Promised Delivery Date | Promised Delivery Date | ✅ |
 | 170 | `shippingTime` | Shipping Time | Shipping Time | ✅ |
 | 171 | `outboundWhseHandlingTime` | Outbound Whse. Handling Time | Outbound Whse. Handling Time | ✅ |
 | 172 | `shippingAgentServiceCode` | Shipping Agent Service Code | Shipping Agent Service Code | ✅ |
-| 173 | `lateOrderShipping` | Late Order Shipping | Late Order Shipping | ✅ |
-| 174 | `dateFilter` | Date Filter | Date Filter | ✅ |
+| 173 | `lateOrderShipping` | Late Order Shipping | Late Order Shipping | 🧮 computed |
+| 174 | `dateFilter` | Date Filter | Date Filter | 🔍 filter |
 | 175 | `receive` | Receive | Receive | ✅ |
 | 176 | `returnReceiptNo` | Return Receipt No. | Return Receipt No. | ✅ |
 | 177 | `returnReceiptNoSeries` | Return Receipt No. Series | Return Receipt No. Series | ✅ |
@@ -4569,7 +4570,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 67 | `outstandingAmountLcy` | Outstanding Amount (LCY) | Outstanding Amount (LCY) | ✅ |
 | 68 | `shippedNotInvoicedLcy` | Shipped Not Invoiced (LCY) | Shipped Not Invoiced (LCY) Incl. VAT | ✅ |
 | 69 | `shippedNotInvLcyNoVat` | Shipped Not Inv. (LCY) No VAT | Shipped Not Invoiced (LCY) | ✅ |
-| 70 | `reservedQuantity` | Reserved Quantity | Reserved Quantity | ✅ |
+| 70 | `reservedQuantity` | Reserved Quantity | Reserved Quantity | 🧮 computed |
 | 71 | `reserve` | Reserve | Reserve | ✅ |
 | 72 | `blanketOrderNo` | Blanket Order No. | Blanket Order No. | ✅ |
 | 73 | `blanketOrderLineNo` | Blanket Order Line No. | Blanket Order Line No. | ✅ |
@@ -4611,15 +4612,15 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 109 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | ✅ |
 | 110 | `qtyToAssembleToOrder` | Qty. to Assemble to Order | Qty. to Assemble to Order | ✅ |
 | 111 | `qtyToAsmToOrderBase` | Qty. to Asm. to Order (Base) | Qty. to Asm. to Order (Base) | ✅ |
-| 112 | `atoWhseOutstandingQty` | ATO Whse. Outstanding Qty. | ATO Whse. Outstanding Qty. | ✅ |
-| 113 | `atoWhseOutstdQtyBase` | ATO Whse. Outstd. Qty. (Base) | ATO Whse. Outstd. Qty. (Base) | ✅ |
+| 112 | `atoWhseOutstandingQty` | ATO Whse. Outstanding Qty. | ATO Whse. Outstanding Qty. | 🧮 computed |
+| 113 | `atoWhseOutstdQtyBase` | ATO Whse. Outstd. Qty. (Base) | ATO Whse. Outstd. Qty. (Base) | 🧮 computed |
 | 114 | `jobTaskNo` | Job Task No. | Project Task No. | ✅ |
 | 115 | `jobContractEntryNo` | Job Contract Entry No. | Project Contract Entry No. | ✅ |
-| 116 | `postingDate` | Posting Date | Posting Date | ✅ |
+| 116 | `postingDate` | Posting Date | Posting Date | 🧮 computed |
 | 117 | `deferralCode` | Deferral Code | Deferral Code | ✅ |
 | 118 | `returnsDeferralStartDate` | Returns Deferral Start Date | Returns Deferral Start Date | ✅ |
 | 119 | `selectedAllocAccountNo` | Selected Alloc. Account No. | Allocation Account No. | ✅ |
-| 120 | `allocAccModifiedByUser` | Alloc. Acc. Modified by User | Allocation Account Distributions Modified | ✅ |
+| 120 | `allocAccModifiedByUser` | Alloc. Acc. Modified by User | Allocation Account Distributions Modified | 🧮 computed |
 | 121 | `allocationAccountNo` | Allocation Account No. | Posting Allocation Account No. | ✅ |
 | 122 | `allocSalesLineSystemid` | Alloc. Sales Line SystemId | Allocation Sales Line SystemId | ✅ |
 | 123 | `variantCode` | Variant Code | Variant Code | ✅ |
@@ -4636,7 +4637,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 134 | `qtyShippedNotInvdBase` | Qty. Shipped Not Invd. (Base) | Qty. Shipped Not Invd. (Base) | ✅ |
 | 135 | `qtyShippedBase` | Qty. Shipped (Base) | Qty. Shipped (Base) | ✅ |
 | 136 | `qtyInvoicedBase` | Qty. Invoiced (Base) | Qty. Invoiced (Base) | ✅ |
-| 137 | `reservedQtyBase` | Reserved Qty. (Base) | Reserved Qty. (Base) | ✅ |
+| 137 | `reservedQtyBase` | Reserved Qty. (Base) | Reserved Qty. (Base) | 🧮 computed |
 | 138 | `faPostingDate` | FA Posting Date | FA Posting Date | ✅ |
 | 139 | `depreciationBookCode` | Depreciation Book Code | Depreciation Book Code | ✅ |
 | 140 | `deprUntilFaPostingDate` | Depr. until FA Posting Date | Depr. until FA Posting Date | ✅ |
@@ -4644,7 +4645,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 142 | `useDuplicationList` | Use Duplication List | Use Duplication List | ✅ |
 | 143 | `responsibilityCenter` | Responsibility Center | Responsibility Center | ✅ |
 | 144 | `outOfStockSubstitution` | Out-of-Stock Substitution | Out-of-Stock Substitution | ✅ |
-| 145 | `substitutionAvailable` | Substitution Available | Substitution Available | ✅ |
+| 145 | `substitutionAvailable` | Substitution Available | Substitution Available | 🧮 computed |
 | 146 | `originallyOrderedNo` | Originally Ordered No. | Originally Ordered No. | ✅ |
 | 147 | `originallyOrderedVarCode` | Originally Ordered Var. Code | Originally Ordered Var. Code | ✅ |
 | 148 | `itemCategoryCode` | Item Category Code | Item Category Code | ✅ |
@@ -4657,8 +4658,8 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 155 | `itemReferenceUnitOfMeasure` | Item Reference Unit of Measure | Reference Unit of Measure | ✅ |
 | 156 | `itemReferenceType` | Item Reference Type | Item Reference Type | ✅ |
 | 157 | `itemReferenceTypeNo` | Item Reference Type No. | Item Reference Type No. | ✅ |
-| 158 | `whseOutstandingQty` | Whse. Outstanding Qty. | Whse. Outstanding Qty. | ✅ |
-| 159 | `whseOutstandingQtyBase` | Whse. Outstanding Qty. (Base) | Whse. Outstanding Qty. (Base) | ✅ |
+| 158 | `whseOutstandingQty` | Whse. Outstanding Qty. | Whse. Outstanding Qty. | 🧮 computed |
+| 159 | `whseOutstandingQtyBase` | Whse. Outstanding Qty. (Base) | Whse. Outstanding Qty. (Base) | 🧮 computed |
 | 160 | `completelyShipped` | Completely Shipped | Completely Shipped | ✅ |
 | 161 | `requestedDeliveryDate` | Requested Delivery Date | Requested Delivery Date | ✅ |
 | 162 | `promisedDeliveryDate` | Promised Delivery Date | Promised Delivery Date | ✅ |
@@ -4669,8 +4670,8 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 167 | `shippingAgentCode` | Shipping Agent Code | Shipping Agent Code | ✅ |
 | 168 | `shippingAgentServiceCode` | Shipping Agent Service Code | Shipping Agent Service Code | ✅ |
 | 169 | `allowItemChargeAssignment` | Allow Item Charge Assignment | Allow Item Charge Assignment | ✅ |
-| 170 | `qtyToAssign` | Qty. to Assign | Qty. to Assign | ✅ |
-| 171 | `qtyAssigned` | Qty. Assigned | Qty. Assigned | ✅ |
+| 170 | `qtyToAssign` | Qty. to Assign | Qty. to Assign | 🧮 computed |
+| 171 | `qtyAssigned` | Qty. Assigned | Qty. Assigned | 🧮 computed |
 | 172 | `returnQtyToReceive` | Return Qty. to Receive | Return Qty. to Receive | ✅ |
 | 173 | `returnQtyToReceiveBase` | Return Qty. to Receive (Base) | Return Qty. to Receive (Base) | ✅ |
 | 174 | `returnQtyRcdNotInvd` | Return Qty. Rcd. Not Invd. | Return Qty. Rcd. Not Invd. | ✅ |
@@ -4680,7 +4681,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 178 | `returnQtyReceived` | Return Qty. Received | Return Qty. Received | ✅ |
 | 179 | `returnQtyReceivedBase` | Return Qty. Received (Base) | Return Qty. Received (Base) | ✅ |
 | 180 | `applFromItemEntry` | Appl.-from Item Entry | Appl.-from Item Entry | ✅ |
-| 181 | `itemChargeQtyToHandle` | Item Charge Qty. to Handle | Item Charge Qty. to Handle | ✅ |
+| 181 | `itemChargeQtyToHandle` | Item Charge Qty. to Handle | Item Charge Qty. to Handle | 🧮 computed |
 | 182 | `bomItemNo` | BOM Item No. | BOM Item No. | ✅ |
 | 183 | `returnReceiptNo` | Return Receipt No. | Return Receipt No. | ✅ |
 | 184 | `returnReceiptLineNo` | Return Receipt Line No. | Return Receipt Line No. | ✅ |
@@ -4691,9 +4692,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 189 | `customerDiscGroup` | Customer Disc. Group | Customer Disc. Group | ✅ |
 | 190 | `subtype` | Subtype | Subtype | ✅ |
 | 191 | `priceDescription` | Price description | Price description | ✅ |
-| 192 | `attachedDocCount` | Attached Doc Count | Attached Doc Count | ✅ |
-| 193 | `attachedLinesCount` | Attached Lines Count | Attached Lines Count | ✅ |
-| 194 | `sellToCustomerName` | Sell-to Customer Name | Sell-to Customer Name | ✅ |
+| 192 | `attachedDocCount` | Attached Doc Count | Attached Doc Count | 🧮 computed |
+| 193 | `attachedLinesCount` | Attached Lines Count | Attached Lines Count | 🧮 computed |
+| 194 | `sellToCustomerName` | Sell-to Customer Name | Sell-to Customer Name | 🧮 computed |
 
 
 [↑ Back to top](#table-of-contents)
@@ -4759,18 +4760,18 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 40 | `formatRegion` | Format Region | Format Region | ✅ |
 | 41 | `salespersonCode` | Salesperson Code | Salesperson Code | ✅ |
 | 42 | `orderClass` | Order Class | Order Class | ✅ |
-| 43 | `comment` | Comment | Comment | ✅ |
+| 43 | `comment` | Comment | Comment | 🧮 computed |
 | 44 | `noPrinted` | No. Printed | No. Printed | ✅ |
 | 45 | `onHold` | On Hold | On Hold | ✅ |
 | 46 | `appliesToDocType` | Applies-to Doc. Type | Applies-to Doc. Type | ✅ |
 | 47 | `appliesToDocNo` | Applies-to Doc. No. | Applies-to Doc. No. | ✅ |
 | 48 | `balAccountNo` | Bal. Account No. | Bal. Account No. | ✅ |
-| 49 | `recalculateInvoiceDisc` | Recalculate Invoice Disc. | Recalculate Invoice Disc. | ✅ |
+| 49 | `recalculateInvoiceDisc` | Recalculate Invoice Disc. | Recalculate Invoice Disc. | 🧮 computed |
 | 50 | `ship` | Ship | Ship | ✅ |
 | 51 | `invoice` | Invoice | Invoice | ✅ |
 | 52 | `printPostedDocuments` | Print Posted Documents | Print Posted Documents | ✅ |
-| 53 | `amount` | Amount | Amount | ✅ |
-| 54 | `amountIncludingVat` | Amount Including VAT | Amount Including VAT | ✅ |
+| 53 | `amount` | Amount | Amount | 🧮 computed |
+| 54 | `amountIncludingVat` | Amount Including VAT | Amount Including VAT | 🧮 computed |
 | 55 | `shippingNo` | Shipping No. | Shipping No. | ✅ |
 | 56 | `postingNo` | Posting No. | Posting No. | ✅ |
 | 57 | `lastShippingNo` | Last Shipping No. | Last Shipping No. | ✅ |
@@ -4858,17 +4859,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 139 | `journalTemplName` | Journal Templ. Name | Journal Template Name | ✅ |
 | 140 | `vatReportingDate` | VAT Reporting Date | VAT Date | ✅ |
 | 141 | `rcvdFromCountRegionCode` | Rcvd.-from Count./Region Code | Received-from Country/Region Code | ✅ |
-| 142 | `lastEmailSentTime` | Last Email Sent Time | Last Email Sent Time | ✅ |
-| 143 | `lastEmailSentMessageId` | Last Email Sent Message Id | Last Email Sent Message Id | ✅ |
+| 142 | `lastEmailSentTime` | Last Email Sent Time | Last Email Sent Time | 🧮 computed |
+| 143 | `lastEmailSentMessageId` | Last Email Sent Message Id | Last Email Sent Message Id | 🧮 computed |
 | 144 | `shipToPhoneNo` | Ship-to Phone No. | Ship-to Phone No. | ✅ |
-| 145 | `amtShipNotInvLcy` | Amt. Ship. Not Inv. (LCY) | Amount Shipped Not Invoiced (LCY) Incl. VAT | ✅ |
-| 146 | `amtShipNotInvLcyBase` | Amt. Ship. Not Inv. (LCY) Base | Amount Shipped Not Invoiced (LCY) | ✅ |
+| 145 | `amtShipNotInvLcy` | Amt. Ship. Not Inv. (LCY) | Amount Shipped Not Invoiced (LCY) Incl. VAT | 🧮 computed |
+| 146 | `amtShipNotInvLcyBase` | Amt. Ship. Not Inv. (LCY) Base | Amount Shipped Not Invoiced (LCY) | 🧮 computed |
 | 147 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | ✅ |
 | 148 | `paymentServiceSetId` | Payment Service Set ID | Payment Service Set ID | ✅ |
-| 149 | `coupledToDataverse` | Coupled to Dataverse | Coupled to Dynamics 365 Sales | ✅ |
+| 149 | `coupledToDataverse` | Coupled to Dataverse | Coupled to Dynamics 365 Sales | 🧮 computed |
 | 150 | `directDebitMandateId` | Direct Debit Mandate ID | Direct Debit Mandate ID | ✅ |
-| 151 | `invoiceDiscountAmount` | Invoice Discount Amount | Invoice Discount Amount | ✅ |
-| 152 | `noOfArchivedVersions` | No. of Archived Versions | No. of Archived Versions | ✅ |
+| 151 | `invoiceDiscountAmount` | Invoice Discount Amount | Invoice Discount Amount | 🧮 computed |
+| 152 | `noOfArchivedVersions` | No. of Archived Versions | No. of Archived Versions | 🧮 computed |
 | 153 | `docNoOccurrence` | Doc. No. Occurrence | Doc. No. Occurrence | ✅ |
 | 154 | `campaignNo` | Campaign No. | Campaign No. | ✅ |
 | 155 | `sellToContactNo` | Sell-to Contact No. | Sell-to Contact No. | ✅ |
@@ -4878,19 +4879,19 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 159 | `billToCustomerTemplCode` | Bill-to Customer Templ. Code | Bill-to Customer Template Code | ✅ |
 | 160 | `responsibilityCenter` | Responsibility Center | Responsibility Center | ✅ |
 | 161 | `shippingAdvice` | Shipping Advice | Shipping Advice | ✅ |
-| 162 | `shippedNotInvoiced` | Shipped Not Invoiced | Shipped Not Invoiced | ✅ |
-| 163 | `completelyShipped` | Completely Shipped | Completely Shipped | ✅ |
+| 162 | `shippedNotInvoiced` | Shipped Not Invoiced | Shipped Not Invoiced | 🧮 computed |
+| 163 | `completelyShipped` | Completely Shipped | Completely Shipped | 🧮 computed |
 | 164 | `postingFromWhseRef` | Posting from Whse. Ref. | Posting from Whse. Ref. | ✅ |
-| 165 | `locationFilter` | Location Filter | Location Filter | ✅ |
-| 166 | `shipped` | Shipped | Shipped | ✅ |
-| 167 | `lastShipmentDate` | Last Shipment Date | Last Shipment Date | ✅ |
+| 165 | `locationFilter` | Location Filter | Location Filter | 🔍 filter |
+| 166 | `shipped` | Shipped | Shipped | 🧮 computed |
+| 167 | `lastShipmentDate` | Last Shipment Date | Last Shipment Date | 🧮 computed |
 | 168 | `requestedDeliveryDate` | Requested Delivery Date | Requested Delivery Date | ✅ |
 | 169 | `promisedDeliveryDate` | Promised Delivery Date | Promised Delivery Date | ✅ |
 | 170 | `shippingTime` | Shipping Time | Shipping Time | ✅ |
 | 171 | `outboundWhseHandlingTime` | Outbound Whse. Handling Time | Outbound Whse. Handling Time | ✅ |
 | 172 | `shippingAgentServiceCode` | Shipping Agent Service Code | Shipping Agent Service Code | ✅ |
-| 173 | `lateOrderShipping` | Late Order Shipping | Late Order Shipping | ✅ |
-| 174 | `dateFilter` | Date Filter | Date Filter | ✅ |
+| 173 | `lateOrderShipping` | Late Order Shipping | Late Order Shipping | 🧮 computed |
+| 174 | `dateFilter` | Date Filter | Date Filter | 🔍 filter |
 | 175 | `receive` | Receive | Receive | ✅ |
 | 176 | `returnReceiptNo` | Return Receipt No. | Return Receipt No. | ✅ |
 | 177 | `returnReceiptNoSeries` | Return Receipt No. Series | Return Receipt No. Series | ✅ |
@@ -4991,7 +4992,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 67 | `outstandingAmountLcy` | Outstanding Amount (LCY) | Outstanding Amount (LCY) | ✅ |
 | 68 | `shippedNotInvoicedLcy` | Shipped Not Invoiced (LCY) | Shipped Not Invoiced (LCY) Incl. VAT | ✅ |
 | 69 | `shippedNotInvLcyNoVat` | Shipped Not Inv. (LCY) No VAT | Shipped Not Invoiced (LCY) | ✅ |
-| 70 | `reservedQuantity` | Reserved Quantity | Reserved Quantity | ✅ |
+| 70 | `reservedQuantity` | Reserved Quantity | Reserved Quantity | 🧮 computed |
 | 71 | `reserve` | Reserve | Reserve | ✅ |
 | 72 | `blanketOrderNo` | Blanket Order No. | Blanket Order No. | ✅ |
 | 73 | `blanketOrderLineNo` | Blanket Order Line No. | Blanket Order Line No. | ✅ |
@@ -5033,15 +5034,15 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 109 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | ✅ |
 | 110 | `qtyToAssembleToOrder` | Qty. to Assemble to Order | Qty. to Assemble to Order | ✅ |
 | 111 | `qtyToAsmToOrderBase` | Qty. to Asm. to Order (Base) | Qty. to Asm. to Order (Base) | ✅ |
-| 112 | `atoWhseOutstandingQty` | ATO Whse. Outstanding Qty. | ATO Whse. Outstanding Qty. | ✅ |
-| 113 | `atoWhseOutstdQtyBase` | ATO Whse. Outstd. Qty. (Base) | ATO Whse. Outstd. Qty. (Base) | ✅ |
+| 112 | `atoWhseOutstandingQty` | ATO Whse. Outstanding Qty. | ATO Whse. Outstanding Qty. | 🧮 computed |
+| 113 | `atoWhseOutstdQtyBase` | ATO Whse. Outstd. Qty. (Base) | ATO Whse. Outstd. Qty. (Base) | 🧮 computed |
 | 114 | `jobTaskNo` | Job Task No. | Project Task No. | ✅ |
 | 115 | `jobContractEntryNo` | Job Contract Entry No. | Project Contract Entry No. | ✅ |
-| 116 | `postingDate` | Posting Date | Posting Date | ✅ |
+| 116 | `postingDate` | Posting Date | Posting Date | 🧮 computed |
 | 117 | `deferralCode` | Deferral Code | Deferral Code | ✅ |
 | 118 | `returnsDeferralStartDate` | Returns Deferral Start Date | Returns Deferral Start Date | ✅ |
 | 119 | `selectedAllocAccountNo` | Selected Alloc. Account No. | Allocation Account No. | ✅ |
-| 120 | `allocAccModifiedByUser` | Alloc. Acc. Modified by User | Allocation Account Distributions Modified | ✅ |
+| 120 | `allocAccModifiedByUser` | Alloc. Acc. Modified by User | Allocation Account Distributions Modified | 🧮 computed |
 | 121 | `allocationAccountNo` | Allocation Account No. | Posting Allocation Account No. | ✅ |
 | 122 | `allocSalesLineSystemid` | Alloc. Sales Line SystemId | Allocation Sales Line SystemId | ✅ |
 | 123 | `variantCode` | Variant Code | Variant Code | ✅ |
@@ -5058,7 +5059,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 134 | `qtyShippedNotInvdBase` | Qty. Shipped Not Invd. (Base) | Qty. Shipped Not Invd. (Base) | ✅ |
 | 135 | `qtyShippedBase` | Qty. Shipped (Base) | Qty. Shipped (Base) | ✅ |
 | 136 | `qtyInvoicedBase` | Qty. Invoiced (Base) | Qty. Invoiced (Base) | ✅ |
-| 137 | `reservedQtyBase` | Reserved Qty. (Base) | Reserved Qty. (Base) | ✅ |
+| 137 | `reservedQtyBase` | Reserved Qty. (Base) | Reserved Qty. (Base) | 🧮 computed |
 | 138 | `faPostingDate` | FA Posting Date | FA Posting Date | ✅ |
 | 139 | `depreciationBookCode` | Depreciation Book Code | Depreciation Book Code | ✅ |
 | 140 | `deprUntilFaPostingDate` | Depr. until FA Posting Date | Depr. until FA Posting Date | ✅ |
@@ -5066,7 +5067,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 142 | `useDuplicationList` | Use Duplication List | Use Duplication List | ✅ |
 | 143 | `responsibilityCenter` | Responsibility Center | Responsibility Center | ✅ |
 | 144 | `outOfStockSubstitution` | Out-of-Stock Substitution | Out-of-Stock Substitution | ✅ |
-| 145 | `substitutionAvailable` | Substitution Available | Substitution Available | ✅ |
+| 145 | `substitutionAvailable` | Substitution Available | Substitution Available | 🧮 computed |
 | 146 | `originallyOrderedNo` | Originally Ordered No. | Originally Ordered No. | ✅ |
 | 147 | `originallyOrderedVarCode` | Originally Ordered Var. Code | Originally Ordered Var. Code | ✅ |
 | 148 | `itemCategoryCode` | Item Category Code | Item Category Code | ✅ |
@@ -5079,8 +5080,8 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 155 | `itemReferenceUnitOfMeasure` | Item Reference Unit of Measure | Reference Unit of Measure | ✅ |
 | 156 | `itemReferenceType` | Item Reference Type | Item Reference Type | ✅ |
 | 157 | `itemReferenceTypeNo` | Item Reference Type No. | Item Reference Type No. | ✅ |
-| 158 | `whseOutstandingQty` | Whse. Outstanding Qty. | Whse. Outstanding Qty. | ✅ |
-| 159 | `whseOutstandingQtyBase` | Whse. Outstanding Qty. (Base) | Whse. Outstanding Qty. (Base) | ✅ |
+| 158 | `whseOutstandingQty` | Whse. Outstanding Qty. | Whse. Outstanding Qty. | 🧮 computed |
+| 159 | `whseOutstandingQtyBase` | Whse. Outstanding Qty. (Base) | Whse. Outstanding Qty. (Base) | 🧮 computed |
 | 160 | `completelyShipped` | Completely Shipped | Completely Shipped | ✅ |
 | 161 | `requestedDeliveryDate` | Requested Delivery Date | Requested Delivery Date | ✅ |
 | 162 | `promisedDeliveryDate` | Promised Delivery Date | Promised Delivery Date | ✅ |
@@ -5091,8 +5092,8 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 167 | `shippingAgentCode` | Shipping Agent Code | Shipping Agent Code | ✅ |
 | 168 | `shippingAgentServiceCode` | Shipping Agent Service Code | Shipping Agent Service Code | ✅ |
 | 169 | `allowItemChargeAssignment` | Allow Item Charge Assignment | Allow Item Charge Assignment | ✅ |
-| 170 | `qtyToAssign` | Qty. to Assign | Qty. to Assign | ✅ |
-| 171 | `qtyAssigned` | Qty. Assigned | Qty. Assigned | ✅ |
+| 170 | `qtyToAssign` | Qty. to Assign | Qty. to Assign | 🧮 computed |
+| 171 | `qtyAssigned` | Qty. Assigned | Qty. Assigned | 🧮 computed |
 | 172 | `returnQtyToReceive` | Return Qty. to Receive | Return Qty. to Receive | ✅ |
 | 173 | `returnQtyToReceiveBase` | Return Qty. to Receive (Base) | Return Qty. to Receive (Base) | ✅ |
 | 174 | `returnQtyRcdNotInvd` | Return Qty. Rcd. Not Invd. | Return Qty. Rcd. Not Invd. | ✅ |
@@ -5102,7 +5103,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 178 | `returnQtyReceived` | Return Qty. Received | Return Qty. Received | ✅ |
 | 179 | `returnQtyReceivedBase` | Return Qty. Received (Base) | Return Qty. Received (Base) | ✅ |
 | 180 | `applFromItemEntry` | Appl.-from Item Entry | Appl.-from Item Entry | ✅ |
-| 181 | `itemChargeQtyToHandle` | Item Charge Qty. to Handle | Item Charge Qty. to Handle | ✅ |
+| 181 | `itemChargeQtyToHandle` | Item Charge Qty. to Handle | Item Charge Qty. to Handle | 🧮 computed |
 | 182 | `bomItemNo` | BOM Item No. | BOM Item No. | ✅ |
 | 183 | `returnReceiptNo` | Return Receipt No. | Return Receipt No. | ✅ |
 | 184 | `returnReceiptLineNo` | Return Receipt Line No. | Return Receipt Line No. | ✅ |
@@ -5113,9 +5114,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 189 | `customerDiscGroup` | Customer Disc. Group | Customer Disc. Group | ✅ |
 | 190 | `subtype` | Subtype | Subtype | ✅ |
 | 191 | `priceDescription` | Price description | Price description | ✅ |
-| 192 | `attachedDocCount` | Attached Doc Count | Attached Doc Count | ✅ |
-| 193 | `attachedLinesCount` | Attached Lines Count | Attached Lines Count | ✅ |
-| 194 | `sellToCustomerName` | Sell-to Customer Name | Sell-to Customer Name | ✅ |
+| 192 | `attachedDocCount` | Attached Doc Count | Attached Doc Count | 🧮 computed |
+| 193 | `attachedLinesCount` | Attached Lines Count | Attached Lines Count | 🧮 computed |
+| 194 | `sellToCustomerName` | Sell-to Customer Name | Sell-to Customer Name | 🧮 computed |
 
 
 [↑ Back to top](#table-of-contents)
@@ -5181,18 +5182,18 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 40 | `formatRegion` | Format Region | Format Region | ✅ |
 | 41 | `salespersonCode` | Salesperson Code | Salesperson Code | ✅ |
 | 42 | `orderClass` | Order Class | Order Class | ✅ |
-| 43 | `comment` | Comment | Comment | ✅ |
+| 43 | `comment` | Comment | Comment | 🧮 computed |
 | 44 | `noPrinted` | No. Printed | No. Printed | ✅ |
 | 45 | `onHold` | On Hold | On Hold | ✅ |
 | 46 | `appliesToDocType` | Applies-to Doc. Type | Applies-to Doc. Type | ✅ |
 | 47 | `appliesToDocNo` | Applies-to Doc. No. | Applies-to Doc. No. | ✅ |
 | 48 | `balAccountNo` | Bal. Account No. | Bal. Account No. | ✅ |
-| 49 | `recalculateInvoiceDisc` | Recalculate Invoice Disc. | Recalculate Invoice Disc. | ✅ |
+| 49 | `recalculateInvoiceDisc` | Recalculate Invoice Disc. | Recalculate Invoice Disc. | 🧮 computed |
 | 50 | `ship` | Ship | Ship | ✅ |
 | 51 | `invoice` | Invoice | Invoice | ✅ |
 | 52 | `printPostedDocuments` | Print Posted Documents | Print Posted Documents | ✅ |
-| 53 | `amount` | Amount | Amount | ✅ |
-| 54 | `amountIncludingVat` | Amount Including VAT | Amount Including VAT | ✅ |
+| 53 | `amount` | Amount | Amount | 🧮 computed |
+| 54 | `amountIncludingVat` | Amount Including VAT | Amount Including VAT | 🧮 computed |
 | 55 | `shippingNo` | Shipping No. | Shipping No. | ✅ |
 | 56 | `postingNo` | Posting No. | Posting No. | ✅ |
 | 57 | `lastShippingNo` | Last Shipping No. | Last Shipping No. | ✅ |
@@ -5280,17 +5281,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 139 | `journalTemplName` | Journal Templ. Name | Journal Template Name | ✅ |
 | 140 | `vatReportingDate` | VAT Reporting Date | VAT Date | ✅ |
 | 141 | `rcvdFromCountRegionCode` | Rcvd.-from Count./Region Code | Received-from Country/Region Code | ✅ |
-| 142 | `lastEmailSentTime` | Last Email Sent Time | Last Email Sent Time | ✅ |
-| 143 | `lastEmailSentMessageId` | Last Email Sent Message Id | Last Email Sent Message Id | ✅ |
+| 142 | `lastEmailSentTime` | Last Email Sent Time | Last Email Sent Time | 🧮 computed |
+| 143 | `lastEmailSentMessageId` | Last Email Sent Message Id | Last Email Sent Message Id | 🧮 computed |
 | 144 | `shipToPhoneNo` | Ship-to Phone No. | Ship-to Phone No. | ✅ |
-| 145 | `amtShipNotInvLcy` | Amt. Ship. Not Inv. (LCY) | Amount Shipped Not Invoiced (LCY) Incl. VAT | ✅ |
-| 146 | `amtShipNotInvLcyBase` | Amt. Ship. Not Inv. (LCY) Base | Amount Shipped Not Invoiced (LCY) | ✅ |
+| 145 | `amtShipNotInvLcy` | Amt. Ship. Not Inv. (LCY) | Amount Shipped Not Invoiced (LCY) Incl. VAT | 🧮 computed |
+| 146 | `amtShipNotInvLcyBase` | Amt. Ship. Not Inv. (LCY) Base | Amount Shipped Not Invoiced (LCY) | 🧮 computed |
 | 147 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | ✅ |
 | 148 | `paymentServiceSetId` | Payment Service Set ID | Payment Service Set ID | ✅ |
-| 149 | `coupledToDataverse` | Coupled to Dataverse | Coupled to Dynamics 365 Sales | ✅ |
+| 149 | `coupledToDataverse` | Coupled to Dataverse | Coupled to Dynamics 365 Sales | 🧮 computed |
 | 150 | `directDebitMandateId` | Direct Debit Mandate ID | Direct Debit Mandate ID | ✅ |
-| 151 | `invoiceDiscountAmount` | Invoice Discount Amount | Invoice Discount Amount | ✅ |
-| 152 | `noOfArchivedVersions` | No. of Archived Versions | No. of Archived Versions | ✅ |
+| 151 | `invoiceDiscountAmount` | Invoice Discount Amount | Invoice Discount Amount | 🧮 computed |
+| 152 | `noOfArchivedVersions` | No. of Archived Versions | No. of Archived Versions | 🧮 computed |
 | 153 | `docNoOccurrence` | Doc. No. Occurrence | Doc. No. Occurrence | ✅ |
 | 154 | `campaignNo` | Campaign No. | Campaign No. | ✅ |
 | 155 | `sellToContactNo` | Sell-to Contact No. | Sell-to Contact No. | ✅ |
@@ -5300,19 +5301,19 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 159 | `billToCustomerTemplCode` | Bill-to Customer Templ. Code | Bill-to Customer Template Code | ✅ |
 | 160 | `responsibilityCenter` | Responsibility Center | Responsibility Center | ✅ |
 | 161 | `shippingAdvice` | Shipping Advice | Shipping Advice | ✅ |
-| 162 | `shippedNotInvoiced` | Shipped Not Invoiced | Shipped Not Invoiced | ✅ |
-| 163 | `completelyShipped` | Completely Shipped | Completely Shipped | ✅ |
+| 162 | `shippedNotInvoiced` | Shipped Not Invoiced | Shipped Not Invoiced | 🧮 computed |
+| 163 | `completelyShipped` | Completely Shipped | Completely Shipped | 🧮 computed |
 | 164 | `postingFromWhseRef` | Posting from Whse. Ref. | Posting from Whse. Ref. | ✅ |
-| 165 | `locationFilter` | Location Filter | Location Filter | ✅ |
-| 166 | `shipped` | Shipped | Shipped | ✅ |
-| 167 | `lastShipmentDate` | Last Shipment Date | Last Shipment Date | ✅ |
+| 165 | `locationFilter` | Location Filter | Location Filter | 🔍 filter |
+| 166 | `shipped` | Shipped | Shipped | 🧮 computed |
+| 167 | `lastShipmentDate` | Last Shipment Date | Last Shipment Date | 🧮 computed |
 | 168 | `requestedDeliveryDate` | Requested Delivery Date | Requested Delivery Date | ✅ |
 | 169 | `promisedDeliveryDate` | Promised Delivery Date | Promised Delivery Date | ✅ |
 | 170 | `shippingTime` | Shipping Time | Shipping Time | ✅ |
 | 171 | `outboundWhseHandlingTime` | Outbound Whse. Handling Time | Outbound Whse. Handling Time | ✅ |
 | 172 | `shippingAgentServiceCode` | Shipping Agent Service Code | Shipping Agent Service Code | ✅ |
-| 173 | `lateOrderShipping` | Late Order Shipping | Late Order Shipping | ✅ |
-| 174 | `dateFilter` | Date Filter | Date Filter | ✅ |
+| 173 | `lateOrderShipping` | Late Order Shipping | Late Order Shipping | 🧮 computed |
+| 174 | `dateFilter` | Date Filter | Date Filter | 🔍 filter |
 | 175 | `receive` | Receive | Receive | ✅ |
 | 176 | `returnReceiptNo` | Return Receipt No. | Return Receipt No. | ✅ |
 | 177 | `returnReceiptNoSeries` | Return Receipt No. Series | Return Receipt No. Series | ✅ |
@@ -5413,7 +5414,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 67 | `outstandingAmountLcy` | Outstanding Amount (LCY) | Outstanding Amount (LCY) | ✅ |
 | 68 | `shippedNotInvoicedLcy` | Shipped Not Invoiced (LCY) | Shipped Not Invoiced (LCY) Incl. VAT | ✅ |
 | 69 | `shippedNotInvLcyNoVat` | Shipped Not Inv. (LCY) No VAT | Shipped Not Invoiced (LCY) | ✅ |
-| 70 | `reservedQuantity` | Reserved Quantity | Reserved Quantity | ✅ |
+| 70 | `reservedQuantity` | Reserved Quantity | Reserved Quantity | 🧮 computed |
 | 71 | `reserve` | Reserve | Reserve | ✅ |
 | 72 | `blanketOrderNo` | Blanket Order No. | Blanket Order No. | ✅ |
 | 73 | `blanketOrderLineNo` | Blanket Order Line No. | Blanket Order Line No. | ✅ |
@@ -5455,15 +5456,15 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 109 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | ✅ |
 | 110 | `qtyToAssembleToOrder` | Qty. to Assemble to Order | Qty. to Assemble to Order | ✅ |
 | 111 | `qtyToAsmToOrderBase` | Qty. to Asm. to Order (Base) | Qty. to Asm. to Order (Base) | ✅ |
-| 112 | `atoWhseOutstandingQty` | ATO Whse. Outstanding Qty. | ATO Whse. Outstanding Qty. | ✅ |
-| 113 | `atoWhseOutstdQtyBase` | ATO Whse. Outstd. Qty. (Base) | ATO Whse. Outstd. Qty. (Base) | ✅ |
+| 112 | `atoWhseOutstandingQty` | ATO Whse. Outstanding Qty. | ATO Whse. Outstanding Qty. | 🧮 computed |
+| 113 | `atoWhseOutstdQtyBase` | ATO Whse. Outstd. Qty. (Base) | ATO Whse. Outstd. Qty. (Base) | 🧮 computed |
 | 114 | `jobTaskNo` | Job Task No. | Project Task No. | ✅ |
 | 115 | `jobContractEntryNo` | Job Contract Entry No. | Project Contract Entry No. | ✅ |
-| 116 | `postingDate` | Posting Date | Posting Date | ✅ |
+| 116 | `postingDate` | Posting Date | Posting Date | 🧮 computed |
 | 117 | `deferralCode` | Deferral Code | Deferral Code | ✅ |
 | 118 | `returnsDeferralStartDate` | Returns Deferral Start Date | Returns Deferral Start Date | ✅ |
 | 119 | `selectedAllocAccountNo` | Selected Alloc. Account No. | Allocation Account No. | ✅ |
-| 120 | `allocAccModifiedByUser` | Alloc. Acc. Modified by User | Allocation Account Distributions Modified | ✅ |
+| 120 | `allocAccModifiedByUser` | Alloc. Acc. Modified by User | Allocation Account Distributions Modified | 🧮 computed |
 | 121 | `allocationAccountNo` | Allocation Account No. | Posting Allocation Account No. | ✅ |
 | 122 | `allocSalesLineSystemid` | Alloc. Sales Line SystemId | Allocation Sales Line SystemId | ✅ |
 | 123 | `variantCode` | Variant Code | Variant Code | ✅ |
@@ -5480,7 +5481,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 134 | `qtyShippedNotInvdBase` | Qty. Shipped Not Invd. (Base) | Qty. Shipped Not Invd. (Base) | ✅ |
 | 135 | `qtyShippedBase` | Qty. Shipped (Base) | Qty. Shipped (Base) | ✅ |
 | 136 | `qtyInvoicedBase` | Qty. Invoiced (Base) | Qty. Invoiced (Base) | ✅ |
-| 137 | `reservedQtyBase` | Reserved Qty. (Base) | Reserved Qty. (Base) | ✅ |
+| 137 | `reservedQtyBase` | Reserved Qty. (Base) | Reserved Qty. (Base) | 🧮 computed |
 | 138 | `faPostingDate` | FA Posting Date | FA Posting Date | ✅ |
 | 139 | `depreciationBookCode` | Depreciation Book Code | Depreciation Book Code | ✅ |
 | 140 | `deprUntilFaPostingDate` | Depr. until FA Posting Date | Depr. until FA Posting Date | ✅ |
@@ -5488,7 +5489,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 142 | `useDuplicationList` | Use Duplication List | Use Duplication List | ✅ |
 | 143 | `responsibilityCenter` | Responsibility Center | Responsibility Center | ✅ |
 | 144 | `outOfStockSubstitution` | Out-of-Stock Substitution | Out-of-Stock Substitution | ✅ |
-| 145 | `substitutionAvailable` | Substitution Available | Substitution Available | ✅ |
+| 145 | `substitutionAvailable` | Substitution Available | Substitution Available | 🧮 computed |
 | 146 | `originallyOrderedNo` | Originally Ordered No. | Originally Ordered No. | ✅ |
 | 147 | `originallyOrderedVarCode` | Originally Ordered Var. Code | Originally Ordered Var. Code | ✅ |
 | 148 | `itemCategoryCode` | Item Category Code | Item Category Code | ✅ |
@@ -5501,8 +5502,8 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 155 | `itemReferenceUnitOfMeasure` | Item Reference Unit of Measure | Reference Unit of Measure | ✅ |
 | 156 | `itemReferenceType` | Item Reference Type | Item Reference Type | ✅ |
 | 157 | `itemReferenceTypeNo` | Item Reference Type No. | Item Reference Type No. | ✅ |
-| 158 | `whseOutstandingQty` | Whse. Outstanding Qty. | Whse. Outstanding Qty. | ✅ |
-| 159 | `whseOutstandingQtyBase` | Whse. Outstanding Qty. (Base) | Whse. Outstanding Qty. (Base) | ✅ |
+| 158 | `whseOutstandingQty` | Whse. Outstanding Qty. | Whse. Outstanding Qty. | 🧮 computed |
+| 159 | `whseOutstandingQtyBase` | Whse. Outstanding Qty. (Base) | Whse. Outstanding Qty. (Base) | 🧮 computed |
 | 160 | `completelyShipped` | Completely Shipped | Completely Shipped | ✅ |
 | 161 | `requestedDeliveryDate` | Requested Delivery Date | Requested Delivery Date | ✅ |
 | 162 | `promisedDeliveryDate` | Promised Delivery Date | Promised Delivery Date | ✅ |
@@ -5513,8 +5514,8 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 167 | `shippingAgentCode` | Shipping Agent Code | Shipping Agent Code | ✅ |
 | 168 | `shippingAgentServiceCode` | Shipping Agent Service Code | Shipping Agent Service Code | ✅ |
 | 169 | `allowItemChargeAssignment` | Allow Item Charge Assignment | Allow Item Charge Assignment | ✅ |
-| 170 | `qtyToAssign` | Qty. to Assign | Qty. to Assign | ✅ |
-| 171 | `qtyAssigned` | Qty. Assigned | Qty. Assigned | ✅ |
+| 170 | `qtyToAssign` | Qty. to Assign | Qty. to Assign | 🧮 computed |
+| 171 | `qtyAssigned` | Qty. Assigned | Qty. Assigned | 🧮 computed |
 | 172 | `returnQtyToReceive` | Return Qty. to Receive | Return Qty. to Receive | ✅ |
 | 173 | `returnQtyToReceiveBase` | Return Qty. to Receive (Base) | Return Qty. to Receive (Base) | ✅ |
 | 174 | `returnQtyRcdNotInvd` | Return Qty. Rcd. Not Invd. | Return Qty. Rcd. Not Invd. | ✅ |
@@ -5524,7 +5525,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 178 | `returnQtyReceived` | Return Qty. Received | Return Qty. Received | ✅ |
 | 179 | `returnQtyReceivedBase` | Return Qty. Received (Base) | Return Qty. Received (Base) | ✅ |
 | 180 | `applFromItemEntry` | Appl.-from Item Entry | Appl.-from Item Entry | ✅ |
-| 181 | `itemChargeQtyToHandle` | Item Charge Qty. to Handle | Item Charge Qty. to Handle | ✅ |
+| 181 | `itemChargeQtyToHandle` | Item Charge Qty. to Handle | Item Charge Qty. to Handle | 🧮 computed |
 | 182 | `bomItemNo` | BOM Item No. | BOM Item No. | ✅ |
 | 183 | `returnReceiptNo` | Return Receipt No. | Return Receipt No. | ✅ |
 | 184 | `returnReceiptLineNo` | Return Receipt Line No. | Return Receipt Line No. | ✅ |
@@ -5535,9 +5536,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 189 | `customerDiscGroup` | Customer Disc. Group | Customer Disc. Group | ✅ |
 | 190 | `subtype` | Subtype | Subtype | ✅ |
 | 191 | `priceDescription` | Price description | Price description | ✅ |
-| 192 | `attachedDocCount` | Attached Doc Count | Attached Doc Count | ✅ |
-| 193 | `attachedLinesCount` | Attached Lines Count | Attached Lines Count | ✅ |
-| 194 | `sellToCustomerName` | Sell-to Customer Name | Sell-to Customer Name | ✅ |
+| 192 | `attachedDocCount` | Attached Doc Count | Attached Doc Count | 🧮 computed |
+| 193 | `attachedLinesCount` | Attached Lines Count | Attached Lines Count | 🧮 computed |
+| 194 | `sellToCustomerName` | Sell-to Customer Name | Sell-to Customer Name | 🧮 computed |
 
 
 [↑ Back to top](#table-of-contents)
@@ -5601,14 +5602,14 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 39 | `formatRegion` | Format Region | Format Region | — |
 | 40 | `salespersonCode` | Salesperson Code | Salesperson Code | — |
 | 41 | `orderNo` | Order No. | Order No. | — |
-| 42 | `comment` | Comment | Comment | — |
+| 42 | `comment` | Comment | Comment | 🧮 computed |
 | 43 | `noPrinted` | No. Printed | No. Printed | — |
 | 44 | `onHold` | On Hold | On Hold | — |
 | 45 | `appliesToDocType` | Applies-to Doc. Type | Applies-to Doc. Type | — |
 | 46 | `appliesToDocNo` | Applies-to Doc. No. | Applies-to Doc. No. | — |
 | 47 | `balAccountNo` | Bal. Account No. | Bal. Account No. | — |
-| 48 | `amount` | Amount | Amount | — |
-| 49 | `amountIncludingVat` | Amount Including VAT | Amount Including VAT | — |
+| 48 | `amount` | Amount | Amount | 🧮 computed |
+| 49 | `amountIncludingVat` | Amount Including VAT | Amount Including VAT | 🧮 computed |
 | 50 | `vatRegistrationNo` | VAT Registration No. | VAT Registration No. | — |
 | 51 | `registrationNumber` | Registration Number | Registration No. | — |
 | 52 | `reasonCode` | Reason Code | Reason Code | — |
@@ -5666,23 +5667,23 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 104 | `sellToEMail` | Sell-to E-Mail | Email | — |
 | 105 | `vatReportingDate` | VAT Reporting Date | VAT Date | — |
 | 106 | `paymentReference` | Payment Reference | Payment Reference | — |
-| 107 | `lastEmailSentTime` | Last Email Sent Time | Last Email Sent Time | — |
-| 108 | `lastEmailSentMessageId` | Last Email Sent Message Id | Last Email Sent Message Id | — |
+| 107 | `lastEmailSentTime` | Last Email Sent Time | Last Email Sent Time | 🧮 computed |
+| 108 | `lastEmailSentMessageId` | Last Email Sent Message Id | Last Email Sent Message Id | 🧮 computed |
 | 109 | `shipToPhoneNo` | Ship-to Phone No. | Ship-to Phone No. | — |
 | 110 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | — |
 | 111 | `paymentServiceSetId` | Payment Service Set ID | Payment Service Set ID | — |
 | 112 | `documentExchangeIdentifier` | Document Exchange Identifier | Document Exchange Identifier | — |
 | 113 | `documentExchangeStatus` | Document Exchange Status | Document Exchange Status | — |
 | 114 | `docExchOriginalIdentifier` | Doc. Exch. Original Identifier | Doc. Exch. Original Identifier | — |
-| 115 | `coupledToDataverse` | Coupled to Dataverse | Coupled to Dynamics 365 Sales | — |
+| 115 | `coupledToDataverse` | Coupled to Dataverse | Coupled to Dynamics 365 Sales | 🧮 computed |
 | 116 | `directDebitMandateId` | Direct Debit Mandate ID | Direct Debit Mandate ID | — |
-| 117 | `closed` | Closed | Closed | — |
-| 118 | `remainingAmount` | Remaining Amount | Remaining Amount | — |
+| 117 | `closed` | Closed | Closed | 🧮 computed |
+| 118 | `remainingAmount` | Remaining Amount | Remaining Amount | 🧮 computed |
 | 119 | `custLedgerEntryNo` | Cust. Ledger Entry No. | Cust. Ledger Entry No. | — |
-| 120 | `invoiceDiscountAmount` | Invoice Discount Amount | Invoice Discount Amount | — |
-| 121 | `cancelled` | Cancelled | Cancelled | — |
-| 122 | `corrective` | Corrective | Corrective | — |
-| 123 | `reversed` | Reversed | Reversed | — |
+| 120 | `invoiceDiscountAmount` | Invoice Discount Amount | Invoice Discount Amount | 🧮 computed |
+| 121 | `cancelled` | Cancelled | Cancelled | 🧮 computed |
+| 122 | `corrective` | Corrective | Corrective | 🧮 computed |
+| 123 | `reversed` | Reversed | Reversed | 🧮 computed |
 | 124 | `disputeStatus` | Dispute Status | Dispute Status | — |
 | 125 | `promisedPayDate` | Promised Pay Date | Promised Pay Date | — |
 | 126 | `campaignNo` | Campaign No. | Campaign No. | — |
@@ -5818,7 +5819,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 98 | `allowLineDisc` | Allow Line Disc. | Allow Line Disc. | — |
 | 99 | `customerDiscGroup` | Customer Disc. Group | Customer Disc. Group | — |
 | 100 | `priceDescription` | Price description | Price description | — |
-| 101 | `sellToCustomerName` | Sell-to Customer Name | Sell-to Customer Name | — |
+| 101 | `sellToCustomerName` | Sell-to Customer Name | Sell-to Customer Name | 🧮 computed |
 
 
 [↑ Back to top](#table-of-contents)
@@ -5880,14 +5881,14 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 37 | `languageCode` | Language Code | Language Code | — |
 | 38 | `formatRegion` | Format Region | Format Region | — |
 | 39 | `salespersonCode` | Salesperson Code | Salesperson Code | — |
-| 40 | `comment` | Comment | Comment | — |
+| 40 | `comment` | Comment | Comment | 🧮 computed |
 | 41 | `noPrinted` | No. Printed | No. Printed | — |
 | 42 | `onHold` | On Hold | On Hold | — |
 | 43 | `appliesToDocType` | Applies-to Doc. Type | Applies-to Doc. Type | — |
 | 44 | `appliesToDocNo` | Applies-to Doc. No. | Applies-to Doc. No. | — |
 | 45 | `balAccountNo` | Bal. Account No. | Bal. Account No. | — |
-| 46 | `amount` | Amount | Amount | — |
-| 47 | `amountIncludingVat` | Amount Including VAT | Amount Including VAT | — |
+| 46 | `amount` | Amount | Amount | 🧮 computed |
+| 47 | `amountIncludingVat` | Amount Including VAT | Amount Including VAT | 🧮 computed |
 | 48 | `vatRegistrationNo` | VAT Registration No. | VAT Registration No. | — |
 | 49 | `registrationNumber` | Registration Number | Registration No. | — |
 | 50 | `reasonCode` | Reason Code | Reason Code | — |
@@ -5946,12 +5947,12 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 103 | `documentExchangeIdentifier` | Document Exchange Identifier | Document Exchange Identifier | — |
 | 104 | `documentExchangeStatus` | Document Exchange Status | Document Exchange Status | — |
 | 105 | `docExchOriginalIdentifier` | Doc. Exch. Original Identifier | Doc. Exch. Original Identifier | — |
-| 106 | `paid` | Paid | Paid | — |
-| 107 | `remainingAmount` | Remaining Amount | Remaining Amount | — |
+| 106 | `paid` | Paid | Paid | 🧮 computed |
+| 107 | `remainingAmount` | Remaining Amount | Remaining Amount | 🧮 computed |
 | 108 | `custLedgerEntryNo` | Cust. Ledger Entry No. | Cust. Ledger Entry No. | — |
-| 109 | `invoiceDiscountAmount` | Invoice Discount Amount | Invoice Discount Amount | — |
-| 110 | `cancelled` | Cancelled | Cancelled | — |
-| 111 | `corrective` | Corrective | Corrective | — |
+| 109 | `invoiceDiscountAmount` | Invoice Discount Amount | Invoice Discount Amount | 🧮 computed |
+| 110 | `cancelled` | Cancelled | Cancelled | 🧮 computed |
+| 111 | `corrective` | Corrective | Corrective | 🧮 computed |
 | 112 | `campaignNo` | Campaign No. | Campaign No. | — |
 | 113 | `sellToContactNo` | Sell-to Contact No. | Sell-to Contact No. | — |
 | 114 | `billToContactNo` | Bill-to Contact No. | Bill-to Contact No. | — |
@@ -6082,7 +6083,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 94 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | — |
 | 95 | `allowLineDisc` | Allow Line Disc. | Allow Line Disc. | — |
 | 96 | `customerDiscGroup` | Customer Disc. Group | Customer Disc. Group | — |
-| 97 | `sellToCustomerName` | Sell-to Customer Name | Sell-to Customer Name | — |
+| 97 | `sellToCustomerName` | Sell-to Customer Name | Sell-to Customer Name | 🧮 computed |
 
 
 [↑ Back to top](#table-of-contents)
@@ -6146,7 +6147,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 39 | `formatRegion` | Format Region | Format Region | — |
 | 40 | `salespersonCode` | Salesperson Code | Salesperson Code | — |
 | 41 | `orderNo` | Order No. | Order No. | — |
-| 42 | `comment` | Comment | Comment | — |
+| 42 | `comment` | Comment | Comment | 🧮 computed |
 | 43 | `noPrinted` | No. Printed | No. Printed | — |
 | 44 | `onHold` | On Hold | On Hold | — |
 | 45 | `appliesToDocType` | Applies-to Doc. Type | Applies-to Doc. Type | — |
@@ -6285,7 +6286,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 49 | `taxGroupCode` | Tax Group Code | Tax Group Code | — |
 | 50 | `vatBusPostingGroup` | VAT Bus. Posting Group | VAT Bus. Posting Group | — |
 | 51 | `vatProdPostingGroup` | VAT Prod. Posting Group | VAT Prod. Posting Group | — |
-| 52 | `currencyCode` | Currency Code | Currency Code | — |
+| 52 | `currencyCode` | Currency Code | Currency Code | 🧮 computed |
 | 53 | `blanketOrderNo` | Blanket Order No. | Blanket Order No. | — |
 | 54 | `blanketOrderLineNo` | Blanket Order Line No. | Blanket Order Line No. | — |
 | 55 | `vatBaseAmount` | VAT Base Amount | VAT Base Amount | — |
@@ -6393,7 +6394,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 38 | `languageCode` | Language Code | Language Code | — |
 | 39 | `formatRegion` | Format Region | Format Region | — |
 | 40 | `salespersonCode` | Salesperson Code | Salesperson Code | — |
-| 41 | `comment` | Comment | Comment | — |
+| 41 | `comment` | Comment | Comment | 🧮 computed |
 | 42 | `noPrinted` | No. Printed | No. Printed | — |
 | 43 | `onHold` | On Hold | On Hold | — |
 | 44 | `appliesToDocType` | Applies-to Doc. Type | Applies-to Doc. Type | — |
@@ -6522,7 +6523,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 43 | `taxGroupCode` | Tax Group Code | Tax Group Code | — |
 | 44 | `vatBusPostingGroup` | VAT Bus. Posting Group | VAT Bus. Posting Group | — |
 | 45 | `vatProdPostingGroup` | VAT Prod. Posting Group | VAT Prod. Posting Group | — |
-| 46 | `currencyCode` | Currency Code | Currency Code | — |
+| 46 | `currencyCode` | Currency Code | Currency Code | 🧮 computed |
 | 47 | `blanketOrderNo` | Blanket Order No. | Blanket Order No. | — |
 | 48 | `blanketOrderLineNo` | Blanket Order Line No. | Blanket Order Line No. | — |
 | 49 | `vatBaseAmount` | VAT Base Amount | VAT Base Amount | — |
@@ -6561,7 +6562,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 82 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | — |
 | 83 | `allowLineDisc` | Allow Line Disc. | Allow Line Disc. | — |
 | 84 | `customerDiscGroup` | Customer Disc. Group | Customer Disc. Group | — |
-| 85 | `sellToCustomerName` | Sell-to Customer Name | Sell-to Customer Name | — |
+| 85 | `sellToCustomerName` | Sell-to Customer Name | Sell-to Customer Name | 🧮 computed |
 
 
 [↑ Back to top](#table-of-contents)
@@ -6627,18 +6628,18 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 40 | `formatRegion` | Format Region | Format Region | ✅ |
 | 41 | `salespersonCode` | Salesperson Code | Salesperson Code | ✅ |
 | 42 | `orderClass` | Order Class | Order Class | ✅ |
-| 43 | `comment` | Comment | Comment | ✅ |
+| 43 | `comment` | Comment | Comment | 🧮 computed |
 | 44 | `noPrinted` | No. Printed | No. Printed | ✅ |
 | 45 | `onHold` | On Hold | On Hold | ✅ |
 | 46 | `appliesToDocType` | Applies-to Doc. Type | Applies-to Doc. Type | ✅ |
 | 47 | `appliesToDocNo` | Applies-to Doc. No. | Applies-to Doc. No. | ✅ |
 | 48 | `balAccountNo` | Bal. Account No. | Bal. Account No. | ✅ |
-| 49 | `recalculateInvoiceDisc` | Recalculate Invoice Disc. | Recalculate Invoice Disc. | ✅ |
+| 49 | `recalculateInvoiceDisc` | Recalculate Invoice Disc. | Recalculate Invoice Disc. | 🧮 computed |
 | 50 | `ship` | Ship | Ship | ✅ |
 | 51 | `invoice` | Invoice | Invoice | ✅ |
 | 52 | `printPostedDocuments` | Print Posted Documents | Print Posted Documents | ✅ |
-| 53 | `amount` | Amount | Amount | ✅ |
-| 54 | `amountIncludingVat` | Amount Including VAT | Amount Including VAT | ✅ |
+| 53 | `amount` | Amount | Amount | 🧮 computed |
+| 54 | `amountIncludingVat` | Amount Including VAT | Amount Including VAT | 🧮 computed |
 | 55 | `shippingNo` | Shipping No. | Shipping No. | ✅ |
 | 56 | `postingNo` | Posting No. | Posting No. | ✅ |
 | 57 | `lastShippingNo` | Last Shipping No. | Last Shipping No. | ✅ |
@@ -6726,17 +6727,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 139 | `journalTemplName` | Journal Templ. Name | Journal Template Name | ✅ |
 | 140 | `vatReportingDate` | VAT Reporting Date | VAT Date | ✅ |
 | 141 | `rcvdFromCountRegionCode` | Rcvd.-from Count./Region Code | Received-from Country/Region Code | ✅ |
-| 142 | `lastEmailSentTime` | Last Email Sent Time | Last Email Sent Time | ✅ |
-| 143 | `lastEmailSentMessageId` | Last Email Sent Message Id | Last Email Sent Message Id | ✅ |
+| 142 | `lastEmailSentTime` | Last Email Sent Time | Last Email Sent Time | 🧮 computed |
+| 143 | `lastEmailSentMessageId` | Last Email Sent Message Id | Last Email Sent Message Id | 🧮 computed |
 | 144 | `shipToPhoneNo` | Ship-to Phone No. | Ship-to Phone No. | ✅ |
-| 145 | `amtShipNotInvLcy` | Amt. Ship. Not Inv. (LCY) | Amount Shipped Not Invoiced (LCY) Incl. VAT | ✅ |
-| 146 | `amtShipNotInvLcyBase` | Amt. Ship. Not Inv. (LCY) Base | Amount Shipped Not Invoiced (LCY) | ✅ |
+| 145 | `amtShipNotInvLcy` | Amt. Ship. Not Inv. (LCY) | Amount Shipped Not Invoiced (LCY) Incl. VAT | 🧮 computed |
+| 146 | `amtShipNotInvLcyBase` | Amt. Ship. Not Inv. (LCY) Base | Amount Shipped Not Invoiced (LCY) | 🧮 computed |
 | 147 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | ✅ |
 | 148 | `paymentServiceSetId` | Payment Service Set ID | Payment Service Set ID | ✅ |
-| 149 | `coupledToDataverse` | Coupled to Dataverse | Coupled to Dynamics 365 Sales | ✅ |
+| 149 | `coupledToDataverse` | Coupled to Dataverse | Coupled to Dynamics 365 Sales | 🧮 computed |
 | 150 | `directDebitMandateId` | Direct Debit Mandate ID | Direct Debit Mandate ID | ✅ |
-| 151 | `invoiceDiscountAmount` | Invoice Discount Amount | Invoice Discount Amount | ✅ |
-| 152 | `noOfArchivedVersions` | No. of Archived Versions | No. of Archived Versions | ✅ |
+| 151 | `invoiceDiscountAmount` | Invoice Discount Amount | Invoice Discount Amount | 🧮 computed |
+| 152 | `noOfArchivedVersions` | No. of Archived Versions | No. of Archived Versions | 🧮 computed |
 | 153 | `docNoOccurrence` | Doc. No. Occurrence | Doc. No. Occurrence | ✅ |
 | 154 | `campaignNo` | Campaign No. | Campaign No. | ✅ |
 | 155 | `sellToContactNo` | Sell-to Contact No. | Sell-to Contact No. | ✅ |
@@ -6746,19 +6747,19 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 159 | `billToCustomerTemplCode` | Bill-to Customer Templ. Code | Bill-to Customer Template Code | ✅ |
 | 160 | `responsibilityCenter` | Responsibility Center | Responsibility Center | ✅ |
 | 161 | `shippingAdvice` | Shipping Advice | Shipping Advice | ✅ |
-| 162 | `shippedNotInvoiced` | Shipped Not Invoiced | Shipped Not Invoiced | ✅ |
-| 163 | `completelyShipped` | Completely Shipped | Completely Shipped | ✅ |
+| 162 | `shippedNotInvoiced` | Shipped Not Invoiced | Shipped Not Invoiced | 🧮 computed |
+| 163 | `completelyShipped` | Completely Shipped | Completely Shipped | 🧮 computed |
 | 164 | `postingFromWhseRef` | Posting from Whse. Ref. | Posting from Whse. Ref. | ✅ |
-| 165 | `locationFilter` | Location Filter | Location Filter | ✅ |
-| 166 | `shipped` | Shipped | Shipped | ✅ |
-| 167 | `lastShipmentDate` | Last Shipment Date | Last Shipment Date | ✅ |
+| 165 | `locationFilter` | Location Filter | Location Filter | 🔍 filter |
+| 166 | `shipped` | Shipped | Shipped | 🧮 computed |
+| 167 | `lastShipmentDate` | Last Shipment Date | Last Shipment Date | 🧮 computed |
 | 168 | `requestedDeliveryDate` | Requested Delivery Date | Requested Delivery Date | ✅ |
 | 169 | `promisedDeliveryDate` | Promised Delivery Date | Promised Delivery Date | ✅ |
 | 170 | `shippingTime` | Shipping Time | Shipping Time | ✅ |
 | 171 | `outboundWhseHandlingTime` | Outbound Whse. Handling Time | Outbound Whse. Handling Time | ✅ |
 | 172 | `shippingAgentServiceCode` | Shipping Agent Service Code | Shipping Agent Service Code | ✅ |
-| 173 | `lateOrderShipping` | Late Order Shipping | Late Order Shipping | ✅ |
-| 174 | `dateFilter` | Date Filter | Date Filter | ✅ |
+| 173 | `lateOrderShipping` | Late Order Shipping | Late Order Shipping | 🧮 computed |
+| 174 | `dateFilter` | Date Filter | Date Filter | 🔍 filter |
 | 175 | `receive` | Receive | Receive | ✅ |
 | 176 | `returnReceiptNo` | Return Receipt No. | Return Receipt No. | ✅ |
 | 177 | `returnReceiptNoSeries` | Return Receipt No. Series | Return Receipt No. Series | ✅ |
@@ -6859,7 +6860,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 67 | `outstandingAmountLcy` | Outstanding Amount (LCY) | Outstanding Amount (LCY) | ✅ |
 | 68 | `shippedNotInvoicedLcy` | Shipped Not Invoiced (LCY) | Shipped Not Invoiced (LCY) Incl. VAT | ✅ |
 | 69 | `shippedNotInvLcyNoVat` | Shipped Not Inv. (LCY) No VAT | Shipped Not Invoiced (LCY) | ✅ |
-| 70 | `reservedQuantity` | Reserved Quantity | Reserved Quantity | ✅ |
+| 70 | `reservedQuantity` | Reserved Quantity | Reserved Quantity | 🧮 computed |
 | 71 | `reserve` | Reserve | Reserve | ✅ |
 | 72 | `blanketOrderNo` | Blanket Order No. | Blanket Order No. | ✅ |
 | 73 | `blanketOrderLineNo` | Blanket Order Line No. | Blanket Order Line No. | ✅ |
@@ -6901,15 +6902,15 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 109 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | ✅ |
 | 110 | `qtyToAssembleToOrder` | Qty. to Assemble to Order | Qty. to Assemble to Order | ✅ |
 | 111 | `qtyToAsmToOrderBase` | Qty. to Asm. to Order (Base) | Qty. to Asm. to Order (Base) | ✅ |
-| 112 | `atoWhseOutstandingQty` | ATO Whse. Outstanding Qty. | ATO Whse. Outstanding Qty. | ✅ |
-| 113 | `atoWhseOutstdQtyBase` | ATO Whse. Outstd. Qty. (Base) | ATO Whse. Outstd. Qty. (Base) | ✅ |
+| 112 | `atoWhseOutstandingQty` | ATO Whse. Outstanding Qty. | ATO Whse. Outstanding Qty. | 🧮 computed |
+| 113 | `atoWhseOutstdQtyBase` | ATO Whse. Outstd. Qty. (Base) | ATO Whse. Outstd. Qty. (Base) | 🧮 computed |
 | 114 | `jobTaskNo` | Job Task No. | Project Task No. | ✅ |
 | 115 | `jobContractEntryNo` | Job Contract Entry No. | Project Contract Entry No. | ✅ |
-| 116 | `postingDate` | Posting Date | Posting Date | ✅ |
+| 116 | `postingDate` | Posting Date | Posting Date | 🧮 computed |
 | 117 | `deferralCode` | Deferral Code | Deferral Code | ✅ |
 | 118 | `returnsDeferralStartDate` | Returns Deferral Start Date | Returns Deferral Start Date | ✅ |
 | 119 | `selectedAllocAccountNo` | Selected Alloc. Account No. | Allocation Account No. | ✅ |
-| 120 | `allocAccModifiedByUser` | Alloc. Acc. Modified by User | Allocation Account Distributions Modified | ✅ |
+| 120 | `allocAccModifiedByUser` | Alloc. Acc. Modified by User | Allocation Account Distributions Modified | 🧮 computed |
 | 121 | `allocationAccountNo` | Allocation Account No. | Posting Allocation Account No. | ✅ |
 | 122 | `allocSalesLineSystemid` | Alloc. Sales Line SystemId | Allocation Sales Line SystemId | ✅ |
 | 123 | `variantCode` | Variant Code | Variant Code | ✅ |
@@ -6926,7 +6927,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 134 | `qtyShippedNotInvdBase` | Qty. Shipped Not Invd. (Base) | Qty. Shipped Not Invd. (Base) | ✅ |
 | 135 | `qtyShippedBase` | Qty. Shipped (Base) | Qty. Shipped (Base) | ✅ |
 | 136 | `qtyInvoicedBase` | Qty. Invoiced (Base) | Qty. Invoiced (Base) | ✅ |
-| 137 | `reservedQtyBase` | Reserved Qty. (Base) | Reserved Qty. (Base) | ✅ |
+| 137 | `reservedQtyBase` | Reserved Qty. (Base) | Reserved Qty. (Base) | 🧮 computed |
 | 138 | `faPostingDate` | FA Posting Date | FA Posting Date | ✅ |
 | 139 | `depreciationBookCode` | Depreciation Book Code | Depreciation Book Code | ✅ |
 | 140 | `deprUntilFaPostingDate` | Depr. until FA Posting Date | Depr. until FA Posting Date | ✅ |
@@ -6934,7 +6935,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 142 | `useDuplicationList` | Use Duplication List | Use Duplication List | ✅ |
 | 143 | `responsibilityCenter` | Responsibility Center | Responsibility Center | ✅ |
 | 144 | `outOfStockSubstitution` | Out-of-Stock Substitution | Out-of-Stock Substitution | ✅ |
-| 145 | `substitutionAvailable` | Substitution Available | Substitution Available | ✅ |
+| 145 | `substitutionAvailable` | Substitution Available | Substitution Available | 🧮 computed |
 | 146 | `originallyOrderedNo` | Originally Ordered No. | Originally Ordered No. | ✅ |
 | 147 | `originallyOrderedVarCode` | Originally Ordered Var. Code | Originally Ordered Var. Code | ✅ |
 | 148 | `itemCategoryCode` | Item Category Code | Item Category Code | ✅ |
@@ -6947,8 +6948,8 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 155 | `itemReferenceUnitOfMeasure` | Item Reference Unit of Measure | Reference Unit of Measure | ✅ |
 | 156 | `itemReferenceType` | Item Reference Type | Item Reference Type | ✅ |
 | 157 | `itemReferenceTypeNo` | Item Reference Type No. | Item Reference Type No. | ✅ |
-| 158 | `whseOutstandingQty` | Whse. Outstanding Qty. | Whse. Outstanding Qty. | ✅ |
-| 159 | `whseOutstandingQtyBase` | Whse. Outstanding Qty. (Base) | Whse. Outstanding Qty. (Base) | ✅ |
+| 158 | `whseOutstandingQty` | Whse. Outstanding Qty. | Whse. Outstanding Qty. | 🧮 computed |
+| 159 | `whseOutstandingQtyBase` | Whse. Outstanding Qty. (Base) | Whse. Outstanding Qty. (Base) | 🧮 computed |
 | 160 | `completelyShipped` | Completely Shipped | Completely Shipped | ✅ |
 | 161 | `requestedDeliveryDate` | Requested Delivery Date | Requested Delivery Date | ✅ |
 | 162 | `promisedDeliveryDate` | Promised Delivery Date | Promised Delivery Date | ✅ |
@@ -6959,8 +6960,8 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 167 | `shippingAgentCode` | Shipping Agent Code | Shipping Agent Code | ✅ |
 | 168 | `shippingAgentServiceCode` | Shipping Agent Service Code | Shipping Agent Service Code | ✅ |
 | 169 | `allowItemChargeAssignment` | Allow Item Charge Assignment | Allow Item Charge Assignment | ✅ |
-| 170 | `qtyToAssign` | Qty. to Assign | Qty. to Assign | ✅ |
-| 171 | `qtyAssigned` | Qty. Assigned | Qty. Assigned | ✅ |
+| 170 | `qtyToAssign` | Qty. to Assign | Qty. to Assign | 🧮 computed |
+| 171 | `qtyAssigned` | Qty. Assigned | Qty. Assigned | 🧮 computed |
 | 172 | `returnQtyToReceive` | Return Qty. to Receive | Return Qty. to Receive | ✅ |
 | 173 | `returnQtyToReceiveBase` | Return Qty. to Receive (Base) | Return Qty. to Receive (Base) | ✅ |
 | 174 | `returnQtyRcdNotInvd` | Return Qty. Rcd. Not Invd. | Return Qty. Rcd. Not Invd. | ✅ |
@@ -6970,7 +6971,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 178 | `returnQtyReceived` | Return Qty. Received | Return Qty. Received | ✅ |
 | 179 | `returnQtyReceivedBase` | Return Qty. Received (Base) | Return Qty. Received (Base) | ✅ |
 | 180 | `applFromItemEntry` | Appl.-from Item Entry | Appl.-from Item Entry | ✅ |
-| 181 | `itemChargeQtyToHandle` | Item Charge Qty. to Handle | Item Charge Qty. to Handle | ✅ |
+| 181 | `itemChargeQtyToHandle` | Item Charge Qty. to Handle | Item Charge Qty. to Handle | 🧮 computed |
 | 182 | `bomItemNo` | BOM Item No. | BOM Item No. | ✅ |
 | 183 | `returnReceiptNo` | Return Receipt No. | Return Receipt No. | ✅ |
 | 184 | `returnReceiptLineNo` | Return Receipt Line No. | Return Receipt Line No. | ✅ |
@@ -6981,9 +6982,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 189 | `customerDiscGroup` | Customer Disc. Group | Customer Disc. Group | ✅ |
 | 190 | `subtype` | Subtype | Subtype | ✅ |
 | 191 | `priceDescription` | Price description | Price description | ✅ |
-| 192 | `attachedDocCount` | Attached Doc Count | Attached Doc Count | ✅ |
-| 193 | `attachedLinesCount` | Attached Lines Count | Attached Lines Count | ✅ |
-| 194 | `sellToCustomerName` | Sell-to Customer Name | Sell-to Customer Name | ✅ |
+| 192 | `attachedDocCount` | Attached Doc Count | Attached Doc Count | 🧮 computed |
+| 193 | `attachedLinesCount` | Attached Lines Count | Attached Lines Count | 🧮 computed |
+| 194 | `sellToCustomerName` | Sell-to Customer Name | Sell-to Customer Name | 🧮 computed |
 
 
 [↑ Back to top](#table-of-contents)
@@ -7054,18 +7055,18 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 38 | `formatRegion` | Format Region | Format Region | ✅ |
 | 39 | `purchaserCode` | Purchaser Code | Purchaser Code | ✅ |
 | 40 | `orderClass` | Order Class | Order Class | ✅ |
-| 41 | `comment` | Comment | Comment | ✅ |
+| 41 | `comment` | Comment | Comment | 🧮 computed |
 | 42 | `noPrinted` | No. Printed | No. Printed | ✅ |
 | 43 | `onHold` | On Hold | On Hold | ✅ |
 | 44 | `appliesToDocType` | Applies-to Doc. Type | Applies-to Doc. Type | ✅ |
 | 45 | `appliesToDocNo` | Applies-to Doc. No. | Applies-to Doc. No. | ✅ |
 | 46 | `balAccountNo` | Bal. Account No. | Bal. Account No. | ✅ |
-| 47 | `recalculateInvoiceDisc` | Recalculate Invoice Disc. | Recalculate Invoice Disc. | ✅ |
+| 47 | `recalculateInvoiceDisc` | Recalculate Invoice Disc. | Recalculate Invoice Disc. | 🧮 computed |
 | 48 | `receive` | Receive | Receive | ✅ |
 | 49 | `invoice` | Invoice | Invoice | ✅ |
 | 50 | `printPostedDocuments` | Print Posted Documents | Print Posted Documents | ✅ |
-| 51 | `amount` | Amount | Amount | ✅ |
-| 52 | `amountIncludingVat` | Amount Including VAT | Amount Including VAT | ✅ |
+| 51 | `amount` | Amount | Amount | 🧮 computed |
+| 52 | `amountIncludingVat` | Amount Including VAT | Amount Including VAT | 🧮 computed |
 | 53 | `receivingNo` | Receiving No. | Receiving No. | ✅ |
 | 54 | `postingNo` | Posting No. | Posting No. | ✅ |
 | 55 | `lastReceivingNo` | Last Receiving No. | Last Receiving No. | ✅ |
@@ -7144,27 +7145,27 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 128 | `journalTemplName` | Journal Templ. Name | Journal Template Name | ✅ |
 | 129 | `vatReportingDate` | VAT Reporting Date | VAT Date | ✅ |
 | 130 | `shipToPhoneNo` | Ship-to Phone No. | Ship-to Phone No. | ✅ |
-| 131 | `aRcdNotInvExVatLcy` | A. Rcd. Not Inv. Ex. VAT (LCY) | Amount Received Not Invoiced (LCY) | ✅ |
-| 132 | `amtRcdNotInvoicedLcy` | Amt. Rcd. Not Invoiced (LCY) | Amount Received Not Invoiced (LCY) Incl. VAT | ✅ |
+| 131 | `aRcdNotInvExVatLcy` | A. Rcd. Not Inv. Ex. VAT (LCY) | Amount Received Not Invoiced (LCY) | 🧮 computed |
+| 132 | `amtRcdNotInvoicedLcy` | Amt. Rcd. Not Invoiced (LCY) | Amount Received Not Invoiced (LCY) Incl. VAT | 🧮 computed |
 | 133 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | ✅ |
 | 134 | `remitToCode` | Remit-to Code | Remit-to Code | ✅ |
-| 135 | `invoiceDiscountAmount` | Invoice Discount Amount | Invoice Discount Amount | ✅ |
-| 136 | `noOfArchivedVersions` | No. of Archived Versions | No. of Archived Versions | ✅ |
+| 135 | `invoiceDiscountAmount` | Invoice Discount Amount | Invoice Discount Amount | 🧮 computed |
+| 136 | `noOfArchivedVersions` | No. of Archived Versions | No. of Archived Versions | 🧮 computed |
 | 137 | `docNoOccurrence` | Doc. No. Occurrence | Doc. No. Occurrence | ✅ |
 | 138 | `campaignNo` | Campaign No. | Campaign No. | ✅ |
 | 139 | `buyFromContactNo` | Buy-from Contact No. | Buy-from Contact No. | ✅ |
 | 140 | `payToContactNo` | Pay-to Contact No. | Pay-to Contact No. | ✅ |
 | 141 | `responsibilityCenter` | Responsibility Center | Responsibility Center | ✅ |
-| 142 | `partiallyInvoiced` | Partially Invoiced | Partially Invoiced | ✅ |
-| 143 | `completelyReceived` | Completely Received | Completely Received | ✅ |
+| 142 | `partiallyInvoiced` | Partially Invoiced | Partially Invoiced | 🧮 computed |
+| 143 | `completelyReceived` | Completely Received | Completely Received | 🧮 computed |
 | 144 | `postingFromWhseRef` | Posting from Whse. Ref. | Posting from Whse. Ref. | ✅ |
-| 145 | `locationFilter` | Location Filter | Location Filter | ✅ |
-| 146 | `receivedNotInvoiced` | Received Not Invoiced | Received Not Invoiced | ✅ |
+| 145 | `locationFilter` | Location Filter | Location Filter | 🔍 filter |
+| 146 | `receivedNotInvoiced` | Received Not Invoiced | Received Not Invoiced | 🧮 computed |
 | 147 | `requestedReceiptDate` | Requested Receipt Date | Requested Receipt Date | ✅ |
 | 148 | `promisedReceiptDate` | Promised Receipt Date | Promised Receipt Date | ✅ |
 | 149 | `leadTimeCalculation` | Lead Time Calculation | Lead Time Calculation | ✅ |
 | 150 | `inboundWhseHandlingTime` | Inbound Whse. Handling Time | Inbound Whse. Handling Time | ✅ |
-| 151 | `dateFilter` | Date Filter | Date Filter | ✅ |
+| 151 | `dateFilter` | Date Filter | Date Filter | 🔍 filter |
 | 152 | `vendorAuthorizationNo` | Vendor Authorization No. | Vendor Authorization No. | ✅ |
 | 153 | `returnShipmentNo` | Return Shipment No. | Return Shipment No. | ✅ |
 | 154 | `returnShipmentNoSeries` | Return Shipment No. Series | Return Shipment No. Series | ✅ |
@@ -7172,7 +7173,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 156 | `lastReturnShipmentNo` | Last Return Shipment No. | Last Return Shipment No. | ✅ |
 | 157 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | ✅ |
 | 158 | `assignedUserId` | Assigned User ID | Assigned User ID | ✅ |
-| 159 | `pendingApprovals` | Pending Approvals | Pending Approvals | ✅ |
+| 159 | `pendingApprovals` | Pending Approvals | Pending Approvals | 🧮 computed |
 
 
 [↑ Back to top](#table-of-contents)
@@ -7266,7 +7267,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 68 | `currencyCode` | Currency Code | Currency Code | ✅ |
 | 69 | `outstandingAmountLcy` | Outstanding Amount (LCY) | Outstanding Amount (LCY) | ✅ |
 | 70 | `amtRcdNotInvoicedLcy` | Amt. Rcd. Not Invoiced (LCY) | Amt. Rcd. Not Invoiced (LCY) | ✅ |
-| 71 | `reservedQuantity` | Reserved Quantity | Reserved Quantity | ✅ |
+| 71 | `reservedQuantity` | Reserved Quantity | Reserved Quantity | 🧮 computed |
 | 72 | `blanketOrderNo` | Blanket Order No. | Blanket Order No. | ✅ |
 | 73 | `blanketOrderLineNo` | Blanket Order Line No. | Blanket Order Line No. | ✅ |
 | 74 | `vatBaseAmount` | VAT Base Amount | VAT Base Amount | ✅ |
@@ -7325,7 +7326,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 127 | `deferralCode` | Deferral Code | Deferral Code | ✅ |
 | 128 | `returnsDeferralStartDate` | Returns Deferral Start Date | Returns Deferral Start Date | ✅ |
 | 129 | `selectedAllocAccountNo` | Selected Alloc. Account No. | Allocation Account No. | ✅ |
-| 130 | `allocAccModifiedByUser` | Alloc. Acc. Modified by User | Allocation Account Distributions Modified | ✅ |
+| 130 | `allocAccModifiedByUser` | Alloc. Acc. Modified by User | Allocation Account Distributions Modified | 🧮 computed |
 | 131 | `allocationAccountNo` | Allocation Account No. | Posting Allocation Account No. | ✅ |
 | 132 | `allocPurchLineSystemid` | Alloc. Purch. Line SystemId | Allocation Purchase Line SystemId | ✅ |
 | 133 | `variantCode` | Variant Code | Variant Code | ✅ |
@@ -7341,7 +7342,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 143 | `qtyRcdNotInvoicedBase` | Qty. Rcd. Not Invoiced (Base) | Qty. Rcd. Not Invoiced (Base) | ✅ |
 | 144 | `qtyReceivedBase` | Qty. Received (Base) | Qty. Received (Base) | ✅ |
 | 145 | `qtyInvoicedBase` | Qty. Invoiced (Base) | Qty. Invoiced (Base) | ✅ |
-| 146 | `reservedQtyBase` | Reserved Qty. (Base) | Reserved Qty. (Base) | ✅ |
+| 146 | `reservedQtyBase` | Reserved Qty. (Base) | Reserved Qty. (Base) | 🧮 computed |
 | 147 | `faPostingDate` | FA Posting Date | FA Posting Date | ✅ |
 | 148 | `faPostingType` | FA Posting Type | FA Posting Type | ✅ |
 | 149 | `depreciationBookCode` | Depreciation Book Code | Depreciation Book Code | ✅ |
@@ -7364,7 +7365,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 166 | `itemReferenceUnitOfMeasure` | Item Reference Unit of Measure | Item Reference Unit of Measure | ✅ |
 | 167 | `itemReferenceType` | Item Reference Type | Item Reference Type | ✅ |
 | 168 | `itemReferenceTypeNo` | Item Reference Type No. | Item Reference Type No. | ✅ |
-| 169 | `whseOutstandingQtyBase` | Whse. Outstanding Qty. (Base) | Whse. Outstanding Qty. (Base) | ✅ |
+| 169 | `whseOutstandingQtyBase` | Whse. Outstanding Qty. (Base) | Whse. Outstanding Qty. (Base) | 🧮 computed |
 | 170 | `completelyReceived` | Completely Received | Completely Received | ✅ |
 | 171 | `requestedReceiptDate` | Requested Receipt Date | Requested Receipt Date | ✅ |
 | 172 | `promisedReceiptDate` | Promised Receipt Date | Promised Receipt Date | ✅ |
@@ -7373,8 +7374,8 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 175 | `plannedReceiptDate` | Planned Receipt Date | Planned Receipt Date | ✅ |
 | 176 | `orderDate` | Order Date | Order Date | ✅ |
 | 177 | `allowItemChargeAssignment` | Allow Item Charge Assignment | Allow Item Charge Assignment | ✅ |
-| 178 | `qtyToAssign` | Qty. to Assign | Qty. to Assign | ✅ |
-| 179 | `qtyAssigned` | Qty. Assigned | Qty. Assigned | ✅ |
+| 178 | `qtyToAssign` | Qty. to Assign | Qty. to Assign | 🧮 computed |
+| 179 | `qtyAssigned` | Qty. Assigned | Qty. Assigned | 🧮 computed |
 | 180 | `returnQtyToShip` | Return Qty. to Ship | Return Qty. to Ship | ✅ |
 | 181 | `returnQtyToShipBase` | Return Qty. to Ship (Base) | Return Qty. to Ship (Base) | ✅ |
 | 182 | `returnQtyShippedNotInvd` | Return Qty. Shipped Not Invd. | Return Qty. Shipped Not Invd. | ✅ |
@@ -7383,7 +7384,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 185 | `returnShpdNotInvdLcy` | Return Shpd. Not Invd. (LCY) | Return Shpd. Not Invd. (LCY) | ✅ |
 | 186 | `returnQtyShipped` | Return Qty. Shipped | Return Qty. Shipped | ✅ |
 | 187 | `returnQtyShippedBase` | Return Qty. Shipped (Base) | Return Qty. Shipped (Base) | ✅ |
-| 188 | `itemChargeQtyToHandle` | Item Charge Qty. to Handle | Item Charge Qty. to Handle | ✅ |
+| 188 | `itemChargeQtyToHandle` | Item Charge Qty. to Handle | Item Charge Qty. to Handle | 🧮 computed |
 | 189 | `nonDeductibleVatPct` | Non-Deductible VAT % | Non-Deductible VAT % | ✅ |
 | 190 | `nonDeductibleVatBase` | Non-Deductible VAT Base | Non-Deductible VAT Base | ✅ |
 | 191 | `nonDeductibleVatAmount` | Non-Deductible VAT Amount | Non-Deductible VAT Amount | ✅ |
@@ -7397,12 +7398,12 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 199 | `subtype` | Subtype | Subtype | ✅ |
 | 200 | `copiedFromPostedDoc` | Copied From Posted Doc. | Copied From Posted Doc. | ✅ |
 | 201 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | ✅ |
-| 202 | `attachedDocCount` | Attached Doc Count | Attached Doc Count | ✅ |
-| 203 | `attachedLinesCount` | Attached Lines Count | Attached Lines Count | ✅ |
+| 202 | `attachedDocCount` | Attached Doc Count | Attached Doc Count | 🧮 computed |
+| 203 | `attachedLinesCount` | Attached Lines Count | Attached Lines Count | 🧮 computed |
 | 204 | `overReceiptQuantity` | Over-Receipt Quantity | Over-Receipt Quantity | ✅ |
 | 205 | `overReceiptCode` | Over-Receipt Code | Over-Receipt Code | ✅ |
 | 206 | `overReceiptApprovalStatus` | Over-Receipt Approval Status | Over-Receipt Approval Status | ✅ |
-| 207 | `buyFromVendorName` | Buy-from Vendor Name | Buy-from Vendor Name | ✅ |
+| 207 | `buyFromVendorName` | Buy-from Vendor Name | Buy-from Vendor Name | 🧮 computed |
 | 208 | `overheadRate` | Overhead Rate | Overhead Rate | ✅ |
 | 209 | `mpsOrder` | MPS Order | MPS Order | ✅ |
 | 210 | `planningFlexibility` | Planning Flexibility | Planning Flexibility | ✅ |
@@ -7470,18 +7471,18 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 38 | `formatRegion` | Format Region | Format Region | ✅ |
 | 39 | `purchaserCode` | Purchaser Code | Purchaser Code | ✅ |
 | 40 | `orderClass` | Order Class | Order Class | ✅ |
-| 41 | `comment` | Comment | Comment | ✅ |
+| 41 | `comment` | Comment | Comment | 🧮 computed |
 | 42 | `noPrinted` | No. Printed | No. Printed | ✅ |
 | 43 | `onHold` | On Hold | On Hold | ✅ |
 | 44 | `appliesToDocType` | Applies-to Doc. Type | Applies-to Doc. Type | ✅ |
 | 45 | `appliesToDocNo` | Applies-to Doc. No. | Applies-to Doc. No. | ✅ |
 | 46 | `balAccountNo` | Bal. Account No. | Bal. Account No. | ✅ |
-| 47 | `recalculateInvoiceDisc` | Recalculate Invoice Disc. | Recalculate Invoice Disc. | ✅ |
+| 47 | `recalculateInvoiceDisc` | Recalculate Invoice Disc. | Recalculate Invoice Disc. | 🧮 computed |
 | 48 | `receive` | Receive | Receive | ✅ |
 | 49 | `invoice` | Invoice | Invoice | ✅ |
 | 50 | `printPostedDocuments` | Print Posted Documents | Print Posted Documents | ✅ |
-| 51 | `amount` | Amount | Amount | ✅ |
-| 52 | `amountIncludingVat` | Amount Including VAT | Amount Including VAT | ✅ |
+| 51 | `amount` | Amount | Amount | 🧮 computed |
+| 52 | `amountIncludingVat` | Amount Including VAT | Amount Including VAT | 🧮 computed |
 | 53 | `receivingNo` | Receiving No. | Receiving No. | ✅ |
 | 54 | `postingNo` | Posting No. | Posting No. | ✅ |
 | 55 | `lastReceivingNo` | Last Receiving No. | Last Receiving No. | ✅ |
@@ -7560,27 +7561,27 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 128 | `journalTemplName` | Journal Templ. Name | Journal Template Name | ✅ |
 | 129 | `vatReportingDate` | VAT Reporting Date | VAT Date | ✅ |
 | 130 | `shipToPhoneNo` | Ship-to Phone No. | Ship-to Phone No. | ✅ |
-| 131 | `aRcdNotInvExVatLcy` | A. Rcd. Not Inv. Ex. VAT (LCY) | Amount Received Not Invoiced (LCY) | ✅ |
-| 132 | `amtRcdNotInvoicedLcy` | Amt. Rcd. Not Invoiced (LCY) | Amount Received Not Invoiced (LCY) Incl. VAT | ✅ |
+| 131 | `aRcdNotInvExVatLcy` | A. Rcd. Not Inv. Ex. VAT (LCY) | Amount Received Not Invoiced (LCY) | 🧮 computed |
+| 132 | `amtRcdNotInvoicedLcy` | Amt. Rcd. Not Invoiced (LCY) | Amount Received Not Invoiced (LCY) Incl. VAT | 🧮 computed |
 | 133 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | ✅ |
 | 134 | `remitToCode` | Remit-to Code | Remit-to Code | ✅ |
-| 135 | `invoiceDiscountAmount` | Invoice Discount Amount | Invoice Discount Amount | ✅ |
-| 136 | `noOfArchivedVersions` | No. of Archived Versions | No. of Archived Versions | ✅ |
+| 135 | `invoiceDiscountAmount` | Invoice Discount Amount | Invoice Discount Amount | 🧮 computed |
+| 136 | `noOfArchivedVersions` | No. of Archived Versions | No. of Archived Versions | 🧮 computed |
 | 137 | `docNoOccurrence` | Doc. No. Occurrence | Doc. No. Occurrence | ✅ |
 | 138 | `campaignNo` | Campaign No. | Campaign No. | ✅ |
 | 139 | `buyFromContactNo` | Buy-from Contact No. | Buy-from Contact No. | ✅ |
 | 140 | `payToContactNo` | Pay-to Contact No. | Pay-to Contact No. | ✅ |
 | 141 | `responsibilityCenter` | Responsibility Center | Responsibility Center | ✅ |
-| 142 | `partiallyInvoiced` | Partially Invoiced | Partially Invoiced | ✅ |
-| 143 | `completelyReceived` | Completely Received | Completely Received | ✅ |
+| 142 | `partiallyInvoiced` | Partially Invoiced | Partially Invoiced | 🧮 computed |
+| 143 | `completelyReceived` | Completely Received | Completely Received | 🧮 computed |
 | 144 | `postingFromWhseRef` | Posting from Whse. Ref. | Posting from Whse. Ref. | ✅ |
-| 145 | `locationFilter` | Location Filter | Location Filter | ✅ |
-| 146 | `receivedNotInvoiced` | Received Not Invoiced | Received Not Invoiced | ✅ |
+| 145 | `locationFilter` | Location Filter | Location Filter | 🔍 filter |
+| 146 | `receivedNotInvoiced` | Received Not Invoiced | Received Not Invoiced | 🧮 computed |
 | 147 | `requestedReceiptDate` | Requested Receipt Date | Requested Receipt Date | ✅ |
 | 148 | `promisedReceiptDate` | Promised Receipt Date | Promised Receipt Date | ✅ |
 | 149 | `leadTimeCalculation` | Lead Time Calculation | Lead Time Calculation | ✅ |
 | 150 | `inboundWhseHandlingTime` | Inbound Whse. Handling Time | Inbound Whse. Handling Time | ✅ |
-| 151 | `dateFilter` | Date Filter | Date Filter | ✅ |
+| 151 | `dateFilter` | Date Filter | Date Filter | 🔍 filter |
 | 152 | `vendorAuthorizationNo` | Vendor Authorization No. | Vendor Authorization No. | ✅ |
 | 153 | `returnShipmentNo` | Return Shipment No. | Return Shipment No. | ✅ |
 | 154 | `returnShipmentNoSeries` | Return Shipment No. Series | Return Shipment No. Series | ✅ |
@@ -7588,7 +7589,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 156 | `lastReturnShipmentNo` | Last Return Shipment No. | Last Return Shipment No. | ✅ |
 | 157 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | ✅ |
 | 158 | `assignedUserId` | Assigned User ID | Assigned User ID | ✅ |
-| 159 | `pendingApprovals` | Pending Approvals | Pending Approvals | ✅ |
+| 159 | `pendingApprovals` | Pending Approvals | Pending Approvals | 🧮 computed |
 
 
 [↑ Back to top](#table-of-contents)
@@ -7682,7 +7683,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 68 | `currencyCode` | Currency Code | Currency Code | ✅ |
 | 69 | `outstandingAmountLcy` | Outstanding Amount (LCY) | Outstanding Amount (LCY) | ✅ |
 | 70 | `amtRcdNotInvoicedLcy` | Amt. Rcd. Not Invoiced (LCY) | Amt. Rcd. Not Invoiced (LCY) | ✅ |
-| 71 | `reservedQuantity` | Reserved Quantity | Reserved Quantity | ✅ |
+| 71 | `reservedQuantity` | Reserved Quantity | Reserved Quantity | 🧮 computed |
 | 72 | `blanketOrderNo` | Blanket Order No. | Blanket Order No. | ✅ |
 | 73 | `blanketOrderLineNo` | Blanket Order Line No. | Blanket Order Line No. | ✅ |
 | 74 | `vatBaseAmount` | VAT Base Amount | VAT Base Amount | ✅ |
@@ -7741,7 +7742,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 127 | `deferralCode` | Deferral Code | Deferral Code | ✅ |
 | 128 | `returnsDeferralStartDate` | Returns Deferral Start Date | Returns Deferral Start Date | ✅ |
 | 129 | `selectedAllocAccountNo` | Selected Alloc. Account No. | Allocation Account No. | ✅ |
-| 130 | `allocAccModifiedByUser` | Alloc. Acc. Modified by User | Allocation Account Distributions Modified | ✅ |
+| 130 | `allocAccModifiedByUser` | Alloc. Acc. Modified by User | Allocation Account Distributions Modified | 🧮 computed |
 | 131 | `allocationAccountNo` | Allocation Account No. | Posting Allocation Account No. | ✅ |
 | 132 | `allocPurchLineSystemid` | Alloc. Purch. Line SystemId | Allocation Purchase Line SystemId | ✅ |
 | 133 | `variantCode` | Variant Code | Variant Code | ✅ |
@@ -7757,7 +7758,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 143 | `qtyRcdNotInvoicedBase` | Qty. Rcd. Not Invoiced (Base) | Qty. Rcd. Not Invoiced (Base) | ✅ |
 | 144 | `qtyReceivedBase` | Qty. Received (Base) | Qty. Received (Base) | ✅ |
 | 145 | `qtyInvoicedBase` | Qty. Invoiced (Base) | Qty. Invoiced (Base) | ✅ |
-| 146 | `reservedQtyBase` | Reserved Qty. (Base) | Reserved Qty. (Base) | ✅ |
+| 146 | `reservedQtyBase` | Reserved Qty. (Base) | Reserved Qty. (Base) | 🧮 computed |
 | 147 | `faPostingDate` | FA Posting Date | FA Posting Date | ✅ |
 | 148 | `faPostingType` | FA Posting Type | FA Posting Type | ✅ |
 | 149 | `depreciationBookCode` | Depreciation Book Code | Depreciation Book Code | ✅ |
@@ -7780,7 +7781,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 166 | `itemReferenceUnitOfMeasure` | Item Reference Unit of Measure | Item Reference Unit of Measure | ✅ |
 | 167 | `itemReferenceType` | Item Reference Type | Item Reference Type | ✅ |
 | 168 | `itemReferenceTypeNo` | Item Reference Type No. | Item Reference Type No. | ✅ |
-| 169 | `whseOutstandingQtyBase` | Whse. Outstanding Qty. (Base) | Whse. Outstanding Qty. (Base) | ✅ |
+| 169 | `whseOutstandingQtyBase` | Whse. Outstanding Qty. (Base) | Whse. Outstanding Qty. (Base) | 🧮 computed |
 | 170 | `completelyReceived` | Completely Received | Completely Received | ✅ |
 | 171 | `requestedReceiptDate` | Requested Receipt Date | Requested Receipt Date | ✅ |
 | 172 | `promisedReceiptDate` | Promised Receipt Date | Promised Receipt Date | ✅ |
@@ -7789,8 +7790,8 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 175 | `plannedReceiptDate` | Planned Receipt Date | Planned Receipt Date | ✅ |
 | 176 | `orderDate` | Order Date | Order Date | ✅ |
 | 177 | `allowItemChargeAssignment` | Allow Item Charge Assignment | Allow Item Charge Assignment | ✅ |
-| 178 | `qtyToAssign` | Qty. to Assign | Qty. to Assign | ✅ |
-| 179 | `qtyAssigned` | Qty. Assigned | Qty. Assigned | ✅ |
+| 178 | `qtyToAssign` | Qty. to Assign | Qty. to Assign | 🧮 computed |
+| 179 | `qtyAssigned` | Qty. Assigned | Qty. Assigned | 🧮 computed |
 | 180 | `returnQtyToShip` | Return Qty. to Ship | Return Qty. to Ship | ✅ |
 | 181 | `returnQtyToShipBase` | Return Qty. to Ship (Base) | Return Qty. to Ship (Base) | ✅ |
 | 182 | `returnQtyShippedNotInvd` | Return Qty. Shipped Not Invd. | Return Qty. Shipped Not Invd. | ✅ |
@@ -7799,7 +7800,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 185 | `returnShpdNotInvdLcy` | Return Shpd. Not Invd. (LCY) | Return Shpd. Not Invd. (LCY) | ✅ |
 | 186 | `returnQtyShipped` | Return Qty. Shipped | Return Qty. Shipped | ✅ |
 | 187 | `returnQtyShippedBase` | Return Qty. Shipped (Base) | Return Qty. Shipped (Base) | ✅ |
-| 188 | `itemChargeQtyToHandle` | Item Charge Qty. to Handle | Item Charge Qty. to Handle | ✅ |
+| 188 | `itemChargeQtyToHandle` | Item Charge Qty. to Handle | Item Charge Qty. to Handle | 🧮 computed |
 | 189 | `nonDeductibleVatPct` | Non-Deductible VAT % | Non-Deductible VAT % | ✅ |
 | 190 | `nonDeductibleVatBase` | Non-Deductible VAT Base | Non-Deductible VAT Base | ✅ |
 | 191 | `nonDeductibleVatAmount` | Non-Deductible VAT Amount | Non-Deductible VAT Amount | ✅ |
@@ -7813,12 +7814,12 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 199 | `subtype` | Subtype | Subtype | ✅ |
 | 200 | `copiedFromPostedDoc` | Copied From Posted Doc. | Copied From Posted Doc. | ✅ |
 | 201 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | ✅ |
-| 202 | `attachedDocCount` | Attached Doc Count | Attached Doc Count | ✅ |
-| 203 | `attachedLinesCount` | Attached Lines Count | Attached Lines Count | ✅ |
+| 202 | `attachedDocCount` | Attached Doc Count | Attached Doc Count | 🧮 computed |
+| 203 | `attachedLinesCount` | Attached Lines Count | Attached Lines Count | 🧮 computed |
 | 204 | `overReceiptQuantity` | Over-Receipt Quantity | Over-Receipt Quantity | ✅ |
 | 205 | `overReceiptCode` | Over-Receipt Code | Over-Receipt Code | ✅ |
 | 206 | `overReceiptApprovalStatus` | Over-Receipt Approval Status | Over-Receipt Approval Status | ✅ |
-| 207 | `buyFromVendorName` | Buy-from Vendor Name | Buy-from Vendor Name | ✅ |
+| 207 | `buyFromVendorName` | Buy-from Vendor Name | Buy-from Vendor Name | 🧮 computed |
 | 208 | `overheadRate` | Overhead Rate | Overhead Rate | ✅ |
 | 209 | `mpsOrder` | MPS Order | MPS Order | ✅ |
 | 210 | `planningFlexibility` | Planning Flexibility | Planning Flexibility | ✅ |
@@ -7886,18 +7887,18 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 38 | `formatRegion` | Format Region | Format Region | ✅ |
 | 39 | `purchaserCode` | Purchaser Code | Purchaser Code | ✅ |
 | 40 | `orderClass` | Order Class | Order Class | ✅ |
-| 41 | `comment` | Comment | Comment | ✅ |
+| 41 | `comment` | Comment | Comment | 🧮 computed |
 | 42 | `noPrinted` | No. Printed | No. Printed | ✅ |
 | 43 | `onHold` | On Hold | On Hold | ✅ |
 | 44 | `appliesToDocType` | Applies-to Doc. Type | Applies-to Doc. Type | ✅ |
 | 45 | `appliesToDocNo` | Applies-to Doc. No. | Applies-to Doc. No. | ✅ |
 | 46 | `balAccountNo` | Bal. Account No. | Bal. Account No. | ✅ |
-| 47 | `recalculateInvoiceDisc` | Recalculate Invoice Disc. | Recalculate Invoice Disc. | ✅ |
+| 47 | `recalculateInvoiceDisc` | Recalculate Invoice Disc. | Recalculate Invoice Disc. | 🧮 computed |
 | 48 | `receive` | Receive | Receive | ✅ |
 | 49 | `invoice` | Invoice | Invoice | ✅ |
 | 50 | `printPostedDocuments` | Print Posted Documents | Print Posted Documents | ✅ |
-| 51 | `amount` | Amount | Amount | ✅ |
-| 52 | `amountIncludingVat` | Amount Including VAT | Amount Including VAT | ✅ |
+| 51 | `amount` | Amount | Amount | 🧮 computed |
+| 52 | `amountIncludingVat` | Amount Including VAT | Amount Including VAT | 🧮 computed |
 | 53 | `receivingNo` | Receiving No. | Receiving No. | ✅ |
 | 54 | `postingNo` | Posting No. | Posting No. | ✅ |
 | 55 | `lastReceivingNo` | Last Receiving No. | Last Receiving No. | ✅ |
@@ -7976,27 +7977,27 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 128 | `journalTemplName` | Journal Templ. Name | Journal Template Name | ✅ |
 | 129 | `vatReportingDate` | VAT Reporting Date | VAT Date | ✅ |
 | 130 | `shipToPhoneNo` | Ship-to Phone No. | Ship-to Phone No. | ✅ |
-| 131 | `aRcdNotInvExVatLcy` | A. Rcd. Not Inv. Ex. VAT (LCY) | Amount Received Not Invoiced (LCY) | ✅ |
-| 132 | `amtRcdNotInvoicedLcy` | Amt. Rcd. Not Invoiced (LCY) | Amount Received Not Invoiced (LCY) Incl. VAT | ✅ |
+| 131 | `aRcdNotInvExVatLcy` | A. Rcd. Not Inv. Ex. VAT (LCY) | Amount Received Not Invoiced (LCY) | 🧮 computed |
+| 132 | `amtRcdNotInvoicedLcy` | Amt. Rcd. Not Invoiced (LCY) | Amount Received Not Invoiced (LCY) Incl. VAT | 🧮 computed |
 | 133 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | ✅ |
 | 134 | `remitToCode` | Remit-to Code | Remit-to Code | ✅ |
-| 135 | `invoiceDiscountAmount` | Invoice Discount Amount | Invoice Discount Amount | ✅ |
-| 136 | `noOfArchivedVersions` | No. of Archived Versions | No. of Archived Versions | ✅ |
+| 135 | `invoiceDiscountAmount` | Invoice Discount Amount | Invoice Discount Amount | 🧮 computed |
+| 136 | `noOfArchivedVersions` | No. of Archived Versions | No. of Archived Versions | 🧮 computed |
 | 137 | `docNoOccurrence` | Doc. No. Occurrence | Doc. No. Occurrence | ✅ |
 | 138 | `campaignNo` | Campaign No. | Campaign No. | ✅ |
 | 139 | `buyFromContactNo` | Buy-from Contact No. | Buy-from Contact No. | ✅ |
 | 140 | `payToContactNo` | Pay-to Contact No. | Pay-to Contact No. | ✅ |
 | 141 | `responsibilityCenter` | Responsibility Center | Responsibility Center | ✅ |
-| 142 | `partiallyInvoiced` | Partially Invoiced | Partially Invoiced | ✅ |
-| 143 | `completelyReceived` | Completely Received | Completely Received | ✅ |
+| 142 | `partiallyInvoiced` | Partially Invoiced | Partially Invoiced | 🧮 computed |
+| 143 | `completelyReceived` | Completely Received | Completely Received | 🧮 computed |
 | 144 | `postingFromWhseRef` | Posting from Whse. Ref. | Posting from Whse. Ref. | ✅ |
-| 145 | `locationFilter` | Location Filter | Location Filter | ✅ |
-| 146 | `receivedNotInvoiced` | Received Not Invoiced | Received Not Invoiced | ✅ |
+| 145 | `locationFilter` | Location Filter | Location Filter | 🔍 filter |
+| 146 | `receivedNotInvoiced` | Received Not Invoiced | Received Not Invoiced | 🧮 computed |
 | 147 | `requestedReceiptDate` | Requested Receipt Date | Requested Receipt Date | ✅ |
 | 148 | `promisedReceiptDate` | Promised Receipt Date | Promised Receipt Date | ✅ |
 | 149 | `leadTimeCalculation` | Lead Time Calculation | Lead Time Calculation | ✅ |
 | 150 | `inboundWhseHandlingTime` | Inbound Whse. Handling Time | Inbound Whse. Handling Time | ✅ |
-| 151 | `dateFilter` | Date Filter | Date Filter | ✅ |
+| 151 | `dateFilter` | Date Filter | Date Filter | 🔍 filter |
 | 152 | `vendorAuthorizationNo` | Vendor Authorization No. | Vendor Authorization No. | ✅ |
 | 153 | `returnShipmentNo` | Return Shipment No. | Return Shipment No. | ✅ |
 | 154 | `returnShipmentNoSeries` | Return Shipment No. Series | Return Shipment No. Series | ✅ |
@@ -8004,7 +8005,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 156 | `lastReturnShipmentNo` | Last Return Shipment No. | Last Return Shipment No. | ✅ |
 | 157 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | ✅ |
 | 158 | `assignedUserId` | Assigned User ID | Assigned User ID | ✅ |
-| 159 | `pendingApprovals` | Pending Approvals | Pending Approvals | ✅ |
+| 159 | `pendingApprovals` | Pending Approvals | Pending Approvals | 🧮 computed |
 
 
 [↑ Back to top](#table-of-contents)
@@ -8098,7 +8099,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 68 | `currencyCode` | Currency Code | Currency Code | ✅ |
 | 69 | `outstandingAmountLcy` | Outstanding Amount (LCY) | Outstanding Amount (LCY) | ✅ |
 | 70 | `amtRcdNotInvoicedLcy` | Amt. Rcd. Not Invoiced (LCY) | Amt. Rcd. Not Invoiced (LCY) | ✅ |
-| 71 | `reservedQuantity` | Reserved Quantity | Reserved Quantity | ✅ |
+| 71 | `reservedQuantity` | Reserved Quantity | Reserved Quantity | 🧮 computed |
 | 72 | `blanketOrderNo` | Blanket Order No. | Blanket Order No. | ✅ |
 | 73 | `blanketOrderLineNo` | Blanket Order Line No. | Blanket Order Line No. | ✅ |
 | 74 | `vatBaseAmount` | VAT Base Amount | VAT Base Amount | ✅ |
@@ -8157,7 +8158,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 127 | `deferralCode` | Deferral Code | Deferral Code | ✅ |
 | 128 | `returnsDeferralStartDate` | Returns Deferral Start Date | Returns Deferral Start Date | ✅ |
 | 129 | `selectedAllocAccountNo` | Selected Alloc. Account No. | Allocation Account No. | ✅ |
-| 130 | `allocAccModifiedByUser` | Alloc. Acc. Modified by User | Allocation Account Distributions Modified | ✅ |
+| 130 | `allocAccModifiedByUser` | Alloc. Acc. Modified by User | Allocation Account Distributions Modified | 🧮 computed |
 | 131 | `allocationAccountNo` | Allocation Account No. | Posting Allocation Account No. | ✅ |
 | 132 | `allocPurchLineSystemid` | Alloc. Purch. Line SystemId | Allocation Purchase Line SystemId | ✅ |
 | 133 | `variantCode` | Variant Code | Variant Code | ✅ |
@@ -8173,7 +8174,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 143 | `qtyRcdNotInvoicedBase` | Qty. Rcd. Not Invoiced (Base) | Qty. Rcd. Not Invoiced (Base) | ✅ |
 | 144 | `qtyReceivedBase` | Qty. Received (Base) | Qty. Received (Base) | ✅ |
 | 145 | `qtyInvoicedBase` | Qty. Invoiced (Base) | Qty. Invoiced (Base) | ✅ |
-| 146 | `reservedQtyBase` | Reserved Qty. (Base) | Reserved Qty. (Base) | ✅ |
+| 146 | `reservedQtyBase` | Reserved Qty. (Base) | Reserved Qty. (Base) | 🧮 computed |
 | 147 | `faPostingDate` | FA Posting Date | FA Posting Date | ✅ |
 | 148 | `faPostingType` | FA Posting Type | FA Posting Type | ✅ |
 | 149 | `depreciationBookCode` | Depreciation Book Code | Depreciation Book Code | ✅ |
@@ -8196,7 +8197,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 166 | `itemReferenceUnitOfMeasure` | Item Reference Unit of Measure | Item Reference Unit of Measure | ✅ |
 | 167 | `itemReferenceType` | Item Reference Type | Item Reference Type | ✅ |
 | 168 | `itemReferenceTypeNo` | Item Reference Type No. | Item Reference Type No. | ✅ |
-| 169 | `whseOutstandingQtyBase` | Whse. Outstanding Qty. (Base) | Whse. Outstanding Qty. (Base) | ✅ |
+| 169 | `whseOutstandingQtyBase` | Whse. Outstanding Qty. (Base) | Whse. Outstanding Qty. (Base) | 🧮 computed |
 | 170 | `completelyReceived` | Completely Received | Completely Received | ✅ |
 | 171 | `requestedReceiptDate` | Requested Receipt Date | Requested Receipt Date | ✅ |
 | 172 | `promisedReceiptDate` | Promised Receipt Date | Promised Receipt Date | ✅ |
@@ -8205,8 +8206,8 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 175 | `plannedReceiptDate` | Planned Receipt Date | Planned Receipt Date | ✅ |
 | 176 | `orderDate` | Order Date | Order Date | ✅ |
 | 177 | `allowItemChargeAssignment` | Allow Item Charge Assignment | Allow Item Charge Assignment | ✅ |
-| 178 | `qtyToAssign` | Qty. to Assign | Qty. to Assign | ✅ |
-| 179 | `qtyAssigned` | Qty. Assigned | Qty. Assigned | ✅ |
+| 178 | `qtyToAssign` | Qty. to Assign | Qty. to Assign | 🧮 computed |
+| 179 | `qtyAssigned` | Qty. Assigned | Qty. Assigned | 🧮 computed |
 | 180 | `returnQtyToShip` | Return Qty. to Ship | Return Qty. to Ship | ✅ |
 | 181 | `returnQtyToShipBase` | Return Qty. to Ship (Base) | Return Qty. to Ship (Base) | ✅ |
 | 182 | `returnQtyShippedNotInvd` | Return Qty. Shipped Not Invd. | Return Qty. Shipped Not Invd. | ✅ |
@@ -8215,7 +8216,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 185 | `returnShpdNotInvdLcy` | Return Shpd. Not Invd. (LCY) | Return Shpd. Not Invd. (LCY) | ✅ |
 | 186 | `returnQtyShipped` | Return Qty. Shipped | Return Qty. Shipped | ✅ |
 | 187 | `returnQtyShippedBase` | Return Qty. Shipped (Base) | Return Qty. Shipped (Base) | ✅ |
-| 188 | `itemChargeQtyToHandle` | Item Charge Qty. to Handle | Item Charge Qty. to Handle | ✅ |
+| 188 | `itemChargeQtyToHandle` | Item Charge Qty. to Handle | Item Charge Qty. to Handle | 🧮 computed |
 | 189 | `nonDeductibleVatPct` | Non-Deductible VAT % | Non-Deductible VAT % | ✅ |
 | 190 | `nonDeductibleVatBase` | Non-Deductible VAT Base | Non-Deductible VAT Base | ✅ |
 | 191 | `nonDeductibleVatAmount` | Non-Deductible VAT Amount | Non-Deductible VAT Amount | ✅ |
@@ -8229,12 +8230,12 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 199 | `subtype` | Subtype | Subtype | ✅ |
 | 200 | `copiedFromPostedDoc` | Copied From Posted Doc. | Copied From Posted Doc. | ✅ |
 | 201 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | ✅ |
-| 202 | `attachedDocCount` | Attached Doc Count | Attached Doc Count | ✅ |
-| 203 | `attachedLinesCount` | Attached Lines Count | Attached Lines Count | ✅ |
+| 202 | `attachedDocCount` | Attached Doc Count | Attached Doc Count | 🧮 computed |
+| 203 | `attachedLinesCount` | Attached Lines Count | Attached Lines Count | 🧮 computed |
 | 204 | `overReceiptQuantity` | Over-Receipt Quantity | Over-Receipt Quantity | ✅ |
 | 205 | `overReceiptCode` | Over-Receipt Code | Over-Receipt Code | ✅ |
 | 206 | `overReceiptApprovalStatus` | Over-Receipt Approval Status | Over-Receipt Approval Status | ✅ |
-| 207 | `buyFromVendorName` | Buy-from Vendor Name | Buy-from Vendor Name | ✅ |
+| 207 | `buyFromVendorName` | Buy-from Vendor Name | Buy-from Vendor Name | 🧮 computed |
 | 208 | `overheadRate` | Overhead Rate | Overhead Rate | ✅ |
 | 209 | `mpsOrder` | MPS Order | MPS Order | ✅ |
 | 210 | `planningFlexibility` | Planning Flexibility | Planning Flexibility | ✅ |
@@ -8300,14 +8301,14 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 37 | `formatRegion` | Format Region | Format Region | — |
 | 38 | `purchaserCode` | Purchaser Code | Purchaser Code | — |
 | 39 | `orderNo` | Order No. | Order No. | — |
-| 40 | `comment` | Comment | Comment | — |
+| 40 | `comment` | Comment | Comment | 🧮 computed |
 | 41 | `noPrinted` | No. Printed | No. Printed | — |
 | 42 | `onHold` | On Hold | On Hold | — |
 | 43 | `appliesToDocType` | Applies-to Doc. Type | Applies-to Doc. Type | — |
 | 44 | `appliesToDocNo` | Applies-to Doc. No. | Applies-to Doc. No. | — |
 | 45 | `balAccountNo` | Bal. Account No. | Bal. Account No. | — |
-| 46 | `amount` | Amount | Amount | — |
-| 47 | `amountIncludingVat` | Amount Including VAT | Amount Including VAT | — |
+| 46 | `amount` | Amount | Amount | 🧮 computed |
+| 47 | `amountIncludingVat` | Amount Including VAT | Amount Including VAT | 🧮 computed |
 | 48 | `vendorOrderNo` | Vendor Order No. | Vendor Order No. | — |
 | 49 | `vendorInvoiceNo` | Vendor Invoice No. | Vendor Invoice No. | — |
 | 50 | `vatRegistrationNo` | VAT Registration No. | VAT Registration No. | — |
@@ -8360,12 +8361,12 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 97 | `shipToPhoneNo` | Ship-to Phone No. | Ship-to Phone No. | — |
 | 98 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | — |
 | 99 | `remitToCode` | Remit-to Code | Remit-to Code | — |
-| 100 | `closed` | Closed | Closed | — |
-| 101 | `remainingAmount` | Remaining Amount | Remaining Amount | — |
+| 100 | `closed` | Closed | Closed | 🧮 computed |
+| 101 | `remainingAmount` | Remaining Amount | Remaining Amount | 🧮 computed |
 | 102 | `vendorLedgerEntryNo` | Vendor Ledger Entry No. | Vendor Ledger Entry No. | — |
-| 103 | `invoiceDiscountAmount` | Invoice Discount Amount | Invoice Discount Amount | — |
-| 104 | `cancelled` | Cancelled | Cancelled | — |
-| 105 | `corrective` | Corrective | Corrective | — |
+| 103 | `invoiceDiscountAmount` | Invoice Discount Amount | Invoice Discount Amount | 🧮 computed |
+| 104 | `cancelled` | Cancelled | Cancelled | 🧮 computed |
+| 105 | `corrective` | Corrective | Corrective | 🧮 computed |
 | 106 | `campaignNo` | Campaign No. | Campaign No. | — |
 | 107 | `buyFromContactNo` | Buy-from Contact No. | Buy-from Contact No. | — |
 | 108 | `payToContactNo` | Pay-to Contact No. | Pay-to Contact No. | — |
@@ -8510,7 +8511,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 114 | `nonDeductibleVatDiff` | Non-Deductible VAT Diff. | Non-Deductible VAT Difference | — |
 | 115 | `returnReasonCode` | Return Reason Code | Return Reason Code | — |
 | 116 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | — |
-| 117 | `buyFromVendorName` | Buy-from Vendor Name | Buy-from Vendor Name | — |
+| 117 | `buyFromVendorName` | Buy-from Vendor Name | Buy-from Vendor Name | 🧮 computed |
 | 118 | `overheadRate` | Overhead Rate | Overhead Rate | — |
 
 
@@ -8571,14 +8572,14 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 35 | `languageCode` | Language Code | Language Code | — |
 | 36 | `formatRegion` | Format Region | Format Region | — |
 | 37 | `purchaserCode` | Purchaser Code | Purchaser Code | — |
-| 38 | `comment` | Comment | Comment | — |
+| 38 | `comment` | Comment | Comment | 🧮 computed |
 | 39 | `noPrinted` | No. Printed | No. Printed | — |
 | 40 | `onHold` | On Hold | On Hold | — |
 | 41 | `appliesToDocType` | Applies-to Doc. Type | Applies-to Doc. Type | — |
 | 42 | `appliesToDocNo` | Applies-to Doc. No. | Applies-to Doc. No. | — |
 | 43 | `balAccountNo` | Bal. Account No. | Bal. Account No. | — |
-| 44 | `amount` | Amount | Amount | — |
-| 45 | `amountIncludingVat` | Amount Including VAT | Amount Including VAT | — |
+| 44 | `amount` | Amount | Amount | 🧮 computed |
+| 45 | `amountIncludingVat` | Amount Including VAT | Amount Including VAT | 🧮 computed |
 | 46 | `vendorCrMemoNo` | Vendor Cr. Memo No. | Vendor Cr. Memo No. | — |
 | 47 | `vatRegistrationNo` | VAT Registration No. | VAT Registration No. | — |
 | 48 | `sellToCustomerNo` | Sell-to Customer No. | Sell-to Customer No. | — |
@@ -8625,12 +8626,12 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 89 | `vatReportingDate` | VAT Reporting Date | VAT Date | — |
 | 90 | `shipToPhoneNo` | Ship-to Phone No. | Ship-to Phone No. | — |
 | 91 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | — |
-| 92 | `paid` | Paid | Paid | — |
-| 93 | `remainingAmount` | Remaining Amount | Remaining Amount | — |
+| 92 | `paid` | Paid | Paid | 🧮 computed |
+| 93 | `remainingAmount` | Remaining Amount | Remaining Amount | 🧮 computed |
 | 94 | `vendorLedgerEntryNo` | Vendor Ledger Entry No. | Vendor Ledger Entry No. | — |
-| 95 | `invoiceDiscountAmount` | Invoice Discount Amount | Invoice Discount Amount | — |
-| 96 | `cancelled` | Cancelled | Cancelled | — |
-| 97 | `corrective` | Corrective | Corrective | — |
+| 95 | `invoiceDiscountAmount` | Invoice Discount Amount | Invoice Discount Amount | 🧮 computed |
+| 96 | `cancelled` | Cancelled | Cancelled | 🧮 computed |
+| 97 | `corrective` | Corrective | Corrective | 🧮 computed |
 | 98 | `campaignNo` | Campaign No. | Campaign No. | — |
 | 99 | `buyFromContactNo` | Buy-from Contact No. | Buy-from Contact No. | — |
 | 100 | `payToContactNo` | Pay-to Contact No. | Pay-to Contact No. | — |
@@ -8775,7 +8776,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 112 | `returnShipmentLineNo` | Return Shipment Line No. | Return Shipment Line No. | — |
 | 113 | `returnReasonCode` | Return Reason Code | Return Reason Code | — |
 | 114 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | — |
-| 115 | `buyFromVendorName` | Buy-from Vendor Name | Buy-from Vendor Name | — |
+| 115 | `buyFromVendorName` | Buy-from Vendor Name | Buy-from Vendor Name | 🧮 computed |
 
 
 [↑ Back to top](#table-of-contents)
@@ -8836,7 +8837,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 36 | `formatRegion` | Format Region | Format Region | — |
 | 37 | `purchaserCode` | Purchaser Code | Purchaser Code | — |
 | 38 | `orderNo` | Order No. | Order No. | — |
-| 39 | `comment` | Comment | Comment | — |
+| 39 | `comment` | Comment | Comment | 🧮 computed |
 | 40 | `noPrinted` | No. Printed | No. Printed | — |
 | 41 | `onHold` | On Hold | On Hold | — |
 | 42 | `appliesToDocType` | Applies-to Doc. Type | Applies-to Doc. Type | — |
@@ -8968,7 +8969,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 50 | `useTax` | Use Tax | Use Tax | — |
 | 51 | `vatBusPostingGroup` | VAT Bus. Posting Group | VAT Bus. Posting Group | — |
 | 52 | `vatProdPostingGroup` | VAT Prod. Posting Group | VAT Prod. Posting Group | — |
-| 53 | `currencyCode` | Currency Code | Currency Code | — |
+| 53 | `currencyCode` | Currency Code | Currency Code | 🧮 computed |
 | 54 | `blanketOrderNo` | Blanket Order No. | Blanket Order No. | — |
 | 55 | `blanketOrderLineNo` | Blanket Order Line No. | Blanket Order Line No. | — |
 | 56 | `vatBaseAmount` | VAT Base Amount | VAT Base Amount | — |
@@ -9091,7 +9092,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 34 | `languageCode` | Language Code | Language Code | — |
 | 35 | `formatRegion` | Format Region | Format Region | — |
 | 36 | `purchaserCode` | Purchaser Code | Purchaser Code | — |
-| 37 | `comment` | Comment | Comment | — |
+| 37 | `comment` | Comment | Comment | 🧮 computed |
 | 38 | `noPrinted` | No. Printed | No. Printed | — |
 | 39 | `onHold` | On Hold | On Hold | — |
 | 40 | `appliesToDocType` | Applies-to Doc. Type | Applies-to Doc. Type | — |
@@ -9212,7 +9213,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 44 | `useTax` | Use Tax | Use Tax | — |
 | 45 | `vatBusPostingGroup` | VAT Bus. Posting Group | VAT Bus. Posting Group | — |
 | 46 | `vatProdPostingGroup` | VAT Prod. Posting Group | VAT Prod. Posting Group | — |
-| 47 | `currencyCode` | Currency Code | Currency Code | — |
+| 47 | `currencyCode` | Currency Code | Currency Code | 🧮 computed |
 | 48 | `blanketOrderNo` | Blanket Order No. | Blanket Order No. | — |
 | 49 | `blanketOrderLineNo` | Blanket Order Line No. | Blanket Order Line No. | — |
 | 50 | `vatBaseAmount` | VAT Base Amount | VAT Base Amount | — |
@@ -9254,7 +9255,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 86 | `returnOrderLineNo` | Return Order Line No. | Return Order Line No. | — |
 | 87 | `returnReasonCode` | Return Reason Code | Return Reason Code | — |
 | 88 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | — |
-| 89 | `buyFromVendorName` | Buy-from Vendor Name | Buy-from Vendor Name | — |
+| 89 | `buyFromVendorName` | Buy-from Vendor Name | Buy-from Vendor Name | 🧮 computed |
 
 
 [↑ Back to top](#table-of-contents)
@@ -9318,18 +9319,18 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 38 | `formatRegion` | Format Region | Format Region | ✅ |
 | 39 | `purchaserCode` | Purchaser Code | Purchaser Code | ✅ |
 | 40 | `orderClass` | Order Class | Order Class | ✅ |
-| 41 | `comment` | Comment | Comment | ✅ |
+| 41 | `comment` | Comment | Comment | 🧮 computed |
 | 42 | `noPrinted` | No. Printed | No. Printed | ✅ |
 | 43 | `onHold` | On Hold | On Hold | ✅ |
 | 44 | `appliesToDocType` | Applies-to Doc. Type | Applies-to Doc. Type | ✅ |
 | 45 | `appliesToDocNo` | Applies-to Doc. No. | Applies-to Doc. No. | ✅ |
 | 46 | `balAccountNo` | Bal. Account No. | Bal. Account No. | ✅ |
-| 47 | `recalculateInvoiceDisc` | Recalculate Invoice Disc. | Recalculate Invoice Disc. | ✅ |
+| 47 | `recalculateInvoiceDisc` | Recalculate Invoice Disc. | Recalculate Invoice Disc. | 🧮 computed |
 | 48 | `receive` | Receive | Receive | ✅ |
 | 49 | `invoice` | Invoice | Invoice | ✅ |
 | 50 | `printPostedDocuments` | Print Posted Documents | Print Posted Documents | ✅ |
-| 51 | `amount` | Amount | Amount | ✅ |
-| 52 | `amountIncludingVat` | Amount Including VAT | Amount Including VAT | ✅ |
+| 51 | `amount` | Amount | Amount | 🧮 computed |
+| 52 | `amountIncludingVat` | Amount Including VAT | Amount Including VAT | 🧮 computed |
 | 53 | `receivingNo` | Receiving No. | Receiving No. | ✅ |
 | 54 | `postingNo` | Posting No. | Posting No. | ✅ |
 | 55 | `lastReceivingNo` | Last Receiving No. | Last Receiving No. | ✅ |
@@ -9408,27 +9409,27 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 128 | `journalTemplName` | Journal Templ. Name | Journal Template Name | ✅ |
 | 129 | `vatReportingDate` | VAT Reporting Date | VAT Date | ✅ |
 | 130 | `shipToPhoneNo` | Ship-to Phone No. | Ship-to Phone No. | ✅ |
-| 131 | `aRcdNotInvExVatLcy` | A. Rcd. Not Inv. Ex. VAT (LCY) | Amount Received Not Invoiced (LCY) | ✅ |
-| 132 | `amtRcdNotInvoicedLcy` | Amt. Rcd. Not Invoiced (LCY) | Amount Received Not Invoiced (LCY) Incl. VAT | ✅ |
+| 131 | `aRcdNotInvExVatLcy` | A. Rcd. Not Inv. Ex. VAT (LCY) | Amount Received Not Invoiced (LCY) | 🧮 computed |
+| 132 | `amtRcdNotInvoicedLcy` | Amt. Rcd. Not Invoiced (LCY) | Amount Received Not Invoiced (LCY) Incl. VAT | 🧮 computed |
 | 133 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | ✅ |
 | 134 | `remitToCode` | Remit-to Code | Remit-to Code | ✅ |
-| 135 | `invoiceDiscountAmount` | Invoice Discount Amount | Invoice Discount Amount | ✅ |
-| 136 | `noOfArchivedVersions` | No. of Archived Versions | No. of Archived Versions | ✅ |
+| 135 | `invoiceDiscountAmount` | Invoice Discount Amount | Invoice Discount Amount | 🧮 computed |
+| 136 | `noOfArchivedVersions` | No. of Archived Versions | No. of Archived Versions | 🧮 computed |
 | 137 | `docNoOccurrence` | Doc. No. Occurrence | Doc. No. Occurrence | ✅ |
 | 138 | `campaignNo` | Campaign No. | Campaign No. | ✅ |
 | 139 | `buyFromContactNo` | Buy-from Contact No. | Buy-from Contact No. | ✅ |
 | 140 | `payToContactNo` | Pay-to Contact No. | Pay-to Contact No. | ✅ |
 | 141 | `responsibilityCenter` | Responsibility Center | Responsibility Center | ✅ |
-| 142 | `partiallyInvoiced` | Partially Invoiced | Partially Invoiced | ✅ |
-| 143 | `completelyReceived` | Completely Received | Completely Received | ✅ |
+| 142 | `partiallyInvoiced` | Partially Invoiced | Partially Invoiced | 🧮 computed |
+| 143 | `completelyReceived` | Completely Received | Completely Received | 🧮 computed |
 | 144 | `postingFromWhseRef` | Posting from Whse. Ref. | Posting from Whse. Ref. | ✅ |
-| 145 | `locationFilter` | Location Filter | Location Filter | ✅ |
-| 146 | `receivedNotInvoiced` | Received Not Invoiced | Received Not Invoiced | ✅ |
+| 145 | `locationFilter` | Location Filter | Location Filter | 🔍 filter |
+| 146 | `receivedNotInvoiced` | Received Not Invoiced | Received Not Invoiced | 🧮 computed |
 | 147 | `requestedReceiptDate` | Requested Receipt Date | Requested Receipt Date | ✅ |
 | 148 | `promisedReceiptDate` | Promised Receipt Date | Promised Receipt Date | ✅ |
 | 149 | `leadTimeCalculation` | Lead Time Calculation | Lead Time Calculation | ✅ |
 | 150 | `inboundWhseHandlingTime` | Inbound Whse. Handling Time | Inbound Whse. Handling Time | ✅ |
-| 151 | `dateFilter` | Date Filter | Date Filter | ✅ |
+| 151 | `dateFilter` | Date Filter | Date Filter | 🔍 filter |
 | 152 | `vendorAuthorizationNo` | Vendor Authorization No. | Vendor Authorization No. | ✅ |
 | 153 | `returnShipmentNo` | Return Shipment No. | Return Shipment No. | ✅ |
 | 154 | `returnShipmentNoSeries` | Return Shipment No. Series | Return Shipment No. Series | ✅ |
@@ -9436,7 +9437,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 156 | `lastReturnShipmentNo` | Last Return Shipment No. | Last Return Shipment No. | ✅ |
 | 157 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | ✅ |
 | 158 | `assignedUserId` | Assigned User ID | Assigned User ID | ✅ |
-| 159 | `pendingApprovals` | Pending Approvals | Pending Approvals | ✅ |
+| 159 | `pendingApprovals` | Pending Approvals | Pending Approvals | 🧮 computed |
 
 
 [↑ Back to top](#table-of-contents)
@@ -9530,7 +9531,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 68 | `currencyCode` | Currency Code | Currency Code | ✅ |
 | 69 | `outstandingAmountLcy` | Outstanding Amount (LCY) | Outstanding Amount (LCY) | ✅ |
 | 70 | `amtRcdNotInvoicedLcy` | Amt. Rcd. Not Invoiced (LCY) | Amt. Rcd. Not Invoiced (LCY) | ✅ |
-| 71 | `reservedQuantity` | Reserved Quantity | Reserved Quantity | ✅ |
+| 71 | `reservedQuantity` | Reserved Quantity | Reserved Quantity | 🧮 computed |
 | 72 | `blanketOrderNo` | Blanket Order No. | Blanket Order No. | ✅ |
 | 73 | `blanketOrderLineNo` | Blanket Order Line No. | Blanket Order Line No. | ✅ |
 | 74 | `vatBaseAmount` | VAT Base Amount | VAT Base Amount | ✅ |
@@ -9589,7 +9590,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 127 | `deferralCode` | Deferral Code | Deferral Code | ✅ |
 | 128 | `returnsDeferralStartDate` | Returns Deferral Start Date | Returns Deferral Start Date | ✅ |
 | 129 | `selectedAllocAccountNo` | Selected Alloc. Account No. | Allocation Account No. | ✅ |
-| 130 | `allocAccModifiedByUser` | Alloc. Acc. Modified by User | Allocation Account Distributions Modified | ✅ |
+| 130 | `allocAccModifiedByUser` | Alloc. Acc. Modified by User | Allocation Account Distributions Modified | 🧮 computed |
 | 131 | `allocationAccountNo` | Allocation Account No. | Posting Allocation Account No. | ✅ |
 | 132 | `allocPurchLineSystemid` | Alloc. Purch. Line SystemId | Allocation Purchase Line SystemId | ✅ |
 | 133 | `variantCode` | Variant Code | Variant Code | ✅ |
@@ -9605,7 +9606,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 143 | `qtyRcdNotInvoicedBase` | Qty. Rcd. Not Invoiced (Base) | Qty. Rcd. Not Invoiced (Base) | ✅ |
 | 144 | `qtyReceivedBase` | Qty. Received (Base) | Qty. Received (Base) | ✅ |
 | 145 | `qtyInvoicedBase` | Qty. Invoiced (Base) | Qty. Invoiced (Base) | ✅ |
-| 146 | `reservedQtyBase` | Reserved Qty. (Base) | Reserved Qty. (Base) | ✅ |
+| 146 | `reservedQtyBase` | Reserved Qty. (Base) | Reserved Qty. (Base) | 🧮 computed |
 | 147 | `faPostingDate` | FA Posting Date | FA Posting Date | ✅ |
 | 148 | `faPostingType` | FA Posting Type | FA Posting Type | ✅ |
 | 149 | `depreciationBookCode` | Depreciation Book Code | Depreciation Book Code | ✅ |
@@ -9628,7 +9629,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 166 | `itemReferenceUnitOfMeasure` | Item Reference Unit of Measure | Item Reference Unit of Measure | ✅ |
 | 167 | `itemReferenceType` | Item Reference Type | Item Reference Type | ✅ |
 | 168 | `itemReferenceTypeNo` | Item Reference Type No. | Item Reference Type No. | ✅ |
-| 169 | `whseOutstandingQtyBase` | Whse. Outstanding Qty. (Base) | Whse. Outstanding Qty. (Base) | ✅ |
+| 169 | `whseOutstandingQtyBase` | Whse. Outstanding Qty. (Base) | Whse. Outstanding Qty. (Base) | 🧮 computed |
 | 170 | `completelyReceived` | Completely Received | Completely Received | ✅ |
 | 171 | `requestedReceiptDate` | Requested Receipt Date | Requested Receipt Date | ✅ |
 | 172 | `promisedReceiptDate` | Promised Receipt Date | Promised Receipt Date | ✅ |
@@ -9637,8 +9638,8 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 175 | `plannedReceiptDate` | Planned Receipt Date | Planned Receipt Date | ✅ |
 | 176 | `orderDate` | Order Date | Order Date | ✅ |
 | 177 | `allowItemChargeAssignment` | Allow Item Charge Assignment | Allow Item Charge Assignment | ✅ |
-| 178 | `qtyToAssign` | Qty. to Assign | Qty. to Assign | ✅ |
-| 179 | `qtyAssigned` | Qty. Assigned | Qty. Assigned | ✅ |
+| 178 | `qtyToAssign` | Qty. to Assign | Qty. to Assign | 🧮 computed |
+| 179 | `qtyAssigned` | Qty. Assigned | Qty. Assigned | 🧮 computed |
 | 180 | `returnQtyToShip` | Return Qty. to Ship | Return Qty. to Ship | ✅ |
 | 181 | `returnQtyToShipBase` | Return Qty. to Ship (Base) | Return Qty. to Ship (Base) | ✅ |
 | 182 | `returnQtyShippedNotInvd` | Return Qty. Shipped Not Invd. | Return Qty. Shipped Not Invd. | ✅ |
@@ -9647,7 +9648,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 185 | `returnShpdNotInvdLcy` | Return Shpd. Not Invd. (LCY) | Return Shpd. Not Invd. (LCY) | ✅ |
 | 186 | `returnQtyShipped` | Return Qty. Shipped | Return Qty. Shipped | ✅ |
 | 187 | `returnQtyShippedBase` | Return Qty. Shipped (Base) | Return Qty. Shipped (Base) | ✅ |
-| 188 | `itemChargeQtyToHandle` | Item Charge Qty. to Handle | Item Charge Qty. to Handle | ✅ |
+| 188 | `itemChargeQtyToHandle` | Item Charge Qty. to Handle | Item Charge Qty. to Handle | 🧮 computed |
 | 189 | `nonDeductibleVatPct` | Non-Deductible VAT % | Non-Deductible VAT % | ✅ |
 | 190 | `nonDeductibleVatBase` | Non-Deductible VAT Base | Non-Deductible VAT Base | ✅ |
 | 191 | `nonDeductibleVatAmount` | Non-Deductible VAT Amount | Non-Deductible VAT Amount | ✅ |
@@ -9661,12 +9662,12 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 199 | `subtype` | Subtype | Subtype | ✅ |
 | 200 | `copiedFromPostedDoc` | Copied From Posted Doc. | Copied From Posted Doc. | ✅ |
 | 201 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | ✅ |
-| 202 | `attachedDocCount` | Attached Doc Count | Attached Doc Count | ✅ |
-| 203 | `attachedLinesCount` | Attached Lines Count | Attached Lines Count | ✅ |
+| 202 | `attachedDocCount` | Attached Doc Count | Attached Doc Count | 🧮 computed |
+| 203 | `attachedLinesCount` | Attached Lines Count | Attached Lines Count | 🧮 computed |
 | 204 | `overReceiptQuantity` | Over-Receipt Quantity | Over-Receipt Quantity | ✅ |
 | 205 | `overReceiptCode` | Over-Receipt Code | Over-Receipt Code | ✅ |
 | 206 | `overReceiptApprovalStatus` | Over-Receipt Approval Status | Over-Receipt Approval Status | ✅ |
-| 207 | `buyFromVendorName` | Buy-from Vendor Name | Buy-from Vendor Name | ✅ |
+| 207 | `buyFromVendorName` | Buy-from Vendor Name | Buy-from Vendor Name | 🧮 computed |
 | 208 | `overheadRate` | Overhead Rate | Overhead Rate | ✅ |
 | 209 | `mpsOrder` | MPS Order | MPS Order | ✅ |
 | 210 | `planningFlexibility` | Planning Flexibility | Planning Flexibility | ✅ |
@@ -9734,18 +9735,18 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 38 | `formatRegion` | Format Region | Format Region | ✅ |
 | 39 | `purchaserCode` | Purchaser Code | Purchaser Code | ✅ |
 | 40 | `orderClass` | Order Class | Order Class | ✅ |
-| 41 | `comment` | Comment | Comment | ✅ |
+| 41 | `comment` | Comment | Comment | 🧮 computed |
 | 42 | `noPrinted` | No. Printed | No. Printed | ✅ |
 | 43 | `onHold` | On Hold | On Hold | ✅ |
 | 44 | `appliesToDocType` | Applies-to Doc. Type | Applies-to Doc. Type | ✅ |
 | 45 | `appliesToDocNo` | Applies-to Doc. No. | Applies-to Doc. No. | ✅ |
 | 46 | `balAccountNo` | Bal. Account No. | Bal. Account No. | ✅ |
-| 47 | `recalculateInvoiceDisc` | Recalculate Invoice Disc. | Recalculate Invoice Disc. | ✅ |
+| 47 | `recalculateInvoiceDisc` | Recalculate Invoice Disc. | Recalculate Invoice Disc. | 🧮 computed |
 | 48 | `receive` | Receive | Receive | ✅ |
 | 49 | `invoice` | Invoice | Invoice | ✅ |
 | 50 | `printPostedDocuments` | Print Posted Documents | Print Posted Documents | ✅ |
-| 51 | `amount` | Amount | Amount | ✅ |
-| 52 | `amountIncludingVat` | Amount Including VAT | Amount Including VAT | ✅ |
+| 51 | `amount` | Amount | Amount | 🧮 computed |
+| 52 | `amountIncludingVat` | Amount Including VAT | Amount Including VAT | 🧮 computed |
 | 53 | `receivingNo` | Receiving No. | Receiving No. | ✅ |
 | 54 | `postingNo` | Posting No. | Posting No. | ✅ |
 | 55 | `lastReceivingNo` | Last Receiving No. | Last Receiving No. | ✅ |
@@ -9824,27 +9825,27 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 128 | `journalTemplName` | Journal Templ. Name | Journal Template Name | ✅ |
 | 129 | `vatReportingDate` | VAT Reporting Date | VAT Date | ✅ |
 | 130 | `shipToPhoneNo` | Ship-to Phone No. | Ship-to Phone No. | ✅ |
-| 131 | `aRcdNotInvExVatLcy` | A. Rcd. Not Inv. Ex. VAT (LCY) | Amount Received Not Invoiced (LCY) | ✅ |
-| 132 | `amtRcdNotInvoicedLcy` | Amt. Rcd. Not Invoiced (LCY) | Amount Received Not Invoiced (LCY) Incl. VAT | ✅ |
+| 131 | `aRcdNotInvExVatLcy` | A. Rcd. Not Inv. Ex. VAT (LCY) | Amount Received Not Invoiced (LCY) | 🧮 computed |
+| 132 | `amtRcdNotInvoicedLcy` | Amt. Rcd. Not Invoiced (LCY) | Amount Received Not Invoiced (LCY) Incl. VAT | 🧮 computed |
 | 133 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | ✅ |
 | 134 | `remitToCode` | Remit-to Code | Remit-to Code | ✅ |
-| 135 | `invoiceDiscountAmount` | Invoice Discount Amount | Invoice Discount Amount | ✅ |
-| 136 | `noOfArchivedVersions` | No. of Archived Versions | No. of Archived Versions | ✅ |
+| 135 | `invoiceDiscountAmount` | Invoice Discount Amount | Invoice Discount Amount | 🧮 computed |
+| 136 | `noOfArchivedVersions` | No. of Archived Versions | No. of Archived Versions | 🧮 computed |
 | 137 | `docNoOccurrence` | Doc. No. Occurrence | Doc. No. Occurrence | ✅ |
 | 138 | `campaignNo` | Campaign No. | Campaign No. | ✅ |
 | 139 | `buyFromContactNo` | Buy-from Contact No. | Buy-from Contact No. | ✅ |
 | 140 | `payToContactNo` | Pay-to Contact No. | Pay-to Contact No. | ✅ |
 | 141 | `responsibilityCenter` | Responsibility Center | Responsibility Center | ✅ |
-| 142 | `partiallyInvoiced` | Partially Invoiced | Partially Invoiced | ✅ |
-| 143 | `completelyReceived` | Completely Received | Completely Received | ✅ |
+| 142 | `partiallyInvoiced` | Partially Invoiced | Partially Invoiced | 🧮 computed |
+| 143 | `completelyReceived` | Completely Received | Completely Received | 🧮 computed |
 | 144 | `postingFromWhseRef` | Posting from Whse. Ref. | Posting from Whse. Ref. | ✅ |
-| 145 | `locationFilter` | Location Filter | Location Filter | ✅ |
-| 146 | `receivedNotInvoiced` | Received Not Invoiced | Received Not Invoiced | ✅ |
+| 145 | `locationFilter` | Location Filter | Location Filter | 🔍 filter |
+| 146 | `receivedNotInvoiced` | Received Not Invoiced | Received Not Invoiced | 🧮 computed |
 | 147 | `requestedReceiptDate` | Requested Receipt Date | Requested Receipt Date | ✅ |
 | 148 | `promisedReceiptDate` | Promised Receipt Date | Promised Receipt Date | ✅ |
 | 149 | `leadTimeCalculation` | Lead Time Calculation | Lead Time Calculation | ✅ |
 | 150 | `inboundWhseHandlingTime` | Inbound Whse. Handling Time | Inbound Whse. Handling Time | ✅ |
-| 151 | `dateFilter` | Date Filter | Date Filter | ✅ |
+| 151 | `dateFilter` | Date Filter | Date Filter | 🔍 filter |
 | 152 | `vendorAuthorizationNo` | Vendor Authorization No. | Vendor Authorization No. | ✅ |
 | 153 | `returnShipmentNo` | Return Shipment No. | Return Shipment No. | ✅ |
 | 154 | `returnShipmentNoSeries` | Return Shipment No. Series | Return Shipment No. Series | ✅ |
@@ -9852,7 +9853,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 156 | `lastReturnShipmentNo` | Last Return Shipment No. | Last Return Shipment No. | ✅ |
 | 157 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | ✅ |
 | 158 | `assignedUserId` | Assigned User ID | Assigned User ID | ✅ |
-| 159 | `pendingApprovals` | Pending Approvals | Pending Approvals | ✅ |
+| 159 | `pendingApprovals` | Pending Approvals | Pending Approvals | 🧮 computed |
 
 
 [↑ Back to top](#table-of-contents)
@@ -9946,7 +9947,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 68 | `currencyCode` | Currency Code | Currency Code | ✅ |
 | 69 | `outstandingAmountLcy` | Outstanding Amount (LCY) | Outstanding Amount (LCY) | ✅ |
 | 70 | `amtRcdNotInvoicedLcy` | Amt. Rcd. Not Invoiced (LCY) | Amt. Rcd. Not Invoiced (LCY) | ✅ |
-| 71 | `reservedQuantity` | Reserved Quantity | Reserved Quantity | ✅ |
+| 71 | `reservedQuantity` | Reserved Quantity | Reserved Quantity | 🧮 computed |
 | 72 | `blanketOrderNo` | Blanket Order No. | Blanket Order No. | ✅ |
 | 73 | `blanketOrderLineNo` | Blanket Order Line No. | Blanket Order Line No. | ✅ |
 | 74 | `vatBaseAmount` | VAT Base Amount | VAT Base Amount | ✅ |
@@ -10005,7 +10006,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 127 | `deferralCode` | Deferral Code | Deferral Code | ✅ |
 | 128 | `returnsDeferralStartDate` | Returns Deferral Start Date | Returns Deferral Start Date | ✅ |
 | 129 | `selectedAllocAccountNo` | Selected Alloc. Account No. | Allocation Account No. | ✅ |
-| 130 | `allocAccModifiedByUser` | Alloc. Acc. Modified by User | Allocation Account Distributions Modified | ✅ |
+| 130 | `allocAccModifiedByUser` | Alloc. Acc. Modified by User | Allocation Account Distributions Modified | 🧮 computed |
 | 131 | `allocationAccountNo` | Allocation Account No. | Posting Allocation Account No. | ✅ |
 | 132 | `allocPurchLineSystemid` | Alloc. Purch. Line SystemId | Allocation Purchase Line SystemId | ✅ |
 | 133 | `variantCode` | Variant Code | Variant Code | ✅ |
@@ -10021,7 +10022,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 143 | `qtyRcdNotInvoicedBase` | Qty. Rcd. Not Invoiced (Base) | Qty. Rcd. Not Invoiced (Base) | ✅ |
 | 144 | `qtyReceivedBase` | Qty. Received (Base) | Qty. Received (Base) | ✅ |
 | 145 | `qtyInvoicedBase` | Qty. Invoiced (Base) | Qty. Invoiced (Base) | ✅ |
-| 146 | `reservedQtyBase` | Reserved Qty. (Base) | Reserved Qty. (Base) | ✅ |
+| 146 | `reservedQtyBase` | Reserved Qty. (Base) | Reserved Qty. (Base) | 🧮 computed |
 | 147 | `faPostingDate` | FA Posting Date | FA Posting Date | ✅ |
 | 148 | `faPostingType` | FA Posting Type | FA Posting Type | ✅ |
 | 149 | `depreciationBookCode` | Depreciation Book Code | Depreciation Book Code | ✅ |
@@ -10044,7 +10045,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 166 | `itemReferenceUnitOfMeasure` | Item Reference Unit of Measure | Item Reference Unit of Measure | ✅ |
 | 167 | `itemReferenceType` | Item Reference Type | Item Reference Type | ✅ |
 | 168 | `itemReferenceTypeNo` | Item Reference Type No. | Item Reference Type No. | ✅ |
-| 169 | `whseOutstandingQtyBase` | Whse. Outstanding Qty. (Base) | Whse. Outstanding Qty. (Base) | ✅ |
+| 169 | `whseOutstandingQtyBase` | Whse. Outstanding Qty. (Base) | Whse. Outstanding Qty. (Base) | 🧮 computed |
 | 170 | `completelyReceived` | Completely Received | Completely Received | ✅ |
 | 171 | `requestedReceiptDate` | Requested Receipt Date | Requested Receipt Date | ✅ |
 | 172 | `promisedReceiptDate` | Promised Receipt Date | Promised Receipt Date | ✅ |
@@ -10053,8 +10054,8 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 175 | `plannedReceiptDate` | Planned Receipt Date | Planned Receipt Date | ✅ |
 | 176 | `orderDate` | Order Date | Order Date | ✅ |
 | 177 | `allowItemChargeAssignment` | Allow Item Charge Assignment | Allow Item Charge Assignment | ✅ |
-| 178 | `qtyToAssign` | Qty. to Assign | Qty. to Assign | ✅ |
-| 179 | `qtyAssigned` | Qty. Assigned | Qty. Assigned | ✅ |
+| 178 | `qtyToAssign` | Qty. to Assign | Qty. to Assign | 🧮 computed |
+| 179 | `qtyAssigned` | Qty. Assigned | Qty. Assigned | 🧮 computed |
 | 180 | `returnQtyToShip` | Return Qty. to Ship | Return Qty. to Ship | ✅ |
 | 181 | `returnQtyToShipBase` | Return Qty. to Ship (Base) | Return Qty. to Ship (Base) | ✅ |
 | 182 | `returnQtyShippedNotInvd` | Return Qty. Shipped Not Invd. | Return Qty. Shipped Not Invd. | ✅ |
@@ -10063,7 +10064,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 185 | `returnShpdNotInvdLcy` | Return Shpd. Not Invd. (LCY) | Return Shpd. Not Invd. (LCY) | ✅ |
 | 186 | `returnQtyShipped` | Return Qty. Shipped | Return Qty. Shipped | ✅ |
 | 187 | `returnQtyShippedBase` | Return Qty. Shipped (Base) | Return Qty. Shipped (Base) | ✅ |
-| 188 | `itemChargeQtyToHandle` | Item Charge Qty. to Handle | Item Charge Qty. to Handle | ✅ |
+| 188 | `itemChargeQtyToHandle` | Item Charge Qty. to Handle | Item Charge Qty. to Handle | 🧮 computed |
 | 189 | `nonDeductibleVatPct` | Non-Deductible VAT % | Non-Deductible VAT % | ✅ |
 | 190 | `nonDeductibleVatBase` | Non-Deductible VAT Base | Non-Deductible VAT Base | ✅ |
 | 191 | `nonDeductibleVatAmount` | Non-Deductible VAT Amount | Non-Deductible VAT Amount | ✅ |
@@ -10077,12 +10078,12 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 199 | `subtype` | Subtype | Subtype | ✅ |
 | 200 | `copiedFromPostedDoc` | Copied From Posted Doc. | Copied From Posted Doc. | ✅ |
 | 201 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | ✅ |
-| 202 | `attachedDocCount` | Attached Doc Count | Attached Doc Count | ✅ |
-| 203 | `attachedLinesCount` | Attached Lines Count | Attached Lines Count | ✅ |
+| 202 | `attachedDocCount` | Attached Doc Count | Attached Doc Count | 🧮 computed |
+| 203 | `attachedLinesCount` | Attached Lines Count | Attached Lines Count | 🧮 computed |
 | 204 | `overReceiptQuantity` | Over-Receipt Quantity | Over-Receipt Quantity | ✅ |
 | 205 | `overReceiptCode` | Over-Receipt Code | Over-Receipt Code | ✅ |
 | 206 | `overReceiptApprovalStatus` | Over-Receipt Approval Status | Over-Receipt Approval Status | ✅ |
-| 207 | `buyFromVendorName` | Buy-from Vendor Name | Buy-from Vendor Name | ✅ |
+| 207 | `buyFromVendorName` | Buy-from Vendor Name | Buy-from Vendor Name | 🧮 computed |
 | 208 | `overheadRate` | Overhead Rate | Overhead Rate | ✅ |
 | 209 | `mpsOrder` | MPS Order | MPS Order | ✅ |
 | 210 | `planningFlexibility` | Planning Flexibility | Planning Flexibility | ✅ |
@@ -10132,17 +10133,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 14 | `jobPostingGroup` | Job Posting Group | Project Posting Group | — |
 | 15 | `blocked` | Blocked | Blocked | — |
 | 16 | `lastDateModified` | Last Date Modified | Last Date Modified | — |
-| 17 | `comment` | Comment | Comment | — |
+| 17 | `comment` | Comment | Comment | 🧮 computed |
 | 18 | `customerDiscGroup` | Customer Disc. Group | Customer Disc. Group | — |
 | 19 | `customerPriceGroup` | Customer Price Group | Customer Price Group | — |
 | 20 | `locationCode` | Location Code | Location Code | — |
 | 21 | `binCode` | Bin Code | Bin Code | — |
 | 22 | `languageCode` | Language Code | Language Code | — |
-| 23 | `scheduledResQty` | Scheduled Res. Qty. | Scheduled Res. Qty. | — |
-| 24 | `resourceFilter` | Resource Filter | Resource Filter | — |
-| 25 | `postingDateFilter` | Posting Date Filter | Posting Date Filter | — |
-| 26 | `resourceGrFilter` | Resource Gr. Filter | Resource Gr. Filter | — |
-| 27 | `scheduledResGrQty` | Scheduled Res. Gr. Qty. | Scheduled Res. Gr. Qty. | — |
+| 23 | `scheduledResQty` | Scheduled Res. Qty. | Scheduled Res. Qty. | 🧮 computed |
+| 24 | `resourceFilter` | Resource Filter | Resource Filter | 🔍 filter |
+| 25 | `postingDateFilter` | Posting Date Filter | Posting Date Filter | 🔍 filter |
+| 26 | `resourceGrFilter` | Resource Gr. Filter | Resource Gr. Filter | 🔍 filter |
+| 27 | `scheduledResGrQty` | Scheduled Res. Gr. Qty. | Scheduled Res. Gr. Qty. | 🧮 computed |
 | 28 | `billToName` | Bill-to Name | Bill-to Name | — |
 | 29 | `billToAddress` | Bill-to Address | Bill-to Address | — |
 | 30 | `billToAddress2` | Bill-to Address 2 | Bill-to Address 2 | — |
@@ -10160,35 +10161,35 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 42 | `currencyCode` | Currency Code | Currency Code | — |
 | 43 | `billToContactNo` | Bill-to Contact No. | Bill-to Contact No. | — |
 | 44 | `billToContact` | Bill-to Contact | Bill-to Contact | — |
-| 45 | `planningDateFilter` | Planning Date Filter | Planning Date Filter | — |
-| 46 | `totalWipCostAmount` | Total WIP Cost Amount | Total WIP Cost Amount | — |
-| 47 | `totalWipCostGLAmount` | Total WIP Cost G/L Amount | Total WIP Cost G/L Amount | — |
-| 48 | `wipEntriesExist` | WIP Entries Exist | WIP Entries Exist | — |
+| 45 | `planningDateFilter` | Planning Date Filter | Planning Date Filter | 🔍 filter |
+| 46 | `totalWipCostAmount` | Total WIP Cost Amount | Total WIP Cost Amount | 🧮 computed |
+| 47 | `totalWipCostGLAmount` | Total WIP Cost G/L Amount | Total WIP Cost G/L Amount | 🧮 computed |
+| 48 | `wipEntriesExist` | WIP Entries Exist | WIP Entries Exist | 🧮 computed |
 | 49 | `wipPostingDate` | WIP Posting Date | WIP Posting Date | — |
-| 50 | `wipGLPostingDate` | WIP G/L Posting Date | WIP G/L Posting Date | — |
+| 50 | `wipGLPostingDate` | WIP G/L Posting Date | WIP G/L Posting Date | 🧮 computed |
 | 51 | `invoiceCurrencyCode` | Invoice Currency Code | Invoice Currency Code | — |
 | 52 | `exchCalculationCost` | Exch. Calculation (Cost) | Exch. Calculation (Cost) | — |
 | 53 | `exchCalculationPrice` | Exch. Calculation (Price) | Exch. Calculation (Price) | — |
 | 54 | `allowScheduleContractLines` | Allow Schedule/Contract Lines | Allow Budget/Billable Lines | — |
 | 55 | `complete` | Complete | Complete | — |
-| 56 | `recogSalesAmount` | Recog. Sales Amount | Recog. Sales Amount | — |
-| 57 | `recogSalesGLAmount` | Recog. Sales G/L Amount | Recog. Sales G/L Amount | — |
-| 58 | `recogCostsAmount` | Recog. Costs Amount | Recog. Costs Amount | — |
-| 59 | `recogCostsGLAmount` | Recog. Costs G/L Amount | Recog. Costs G/L Amount | — |
-| 60 | `totalWipSalesAmount` | Total WIP Sales Amount | Total WIP Sales Amount | — |
-| 61 | `totalWipSalesGLAmount` | Total WIP Sales G/L Amount | Total WIP Sales G/L Amount | — |
-| 62 | `wipCompletionCalculated` | WIP Completion Calculated | WIP Completion Calculated | — |
-| 63 | `nextInvoiceDate` | Next Invoice Date | Next Invoice Date | — |
+| 56 | `recogSalesAmount` | Recog. Sales Amount | Recog. Sales Amount | 🧮 computed |
+| 57 | `recogSalesGLAmount` | Recog. Sales G/L Amount | Recog. Sales G/L Amount | 🧮 computed |
+| 58 | `recogCostsAmount` | Recog. Costs Amount | Recog. Costs Amount | 🧮 computed |
+| 59 | `recogCostsGLAmount` | Recog. Costs G/L Amount | Recog. Costs G/L Amount | 🧮 computed |
+| 60 | `totalWipSalesAmount` | Total WIP Sales Amount | Total WIP Sales Amount | 🧮 computed |
+| 61 | `totalWipSalesGLAmount` | Total WIP Sales G/L Amount | Total WIP Sales G/L Amount | 🧮 computed |
+| 62 | `wipCompletionCalculated` | WIP Completion Calculated | WIP Completion Calculated | 🧮 computed |
+| 63 | `nextInvoiceDate` | Next Invoice Date | Next Invoice Date | 🧮 computed |
 | 64 | `applyUsageLink` | Apply Usage Link | Apply Usage Link | — |
-| 65 | `wipWarnings` | WIP Warnings | WIP Warnings | — |
+| 65 | `wipWarnings` | WIP Warnings | WIP Warnings | 🧮 computed |
 | 66 | `wipPostingMethod` | WIP Posting Method | WIP Posting Method | — |
-| 67 | `appliedCostsGLAmount` | Applied Costs G/L Amount | Applied Costs G/L Amount | — |
-| 68 | `appliedSalesGLAmount` | Applied Sales G/L Amount | Applied Sales G/L Amount | — |
-| 69 | `calcRecogSalesAmount` | Calc. Recog. Sales Amount | Calc. Recog. Sales Amount | — |
-| 70 | `calcRecogCostsAmount` | Calc. Recog. Costs Amount | Calc. Recog. Costs Amount | — |
-| 71 | `calcRecogSalesGLAmount` | Calc. Recog. Sales G/L Amount | Calc. Recog. Sales G/L Amount | — |
-| 72 | `calcRecogCostsGLAmount` | Calc. Recog. Costs G/L Amount | Calc. Recog. Costs G/L Amount | — |
-| 73 | `wipCompletionPosted` | WIP Completion Posted | WIP Completion Posted | — |
+| 67 | `appliedCostsGLAmount` | Applied Costs G/L Amount | Applied Costs G/L Amount | 🧮 computed |
+| 68 | `appliedSalesGLAmount` | Applied Sales G/L Amount | Applied Sales G/L Amount | 🧮 computed |
+| 69 | `calcRecogSalesAmount` | Calc. Recog. Sales Amount | Calc. Recog. Sales Amount | 🧮 computed |
+| 70 | `calcRecogCostsAmount` | Calc. Recog. Costs Amount | Calc. Recog. Costs Amount | 🧮 computed |
+| 71 | `calcRecogSalesGLAmount` | Calc. Recog. Sales G/L Amount | Calc. Recog. Sales G/L Amount | 🧮 computed |
+| 72 | `calcRecogCostsGLAmount` | Calc. Recog. Costs G/L Amount | Calc. Recog. Costs G/L Amount | 🧮 computed |
+| 73 | `wipCompletionPosted` | WIP Completion Posted | WIP Completion Posted | 🧮 computed |
 | 74 | `overBudget` | Over Budget | Over Budget | — |
 | 75 | `projectManager` | Project Manager | Project Manager | — |
 | 76 | `sellToCustomerNo` | Sell-to Customer No. | Sell-to Customer No. | — |
@@ -10214,14 +10215,14 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 96 | `shipToPostCode` | Ship-to Post Code | Ship-to Post Code | — |
 | 97 | `shipToCounty` | Ship-to County | Ship-to County | — |
 | 98 | `shipToCountryRegionCode` | Ship-to Country/Region Code | Ship-to Country/Region Code | — |
-| 99 | `noOfArchivedVersions` | No. of Archived Versions | No. of Archived Versions | — |
+| 99 | `noOfArchivedVersions` | No. of Archived Versions | No. of Archived Versions | 🧮 computed |
 | 100 | `externalDocumentNo` | External Document No. | External Document No. | — |
 | 101 | `paymentMethodCode` | Payment Method Code | Payment Method Code | — |
 | 102 | `paymentTermsCode` | Payment Terms Code | Payment Terms Code | — |
 | 103 | `yourReference` | Your Reference | Your Reference | — |
 | 104 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | — |
 | 105 | `costCalculationMethod` | Cost Calculation Method | Cost Calculation Method | — |
-| 106 | `completelyPicked` | Completely Picked | Completely Picked | — |
+| 106 | `completelyPicked` | Completely Picked | Completely Picked | 🧮 computed |
 
 
 [↑ Back to top](#table-of-contents)
@@ -10291,16 +10292,16 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 6 | `wipTotal` | WIP-Total | WIP-Total | — |
 | 7 | `jobPostingGroup` | Job Posting Group | Project Posting Group | — |
 | 8 | `wipMethod` | WIP Method | WIP Method | — |
-| 9 | `scheduleTotalCost` | Schedule (Total Cost) | Budget (Total Cost) | — |
-| 10 | `scheduleTotalPrice` | Schedule (Total Price) | Budget (Total Price) | — |
-| 11 | `usageTotalCost` | Usage (Total Cost) | Actual (Total Cost) | — |
-| 12 | `usageTotalPrice` | Usage (Total Price) | Actual (Total Price) | — |
-| 13 | `contractTotalCost` | Contract (Total Cost) | Billable (Total Cost) | — |
-| 14 | `contractTotalPrice` | Contract (Total Price) | Billable (Total Price) | — |
-| 15 | `contractInvoicedPrice` | Contract (Invoiced Price) | Invoiced (Total Price) | — |
-| 16 | `contractInvoicedCost` | Contract (Invoiced Cost) | Invoiced (Total Cost) | — |
-| 17 | `postingDateFilter` | Posting Date Filter | Posting Date Filter | — |
-| 18 | `planningDateFilter` | Planning Date Filter | Planning Date Filter | — |
+| 9 | `scheduleTotalCost` | Schedule (Total Cost) | Budget (Total Cost) | 🧮 computed |
+| 10 | `scheduleTotalPrice` | Schedule (Total Price) | Budget (Total Price) | 🧮 computed |
+| 11 | `usageTotalCost` | Usage (Total Cost) | Actual (Total Cost) | 🧮 computed |
+| 12 | `usageTotalPrice` | Usage (Total Price) | Actual (Total Price) | 🧮 computed |
+| 13 | `contractTotalCost` | Contract (Total Cost) | Billable (Total Cost) | 🧮 computed |
+| 14 | `contractTotalPrice` | Contract (Total Price) | Billable (Total Price) | 🧮 computed |
+| 15 | `contractInvoicedPrice` | Contract (Invoiced Price) | Invoiced (Total Price) | 🧮 computed |
+| 16 | `contractInvoicedCost` | Contract (Invoiced Cost) | Invoiced (Total Cost) | 🧮 computed |
+| 17 | `postingDateFilter` | Posting Date Filter | Posting Date Filter | 🔍 filter |
+| 18 | `planningDateFilter` | Planning Date Filter | Planning Date Filter | 🔍 filter |
 | 19 | `totaling` | Totaling | Totaling | — |
 | 20 | `newPage` | New Page | New Page | — |
 | 21 | `noOfBlankLines` | No. of Blank Lines | No. of Blank Lines | — |
@@ -10314,12 +10315,12 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 29 | `recognizedCostsGLAmount` | Recognized Costs G/L Amount | Recognized Costs G/L Amount | — |
 | 30 | `globalDimension1Code` | Global Dimension 1 Code | Global Dimension 1 Code | — |
 | 31 | `globalDimension2Code` | Global Dimension 2 Code | Global Dimension 2 Code | — |
-| 32 | `outstandingOrders` | Outstanding Orders | Outstanding Orders | — |
-| 33 | `amtRcdNotInvoiced` | Amt. Rcd. Not Invoiced | Amt. Rcd. Not Invoiced | — |
-| 34 | `remainingTotalCost` | Remaining (Total Cost) | Remaining (Total Cost) | — |
-| 35 | `remainingTotalPrice` | Remaining (Total Price) | Remaining (Total Price) | — |
-| 36 | `startDate` | Start Date | Start Date | — |
-| 37 | `endDate` | End Date | End Date | — |
+| 32 | `outstandingOrders` | Outstanding Orders | Outstanding Orders | 🧮 computed |
+| 33 | `amtRcdNotInvoiced` | Amt. Rcd. Not Invoiced | Amt. Rcd. Not Invoiced | 🧮 computed |
+| 34 | `remainingTotalCost` | Remaining (Total Cost) | Remaining (Total Cost) | 🧮 computed |
+| 35 | `remainingTotalPrice` | Remaining (Total Price) | Remaining (Total Price) | 🧮 computed |
+| 36 | `startDate` | Start Date | Start Date | 🧮 computed |
+| 37 | `endDate` | End Date | End Date | 🧮 computed |
 | 38 | `billToCustomerNo` | Bill-to Customer No. | Bill-to Customer No. | — |
 | 39 | `billToName` | Bill-to Name | Bill-to Name | — |
 | 40 | `billToAddress` | Bill-to Address | Bill-to Address | — |
@@ -10433,8 +10434,8 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 51 | `scheduleLine` | Schedule Line | Budget Line | — |
 | 52 | `contractLine` | Contract Line | Billable Line | — |
 | 53 | `jobContractEntryNo` | Job Contract Entry No. | Project Contract Entry No. | — |
-| 54 | `invoicedAmountLcy` | Invoiced Amount (LCY) | Invoiced Amount (LCY) | — |
-| 55 | `invoicedCostAmountLcy` | Invoiced Cost Amount (LCY) | Invoiced Cost Amount (LCY) | — |
+| 54 | `invoicedAmountLcy` | Invoiced Amount (LCY) | Invoiced Amount (LCY) | 🧮 computed |
+| 55 | `invoicedCostAmountLcy` | Invoiced Cost Amount (LCY) | Invoiced Cost Amount (LCY) | 🧮 computed |
 | 56 | `vatUnitPrice` | VAT Unit Price | VAT Unit Price | — |
 | 57 | `vatLineDiscountAmount` | VAT Line Discount Amount | VAT Line Discount Amount | — |
 | 58 | `vatLineAmount` | VAT Line Amount | VAT Line Amount | — |
@@ -10458,12 +10459,12 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 76 | `postedTotalCostLcy` | Posted Total Cost (LCY) | Posted Total Cost (LCY) | — |
 | 77 | `postedLineAmount` | Posted Line Amount | Posted Line Amount | — |
 | 78 | `postedLineAmountLcy` | Posted Line Amount (LCY) | Posted Line Amount (LCY) | — |
-| 79 | `qtyTransferredToInvoice` | Qty. Transferred to Invoice | Qty. Transferred to Invoice | — |
+| 79 | `qtyTransferredToInvoice` | Qty. Transferred to Invoice | Qty. Transferred to Invoice | 🧮 computed |
 | 80 | `qtyToTransferToInvoice` | Qty. to Transfer to Invoice | Qty. to Transfer to Invoice | — |
-| 81 | `qtyInvoiced` | Qty. Invoiced | Qty. Invoiced | — |
+| 81 | `qtyInvoiced` | Qty. Invoiced | Qty. Invoiced | 🧮 computed |
 | 82 | `qtyToInvoice` | Qty. to Invoice | Qty. to Invoice | — |
-| 83 | `reservedQuantity` | Reserved Quantity | Reserved Quantity | — |
-| 84 | `reservedQtyBase` | Reserved Qty. (Base) | Reserved Qty. (Base) | — |
+| 83 | `reservedQuantity` | Reserved Quantity | Reserved Quantity | 🧮 computed |
+| 84 | `reservedQtyBase` | Reserved Qty. (Base) | Reserved Qty. (Base) | 🧮 computed |
 | 85 | `reserve` | Reserve | Reserve | — |
 | 86 | `planned` | Planned | Planned | — |
 | 87 | `variantCode` | Variant Code | Variant Code | — |
@@ -10476,12 +10477,12 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 94 | `packageNo` | Package No. | Package No. | — |
 | 95 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | — |
 | 96 | `costCalculationMethod` | Cost Calculation Method | Cost Calculation Method | — |
-| 97 | `pickQty` | Pick Qty. | Pick Qty. | — |
+| 97 | `pickQty` | Pick Qty. | Pick Qty. | 🧮 computed |
 | 98 | `qtyPicked` | Qty. Picked | Qty. Picked | — |
 | 99 | `qtyPickedBase` | Qty. Picked (Base) | Qty. Picked (Base) | — |
 | 100 | `completelyPicked` | Completely Picked | Completely Picked | — |
-| 101 | `pickQtyBase` | Pick Qty. (Base) | Pick Qty. (Base) | — |
-| 102 | `qtyOnJournal` | Qty. on Journal | Qty. on Journal | — |
+| 101 | `pickQtyBase` | Pick Qty. (Base) | Pick Qty. (Base) | 🧮 computed |
+| 102 | `qtyOnJournal` | Qty. on Journal | Qty. on Journal | 🧮 computed |
 
 
 [↑ Back to top](#table-of-contents)
@@ -10550,12 +10551,12 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 44 | `addCurrencyTotalPrice` | Add.-Currency Total Price | Add.-Currency Total Price | — |
 | 45 | `addCurrencyLineAmount` | Add.-Currency Line Amount | Add.-Currency Line Amount | — |
 | 46 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | — |
-| 47 | `shortcutDimension3Code` | Shortcut Dimension 3 Code | Shortcut Dimension 3 Code | — |
-| 48 | `shortcutDimension4Code` | Shortcut Dimension 4 Code | Shortcut Dimension 4 Code | — |
-| 49 | `shortcutDimension5Code` | Shortcut Dimension 5 Code | Shortcut Dimension 5 Code | — |
-| 50 | `shortcutDimension6Code` | Shortcut Dimension 6 Code | Shortcut Dimension 6 Code | — |
-| 51 | `shortcutDimension7Code` | Shortcut Dimension 7 Code | Shortcut Dimension 7 Code | — |
-| 52 | `shortcutDimension8Code` | Shortcut Dimension 8 Code | Shortcut Dimension 8 Code | — |
+| 47 | `shortcutDimension3Code` | Shortcut Dimension 3 Code | Shortcut Dimension 3 Code | 🧮 computed |
+| 48 | `shortcutDimension4Code` | Shortcut Dimension 4 Code | Shortcut Dimension 4 Code | 🧮 computed |
+| 49 | `shortcutDimension5Code` | Shortcut Dimension 5 Code | Shortcut Dimension 5 Code | 🧮 computed |
+| 50 | `shortcutDimension6Code` | Shortcut Dimension 6 Code | Shortcut Dimension 6 Code | 🧮 computed |
+| 51 | `shortcutDimension7Code` | Shortcut Dimension 7 Code | Shortcut Dimension 7 Code | 🧮 computed |
+| 52 | `shortcutDimension8Code` | Shortcut Dimension 8 Code | Shortcut Dimension 8 Code | 🧮 computed |
 | 53 | `jobTaskNo` | Job Task No. | Project Task No. | — |
 | 54 | `lineAmountLcy` | Line Amount (LCY) | Line Amount (LCY) | — |
 | 55 | `unitCost` | Unit Cost | Unit Cost | — |
@@ -10627,17 +10628,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 17 | `responsibleEmployee` | Responsible Employee | Responsible Employee | — |
 | 18 | `serialNo` | Serial No. | Serial No. | — |
 | 19 | `lastDateModified` | Last Date Modified | Last Date Modified | — |
-| 20 | `insured` | Insured | Insured | — |
-| 21 | `comment` | Comment | Comment | — |
+| 20 | `insured` | Insured | Insured | 🧮 computed |
+| 21 | `comment` | Comment | Comment | 🧮 computed |
 | 22 | `blocked` | Blocked | Blocked | — |
 | 23 | `maintenanceVendorNo` | Maintenance Vendor No. | Maintenance Vendor No. | — |
 | 24 | `underMaintenance` | Under Maintenance | Under Maintenance | — |
 | 25 | `nextServiceDate` | Next Service Date | Next Service Date | — |
 | 26 | `inactive` | Inactive | Inactive | — |
-| 27 | `faPostingDateFilter` | FA Posting Date Filter | FA Posting Date Filter | — |
+| 27 | `faPostingDateFilter` | FA Posting Date Filter | FA Posting Date Filter | 🔍 filter |
 | 28 | `noSeries` | No. Series | No. Series | — |
 | 29 | `faPostingGroup` | FA Posting Group | FA Posting Group | — |
-| 30 | `acquired` | Acquired | Acquired | — |
+| 30 | `acquired` | Acquired | Acquired | 🧮 computed |
 | 31 | `image` | Image | Image | — |
 | 32 | `faLocationId` | FA Location Id | FA Location Id | — |
 | 33 | `responsibleEmployeeId` | Responsible Employee Id | Responsible Employee | — |
@@ -10694,18 +10695,18 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 29 | `custom1ExpenseAcc` | Custom 1 Expense Acc. | Custom 1 Expense Acc. | — |
 | 30 | `custom2ExpenseAcc` | Custom 2 Expense Acc. | Custom 2 Expense Acc. | — |
 | 31 | `salesBalAcc` | Sales Bal. Acc. | Sales Bal. Acc. | — |
-| 32 | `allocatedAcquisitionCostPct` | Allocated Acquisition Cost % | Allocated Acquisition Cost % | — |
-| 33 | `allocatedDepreciationPct` | Allocated Depreciation % | Allocated Depreciation % | — |
-| 34 | `allocatedWriteDownPct` | Allocated Write-Down % | Allocated Write-Down % | — |
-| 35 | `allocatedAppreciationPct` | Allocated Appreciation % | Allocated Appreciation % | — |
-| 36 | `allocatedCustom1Pct` | Allocated Custom 1 % | Allocated Custom 1 % | — |
-| 37 | `allocatedCustom2Pct` | Allocated Custom 2 % | Allocated Custom 2 % | — |
-| 38 | `allocatedSalesPricePct` | Allocated Sales Price % | Allocated Sales Price % | — |
-| 39 | `allocatedMaintenancePct` | Allocated Maintenance % | Allocated Maintenance % | — |
-| 40 | `allocatedGainPct` | Allocated Gain % | Allocated Gain % | — |
-| 41 | `allocatedLossPct` | Allocated Loss % | Allocated Loss % | — |
-| 42 | `allocatedBookValuePctGain` | Allocated Book Value % (Gain) | Allocated Book Value % (Gain) | — |
-| 43 | `allocatedBookValuePctLoss` | Allocated Book Value % (Loss) | Allocated Book Value % (Loss) | — |
+| 32 | `allocatedAcquisitionCostPct` | Allocated Acquisition Cost % | Allocated Acquisition Cost % | 🧮 computed |
+| 33 | `allocatedDepreciationPct` | Allocated Depreciation % | Allocated Depreciation % | 🧮 computed |
+| 34 | `allocatedWriteDownPct` | Allocated Write-Down % | Allocated Write-Down % | 🧮 computed |
+| 35 | `allocatedAppreciationPct` | Allocated Appreciation % | Allocated Appreciation % | 🧮 computed |
+| 36 | `allocatedCustom1Pct` | Allocated Custom 1 % | Allocated Custom 1 % | 🧮 computed |
+| 37 | `allocatedCustom2Pct` | Allocated Custom 2 % | Allocated Custom 2 % | 🧮 computed |
+| 38 | `allocatedSalesPricePct` | Allocated Sales Price % | Allocated Sales Price % | 🧮 computed |
+| 39 | `allocatedMaintenancePct` | Allocated Maintenance % | Allocated Maintenance % | 🧮 computed |
+| 40 | `allocatedGainPct` | Allocated Gain % | Allocated Gain % | 🧮 computed |
+| 41 | `allocatedLossPct` | Allocated Loss % | Allocated Loss % | 🧮 computed |
+| 42 | `allocatedBookValuePctGain` | Allocated Book Value % (Gain) | Allocated Book Value % (Gain) | 🧮 computed |
+| 43 | `allocatedBookValuePctLoss` | Allocated Book Value % (Loss) | Allocated Book Value % (Loss) | 🧮 computed |
 | 44 | `salesAccOnDispLoss` | Sales Acc. on Disp. (Loss) | Sales Acc. on Disp. (Loss) | — |
 | 45 | `bookValAccOnDispLoss` | Book Val. Acc. on Disp. (Loss) | Book Val. Acc. on Disp. (Loss) | — |
 
@@ -10805,12 +10806,12 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 73 | `reversedByEntryNo` | Reversed by Entry No. | Reversed by Entry No. | — |
 | 74 | `reversedEntryNo` | Reversed Entry No. | Reversed Entry No. | — |
 | 75 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | — |
-| 76 | `shortcutDimension3Code` | Shortcut Dimension 3 Code | Shortcut Dimension 3 Code | — |
-| 77 | `shortcutDimension4Code` | Shortcut Dimension 4 Code | Shortcut Dimension 4 Code | — |
-| 78 | `shortcutDimension5Code` | Shortcut Dimension 5 Code | Shortcut Dimension 5 Code | — |
-| 79 | `shortcutDimension6Code` | Shortcut Dimension 6 Code | Shortcut Dimension 6 Code | — |
-| 80 | `shortcutDimension7Code` | Shortcut Dimension 7 Code | Shortcut Dimension 7 Code | — |
-| 81 | `shortcutDimension8Code` | Shortcut Dimension 8 Code | Shortcut Dimension 8 Code | — |
+| 76 | `shortcutDimension3Code` | Shortcut Dimension 3 Code | Shortcut Dimension 3 Code | 🧮 computed |
+| 77 | `shortcutDimension4Code` | Shortcut Dimension 4 Code | Shortcut Dimension 4 Code | 🧮 computed |
+| 78 | `shortcutDimension5Code` | Shortcut Dimension 5 Code | Shortcut Dimension 5 Code | 🧮 computed |
+| 79 | `shortcutDimension6Code` | Shortcut Dimension 6 Code | Shortcut Dimension 6 Code | 🧮 computed |
+| 80 | `shortcutDimension7Code` | Shortcut Dimension 7 Code | Shortcut Dimension 7 Code | 🧮 computed |
+| 81 | `shortcutDimension8Code` | Shortcut Dimension 8 Code | Shortcut Dimension 8 Code | 🧮 computed |
 | 82 | `nonDedVatFaCost` | Non-Ded. VAT FA Cost | Non-Deductible VAT FA Cost | — |
 
 
@@ -10849,21 +10850,21 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 13 | `endingBookValue` | Ending Book Value | Ending Book Value | — |
 | 14 | `faPostingGroup` | FA Posting Group | FA Posting Group | — |
 | 15 | `depreciationEndingDate` | Depreciation Ending Date | Depreciation Ending Date | — |
-| 16 | `acquisitionCost` | Acquisition Cost | Acquisition Cost | — |
-| 17 | `depreciation` | Depreciation | Depreciation | — |
-| 18 | `bookValue` | Book Value | Book Value | — |
-| 19 | `proceedsOnDisposal` | Proceeds on Disposal | Proceeds on Disposal | — |
-| 20 | `gainLoss` | Gain/Loss | Gain/Loss | — |
-| 21 | `writeDown` | Write-Down | Write-Down | — |
-| 22 | `appreciation` | Appreciation | Appreciation | — |
-| 23 | `custom1` | Custom 1 | Custom 1 | — |
-| 24 | `custom2` | Custom 2 | Custom 2 | — |
-| 25 | `depreciableBasis` | Depreciable Basis | Depreciable Basis | — |
-| 26 | `salvageValue` | Salvage Value | Salvage Value | — |
-| 27 | `bookValueOnDisposal` | Book Value on Disposal | Book Value on Disposal | — |
-| 28 | `maintenance` | Maintenance | Maintenance | — |
-| 29 | `maintenanceCodeFilter` | Maintenance Code Filter | Maintenance Code Filter | — |
-| 30 | `faPostingDateFilter` | FA Posting Date Filter | FA Posting Date Filter | — |
+| 16 | `acquisitionCost` | Acquisition Cost | Acquisition Cost | 🧮 computed |
+| 17 | `depreciation` | Depreciation | Depreciation | 🧮 computed |
+| 18 | `bookValue` | Book Value | Book Value | 🧮 computed |
+| 19 | `proceedsOnDisposal` | Proceeds on Disposal | Proceeds on Disposal | 🧮 computed |
+| 20 | `gainLoss` | Gain/Loss | Gain/Loss | 🧮 computed |
+| 21 | `writeDown` | Write-Down | Write-Down | 🧮 computed |
+| 22 | `appreciation` | Appreciation | Appreciation | 🧮 computed |
+| 23 | `custom1` | Custom 1 | Custom 1 | 🧮 computed |
+| 24 | `custom2` | Custom 2 | Custom 2 | 🧮 computed |
+| 25 | `depreciableBasis` | Depreciable Basis | Depreciable Basis | 🧮 computed |
+| 26 | `salvageValue` | Salvage Value | Salvage Value | 🧮 computed |
+| 27 | `bookValueOnDisposal` | Book Value on Disposal | Book Value on Disposal | 🧮 computed |
+| 28 | `maintenance` | Maintenance | Maintenance | 🧮 computed |
+| 29 | `maintenanceCodeFilter` | Maintenance Code Filter | Maintenance Code Filter | 🔍 filter |
+| 30 | `faPostingDateFilter` | FA Posting Date Filter | FA Posting Date Filter | 🔍 filter |
 | 31 | `acquisitionDate` | Acquisition Date | Acquisition Date | — |
 | 32 | `gLAcquisitionDate` | G/L Acquisition Date | G/L Acquisition Date | — |
 | 33 | `disposalDate` | Disposal Date | Disposal Date | — |
@@ -10931,9 +10932,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 9 | `sourceCode` | Source Code | Source Code | — |
 | 10 | `reasonCode` | Reason Code | Reason Code | — |
 | 11 | `recurring` | Recurring | Recurring | — |
-| 12 | `testReportCaption` | Test Report Caption | Test Report Caption | — |
-| 13 | `pageCaption` | Page Caption | Page Caption | — |
-| 14 | `postingReportCaption` | Posting Report Caption | Posting Report Caption | — |
+| 12 | `testReportCaption` | Test Report Caption | Test Report Caption | 🧮 computed |
+| 13 | `pageCaption` | Page Caption | Page Caption | 🧮 computed |
+| 14 | `postingReportCaption` | Posting Report Caption | Posting Report Caption | 🧮 computed |
 | 15 | `forceDocBalance` | Force Doc. Balance | Force Doc. Balance | — |
 | 16 | `balAccountType` | Bal. Account Type | Bal. Account Type | — |
 | 17 | `balAccountNo` | Bal. Account No. | Bal. Account No. | — |
@@ -10942,9 +10943,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 20 | `copyVatSetupToJnlLines` | Copy VAT Setup to Jnl. Lines | Copy VAT Setup to Jnl. Lines | — |
 | 21 | `allowVatDifference` | Allow VAT Difference | Allow VAT Difference | — |
 | 22 | `custReceiptReportId` | Cust. Receipt Report ID | Cust. Receipt Report ID | — |
-| 23 | `custReceiptReportCaption` | Cust. Receipt Report Caption | Cust. Receipt Report Caption | — |
+| 23 | `custReceiptReportCaption` | Cust. Receipt Report Caption | Cust. Receipt Report Caption | 🧮 computed |
 | 24 | `vendorReceiptReportId` | Vendor Receipt Report ID | Vendor Receipt Report ID | — |
-| 25 | `vendorReceiptReportCaption` | Vendor Receipt Report Caption | Vendor Receipt Report Caption | — |
+| 25 | `vendorReceiptReportCaption` | Vendor Receipt Report Caption | Vendor Receipt Report Caption | 🧮 computed |
 | 26 | `incrementBatchName` | Increment Batch Name | Increment Batch Name | — |
 | 27 | `copyToPostedJnlLines` | Copy to Posted Jnl. Lines | Copy to Posted Jnl. Lines | — |
 | 28 | `allowPostingDateFrom` | Allow Posting Date From | Allow Posting Date From | — |
@@ -10985,8 +10986,8 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 11 | `allowVatDifference` | Allow VAT Difference | Allow VAT Difference | — |
 | 12 | `allowPaymentExport` | Allow Payment Export | Allow Payment Export | — |
 | 13 | `bankStatementImportFormat` | Bank Statement Import Format | Bank Statement Import Format | — |
-| 14 | `templateType` | Template Type | Template Type | — |
-| 15 | `recurring` | Recurring | Recurring | — |
+| 14 | `templateType` | Template Type | Template Type | 🧮 computed |
+| 15 | `recurring` | Recurring | Recurring | 🧮 computed |
 | 16 | `suggestBalancingAmount` | Suggest Balancing Amount | Suggest Balancing Amount | — |
 | 17 | `pendingApproval` | Pending Approval | Pending Approval | — |
 | 18 | `copyToPostedJnlLines` | Copy to Posted Jnl. Lines | Copy to Posted Jnl. Lines | — |
@@ -11062,7 +11063,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 46 | `recurringMethod` | Recurring Method | Recurring Method | ✅ |
 | 47 | `expirationDate` | Expiration Date | Expiration Date | ✅ |
 | 48 | `recurringFrequency` | Recurring Frequency | Recurring Frequency | ✅ |
-| 49 | `allocatedAmtLcy` | Allocated Amt. (LCY) | Allocated Amt. (LCY) | ✅ |
+| 49 | `allocatedAmtLcy` | Allocated Amt. (LCY) | Allocated Amt. (LCY) | 🧮 computed |
 | 50 | `genPostingType` | Gen. Posting Type | Gen. Posting Type | ✅ |
 | 51 | `genBusPostingGroup` | Gen. Bus. Posting Group | Gen. Bus. Posting Group | ✅ |
 | 52 | `genProdPostingGroup` | Gen. Prod. Posting Group | Gen. Prod. Posting Group | ✅ |
@@ -11143,7 +11144,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 127 | `recipientBankAccount` | Recipient Bank Account | Recipient Bank Account | ✅ |
 | 128 | `messageToRecipient` | Message to Recipient | Message to Recipient | ✅ |
 | 129 | `exportedToPaymentFile` | Exported to Payment File | Exported to Payment File | ✅ |
-| 130 | `hasPaymentExportError` | Has Payment Export Error | Has Payment Export Error | ✅ |
+| 130 | `hasPaymentExportError` | Has Payment Export Error | Has Payment Export Error | 🧮 computed |
 | 131 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | ✅ |
 | 132 | `remitToCode` | Remit-to Code | Remit-to Code | ✅ |
 | 133 | `jobTaskNo` | Job Task No. | Project Task No. | ✅ |
@@ -11178,7 +11179,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 162 | `deferralCode` | Deferral Code | Deferral Code | ✅ |
 | 163 | `deferralLineNo` | Deferral Line No. | Deferral Line No. | ✅ |
 | 164 | `selectedAllocAccountNo` | Selected Alloc. Account No. | Allocation Account No. | ✅ |
-| 165 | `allocAccModifiedByUser` | Alloc. Acc. Modified by User | Allocation Account Distributions Modified | ✅ |
+| 165 | `allocAccModifiedByUser` | Alloc. Acc. Modified by User | Allocation Account Distributions Modified | 🧮 computed |
 | 166 | `allocationAccountNo` | Allocation Account No. | Posting Allocation Account No. | ✅ |
 | 167 | `allocJournalLineSystemid` | Alloc. Journal Line SystemId | Allocation Journal Line SystemId | ✅ |
 | 168 | `campaignNo` | Campaign No. | Campaign No. | ✅ |
@@ -11371,7 +11372,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 8 | `fileExtension` | File Extension | File Extension | — |
 | 9 | `documentReferenceId` | Document Reference ID | Document Reference ID | — |
 | 10 | `attachedBy` | Attached By | Attached By | — |
-| 11 | `user` | User | User | — |
+| 11 | `user` | User | User | 🧮 computed |
 | 12 | `documentFlowPurchase` | Document Flow Purchase | Flow to Purch. Trx | — |
 | 13 | `documentFlowSales` | Document Flow Sales | Flow to Sales Trx | — |
 | 14 | `documentType` | Document Type | Document Type | — |
@@ -11580,11 +11581,11 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 28 | `postAdditionalFee` | Post Additional Fee | Post Additional Fee | — |
 | 29 | `reminderLevel` | Reminder Level | Reminder Level | — |
 | 30 | `postingDescription` | Posting Description | Posting Description | — |
-| 31 | `comment` | Comment | Comment | — |
-| 32 | `remainingAmount` | Remaining Amount | Remaining Amount | — |
-| 33 | `interestAmount` | Interest Amount | Interest Amount | — |
-| 34 | `additionalFee` | Additional Fee | Additional Fee | — |
-| 35 | `vatAmount` | VAT Amount | VAT Amount | — |
+| 31 | `comment` | Comment | Comment | 🧮 computed |
+| 32 | `remainingAmount` | Remaining Amount | Remaining Amount | 🧮 computed |
+| 33 | `interestAmount` | Interest Amount | Interest Amount | 🧮 computed |
+| 34 | `additionalFee` | Additional Fee | Additional Fee | 🧮 computed |
+| 35 | `vatAmount` | VAT Amount | VAT Amount | 🧮 computed |
 | 36 | `noSeries` | No. Series | No. Series | — |
 | 37 | `issuingNoSeries` | Issuing No. Series | Issuing No. Series | — |
 | 38 | `issuingNo` | Issuing No. | Issuing No. | — |
@@ -11592,7 +11593,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 40 | `taxLiable` | Tax Liable | Tax Liable | — |
 | 41 | `vatBusPostingGroup` | VAT Bus. Posting Group | VAT Bus. Posting Group | — |
 | 42 | `useHeaderLevel` | Use Header Level | Use Header Level | — |
-| 43 | `addFeePerLine` | Add. Fee per Line | Add. Fee per Line | — |
+| 43 | `addFeePerLine` | Add. Fee per Line | Add. Fee per Line | 🧮 computed |
 | 44 | `postAddFeePerLine` | Post Add. Fee per Line | Post Add. Fee per Line | — |
 | 45 | `vatReportingDate` | VAT Reporting Date | VAT Date | — |
 | 46 | `formatRegion` | Format Region | Format Region | — |
@@ -11704,11 +11705,11 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 26 | `postInterest` | Post Interest | Post Interest | — |
 | 27 | `postAdditionalFee` | Post Additional Fee | Post Additional Fee | — |
 | 28 | `postingDescription` | Posting Description | Posting Description | — |
-| 29 | `comment` | Comment | Comment | — |
-| 30 | `remainingAmount` | Remaining Amount | Remaining Amount | — |
-| 31 | `interestAmount` | Interest Amount | Interest Amount | — |
-| 32 | `additionalFee` | Additional Fee | Additional Fee | — |
-| 33 | `vatAmount` | VAT Amount | VAT Amount | — |
+| 29 | `comment` | Comment | Comment | 🧮 computed |
+| 30 | `remainingAmount` | Remaining Amount | Remaining Amount | 🧮 computed |
+| 31 | `interestAmount` | Interest Amount | Interest Amount | 🧮 computed |
+| 32 | `additionalFee` | Additional Fee | Additional Fee | 🧮 computed |
+| 33 | `vatAmount` | VAT Amount | VAT Amount | 🧮 computed |
 | 34 | `noSeries` | No. Series | No. Series | — |
 | 35 | `issuingNoSeries` | Issuing No. Series | Issuing No. Series | — |
 | 36 | `issuingNo` | Issuing No. | Issuing No. | — |
@@ -11805,7 +11806,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 11 | `dateTimeSentForApproval` | Date-Time Sent for Approval | Date-Time Sent for Approval | — |
 | 12 | `lastDateTimeModified` | Last Date-Time Modified | Last Date-Time Modified | — |
 | 13 | `lastModifiedByUserId` | Last Modified By User ID | Last Modified By User ID | — |
-| 14 | `comment` | Comment | Comment | — |
+| 14 | `comment` | Comment | Comment | 🧮 computed |
 | 15 | `dueDate` | Due Date | Approval Due Date | — |
 | 16 | `amount` | Amount | Amount | — |
 | 17 | `amountLcy` | Amount (LCY) | Amount (LCY) | — |
@@ -11813,14 +11814,14 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 19 | `approvalType` | Approval Type | Approval Type | — |
 | 20 | `limitType` | Limit Type | Limit Type | — |
 | 21 | `availableCreditLimitLcy` | Available Credit Limit (LCY) | Available Credit Limit (LCY) | — |
-| 22 | `pendingApprovals` | Pending Approvals | Pending Approvals | — |
+| 22 | `pendingApprovals` | Pending Approvals | Pending Approvals | 🧮 computed |
 | 23 | `recordIdToApprove` | Record ID to Approve | Record ID to Approve | — |
 | 24 | `delegationDateFormula` | Delegation Date Formula | Delegation Date Formula | — |
-| 25 | `numberOfApprovedRequests` | Number of Approved Requests | Number of Approved Requests | — |
-| 26 | `numberOfRejectedRequests` | Number of Rejected Requests | Number of Rejected Requests | — |
+| 25 | `numberOfApprovedRequests` | Number of Approved Requests | Number of Approved Requests | 🧮 computed |
+| 26 | `numberOfRejectedRequests` | Number of Rejected Requests | Number of Rejected Requests | 🧮 computed |
 | 27 | `entryNo` | Entry No. | Entry No. | — |
 | 28 | `workflowStepInstanceId` | Workflow Step Instance ID | Workflow Step Instance ID | — |
-| 29 | `relatedToChange` | Related to Change | Related to Change | — |
+| 29 | `relatedToChange` | Related to Change | Related to Change | 🧮 computed |
 
 
 [↑ Back to top](#table-of-contents)
@@ -12024,12 +12025,12 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 1 | `systemId` | SystemId | System ID | 🔑 Key |
 | 2 | `code` | Code | Code | ✅ |
 | 3 | `name` | Name | Name | ✅ |
-| 4 | `dateFilter` | Date Filter | Date Filter | ✅ |
-| 5 | `workShiftFilter` | Work Shift Filter | Work Shift Filter | ✅ |
-| 6 | `capacityTotal` | Capacity (Total) | Capacity (Total) | ✅ |
-| 7 | `capacityEffective` | Capacity (Effective) | Capacity (Effective) | ✅ |
-| 8 | `prodOrderNeedQty` | Prod. Order Need (Qty.) | Prod. Order Need (Qty.) | ✅ |
-| 9 | `prodOrderStatusFilter` | Prod. Order Status Filter | Prod. Order Status Filter | ✅ |
+| 4 | `dateFilter` | Date Filter | Date Filter | 🔍 filter |
+| 5 | `workShiftFilter` | Work Shift Filter | Work Shift Filter | 🔍 filter |
+| 6 | `capacityTotal` | Capacity (Total) | Capacity (Total) | 🧮 computed |
+| 7 | `capacityEffective` | Capacity (Effective) | Capacity (Effective) | 🧮 computed |
+| 8 | `prodOrderNeedQty` | Prod. Order Need (Qty.) | Prod. Order Need (Qty.) | 🧮 computed |
+| 9 | `prodOrderStatusFilter` | Prod. Order Status Filter | Prod. Order Status Filter | 🔍 filter |
 
 
 [↑ Back to top](#table-of-contents)
@@ -12073,7 +12074,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 18 | `queueTime` | Queue Time | Queue Time | ✅ |
 | 19 | `queueTimeUnitOfMeasCode` | Queue Time Unit of Meas. Code | Queue Time Unit of Meas. Code | ✅ |
 | 20 | `lastDateModified` | Last Date Modified | Last Date Modified | ✅ |
-| 21 | `comment` | Comment | Comment | ✅ |
+| 21 | `comment` | Comment | Comment | 🧮 computed |
 | 22 | `unitOfMeasureCode` | Unit of Measure Code | Unit of Measure Code | ✅ |
 | 23 | `capacity` | Capacity | Capacity | ✅ |
 | 24 | `efficiency` | Efficiency | Efficiency | ✅ |
@@ -12083,13 +12084,13 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 28 | `simulationType` | Simulation Type | Simulation Type | ✅ |
 | 29 | `shopCalendarCode` | Shop Calendar Code | Shop Calendar Code | ✅ |
 | 30 | `blocked` | Blocked | Blocked | ✅ |
-| 31 | `dateFilter` | Date Filter | Date Filter | ✅ |
-| 32 | `workShiftFilter` | Work Shift Filter | Work Shift Filter | ✅ |
-| 33 | `capacityTotal` | Capacity (Total) | Capacity (Total) | ✅ |
-| 34 | `capacityEffective` | Capacity (Effective) | Capacity (Effective) | ✅ |
-| 35 | `prodOrderNeedQty` | Prod. Order Need (Qty.) | Prod. Order Need (Qty.) | ✅ |
-| 36 | `prodOrderNeedAmount` | Prod. Order Need Amount | Prod. Order Need Amount | ✅ |
-| 37 | `prodOrderStatusFilter` | Prod. Order Status Filter | Prod. Order Status Filter | ✅ |
+| 31 | `dateFilter` | Date Filter | Date Filter | 🔍 filter |
+| 32 | `workShiftFilter` | Work Shift Filter | Work Shift Filter | 🔍 filter |
+| 33 | `capacityTotal` | Capacity (Total) | Capacity (Total) | 🧮 computed |
+| 34 | `capacityEffective` | Capacity (Effective) | Capacity (Effective) | 🧮 computed |
+| 35 | `prodOrderNeedQty` | Prod. Order Need (Qty.) | Prod. Order Need (Qty.) | 🧮 computed |
+| 36 | `prodOrderNeedAmount` | Prod. Order Need Amount | Prod. Order Need Amount | 🧮 computed |
+| 37 | `prodOrderStatusFilter` | Prod. Order Status Filter | Prod. Order Status Filter | 🔍 filter |
 | 38 | `unitCostCalculation` | Unit Cost Calculation | Unit Cost Calculation | ✅ |
 | 39 | `specificUnitCost` | Specific Unit Cost | Specific Unit Cost | ✅ |
 | 40 | `consolidatedCalendar` | Consolidated Calendar | Consolidated Calendar | ✅ |
@@ -12142,19 +12143,19 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 14 | `queueTime` | Queue Time | Queue Time | ✅ |
 | 15 | `queueTimeUnitOfMeasCode` | Queue Time Unit of Meas. Code | Queue Time Unit of Meas. Code | ✅ |
 | 16 | `lastDateModified` | Last Date Modified | Last Date Modified | ✅ |
-| 17 | `comment` | Comment | Comment | ✅ |
+| 17 | `comment` | Comment | Comment | 🧮 computed |
 | 18 | `capacity` | Capacity | Capacity | ✅ |
 | 19 | `efficiency` | Efficiency | Efficiency | ✅ |
 | 20 | `maximumEfficiency` | Maximum Efficiency | Maximum Efficiency | ✅ |
 | 21 | `minimumEfficiency` | Minimum Efficiency | Minimum Efficiency | ✅ |
 | 22 | `blocked` | Blocked | Blocked | ✅ |
-| 23 | `dateFilter` | Date Filter | Date Filter | ✅ |
-| 24 | `workShiftFilter` | Work Shift Filter | Work Shift Filter | ✅ |
-| 25 | `capacityTotal` | Capacity (Total) | Capacity (Total) | ✅ |
-| 26 | `capacityEffective` | Capacity (Effective) | Capacity (Effective) | ✅ |
-| 27 | `prodOrderNeedQty` | Prod. Order Need (Qty.) | Prod. Order Need (Qty.) | ✅ |
-| 28 | `prodOrderNeedAmount` | Prod. Order Need Amount | Prod. Order Need Amount | ✅ |
-| 29 | `prodOrderStatusFilter` | Prod. Order Status Filter | Prod. Order Status Filter | ✅ |
+| 23 | `dateFilter` | Date Filter | Date Filter | 🔍 filter |
+| 24 | `workShiftFilter` | Work Shift Filter | Work Shift Filter | 🔍 filter |
+| 25 | `capacityTotal` | Capacity (Total) | Capacity (Total) | 🧮 computed |
+| 26 | `capacityEffective` | Capacity (Effective) | Capacity (Effective) | 🧮 computed |
+| 27 | `prodOrderNeedQty` | Prod. Order Need (Qty.) | Prod. Order Need (Qty.) | 🧮 computed |
+| 28 | `prodOrderNeedAmount` | Prod. Order Need Amount | Prod. Order Need Amount | 🧮 computed |
+| 29 | `prodOrderStatusFilter` | Prod. Order Status Filter | Prod. Order Status Filter | 🔍 filter |
 | 30 | `setupTime` | Setup Time | Setup Time | ✅ |
 | 31 | `waitTime` | Wait Time | Wait Time | ✅ |
 | 32 | `moveTime` | Move Time | Move Time | ✅ |
@@ -12168,9 +12169,9 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 40 | `minimumProcessTime` | Minimum Process Time | Minimum Process Time | ✅ |
 | 41 | `maximumProcessTime` | Maximum Process Time | Maximum Process Time | ✅ |
 | 42 | `concurrentCapacities` | Concurrent Capacities | Concurrent Capacities | ✅ |
-| 43 | `itemFilter` | Item Filter | Item Filter | ✅ |
-| 44 | `stopCodeFilter` | Stop Code Filter | Stop Code Filter | ✅ |
-| 45 | `scrapCodeFilter` | Scrap Code Filter | Scrap Code Filter | ✅ |
+| 43 | `itemFilter` | Item Filter | Item Filter | 🔍 filter |
+| 44 | `stopCodeFilter` | Stop Code Filter | Stop Code Filter | 🔍 filter |
+| 45 | `scrapCodeFilter` | Scrap Code Filter | Scrap Code Filter | 🔍 filter |
 | 46 | `noSeries` | No. Series | No. Series | ✅ |
 | 47 | `overheadRate` | Overhead Rate | Overhead Rate | ✅ |
 | 48 | `genProdPostingGroup` | Gen. Prod. Posting Group | Gen. Prod. Posting Group | ✅ |
@@ -12416,7 +12417,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 4 | `description2` | Description 2 | Description 2 | ✅ |
 | 5 | `searchDescription` | Search Description | Search Description | ✅ |
 | 6 | `lastDateModified` | Last Date Modified | Last Date Modified | ✅ |
-| 7 | `comment` | Comment | Comment | ✅ |
+| 7 | `comment` | Comment | Comment | 🧮 computed |
 | 8 | `status` | Status | Status | ✅ |
 | 9 | `type` | Type | Type | ✅ |
 | 10 | `versionNos` | Version Nos. | Version Nos. | ✅ |
@@ -12474,7 +12475,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 28 | `standardTaskCode` | Standard Task Code | Standard Task Code | ✅ |
 | 29 | `unitCostPer` | Unit Cost per | Unit Cost per | ✅ |
 | 30 | `recalculate` | Recalculate | Recalculate | ✅ |
-| 31 | `comment` | Comment | Comment | ✅ |
+| 31 | `comment` | Comment | Comment | 🧮 computed |
 | 32 | `sequenceNoForward` | Sequence No. (Forward) | Sequence No. (Forward) | ✅ |
 | 33 | `sequenceNoBackward` | Sequence No. (Backward) | Sequence No. (Backward) | ✅ |
 | 34 | `fixedScrapQtyAccum` | Fixed Scrap Qty. (Accum.) | Fixed Scrap Qty. (Accum.) | ✅ |
@@ -12541,7 +12542,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 5 | `searchName` | Search Name | Search Name | ✅ |
 | 6 | `unitOfMeasureCode` | Unit of Measure Code | Unit of Measure Code | ✅ |
 | 7 | `lowLevelCode` | Low-Level Code | Low-Level Code | ✅ |
-| 8 | `comment` | Comment | Comment | ✅ |
+| 8 | `comment` | Comment | Comment | 🧮 computed |
 | 9 | `creationDate` | Creation Date | Creation Date | ✅ |
 | 10 | `lastDateModified` | Last Date Modified | Last Date Modified | ✅ |
 | 11 | `status` | Status | Status | ✅ |
@@ -12586,7 +12587,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 14 | `routingLinkCode` | Routing Link Code | Routing Link Code | ✅ |
 | 15 | `scrapPct` | Scrap % | Scrap % | ✅ |
 | 16 | `variantCode` | Variant Code | Variant Code | ✅ |
-| 17 | `comment` | Comment | Comment | ✅ |
+| 17 | `comment` | Comment | Comment | 🧮 computed |
 | 18 | `startingDate` | Starting Date | Starting Date | ✅ |
 | 19 | `endingDate` | Ending Date | Ending Date | ✅ |
 | 20 | `length` | Length | Length | ✅ |
@@ -12728,7 +12729,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 13 | `inventoryPostingGroup` | Inventory Posting Group | Inventory Posting Group | ✅ |
 | 14 | `genProdPostingGroup` | Gen. Prod. Posting Group | Gen. Prod. Posting Group | ✅ |
 | 15 | `genBusPostingGroup` | Gen. Bus. Posting Group | Gen. Bus. Posting Group | ✅ |
-| 16 | `comment` | Comment | Comment | ✅ |
+| 16 | `comment` | Comment | Comment | 🧮 computed |
 | 17 | `startingTime` | Starting Time | Starting Time | ✅ |
 | 18 | `startingDate` | Starting Date | Starting Date | ✅ |
 | 19 | `endingTime` | Ending Time | Ending Time | ✅ |
@@ -12746,28 +12747,28 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 31 | `quantity` | Quantity | Quantity | ✅ |
 | 32 | `unitCost` | Unit Cost | Unit Cost | ✅ |
 | 33 | `costAmount` | Cost Amount | Cost Amount | ✅ |
-| 34 | `workCenterFilter` | Work Center Filter | Work Center Filter | ✅ |
-| 35 | `capacityTypeFilter` | Capacity Type Filter | Capacity Type Filter | ✅ |
-| 36 | `capacityNoFilter` | Capacity No. Filter | Capacity No. Filter | ✅ |
-| 37 | `dateFilter` | Date Filter | Date Filter | ✅ |
-| 38 | `expectedOperationCostAmt` | Expected Operation Cost Amt. | Expected Operation Cost Amt. | ✅ |
-| 39 | `expectedComponentCostAmt` | Expected Component Cost Amt. | Expected Component Cost Amt. | ✅ |
-| 40 | `actualTimeUsed` | Actual Time Used | Actual Time Used | ✅ |
-| 41 | `allocatedCapacityNeed` | Allocated Capacity Need | Allocated Capacity Need | ✅ |
-| 42 | `expectedCapacityNeed` | Expected Capacity Need | Expected Capacity Need | ✅ |
+| 34 | `workCenterFilter` | Work Center Filter | Work Center Filter | 🔍 filter |
+| 35 | `capacityTypeFilter` | Capacity Type Filter | Capacity Type Filter | 🔍 filter |
+| 36 | `capacityNoFilter` | Capacity No. Filter | Capacity No. Filter | 🔍 filter |
+| 37 | `dateFilter` | Date Filter | Date Filter | 🔍 filter |
+| 38 | `expectedOperationCostAmt` | Expected Operation Cost Amt. | Expected Operation Cost Amt. | 🧮 computed |
+| 39 | `expectedComponentCostAmt` | Expected Component Cost Amt. | Expected Component Cost Amt. | 🧮 computed |
+| 40 | `actualTimeUsed` | Actual Time Used | Actual Time Used | 🧮 computed |
+| 41 | `allocatedCapacityNeed` | Allocated Capacity Need | Allocated Capacity Need | 🧮 computed |
+| 42 | `expectedCapacityNeed` | Expected Capacity Need | Expected Capacity Need | 🧮 computed |
 | 43 | `noSeries` | No. Series | No. Series | ✅ |
 | 44 | `plannedOrderNo` | Planned Order No. | Planned Order No. | ✅ |
 | 45 | `firmPlannedOrderNo` | Firm Planned Order No. | Firm Planned Order No. | ✅ |
 | 46 | `simulatedOrderNo` | Simulated Order No. | Simulated Order No. | ✅ |
-| 47 | `expectedMaterialOvhdCost` | Expected Material Ovhd. Cost | Expected Material Ovhd. Cost | ✅ |
-| 48 | `expectedCapacityOvhdCost` | Expected Capacity Ovhd. Cost | Expected Capacity Ovhd. Cost | ✅ |
+| 47 | `expectedMaterialOvhdCost` | Expected Material Ovhd. Cost | Expected Material Ovhd. Cost | 🧮 computed |
+| 48 | `expectedCapacityOvhdCost` | Expected Capacity Ovhd. Cost | Expected Capacity Ovhd. Cost | 🧮 computed |
 | 49 | `startingDateTime` | Starting Date-Time | Starting Date-Time | ✅ |
 | 50 | `endingDateTime` | Ending Date-Time | Ending Date-Time | ✅ |
 | 51 | `documentPutAwayStatus` | Document Put-away Status | Document Put-away Status | ✅ |
 | 52 | `reopened` | Reopened | Reopened | ✅ |
 | 53 | `manualScheduling` | Manual Scheduling | Manual Scheduling | ✅ |
 | 54 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | ✅ |
-| 55 | `completelyPicked` | Completely Picked | Completely Picked | ✅ |
+| 55 | `completelyPicked` | Completely Picked | Completely Picked | 🧮 computed |
 | 56 | `assignedUserId` | Assigned User ID | Assigned User ID | ✅ |
 
 
@@ -12822,10 +12823,10 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 28 | `unitCost` | Unit Cost | Unit Cost | ✅ |
 | 29 | `putAwayStatus` | Put-away Status | Put-away Status | ✅ |
 | 30 | `costAmount` | Cost Amount | Cost Amount | ✅ |
-| 31 | `reservedQuantity` | Reserved Quantity | Reserved Quantity | ✅ |
-| 32 | `capacityTypeFilter` | Capacity Type Filter | Capacity Type Filter | ✅ |
-| 33 | `capacityNoFilter` | Capacity No. Filter | Capacity No. Filter | ✅ |
-| 34 | `dateFilter` | Date Filter | Date Filter | ✅ |
+| 31 | `reservedQuantity` | Reserved Quantity | Reserved Quantity | 🧮 computed |
+| 32 | `capacityTypeFilter` | Capacity Type Filter | Capacity Type Filter | 🔍 filter |
+| 33 | `capacityNoFilter` | Capacity No. Filter | Capacity No. Filter | 🔍 filter |
+| 34 | `dateFilter` | Date Filter | Date Filter | 🔍 filter |
 | 35 | `qtyRoundingPrecision` | Qty. Rounding Precision | Qty. Rounding Precision | ✅ |
 | 36 | `qtyRoundingPrecisionBase` | Qty. Rounding Precision (Base) | Qty. Rounding Precision (Base) | ✅ |
 | 37 | `manualScheduling` | Manual Scheduling | Manual Scheduling | ✅ |
@@ -12833,10 +12834,10 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 39 | `quantityBase` | Quantity (Base) | Quantity (Base) | ✅ |
 | 40 | `finishedQtyBase` | Finished Qty. (Base) | Finished Qty. (Base) | ✅ |
 | 41 | `remainingQtyBase` | Remaining Qty. (Base) | Remaining Qty. (Base) | ✅ |
-| 42 | `reservedQtyBase` | Reserved Qty. (Base) | Reserved Qty. (Base) | ✅ |
-| 43 | `expectedOperationCostAmt` | Expected Operation Cost Amt. | Expected Operation Cost Amt. | ✅ |
-| 44 | `totalExpOperOutputQty` | Total Exp. Oper. Output (Qty.) | Total Exp. Oper. Output (Qty.) | ✅ |
-| 45 | `expectedComponentCostAmt` | Expected Component Cost Amt. | Expected Component Cost Amt. | ✅ |
+| 42 | `reservedQtyBase` | Reserved Qty. (Base) | Reserved Qty. (Base) | 🧮 computed |
+| 43 | `expectedOperationCostAmt` | Expected Operation Cost Amt. | Expected Operation Cost Amt. | 🧮 computed |
+| 44 | `totalExpOperOutputQty` | Total Exp. Oper. Output (Qty.) | Total Exp. Oper. Output (Qty.) | 🧮 computed |
+| 45 | `expectedComponentCostAmt` | Expected Component Cost Amt. | Expected Component Cost Amt. | 🧮 computed |
 | 46 | `startingDateTime` | Starting Date-Time | Starting Date-Time | ✅ |
 | 47 | `endingDateTime` | Ending Date-Time | Ending Date-Time | ✅ |
 | 48 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | ✅ |
@@ -12844,11 +12845,11 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 50 | `unitCostAcy` | Unit Cost (ACY) | Unit Cost (ACY) | ✅ |
 | 51 | `qtyPutAway` | Qty. Put Away | Qty. Put Away | ✅ |
 | 52 | `qtyPutAwayBase` | Qty. Put Away (Base) | Qty. Put Away (Base) | ✅ |
-| 53 | `putAwayQty` | Put-away Qty. | Put-away Qty. | ✅ |
-| 54 | `putAwayQtyBase` | Put-away Qty. (Base) | Put-away Qty. (Base) | ✅ |
-| 55 | `lotNoFilter` | Lot No. Filter | Lot No. Filter | ✅ |
-| 56 | `serialNoFilter` | Serial No. Filter | Serial No. Filter | ✅ |
-| 57 | `packageNoFilter` | Package No. Filter | Package No. Filter | ✅ |
+| 53 | `putAwayQty` | Put-away Qty. | Put-away Qty. | 🧮 computed |
+| 54 | `putAwayQtyBase` | Put-away Qty. (Base) | Put-away Qty. (Base) | 🧮 computed |
+| 55 | `lotNoFilter` | Lot No. Filter | Lot No. Filter | 🔍 filter |
+| 56 | `serialNoFilter` | Serial No. Filter | Serial No. Filter | 🔍 filter |
+| 57 | `packageNoFilter` | Package No. Filter | Package No. Filter | 🔍 filter |
 | 58 | `productionBomVersionCode` | Production BOM Version Code | Production BOM Version Code | ✅ |
 | 59 | `routingVersionCode` | Routing Version Code | Routing Version Code | ✅ |
 | 60 | `routingType` | Routing Type | Routing Type | ✅ |
@@ -12900,7 +12901,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 18 | `qtyRoundingPrecisionBase` | Qty. Rounding Precision (Base) | Qty. Rounding Precision (Base) | ✅ |
 | 19 | `expectedQuantity` | Expected Quantity | Expected Quantity | ✅ |
 | 20 | `remainingQuantity` | Remaining Quantity | Remaining Quantity | ✅ |
-| 21 | `actConsumptionQty` | Act. Consumption (Qty) | Act. Consumption (Qty) | ✅ |
+| 21 | `actConsumptionQty` | Act. Consumption (Qty) | Act. Consumption (Qty) | 🧮 computed |
 | 22 | `flushingMethod` | Flushing Method | Flushing Method | ✅ |
 | 23 | `locationCode` | Location Code | Location Code | ✅ |
 | 24 | `shortcutDimension1Code` | Shortcut Dimension 1 Code | Shortcut Dimension 1 Code | ✅ |
@@ -12922,19 +12923,19 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 40 | `qtyPerUnitOfMeasure` | Qty. per Unit of Measure | Qty. per Unit of Measure | ✅ |
 | 41 | `remainingQtyBase` | Remaining Qty. (Base) | Remaining Qty. (Base) | ✅ |
 | 42 | `quantityBase` | Quantity (Base) | Quantity (Base) | ✅ |
-| 43 | `reservedQtyBase` | Reserved Qty. (Base) | Reserved Qty. (Base) | ✅ |
-| 44 | `reservedQuantity` | Reserved Quantity | Reserved Quantity | ✅ |
+| 43 | `reservedQtyBase` | Reserved Qty. (Base) | Reserved Qty. (Base) | 🧮 computed |
+| 44 | `reservedQuantity` | Reserved Quantity | Reserved Quantity | 🧮 computed |
 | 45 | `expectedQtyBase` | Expected Qty. (Base) | Expected Qty. (Base) | ✅ |
 | 46 | `dueDateTime` | Due Date-Time | Due Date-Time | ✅ |
 | 47 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | ✅ |
-| 48 | `substitutionAvailable` | Substitution Available | Substitution Available | ✅ |
+| 48 | `substitutionAvailable` | Substitution Available | Substitution Available | 🧮 computed |
 | 49 | `originalItemNo` | Original Item No. | Original Item No. | ✅ |
 | 50 | `originalVariantCode` | Original Variant Code | Original Variant Code | ✅ |
-| 51 | `pickQty` | Pick Qty. | Pick Qty. | ✅ |
+| 51 | `pickQty` | Pick Qty. | Pick Qty. | 🧮 computed |
 | 52 | `qtyPicked` | Qty. Picked | Qty. Picked | ✅ |
 | 53 | `qtyPickedBase` | Qty. Picked (Base) | Qty. Picked (Base) | ✅ |
 | 54 | `completelyPicked` | Completely Picked | Completely Picked | ✅ |
-| 55 | `pickQtyBase` | Pick Qty. (Base) | Pick Qty. (Base) | ✅ |
+| 55 | `pickQtyBase` | Pick Qty. (Base) | Pick Qty. (Base) | 🧮 computed |
 | 56 | `directUnitCost` | Direct Unit Cost | Direct Unit Cost | ✅ |
 | 57 | `indirectCostPct` | Indirect Cost % | Indirect Cost % | ✅ |
 | 58 | `overheadRate` | Overhead Rate | Overhead Rate | ✅ |
@@ -13022,10 +13023,10 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 57 | `openShopFloorBinCode` | Open Shop Floor Bin Code | Open Shop Floor Bin Code | ✅ |
 | 58 | `toProductionBinCode` | To-Production Bin Code | To-Production Bin Code | ✅ |
 | 59 | `fromProductionBinCode` | From-Production Bin Code | From-Production Bin Code | ✅ |
-| 60 | `postedOutputQuantity` | Posted Output Quantity | Posted Output Quantity | ✅ |
-| 61 | `postedScrapQuantity` | Posted Scrap Quantity | Posted Scrap Quantity | ✅ |
-| 62 | `postedRunTime` | Posted Run Time | Posted Run Time | ✅ |
-| 63 | `postedSetupTime` | Posted Setup Time | Posted Setup Time | ✅ |
+| 60 | `postedOutputQuantity` | Posted Output Quantity | Posted Output Quantity | 🧮 computed |
+| 61 | `postedScrapQuantity` | Posted Scrap Quantity | Posted Scrap Quantity | 🧮 computed |
+| 62 | `postedRunTime` | Posted Run Time | Posted Run Time | 🧮 computed |
+| 63 | `postedSetupTime` | Posted Setup Time | Posted Setup Time | 🧮 computed |
 
 
 [↑ Back to top](#table-of-contents)
@@ -13123,10 +13124,10 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 20 | `qtyPerUnitOfMeasure` | Qty. per Unit of Measure | Qty. per Unit of Measure | — |
 | 21 | `documentDate` | Document Date | Document Date | — |
 | 22 | `externalDocumentNo` | External Document No. | External Document No. | — |
-| 23 | `directCost` | Direct Cost | Direct Cost | — |
-| 24 | `overheadCost` | Overhead Cost | Overhead Cost | — |
-| 25 | `directCostAcy` | Direct Cost (ACY) | Direct Cost (ACY) | — |
-| 26 | `overheadCostAcy` | Overhead Cost (ACY) | Overhead Cost (ACY) | — |
+| 23 | `directCost` | Direct Cost | Direct Cost | 🧮 computed |
+| 24 | `overheadCost` | Overhead Cost | Overhead Cost | 🧮 computed |
+| 25 | `directCostAcy` | Direct Cost (ACY) | Direct Cost (ACY) | 🧮 computed |
+| 26 | `overheadCostAcy` | Overhead Cost (ACY) | Overhead Cost (ACY) | 🧮 computed |
 | 27 | `subcontracting` | Subcontracting | Subcontracting | — |
 | 28 | `reversed` | Reversed | Reversed | — |
 | 29 | `reversedByEntryNo` | Reversed by Entry No. | Reversed by Entry No. | — |
@@ -13135,12 +13136,12 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 32 | `orderNo` | Order No. | Order No. | — |
 | 33 | `orderLineNo` | Order Line No. | Order Line No. | — |
 | 34 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | — |
-| 35 | `shortcutDimension3Code` | Shortcut Dimension 3 Code | Shortcut Dimension 3 Code | — |
-| 36 | `shortcutDimension4Code` | Shortcut Dimension 4 Code | Shortcut Dimension 4 Code | — |
-| 37 | `shortcutDimension5Code` | Shortcut Dimension 5 Code | Shortcut Dimension 5 Code | — |
-| 38 | `shortcutDimension6Code` | Shortcut Dimension 6 Code | Shortcut Dimension 6 Code | — |
-| 39 | `shortcutDimension7Code` | Shortcut Dimension 7 Code | Shortcut Dimension 7 Code | — |
-| 40 | `shortcutDimension8Code` | Shortcut Dimension 8 Code | Shortcut Dimension 8 Code | — |
+| 35 | `shortcutDimension3Code` | Shortcut Dimension 3 Code | Shortcut Dimension 3 Code | 🧮 computed |
+| 36 | `shortcutDimension4Code` | Shortcut Dimension 4 Code | Shortcut Dimension 4 Code | 🧮 computed |
+| 37 | `shortcutDimension5Code` | Shortcut Dimension 5 Code | Shortcut Dimension 5 Code | 🧮 computed |
+| 38 | `shortcutDimension6Code` | Shortcut Dimension 6 Code | Shortcut Dimension 6 Code | 🧮 computed |
+| 39 | `shortcutDimension7Code` | Shortcut Dimension 7 Code | Shortcut Dimension 7 Code | 🧮 computed |
+| 40 | `shortcutDimension8Code` | Shortcut Dimension 8 Code | Shortcut Dimension 8 Code | 🧮 computed |
 
 
 [↑ Back to top](#table-of-contents)
@@ -13204,7 +13205,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 3 | `lineNo` | Line No. | Line No. | ✅ |
 | 4 | `type` | Type | Type | ✅ |
 | 5 | `no` | No. | No. | ✅ |
-| 6 | `assemblyBom` | Assembly BOM | Assembly BOM | ✅ |
+| 6 | `assemblyBom` | Assembly BOM | Assembly BOM | 🧮 computed |
 | 7 | `description` | Description | Description | ✅ |
 | 8 | `unitOfMeasureCode` | Unit of Measure Code | Unit of Measure Code | ✅ |
 | 9 | `quantityPer` | Quantity per | Quantity per | ✅ |
@@ -13213,7 +13214,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 12 | `position3` | Position 3 | Position 3 | ✅ |
 | 13 | `machineNo` | Machine No. | Machine No. | ✅ |
 | 14 | `leadTimeOffset` | Lead-Time Offset | Lead-Time Offset | ✅ |
-| 15 | `bomDescription` | BOM Description | BOM Description | ✅ |
+| 15 | `bomDescription` | BOM Description | BOM Description | 🧮 computed |
 | 16 | `resourceUsageType` | Resource Usage Type | Resource Usage Type | ✅ |
 | 17 | `variantCode` | Variant Code | Variant Code | ✅ |
 | 18 | `installedInLineNo` | Installed in Line No. | Installed in Line No. | ✅ |
@@ -13254,7 +13255,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 11 | `inventoryPostingGroup` | Inventory Posting Group | Inventory Posting Group | ✅ |
 | 12 | `genProdPostingGroup` | Gen. Prod. Posting Group | Gen. Prod. Posting Group | ✅ |
 | 13 | `genBusPostingGroup` | Gen. Bus. Posting Group | Gen. Bus. Posting Group | ✅ |
-| 14 | `comment` | Comment | Comment | ✅ |
+| 14 | `comment` | Comment | Comment | 🧮 computed |
 | 15 | `locationCode` | Location Code | Location Code | ✅ |
 | 16 | `shortcutDimension1Code` | Shortcut Dimension 1 Code | Shortcut Dimension 1 Code | ✅ |
 | 17 | `shortcutDimension2Code` | Shortcut Dimension 2 Code | Shortcut Dimension 2 Code | ✅ |
@@ -13271,15 +13272,15 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 28 | `assembledQuantityBase` | Assembled Quantity (Base) | Assembled Quantity (Base) | ✅ |
 | 29 | `quantityToAssemble` | Quantity to Assemble | Quantity to Assemble | ✅ |
 | 30 | `quantityToAssembleBase` | Quantity to Assemble (Base) | Quantity to Assemble (Base) | ✅ |
-| 31 | `reservedQuantity` | Reserved Quantity | Reserved Quantity | ✅ |
-| 32 | `reservedQtyBase` | Reserved Qty. (Base) | Reserved Qty. (Base) | ✅ |
+| 31 | `reservedQuantity` | Reserved Quantity | Reserved Quantity | 🧮 computed |
+| 32 | `reservedQtyBase` | Reserved Qty. (Base) | Reserved Qty. (Base) | 🧮 computed |
 | 33 | `planningFlexibility` | Planning Flexibility | Planning Flexibility | ✅ |
 | 34 | `mpsOrder` | MPS Order | MPS Order | ✅ |
-| 35 | `assembleToOrder` | Assemble to Order | Assemble to Order | ✅ |
+| 35 | `assembleToOrder` | Assemble to Order | Assemble to Order | 🧮 computed |
 | 36 | `postingNo` | Posting No. | Posting No. | ✅ |
 | 37 | `unitCost` | Unit Cost | Unit Cost | ✅ |
 | 38 | `costAmount` | Cost Amount | Cost Amount | ✅ |
-| 39 | `rolledUpAssemblyCost` | Rolled-up Assembly Cost | Rolled-up Assembly Cost | ✅ |
+| 39 | `rolledUpAssemblyCost` | Rolled-up Assembly Cost | Rolled-up Assembly Cost | 🧮 computed |
 | 40 | `indirectCostPct` | Indirect Cost % | Indirect Cost % | ✅ |
 | 41 | `overheadRate` | Overhead Rate | Overhead Rate | ✅ |
 | 42 | `unitOfMeasureCode` | Unit of Measure Code | Unit of Measure Code | ✅ |
@@ -13342,10 +13343,10 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 26 | `consumedQuantityBase` | Consumed Quantity (Base) | Consumed Quantity (Base) | ✅ |
 | 27 | `quantityToConsume` | Quantity to Consume | Quantity to Consume | ✅ |
 | 28 | `quantityToConsumeBase` | Quantity to Consume (Base) | Quantity to Consume (Base) | ✅ |
-| 29 | `reservedQuantity` | Reserved Quantity | Reserved Quantity | ✅ |
-| 30 | `reservedQtyBase` | Reserved Qty. (Base) | Reserved Qty. (Base) | ✅ |
+| 29 | `reservedQuantity` | Reserved Quantity | Reserved Quantity | 🧮 computed |
+| 30 | `reservedQtyBase` | Reserved Qty. (Base) | Reserved Qty. (Base) | 🧮 computed |
 | 31 | `availWarning` | Avail. Warning | Avail. Warning | ✅ |
-| 32 | `substitutionAvailable` | Substitution Available | Substitution Available | ✅ |
+| 32 | `substitutionAvailable` | Substitution Available | Substitution Available | 🧮 computed |
 | 33 | `dueDate` | Due Date | Due Date | ✅ |
 | 34 | `reserve` | Reserve | Reserve | ✅ |
 | 35 | `quantityPer` | Quantity per | Quantity per | ✅ |
@@ -13355,13 +13356,13 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 39 | `genBusPostingGroup` | Gen. Bus. Posting Group | Gen. Bus. Posting Group | ✅ |
 | 40 | `unitCost` | Unit Cost | Unit Cost | ✅ |
 | 41 | `costAmount` | Cost Amount | Cost Amount | ✅ |
-| 42 | `dateFilter` | Date Filter | Date Filter | ✅ |
+| 42 | `dateFilter` | Date Filter | Date Filter | 🔍 filter |
 | 43 | `unitOfMeasureCode` | Unit of Measure Code | Unit of Measure Code | ✅ |
 | 44 | `qtyRoundingPrecision` | Qty. Rounding Precision | Qty. Rounding Precision | ✅ |
 | 45 | `qtyRoundingPrecisionBase` | Qty. Rounding Precision (Base) | Qty. Rounding Precision (Base) | ✅ |
 | 46 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | ✅ |
-| 47 | `pickQty` | Pick Qty. | Pick Qty. | ✅ |
-| 48 | `pickQtyBase` | Pick Qty. (Base) | Pick Qty. (Base) | ✅ |
+| 47 | `pickQty` | Pick Qty. | Pick Qty. | 🧮 computed |
+| 48 | `pickQtyBase` | Pick Qty. (Base) | Pick Qty. (Base) | 🧮 computed |
 | 49 | `qtyPicked` | Qty. Picked | Qty. Picked | ✅ |
 | 50 | `qtyPickedBase` | Qty. Picked (Base) | Qty. Picked (Base) | ✅ |
 
@@ -13398,7 +13399,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 9 | `inventoryPostingGroup` | Inventory Posting Group | Inventory Posting Group | — |
 | 10 | `genProdPostingGroup` | Gen. Prod. Posting Group | Gen. Prod. Posting Group | — |
 | 11 | `genBusPostingGroup` | Gen. Bus. Posting Group | Gen. Bus. Posting Group | — |
-| 12 | `comment` | Comment | Comment | — |
+| 12 | `comment` | Comment | Comment | 🧮 computed |
 | 13 | `locationCode` | Location Code | Location Code | — |
 | 14 | `shortcutDimension1Code` | Shortcut Dimension 1 Code | Shortcut Dimension 1 Code | — |
 | 15 | `shortcutDimension2Code` | Shortcut Dimension 2 Code | Shortcut Dimension 2 Code | — |
@@ -13410,7 +13411,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 21 | `itemRcptEntryNo` | Item Rcpt. Entry No. | Item Rcpt. Entry No. | — |
 | 22 | `quantity` | Quantity | Quantity | — |
 | 23 | `quantityBase` | Quantity (Base) | Quantity (Base) | — |
-| 24 | `assembleToOrder` | Assemble to Order | Assemble to Order | — |
+| 24 | `assembleToOrder` | Assemble to Order | Assemble to Order | 🧮 computed |
 | 25 | `unitCost` | Unit Cost | Unit Cost | — |
 | 26 | `costAmount` | Cost Amount | Cost Amount | — |
 | 27 | `indirectCostPct` | Indirect Cost % | Indirect Cost % | — |
@@ -13898,13 +13899,13 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 5 | `unitOfMeasureCode` | Unit of Measure Code | Unit of Measure Code | ✅ |
 | 6 | `itemNo` | Item No. | Item No. | ✅ |
 | 7 | `lastDateModified` | Last Date Modified | Last Date Modified | ✅ |
-| 8 | `comment` | Comment | Comment | ✅ |
+| 8 | `comment` | Comment | Comment | 🧮 computed |
 | 9 | `blocked` | Blocked | Blocked | ✅ |
 | 10 | `noSeries` | No. Series | No. Series | ✅ |
-| 11 | `documentNo` | Document No. | Document No. | ✅ |
-| 12 | `lent` | Lent | Lent | ✅ |
+| 11 | `documentNo` | Document No. | Document No. | 🧮 computed |
+| 12 | `lent` | Lent | Lent | 🧮 computed |
 | 13 | `serialNo` | Serial No. | Serial No. | ✅ |
-| 14 | `documentType` | Document Type | Document Type | ✅ |
+| 14 | `documentType` | Document Type | Document Type | 🧮 computed |
 
 
 [↑ Back to top](#table-of-contents)
@@ -13992,61 +13993,61 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 25 | `lastServiceDate` | Last Service Date | Last Service Date | ✅ |
 | 26 | `defaultContractValue` | Default Contract Value | Default Contract Value | ✅ |
 | 27 | `defaultContractDiscountPct` | Default Contract Discount % | Default Contract Discount % | ✅ |
-| 28 | `noOfActiveContracts` | No. of Active Contracts | No. of Active Contracts | ✅ |
+| 28 | `noOfActiveContracts` | No. of Active Contracts | No. of Active Contracts | 🧮 computed |
 | 29 | `vendorNo` | Vendor No. | Vendor No. | ✅ |
 | 30 | `vendorItemNo` | Vendor Item No. | Vendor Item No. | ✅ |
 | 31 | `blocked` | Blocked | Blocked | ✅ |
 | 32 | `noSeries` | No. Series | No. Series | ✅ |
-| 33 | `itemDescription` | Item Description | Item Description | ✅ |
-| 34 | `name` | Name | Name | ✅ |
-| 35 | `address` | Address | Address | ✅ |
-| 36 | `address2` | Address 2 | Address 2 | ✅ |
-| 37 | `postCode` | Post Code | Post Code | ✅ |
-| 38 | `city` | City | City | ✅ |
-| 39 | `contact` | Contact | Contact | ✅ |
-| 40 | `phoneNo` | Phone No. | Phone No. | ✅ |
-| 41 | `shipToName` | Ship-to Name | Ship-to Name | ✅ |
-| 42 | `shipToAddress` | Ship-to Address | Ship-to Address | ✅ |
-| 43 | `shipToAddress2` | Ship-to Address 2 | Ship-to Address 2 | ✅ |
-| 44 | `shipToPostCode` | Ship-to Post Code | Ship-to Post Code | ✅ |
-| 45 | `shipToCity` | Ship-to City | Ship-to City | ✅ |
-| 46 | `shipToContact` | Ship-to Contact | Ship-to Contact | ✅ |
-| 47 | `shipToPhoneNo` | Ship-to Phone No. | Ship-to Phone No. | ✅ |
-| 48 | `usageCost` | Usage (Cost) | Usage (Cost) | ✅ |
-| 49 | `usageAmount` | Usage (Amount) | Usage (Amount) | ✅ |
-| 50 | `invoicedAmount` | Invoiced Amount | Invoiced Amount | ✅ |
-| 51 | `totalQuantity` | Total Quantity | Total Quantity | ✅ |
-| 52 | `totalQtyInvoiced` | Total Qty. Invoiced | Total Qty. Invoiced | ✅ |
-| 53 | `resourcesUsed` | Resources Used | Resources Used | ✅ |
-| 54 | `partsUsed` | Parts Used | Parts Used | ✅ |
-| 55 | `costUsed` | Cost Used | Cost Used | ✅ |
-| 56 | `vendorName` | Vendor Name | Vendor Name | ✅ |
+| 33 | `itemDescription` | Item Description | Item Description | 🧮 computed |
+| 34 | `name` | Name | Name | 🧮 computed |
+| 35 | `address` | Address | Address | 🧮 computed |
+| 36 | `address2` | Address 2 | Address 2 | 🧮 computed |
+| 37 | `postCode` | Post Code | Post Code | 🧮 computed |
+| 38 | `city` | City | City | 🧮 computed |
+| 39 | `contact` | Contact | Contact | 🧮 computed |
+| 40 | `phoneNo` | Phone No. | Phone No. | 🧮 computed |
+| 41 | `shipToName` | Ship-to Name | Ship-to Name | 🧮 computed |
+| 42 | `shipToAddress` | Ship-to Address | Ship-to Address | 🧮 computed |
+| 43 | `shipToAddress2` | Ship-to Address 2 | Ship-to Address 2 | 🧮 computed |
+| 44 | `shipToPostCode` | Ship-to Post Code | Ship-to Post Code | 🧮 computed |
+| 45 | `shipToCity` | Ship-to City | Ship-to City | 🧮 computed |
+| 46 | `shipToContact` | Ship-to Contact | Ship-to Contact | 🧮 computed |
+| 47 | `shipToPhoneNo` | Ship-to Phone No. | Ship-to Phone No. | 🧮 computed |
+| 48 | `usageCost` | Usage (Cost) | Usage (Cost) | 🧮 computed |
+| 49 | `usageAmount` | Usage (Amount) | Usage (Amount) | 🧮 computed |
+| 50 | `invoicedAmount` | Invoiced Amount | Invoiced Amount | 🧮 computed |
+| 51 | `totalQuantity` | Total Quantity | Total Quantity | 🧮 computed |
+| 52 | `totalQtyInvoiced` | Total Qty. Invoiced | Total Qty. Invoiced | 🧮 computed |
+| 53 | `resourcesUsed` | Resources Used | Resources Used | 🧮 computed |
+| 54 | `partsUsed` | Parts Used | Parts Used | 🧮 computed |
+| 55 | `costUsed` | Cost Used | Cost Used | 🧮 computed |
+| 56 | `vendorName` | Vendor Name | Vendor Name | 🧮 computed |
 | 57 | `vendorItemName` | Vendor Item Name | Vendor Item Name | ✅ |
-| 58 | `comment` | Comment | Comment | ✅ |
-| 59 | `serviceItemComponents` | Service Item Components | Service Item Components | ✅ |
+| 58 | `comment` | Comment | Comment | 🧮 computed |
+| 59 | `serviceItemComponents` | Service Item Components | Service Item Components | 🧮 computed |
 | 60 | `preferredResource` | Preferred Resource | Preferred Resource | ✅ |
 | 61 | `variantCode` | Variant Code | Variant Code | ✅ |
-| 62 | `county` | County | County | ✅ |
-| 63 | `shipToCounty` | Ship-to County | Ship-to County | ✅ |
-| 64 | `contractCost` | Contract Cost | Contract Cost | ✅ |
-| 65 | `countryRegionCode` | Country/Region Code | Country/Region Code | ✅ |
-| 66 | `shipToCountryRegionCode` | Ship-to Country/Region Code | Ship-to Country/Region Code | ✅ |
-| 67 | `name2` | Name 2 | Name 2 | ✅ |
-| 68 | `shipToName2` | Ship-to Name 2 | Ship-to Name 2 | ✅ |
+| 62 | `county` | County | County | 🧮 computed |
+| 63 | `shipToCounty` | Ship-to County | Ship-to County | 🧮 computed |
+| 64 | `contractCost` | Contract Cost | Contract Cost | 🧮 computed |
+| 65 | `countryRegionCode` | Country/Region Code | Country/Region Code | 🧮 computed |
+| 66 | `shipToCountryRegionCode` | Ship-to Country/Region Code | Ship-to Country/Region Code | 🧮 computed |
+| 67 | `name2` | Name 2 | Name 2 | 🧮 computed |
+| 68 | `shipToName2` | Ship-to Name 2 | Ship-to Name 2 | 🧮 computed |
 | 69 | `servicePriceGroupCode` | Service Price Group Code | Service Price Group Code | ✅ |
 | 70 | `defaultContractCost` | Default Contract Cost | Default Contract Cost | ✅ |
-| 71 | `prepaidAmount` | Prepaid Amount | Prepaid Amount | ✅ |
+| 71 | `prepaidAmount` | Prepaid Amount | Prepaid Amount | 🧮 computed |
 | 72 | `searchDescription` | Search Description | Search Description | ✅ |
-| 73 | `serviceContracts` | Service Contracts | Service Contracts | ✅ |
-| 74 | `totalQtyConsumed` | Total Qty. Consumed | Total Qty. Consumed | ✅ |
-| 75 | `dateFilter` | Date Filter | Date Filter | ✅ |
-| 76 | `typeFilter` | Type Filter | Type Filter | ✅ |
-| 77 | `contractFilter` | Contract Filter | Contract Filter | ✅ |
-| 78 | `serviceOrderFilter` | Service Order Filter | Service Order Filter | ✅ |
+| 73 | `serviceContracts` | Service Contracts | Service Contracts | 🧮 computed |
+| 74 | `totalQtyConsumed` | Total Qty. Consumed | Total Qty. Consumed | 🧮 computed |
+| 75 | `dateFilter` | Date Filter | Date Filter | 🔍 filter |
+| 76 | `typeFilter` | Type Filter | Type Filter | 🔍 filter |
+| 77 | `contractFilter` | Contract Filter | Contract Filter | 🔍 filter |
+| 78 | `serviceOrderFilter` | Service Order Filter | Service Order Filter | 🔍 filter |
 | 79 | `salesServShptDocumentNo` | Sales/Serv. Shpt. Document No. | Sales/Serv. Shpt. Document No. | ✅ |
 | 80 | `salesServShptLineNo` | Sales/Serv. Shpt. Line No. | Sales/Serv. Shpt. Line No. | ✅ |
 | 81 | `shipmentType` | Shipment Type | Shipment Type | ✅ |
-| 82 | `shipToEMail` | Ship-to E-Mail | Ship-to Email | ✅ |
+| 82 | `shipToEMail` | Ship-to E-Mail | Ship-to Email | 🧮 computed |
 
 
 [↑ Back to top](#table-of-contents)
@@ -14147,13 +14148,13 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 38 | `languageCode` | Language Code | Language Code | ✅ |
 | 39 | `formatRegion` | Format Region | Format Region | ✅ |
 | 40 | `salespersonCode` | Salesperson Code | Salesperson Code | ✅ |
-| 41 | `comment` | Comment | Comment | ✅ |
+| 41 | `comment` | Comment | Comment | 🧮 computed |
 | 42 | `noPrinted` | No. Printed | No. Printed | ✅ |
 | 43 | `appliesToDocType` | Applies-to Doc. Type | Applies-to Doc. Type | ✅ |
 | 44 | `appliesToDocNo` | Applies-to Doc. No. | Applies-to Doc. No. | ✅ |
 | 45 | `balAccountNo` | Bal. Account No. | Bal. Account No. | ✅ |
-| 46 | `amount` | Amount | Amount | ✅ |
-| 47 | `amountIncludingVat` | Amount Including VAT | Amount Including VAT | ✅ |
+| 46 | `amount` | Amount | Amount | 🧮 computed |
+| 47 | `amountIncludingVat` | Amount Including VAT | Amount Including VAT | 🧮 computed |
 | 48 | `shippingNo` | Shipping No. | Shipping No. | ✅ |
 | 49 | `postingNo` | Posting No. | Posting No. | ✅ |
 | 50 | `lastShippingNo` | Last Shipping No. | Last Shipping No. | ✅ |
@@ -14209,27 +14210,27 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 100 | `journalTemplName` | Journal Templ. Name | Journal Template Name | ✅ |
 | 101 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | ✅ |
 | 102 | `directDebitMandateId` | Direct Debit Mandate ID | Direct Debit Mandate ID | ✅ |
-| 103 | `noOfArchivedVersions` | No. of Archived Versions | No. of Archived Versions | ✅ |
+| 103 | `noOfArchivedVersions` | No. of Archived Versions | No. of Archived Versions | 🧮 computed |
 | 104 | `docNoOccurrence` | Doc. No. Occurrence | Doc. No. Occurrence | ✅ |
 | 105 | `contactNo` | Contact No. | Contact No. | ✅ |
 | 106 | `billToContactNo` | Bill-to Contact No. | Bill-to Contact No. | ✅ |
 | 107 | `responsibilityCenter` | Responsibility Center | Responsibility Center | ✅ |
 | 108 | `shippingAdvice` | Shipping Advice | Shipping Advice | ✅ |
-| 109 | `completelyShipped` | Completely Shipped | Completely Shipped | ✅ |
-| 110 | `locationFilter` | Location Filter | Location Filter | ✅ |
+| 109 | `completelyShipped` | Completely Shipped | Completely Shipped | 🧮 computed |
+| 110 | `locationFilter` | Location Filter | Location Filter | 🔍 filter |
 | 111 | `shippingTime` | Shipping Time | Shipping Time | ✅ |
 | 112 | `shippingAgentServiceCode` | Shipping Agent Service Code | Shipping Agent Service Code | ✅ |
-| 113 | `dateFilter` | Date Filter | Date Filter | ✅ |
+| 113 | `dateFilter` | Date Filter | Date Filter | 🔍 filter |
 | 114 | `description` | Description | Description | ✅ |
 | 115 | `serviceOrderType` | Service Order Type | Service Order Type | ✅ |
 | 116 | `linkServiceToServiceItem` | Link Service to Service Item | Link Service to Service Item | ✅ |
 | 117 | `priority` | Priority | Priority | ✅ |
-| 118 | `allocatedHours` | Allocated Hours | Allocated Hours | ✅ |
+| 118 | `allocatedHours` | Allocated Hours | Allocated Hours | 🧮 computed |
 | 119 | `phoneNo` | Phone No. | Phone No. | ✅ |
 | 120 | `eMail` | E-Mail | Email | ✅ |
 | 121 | `phoneNo2` | Phone No. 2 | Phone No. 2 | ✅ |
 | 122 | `faxNo` | Fax No. | Fax No. | ✅ |
-| 123 | `noOfUnallocatedItems` | No. of Unallocated Items | No. of Unallocated Items | ✅ |
+| 123 | `noOfUnallocatedItems` | No. of Unallocated Items | No. of Unallocated Items | 🧮 computed |
 | 124 | `orderTime` | Order Time | Order Time | ✅ |
 | 125 | `defaultResponseTimeHours` | Default Response Time (Hours) | Default Response Time (Hours) | ✅ |
 | 126 | `actualResponseTimeHours` | Actual Response Time (Hours) | Actual Response Time (Hours) | ✅ |
@@ -14240,23 +14241,23 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 131 | `startingTime` | Starting Time | Starting Time | ✅ |
 | 132 | `finishingDate` | Finishing Date | Finishing Date | ✅ |
 | 133 | `finishingTime` | Finishing Time | Finishing Time | ✅ |
-| 134 | `contractServHoursExist` | Contract Serv. Hours Exist | Contract Serv. Hours Exist | ✅ |
-| 135 | `reallocationNeeded` | Reallocation Needed | Reallocation Needed | ✅ |
+| 134 | `contractServHoursExist` | Contract Serv. Hours Exist | Contract Serv. Hours Exist | 🧮 computed |
+| 135 | `reallocationNeeded` | Reallocation Needed | Reallocation Needed | 🧮 computed |
 | 136 | `notifyCustomer` | Notify Customer | Notify Customer | ✅ |
 | 137 | `maxLaborUnitPrice` | Max. Labor Unit Price | Max. Labor Unit Price | ✅ |
 | 138 | `warningStatus` | Warning Status | Warning Status | ✅ |
-| 139 | `noOfAllocations` | No. of Allocations | No. of Allocations | ✅ |
+| 139 | `noOfAllocations` | No. of Allocations | No. of Allocations | 🧮 computed |
 | 140 | `contractNo` | Contract No. | Contract No. | ✅ |
-| 141 | `typeFilter` | Type Filter | Type Filter | ✅ |
-| 142 | `customerFilter` | Customer Filter | Customer Filter | ✅ |
-| 143 | `resourceFilter` | Resource Filter | Resource Filter | ✅ |
-| 144 | `contractFilter` | Contract Filter | Contract Filter | ✅ |
+| 141 | `typeFilter` | Type Filter | Type Filter | 🔍 filter |
+| 142 | `customerFilter` | Customer Filter | Customer Filter | 🔍 filter |
+| 143 | `resourceFilter` | Resource Filter | Resource Filter | 🔍 filter |
+| 144 | `contractFilter` | Contract Filter | Contract Filter | 🔍 filter |
 | 145 | `shipToFaxNo` | Ship-to Fax No. | Ship-to Fax No. | ✅ |
 | 146 | `shipToEMail` | Ship-to E-Mail | Ship-to Email | ✅ |
-| 147 | `resourceGroupFilter` | Resource Group Filter | Resource Group Filter | ✅ |
+| 147 | `resourceGroupFilter` | Resource Group Filter | Resource Group Filter | 🔍 filter |
 | 148 | `shipToPhone` | Ship-to Phone | Ship-to Phone | ✅ |
 | 149 | `shipToPhone2` | Ship-to Phone 2 | Ship-to Phone 2 | ✅ |
-| 150 | `serviceZoneFilter` | Service Zone Filter | Service Zone Filter | ✅ |
+| 150 | `serviceZoneFilter` | Service Zone Filter | Service Zone Filter | 🔍 filter |
 | 151 | `serviceZoneCode` | Service Zone Code | Service Zone Code | ✅ |
 | 152 | `expectedFinishingDate` | Expected Finishing Date | Expected Finishing Date | ✅ |
 | 153 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | ✅ |
@@ -14313,7 +14314,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 25 | `warrantyStartingDateLabor` | Warranty Starting Date (Labor) | Warranty Starting Date (Labor) | ✅ |
 | 26 | `warrantyEndingDateLabor` | Warranty Ending Date (Labor) | Warranty Ending Date (Labor) | ✅ |
 | 27 | `contractNo` | Contract No. | Contract No. | ✅ |
-| 28 | `locationOfServiceItem` | Location of Service Item | Location of Service Item | ✅ |
+| 28 | `locationOfServiceItem` | Location of Service Item | Location of Service Item | 🧮 computed |
 | 29 | `loanerNo` | Loaner No. | Loaner No. | ✅ |
 | 30 | `vendorNo` | Vendor No. | Vendor No. | ✅ |
 | 31 | `vendorItemNo` | Vendor Item No. | Vendor Item No. | ✅ |
@@ -14323,29 +14324,29 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 35 | `symptomCode` | Symptom Code | Symptom Code | ✅ |
 | 36 | `faultCode` | Fault Code | Fault Code | ✅ |
 | 37 | `resolutionCode` | Resolution Code | Resolution Code | ✅ |
-| 38 | `faultComment` | Fault Comment | Fault Comment | ✅ |
-| 39 | `resolutionComment` | Resolution Comment | Resolution Comment | ✅ |
+| 38 | `faultComment` | Fault Comment | Fault Comment | 🧮 computed |
+| 39 | `resolutionComment` | Resolution Comment | Resolution Comment | 🧮 computed |
 | 40 | `variantCode` | Variant Code | Variant Code | ✅ |
-| 41 | `serviceItemLoanerComment` | Service Item Loaner Comment | Service Item Loaner Comment | ✅ |
+| 41 | `serviceItemLoanerComment` | Service Item Loaner Comment | Service Item Loaner Comment | 🧮 computed |
 | 42 | `actualResponseTimeHours` | Actual Response Time (Hours) | Actual Response Time (Hours) | ✅ |
 | 43 | `documentType` | Document Type | Document Type | ✅ |
 | 44 | `servPriceAdjmtGrCode` | Serv. Price Adjmt. Gr. Code | Serv. Price Adjmt. Gr. Code | ✅ |
 | 45 | `adjustmentType` | Adjustment Type | Adjustment Type | ✅ |
 | 46 | `baseAmountToAdjust` | Base Amount to Adjust | Base Amount to Adjust | ✅ |
-| 47 | `noOfActiveFinishedAllocs` | No. of Active/Finished Allocs | No. of Active/Finished Allocs | ✅ |
-| 48 | `noOfAllocations` | No. of Allocations | No. of Allocations | ✅ |
-| 49 | `noOfPreviousServices` | No. of Previous Services | No. of Previous Services | ✅ |
+| 47 | `noOfActiveFinishedAllocs` | No. of Active/Finished Allocs | No. of Active/Finished Allocs | 🧮 computed |
+| 48 | `noOfAllocations` | No. of Allocations | No. of Allocations | 🧮 computed |
+| 49 | `noOfPreviousServices` | No. of Previous Services | No. of Previous Services | 🧮 computed |
 | 50 | `contractLineNo` | Contract Line No. | Contract Line No. | ✅ |
 | 51 | `shipToCode` | Ship-to Code | Ship-to Code | ✅ |
 | 52 | `customerNo` | Customer No. | Customer No. | ✅ |
-| 53 | `dateFilter` | Date Filter | Date Filter | ✅ |
-| 54 | `resourceFilter` | Resource Filter | Resource Filter | ✅ |
-| 55 | `allocationDateFilter` | Allocation Date Filter | Allocation Date Filter | ✅ |
-| 56 | `repairStatusCodeFilter` | Repair Status Code Filter | Repair Status Code Filter | ✅ |
-| 57 | `allocationStatusFilter` | Allocation Status Filter | Allocation Status Filter | ✅ |
+| 53 | `dateFilter` | Date Filter | Date Filter | 🔍 filter |
+| 54 | `resourceFilter` | Resource Filter | Resource Filter | 🔍 filter |
+| 55 | `allocationDateFilter` | Allocation Date Filter | Allocation Date Filter | 🔍 filter |
+| 56 | `repairStatusCodeFilter` | Repair Status Code Filter | Repair Status Code Filter | 🔍 filter |
+| 57 | `allocationStatusFilter` | Allocation Status Filter | Allocation Status Filter | 🔍 filter |
 | 58 | `responsibilityCenter` | Responsibility Center | Responsibility Center | ✅ |
-| 59 | `serviceOrderFilter` | Service Order Filter | Service Order Filter | ✅ |
-| 60 | `resourceGroupFilter` | Resource Group Filter | Resource Group Filter | ✅ |
+| 59 | `serviceOrderFilter` | Service Order Filter | Service Order Filter | 🔍 filter |
+| 60 | `resourceGroupFilter` | Resource Group Filter | Resource Group Filter | 🔍 filter |
 | 61 | `shortcutDimension1Code` | Shortcut Dimension 1 Code | Shortcut Dimension 1 Code | ✅ |
 | 62 | `shortcutDimension2Code` | Shortcut Dimension 2 Code | Shortcut Dimension 2 Code | ✅ |
 | 63 | `releaseStatus` | Release Status | Release Status | ✅ |
@@ -14437,7 +14438,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 62 | `currencyCode` | Currency Code | Currency Code | ✅ |
 | 63 | `outstandingAmountLcy` | Outstanding Amount (LCY) | Outstanding Amount (LCY) | ✅ |
 | 64 | `shippedNotInvoicedLcy` | Shipped Not Invoiced (LCY) | Shipped Not Invoiced (LCY) | ✅ |
-| 65 | `reservedQuantity` | Reserved Quantity | Reserved Quantity | ✅ |
+| 65 | `reservedQuantity` | Reserved Quantity | Reserved Quantity | 🧮 computed |
 | 66 | `reserve` | Reserve | Reserve | ✅ |
 | 67 | `vatBaseAmount` | VAT Base Amount | VAT Base Amount | ✅ |
 | 68 | `unitCost` | Unit Cost | Unit Cost | ✅ |
@@ -14471,16 +14472,16 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 96 | `qtyShippedNotInvdBase` | Qty. Shipped Not Invd. (Base) | Qty. Shipped Not Invd. (Base) | ✅ |
 | 97 | `qtyShippedBase` | Qty. Shipped (Base) | Qty. Shipped (Base) | ✅ |
 | 98 | `qtyInvoicedBase` | Qty. Invoiced (Base) | Qty. Invoiced (Base) | ✅ |
-| 99 | `reservedQtyBase` | Reserved Qty. (Base) | Reserved Qty. (Base) | ✅ |
+| 99 | `reservedQtyBase` | Reserved Qty. (Base) | Reserved Qty. (Base) | 🧮 computed |
 | 100 | `responsibilityCenter` | Responsibility Center | Responsibility Center | ✅ |
-| 101 | `substitutionAvailable` | Substitution Available | Substitution Available | ✅ |
+| 101 | `substitutionAvailable` | Substitution Available | Substitution Available | 🧮 computed |
 | 102 | `itemCategoryCode` | Item Category Code | Item Category Code | ✅ |
 | 103 | `nonstock` | Nonstock | Catalog | ✅ |
 | 104 | `itemReferenceNo` | Item Reference No. | Item Reference No. | ✅ |
 | 105 | `itemReferenceUnitOfMeasure` | Item Reference Unit of Measure | Reference Unit of Measure | ✅ |
 | 106 | `itemReferenceType` | Item Reference Type | Item Reference Type | ✅ |
 | 107 | `itemReferenceTypeNo` | Item Reference Type No. | Item Reference Type No. | ✅ |
-| 108 | `whseOutstandingQtyBase` | Whse. Outstanding Qty. (Base) | Whse. Outstanding Qty. (Base) | ✅ |
+| 108 | `whseOutstandingQtyBase` | Whse. Outstanding Qty. (Base) | Whse. Outstanding Qty. (Base) | 🧮 computed |
 | 109 | `completelyShipped` | Completely Shipped | Completely Shipped | ✅ |
 | 110 | `requestedDeliveryDate` | Requested Delivery Date | Requested Delivery Date | ✅ |
 | 111 | `promisedDeliveryDate` | Promised Delivery Date | Promised Delivery Date | ✅ |
@@ -14493,7 +14494,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 118 | `applToServiceEntry` | Appl.-to Service Entry | Appl.-to Service Entry | ✅ |
 | 119 | `serviceItemLineNo` | Service Item Line No. | Service Item Line No. | ✅ |
 | 120 | `serviceItemSerialNo` | Service Item Serial No. | Service Item Serial No. | ✅ |
-| 121 | `serviceItemLineDescription` | Service Item Line Description | Service Item Line Description | ✅ |
+| 121 | `serviceItemLineDescription` | Service Item Line Description | Service Item Line Description | 🧮 computed |
 | 122 | `servPriceAdjmtGrCode` | Serv. Price Adjmt. Gr. Code | Serv. Price Adjmt. Gr. Code | ✅ |
 | 123 | `postingDate` | Posting Date | Posting Date | ✅ |
 | 124 | `orderDate` | Order Date | Order Date | ✅ |
@@ -14611,12 +14612,12 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 56 | `jobPosted` | Job Posted | Project Posted | — |
 | 57 | `externalDocumentNo` | External Document No. | External Document No. | — |
 | 58 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | — |
-| 59 | `shortcutDimension3Code` | Shortcut Dimension 3 Code | Shortcut Dimension 3 Code | — |
-| 60 | `shortcutDimension4Code` | Shortcut Dimension 4 Code | Shortcut Dimension 4 Code | — |
-| 61 | `shortcutDimension5Code` | Shortcut Dimension 5 Code | Shortcut Dimension 5 Code | — |
-| 62 | `shortcutDimension6Code` | Shortcut Dimension 6 Code | Shortcut Dimension 6 Code | — |
-| 63 | `shortcutDimension7Code` | Shortcut Dimension 7 Code | Shortcut Dimension 7 Code | — |
-| 64 | `shortcutDimension8Code` | Shortcut Dimension 8 Code | Shortcut Dimension 8 Code | — |
+| 59 | `shortcutDimension3Code` | Shortcut Dimension 3 Code | Shortcut Dimension 3 Code | 🧮 computed |
+| 60 | `shortcutDimension4Code` | Shortcut Dimension 4 Code | Shortcut Dimension 4 Code | 🧮 computed |
+| 61 | `shortcutDimension5Code` | Shortcut Dimension 5 Code | Shortcut Dimension 5 Code | 🧮 computed |
+| 62 | `shortcutDimension6Code` | Shortcut Dimension 6 Code | Shortcut Dimension 6 Code | 🧮 computed |
+| 63 | `shortcutDimension7Code` | Shortcut Dimension 7 Code | Shortcut Dimension 7 Code | 🧮 computed |
+| 64 | `shortcutDimension8Code` | Shortcut Dimension 8 Code | Shortcut Dimension 8 Code | 🧮 computed |
 
 
 [↑ Back to top](#table-of-contents)
@@ -14676,12 +14677,12 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 34 | `variantCode` | Variant Code | Variant Code | — |
 | 35 | `serviceOrderLineNo` | Service Order Line No. | Service Order Line No. | — |
 | 36 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | — |
-| 37 | `shortcutDimension3Code` | Shortcut Dimension 3 Code | Shortcut Dimension 3 Code | — |
-| 38 | `shortcutDimension4Code` | Shortcut Dimension 4 Code | Shortcut Dimension 4 Code | — |
-| 39 | `shortcutDimension5Code` | Shortcut Dimension 5 Code | Shortcut Dimension 5 Code | — |
-| 40 | `shortcutDimension6Code` | Shortcut Dimension 6 Code | Shortcut Dimension 6 Code | — |
-| 41 | `shortcutDimension7Code` | Shortcut Dimension 7 Code | Shortcut Dimension 7 Code | — |
-| 42 | `shortcutDimension8Code` | Shortcut Dimension 8 Code | Shortcut Dimension 8 Code | — |
+| 37 | `shortcutDimension3Code` | Shortcut Dimension 3 Code | Shortcut Dimension 3 Code | 🧮 computed |
+| 38 | `shortcutDimension4Code` | Shortcut Dimension 4 Code | Shortcut Dimension 4 Code | 🧮 computed |
+| 39 | `shortcutDimension5Code` | Shortcut Dimension 5 Code | Shortcut Dimension 5 Code | 🧮 computed |
+| 40 | `shortcutDimension6Code` | Shortcut Dimension 6 Code | Shortcut Dimension 6 Code | 🧮 computed |
+| 41 | `shortcutDimension7Code` | Shortcut Dimension 7 Code | Shortcut Dimension 7 Code | 🧮 computed |
+| 42 | `shortcutDimension8Code` | Shortcut Dimension 8 Code | Shortcut Dimension 8 Code | 🧮 computed |
 
 
 [↑ Back to top](#table-of-contents)
@@ -14746,26 +14747,26 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 6 | `status` | Status | Status | ✅ |
 | 7 | `changeStatus` | Change Status | Change Status | ✅ |
 | 8 | `customerNo` | Customer No. | Customer No. | ✅ |
-| 9 | `name` | Name | Name | ✅ |
-| 10 | `address` | Address | Address | ✅ |
-| 11 | `address2` | Address 2 | Address 2 | ✅ |
-| 12 | `postCode` | Post Code | Post Code | ✅ |
-| 13 | `city` | City | City | ✅ |
+| 9 | `name` | Name | Name | 🧮 computed |
+| 10 | `address` | Address | Address | 🧮 computed |
+| 11 | `address2` | Address 2 | Address 2 | 🧮 computed |
+| 12 | `postCode` | Post Code | Post Code | 🧮 computed |
+| 13 | `city` | City | City | 🧮 computed |
 | 14 | `contactName` | Contact Name | Contact Name | ✅ |
 | 15 | `yourReference` | Your Reference | Your Reference | ✅ |
 | 16 | `salespersonCode` | Salesperson Code | Salesperson Code | ✅ |
 | 17 | `billToCustomerNo` | Bill-to Customer No. | Bill-to Customer No. | ✅ |
-| 18 | `billToName` | Bill-to Name | Bill-to Name | ✅ |
-| 19 | `billToAddress` | Bill-to Address | Bill-to Address | ✅ |
-| 20 | `billToAddress2` | Bill-to Address 2 | Bill-to Address 2 | ✅ |
-| 21 | `billToPostCode` | Bill-to Post Code | Bill-to Post Code | ✅ |
-| 22 | `billToCity` | Bill-to City | Bill-to City | ✅ |
+| 18 | `billToName` | Bill-to Name | Bill-to Name | 🧮 computed |
+| 19 | `billToAddress` | Bill-to Address | Bill-to Address | 🧮 computed |
+| 20 | `billToAddress2` | Bill-to Address 2 | Bill-to Address 2 | 🧮 computed |
+| 21 | `billToPostCode` | Bill-to Post Code | Bill-to Post Code | 🧮 computed |
+| 22 | `billToCity` | Bill-to City | Bill-to City | 🧮 computed |
 | 23 | `shipToCode` | Ship-to Code | Ship-to Code | ✅ |
-| 24 | `shipToName` | Ship-to Name | Ship-to Name | ✅ |
-| 25 | `shipToAddress` | Ship-to Address | Ship-to Address | ✅ |
-| 26 | `shipToAddress2` | Ship-to Address 2 | Ship-to Address 2 | ✅ |
-| 27 | `shipToPostCode` | Ship-to Post Code | Ship-to Post Code | ✅ |
-| 28 | `shipToCity` | Ship-to City | Ship-to City | ✅ |
+| 24 | `shipToName` | Ship-to Name | Ship-to Name | 🧮 computed |
+| 25 | `shipToAddress` | Ship-to Address | Ship-to Address | 🧮 computed |
+| 26 | `shipToAddress2` | Ship-to Address 2 | Ship-to Address 2 | 🧮 computed |
+| 27 | `shipToPostCode` | Ship-to Post Code | Ship-to Post Code | 🧮 computed |
+| 28 | `shipToCity` | Ship-to City | Ship-to City | 🧮 computed |
 | 29 | `servContractAccGrCode` | Serv. Contract Acc. Gr. Code | Serv. Contract Acc. Gr. Code | ✅ |
 | 30 | `invoicePeriod` | Invoice Period | Invoice Period | ✅ |
 | 31 | `lastInvoiceDate` | Last Invoice Date | Last Invoice Date | ✅ |
@@ -14774,7 +14775,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 34 | `expirationDate` | Expiration Date | Expiration Date | ✅ |
 | 35 | `firstServiceDate` | First Service Date | First Service Date | ✅ |
 | 36 | `maxLaborUnitPrice` | Max. Labor Unit Price | Max. Labor Unit Price | ✅ |
-| 37 | `calcdAnnualAmount` | Calcd. Annual Amount | Calcd. Annual Amount | ✅ |
+| 37 | `calcdAnnualAmount` | Calcd. Annual Amount | Calcd. Annual Amount | 🧮 computed |
 | 38 | `annualAmount` | Annual Amount | Annual Amount | ✅ |
 | 39 | `amountPerPeriod` | Amount per Period | Amount per Period | ✅ |
 | 40 | `combineInvoices` | Combine Invoices | Combine Invoices | ✅ |
@@ -14789,8 +14790,8 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 49 | `lastPriceUpdatePct` | Last Price Update % | Last Price Update % | ✅ |
 | 50 | `responseTimeHours` | Response Time (Hours) | Response Time (Hours) | ✅ |
 | 51 | `contractLinesOnInvoice` | Contract Lines on Invoice | Contract Lines on Invoice | ✅ |
-| 52 | `noOfPostedInvoices` | No. of Posted Invoices | No. of Posted Invoices | ✅ |
-| 53 | `noOfUnpostedInvoices` | No. of Unposted Invoices | No. of Unposted Invoices | ✅ |
+| 52 | `noOfPostedInvoices` | No. of Posted Invoices | No. of Posted Invoices | 🧮 computed |
+| 53 | `noOfUnpostedInvoices` | No. of Unposted Invoices | No. of Unposted Invoices | 🧮 computed |
 | 54 | `servicePeriod` | Service Period | Service Period | ✅ |
 | 55 | `paymentTermsCode` | Payment Terms Code | Payment Terms Code | ✅ |
 | 56 | `invoiceAfterService` | Invoice after Service | Invoice after Service | ✅ |
@@ -14809,36 +14810,36 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 69 | `currencyCode` | Currency Code | Currency Code | ✅ |
 | 70 | `noSeries` | No. Series | No. Series | ✅ |
 | 71 | `probability` | Probability | Probability | ✅ |
-| 72 | `comment` | Comment | Comment | ✅ |
+| 72 | `comment` | Comment | Comment | 🧮 computed |
 | 73 | `responsibilityCenter` | Responsibility Center | Responsibility Center | ✅ |
 | 74 | `phoneNo` | Phone No. | Phone No. | ✅ |
 | 75 | `faxNo` | Fax No. | Fax No. | ✅ |
 | 76 | `eMail` | E-Mail | Email | ✅ |
-| 77 | `billToCounty` | Bill-to County | Bill-to County | ✅ |
-| 78 | `county` | County | County | ✅ |
-| 79 | `shipToCounty` | Ship-to County | Ship-to County | ✅ |
-| 80 | `countryRegionCode` | Country/Region Code | Country/Region Code | ✅ |
-| 81 | `billToCountryRegionCode` | Bill-to Country/Region Code | Bill-to Country/Region Code | ✅ |
-| 82 | `shipToCountryRegionCode` | Ship-to Country/Region Code | Ship-to Country/Region Code | ✅ |
-| 83 | `name2` | Name 2 | Name 2 | ✅ |
-| 84 | `billToName2` | Bill-to Name 2 | Bill-to Name 2 | ✅ |
-| 85 | `shipToName2` | Ship-to Name 2 | Ship-to Name 2 | ✅ |
+| 77 | `billToCounty` | Bill-to County | Bill-to County | 🧮 computed |
+| 78 | `county` | County | County | 🧮 computed |
+| 79 | `shipToCounty` | Ship-to County | Ship-to County | 🧮 computed |
+| 80 | `countryRegionCode` | Country/Region Code | Country/Region Code | 🧮 computed |
+| 81 | `billToCountryRegionCode` | Bill-to Country/Region Code | Bill-to Country/Region Code | 🧮 computed |
+| 82 | `shipToCountryRegionCode` | Ship-to Country/Region Code | Ship-to Country/Region Code | 🧮 computed |
+| 83 | `name2` | Name 2 | Name 2 | 🧮 computed |
+| 84 | `billToName2` | Bill-to Name 2 | Bill-to Name 2 | 🧮 computed |
+| 85 | `shipToName2` | Ship-to Name 2 | Ship-to Name 2 | 🧮 computed |
 | 86 | `nextInvoicePeriodStart` | Next Invoice Period Start | Next Invoice Period Start | ✅ |
 | 87 | `nextInvoicePeriodEnd` | Next Invoice Period End | Next Invoice Period End | ✅ |
-| 88 | `contractInvoiceAmount` | Contract Invoice Amount | Contract Invoice Amount | ✅ |
-| 89 | `contractPrepaidAmount` | Contract Prepaid Amount | Contract Prepaid Amount | ✅ |
-| 90 | `contractDiscountAmount` | Contract Discount Amount | Contract Discount Amount | ✅ |
-| 91 | `contractCostAmount` | Contract Cost Amount | Contract Cost Amount | ✅ |
-| 92 | `contractGainLossAmount` | Contract Gain/Loss Amount | Contract Gain/Loss Amount | ✅ |
-| 93 | `noOfPostedCreditMemos` | No. of Posted Credit Memos | No. of Posted Credit Memos | ✅ |
-| 94 | `noOfUnpostedCreditMemos` | No. of Unposted Credit Memos | No. of Unposted Credit Memos | ✅ |
-| 95 | `typeFilter` | Type Filter | Type Filter | ✅ |
-| 96 | `reasonCodeFilter` | Reason Code Filter | Reason Code Filter | ✅ |
-| 97 | `postedServiceOrderFilter` | Posted Service Order Filter | Posted Service Order Filter | ✅ |
-| 98 | `dateFilter` | Date Filter | Date Filter | ✅ |
-| 99 | `itemFilter` | Item Filter | Item Filter | ✅ |
+| 88 | `contractInvoiceAmount` | Contract Invoice Amount | Contract Invoice Amount | 🧮 computed |
+| 89 | `contractPrepaidAmount` | Contract Prepaid Amount | Contract Prepaid Amount | 🧮 computed |
+| 90 | `contractDiscountAmount` | Contract Discount Amount | Contract Discount Amount | 🧮 computed |
+| 91 | `contractCostAmount` | Contract Cost Amount | Contract Cost Amount | 🧮 computed |
+| 92 | `contractGainLossAmount` | Contract Gain/Loss Amount | Contract Gain/Loss Amount | 🧮 computed |
+| 93 | `noOfPostedCreditMemos` | No. of Posted Credit Memos | No. of Posted Credit Memos | 🧮 computed |
+| 94 | `noOfUnpostedCreditMemos` | No. of Unposted Credit Memos | No. of Unposted Credit Memos | 🧮 computed |
+| 95 | `typeFilter` | Type Filter | Type Filter | 🔍 filter |
+| 96 | `reasonCodeFilter` | Reason Code Filter | Reason Code Filter | 🔍 filter |
+| 97 | `postedServiceOrderFilter` | Posted Service Order Filter | Posted Service Order Filter | 🔍 filter |
+| 98 | `dateFilter` | Date Filter | Date Filter | 🔍 filter |
+| 99 | `itemFilter` | Item Filter | Item Filter | 🔍 filter |
 | 100 | `paymentMethodCode` | Payment Method Code | Payment Method Code | ✅ |
-| 101 | `shipToPhoneNo` | Ship-to Phone No. | Ship-to Phone No. | ✅ |
+| 101 | `shipToPhoneNo` | Ship-to Phone No. | Ship-to Phone No. | 🧮 computed |
 | 102 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | ✅ |
 | 103 | `directDebitMandateId` | Direct Debit Mandate ID | Direct Debit Mandate ID | ✅ |
 | 104 | `contactNo` | Contact No. | Contact No. | ✅ |
@@ -14927,8 +14928,8 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 2 | `code` | Code | Code | ✅ |
 | 3 | `description` | Description | Description | ✅ |
 | 4 | `discOnContrOrdersOnly` | Disc. on Contr. Orders Only | Disc. on Contr. Orders Only | ✅ |
-| 5 | `dateFilter` | Date Filter | Date Filter | ✅ |
-| 6 | `contractGainLossAmount` | Contract Gain/Loss Amount | Contract Gain/Loss Amount | ✅ |
+| 5 | `dateFilter` | Date Filter | Date Filter | 🔍 filter |
+| 6 | `contractGainLossAmount` | Contract Gain/Loss Amount | Contract Gain/Loss Amount | 🧮 computed |
 
 
 [↑ Back to top](#table-of-contents)
@@ -14992,7 +14993,7 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 38 | `formatRegion` | Format Region | Format Region | — |
 | 39 | `salespersonCode` | Salesperson Code | Salesperson Code | — |
 | 40 | `orderNo` | Order No. | Order No. | — |
-| 41 | `comment` | Comment | Comment | — |
+| 41 | `comment` | Comment | Comment | 🧮 computed |
 | 42 | `noPrinted` | No. Printed | No. Printed | — |
 | 43 | `appliesToDocType` | Applies-to Doc. Type | Applies-to Doc. Type | — |
 | 44 | `appliesToDocNo` | Applies-to Doc. No. | Applies-to Doc. No. | — |
@@ -15042,17 +15043,17 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 88 | `billToContactNo` | Bill-to Contact No. | Bill-to Contact No. | — |
 | 89 | `responsibilityCenter` | Responsibility Center | Responsibility Center | — |
 | 90 | `shippingAgentServiceCode` | Shipping Agent Service Code | Shipping Agent Service Code | — |
-| 91 | `dateFilter` | Date Filter | Date Filter | — |
+| 91 | `dateFilter` | Date Filter | Date Filter | 🔍 filter |
 | 92 | `description` | Description | Description | — |
 | 93 | `serviceOrderType` | Service Order Type | Service Order Type | — |
 | 94 | `linkServiceToServiceItem` | Link Service to Service Item | Link Service to Service Item | — |
 | 95 | `priority` | Priority | Priority | — |
-| 96 | `allocatedHours` | Allocated Hours | Allocated Hours | — |
+| 96 | `allocatedHours` | Allocated Hours | Allocated Hours | 🧮 computed |
 | 97 | `phoneNo` | Phone No. | Phone No. | — |
 | 98 | `eMail` | E-Mail | Email | — |
 | 99 | `phoneNo2` | Phone No. 2 | Phone No. 2 | — |
 | 100 | `faxNo` | Fax No. | Fax No. | — |
-| 101 | `noOfUnallocatedItems` | No. of Unallocated Items | No. of Unallocated Items | — |
+| 101 | `noOfUnallocatedItems` | No. of Unallocated Items | No. of Unallocated Items | 🧮 computed |
 | 102 | `orderTime` | Order Time | Order Time | — |
 | 103 | `defaultResponseTimeHours` | Default Response Time (Hours) | Default Response Time (Hours) | — |
 | 104 | `actualResponseTimeHours` | Actual Response Time (Hours) | Actual Response Time (Hours) | — |
@@ -15063,23 +15064,23 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 109 | `startingTime` | Starting Time | Starting Time | — |
 | 110 | `finishingDate` | Finishing Date | Finishing Date | — |
 | 111 | `finishingTime` | Finishing Time | Finishing Time | — |
-| 112 | `contractServHoursExist` | Contract Serv. Hours Exist | Contract Serv. Hours Exist | — |
-| 113 | `reallocationNeeded` | Reallocation Needed | Reallocation Needed | — |
+| 112 | `contractServHoursExist` | Contract Serv. Hours Exist | Contract Serv. Hours Exist | 🧮 computed |
+| 113 | `reallocationNeeded` | Reallocation Needed | Reallocation Needed | 🧮 computed |
 | 114 | `notifyCustomer` | Notify Customer | Notify Customer | — |
 | 115 | `maxLaborUnitPrice` | Max. Labor Unit Price | Max. Labor Unit Price | — |
 | 116 | `warningStatus` | Warning Status | Warning Status | — |
-| 117 | `noOfAllocations` | No. of Allocations | No. of Allocations | — |
+| 117 | `noOfAllocations` | No. of Allocations | No. of Allocations | 🧮 computed |
 | 118 | `contractNo` | Contract No. | Contract No. | — |
-| 119 | `typeFilter` | Type Filter | Type Filter | — |
-| 120 | `customerFilter` | Customer Filter | Customer Filter | — |
-| 121 | `resourceFilter` | Resource Filter | Resource Filter | — |
-| 122 | `contractFilter` | Contract Filter | Contract Filter | — |
+| 119 | `typeFilter` | Type Filter | Type Filter | 🔍 filter |
+| 120 | `customerFilter` | Customer Filter | Customer Filter | 🔍 filter |
+| 121 | `resourceFilter` | Resource Filter | Resource Filter | 🔍 filter |
+| 122 | `contractFilter` | Contract Filter | Contract Filter | 🔍 filter |
 | 123 | `shipToFaxNo` | Ship-to Fax No. | Ship-to Fax No. | — |
 | 124 | `shipToEMail` | Ship-to E-Mail | Ship-to Email | — |
-| 125 | `resourceGroupFilter` | Resource Group Filter | Resource Group Filter | — |
+| 125 | `resourceGroupFilter` | Resource Group Filter | Resource Group Filter | 🔍 filter |
 | 126 | `shipToPhone` | Ship-to Phone | Ship-to Phone | — |
 | 127 | `shipToPhone2` | Ship-to Phone 2 | Ship-to Phone 2 | — |
-| 128 | `serviceZoneFilter` | Service Zone Filter | Service Zone Filter | — |
+| 128 | `serviceZoneFilter` | Service Zone Filter | Service Zone Filter | 🔍 filter |
 | 129 | `serviceZoneCode` | Service Zone Code | Service Zone Code | — |
 | 130 | `expectedFinishingDate` | Expected Finishing Date | Expected Finishing Date | — |
 | 131 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | — |
@@ -15273,13 +15274,13 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 38 | `formatRegion` | Format Region | Format Region | — |
 | 39 | `salespersonCode` | Salesperson Code | Salesperson Code | — |
 | 40 | `orderNo` | Order No. | Order No. | — |
-| 41 | `comment` | Comment | Comment | — |
+| 41 | `comment` | Comment | Comment | 🧮 computed |
 | 42 | `noPrinted` | No. Printed | No. Printed | — |
 | 43 | `appliesToDocType` | Applies-to Doc. Type | Applies-to Doc. Type | — |
 | 44 | `appliesToDocNo` | Applies-to Doc. No. | Applies-to Doc. No. | — |
 | 45 | `balAccountNo` | Bal. Account No. | Bal. Account No. | — |
-| 46 | `amount` | Amount | Amount | — |
-| 47 | `amountIncludingVat` | Amount Including VAT | Amount Including VAT | — |
+| 46 | `amount` | Amount | Amount | 🧮 computed |
+| 47 | `amountIncludingVat` | Amount Including VAT | Amount Including VAT | 🧮 computed |
 | 48 | `shippingNo` | Shipping No. | Shipping No. | — |
 | 49 | `postingNo` | Posting No. | Posting No. | — |
 | 50 | `lastShippingNo` | Last Shipping No. | Last Shipping No. | — |
@@ -15342,12 +15343,12 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 107 | `serviceOrderType` | Service Order Type | Service Order Type | — |
 | 108 | `linkServiceToServiceItem` | Link Service to Service Item | Link Service to Service Item | — |
 | 109 | `priority` | Priority | Priority | — |
-| 110 | `allocatedHours` | Allocated Hours | Allocated Hours | — |
+| 110 | `allocatedHours` | Allocated Hours | Allocated Hours | 🧮 computed |
 | 111 | `phoneNo` | Phone No. | Phone No. | — |
 | 112 | `eMail` | E-Mail | Email | — |
 | 113 | `phoneNo2` | Phone No. 2 | Phone No. 2 | — |
 | 114 | `faxNo` | Fax No. | Fax No. | — |
-| 115 | `noOfUnallocatedItems` | No. of Unallocated Items | No. of Unallocated Items | — |
+| 115 | `noOfUnallocatedItems` | No. of Unallocated Items | No. of Unallocated Items | 🧮 computed |
 | 116 | `orderTime` | Order Time | Order Time | — |
 | 117 | `defaultResponseTimeHours` | Default Response Time (Hours) | Default Response Time (Hours) | — |
 | 118 | `actualResponseTimeHours` | Actual Response Time (Hours) | Actual Response Time (Hours) | — |
@@ -15358,23 +15359,23 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 123 | `startingTime` | Starting Time | Starting Time | — |
 | 124 | `finishingDate` | Finishing Date | Finishing Date | — |
 | 125 | `finishingTime` | Finishing Time | Finishing Time | — |
-| 126 | `contractServHoursExist` | Contract Serv. Hours Exist | Contract Serv. Hours Exist | — |
-| 127 | `reallocationNeeded` | Reallocation Needed | Reallocation Needed | — |
+| 126 | `contractServHoursExist` | Contract Serv. Hours Exist | Contract Serv. Hours Exist | 🧮 computed |
+| 127 | `reallocationNeeded` | Reallocation Needed | Reallocation Needed | 🧮 computed |
 | 128 | `notifyCustomer` | Notify Customer | Notify Customer | — |
 | 129 | `maxLaborUnitPrice` | Max. Labor Unit Price | Max. Labor Unit Price | — |
 | 130 | `warningStatus` | Warning Status | Warning Status | — |
-| 131 | `noOfAllocations` | No. of Allocations | No. of Allocations | — |
+| 131 | `noOfAllocations` | No. of Allocations | No. of Allocations | 🧮 computed |
 | 132 | `contractNo` | Contract No. | Contract No. | — |
-| 133 | `typeFilter` | Type Filter | Type Filter | — |
-| 134 | `customerFilter` | Customer Filter | Customer Filter | — |
-| 135 | `resourceFilter` | Resource Filter | Resource Filter | — |
-| 136 | `contractFilter` | Contract Filter | Contract Filter | — |
+| 133 | `typeFilter` | Type Filter | Type Filter | 🔍 filter |
+| 134 | `customerFilter` | Customer Filter | Customer Filter | 🔍 filter |
+| 135 | `resourceFilter` | Resource Filter | Resource Filter | 🔍 filter |
+| 136 | `contractFilter` | Contract Filter | Contract Filter | 🔍 filter |
 | 137 | `shipToFaxNo` | Ship-to Fax No. | Ship-to Fax No. | — |
 | 138 | `shipToEMail` | Ship-to E-Mail | Ship-to Email | — |
-| 139 | `resourceGroupFilter` | Resource Group Filter | Resource Group Filter | — |
+| 139 | `resourceGroupFilter` | Resource Group Filter | Resource Group Filter | 🔍 filter |
 | 140 | `shipToPhone` | Ship-to Phone | Ship-to Phone | — |
 | 141 | `shipToPhone2` | Ship-to Phone 2 | Ship-to Phone 2 | — |
-| 142 | `serviceZoneFilter` | Service Zone Filter | Service Zone Filter | — |
+| 142 | `serviceZoneFilter` | Service Zone Filter | Service Zone Filter | 🔍 filter |
 | 143 | `serviceZoneCode` | Service Zone Code | Service Zone Code | — |
 | 144 | `expectedFinishingDate` | Expected Finishing Date | Expected Finishing Date | — |
 | 145 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | — |
@@ -15570,13 +15571,13 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 36 | `languageCode` | Language Code | Language Code | — |
 | 37 | `formatRegion` | Format Region | Format Region | — |
 | 38 | `salespersonCode` | Salesperson Code | Salesperson Code | — |
-| 39 | `comment` | Comment | Comment | — |
+| 39 | `comment` | Comment | Comment | 🧮 computed |
 | 40 | `noPrinted` | No. Printed | No. Printed | — |
 | 41 | `appliesToDocType` | Applies-to Doc. Type | Applies-to Doc. Type | — |
 | 42 | `appliesToDocNo` | Applies-to Doc. No. | Applies-to Doc. No. | — |
 | 43 | `balAccountNo` | Bal. Account No. | Bal. Account No. | — |
-| 44 | `amount` | Amount | Amount | — |
-| 45 | `amountIncludingVat` | Amount Including VAT | Amount Including VAT | — |
+| 44 | `amount` | Amount | Amount | 🧮 computed |
+| 45 | `amountIncludingVat` | Amount Including VAT | Amount Including VAT | 🧮 computed |
 | 46 | `vatRegistrationNo` | VAT Registration No. | VAT Registration No. | — |
 | 47 | `reasonCode` | Reason Code | Reason Code | — |
 | 48 | `genBusPostingGroup` | Gen. Bus. Posting Group | Gen. Bus. Posting Group | — |
@@ -15631,12 +15632,12 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 97 | `serviceOrderType` | Service Order Type | Service Order Type | — |
 | 98 | `linkServiceToServiceItem` | Link Service to Service Item | Link Service to Service Item | — |
 | 99 | `priority` | Priority | Priority | — |
-| 100 | `allocatedHours` | Allocated Hours | Allocated Hours | — |
+| 100 | `allocatedHours` | Allocated Hours | Allocated Hours | 🧮 computed |
 | 101 | `phoneNo` | Phone No. | Phone No. | — |
 | 102 | `eMail` | E-Mail | Email | — |
 | 103 | `phoneNo2` | Phone No. 2 | Phone No. 2 | — |
 | 104 | `faxNo` | Fax No. | Fax No. | — |
-| 105 | `noOfUnallocatedItems` | No. of Unallocated Items | No. of Unallocated Items | — |
+| 105 | `noOfUnallocatedItems` | No. of Unallocated Items | No. of Unallocated Items | 🧮 computed |
 | 106 | `orderTime` | Order Time | Order Time | — |
 | 107 | `defaultResponseTimeHours` | Default Response Time (Hours) | Default Response Time (Hours) | — |
 | 108 | `actualResponseTimeHours` | Actual Response Time (Hours) | Actual Response Time (Hours) | — |
@@ -15647,23 +15648,23 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 | 113 | `startingTime` | Starting Time | Starting Time | — |
 | 114 | `finishingDate` | Finishing Date | Finishing Date | — |
 | 115 | `finishingTime` | Finishing Time | Finishing Time | — |
-| 116 | `contractServHoursExist` | Contract Serv. Hours Exist | Contract Serv. Hours Exist | — |
-| 117 | `reallocationNeeded` | Reallocation Needed | Reallocation Needed | — |
+| 116 | `contractServHoursExist` | Contract Serv. Hours Exist | Contract Serv. Hours Exist | 🧮 computed |
+| 117 | `reallocationNeeded` | Reallocation Needed | Reallocation Needed | 🧮 computed |
 | 118 | `notifyCustomer` | Notify Customer | Notify Customer | — |
 | 119 | `maxLaborUnitPrice` | Max. Labor Unit Price | Max. Labor Unit Price | — |
 | 120 | `warningStatus` | Warning Status | Warning Status | — |
-| 121 | `noOfAllocations` | No. of Allocations | No. of Allocations | — |
+| 121 | `noOfAllocations` | No. of Allocations | No. of Allocations | 🧮 computed |
 | 122 | `contractNo` | Contract No. | Contract No. | — |
-| 123 | `typeFilter` | Type Filter | Type Filter | — |
-| 124 | `customerFilter` | Customer Filter | Customer Filter | — |
-| 125 | `resourceFilter` | Resource Filter | Resource Filter | — |
-| 126 | `contractFilter` | Contract Filter | Contract Filter | — |
+| 123 | `typeFilter` | Type Filter | Type Filter | 🔍 filter |
+| 124 | `customerFilter` | Customer Filter | Customer Filter | 🔍 filter |
+| 125 | `resourceFilter` | Resource Filter | Resource Filter | 🔍 filter |
+| 126 | `contractFilter` | Contract Filter | Contract Filter | 🔍 filter |
 | 127 | `shipToFaxNo` | Ship-to Fax No. | Ship-to Fax No. | — |
 | 128 | `shipToEMail` | Ship-to E-Mail | Ship-to Email | — |
-| 129 | `resourceGroupFilter` | Resource Group Filter | Resource Group Filter | — |
+| 129 | `resourceGroupFilter` | Resource Group Filter | Resource Group Filter | 🔍 filter |
 | 130 | `shipToPhone` | Ship-to Phone | Ship-to Phone | — |
 | 131 | `shipToPhone2` | Ship-to Phone 2 | Ship-to Phone 2 | — |
-| 132 | `serviceZoneFilter` | Service Zone Filter | Service Zone Filter | — |
+| 132 | `serviceZoneFilter` | Service Zone Filter | Service Zone Filter | 🔍 filter |
 | 133 | `serviceZoneCode` | Service Zone Code | Service Zone Code | — |
 | 134 | `expectedFinishingDate` | Expected Finishing Date | Expected Finishing Date | — |
 | 135 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | — |

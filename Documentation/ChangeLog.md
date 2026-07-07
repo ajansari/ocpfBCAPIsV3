@@ -1,5 +1,17 @@
 # Build Change Log
 
+## Documentation correction — per-field Editable column (2026-07-08)
+
+The Editable column in Documentation.md previously reflected only page-level access (✅ on every
+field of an editable page), overstating writability: FlowFields such as Customer `Credit Amount`
+are computed and can never be written via the API. The column is now derived from the BC 27.5
+symbol field classes for all 178 entities: 🔑 key · ✅ writable stored field · 🧮 computed
+(FlowField) · 🔍 filter (FlowFilter) · — stored field on a read-only page.
+Result across 11,397 field rows: 5,960 writable · 1,036 computed · 190 filters · 4,033 read-only ·
+178 keys. API behavior is unchanged — this was a documentation error only.
+
+---
+
 ## v3.1 — New Entities: Ship-to Addresses, Manufacturing, Assembly, Service Management (2026-07-07)
 
 **65 new API pages**, published as **v3.1-only** (`APIVersion = 'v3.1';`) — they do not exist on

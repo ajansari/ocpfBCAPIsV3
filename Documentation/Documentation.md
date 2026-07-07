@@ -49,194 +49,261 @@ Fields on read-only pages (Editable = false at page level) are all read-only reg
 
 ## Table of Contents
 
-- **Core Financial** [(Go to Category)](#core-financial)
-  - G/L Account: [ocpfChartOfAccounts (Page 90800)](#ocpfchartofaccounts)
-  - G/L Entry: [ocpfGeneralLedgerEntries (Page 90801)](#ocpfgeneralledgerentries)
-  - General Ledger Setup: [ocpfGeneralLedgerSetup (Page 90802)](#ocpfgeneralledgersetup)
-  - Accounting Period: [ocpfAccountingPeriods (Page 90803)](#ocpfaccountingperiods)
-  - G/L Budget Entry: [ocpfGLBudgetEntries (Page 90804)](#ocpfglbudgetentries)
-  - G/L Register: [ocpfGLRegisters (Page 90805)](#ocpfglregisters)
-  - Cust. Ledger Entry: [ocpfCustLedgerEntries (Page 90806)](#ocpfcustledgerentries)
-  - Detailed Cust. Ledg. Entry: [ocpfDetailedCustLedgerEntries (Page 90807)](#ocpfdetailedcustledgerentries)
-  - Vendor Ledger Entry: [ocpfVendorLedgerEntries (Page 90808)](#ocpfvendorledgerentries)
-  - Detailed Vendor Ledg. Entry: [ocpfDtldVendorLedgEntries (Page 90809)](#ocpfdtldvendorledgentries)
-  - Employee Ledger Entry: [ocpfEmployeeLedgerEntries (Page 90810)](#ocpfemployeeledgerentries)
-  - Gen. Business Posting Group: [ocpfGenBusPostingGroups (Page 90811)](#ocpfgenbuspostinggroups)
-  - Gen. Product Posting Group: [ocpfGenProdPostingGroups (Page 90812)](#ocpfgenprodpostinggroups)
-  - General Posting Setup: [ocpfGeneralPostingSetup (Page 90813)](#ocpfgeneralpostingsetup)
-  - Customer Posting Group: [ocpfCustomerPostingGroups (Page 90814)](#ocpfcustomerpostinggroups)
-  - Vendor Posting Group: [ocpfVendorPostingGroups (Page 90815)](#ocpfvendorpostinggroups)
-  - Inventory Posting Group: [ocpfInventoryPostingGroups (Page 90816)](#ocpfinventorypostinggroups)
-  - VAT Business Posting Group: [ocpfVatBusinessPostingGroups (Page 90817)](#ocpfvatbusinesspostinggroups)
-  - VAT Product Posting Group: [ocpfVatProductPostingGroups (Page 90818)](#ocpfvatproductpostinggroups)
-  - VAT Posting Setup: [ocpfVatPostingSetup (Page 90819)](#ocpfvatpostingsetup)
-  - Dimension: [ocpfDimensions (Page 90820)](#ocpfdimensions)
-  - Dimension Value: [ocpfDimensionValues (Page 90821)](#ocpfdimensionvalues)
-  - Default Dimension: [ocpfDefaultDimensions (Page 90822)](#ocpfdefaultdimensions)
-  - Dimension Set Entry: [ocpfDimensionSetEntries (Page 90823)](#ocpfdimensionsetentries)
-  - Inventory Posting Setup: [ocpfInventoryPostingSetup (Page 90824)](#ocpfinventorypostingsetup)
-- **Master Data** [(Go to Category)](#master-data)
-  - Bank Account: [ocpfBankAccounts (Page 90830)](#ocpfbankaccounts)
-  - Bank Account Posting Group: [ocpfBankAccountPostingGroups (Page 90831)](#ocpfbankaccountpostinggroups)
-  - Bank Account Ledger Entry: [ocpfBankAccountLedgerEntries (Page 90832)](#ocpfbankaccountledgerentries)
-  - Payment Terms: [ocpfPaymentTerms (Page 90833)](#ocpfpaymentterms)
-  - Payment Method: [ocpfPaymentMethods (Page 90834)](#ocpfpaymentmethods)
-  - Currency: [ocpfCurrencies (Page 90835)](#ocpfcurrencies)
-  - Country/Region: [ocpfCountriesRegions (Page 90836)](#ocpfcountriesregions)
-  - Unit of Measure: [ocpfUnitsOfMeasure (Page 90837)](#ocpfunitsofmeasure)
-  - Item Unit of Measure: [ocpfItemUnitsOfMeasure (Page 90838)](#ocpfitemunitsofmeasure)
-  - Location: [ocpfLocations (Page 90839)](#ocpflocations)
-  - Item Category: [ocpfItemCategories (Page 90840)](#ocpfitemcategories)
-  - Shipment Method: [ocpfShipmentMethods (Page 90841)](#ocpfshipmentmethods)
-  - Customer: [ocpfCustomers (Page 90842)](#ocpfcustomers)
-  - Vendor: [ocpfVendors (Page 90843)](#ocpfvendors)
-  - Contact: [ocpfContacts (Page 90844)](#ocpfcontacts)
-  - Contact Business Relation: [ocpfContactBusinessRelations (Page 90845)](#ocpfcontactbusinessrelations)
-  - Item: [ocpfItems (Page 90846)](#ocpfitems)
-  - Item Ledger Entry: [ocpfItemLedgerEntries (Page 90847)](#ocpfitemledgerentries)
-  - Value Entry: [ocpfValueEntries (Page 90848)](#ocpfvalueentries)
-  - Item Application Entry: [ocpfItemApplicationEntries (Page 90849)](#ocpfitemapplicationentries)
-  - Item Vendor: [ocpfItemVendorCatalogs (Page 90850)](#ocpfitemvendorcatalogs)
-  - Stockkeeping Unit: [ocpfStockkeepingUnits (Page 90851)](#ocpfstockkeepingunits)
-  - Item Tracking Code: [ocpfItemTrackingCodes (Page 90852)](#ocpfitemtrackingcodes)
-  - Item Charge: [ocpfItemCharges (Page 90853)](#ocpfitemcharges)
-  - Resource: [ocpfResources (Page 90854)](#ocpfresources)
-  - Res. Ledger Entry: [ocpfResourceLedgerEntries (Page 90855)](#ocpfresourceledgerentries)
-  - Resource Group: [ocpfResourceGroups (Page 90856)](#ocpfresourcegroups)
-  - Employee: [ocpfEmployees (Page 90857)](#ocpfemployees)
-  - Salesperson/Purchaser: [ocpfSalespeople (Page 90858)](#ocpfsalespeople)
-  - Ship-to Address: [ocpfShipToAddresses (Page 90859)](#ocpfshiptoaddresses)
-- **Sales** [(Go to Category)](#sales)
-  - Sales Header: [ocpfSalesQuotes (Page 90870)](#ocpfsalesquotes)
-  - Sales Line: [ocpfSalesQuoteLines (Page 90871)](#ocpfsalesquotelines)
-  - Sales Header: [ocpfSalesOrders (Page 90872)](#ocpfsalesorders)
-  - Sales Line: [ocpfSalesOrderLines (Page 90873)](#ocpfsalesorderlines)
-  - Sales Header: [ocpfSalesInvoices (Page 90874)](#ocpfsalesinvoices)
-  - Sales Line: [ocpfSalesInvoiceLines (Page 90875)](#ocpfsalesinvoicelines)
-  - Sales Header: [ocpfSalesCreditMemos (Page 90876)](#ocpfsalescreditmemos)
-  - Sales Line: [ocpfSalesCreditMemoLines (Page 90877)](#ocpfsalescreditmemolines)
-  - Sales Invoice Header: [ocpfPostedSalesInvoices (Page 90878)](#ocpfpostedsalesinvoices)
-  - Sales Invoice Line: [ocpfPostedSalesInvoiceLines (Page 90879)](#ocpfpostedsalesinvoicelines)
-  - Sales Cr.Memo Header: [ocpfPostedSalesCreditMemos (Page 90880)](#ocpfpostedsalescreditmemos)
-  - Sales Cr.Memo Line: [ocpfPostedSalesCreditMemoLines (Page 90881)](#ocpfpostedsalescreditmemolines)
-  - Sales Shipment Header: [ocpfPostedSalesShipments (Page 90882)](#ocpfpostedsalesshipments)
-  - Sales Shipment Line: [ocpfPostedSalesShipmentLines (Page 90883)](#ocpfpostedsalesshipmentlines)
-  - Return Receipt Header: [ocpfPostedReturnReceipts (Page 90884)](#ocpfpostedreturnreceipts)
-  - Return Receipt Line: [ocpfPostedReturnReceiptLines (Page 90885)](#ocpfpostedreturnreceiptlines)
-  - Sales Header: [ocpfSalesBlanketOrders (Page 90886)](#ocpfsalesblanketorders)
-  - Sales Line: [ocpfSalesBlanketOrderLines (Page 90887)](#ocpfsalesblanketorderlines)
-- **Purchasing** [(Go to Category)](#purchasing)
-  - Purchase Header: [ocpfPurchaseOrders (Page 90890)](#ocpfpurchaseorders)
-  - Purchase Line: [ocpfPurchaseOrderLines (Page 90891)](#ocpfpurchaseorderlines)
-  - Purchase Header: [ocpfPurchaseInvoices (Page 90892)](#ocpfpurchaseinvoices)
-  - Purchase Line: [ocpfPurchaseInvoiceLines (Page 90893)](#ocpfpurchaseinvoicelines)
-  - Purchase Header: [ocpfPurchaseCreditMemos (Page 90894)](#ocpfpurchasecreditmemos)
-  - Purchase Line: [ocpfPurchaseCreditMemoLines (Page 90895)](#ocpfpurchasecreditmemolines)
-  - Purch. Inv. Header: [ocpfPostedPurchaseInvoices (Page 90896)](#ocpfpostedpurchaseinvoices)
-  - Purch. Inv. Line: [ocpfPostedPurchaseInvoiceLines (Page 90897)](#ocpfpostedpurchaseinvoicelines)
-  - Purch. Cr. Memo Hdr.: [ocpfPostedPurchaseCreditMemos (Page 90898)](#ocpfpostedpurchasecreditmemos)
-  - Purch. Cr. Memo Line: [ocpfPostedPurchCrMemoLines (Page 90899)](#ocpfpostedpurchcrmemolines)
-  - Purch. Rcpt. Header: [ocpfPostedPurchaseReceipts (Page 90900)](#ocpfpostedpurchasereceipts)
-  - Purch. Rcpt. Line: [ocpfPostedPurchaseReceiptLines (Page 90901)](#ocpfpostedpurchasereceiptlines)
-  - Return Shipment Header: [ocpfPostedReturnShipments (Page 90902)](#ocpfpostedreturnshipments)
-  - Return Shipment Line: [ocpfPostedReturnShipmentLines (Page 90903)](#ocpfpostedreturnshipmentlines)
-  - Purchase Header: [ocpfPurchaseQuotes (Page 90904)](#ocpfpurchasequotes)
-  - Purchase Line: [ocpfPurchaseQuoteLines (Page 90905)](#ocpfpurchasequotelines)
-  - Purchase Header: [ocpfPurchaseBlanketOrders (Page 90906)](#ocpfpurchaseblanketorders)
-  - Purchase Line: [ocpfPurchaseBlanketOrderLines (Page 90907)](#ocpfpurchaseblanketorderlines)
-- **Projects & Assets** [(Go to Category)](#projects--assets)
-  - Job: [ocpfProjects (Page 90910)](#ocpfprojects)
-  - Job Posting Group: [ocpfProjectPostingGroups (Page 90911)](#ocpfprojectpostinggroups)
-  - Job Task: [ocpfProjectTasks (Page 90912)](#ocpfprojecttasks)
-  - Job Planning Line: [ocpfProjectPlanningLines (Page 90913)](#ocpfprojectplanninglines)
-  - Job Ledger Entry: [ocpfProjectLedgerEntries (Page 90914)](#ocpfprojectledgerentries)
-  - Fixed Asset: [ocpfFixedAssets (Page 90915)](#ocpffixedassets)
-  - FA Posting Group: [ocpfFaPostingGroups (Page 90916)](#ocpffapostinggroups)
-  - FA Ledger Entry: [ocpfFaLedgerEntries (Page 90917)](#ocpffaledgerentries)
-  - FA Depreciation Book: [ocpfFaDepreciationBooks (Page 90918)](#ocpffadepreciationbooks)
-  - Gen. Journal Template: [ocpfGeneralJournalTemplates (Page 90919)](#ocpfgeneraljournaltemplates)
-  - Gen. Journal Batch: [ocpfGeneralJournalBatches (Page 90920)](#ocpfgeneraljournalbatches)
-  - Gen. Journal Line: [ocpfGeneralJournalLines (Page 90921)](#ocpfgeneraljournallines)
-  - Price List Header: [ocpfPriceListHeaders (Page 90922)](#ocpfpricelistheaders)
-  - Price List Line: [ocpfPriceListLines (Page 90923)](#ocpfpricelistlines)
-- **System & Setup** [(Go to Category)](#system--setup)
-  - Document Attachment: [ocpfDocumentAttachments (Page 90930)](#ocpfdocumentattachments)
-  - Company Information: [ocpfCompanyInformation (Page 90931)](#ocpfcompanyinformation)
-  - Warehouse Entry: [ocpfWarehouseEntries (Page 90932)](#ocpfwarehouseentries)
-  - Reminder Header: [ocpfReminderHeaders (Page 90933)](#ocpfreminderheaders)
-  - Reminder Line: [ocpfReminderLines (Page 90934)](#ocpfreminderlines)
-  - Finance Charge Memo Header: [ocpfFinanceChargeMemoHeaders (Page 90935)](#ocpffinancechargememoheaders)
-  - Finance Charge Memo Line: [ocpfFinanceChargeMemoLines (Page 90936)](#ocpffinancechargememolines)
-  - Approval Entry: [ocpfApprovalEntries (Page 90937)](#ocpfapprovalentries)
-  - Workflow Step Instance: [ocpfWorkflowStepInstances (Page 90938)](#ocpfworkflowstepinstances)
+**Legend:** ✏️ editable (POST/PATCH/DELETE) · 👁 read-only (GET) · 🆕 new in v3.1
 
----
-- **Manufacturing** [(Go to Category)](#manufacturing) *(new in v3.1)*
-  - Manufacturing Setup: [ocpfManufacturingSetup (Page 90939)](#ocpfmanufacturingsetup)
-  - Work Shift: [ocpfWorkShifts (Page 90940)](#ocpfworkshifts)
-  - Shop Calendar: [ocpfShopCalendars (Page 90941)](#ocpfshopcalendars)
-  - Shop Calendar Working Days: [ocpfShopCalendarWorkingDays (Page 90942)](#ocpfshopcalendarworkingdays)
-  - Work Center Group: [ocpfWorkCenterGroups (Page 90943)](#ocpfworkcentergroups)
-  - Work Center: [ocpfWorkCenters (Page 90944)](#ocpfworkcenters)
-  - Machine Center: [ocpfMachineCenters (Page 90945)](#ocpfmachinecenters)
-  - Capacity Unit of Measure: [ocpfCapacityUnitsOfMeasure (Page 90946)](#ocpfcapacityunitsofmeasure)
-  - Calendar Entry: [ocpfCalendarEntries (Page 90947)](#ocpfcalendarentries)
-  - Calendar Absence Entry: [ocpfCalendarAbsenceEntries (Page 90948)](#ocpfcalendarabsenceentries)
-  - Stop: [ocpfStops (Page 90949)](#ocpfstops)
-  - Scrap: [ocpfScraps (Page 90950)](#ocpfscraps)
-  - Routing Link: [ocpfRoutingLinks (Page 90951)](#ocpfroutinglinks)
-  - Standard Task: [ocpfStandardTasks (Page 90952)](#ocpfstandardtasks)
-  - Routing Header: [ocpfRoutingHeaders (Page 90953)](#ocpfroutingheaders)
-  - Routing Line: [ocpfRoutingLines (Page 90954)](#ocpfroutinglines)
-  - Routing Version: [ocpfRoutingVersions (Page 90955)](#ocpfroutingversions)
-  - Production BOM Header: [ocpfProductionBomHeaders (Page 90956)](#ocpfproductionbomheaders)
-  - Production BOM Line: [ocpfProductionBomLines (Page 90957)](#ocpfproductionbomlines)
-  - Production BOM Version: [ocpfProductionBomVersions (Page 90958)](#ocpfproductionbomversions)
-  - Family: [ocpfFamilies (Page 90959)](#ocpffamilies)
-  - Family Line: [ocpfFamilyLines (Page 90960)](#ocpffamilylines)
-  - Production Order: [ocpfProductionOrders (Page 90961)](#ocpfproductionorders)
-  - Prod. Order Line: [ocpfProdOrderLines (Page 90962)](#ocpfprodorderlines)
-  - Prod. Order Component: [ocpfProdOrderComponents (Page 90963)](#ocpfprodordercomponents)
-  - Prod. Order Routing Line: [ocpfProdOrderRoutingLines (Page 90964)](#ocpfprodorderroutinglines)
-  - Prod. Order Capacity Need: [ocpfProdOrderCapacityNeeds (Page 90965)](#ocpfprodordercapacityneeds)
-  - Capacity Ledger Entry: [ocpfCapacityLedgerEntries (Page 90966)](#ocpfcapacityledgerentries)
-  - Assembly Setup: [ocpfAssemblySetup (Page 90967)](#ocpfassemblysetup)
-  - BOM Component: [ocpfBomComponents (Page 90968)](#ocpfbomcomponents)
-  - Assembly Header: [ocpfAssemblyHeaders (Page 90969)](#ocpfassemblyheaders)
-  - Assembly Line: [ocpfAssemblyLines (Page 90970)](#ocpfassemblylines)
-  - Posted Assembly Header: [ocpfPostedAssemblyHeaders (Page 90971)](#ocpfpostedassemblyheaders)
-  - Posted Assembly Line: [ocpfPostedAssemblyLines (Page 90972)](#ocpfpostedassemblylines)
-- **Service Management** [(Go to Category)](#service-management) *(new in v3.1)*
-  - Service Mgt. Setup: [ocpfServiceMgtSetup (Page 90924)](#ocpfservicemgtsetup)
-  - Service Order Type: [ocpfServiceOrderTypes (Page 90925)](#ocpfserviceordertypes)
-  - Service Cost: [ocpfServiceCosts (Page 90926)](#ocpfservicecosts)
-  - Service Zone: [ocpfServiceZones (Page 90973)](#ocpfservicezones)
-  - Service Item Group: [ocpfServiceItemGroups (Page 90974)](#ocpfserviceitemgroups)
-  - Repair Status: [ocpfRepairStatuses (Page 90975)](#ocpfrepairstatuses)
-  - Fault Area: [ocpfFaultAreas (Page 90976)](#ocpffaultareas)
-  - Symptom Code: [ocpfSymptomCodes (Page 90977)](#ocpfsymptomcodes)
-  - Fault Code: [ocpfFaultCodes (Page 90978)](#ocpffaultcodes)
-  - Fault Reason Code: [ocpfFaultReasonCodes (Page 90979)](#ocpffaultreasoncodes)
-  - Resolution Code: [ocpfResolutionCodes (Page 90980)](#ocpfresolutioncodes)
-  - Loaner: [ocpfLoaners (Page 90981)](#ocpfloaners)
-  - Loaner Entry: [ocpfLoanerEntries (Page 90982)](#ocpfloanerentries)
-  - Service Item: [ocpfServiceItems (Page 90983)](#ocpfserviceitems)
-  - Service Item Component: [ocpfServiceItemComponents (Page 90984)](#ocpfserviceitemcomponents)
-  - Service Header: [ocpfServiceHeaders (Page 90985)](#ocpfserviceheaders)
-  - Service Item Line: [ocpfServiceItemLines (Page 90986)](#ocpfserviceitemlines)
-  - Service Line: [ocpfServiceLines (Page 90987)](#ocpfservicelines)
-  - Service Ledger Entry: [ocpfServiceLedgerEntries (Page 90988)](#ocpfserviceledgerentries)
-  - Warranty Ledger Entry: [ocpfWarrantyLedgerEntries (Page 90989)](#ocpfwarrantyledgerentries)
-  - Service Register: [ocpfServiceRegisters (Page 90990)](#ocpfserviceregisters)
-  - Service Contract Header: [ocpfServiceContractHeaders (Page 90991)](#ocpfservicecontractheaders)
-  - Service Contract Line: [ocpfServiceContractLines (Page 90992)](#ocpfservicecontractlines)
-  - Contract Group: [ocpfContractGroups (Page 90993)](#ocpfcontractgroups)
-  - Service Shipment Header: [ocpfServiceShipmentHeaders (Page 90994)](#ocpfserviceshipmentheaders)
-  - Service Shipment Line: [ocpfServiceShipmentLines (Page 90995)](#ocpfserviceshipmentlines)
-  - Service Invoice Header: [ocpfServiceInvoiceHeaders (Page 90996)](#ocpfserviceinvoiceheaders)
-  - Service Invoice Line: [ocpfServiceInvoiceLines (Page 90997)](#ocpfserviceinvoicelines)
-  - Service Cr.Memo Header: [ocpfServiceCrMemoHeaders (Page 90998)](#ocpfservicecrmemoheaders)
-  - Service Cr.Memo Line: [ocpfServiceCrMemoLines (Page 90999)](#ocpfservicecrmemolines)
+| Category | API Group | Entities | ✏️ | 👁 |
+|---|---|---:|---:|---:|
+| [Core Financial](#core-financial) | `ocpf_coreFinancial` | 25 | 17 | 8 |
+| [Master Data](#master-data) | `ocpf_masterData` | 30 | 25 | 5 |
+| [Sales](#sales) | `ocpf_sales` | 18 | 10 | 8 |
+| [Purchasing](#purchasing) | `ocpf_purchasing` | 18 | 10 | 8 |
+| [Projects & Assets](#projects--assets) | `ocpf_projectsAndAssets` | 14 | 1 | 13 |
+| [System & Setup](#system--setup) | `ocpf_systemAndSetup` | 9 | 0 | 9 |
+| [Manufacturing](#manufacturing) 🆕 | `ocpf_manufacturing` | 34 | 28 | 6 |
+| [Service Management](#service-management) 🆕 | `ocpf_serviceManagement` | 30 | 20 | 10 |
+| **Total** | | **178** | **111** | **67** |
+
+<details>
+<summary><b>Core Financial</b> — 25 entities · <code>ocpf_coreFinancial</code></summary>
+
+| Entity | Source Table | Page ID | Access |
+|---|---|---|:---:|
+| [ocpfChartOfAccounts](#ocpfchartofaccounts) | G/L Account | 90800 | ✏️ |
+| [ocpfGeneralLedgerEntries](#ocpfgeneralledgerentries) | G/L Entry | 90801 | 👁 |
+| [ocpfGeneralLedgerSetup](#ocpfgeneralledgersetup) | General Ledger Setup | 90802 | ✏️ |
+| [ocpfAccountingPeriods](#ocpfaccountingperiods) | Accounting Period | 90803 | ✏️ |
+| [ocpfGLBudgetEntries](#ocpfglbudgetentries) | G/L Budget Entry | 90804 | ✏️ |
+| [ocpfGLRegisters](#ocpfglregisters) | G/L Register | 90805 | 👁 |
+| [ocpfCustLedgerEntries](#ocpfcustledgerentries) | Cust. Ledger Entry | 90806 | 👁 |
+| [ocpfDetailedCustLedgerEntries](#ocpfdetailedcustledgerentries) | Detailed Cust. Ledg. Entry | 90807 | 👁 |
+| [ocpfVendorLedgerEntries](#ocpfvendorledgerentries) | Vendor Ledger Entry | 90808 | 👁 |
+| [ocpfDtldVendorLedgEntries](#ocpfdtldvendorledgentries) | Detailed Vendor Ledg. Entry | 90809 | 👁 |
+| [ocpfEmployeeLedgerEntries](#ocpfemployeeledgerentries) | Employee Ledger Entry | 90810 | 👁 |
+| [ocpfGenBusPostingGroups](#ocpfgenbuspostinggroups) | Gen. Business Posting Group | 90811 | ✏️ |
+| [ocpfGenProdPostingGroups](#ocpfgenprodpostinggroups) | Gen. Product Posting Group | 90812 | ✏️ |
+| [ocpfGeneralPostingSetup](#ocpfgeneralpostingsetup) | General Posting Setup | 90813 | ✏️ |
+| [ocpfCustomerPostingGroups](#ocpfcustomerpostinggroups) | Customer Posting Group | 90814 | ✏️ |
+| [ocpfVendorPostingGroups](#ocpfvendorpostinggroups) | Vendor Posting Group | 90815 | ✏️ |
+| [ocpfInventoryPostingGroups](#ocpfinventorypostinggroups) | Inventory Posting Group | 90816 | ✏️ |
+| [ocpfVatBusinessPostingGroups](#ocpfvatbusinesspostinggroups) | VAT Business Posting Group | 90817 | ✏️ |
+| [ocpfVatProductPostingGroups](#ocpfvatproductpostinggroups) | VAT Product Posting Group | 90818 | ✏️ |
+| [ocpfVatPostingSetup](#ocpfvatpostingsetup) | VAT Posting Setup | 90819 | ✏️ |
+| [ocpfDimensions](#ocpfdimensions) | Dimension | 90820 | ✏️ |
+| [ocpfDimensionValues](#ocpfdimensionvalues) | Dimension Value | 90821 | ✏️ |
+| [ocpfDefaultDimensions](#ocpfdefaultdimensions) | Default Dimension | 90822 | ✏️ |
+| [ocpfDimensionSetEntries](#ocpfdimensionsetentries) | Dimension Set Entry | 90823 | 👁 |
+| [ocpfInventoryPostingSetup](#ocpfinventorypostingsetup) | Inventory Posting Setup | 90824 | ✏️ |
+
+</details>
+
+<details>
+<summary><b>Master Data</b> — 30 entities · <code>ocpf_masterData</code></summary>
+
+| Entity | Source Table | Page ID | Access |
+|---|---|---|:---:|
+| [ocpfBankAccounts](#ocpfbankaccounts) | Bank Account | 90830 | ✏️ |
+| [ocpfBankAccountPostingGroups](#ocpfbankaccountpostinggroups) | Bank Account Posting Group | 90831 | ✏️ |
+| [ocpfBankAccountLedgerEntries](#ocpfbankaccountledgerentries) | Bank Account Ledger Entry | 90832 | 👁 |
+| [ocpfPaymentTerms](#ocpfpaymentterms) | Payment Terms | 90833 | ✏️ |
+| [ocpfPaymentMethods](#ocpfpaymentmethods) | Payment Method | 90834 | ✏️ |
+| [ocpfCurrencies](#ocpfcurrencies) | Currency | 90835 | ✏️ |
+| [ocpfCountriesRegions](#ocpfcountriesregions) | Country/Region | 90836 | ✏️ |
+| [ocpfUnitsOfMeasure](#ocpfunitsofmeasure) | Unit of Measure | 90837 | ✏️ |
+| [ocpfItemUnitsOfMeasure](#ocpfitemunitsofmeasure) | Item Unit of Measure | 90838 | ✏️ |
+| [ocpfLocations](#ocpflocations) | Location | 90839 | ✏️ |
+| [ocpfItemCategories](#ocpfitemcategories) | Item Category | 90840 | ✏️ |
+| [ocpfShipmentMethods](#ocpfshipmentmethods) | Shipment Method | 90841 | ✏️ |
+| [ocpfCustomers](#ocpfcustomers) | Customer | 90842 | ✏️ |
+| [ocpfVendors](#ocpfvendors) | Vendor | 90843 | ✏️ |
+| [ocpfContacts](#ocpfcontacts) | Contact | 90844 | ✏️ |
+| [ocpfContactBusinessRelations](#ocpfcontactbusinessrelations) | Contact Business Relation | 90845 | ✏️ |
+| [ocpfItems](#ocpfitems) | Item | 90846 | ✏️ |
+| [ocpfItemLedgerEntries](#ocpfitemledgerentries) | Item Ledger Entry | 90847 | 👁 |
+| [ocpfValueEntries](#ocpfvalueentries) | Value Entry | 90848 | 👁 |
+| [ocpfItemApplicationEntries](#ocpfitemapplicationentries) | Item Application Entry | 90849 | 👁 |
+| [ocpfItemVendorCatalogs](#ocpfitemvendorcatalogs) | Item Vendor | 90850 | ✏️ |
+| [ocpfStockkeepingUnits](#ocpfstockkeepingunits) | Stockkeeping Unit | 90851 | ✏️ |
+| [ocpfItemTrackingCodes](#ocpfitemtrackingcodes) | Item Tracking Code | 90852 | ✏️ |
+| [ocpfItemCharges](#ocpfitemcharges) | Item Charge | 90853 | ✏️ |
+| [ocpfResources](#ocpfresources) | Resource | 90854 | ✏️ |
+| [ocpfResourceLedgerEntries](#ocpfresourceledgerentries) | Res. Ledger Entry | 90855 | 👁 |
+| [ocpfResourceGroups](#ocpfresourcegroups) | Resource Group | 90856 | ✏️ |
+| [ocpfEmployees](#ocpfemployees) | Employee | 90857 | ✏️ |
+| [ocpfSalespeople](#ocpfsalespeople) | Salesperson/Purchaser | 90858 | ✏️ |
+| [ocpfShipToAddresses](#ocpfshiptoaddresses) 🆕 | Ship-to Address | 90859 | ✏️ |
+
+</details>
+
+<details>
+<summary><b>Sales</b> — 18 entities · <code>ocpf_sales</code></summary>
+
+| Entity | Source Table | Page ID | Access |
+|---|---|---|:---:|
+| [ocpfSalesQuotes](#ocpfsalesquotes) | Sales Header | 90870 | ✏️ |
+| [ocpfSalesQuoteLines](#ocpfsalesquotelines) | Sales Line | 90871 | ✏️ |
+| [ocpfSalesOrders](#ocpfsalesorders) | Sales Header | 90872 | ✏️ |
+| [ocpfSalesOrderLines](#ocpfsalesorderlines) | Sales Line | 90873 | ✏️ |
+| [ocpfSalesInvoices](#ocpfsalesinvoices) | Sales Header | 90874 | ✏️ |
+| [ocpfSalesInvoiceLines](#ocpfsalesinvoicelines) | Sales Line | 90875 | ✏️ |
+| [ocpfSalesCreditMemos](#ocpfsalescreditmemos) | Sales Header | 90876 | ✏️ |
+| [ocpfSalesCreditMemoLines](#ocpfsalescreditmemolines) | Sales Line | 90877 | ✏️ |
+| [ocpfPostedSalesInvoices](#ocpfpostedsalesinvoices) | Sales Invoice Header | 90878 | 👁 |
+| [ocpfPostedSalesInvoiceLines](#ocpfpostedsalesinvoicelines) | Sales Invoice Line | 90879 | 👁 |
+| [ocpfPostedSalesCreditMemos](#ocpfpostedsalescreditmemos) | Sales Cr.Memo Header | 90880 | 👁 |
+| [ocpfPostedSalesCreditMemoLines](#ocpfpostedsalescreditmemolines) | Sales Cr.Memo Line | 90881 | 👁 |
+| [ocpfPostedSalesShipments](#ocpfpostedsalesshipments) | Sales Shipment Header | 90882 | 👁 |
+| [ocpfPostedSalesShipmentLines](#ocpfpostedsalesshipmentlines) | Sales Shipment Line | 90883 | 👁 |
+| [ocpfPostedReturnReceipts](#ocpfpostedreturnreceipts) | Return Receipt Header | 90884 | 👁 |
+| [ocpfPostedReturnReceiptLines](#ocpfpostedreturnreceiptlines) | Return Receipt Line | 90885 | 👁 |
+| [ocpfSalesBlanketOrders](#ocpfsalesblanketorders) | Sales Header | 90886 | ✏️ |
+| [ocpfSalesBlanketOrderLines](#ocpfsalesblanketorderlines) | Sales Line | 90887 | ✏️ |
+
+</details>
+
+<details>
+<summary><b>Purchasing</b> — 18 entities · <code>ocpf_purchasing</code></summary>
+
+| Entity | Source Table | Page ID | Access |
+|---|---|---|:---:|
+| [ocpfPurchaseOrders](#ocpfpurchaseorders) | Purchase Header | 90890 | ✏️ |
+| [ocpfPurchaseOrderLines](#ocpfpurchaseorderlines) | Purchase Line | 90891 | ✏️ |
+| [ocpfPurchaseInvoices](#ocpfpurchaseinvoices) | Purchase Header | 90892 | ✏️ |
+| [ocpfPurchaseInvoiceLines](#ocpfpurchaseinvoicelines) | Purchase Line | 90893 | ✏️ |
+| [ocpfPurchaseCreditMemos](#ocpfpurchasecreditmemos) | Purchase Header | 90894 | ✏️ |
+| [ocpfPurchaseCreditMemoLines](#ocpfpurchasecreditmemolines) | Purchase Line | 90895 | ✏️ |
+| [ocpfPostedPurchaseInvoices](#ocpfpostedpurchaseinvoices) | Purch. Inv. Header | 90896 | 👁 |
+| [ocpfPostedPurchaseInvoiceLines](#ocpfpostedpurchaseinvoicelines) | Purch. Inv. Line | 90897 | 👁 |
+| [ocpfPostedPurchaseCreditMemos](#ocpfpostedpurchasecreditmemos) | Purch. Cr. Memo Hdr. | 90898 | 👁 |
+| [ocpfPostedPurchCrMemoLines](#ocpfpostedpurchcrmemolines) | Purch. Cr. Memo Line | 90899 | 👁 |
+| [ocpfPostedPurchaseReceipts](#ocpfpostedpurchasereceipts) | Purch. Rcpt. Header | 90900 | 👁 |
+| [ocpfPostedPurchaseReceiptLines](#ocpfpostedpurchasereceiptlines) | Purch. Rcpt. Line | 90901 | 👁 |
+| [ocpfPostedReturnShipments](#ocpfpostedreturnshipments) | Return Shipment Header | 90902 | 👁 |
+| [ocpfPostedReturnShipmentLines](#ocpfpostedreturnshipmentlines) | Return Shipment Line | 90903 | 👁 |
+| [ocpfPurchaseQuotes](#ocpfpurchasequotes) | Purchase Header | 90904 | ✏️ |
+| [ocpfPurchaseQuoteLines](#ocpfpurchasequotelines) | Purchase Line | 90905 | ✏️ |
+| [ocpfPurchaseBlanketOrders](#ocpfpurchaseblanketorders) | Purchase Header | 90906 | ✏️ |
+| [ocpfPurchaseBlanketOrderLines](#ocpfpurchaseblanketorderlines) | Purchase Line | 90907 | ✏️ |
+
+</details>
+
+<details>
+<summary><b>Projects & Assets</b> — 14 entities · <code>ocpf_projectsAndAssets</code></summary>
+
+| Entity | Source Table | Page ID | Access |
+|---|---|---|:---:|
+| [ocpfProjects](#ocpfprojects) | Job | 90910 | 👁 |
+| [ocpfProjectPostingGroups](#ocpfprojectpostinggroups) | Job Posting Group | 90911 | 👁 |
+| [ocpfProjectTasks](#ocpfprojecttasks) | Job Task | 90912 | 👁 |
+| [ocpfProjectPlanningLines](#ocpfprojectplanninglines) | Job Planning Line | 90913 | 👁 |
+| [ocpfProjectLedgerEntries](#ocpfprojectledgerentries) | Job Ledger Entry | 90914 | 👁 |
+| [ocpfFixedAssets](#ocpffixedassets) | Fixed Asset | 90915 | 👁 |
+| [ocpfFaPostingGroups](#ocpffapostinggroups) | FA Posting Group | 90916 | 👁 |
+| [ocpfFaLedgerEntries](#ocpffaledgerentries) | FA Ledger Entry | 90917 | 👁 |
+| [ocpfFaDepreciationBooks](#ocpffadepreciationbooks) | FA Depreciation Book | 90918 | 👁 |
+| [ocpfGeneralJournalTemplates](#ocpfgeneraljournaltemplates) | Gen. Journal Template | 90919 | 👁 |
+| [ocpfGeneralJournalBatches](#ocpfgeneraljournalbatches) | Gen. Journal Batch | 90920 | 👁 |
+| [ocpfGeneralJournalLines](#ocpfgeneraljournallines) | Gen. Journal Line | 90921 | ✏️ |
+| [ocpfPriceListHeaders](#ocpfpricelistheaders) | Price List Header | 90922 | 👁 |
+| [ocpfPriceListLines](#ocpfpricelistlines) | Price List Line | 90923 | 👁 |
+
+</details>
+
+<details>
+<summary><b>System & Setup</b> — 9 entities · <code>ocpf_systemAndSetup</code></summary>
+
+| Entity | Source Table | Page ID | Access |
+|---|---|---|:---:|
+| [ocpfDocumentAttachments](#ocpfdocumentattachments) | Document Attachment | 90930 | 👁 |
+| [ocpfCompanyInformation](#ocpfcompanyinformation) | Company Information | 90931 | 👁 |
+| [ocpfWarehouseEntries](#ocpfwarehouseentries) | Warehouse Entry | 90932 | 👁 |
+| [ocpfReminderHeaders](#ocpfreminderheaders) | Reminder Header | 90933 | 👁 |
+| [ocpfReminderLines](#ocpfreminderlines) | Reminder Line | 90934 | 👁 |
+| [ocpfFinanceChargeMemoHeaders](#ocpffinancechargememoheaders) | Finance Charge Memo Header | 90935 | 👁 |
+| [ocpfFinanceChargeMemoLines](#ocpffinancechargememolines) | Finance Charge Memo Line | 90936 | 👁 |
+| [ocpfApprovalEntries](#ocpfapprovalentries) | Approval Entry | 90937 | 👁 |
+| [ocpfWorkflowStepInstances](#ocpfworkflowstepinstances) | Workflow Step Instance | 90938 | 👁 |
+
+</details>
+
+<details>
+<summary><b>Manufacturing</b> — 34 entities · <code>ocpf_manufacturing</code> · 🆕 new in v3.1</summary>
+
+| Entity | Source Table | Page ID | Access |
+|---|---|---|:---:|
+| [ocpfManufacturingSetup](#ocpfmanufacturingsetup) | Manufacturing Setup | 90939 | ✏️ |
+| [ocpfWorkShifts](#ocpfworkshifts) | Work Shift | 90940 | ✏️ |
+| [ocpfShopCalendars](#ocpfshopcalendars) | Shop Calendar | 90941 | ✏️ |
+| [ocpfShopCalendarWorkingDays](#ocpfshopcalendarworkingdays) | Shop Calendar Working Days | 90942 | ✏️ |
+| [ocpfWorkCenterGroups](#ocpfworkcentergroups) | Work Center Group | 90943 | ✏️ |
+| [ocpfWorkCenters](#ocpfworkcenters) | Work Center | 90944 | ✏️ |
+| [ocpfMachineCenters](#ocpfmachinecenters) | Machine Center | 90945 | ✏️ |
+| [ocpfCapacityUnitsOfMeasure](#ocpfcapacityunitsofmeasure) | Capacity Unit of Measure | 90946 | ✏️ |
+| [ocpfCalendarEntries](#ocpfcalendarentries) | Calendar Entry | 90947 | 👁 |
+| [ocpfCalendarAbsenceEntries](#ocpfcalendarabsenceentries) | Calendar Absence Entry | 90948 | 👁 |
+| [ocpfStops](#ocpfstops) | Stop | 90949 | ✏️ |
+| [ocpfScraps](#ocpfscraps) | Scrap | 90950 | ✏️ |
+| [ocpfRoutingLinks](#ocpfroutinglinks) | Routing Link | 90951 | ✏️ |
+| [ocpfStandardTasks](#ocpfstandardtasks) | Standard Task | 90952 | ✏️ |
+| [ocpfRoutingHeaders](#ocpfroutingheaders) | Routing Header | 90953 | ✏️ |
+| [ocpfRoutingLines](#ocpfroutinglines) | Routing Line | 90954 | ✏️ |
+| [ocpfRoutingVersions](#ocpfroutingversions) | Routing Version | 90955 | ✏️ |
+| [ocpfProductionBomHeaders](#ocpfproductionbomheaders) | Production BOM Header | 90956 | ✏️ |
+| [ocpfProductionBomLines](#ocpfproductionbomlines) | Production BOM Line | 90957 | ✏️ |
+| [ocpfProductionBomVersions](#ocpfproductionbomversions) | Production BOM Version | 90958 | ✏️ |
+| [ocpfFamilies](#ocpffamilies) | Family | 90959 | ✏️ |
+| [ocpfFamilyLines](#ocpffamilylines) | Family Line | 90960 | ✏️ |
+| [ocpfProductionOrders](#ocpfproductionorders) | Production Order | 90961 | ✏️ |
+| [ocpfProdOrderLines](#ocpfprodorderlines) | Prod. Order Line | 90962 | ✏️ |
+| [ocpfProdOrderComponents](#ocpfprodordercomponents) | Prod. Order Component | 90963 | ✏️ |
+| [ocpfProdOrderRoutingLines](#ocpfprodorderroutinglines) | Prod. Order Routing Line | 90964 | ✏️ |
+| [ocpfProdOrderCapacityNeeds](#ocpfprodordercapacityneeds) | Prod. Order Capacity Need | 90965 | 👁 |
+| [ocpfCapacityLedgerEntries](#ocpfcapacityledgerentries) | Capacity Ledger Entry | 90966 | 👁 |
+| [ocpfAssemblySetup](#ocpfassemblysetup) | Assembly Setup | 90967 | ✏️ |
+| [ocpfBomComponents](#ocpfbomcomponents) | BOM Component | 90968 | ✏️ |
+| [ocpfAssemblyHeaders](#ocpfassemblyheaders) | Assembly Header | 90969 | ✏️ |
+| [ocpfAssemblyLines](#ocpfassemblylines) | Assembly Line | 90970 | ✏️ |
+| [ocpfPostedAssemblyHeaders](#ocpfpostedassemblyheaders) | Posted Assembly Header | 90971 | 👁 |
+| [ocpfPostedAssemblyLines](#ocpfpostedassemblylines) | Posted Assembly Line | 90972 | 👁 |
+
+</details>
+
+<details>
+<summary><b>Service Management</b> — 30 entities · <code>ocpf_serviceManagement</code> · 🆕 new in v3.1</summary>
+
+| Entity | Source Table | Page ID | Access |
+|---|---|---|:---:|
+| [ocpfServiceMgtSetup](#ocpfservicemgtsetup) | Service Mgt. Setup | 90924 | ✏️ |
+| [ocpfServiceOrderTypes](#ocpfserviceordertypes) | Service Order Type | 90925 | ✏️ |
+| [ocpfServiceCosts](#ocpfservicecosts) | Service Cost | 90926 | ✏️ |
+| [ocpfServiceZones](#ocpfservicezones) | Service Zone | 90973 | ✏️ |
+| [ocpfServiceItemGroups](#ocpfserviceitemgroups) | Service Item Group | 90974 | ✏️ |
+| [ocpfRepairStatuses](#ocpfrepairstatuses) | Repair Status | 90975 | ✏️ |
+| [ocpfFaultAreas](#ocpffaultareas) | Fault Area | 90976 | ✏️ |
+| [ocpfSymptomCodes](#ocpfsymptomcodes) | Symptom Code | 90977 | ✏️ |
+| [ocpfFaultCodes](#ocpffaultcodes) | Fault Code | 90978 | ✏️ |
+| [ocpfFaultReasonCodes](#ocpffaultreasoncodes) | Fault Reason Code | 90979 | ✏️ |
+| [ocpfResolutionCodes](#ocpfresolutioncodes) | Resolution Code | 90980 | ✏️ |
+| [ocpfLoaners](#ocpfloaners) | Loaner | 90981 | ✏️ |
+| [ocpfLoanerEntries](#ocpfloanerentries) | Loaner Entry | 90982 | 👁 |
+| [ocpfServiceItems](#ocpfserviceitems) | Service Item | 90983 | ✏️ |
+| [ocpfServiceItemComponents](#ocpfserviceitemcomponents) | Service Item Component | 90984 | ✏️ |
+| [ocpfServiceHeaders](#ocpfserviceheaders) | Service Header | 90985 | ✏️ |
+| [ocpfServiceItemLines](#ocpfserviceitemlines) | Service Item Line | 90986 | ✏️ |
+| [ocpfServiceLines](#ocpfservicelines) | Service Line | 90987 | ✏️ |
+| [ocpfServiceLedgerEntries](#ocpfserviceledgerentries) | Service Ledger Entry | 90988 | 👁 |
+| [ocpfWarrantyLedgerEntries](#ocpfwarrantyledgerentries) | Warranty Ledger Entry | 90989 | 👁 |
+| [ocpfServiceRegisters](#ocpfserviceregisters) | Service Register | 90990 | 👁 |
+| [ocpfServiceContractHeaders](#ocpfservicecontractheaders) | Service Contract Header | 90991 | ✏️ |
+| [ocpfServiceContractLines](#ocpfservicecontractlines) | Service Contract Line | 90992 | ✏️ |
+| [ocpfContractGroups](#ocpfcontractgroups) | Contract Group | 90993 | ✏️ |
+| [ocpfServiceShipmentHeaders](#ocpfserviceshipmentheaders) | Service Shipment Header | 90994 | 👁 |
+| [ocpfServiceShipmentLines](#ocpfserviceshipmentlines) | Service Shipment Line | 90995 | 👁 |
+| [ocpfServiceInvoiceHeaders](#ocpfserviceinvoiceheaders) | Service Invoice Header | 90996 | 👁 |
+| [ocpfServiceInvoiceLines](#ocpfserviceinvoicelines) | Service Invoice Line | 90997 | 👁 |
+| [ocpfServiceCrMemoHeaders](#ocpfservicecrmemoheaders) | Service Cr.Memo Header | 90998 | 👁 |
+| [ocpfServiceCrMemoLines](#ocpfservicecrmemolines) | Service Cr.Memo Line | 90999 | 👁 |
+
+</details>
 
 ## Core Financial
 

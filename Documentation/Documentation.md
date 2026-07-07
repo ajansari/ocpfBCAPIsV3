@@ -9,9 +9,25 @@
 
 ## Overview
 
-**OCPF APIs** is a Business Central extension that exposes over 100 of the most commonly used standard BC tables as OData v4 API endpoints. It is designed to be a comprehensive, ready-to-use API layer for integrations, reporting tools, and external applications that need reliable, structured access to Business Central data without requiring custom development per table.
+**OCPF APIs** is a Business Central extension that exposes over 175 of the most commonly used standard BC tables as OData v4 API endpoints. It is designed to be a comprehensive, ready-to-use API layer for integrations, reporting tools, and external applications that need reliable, structured access to Business Central data without requiring custom development per table.
 
 Each API page maps directly to a standard BC source table and exposes every standard field from that table, with the deliberate exception of fields that are specific to country/region localizations. This keeps the API surface globally portable — the same endpoints and field set work consistently across any BC environment regardless of the localization installed.
+
+### What changed between v3.0 and v3.1
+
+**v3.1 (July 2026)** is an additive, non-breaking release. All v3.0 endpoints continue to work unchanged.
+
+- **Versioning** — every API page is now dual-versioned (`APIVersion = 'v3.0', 'v3.1';`) and is served at both `.../v3.0/...` and `.../v3.1/...` base URLs. Entities introduced in v3.1 are published at v3.1 only, so **new integrations should use the `/v3.1/` base URL**. Existing v3.0 integrations need no changes.
+- **170 missing standard fields added across 22 existing entities** — the v3.0 generator had silently skipped every field whose name contains parentheses, such as `Credit Limit (LCY)` on Customer, the cost/amount fields on Value Entry (`Cost Amount (Actual)`, `Sales Amount (Actual)`, …), and the `(LCY)`/`(Qty.)` FlowFields on Customer, Vendor, Item, Item Ledger Entry, Resource, and others. These fields appear on both the v3.0 and v3.1 endpoints (additive and non-breaking for OData clients). Each affected entity's field table below marks the new rows with an *"Added in API v3.1"* note.
+- **65 new entities, v3.1-only:**
+  - *Master Data* (+1): Ship-to Addresses (`ocpfShipToAddresses`)
+  - *Manufacturing* — new category, API group `ocpf_manufacturing` (+34): manufacturing setup, work/machine centers, shop calendars, capacity units, routings and versions, production BOMs and versions, families, production orders with lines/components/routing lines/capacity needs, capacity ledger entries, and assembly management (assembly setup, assembly BOM components, open and posted assembly orders)
+  - *Service Management* — new category, API group `ocpf_serviceManagement` (+30): service setup and code tables, service items and components, service documents (headers, item lines, lines), service contracts, loaners, service/warranty ledger entries, service registers, and posted service shipments/invoices/credit memos
+- **Tooltip corrections** — several field tooltips that the v3.0 generator had shifted onto neighboring fields were repaired, and tooltips for the added fields are sourced from the BC 27.5 Base Application.
+- **Permission sets** — `OCPF - READ` now covers all 178 pages; `OCPF - READ/WRITE` grants write access on 111 editable pages.
+- **App version** — `app.json` 3.0.0.0 → 3.1.0.0. Git tags `v3.0.0.0` and `v3.1.0.0` mark the two releases (`git diff v3.0.0.0 v3.1.0.0` shows the full contract delta).
+
+The complete field-by-field delta is recorded in [ChangeLog.md](ChangeLog.md).
 
 ### Key characteristics
 

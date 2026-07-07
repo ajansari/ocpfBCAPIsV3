@@ -14,10 +14,20 @@ Each API page maps directly to a standard BC source table and exposes every stan
 
 ## For full documentation, view Documentation.md in the [Documentation](https://github.com/ajansari/ocpfBCAPIsV3/blob/main/Documentation/Documentation.md) folder.
 
+## What changed between v3.0 and v3.1
+
+v3.1 (July 2026) is an **additive, non-breaking** release — all v3.0 endpoints keep working unchanged.
+
+- **Dual-versioned endpoints** — every existing API page is served at both `/v3.0/` and `/v3.1/` base URLs. New entities are published at v3.1 only, so **new integrations should use `/v3.1/`**.
+- **170 missing standard fields restored on 22 existing entities** — v3.0's generator had skipped every field with parentheses in its name (e.g. `Credit Limit (LCY)` on Customer, `Cost Amount (Actual)` on Value Entry, and the `(LCY)`/`(Qty.)` flow fields on Customer, Vendor, Item, and ledger entities). These appear on both versions, which is additive and safe for existing OData clients.
+- **65 new entities (v3.1 only)** — Ship-to Addresses, a new **Manufacturing** category (34 entities: work/machine centers, routings, production BOMs, production orders, capacity, and assembly management), and a new **Service Management** category (30 entities: service items, service documents, contracts, loaners, ledgers, and posted service documents).
+- **Fixes & housekeeping** — corrected tooltips that had shifted onto neighboring fields, expanded permission sets (READ: 178 pages, READ/WRITE: 111), app version 3.1.0.0, and git tags `v3.0.0.0` / `v3.1.0.0` (diff them for the full contract delta).
+
+The complete field-by-field delta is in [ChangeLog.md](https://github.com/ajansari/ocpfBCAPIsV3/blob/main/Documentation/ChangeLog.md).
+
 ## Roadmap
 
-The following modules will be added in the next release:  
-* Service Managent
-* Manufacturing (Production)
+- ~~Service Management~~ — ✅ shipped in v3.1
+- ~~Manufacturing (Production)~~ — ✅ shipped in v3.1 (including Assembly)
 
 

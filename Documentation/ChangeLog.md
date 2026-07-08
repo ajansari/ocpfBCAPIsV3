@@ -1,5 +1,11 @@
 # Build Change Log
 
+## v3.1.1 — Discount API pages note (2026-07-08)
+
+The new Sales Line Discount and Purchase Line Discount API pages are included in this release. Although the underlying Business Central tables are currently marked for deprecation, these API pages remain maintained for now because the V16 pricing model is still an opt-in feature in BC. We will revisit and adjust this in the future once Microsoft enables the new pricing tables by default.
+
+---
+
 ## Documentation correction — per-field Editable column (2026-07-08)
 
 The Editable column in Documentation.md previously reflected only page-level access (✅ on every

@@ -23,9 +23,14 @@ Each API page maps directly to a standard BC source table and exposes every stan
   - *Master Data* (+1): Ship-to Addresses (`ocpfShipToAddresses`)
   - *Manufacturing* — new category, API group `ocpf_manufacturing` (+34): manufacturing setup, work/machine centers, shop calendars, capacity units, routings and versions, production BOMs and versions, families, production orders with lines/components/routing lines/capacity needs, capacity ledger entries, and assembly management (assembly setup, assembly BOM components, open and posted assembly orders)
   - *Service Management* — new category, API group `ocpf_serviceManagement` (+30): service setup and code tables, service items and components, service documents (headers, item lines, lines), service contracts, loaners, service/warranty ledger entries, service registers, and posted service shipments/invoices/credit memos
+- **5 additional v3.1-only entities (3.1.1):**
+  - *Master Data* (+1): Vendor Bank Accounts (`ocpfVendorBankAccounts`) — per-vendor bank details for electronic payments (BC table 288).
+  - *Sales* (+2): Sales Line Discounts (`ocpfSalesLineDiscounts`, BC table 7004) and Customer Invoice Discounts (`ocpfCustomerInvoiceDiscounts`, BC table 19 — the "sales invoice discount" setup).
+  - *Purchasing* (+2): Purchase Line Discounts (`ocpfPurchaseLineDiscounts`, BC table 7014) and Vendor Invoice Discounts (`ocpfVendorInvoiceDiscounts`, BC table 24) — the purchase-side counterparts.
+  - *Pricing note:* the Sales Line Discount and Purchase Line Discount API pages remain available even though the underlying BC tables are marked for deprecation, because the V16 pricing model is still an opt-in feature in BC. We will adjust this in the future once Microsoft enables the new pricing tables by default. In the meantime, both the classic discount pages and the already-published read-only `ocpfPriceListHeaders` / `ocpfPriceListLines` (Projects & Assets group) are exposed; invoice-discount tables (19/24) are not affected by the V16 change.
 - **Tooltip corrections** — several field tooltips that the v3.0 generator had shifted onto neighboring fields were repaired, and tooltips for the added fields are sourced from the BC 27.5 Base Application.
-- **Permission sets** — `OCPF - READ` now covers all 178 pages; `OCPF - READ/WRITE` grants write access on 111 editable pages.
-- **App version** — `app.json` 3.0.0.0 → 3.1.0.0. Git tags `v3.0.0.0` and `v3.1.0.0` mark the two releases (`git diff v3.0.0.0 v3.1.0.0` shows the full contract delta).
+- **Permission sets** — `OCPF - READ` now covers all 183 pages; `OCPF - READ/WRITE` grants write access on 116 editable pages.
+- **App version** — `app.json` 3.0.0.0 → 3.1.0.0 → 3.1.1.0. Git tags `v3.0.0.0` and `v3.1.0.0` mark the earlier releases (`git diff v3.0.0.0 v3.1.0.0` shows the full contract delta).
 
 The complete field-by-field delta is recorded in [ChangeLog.md](ChangeLog.md).
 
@@ -55,14 +60,14 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Category | API Group | Entities | ✏️ | 👁 |
 |---|---|---:|---:|---:|
 | [Core Financial](#core-financial) | `ocpf_coreFinancial` | 25 | 17 | 8 |
-| [Master Data](#master-data) | `ocpf_masterData` | 30 | 25 | 5 |
-| [Sales](#sales) | `ocpf_sales` | 18 | 10 | 8 |
-| [Purchasing](#purchasing) | `ocpf_purchasing` | 18 | 10 | 8 |
+| [Master Data](#master-data) | `ocpf_masterData` | 31 | 26 | 5 |
+| [Sales](#sales) | `ocpf_sales` | 20 | 12 | 8 |
+| [Purchasing](#purchasing) | `ocpf_purchasing` | 20 | 12 | 8 |
 | [Projects & Assets](#projects--assets) | `ocpf_projectsAndAssets` | 14 | 1 | 13 |
 | [System & Setup](#system--setup) | `ocpf_systemAndSetup` | 9 | 0 | 9 |
 | [Manufacturing](#manufacturing) 🆕 | `ocpf_manufacturing` | 34 | 28 | 6 |
 | [Service Management](#service-management) 🆕 | `ocpf_serviceManagement` | 30 | 20 | 10 |
-| **Total** | | **178** | **111** | **67** |
+| **Total** | | **183** | **116** | **67** |
 
 <details>
 <summary><b>Core Financial</b> — 25 entities · <code>ocpf_coreFinancial</code></summary>
@@ -98,7 +103,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 </details>
 
 <details>
-<summary><b>Master Data</b> — 30 entities · <code>ocpf_masterData</code></summary>
+<summary><b>Master Data</b> — 31 entities · <code>ocpf_masterData</code></summary>
 
 | Entity | Source Table | Page ID | Access |
 |---|---|---|:---:|
@@ -132,11 +137,12 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | [ocpfEmployees](#ocpfemployees) | Employee | 90857 | ✏️ |
 | [ocpfSalespeople](#ocpfsalespeople) | Salesperson/Purchaser | 90858 | ✏️ |
 | [ocpfShipToAddresses](#ocpfshiptoaddresses) 🆕 | Ship-to Address | 90859 | ✏️ |
+| [ocpfVendorBankAccounts](#ocpfvendorbankaccounts) 🆕 | Vendor Bank Account | 90860 | ✏️ |
 
 </details>
 
 <details>
-<summary><b>Sales</b> — 18 entities · <code>ocpf_sales</code></summary>
+<summary><b>Sales</b> — 20 entities · <code>ocpf_sales</code></summary>
 
 | Entity | Source Table | Page ID | Access |
 |---|---|---|:---:|
@@ -158,11 +164,13 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | [ocpfPostedReturnReceiptLines](#ocpfpostedreturnreceiptlines) | Return Receipt Line | 90885 | 👁 |
 | [ocpfSalesBlanketOrders](#ocpfsalesblanketorders) | Sales Header | 90886 | ✏️ |
 | [ocpfSalesBlanketOrderLines](#ocpfsalesblanketorderlines) | Sales Line | 90887 | ✏️ |
+| [ocpfSalesLineDiscounts](#ocpfsaleslinediscounts) 🆕 | Sales Line Discount | 90888 | ✏️ |
+| [ocpfCustomerInvoiceDiscounts](#ocpfcustomerinvoicediscounts) 🆕 | Cust. Invoice Disc. | 90889 | ✏️ |
 
 </details>
 
 <details>
-<summary><b>Purchasing</b> — 18 entities · <code>ocpf_purchasing</code></summary>
+<summary><b>Purchasing</b> — 20 entities · <code>ocpf_purchasing</code></summary>
 
 | Entity | Source Table | Page ID | Access |
 |---|---|---|:---:|
@@ -184,6 +192,8 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | [ocpfPurchaseQuoteLines](#ocpfpurchasequotelines) | Purchase Line | 90905 | ✏️ |
 | [ocpfPurchaseBlanketOrders](#ocpfpurchaseblanketorders) | Purchase Header | 90906 | ✏️ |
 | [ocpfPurchaseBlanketOrderLines](#ocpfpurchaseblanketorderlines) | Purchase Line | 90907 | ✏️ |
+| [ocpfPurchaseLineDiscounts](#ocpfpurchaselinediscounts) 🆕 | Purchase Line Discount | 90908 | ✏️ |
+| [ocpfVendorInvoiceDiscounts](#ocpfvendorinvoicediscounts) 🆕 | Vendor Invoice Disc. | 90909 | ✏️ |
 
 </details>
 
@@ -1654,7 +1664,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 [↑ Table of Contents](#table-of-contents)
 
 **API Group URL segment:** `ocpf_masterData`  
-**Pages:** 29 (24 editable, 5 read-only)  
+**Pages:** 31 (26 editable, 5 read-only)  
 
 ### ocpfBankAccounts
 
@@ -3850,12 +3860,62 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 
 ---
 
+### ocpfVendorBankAccounts
+
+**Description:** Vendor Bank Accounts — bank account details defined per vendor, used for electronic payments and remittance.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Vendor Bank Account |
+| Page ID | 90860 |
+| Page Name | `ocpfVendorBankAccounts` |
+| Entity Set Name | `ocpfVendorBankAccounts` |
+| API Group | `ocpf_masterData` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 27 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `vendorNo` | Vendor No. | Vendor No. | ✅ |
+| 3 | `code` | Code | Code | ✅ |
+| 4 | `name` | Name | Name | ✅ |
+| 5 | `name2` | Name 2 | Name 2 | ✅ |
+| 6 | `address` | Address | Address | ✅ |
+| 7 | `address2` | Address 2 | Address 2 | ✅ |
+| 8 | `city` | City | City | ✅ |
+| 9 | `postCode` | Post Code | Post Code | ✅ |
+| 10 | `contact` | Contact | Contact | ✅ |
+| 11 | `phoneNo` | Phone No. | Phone No. | ✅ |
+| 12 | `telexNo` | Telex No. | Telex No. | ✅ |
+| 13 | `bankBranchNo` | Bank Branch No. | Bank Branch No. | ✅ |
+| 14 | `bankAccountNo` | Bank Account No. | Bank Account No. | ✅ |
+| 15 | `transitNo` | Transit No. | Transit No. | ✅ |
+| 16 | `currencyCode` | Currency Code | Currency Code | ✅ |
+| 17 | `countryRegionCode` | Country/Region Code | Country/Region Code | ✅ |
+| 18 | `county` | County | County | ✅ |
+| 19 | `faxNo` | Fax No. | Fax No. | ✅ |
+| 20 | `telexAnswerBack` | Telex Answer Back | Telex Answer Back | ✅ |
+| 21 | `languageCode` | Language Code | Language Code | ✅ |
+| 22 | `eMail` | E-Mail | E-Mail | ✅ |
+| 23 | `homePage` | Home Page | Home Page | ✅ |
+| 24 | `iban` | IBAN | IBAN | ✅ |
+| 25 | `swiftCode` | SWIFT Code | SWIFT Code | ✅ |
+| 26 | `bankClearingCode` | Bank Clearing Code | Bank Clearing Code | ✅ |
+| 27 | `bankClearingStandard` | Bank Clearing Standard | Bank Clearing Standard | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
 ## Sales
 
 [↑ Table of Contents](#table-of-contents)
 
 **API Group URL segment:** `ocpf_sales`  
-**Pages:** 18 (10 editable, 8 read-only)  
+**Pages:** 20 (12 editable, 8 read-only)  
 
 ### ocpfSalesQuotes
 
@@ -6991,12 +7051,76 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 
 ---
 
+### ocpfSalesLineDiscounts
+
+**Description:** Sales Line Discounts — line discount percentages by customer, item, and other sales pricing criteria. (Note: the classic Sales Line Discount table is obsolete-pending in BC, superseded by Price List Line in the V16 price engine, but remains fully functional.)
+
+| Property | Value |
+|---|---|
+| **Source Table** | Sales Line Discount |
+| Page ID | 90888 |
+| Page Name | `ocpfSalesLineDiscounts` |
+| Entity Set Name | `ocpfSalesLineDiscounts` |
+| API Group | `ocpf_sales` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 12 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `code` | Code | Code | ✅ |
+| 3 | `salesCode` | Sales Code | Sales Code | ✅ |
+| 4 | `currencyCode` | Currency Code | Currency Code | ✅ |
+| 5 | `startingDate` | Starting Date | Starting Date | ✅ |
+| 6 | `lineDiscountPct` | Line Discount % | Line Discount % | ✅ |
+| 7 | `salesType` | Sales Type | Sales Type | ✅ |
+| 8 | `minimumQuantity` | Minimum Quantity | Minimum Quantity | ✅ |
+| 9 | `endingDate` | Ending Date | Ending Date | ✅ |
+| 10 | `type` | Type | Type | ✅ |
+| 11 | `unitOfMeasureCode` | Unit of Measure Code | Unit of Measure Code | ✅ |
+| 12 | `variantCode` | Variant Code | Variant Code | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfCustomerInvoiceDiscounts
+
+**Description:** Customer Invoice Discounts — invoice discount percentages and service charges by customer discount group and currency (the sales/customer invoice discount setup).
+
+| Property | Value |
+|---|---|
+| **Source Table** | Cust. Invoice Disc. |
+| Page ID | 90889 |
+| Page Name | `ocpfCustomerInvoiceDiscounts` |
+| Entity Set Name | `ocpfCustomerInvoiceDiscounts` |
+| API Group | `ocpf_sales` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 6 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `code` | Code | Code | ✅ |
+| 3 | `minimumAmount` | Minimum Amount | Minimum Amount | ✅ |
+| 4 | `discountPct` | Discount % | Discount % | ✅ |
+| 5 | `serviceCharge` | Service Charge | Service Charge | ✅ |
+| 6 | `currencyCode` | Currency Code | Currency Code | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
 ## Purchasing
 
 [↑ Table of Contents](#table-of-contents)
 
 **API Group URL segment:** `ocpf_purchasing`  
-**Pages:** 18 (10 editable, 8 read-only)  
+**Pages:** 20 (12 editable, 8 read-only)  
 
 ### ocpfPurchaseOrders
 
@@ -10088,6 +10212,68 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | 209 | `mpsOrder` | MPS Order | MPS Order | ✅ |
 | 210 | `planningFlexibility` | Planning Flexibility | Planning Flexibility | ✅ |
 | 211 | `safetyLeadTime` | Safety Lead Time | Safety Lead Time | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfPurchaseLineDiscounts
+
+**Description:** Purchase Line Discounts — line discount percentages by vendor, item, and other purchase pricing criteria. (Note: the classic Purchase Line Discount table is obsolete-pending in BC, superseded by Price List Line in the V16 price engine, but remains fully functional.)
+
+| Property | Value |
+|---|---|
+| **Source Table** | Purchase Line Discount |
+| Page ID | 90908 |
+| Page Name | `ocpfPurchaseLineDiscounts` |
+| Entity Set Name | `ocpfPurchaseLineDiscounts` |
+| API Group | `ocpf_purchasing` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 10 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `itemNo` | Item No. | Item No. | ✅ |
+| 3 | `vendorNo` | Vendor No. | Vendor No. | ✅ |
+| 4 | `currencyCode` | Currency Code | Currency Code | ✅ |
+| 5 | `startingDate` | Starting Date | Starting Date | ✅ |
+| 6 | `lineDiscountPct` | Line Discount % | Line Discount % | ✅ |
+| 7 | `minimumQuantity` | Minimum Quantity | Minimum Quantity | ✅ |
+| 8 | `endingDate` | Ending Date | Ending Date | ✅ |
+| 9 | `unitOfMeasureCode` | Unit of Measure Code | Unit of Measure Code | ✅ |
+| 10 | `variantCode` | Variant Code | Variant Code | ✅ |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfVendorInvoiceDiscounts
+
+**Description:** Vendor Invoice Discounts — invoice discount percentages and service charges by vendor discount group and currency.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Vendor Invoice Disc. |
+| Page ID | 90909 |
+| Page Name | `ocpfVendorInvoiceDiscounts` |
+| Entity Set Name | `ocpfVendorInvoiceDiscounts` |
+| API Group | `ocpf_purchasing` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
+| Field Count | 6 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `systemId` | SystemId | System ID | 🔑 Key |
+| 2 | `code` | Code | Code | ✅ |
+| 3 | `minimumAmount` | Minimum Amount | Minimum Amount | ✅ |
+| 4 | `discountPct` | Discount % | Discount % | ✅ |
+| 5 | `serviceCharge` | Service Charge | Service Charge | ✅ |
+| 6 | `currencyCode` | Currency Code | Currency Code | ✅ |
 
 
 [↑ Back to top](#table-of-contents)

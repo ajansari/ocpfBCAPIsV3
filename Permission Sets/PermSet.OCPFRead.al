@@ -4,7 +4,7 @@ permissionset 90950 "OCPF - READ"
 {
     Assignable = true;
     Caption = 'OCPFAPIs v3.1 - Read Access';
-    // Grants access to all 178 OCPFAPIs v3.x API pages in read mode.
+    // Grants access to all 183 OCPFAPIs v3.x API pages in read mode.
     // NOTE: Consumers also require read permissions on the underlying
     // Business Central base application tables. Assign alongside the
     // relevant BC base permission sets (e.g. D365 READ).
@@ -187,5 +187,10 @@ permissionset 90950 "OCPF - READ"
         page "ocpfServiceInvoiceHeaders" = X,
         page "ocpfServiceInvoiceLines" = X,
         page "ocpfServiceCrMemoHeaders" = X,
-        page "ocpfServiceCrMemoLines" = X;
+        page "ocpfServiceCrMemoLines" = X,
+        page "ocpfVendorBankAccounts" = X,
+        page "ocpfSalesLineDiscounts" = X,
+        page "ocpfCustomerInvoiceDiscounts" = X,
+        page "ocpfPurchaseLineDiscounts" = X,
+        page "ocpfVendorInvoiceDiscounts" = X;
 }

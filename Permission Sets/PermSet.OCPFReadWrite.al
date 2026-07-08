@@ -5,7 +5,7 @@ permissionset 90951 "OCPF - READ/WRITE"
     Assignable = true;
     Caption = 'OCPFAPIs v3.1 - Read/Write Access';
     // Grants access to all OCPFAPIs v3.x pages with write capability
-    // on the 111 editable API pages (master data, setup, open documents,
+    // on the 116 editable API pages (master data, setup, open documents,
     // and general journal lines).
     // NOTE: Consumers also require insert/modify/delete permissions on the
     // underlying BC base application tables. Assign alongside the relevant
@@ -125,5 +125,10 @@ permissionset 90951 "OCPF - READ/WRITE"
         page "ocpfServiceLines" = X,
         page "ocpfServiceContractHeaders" = X,
         page "ocpfServiceContractLines" = X,
-        page "ocpfContractGroups" = X;
+        page "ocpfContractGroups" = X,
+        page "ocpfVendorBankAccounts" = X,
+        page "ocpfSalesLineDiscounts" = X,
+        page "ocpfCustomerInvoiceDiscounts" = X,
+        page "ocpfPurchaseLineDiscounts" = X,
+        page "ocpfVendorInvoiceDiscounts" = X;
 }

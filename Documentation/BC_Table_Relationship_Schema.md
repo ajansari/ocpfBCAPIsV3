@@ -395,6 +395,8 @@ flowchart LR
 | Bank Account Posting Group | Bank Account | 1:N | Bank Account Posting Group Code |
 | Customer | Ship-to Address *(new in v3.1)* | 1:N | Customer No. on Ship-to Address; Code identifies the address within the customer |
 | Ship-to Address | Sales Header / Service Header | 1:N | Sell-to Customer No. + Ship-to Code on the document header |
+| Vendor | Vendor Bank Account *(new in v3.1.1)* | 1:N | Vendor No. on Vendor Bank Account; Code identifies the account within the vendor |
+| Vendor Bank Account | Vendor (Preferred Bank Account Code) | N:1 | Vendor No. + Preferred Bank Account Code on the vendor card |
 
 ### 3. Sales Documents
 
@@ -410,6 +412,8 @@ flowchart LR
 | Posted Sales Invoice Line | Item | N:1 | No. (Item No.) |
 | Sales Blanket Order | Sales Blanket Order Line | 1:N | Document No. on the line |
 | Sales Blanket Order Line | Item | N:1 | No. (Item No.) |
+| Sales Line Discount *(new in v3.1.1)* | Customer / Customer Disc. Group / Item / Item Disc. Group | N:1 | Sales Type + Sales Code (resolves to the discount recipient) |
+| Cust. Invoice Disc. *(new in v3.1.1)* | Customer | N:1 | Code = Customer's Invoice Disc. Code (customer discount group) |
 
 ### 4. Purchasing Documents
 
@@ -425,6 +429,8 @@ flowchart LR
 | Posted Purchase Invoice Line | Item | N:1 | No. (Item No.) |
 | Purchase Blanket Order | Purchase Blanket Order Line | 1:N | Document No. on the line |
 | Purchase Blanket Order Line | Item | N:1 | No. (Item No.) |
+| Purchase Line Discount *(new in v3.1.1)* | Vendor / Item | N:1 | Vendor No. + Item No. (discount applies to the vendor-item pair) |
+| Vendor Invoice Disc. *(new in v3.1.1)* | Vendor | N:1 | Code = Vendor's Invoice Disc. Code (vendor discount group) |
 
 ### 5. Projects and Assets
 

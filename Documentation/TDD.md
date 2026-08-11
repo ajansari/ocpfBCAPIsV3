@@ -133,9 +133,9 @@ page <ObjectID> "<EntitySetName>"
         {
             repeater(Group)
             {
-                field(systemId; Rec.SystemId)
+                field(id; Rec.SystemId)
                 {
-                    Caption = 'System ID';
+                    Caption = 'ID';
                     ToolTip = 'Unique system-assigned identifier for this record. Used as the OData key.';
                     ApplicationArea = All;
                 }
@@ -191,9 +191,9 @@ This pattern applies to:
 The `SystemId` field must always be the **first field** in the repeater and must use the exact casing shown:
 
 ```al
-field(systemId; Rec.SystemId)
+field(id; Rec.SystemId)
 {
-    Caption = 'System ID';
+    Caption = 'ID';
     ApplicationArea = All;
 }
 ```
@@ -471,7 +471,7 @@ These are the modern pricing tables introduced in BC 2020 Wave 2. Legacy `Sales 
 |---|---|
 | Compilation | All 106 pages compile clean on BC Runtime 16.0 |
 | OData endpoint availability | Each page returns HTTP 200 on `GET /api/OnlyCopilotFans/ocpf_<group>/v3.0/companies({id})/<entitySetName>` |
-| SystemId as key | `GET .../ocpfChartOfAccounts({systemId})` returns single record |
+| SystemId as key | `GET .../ocpfChartOfAccounts({id})` returns single record |
 | Filter by document type | Sales Order endpoint returns only Orders, not Quotes or Invoices |
 | Read-only enforcement | `POST` to a read-only endpoint returns HTTP 405 |
 | W1 compatibility | Extension installs on a clean W1 sandbox with no localization apps |

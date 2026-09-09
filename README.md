@@ -1,3 +1,5 @@
+![OnlyCopilotFans Business Central API Catalog v3.1](images/banner-ocpfbcapiv3.jpg)
+
 # OnlyCopilotFans Business Central API Catalog v3.1
 
 **Publisher:** OnlyCopilotFans  

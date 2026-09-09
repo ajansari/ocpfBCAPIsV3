@@ -14,6 +14,7 @@ page 90938 "ocpfWorkflowStepInstances"
     SourceTable = "Workflow Step Instance";
     ODataKeyFields = SystemId;
     Editable = false;
+    DataAccessIntent = ReadOnly;
 
     layout
     {

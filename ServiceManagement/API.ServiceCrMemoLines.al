@@ -14,6 +14,7 @@ page 90999 "ocpfServiceCrMemoLines"
     SourceTable = "Service Cr.Memo Line";
     ODataKeyFields = SystemId;
     Editable = false;
+    DataAccessIntent = ReadOnly;
 
     layout
     {

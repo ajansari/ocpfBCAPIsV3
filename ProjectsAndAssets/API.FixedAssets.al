@@ -13,7 +13,7 @@ page 90915 "ocpfFixedAssets"
     EntitySetName = 'ocpfFixedAssets';
     SourceTable = "Fixed Asset";
     ODataKeyFields = SystemId;
-    Editable = false;
+    DelayedInsert = true;
 
     layout
     {

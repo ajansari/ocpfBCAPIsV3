@@ -14,6 +14,7 @@ page 90914 "ocpfProjectLedgerEntries"
     SourceTable = "Job Ledger Entry";
     ODataKeyFields = SystemId;
     Editable = false;
+    DataAccessIntent = ReadOnly;
 
     layout
     {

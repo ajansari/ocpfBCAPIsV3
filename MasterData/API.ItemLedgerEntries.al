@@ -14,6 +14,7 @@ page 90847 "ocpfItemLedgerEntries"
     SourceTable = "Item Ledger Entry";
     ODataKeyFields = SystemId;
     Editable = false;
+    DataAccessIntent = ReadOnly;
 
     layout
     {

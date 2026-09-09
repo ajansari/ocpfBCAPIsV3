@@ -13,7 +13,7 @@ page 90936 "ocpfFinanceChargeMemoLines"
     EntitySetName = 'ocpfFinanceChargeMemoLines';
     SourceTable = "Finance Charge Memo Line";
     ODataKeyFields = SystemId;
-    Editable = false;
+    DelayedInsert = true;
 
     layout
     {

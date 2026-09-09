@@ -130,5 +130,24 @@ permissionset 90951 "OCPF - READ/WRITE"
         page "ocpfSalesLineDiscounts" = X,
         page "ocpfCustomerInvoiceDiscounts" = X,
         page "ocpfPurchaseLineDiscounts" = X,
-        page "ocpfVendorInvoiceDiscounts" = X;
+        page "ocpfVendorInvoiceDiscounts" = X,
+        // v3.1.2 — pages reclassified from read-only to editable
+        page "ocpfCompanyInformation" = X,
+        page "ocpfDocumentAttachments" = X,
+        page "ocpfGeneralJournalTemplates" = X,
+        page "ocpfGeneralJournalBatches" = X,
+        page "ocpfFixedAssets" = X,
+        page "ocpfFaPostingGroups" = X,
+        page "ocpfFaDepreciationBooks" = X,
+        page "ocpfPriceListHeaders" = X,
+        page "ocpfPriceListLines" = X,
+        page "ocpfProjects" = X,
+        page "ocpfProjectPostingGroups" = X,
+        page "ocpfProjectTasks" = X,
+        page "ocpfProjectPlanningLines" = X,
+        page "ocpfReminderHeaders" = X,
+        page "ocpfReminderLines" = X,
+        page "ocpfFinanceChargeMemoHeaders" = X,
+        page "ocpfFinanceChargeMemoLines" = X,
+        page "ocpfCalendarAbsenceEntries" = X;
 }

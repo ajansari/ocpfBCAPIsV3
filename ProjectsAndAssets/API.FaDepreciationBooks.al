@@ -13,7 +13,7 @@ page 90918 "ocpfFaDepreciationBooks"
     EntitySetName = 'ocpfFaDepreciationBooks';
     SourceTable = "FA Depreciation Book";
     ODataKeyFields = SystemId;
-    Editable = false;
+    DelayedInsert = true;
 
     layout
     {

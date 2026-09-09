@@ -1,5 +1,50 @@
 # Build Change Log
 
+## v3.1.2 — Editability corrections + `DataAccessIntent = ReadOnly` (2026-09-09)
+
+### 18 pages reclassified from read-only to editable
+
+The v3.0/v3.1 generator had marked these as `Editable = false`; they are in fact safe to write through
+the API. Each now has `Editable = false` removed and `DelayedInsert = true` added, and each is included
+in the `OCPF - READ/WRITE` permission set (they were already in `OCPF - READ`).
+
+| Category | Pages |
+|---|---|
+| Projects & Assets | `ocpfProjects`, `ocpfProjectTasks`, `ocpfProjectPlanningLines`, `ocpfProjectPostingGroups`, `ocpfFixedAssets`, `ocpfFaPostingGroups`, `ocpfFaDepreciationBooks`, `ocpfGeneralJournalTemplates`, `ocpfGeneralJournalBatches`, `ocpfPriceListHeaders`, `ocpfPriceListLines` |
+| System & Setup | `ocpfCompanyInformation`, `ocpfDocumentAttachments`, `ocpfReminderHeaders`, `ocpfReminderLines`, `ocpfFinanceChargeMemoHeaders`, `ocpfFinanceChargeMemoLines` |
+| Manufacturing | `ocpfCalendarAbsenceEntries` (user-maintained "Registered Absence"; `ocpfCalendarEntries` stays read-only — system-calculated) |
+
+Category access counts change: Projects & Assets 1→12, System & Setup 0→6, Manufacturing 28→29 editable;
+catalog total 116→**134** editable, 67→**49** read-only. Entity count unchanged at 183.
+
+Per-field `Editable` glyphs for these 18 pages were regenerated from the BC 27.5 Base Application symbol
+field classes (676 field rows updated): stored → ✅, FlowField → 🧮, FlowFilter → 🔍, key → 🔑.
+
+### `DataAccessIntent = ReadOnly` on immutable read-only pages
+
+All **49** remaining `Editable = false` API pages also declare `DataAccessIntent = ReadOnly`. Their
+GET queries are routed to the Azure SQL read-only replica, which offloads reporting and bulk-extract
+traffic from the primary database and improves overall API throughput.
+
+- **Scope (49 pages):** the entities whose data is genuinely immutable once written — G/L / customer /
+  vendor / employee / bank / item / value / resource / project / FA / service / warranty / capacity
+  ledger entries, G/L and service registers, all posted sales/purchase/service documents and posted
+  assembly orders, calendar entries, prod. order capacity needs, dimension set entries, warehouse
+  entries, approval entries, workflow step instances.
+- **Behavior change:** none to the API contract. The only observable effect is read-replica lag
+  (typically a few seconds) — a client that writes via an editable page and then immediately reads a
+  related read-only entity may briefly see the pre-write state. Consumers that need
+  read-your-own-write consistency on those entities should re-read after a short delay.
+- **Editable pages:** unchanged (`DataAccessIntent` defaults to `Automatic` → primary).
+- **Endpoints:** applies to both `/v3.0/` and `/v3.1/` (the read-only page objects are dual-versioned).
+- **Coupling note for maintainers:** if one of the 49 is ever switched to `Editable`, its
+  `DataAccessIntent = ReadOnly` line **must** be removed in the same change, or writes through it will fail.
+- **App version:** `app.json` 3.1.1.0 → 3.1.2.0.
+- **Build:** compiles clean against BC 27.5 symbols (only the two pre-existing `AL0432` obsolete-table
+  warnings on Sales/Purchase Line Discount).
+
+---
+
 ## v3.1.1 — Discount API pages note (2026-07-08)
 
 The new Sales Line Discount and Purchase Line Discount API pages are included in this release. Although the underlying Business Central tables are currently marked for deprecation, these API pages remain maintained for now because the V16 pricing model is still an opt-in feature in BC. We will revisit and adjust this in the future once Microsoft enables the new pricing tables by default.

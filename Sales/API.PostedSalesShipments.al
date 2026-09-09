@@ -14,6 +14,7 @@ page 90882 "ocpfPostedSalesShipments"
     SourceTable = "Sales Shipment Header";
     ODataKeyFields = SystemId;
     Editable = false;
+    DataAccessIntent = ReadOnly;
 
     layout
     {

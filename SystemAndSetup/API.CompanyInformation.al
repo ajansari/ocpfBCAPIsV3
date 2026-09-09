@@ -13,7 +13,7 @@ page 90931 "ocpfCompanyInformation"
     EntitySetName = 'ocpfCompanyInformation';
     SourceTable = "Company Information";
     ODataKeyFields = SystemId;
-    Editable = false;
+    DelayedInsert = true;
 
     layout
     {

@@ -13,7 +13,7 @@ page 90922 "ocpfPriceListHeaders"
     EntitySetName = 'ocpfPriceListHeaders';
     SourceTable = "Price List Header";
     ODataKeyFields = SystemId;
-    Editable = false;
+    DelayedInsert = true;
 
     layout
     {

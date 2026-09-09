@@ -13,7 +13,7 @@ page 90910 "ocpfProjects"
     EntitySetName = 'ocpfProjects';
     SourceTable = Job;
     ODataKeyFields = SystemId;
-    Editable = false;
+    DelayedInsert = true;
 
     layout
     {

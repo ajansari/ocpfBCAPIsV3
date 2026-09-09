@@ -14,6 +14,7 @@ page 90971 "ocpfPostedAssemblyHeaders"
     SourceTable = "Posted Assembly Header";
     ODataKeyFields = SystemId;
     Editable = false;
+    DataAccessIntent = ReadOnly;
 
     layout
     {

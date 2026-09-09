@@ -14,6 +14,7 @@ page 90879 "ocpfPostedSalesInvoiceLines"
     SourceTable = "Sales Invoice Line";
     ODataKeyFields = SystemId;
     Editable = false;
+    DataAccessIntent = ReadOnly;
 
     layout
     {

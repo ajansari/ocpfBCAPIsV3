@@ -13,7 +13,7 @@ page 90934 "ocpfReminderLines"
     EntitySetName = 'ocpfReminderLines';
     SourceTable = "Reminder Line";
     ODataKeyFields = SystemId;
-    Editable = false;
+    DelayedInsert = true;
 
     layout
     {

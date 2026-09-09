@@ -14,6 +14,7 @@ page 90849 "ocpfItemApplicationEntries"
     SourceTable = "Item Application Entry";
     ODataKeyFields = SystemId;
     Editable = false;
+    DataAccessIntent = ReadOnly;
 
     layout
     {

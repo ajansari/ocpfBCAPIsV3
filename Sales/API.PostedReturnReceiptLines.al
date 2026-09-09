@@ -14,6 +14,7 @@ page 90885 "ocpfPostedReturnReceiptLines"
     SourceTable = "Return Receipt Line";
     ODataKeyFields = SystemId;
     Editable = false;
+    DataAccessIntent = ReadOnly;
 
     layout
     {

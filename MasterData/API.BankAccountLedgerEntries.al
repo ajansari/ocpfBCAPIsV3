@@ -14,6 +14,7 @@ page 90832 "ocpfBankAccountLedgerEntries"
     SourceTable = "Bank Account Ledger Entry";
     ODataKeyFields = SystemId;
     Editable = false;
+    DataAccessIntent = ReadOnly;
 
     layout
     {

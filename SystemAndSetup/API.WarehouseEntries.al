@@ -14,6 +14,7 @@ page 90932 "ocpfWarehouseEntries"
     SourceTable = "Warehouse Entry";
     ODataKeyFields = SystemId;
     Editable = false;
+    DataAccessIntent = ReadOnly;
 
     layout
     {

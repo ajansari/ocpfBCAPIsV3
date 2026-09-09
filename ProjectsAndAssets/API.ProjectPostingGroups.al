@@ -13,7 +13,7 @@ page 90911 "ocpfProjectPostingGroups"
     EntitySetName = 'ocpfProjectPostingGroups';
     SourceTable = "Job Posting Group";
     ODataKeyFields = SystemId;
-    Editable = false;
+    DelayedInsert = true;
 
     layout
     {

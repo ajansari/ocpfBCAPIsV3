@@ -14,6 +14,7 @@ page 90898 "ocpfPostedPurchaseCreditMemos"
     SourceTable = "Purch. Cr. Memo Hdr.";
     ODataKeyFields = SystemId;
     Editable = false;
+    DataAccessIntent = ReadOnly;
 
     layout
     {

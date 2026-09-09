@@ -13,7 +13,7 @@ page 90948 "ocpfCalendarAbsenceEntries"
     EntitySetName = 'ocpfCalendarAbsenceEntries';
     SourceTable = "Calendar Absence Entry";
     ODataKeyFields = SystemId;
-    Editable = false;
+    DelayedInsert = true;
 
     layout
     {

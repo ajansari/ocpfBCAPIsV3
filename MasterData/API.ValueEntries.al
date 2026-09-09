@@ -14,6 +14,7 @@ page 90848 "ocpfValueEntries"
     SourceTable = "Value Entry";
     ODataKeyFields = SystemId;
     Editable = false;
+    DataAccessIntent = ReadOnly;
 
     layout
     {

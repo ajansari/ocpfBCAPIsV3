@@ -14,6 +14,7 @@ page 90994 "ocpfServiceShipmentHeaders"
     SourceTable = "Service Shipment Header";
     ODataKeyFields = SystemId;
     Editable = false;
+    DataAccessIntent = ReadOnly;
 
     layout
     {

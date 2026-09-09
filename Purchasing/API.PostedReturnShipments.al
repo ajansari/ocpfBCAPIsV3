@@ -14,6 +14,7 @@ page 90902 "ocpfPostedReturnShipments"
     SourceTable = "Return Shipment Header";
     ODataKeyFields = SystemId;
     Editable = false;
+    DataAccessIntent = ReadOnly;
 
     layout
     {

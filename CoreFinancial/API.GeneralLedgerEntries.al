@@ -14,6 +14,7 @@ page 90801 "ocpfGeneralLedgerEntries"
     SourceTable = "G/L Entry";
     ODataKeyFields = SystemId;
     Editable = false;
+    DataAccessIntent = ReadOnly;
 
     layout
     {

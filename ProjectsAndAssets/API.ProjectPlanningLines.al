@@ -13,7 +13,7 @@ page 90913 "ocpfProjectPlanningLines"
     EntitySetName = 'ocpfProjectPlanningLines';
     SourceTable = "Job Planning Line";
     ODataKeyFields = SystemId;
-    Editable = false;
+    DelayedInsert = true;
 
     layout
     {

@@ -14,6 +14,7 @@ page 90807 "ocpfDetailedCustLedgerEntries"
     SourceTable = "Detailed Cust. Ledg. Entry";
     ODataKeyFields = SystemId;
     Editable = false;
+    DataAccessIntent = ReadOnly;
 
     layout
     {

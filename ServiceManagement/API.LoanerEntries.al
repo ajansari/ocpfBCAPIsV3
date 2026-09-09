@@ -14,6 +14,7 @@ page 90982 "ocpfLoanerEntries"
     SourceTable = "Loaner Entry";
     ODataKeyFields = SystemId;
     Editable = false;
+    DataAccessIntent = ReadOnly;
 
     layout
     {

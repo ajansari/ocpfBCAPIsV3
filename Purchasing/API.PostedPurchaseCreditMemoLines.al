@@ -14,6 +14,7 @@ page 90899 "ocpfPostedPurchCrMemoLines"
     SourceTable = "Purch. Cr. Memo Line";
     ODataKeyFields = SystemId;
     Editable = false;
+    DataAccessIntent = ReadOnly;
 
     layout
     {

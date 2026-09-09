@@ -14,6 +14,7 @@ page 90937 "ocpfApprovalEntries"
     SourceTable = "Approval Entry";
     ODataKeyFields = SystemId;
     Editable = false;
+    DataAccessIntent = ReadOnly;
 
     layout
     {

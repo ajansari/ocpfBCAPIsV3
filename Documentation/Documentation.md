@@ -2,9 +2,10 @@
 
 **Publisher:** OnlyCopilotFans  
 **API Version:** v3.1 (all endpoints also served at v3.0; see ChangeLog)  
+**App Version:** 3.1.2.0  
 **BC Version:** 2025 Wave 2 (v27.5+)  
 **Object Range:** 90800–90999  
-**Date:** June 9, 2026 (v3.0) — updated July 7, 2026 (v3.1)  
+**Date:** June 9, 2026 (v3.0) — updated July 7, 2026 (v3.1) — updated September 9, 2026 (v3.1.2)  
 **Created by:** AJ Ansari ( [Email](mailto:aj@onlycopilotfans.com) | [LinkedIn](https://linkedin.com/in/ajansari) )
 
 ## Overview
@@ -29,8 +30,16 @@ Each API page maps directly to a standard BC source table and exposes every stan
   - *Purchasing* (+2): Purchase Line Discounts (`ocpfPurchaseLineDiscounts`, BC table 7014) and Vendor Invoice Discounts (`ocpfVendorInvoiceDiscounts`, BC table 24) — the purchase-side counterparts.
   - *Pricing note:* the Sales Line Discount and Purchase Line Discount API pages remain available even though the underlying BC tables are marked for deprecation, because the V16 pricing model is still an opt-in feature in BC. We will adjust this in the future once Microsoft enables the new pricing tables by default. In the meantime, both the classic discount pages and the already-published read-only `ocpfPriceListHeaders` / `ocpfPriceListLines` (Projects & Assets group) are exposed; invoice-discount tables (19/24) are not affected by the V16 change.
 - **Tooltip corrections** — several field tooltips that the v3.0 generator had shifted onto neighboring fields were repaired, and tooltips for the added fields are sourced from the BC 27.5 Base Application.
-- **Permission sets** — `OCPF - READ` now covers all 183 pages; `OCPF - READ/WRITE` grants write access on 116 editable pages.
+- **Permission sets** — `OCPF - READ` covers all 183 pages; `OCPF - READ/WRITE` granted write access on 116 editable pages in v3.1.1 (134 as of v3.1.2 — see below).
 - **App version** — `app.json` 3.0.0.0 → 3.1.0.0 → 3.1.1.0. Git tags `v3.0.0.0` and `v3.1.0.0` mark the earlier releases (`git diff v3.0.0.0 v3.1.0.0` shows the full contract delta).
+
+#### v3.1.2 (September 2026)
+
+Additive, non-breaking. No contract change on any endpoint.
+
+- **18 pages reclassified read-only → editable** — 11 Projects & Assets (`ocpfProjects`, `ocpfProjectTasks`, `ocpfProjectPlanningLines`, `ocpfProjectPostingGroups`, `ocpfFixedAssets`, `ocpfFaPostingGroups`, `ocpfFaDepreciationBooks`, `ocpfGeneralJournalTemplates`, `ocpfGeneralJournalBatches`, `ocpfPriceListHeaders`, `ocpfPriceListLines`), 6 System & Setup (`ocpfCompanyInformation`, `ocpfDocumentAttachments`, `ocpfReminderHeaders`, `ocpfReminderLines`, `ocpfFinanceChargeMemoHeaders`, `ocpfFinanceChargeMemoLines`), and 1 Manufacturing (`ocpfCalendarAbsenceEntries` — user-maintained "Registered Absence"). All now support POST/PATCH/DELETE (`DelayedInsert = true`) and are in the `OCPF - READ/WRITE` permission set. Catalog totals: **134 editable / 49 read-only** (was 116 / 67).
+- **`DataAccessIntent = ReadOnly` on the 49 read-only pages** — the immutable read-only entities (ledger entries, G/L and service registers, posted sales/purchase/service documents and posted assembly orders, calendar entries, prod. order capacity needs, dimension set entries, warehouse entries, approval entries, workflow step instances) now route their GET queries to the Azure SQL **read-only replica**. This offloads reporting/extract traffic from the primary and improves throughput. The only observable difference is replica lag (typically a few seconds): a client that writes through an editable page and then immediately reads a related read-only entity may briefly see the pre-write state. Editable pages are unchanged. Applies to both the `/v3.0/` and `/v3.1/` endpoints.
+- **App version** — `app.json` 3.1.1.0 → 3.1.2.0.
 
 The complete field-by-field delta is recorded in [ChangeLog.md](ChangeLog.md).
 
@@ -39,7 +48,7 @@ The complete field-by-field delta is recorded in [ChangeLog.md](ChangeLog.md).
 - **Broad coverage** — 175+ standard BC tables across core financials, master data, sales, purchasing, projects, fixed assets, manufacturing, assembly, service management, and system setup
 - **Full field exposure** — every non-localization field on each source table is available, including flow fields and filter fields
 - **Consistent shape** — all pages follow the same API group/entity naming convention and use `SystemId` as the OData key
-- **Selective editability** — pages are marked editable (POST/PATCH/DELETE) or read-only (GET only) based on whether the underlying table is safe to write through an API
+- **Selective editability** — pages are marked editable (POST/PATCH/DELETE) or read-only (GET only) based on whether the underlying table is safe to write through an API (134 editable, 49 read-only). The 49 read-only pages (immutable ledger/register/posted-document entities) also set `DataAccessIntent = ReadOnly`, so their queries are served from the read-only replica (expect a few seconds of replication lag on freshly written data)
 - **Localization-neutral** — fields tied to specific country/region localizations are intentionally excluded so the package installs and behaves identically in any market
 
 ---
@@ -49,7 +58,7 @@ The complete field-by-field delta is recorded in [ChangeLog.md](ChangeLog.md).
 This document lists every API page, its source table, editability, and every exposed field.
 
 **Field-level Editable legend:** 🔑 Key (OData key, read-only) · ✅ writable stored field · 🧮 computed (FlowField — calculated on read, never writable) · 🔍 filter (FlowFilter — not stored; used only to parameterize computed fields) · — stored field on a read-only page.
-On read-only pages (❌ at page level) every field is read-only regardless of its glyph.
+On read-only pages (❌ at page level) every field is read-only regardless of its glyph. Where a read-only page is also served from the read-only replica, its property table carries a `Data Access Intent = ReadOnly` row.
 
 ---
 
@@ -63,11 +72,11 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | [Master Data](#master-data) | `ocpf_masterData` | 31 | 26 | 5 |
 | [Sales](#sales) | `ocpf_sales` | 20 | 12 | 8 |
 | [Purchasing](#purchasing) | `ocpf_purchasing` | 20 | 12 | 8 |
-| [Projects & Assets](#projects--assets) | `ocpf_projectsAndAssets` | 14 | 1 | 13 |
-| [System & Setup](#system--setup) | `ocpf_systemAndSetup` | 9 | 0 | 9 |
-| [Manufacturing](#manufacturing) 🆕 | `ocpf_manufacturing` | 34 | 28 | 6 |
+| [Projects & Assets](#projects--assets) | `ocpf_projectsAndAssets` | 14 | 12 | 2 |
+| [System & Setup](#system--setup) | `ocpf_systemAndSetup` | 9 | 6 | 3 |
+| [Manufacturing](#manufacturing) 🆕 | `ocpf_manufacturing` | 34 | 29 | 5 |
 | [Service Management](#service-management) 🆕 | `ocpf_serviceManagement` | 30 | 20 | 10 |
-| **Total** | | **183** | **116** | **67** |
+| **Total** | | **183** | **134** | **49** |
 
 <details>
 <summary><b>Core Financial</b> — 25 entities · <code>ocpf_coreFinancial</code></summary>
@@ -202,20 +211,20 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 
 | Entity | Source Table | Page ID | Access |
 |---|---|---|:---:|
-| [ocpfProjects](#ocpfprojects) | Job | 90910 | 👁 |
-| [ocpfProjectPostingGroups](#ocpfprojectpostinggroups) | Job Posting Group | 90911 | 👁 |
-| [ocpfProjectTasks](#ocpfprojecttasks) | Job Task | 90912 | 👁 |
-| [ocpfProjectPlanningLines](#ocpfprojectplanninglines) | Job Planning Line | 90913 | 👁 |
+| [ocpfProjects](#ocpfprojects) | Job | 90910 | ✏️ |
+| [ocpfProjectPostingGroups](#ocpfprojectpostinggroups) | Job Posting Group | 90911 | ✏️ |
+| [ocpfProjectTasks](#ocpfprojecttasks) | Job Task | 90912 | ✏️ |
+| [ocpfProjectPlanningLines](#ocpfprojectplanninglines) | Job Planning Line | 90913 | ✏️ |
 | [ocpfProjectLedgerEntries](#ocpfprojectledgerentries) | Job Ledger Entry | 90914 | 👁 |
-| [ocpfFixedAssets](#ocpffixedassets) | Fixed Asset | 90915 | 👁 |
-| [ocpfFaPostingGroups](#ocpffapostinggroups) | FA Posting Group | 90916 | 👁 |
+| [ocpfFixedAssets](#ocpffixedassets) | Fixed Asset | 90915 | ✏️ |
+| [ocpfFaPostingGroups](#ocpffapostinggroups) | FA Posting Group | 90916 | ✏️ |
 | [ocpfFaLedgerEntries](#ocpffaledgerentries) | FA Ledger Entry | 90917 | 👁 |
-| [ocpfFaDepreciationBooks](#ocpffadepreciationbooks) | FA Depreciation Book | 90918 | 👁 |
-| [ocpfGeneralJournalTemplates](#ocpfgeneraljournaltemplates) | Gen. Journal Template | 90919 | 👁 |
-| [ocpfGeneralJournalBatches](#ocpfgeneraljournalbatches) | Gen. Journal Batch | 90920 | 👁 |
+| [ocpfFaDepreciationBooks](#ocpffadepreciationbooks) | FA Depreciation Book | 90918 | ✏️ |
+| [ocpfGeneralJournalTemplates](#ocpfgeneraljournaltemplates) | Gen. Journal Template | 90919 | ✏️ |
+| [ocpfGeneralJournalBatches](#ocpfgeneraljournalbatches) | Gen. Journal Batch | 90920 | ✏️ |
 | [ocpfGeneralJournalLines](#ocpfgeneraljournallines) | Gen. Journal Line | 90921 | ✏️ |
-| [ocpfPriceListHeaders](#ocpfpricelistheaders) | Price List Header | 90922 | 👁 |
-| [ocpfPriceListLines](#ocpfpricelistlines) | Price List Line | 90923 | 👁 |
+| [ocpfPriceListHeaders](#ocpfpricelistheaders) | Price List Header | 90922 | ✏️ |
+| [ocpfPriceListLines](#ocpfpricelistlines) | Price List Line | 90923 | ✏️ |
 
 </details>
 
@@ -224,13 +233,13 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 
 | Entity | Source Table | Page ID | Access |
 |---|---|---|:---:|
-| [ocpfDocumentAttachments](#ocpfdocumentattachments) | Document Attachment | 90930 | 👁 |
-| [ocpfCompanyInformation](#ocpfcompanyinformation) | Company Information | 90931 | 👁 |
+| [ocpfDocumentAttachments](#ocpfdocumentattachments) | Document Attachment | 90930 | ✏️ |
+| [ocpfCompanyInformation](#ocpfcompanyinformation) | Company Information | 90931 | ✏️ |
 | [ocpfWarehouseEntries](#ocpfwarehouseentries) | Warehouse Entry | 90932 | 👁 |
-| [ocpfReminderHeaders](#ocpfreminderheaders) | Reminder Header | 90933 | 👁 |
-| [ocpfReminderLines](#ocpfreminderlines) | Reminder Line | 90934 | 👁 |
-| [ocpfFinanceChargeMemoHeaders](#ocpffinancechargememoheaders) | Finance Charge Memo Header | 90935 | 👁 |
-| [ocpfFinanceChargeMemoLines](#ocpffinancechargememolines) | Finance Charge Memo Line | 90936 | 👁 |
+| [ocpfReminderHeaders](#ocpfreminderheaders) | Reminder Header | 90933 | ✏️ |
+| [ocpfReminderLines](#ocpfreminderlines) | Reminder Line | 90934 | ✏️ |
+| [ocpfFinanceChargeMemoHeaders](#ocpffinancechargememoheaders) | Finance Charge Memo Header | 90935 | ✏️ |
+| [ocpfFinanceChargeMemoLines](#ocpffinancechargememolines) | Finance Charge Memo Line | 90936 | ✏️ |
 | [ocpfApprovalEntries](#ocpfapprovalentries) | Approval Entry | 90937 | 👁 |
 | [ocpfWorkflowStepInstances](#ocpfworkflowstepinstances) | Workflow Step Instance | 90938 | 👁 |
 
@@ -250,7 +259,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | [ocpfMachineCenters](#ocpfmachinecenters) | Machine Center | 90945 | ✏️ |
 | [ocpfCapacityUnitsOfMeasure](#ocpfcapacityunitsofmeasure) | Capacity Unit of Measure | 90946 | ✏️ |
 | [ocpfCalendarEntries](#ocpfcalendarentries) | Calendar Entry | 90947 | 👁 |
-| [ocpfCalendarAbsenceEntries](#ocpfcalendarabsenceentries) | Calendar Absence Entry | 90948 | 👁 |
+| [ocpfCalendarAbsenceEntries](#ocpfcalendarabsenceentries) | Calendar Absence Entry | 90948 | ✏️ |
 | [ocpfStops](#ocpfstops) | Stop | 90949 | ✏️ |
 | [ocpfScraps](#ocpfscraps) | Scrap | 90950 | ✏️ |
 | [ocpfRoutingLinks](#ocpfroutinglinks) | Routing Link | 90951 | ✏️ |
@@ -428,6 +437,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Entity Set Name | `ocpfGeneralLedgerEntries` |
 | API Group | `ocpf_coreFinancial` |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 74 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -716,6 +726,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Entity Set Name | `ocpfGLRegisters` |
 | API Group | `ocpf_coreFinancial` |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 13 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -751,6 +762,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Entity Set Name | `ocpfCustLedgerEntries` |
 | API Group | `ocpf_coreFinancial` |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 91 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -866,6 +878,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Entity Set Name | `ocpfDetailedCustLedgerEntries` |
 | API Group | `ocpf_coreFinancial` |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 39 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -929,6 +942,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Entity Set Name | `ocpfVendorLedgerEntries` |
 | API Group | `ocpf_coreFinancial` |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 86 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -1039,6 +1053,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Entity Set Name | `ocpfDtldVendorLedgEntries` |
 | API Group | `ocpf_coreFinancial` |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 39 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -1102,6 +1117,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Entity Set Name | `ocpfEmployeeLedgerEntries` |
 | API Group | `ocpf_coreFinancial` |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 62 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -1605,6 +1621,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Entity Set Name | `ocpfDimensionSetEntries` |
 | API Group | `ocpf_coreFinancial` |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 8 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -1808,6 +1825,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Entity Set Name | `ocpfBankAccountLedgerEntries` |
 | API Group | `ocpf_masterData` |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 48 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -2969,6 +2987,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Entity Set Name | `ocpfItemLedgerEntries` |
 | API Group | `ocpf_masterData` |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 86 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -3079,6 +3098,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Entity Set Name | `ocpfValueEntries` |
 | API Group | `ocpf_masterData` |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 80 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -3183,6 +3203,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Entity Set Name | `ocpfItemApplicationEntries` |
 | API Group | `ocpf_masterData` |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 20 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -3541,6 +3562,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Entity Set Name | `ocpfResourceLedgerEntries` |
 | API Group | `ocpf_masterData` |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 44 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -5617,6 +5639,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Entity Set Name | `ocpfPostedSalesInvoices` |
 | API Group | `ocpf_sales` |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 136 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -5775,6 +5798,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Entity Set Name | `ocpfPostedSalesInvoiceLines` |
 | API Group | `ocpf_sales` |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 101 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -5898,6 +5922,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Entity Set Name | `ocpfPostedSalesCreditMemos` |
 | API Group | `ocpf_sales` |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 123 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -6043,6 +6068,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Entity Set Name | `ocpfPostedSalesCreditMemoLines` |
 | API Group | `ocpf_sales` |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 97 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -6162,6 +6188,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Entity Set Name | `ocpfPostedSalesShipments` |
 | API Group | `ocpf_sales` |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 107 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -6291,6 +6318,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Entity Set Name | `ocpfPostedSalesShipmentLines` |
 | API Group | `ocpf_sales` |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 97 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -6410,6 +6438,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Entity Set Name | `ocpfPostedReturnReceipts` |
 | API Group | `ocpf_sales` |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 102 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -6534,6 +6563,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Entity Set Name | `ocpfPostedReturnReceiptLines` |
 | API Group | `ocpf_sales` |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 85 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -8382,6 +8412,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Entity Set Name | `ocpfPostedPurchaseInvoices` |
 | API Group | `ocpf_purchasing` |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 111 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -8515,6 +8546,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Entity Set Name | `ocpfPostedPurchaseInvoiceLines` |
 | API Group | `ocpf_purchasing` |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 118 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -8655,6 +8687,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Entity Set Name | `ocpfPostedPurchaseCreditMemos` |
 | API Group | `ocpf_purchasing` |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 105 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -8782,6 +8815,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Entity Set Name | `ocpfPostedPurchCrMemoLines` |
 | API Group | `ocpf_purchasing` |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 115 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -8919,6 +8953,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Entity Set Name | `ocpfPostedPurchaseReceipts` |
 | API Group | `ocpf_purchasing` |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 96 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -9037,6 +9072,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Entity Set Name | `ocpfPostedPurchaseReceiptLines` |
 | API Group | `ocpf_purchasing` |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 117 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -9176,6 +9212,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Entity Set Name | `ocpfPostedReturnShipments` |
 | API Group | `ocpf_purchasing` |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 89 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -9287,6 +9324,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Entity Set Name | `ocpfPostedReturnShipmentLines` |
 | API Group | `ocpf_purchasing` |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 89 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -10298,66 +10336,66 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Page Name | `ocpfProjects` |
 | Entity Set Name | `ocpfProjects` |
 | API Group | `ocpf_projectsAndAssets` |
-| Editable | ❌ No (GET only) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 106 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
 | 1 | `systemId` | SystemId | System ID | 🔑 Key |
-| 2 | `no` | No. | No. | — |
-| 3 | `searchDescription` | Search Description | Search Description | — |
-| 4 | `description` | Description | Description | — |
-| 5 | `description2` | Description 2 | Description 2 | — |
-| 6 | `billToCustomerNo` | Bill-to Customer No. | Bill-to Customer No. | — |
-| 7 | `creationDate` | Creation Date | Creation Date | — |
-| 8 | `startingDate` | Starting Date | Starting Date | — |
-| 9 | `endingDate` | Ending Date | Ending Date | — |
-| 10 | `status` | Status | Status | — |
-| 11 | `personResponsible` | Person Responsible | Person Responsible | — |
-| 12 | `globalDimension1Code` | Global Dimension 1 Code | Global Dimension 1 Code | — |
-| 13 | `globalDimension2Code` | Global Dimension 2 Code | Global Dimension 2 Code | — |
-| 14 | `jobPostingGroup` | Job Posting Group | Project Posting Group | — |
-| 15 | `blocked` | Blocked | Blocked | — |
-| 16 | `lastDateModified` | Last Date Modified | Last Date Modified | — |
+| 2 | `no` | No. | No. | ✅ |
+| 3 | `searchDescription` | Search Description | Search Description | ✅ |
+| 4 | `description` | Description | Description | ✅ |
+| 5 | `description2` | Description 2 | Description 2 | ✅ |
+| 6 | `billToCustomerNo` | Bill-to Customer No. | Bill-to Customer No. | ✅ |
+| 7 | `creationDate` | Creation Date | Creation Date | ✅ |
+| 8 | `startingDate` | Starting Date | Starting Date | ✅ |
+| 9 | `endingDate` | Ending Date | Ending Date | ✅ |
+| 10 | `status` | Status | Status | ✅ |
+| 11 | `personResponsible` | Person Responsible | Person Responsible | ✅ |
+| 12 | `globalDimension1Code` | Global Dimension 1 Code | Global Dimension 1 Code | ✅ |
+| 13 | `globalDimension2Code` | Global Dimension 2 Code | Global Dimension 2 Code | ✅ |
+| 14 | `jobPostingGroup` | Job Posting Group | Project Posting Group | ✅ |
+| 15 | `blocked` | Blocked | Blocked | ✅ |
+| 16 | `lastDateModified` | Last Date Modified | Last Date Modified | ✅ |
 | 17 | `comment` | Comment | Comment | 🧮 computed |
-| 18 | `customerDiscGroup` | Customer Disc. Group | Customer Disc. Group | — |
-| 19 | `customerPriceGroup` | Customer Price Group | Customer Price Group | — |
-| 20 | `locationCode` | Location Code | Location Code | — |
-| 21 | `binCode` | Bin Code | Bin Code | — |
-| 22 | `languageCode` | Language Code | Language Code | — |
+| 18 | `customerDiscGroup` | Customer Disc. Group | Customer Disc. Group | ✅ |
+| 19 | `customerPriceGroup` | Customer Price Group | Customer Price Group | ✅ |
+| 20 | `locationCode` | Location Code | Location Code | ✅ |
+| 21 | `binCode` | Bin Code | Bin Code | ✅ |
+| 22 | `languageCode` | Language Code | Language Code | ✅ |
 | 23 | `scheduledResQty` | Scheduled Res. Qty. | Scheduled Res. Qty. | 🧮 computed |
 | 24 | `resourceFilter` | Resource Filter | Resource Filter | 🔍 filter |
 | 25 | `postingDateFilter` | Posting Date Filter | Posting Date Filter | 🔍 filter |
 | 26 | `resourceGrFilter` | Resource Gr. Filter | Resource Gr. Filter | 🔍 filter |
 | 27 | `scheduledResGrQty` | Scheduled Res. Gr. Qty. | Scheduled Res. Gr. Qty. | 🧮 computed |
-| 28 | `billToName` | Bill-to Name | Bill-to Name | — |
-| 29 | `billToAddress` | Bill-to Address | Bill-to Address | — |
-| 30 | `billToAddress2` | Bill-to Address 2 | Bill-to Address 2 | — |
-| 31 | `billToCity` | Bill-to City | Bill-to City | — |
-| 32 | `billToCounty` | Bill-to County | Bill-to County | — |
-| 33 | `billToPostCode` | Bill-to Post Code | Bill-to Post Code | — |
-| 34 | `noSeries` | No. Series | No. Series | — |
-| 35 | `billToCountryRegionCode` | Bill-to Country/Region Code | Bill-to Country/Region Code | — |
-| 36 | `billToName2` | Bill-to Name 2 | Bill-to Name 2 | — |
-| 37 | `taskBillingMethod` | Task Billing Method | Task Billing Method | — |
-| 38 | `reserve` | Reserve | Reserve | — |
-| 39 | `image` | Image | Image | — |
-| 40 | `shipToPhoneNo` | Ship-to Phone No. | Ship-to Phone No. | — |
-| 41 | `wipMethod` | WIP Method | WIP Method | — |
-| 42 | `currencyCode` | Currency Code | Currency Code | — |
-| 43 | `billToContactNo` | Bill-to Contact No. | Bill-to Contact No. | — |
-| 44 | `billToContact` | Bill-to Contact | Bill-to Contact | — |
+| 28 | `billToName` | Bill-to Name | Bill-to Name | ✅ |
+| 29 | `billToAddress` | Bill-to Address | Bill-to Address | ✅ |
+| 30 | `billToAddress2` | Bill-to Address 2 | Bill-to Address 2 | ✅ |
+| 31 | `billToCity` | Bill-to City | Bill-to City | ✅ |
+| 32 | `billToCounty` | Bill-to County | Bill-to County | ✅ |
+| 33 | `billToPostCode` | Bill-to Post Code | Bill-to Post Code | ✅ |
+| 34 | `noSeries` | No. Series | No. Series | ✅ |
+| 35 | `billToCountryRegionCode` | Bill-to Country/Region Code | Bill-to Country/Region Code | ✅ |
+| 36 | `billToName2` | Bill-to Name 2 | Bill-to Name 2 | ✅ |
+| 37 | `taskBillingMethod` | Task Billing Method | Task Billing Method | ✅ |
+| 38 | `reserve` | Reserve | Reserve | ✅ |
+| 39 | `image` | Image | Image | ✅ |
+| 40 | `shipToPhoneNo` | Ship-to Phone No. | Ship-to Phone No. | ✅ |
+| 41 | `wipMethod` | WIP Method | WIP Method | ✅ |
+| 42 | `currencyCode` | Currency Code | Currency Code | ✅ |
+| 43 | `billToContactNo` | Bill-to Contact No. | Bill-to Contact No. | ✅ |
+| 44 | `billToContact` | Bill-to Contact | Bill-to Contact | ✅ |
 | 45 | `planningDateFilter` | Planning Date Filter | Planning Date Filter | 🔍 filter |
 | 46 | `totalWipCostAmount` | Total WIP Cost Amount | Total WIP Cost Amount | 🧮 computed |
 | 47 | `totalWipCostGLAmount` | Total WIP Cost G/L Amount | Total WIP Cost G/L Amount | 🧮 computed |
 | 48 | `wipEntriesExist` | WIP Entries Exist | WIP Entries Exist | 🧮 computed |
-| 49 | `wipPostingDate` | WIP Posting Date | WIP Posting Date | — |
+| 49 | `wipPostingDate` | WIP Posting Date | WIP Posting Date | ✅ |
 | 50 | `wipGLPostingDate` | WIP G/L Posting Date | WIP G/L Posting Date | 🧮 computed |
-| 51 | `invoiceCurrencyCode` | Invoice Currency Code | Invoice Currency Code | — |
-| 52 | `exchCalculationCost` | Exch. Calculation (Cost) | Exch. Calculation (Cost) | — |
-| 53 | `exchCalculationPrice` | Exch. Calculation (Price) | Exch. Calculation (Price) | — |
-| 54 | `allowScheduleContractLines` | Allow Schedule/Contract Lines | Allow Budget/Billable Lines | — |
-| 55 | `complete` | Complete | Complete | — |
+| 51 | `invoiceCurrencyCode` | Invoice Currency Code | Invoice Currency Code | ✅ |
+| 52 | `exchCalculationCost` | Exch. Calculation (Cost) | Exch. Calculation (Cost) | ✅ |
+| 53 | `exchCalculationPrice` | Exch. Calculation (Price) | Exch. Calculation (Price) | ✅ |
+| 54 | `allowScheduleContractLines` | Allow Schedule/Contract Lines | Allow Budget/Billable Lines | ✅ |
+| 55 | `complete` | Complete | Complete | ✅ |
 | 56 | `recogSalesAmount` | Recog. Sales Amount | Recog. Sales Amount | 🧮 computed |
 | 57 | `recogSalesGLAmount` | Recog. Sales G/L Amount | Recog. Sales G/L Amount | 🧮 computed |
 | 58 | `recogCostsAmount` | Recog. Costs Amount | Recog. Costs Amount | 🧮 computed |
@@ -10366,9 +10404,9 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | 61 | `totalWipSalesGLAmount` | Total WIP Sales G/L Amount | Total WIP Sales G/L Amount | 🧮 computed |
 | 62 | `wipCompletionCalculated` | WIP Completion Calculated | WIP Completion Calculated | 🧮 computed |
 | 63 | `nextInvoiceDate` | Next Invoice Date | Next Invoice Date | 🧮 computed |
-| 64 | `applyUsageLink` | Apply Usage Link | Apply Usage Link | — |
+| 64 | `applyUsageLink` | Apply Usage Link | Apply Usage Link | ✅ |
 | 65 | `wipWarnings` | WIP Warnings | WIP Warnings | 🧮 computed |
-| 66 | `wipPostingMethod` | WIP Posting Method | WIP Posting Method | — |
+| 66 | `wipPostingMethod` | WIP Posting Method | WIP Posting Method | ✅ |
 | 67 | `appliedCostsGLAmount` | Applied Costs G/L Amount | Applied Costs G/L Amount | 🧮 computed |
 | 68 | `appliedSalesGLAmount` | Applied Sales G/L Amount | Applied Sales G/L Amount | 🧮 computed |
 | 69 | `calcRecogSalesAmount` | Calc. Recog. Sales Amount | Calc. Recog. Sales Amount | 🧮 computed |
@@ -10376,38 +10414,38 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | 71 | `calcRecogSalesGLAmount` | Calc. Recog. Sales G/L Amount | Calc. Recog. Sales G/L Amount | 🧮 computed |
 | 72 | `calcRecogCostsGLAmount` | Calc. Recog. Costs G/L Amount | Calc. Recog. Costs G/L Amount | 🧮 computed |
 | 73 | `wipCompletionPosted` | WIP Completion Posted | WIP Completion Posted | 🧮 computed |
-| 74 | `overBudget` | Over Budget | Over Budget | — |
-| 75 | `projectManager` | Project Manager | Project Manager | — |
-| 76 | `sellToCustomerNo` | Sell-to Customer No. | Sell-to Customer No. | — |
-| 77 | `sellToCustomerName` | Sell-to Customer Name | Sell-to Customer Name | — |
-| 78 | `sellToCustomerName2` | Sell-to Customer Name 2 | Sell-to Customer Name 2 | — |
-| 79 | `sellToAddress` | Sell-to Address | Sell-to Address | — |
-| 80 | `sellToAddress2` | Sell-to Address 2 | Sell-to Address 2 | — |
-| 81 | `sellToCity` | Sell-to City | Sell-to City | — |
-| 82 | `sellToContact` | Sell-to Contact | Sell-to Contact | — |
-| 83 | `sellToPostCode` | Sell-to Post Code | Sell-to Post Code | — |
-| 84 | `sellToCounty` | Sell-to County | Sell-to County | — |
-| 85 | `sellToCountryRegionCode` | Sell-to Country/Region Code | Sell-to Country/Region Code | — |
-| 86 | `sellToPhoneNo` | Sell-to Phone No. | Sell-to Phone No. | — |
-| 87 | `sellToEMail` | Sell-to E-Mail | Email | — |
-| 88 | `sellToContactNo` | Sell-to Contact No. | Sell-to Contact No. | — |
-| 89 | `shipToCode` | Ship-to Code | Ship-to Code | — |
-| 90 | `shipToName` | Ship-to Name | Ship-to Name | — |
-| 91 | `shipToName2` | Ship-to Name 2 | Ship-to Name 2 | — |
-| 92 | `shipToAddress` | Ship-to Address | Ship-to Address | — |
-| 93 | `shipToAddress2` | Ship-to Address 2 | Ship-to Address 2 | — |
-| 94 | `shipToCity` | Ship-to City | Ship-to City | — |
-| 95 | `shipToContact` | Ship-to Contact | Ship-to Contact | — |
-| 96 | `shipToPostCode` | Ship-to Post Code | Ship-to Post Code | — |
-| 97 | `shipToCounty` | Ship-to County | Ship-to County | — |
-| 98 | `shipToCountryRegionCode` | Ship-to Country/Region Code | Ship-to Country/Region Code | — |
+| 74 | `overBudget` | Over Budget | Over Budget | ✅ |
+| 75 | `projectManager` | Project Manager | Project Manager | ✅ |
+| 76 | `sellToCustomerNo` | Sell-to Customer No. | Sell-to Customer No. | ✅ |
+| 77 | `sellToCustomerName` | Sell-to Customer Name | Sell-to Customer Name | ✅ |
+| 78 | `sellToCustomerName2` | Sell-to Customer Name 2 | Sell-to Customer Name 2 | ✅ |
+| 79 | `sellToAddress` | Sell-to Address | Sell-to Address | ✅ |
+| 80 | `sellToAddress2` | Sell-to Address 2 | Sell-to Address 2 | ✅ |
+| 81 | `sellToCity` | Sell-to City | Sell-to City | ✅ |
+| 82 | `sellToContact` | Sell-to Contact | Sell-to Contact | ✅ |
+| 83 | `sellToPostCode` | Sell-to Post Code | Sell-to Post Code | ✅ |
+| 84 | `sellToCounty` | Sell-to County | Sell-to County | ✅ |
+| 85 | `sellToCountryRegionCode` | Sell-to Country/Region Code | Sell-to Country/Region Code | ✅ |
+| 86 | `sellToPhoneNo` | Sell-to Phone No. | Sell-to Phone No. | ✅ |
+| 87 | `sellToEMail` | Sell-to E-Mail | Email | ✅ |
+| 88 | `sellToContactNo` | Sell-to Contact No. | Sell-to Contact No. | ✅ |
+| 89 | `shipToCode` | Ship-to Code | Ship-to Code | ✅ |
+| 90 | `shipToName` | Ship-to Name | Ship-to Name | ✅ |
+| 91 | `shipToName2` | Ship-to Name 2 | Ship-to Name 2 | ✅ |
+| 92 | `shipToAddress` | Ship-to Address | Ship-to Address | ✅ |
+| 93 | `shipToAddress2` | Ship-to Address 2 | Ship-to Address 2 | ✅ |
+| 94 | `shipToCity` | Ship-to City | Ship-to City | ✅ |
+| 95 | `shipToContact` | Ship-to Contact | Ship-to Contact | ✅ |
+| 96 | `shipToPostCode` | Ship-to Post Code | Ship-to Post Code | ✅ |
+| 97 | `shipToCounty` | Ship-to County | Ship-to County | ✅ |
+| 98 | `shipToCountryRegionCode` | Ship-to Country/Region Code | Ship-to Country/Region Code | ✅ |
 | 99 | `noOfArchivedVersions` | No. of Archived Versions | No. of Archived Versions | 🧮 computed |
-| 100 | `externalDocumentNo` | External Document No. | External Document No. | — |
-| 101 | `paymentMethodCode` | Payment Method Code | Payment Method Code | — |
-| 102 | `paymentTermsCode` | Payment Terms Code | Payment Terms Code | — |
-| 103 | `yourReference` | Your Reference | Your Reference | — |
-| 104 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | — |
-| 105 | `costCalculationMethod` | Cost Calculation Method | Cost Calculation Method | — |
+| 100 | `externalDocumentNo` | External Document No. | External Document No. | ✅ |
+| 101 | `paymentMethodCode` | Payment Method Code | Payment Method Code | ✅ |
+| 102 | `paymentTermsCode` | Payment Terms Code | Payment Terms Code | ✅ |
+| 103 | `yourReference` | Your Reference | Your Reference | ✅ |
+| 104 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | ✅ |
+| 105 | `costCalculationMethod` | Cost Calculation Method | Cost Calculation Method | ✅ |
 | 106 | `completelyPicked` | Completely Picked | Completely Picked | 🧮 computed |
 
 
@@ -10426,28 +10464,28 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Page Name | `ocpfProjectPostingGroups` |
 | Entity Set Name | `ocpfProjectPostingGroups` |
 | API Group | `ocpf_projectsAndAssets` |
-| Editable | ❌ No (GET only) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 17 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
 | 1 | `systemId` | SystemId | System ID | 🔑 Key |
-| 2 | `code` | Code | Code | — |
-| 3 | `wipCostsAccount` | WIP Costs Account | WIP Costs Account | — |
-| 4 | `wipAccruedCostsAccount` | WIP Accrued Costs Account | WIP Accrued Costs Account | — |
-| 5 | `jobCostsAppliedAccount` | Job Costs Applied Account | Project Costs Applied Account | — |
-| 6 | `jobCostsAdjustmentAccount` | Job Costs Adjustment Account | Project Costs Adjustment Account | — |
-| 7 | `gLExpenseAccContract` | G/L Expense Acc. (Contract) | G/L Expense Acc. (Contract) | — |
-| 8 | `jobSalesAdjustmentAccount` | Job Sales Adjustment Account | Project Sales Adjustment Account | — |
-| 9 | `wipAccruedSalesAccount` | WIP Accrued Sales Account | WIP Accrued Sales Account | — |
-| 10 | `wipInvoicedSalesAccount` | WIP Invoiced Sales Account | WIP Invoiced Sales Account | — |
-| 11 | `jobSalesAppliedAccount` | Job Sales Applied Account | Project Sales Applied Account | — |
-| 12 | `recognizedCostsAccount` | Recognized Costs Account | Recognized Costs Account | — |
-| 13 | `recognizedSalesAccount` | Recognized Sales Account | Recognized Sales Account | — |
-| 14 | `itemCostsAppliedAccount` | Item Costs Applied Account | Item Costs Applied Account | — |
-| 15 | `resourceCostsAppliedAccount` | Resource Costs Applied Account | Resource Costs Applied Account | — |
-| 16 | `gLCostsAppliedAccount` | G/L Costs Applied Account | G/L Costs Applied Account | — |
-| 17 | `description` | Description | Description | — |
+| 2 | `code` | Code | Code | ✅ |
+| 3 | `wipCostsAccount` | WIP Costs Account | WIP Costs Account | ✅ |
+| 4 | `wipAccruedCostsAccount` | WIP Accrued Costs Account | WIP Accrued Costs Account | ✅ |
+| 5 | `jobCostsAppliedAccount` | Job Costs Applied Account | Project Costs Applied Account | ✅ |
+| 6 | `jobCostsAdjustmentAccount` | Job Costs Adjustment Account | Project Costs Adjustment Account | ✅ |
+| 7 | `gLExpenseAccContract` | G/L Expense Acc. (Contract) | G/L Expense Acc. (Contract) | ✅ |
+| 8 | `jobSalesAdjustmentAccount` | Job Sales Adjustment Account | Project Sales Adjustment Account | ✅ |
+| 9 | `wipAccruedSalesAccount` | WIP Accrued Sales Account | WIP Accrued Sales Account | ✅ |
+| 10 | `wipInvoicedSalesAccount` | WIP Invoiced Sales Account | WIP Invoiced Sales Account | ✅ |
+| 11 | `jobSalesAppliedAccount` | Job Sales Applied Account | Project Sales Applied Account | ✅ |
+| 12 | `recognizedCostsAccount` | Recognized Costs Account | Recognized Costs Account | ✅ |
+| 13 | `recognizedSalesAccount` | Recognized Sales Account | Recognized Sales Account | ✅ |
+| 14 | `itemCostsAppliedAccount` | Item Costs Applied Account | Item Costs Applied Account | ✅ |
+| 15 | `resourceCostsAppliedAccount` | Resource Costs Applied Account | Resource Costs Applied Account | ✅ |
+| 16 | `gLCostsAppliedAccount` | G/L Costs Applied Account | G/L Costs Applied Account | ✅ |
+| 17 | `description` | Description | Description | ✅ |
 
 
 [↑ Back to top](#table-of-contents)
@@ -10465,19 +10503,19 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Page Name | `ocpfProjectTasks` |
 | Entity Set Name | `ocpfProjectTasks` |
 | API Group | `ocpf_projectsAndAssets` |
-| Editable | ❌ No (GET only) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 75 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
 | 1 | `systemId` | SystemId | System ID | 🔑 Key |
-| 2 | `jobNo` | Job No. | Project No. | — |
-| 3 | `jobTaskNo` | Job Task No. | Project Task No. | — |
-| 4 | `description` | Description | Description | — |
-| 5 | `jobTaskType` | Job Task Type | Project Task Type | — |
-| 6 | `wipTotal` | WIP-Total | WIP-Total | — |
-| 7 | `jobPostingGroup` | Job Posting Group | Project Posting Group | — |
-| 8 | `wipMethod` | WIP Method | WIP Method | — |
+| 2 | `jobNo` | Job No. | Project No. | ✅ |
+| 3 | `jobTaskNo` | Job Task No. | Project Task No. | ✅ |
+| 4 | `description` | Description | Description | ✅ |
+| 5 | `jobTaskType` | Job Task Type | Project Task Type | ✅ |
+| 6 | `wipTotal` | WIP-Total | WIP-Total | ✅ |
+| 7 | `jobPostingGroup` | Job Posting Group | Project Posting Group | ✅ |
+| 8 | `wipMethod` | WIP Method | WIP Method | ✅ |
 | 9 | `scheduleTotalCost` | Schedule (Total Cost) | Budget (Total Cost) | 🧮 computed |
 | 10 | `scheduleTotalPrice` | Schedule (Total Price) | Budget (Total Price) | 🧮 computed |
 | 11 | `usageTotalCost` | Usage (Total Cost) | Actual (Total Cost) | 🧮 computed |
@@ -10488,63 +10526,63 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | 16 | `contractInvoicedCost` | Contract (Invoiced Cost) | Invoiced (Total Cost) | 🧮 computed |
 | 17 | `postingDateFilter` | Posting Date Filter | Posting Date Filter | 🔍 filter |
 | 18 | `planningDateFilter` | Planning Date Filter | Planning Date Filter | 🔍 filter |
-| 19 | `totaling` | Totaling | Totaling | — |
-| 20 | `newPage` | New Page | New Page | — |
-| 21 | `noOfBlankLines` | No. of Blank Lines | No. of Blank Lines | — |
-| 22 | `indentation` | Indentation | Indentation | — |
-| 23 | `locationCode` | Location Code | Location Code | — |
-| 24 | `binCode` | Bin Code | Bin Code | — |
-| 25 | `recognizedSalesAmount` | Recognized Sales Amount | Recognized Sales Amount | — |
-| 26 | `recognizedCostsAmount` | Recognized Costs Amount | Recognized Costs Amount | — |
-| 27 | `languageCode` | Language Code | Language Code | — |
-| 28 | `recognizedSalesGLAmount` | Recognized Sales G/L Amount | Recognized Sales G/L Amount | — |
-| 29 | `recognizedCostsGLAmount` | Recognized Costs G/L Amount | Recognized Costs G/L Amount | — |
-| 30 | `globalDimension1Code` | Global Dimension 1 Code | Global Dimension 1 Code | — |
-| 31 | `globalDimension2Code` | Global Dimension 2 Code | Global Dimension 2 Code | — |
+| 19 | `totaling` | Totaling | Totaling | ✅ |
+| 20 | `newPage` | New Page | New Page | ✅ |
+| 21 | `noOfBlankLines` | No. of Blank Lines | No. of Blank Lines | ✅ |
+| 22 | `indentation` | Indentation | Indentation | ✅ |
+| 23 | `locationCode` | Location Code | Location Code | ✅ |
+| 24 | `binCode` | Bin Code | Bin Code | ✅ |
+| 25 | `recognizedSalesAmount` | Recognized Sales Amount | Recognized Sales Amount | ✅ |
+| 26 | `recognizedCostsAmount` | Recognized Costs Amount | Recognized Costs Amount | ✅ |
+| 27 | `languageCode` | Language Code | Language Code | ✅ |
+| 28 | `recognizedSalesGLAmount` | Recognized Sales G/L Amount | Recognized Sales G/L Amount | ✅ |
+| 29 | `recognizedCostsGLAmount` | Recognized Costs G/L Amount | Recognized Costs G/L Amount | ✅ |
+| 30 | `globalDimension1Code` | Global Dimension 1 Code | Global Dimension 1 Code | ✅ |
+| 31 | `globalDimension2Code` | Global Dimension 2 Code | Global Dimension 2 Code | ✅ |
 | 32 | `outstandingOrders` | Outstanding Orders | Outstanding Orders | 🧮 computed |
 | 33 | `amtRcdNotInvoiced` | Amt. Rcd. Not Invoiced | Amt. Rcd. Not Invoiced | 🧮 computed |
 | 34 | `remainingTotalCost` | Remaining (Total Cost) | Remaining (Total Cost) | 🧮 computed |
 | 35 | `remainingTotalPrice` | Remaining (Total Price) | Remaining (Total Price) | 🧮 computed |
 | 36 | `startDate` | Start Date | Start Date | 🧮 computed |
 | 37 | `endDate` | End Date | End Date | 🧮 computed |
-| 38 | `billToCustomerNo` | Bill-to Customer No. | Bill-to Customer No. | — |
-| 39 | `billToName` | Bill-to Name | Bill-to Name | — |
-| 40 | `billToAddress` | Bill-to Address | Bill-to Address | — |
-| 41 | `billToAddress2` | Bill-to Address 2 | Bill-to Address 2 | — |
-| 42 | `billToCity` | Bill-to City | Bill-to City | — |
-| 43 | `billToCounty` | Bill-to County | Bill-to County | — |
-| 44 | `billToPostCode` | Bill-to Post Code | Bill-to Post Code | — |
-| 45 | `billToCountryRegionCode` | Bill-to Country/Region Code | Bill-to Country/Region Code | — |
-| 46 | `billToName2` | Bill-to Name 2 | Bill-to Name 2 | — |
-| 47 | `billToContactNo` | Bill-to Contact No. | Bill-to Contact No. | — |
-| 48 | `billToContact` | Bill-to Contact | Bill-to Contact | — |
-| 49 | `sellToCustomerNo` | Sell-to Customer No. | Sell-to Customer No. | — |
-| 50 | `sellToCustomerName` | Sell-to Customer Name | Sell-to Customer Name | — |
-| 51 | `sellToCustomerName2` | Sell-to Customer Name 2 | Sell-to Customer Name 2 | — |
-| 52 | `sellToAddress` | Sell-to Address | Sell-to Address | — |
-| 53 | `sellToAddress2` | Sell-to Address 2 | Sell-to Address 2 | — |
-| 54 | `sellToCity` | Sell-to City | Sell-to City | — |
-| 55 | `sellToContact` | Sell-to Contact | Sell-to Contact | — |
-| 56 | `sellToPostCode` | Sell-to Post Code | Sell-to Post Code | — |
-| 57 | `sellToCounty` | Sell-to County | Sell-to County | — |
-| 58 | `sellToCountryRegionCode` | Sell-to Country/Region Code | Sell-to Country/Region Code | — |
-| 59 | `sellToContactNo` | Sell-to Contact No. | Sell-to Contact No. | — |
-| 60 | `shipToCode` | Ship-to Code | Ship-to Code | — |
-| 61 | `shipToName` | Ship-to Name | Ship-to Name | — |
-| 62 | `shipToName2` | Ship-to Name 2 | Ship-to Name 2 | — |
-| 63 | `shipToAddress` | Ship-to Address | Ship-to Address | — |
-| 64 | `shipToAddress2` | Ship-to Address 2 | Ship-to Address 2 | — |
-| 65 | `shipToCity` | Ship-to City | Ship-to City | — |
-| 66 | `shipToContact` | Ship-to Contact | Ship-to Contact | — |
-| 67 | `shipToPostCode` | Ship-to Post Code | Ship-to Post Code | — |
-| 68 | `shipToCounty` | Ship-to County | Ship-to County | — |
-| 69 | `shipToCountryRegionCode` | Ship-to Country/Region Code | Ship-to Country/Region Code | — |
-| 70 | `externalDocumentNo` | External Document No. | External Document No. | — |
-| 71 | `paymentMethodCode` | Payment Method Code | Payment Method Code | — |
-| 72 | `paymentTermsCode` | Payment Terms Code | Payment Terms Code | — |
-| 73 | `yourReference` | Your Reference | Your Reference | — |
-| 74 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | — |
-| 75 | `invoiceCurrencyCode` | Invoice Currency Code | Invoice Currency Code | — |
+| 38 | `billToCustomerNo` | Bill-to Customer No. | Bill-to Customer No. | ✅ |
+| 39 | `billToName` | Bill-to Name | Bill-to Name | ✅ |
+| 40 | `billToAddress` | Bill-to Address | Bill-to Address | ✅ |
+| 41 | `billToAddress2` | Bill-to Address 2 | Bill-to Address 2 | ✅ |
+| 42 | `billToCity` | Bill-to City | Bill-to City | ✅ |
+| 43 | `billToCounty` | Bill-to County | Bill-to County | ✅ |
+| 44 | `billToPostCode` | Bill-to Post Code | Bill-to Post Code | ✅ |
+| 45 | `billToCountryRegionCode` | Bill-to Country/Region Code | Bill-to Country/Region Code | ✅ |
+| 46 | `billToName2` | Bill-to Name 2 | Bill-to Name 2 | ✅ |
+| 47 | `billToContactNo` | Bill-to Contact No. | Bill-to Contact No. | ✅ |
+| 48 | `billToContact` | Bill-to Contact | Bill-to Contact | ✅ |
+| 49 | `sellToCustomerNo` | Sell-to Customer No. | Sell-to Customer No. | ✅ |
+| 50 | `sellToCustomerName` | Sell-to Customer Name | Sell-to Customer Name | ✅ |
+| 51 | `sellToCustomerName2` | Sell-to Customer Name 2 | Sell-to Customer Name 2 | ✅ |
+| 52 | `sellToAddress` | Sell-to Address | Sell-to Address | ✅ |
+| 53 | `sellToAddress2` | Sell-to Address 2 | Sell-to Address 2 | ✅ |
+| 54 | `sellToCity` | Sell-to City | Sell-to City | ✅ |
+| 55 | `sellToContact` | Sell-to Contact | Sell-to Contact | ✅ |
+| 56 | `sellToPostCode` | Sell-to Post Code | Sell-to Post Code | ✅ |
+| 57 | `sellToCounty` | Sell-to County | Sell-to County | ✅ |
+| 58 | `sellToCountryRegionCode` | Sell-to Country/Region Code | Sell-to Country/Region Code | ✅ |
+| 59 | `sellToContactNo` | Sell-to Contact No. | Sell-to Contact No. | ✅ |
+| 60 | `shipToCode` | Ship-to Code | Ship-to Code | ✅ |
+| 61 | `shipToName` | Ship-to Name | Ship-to Name | ✅ |
+| 62 | `shipToName2` | Ship-to Name 2 | Ship-to Name 2 | ✅ |
+| 63 | `shipToAddress` | Ship-to Address | Ship-to Address | ✅ |
+| 64 | `shipToAddress2` | Ship-to Address 2 | Ship-to Address 2 | ✅ |
+| 65 | `shipToCity` | Ship-to City | Ship-to City | ✅ |
+| 66 | `shipToContact` | Ship-to Contact | Ship-to Contact | ✅ |
+| 67 | `shipToPostCode` | Ship-to Post Code | Ship-to Post Code | ✅ |
+| 68 | `shipToCounty` | Ship-to County | Ship-to County | ✅ |
+| 69 | `shipToCountryRegionCode` | Ship-to Country/Region Code | Ship-to Country/Region Code | ✅ |
+| 70 | `externalDocumentNo` | External Document No. | External Document No. | ✅ |
+| 71 | `paymentMethodCode` | Payment Method Code | Payment Method Code | ✅ |
+| 72 | `paymentTermsCode` | Payment Terms Code | Payment Terms Code | ✅ |
+| 73 | `yourReference` | Your Reference | Your Reference | ✅ |
+| 74 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | ✅ |
+| 75 | `invoiceCurrencyCode` | Invoice Currency Code | Invoice Currency Code | ✅ |
 
 
 [↑ Back to top](#table-of-contents)
@@ -10562,111 +10600,111 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Page Name | `ocpfProjectPlanningLines` |
 | Entity Set Name | `ocpfProjectPlanningLines` |
 | API Group | `ocpf_projectsAndAssets` |
-| Editable | ❌ No (GET only) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 102 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
 | 1 | `systemId` | SystemId | System ID | 🔑 Key |
-| 2 | `lineNo` | Line No. | Line No. | — |
-| 3 | `jobNo` | Job No. | Project No. | — |
-| 4 | `planningDate` | Planning Date | Planning Date | — |
-| 5 | `documentNo` | Document No. | Document No. | — |
-| 6 | `type` | Type | Type | — |
-| 7 | `no` | No. | No. | — |
-| 8 | `description` | Description | Description | — |
-| 9 | `quantity` | Quantity | Quantity | — |
-| 10 | `directUnitCostLcy` | Direct Unit Cost (LCY) | Direct Unit Cost (LCY) | — |
-| 11 | `unitCostLcy` | Unit Cost (LCY) | Unit Cost (LCY) | — |
-| 12 | `totalCostLcy` | Total Cost (LCY) | Total Cost (LCY) | — |
-| 13 | `unitPriceLcy` | Unit Price (LCY) | Unit Price (LCY) | — |
-| 14 | `totalPriceLcy` | Total Price (LCY) | Total Price (LCY) | — |
-| 15 | `resourceGroupNo` | Resource Group No. | Resource Group No. | — |
-| 16 | `unitOfMeasureCode` | Unit of Measure Code | Unit of Measure Code | — |
-| 17 | `qtyRoundingPrecision` | Qty. Rounding Precision | Qty. Rounding Precision | — |
-| 18 | `qtyRoundingPrecisionBase` | Qty. Rounding Precision (Base) | Qty. Rounding Precision (Base) | — |
-| 19 | `locationCode` | Location Code | Location Code | — |
-| 20 | `lastDateModified` | Last Date Modified | Last Date Modified | — |
-| 21 | `userId` | User ID | User ID | — |
-| 22 | `workTypeCode` | Work Type Code | Work Type Code | — |
-| 23 | `customerPriceGroup` | Customer Price Group | Customer Price Group | — |
-| 24 | `countryRegionCode` | Country/Region Code | Country/Region Code | — |
-| 25 | `genBusPostingGroup` | Gen. Bus. Posting Group | Gen. Bus. Posting Group | — |
-| 26 | `genProdPostingGroup` | Gen. Prod. Posting Group | Gen. Prod. Posting Group | — |
-| 27 | `documentDate` | Document Date | Document Date | — |
-| 28 | `planningDueDate` | Planning Due Date | Planning Due Date | — |
-| 29 | `qtyToAssemble` | Qty. to Assemble | Qty. to Assemble | — |
-| 30 | `qtyToAssembleBase` | Qty. to Assemble (Base) | Qty. to Assemble (Base) | — |
-| 31 | `assembleToOrder` | Assemble to Order | Assemble to Order | — |
-| 32 | `bomItemNo` | BOM Item No. | BOM Item No. | — |
-| 33 | `attachedToLineNo` | Attached to Line No. | Attached to Line No. | — |
-| 34 | `jobTaskNo` | Job Task No. | Project Task No. | — |
-| 35 | `lineAmountLcy` | Line Amount (LCY) | Line Amount (LCY) | — |
-| 36 | `unitCost` | Unit Cost | Unit Cost | — |
-| 37 | `totalCost` | Total Cost | Total Cost | — |
-| 38 | `unitPrice` | Unit Price | Unit Price | — |
-| 39 | `totalPrice` | Total Price | Total Price | — |
-| 40 | `lineAmount` | Line Amount | Line Amount | — |
-| 41 | `lineDiscountAmount` | Line Discount Amount | Line Discount Amount | — |
-| 42 | `lineDiscountAmountLcy` | Line Discount Amount (LCY) | Line Discount Amount (LCY) | — |
-| 43 | `costFactor` | Cost Factor | Cost Factor | — |
-| 44 | `serialNo` | Serial No. | Serial No. | — |
-| 45 | `lotNo` | Lot No. | Lot No. | — |
-| 46 | `lineDiscountPct` | Line Discount % | Line Discount % | — |
-| 47 | `lineType` | Line Type | Line Type | — |
-| 48 | `currencyCode` | Currency Code | Currency Code | — |
-| 49 | `currencyDate` | Currency Date | Currency Date | — |
-| 50 | `currencyFactor` | Currency Factor | Currency Factor | — |
-| 51 | `scheduleLine` | Schedule Line | Budget Line | — |
-| 52 | `contractLine` | Contract Line | Billable Line | — |
-| 53 | `jobContractEntryNo` | Job Contract Entry No. | Project Contract Entry No. | — |
+| 2 | `lineNo` | Line No. | Line No. | ✅ |
+| 3 | `jobNo` | Job No. | Project No. | ✅ |
+| 4 | `planningDate` | Planning Date | Planning Date | ✅ |
+| 5 | `documentNo` | Document No. | Document No. | ✅ |
+| 6 | `type` | Type | Type | ✅ |
+| 7 | `no` | No. | No. | ✅ |
+| 8 | `description` | Description | Description | ✅ |
+| 9 | `quantity` | Quantity | Quantity | ✅ |
+| 10 | `directUnitCostLcy` | Direct Unit Cost (LCY) | Direct Unit Cost (LCY) | ✅ |
+| 11 | `unitCostLcy` | Unit Cost (LCY) | Unit Cost (LCY) | ✅ |
+| 12 | `totalCostLcy` | Total Cost (LCY) | Total Cost (LCY) | ✅ |
+| 13 | `unitPriceLcy` | Unit Price (LCY) | Unit Price (LCY) | ✅ |
+| 14 | `totalPriceLcy` | Total Price (LCY) | Total Price (LCY) | ✅ |
+| 15 | `resourceGroupNo` | Resource Group No. | Resource Group No. | ✅ |
+| 16 | `unitOfMeasureCode` | Unit of Measure Code | Unit of Measure Code | ✅ |
+| 17 | `qtyRoundingPrecision` | Qty. Rounding Precision | Qty. Rounding Precision | ✅ |
+| 18 | `qtyRoundingPrecisionBase` | Qty. Rounding Precision (Base) | Qty. Rounding Precision (Base) | ✅ |
+| 19 | `locationCode` | Location Code | Location Code | ✅ |
+| 20 | `lastDateModified` | Last Date Modified | Last Date Modified | ✅ |
+| 21 | `userId` | User ID | User ID | ✅ |
+| 22 | `workTypeCode` | Work Type Code | Work Type Code | ✅ |
+| 23 | `customerPriceGroup` | Customer Price Group | Customer Price Group | ✅ |
+| 24 | `countryRegionCode` | Country/Region Code | Country/Region Code | ✅ |
+| 25 | `genBusPostingGroup` | Gen. Bus. Posting Group | Gen. Bus. Posting Group | ✅ |
+| 26 | `genProdPostingGroup` | Gen. Prod. Posting Group | Gen. Prod. Posting Group | ✅ |
+| 27 | `documentDate` | Document Date | Document Date | ✅ |
+| 28 | `planningDueDate` | Planning Due Date | Planning Due Date | ✅ |
+| 29 | `qtyToAssemble` | Qty. to Assemble | Qty. to Assemble | ✅ |
+| 30 | `qtyToAssembleBase` | Qty. to Assemble (Base) | Qty. to Assemble (Base) | ✅ |
+| 31 | `assembleToOrder` | Assemble to Order | Assemble to Order | ✅ |
+| 32 | `bomItemNo` | BOM Item No. | BOM Item No. | ✅ |
+| 33 | `attachedToLineNo` | Attached to Line No. | Attached to Line No. | ✅ |
+| 34 | `jobTaskNo` | Job Task No. | Project Task No. | ✅ |
+| 35 | `lineAmountLcy` | Line Amount (LCY) | Line Amount (LCY) | ✅ |
+| 36 | `unitCost` | Unit Cost | Unit Cost | ✅ |
+| 37 | `totalCost` | Total Cost | Total Cost | ✅ |
+| 38 | `unitPrice` | Unit Price | Unit Price | ✅ |
+| 39 | `totalPrice` | Total Price | Total Price | ✅ |
+| 40 | `lineAmount` | Line Amount | Line Amount | ✅ |
+| 41 | `lineDiscountAmount` | Line Discount Amount | Line Discount Amount | ✅ |
+| 42 | `lineDiscountAmountLcy` | Line Discount Amount (LCY) | Line Discount Amount (LCY) | ✅ |
+| 43 | `costFactor` | Cost Factor | Cost Factor | ✅ |
+| 44 | `serialNo` | Serial No. | Serial No. | ✅ |
+| 45 | `lotNo` | Lot No. | Lot No. | ✅ |
+| 46 | `lineDiscountPct` | Line Discount % | Line Discount % | ✅ |
+| 47 | `lineType` | Line Type | Line Type | ✅ |
+| 48 | `currencyCode` | Currency Code | Currency Code | ✅ |
+| 49 | `currencyDate` | Currency Date | Currency Date | ✅ |
+| 50 | `currencyFactor` | Currency Factor | Currency Factor | ✅ |
+| 51 | `scheduleLine` | Schedule Line | Budget Line | ✅ |
+| 52 | `contractLine` | Contract Line | Billable Line | ✅ |
+| 53 | `jobContractEntryNo` | Job Contract Entry No. | Project Contract Entry No. | ✅ |
 | 54 | `invoicedAmountLcy` | Invoiced Amount (LCY) | Invoiced Amount (LCY) | 🧮 computed |
 | 55 | `invoicedCostAmountLcy` | Invoiced Cost Amount (LCY) | Invoiced Cost Amount (LCY) | 🧮 computed |
-| 56 | `vatUnitPrice` | VAT Unit Price | VAT Unit Price | — |
-| 57 | `vatLineDiscountAmount` | VAT Line Discount Amount | VAT Line Discount Amount | — |
-| 58 | `vatLineAmount` | VAT Line Amount | VAT Line Amount | — |
-| 59 | `vatPct` | VAT % | VAT % | — |
-| 60 | `description2` | Description 2 | Description 2 | — |
-| 61 | `jobLedgerEntryNo` | Job Ledger Entry No. | Project Ledger Entry No. | — |
-| 62 | `status` | Status | Status | — |
-| 63 | `ledgerEntryType` | Ledger Entry Type | Ledger Entry Type | — |
-| 64 | `ledgerEntryNo` | Ledger Entry No. | Ledger Entry No. | — |
-| 65 | `systemCreatedEntry` | System-Created Entry | System-Created Entry | — |
-| 66 | `usageLink` | Usage Link | Usage Link | — |
-| 67 | `remainingQty` | Remaining Qty. | Remaining Qty. | — |
-| 68 | `remainingQtyBase` | Remaining Qty. (Base) | Remaining Qty. (Base) | — |
-| 69 | `remainingTotalCost` | Remaining Total Cost | Remaining Total Cost | — |
-| 70 | `remainingTotalCostLcy` | Remaining Total Cost (LCY) | Remaining Total Cost (LCY) | — |
-| 71 | `remainingLineAmount` | Remaining Line Amount | Remaining Line Amount | — |
-| 72 | `remainingLineAmountLcy` | Remaining Line Amount (LCY) | Remaining Line Amount (LCY) | — |
-| 73 | `qtyPosted` | Qty. Posted | Qty. Posted | — |
-| 74 | `qtyToTransferToJournal` | Qty. to Transfer to Journal | Qty. to Transfer to Journal | — |
-| 75 | `postedTotalCost` | Posted Total Cost | Posted Total Cost | — |
-| 76 | `postedTotalCostLcy` | Posted Total Cost (LCY) | Posted Total Cost (LCY) | — |
-| 77 | `postedLineAmount` | Posted Line Amount | Posted Line Amount | — |
-| 78 | `postedLineAmountLcy` | Posted Line Amount (LCY) | Posted Line Amount (LCY) | — |
+| 56 | `vatUnitPrice` | VAT Unit Price | VAT Unit Price | ✅ |
+| 57 | `vatLineDiscountAmount` | VAT Line Discount Amount | VAT Line Discount Amount | ✅ |
+| 58 | `vatLineAmount` | VAT Line Amount | VAT Line Amount | ✅ |
+| 59 | `vatPct` | VAT % | VAT % | ✅ |
+| 60 | `description2` | Description 2 | Description 2 | ✅ |
+| 61 | `jobLedgerEntryNo` | Job Ledger Entry No. | Project Ledger Entry No. | ✅ |
+| 62 | `status` | Status | Status | ✅ |
+| 63 | `ledgerEntryType` | Ledger Entry Type | Ledger Entry Type | ✅ |
+| 64 | `ledgerEntryNo` | Ledger Entry No. | Ledger Entry No. | ✅ |
+| 65 | `systemCreatedEntry` | System-Created Entry | System-Created Entry | ✅ |
+| 66 | `usageLink` | Usage Link | Usage Link | ✅ |
+| 67 | `remainingQty` | Remaining Qty. | Remaining Qty. | ✅ |
+| 68 | `remainingQtyBase` | Remaining Qty. (Base) | Remaining Qty. (Base) | ✅ |
+| 69 | `remainingTotalCost` | Remaining Total Cost | Remaining Total Cost | ✅ |
+| 70 | `remainingTotalCostLcy` | Remaining Total Cost (LCY) | Remaining Total Cost (LCY) | ✅ |
+| 71 | `remainingLineAmount` | Remaining Line Amount | Remaining Line Amount | ✅ |
+| 72 | `remainingLineAmountLcy` | Remaining Line Amount (LCY) | Remaining Line Amount (LCY) | ✅ |
+| 73 | `qtyPosted` | Qty. Posted | Qty. Posted | ✅ |
+| 74 | `qtyToTransferToJournal` | Qty. to Transfer to Journal | Qty. to Transfer to Journal | ✅ |
+| 75 | `postedTotalCost` | Posted Total Cost | Posted Total Cost | ✅ |
+| 76 | `postedTotalCostLcy` | Posted Total Cost (LCY) | Posted Total Cost (LCY) | ✅ |
+| 77 | `postedLineAmount` | Posted Line Amount | Posted Line Amount | ✅ |
+| 78 | `postedLineAmountLcy` | Posted Line Amount (LCY) | Posted Line Amount (LCY) | ✅ |
 | 79 | `qtyTransferredToInvoice` | Qty. Transferred to Invoice | Qty. Transferred to Invoice | 🧮 computed |
-| 80 | `qtyToTransferToInvoice` | Qty. to Transfer to Invoice | Qty. to Transfer to Invoice | — |
+| 80 | `qtyToTransferToInvoice` | Qty. to Transfer to Invoice | Qty. to Transfer to Invoice | ✅ |
 | 81 | `qtyInvoiced` | Qty. Invoiced | Qty. Invoiced | 🧮 computed |
-| 82 | `qtyToInvoice` | Qty. to Invoice | Qty. to Invoice | — |
+| 82 | `qtyToInvoice` | Qty. to Invoice | Qty. to Invoice | ✅ |
 | 83 | `reservedQuantity` | Reserved Quantity | Reserved Quantity | 🧮 computed |
 | 84 | `reservedQtyBase` | Reserved Qty. (Base) | Reserved Qty. (Base) | 🧮 computed |
-| 85 | `reserve` | Reserve | Reserve | — |
-| 86 | `planned` | Planned | Planned | — |
-| 87 | `variantCode` | Variant Code | Variant Code | — |
-| 88 | `binCode` | Bin Code | Bin Code | — |
-| 89 | `qtyPerUnitOfMeasure` | Qty. per Unit of Measure | Qty. per Unit of Measure | — |
-| 90 | `quantityBase` | Quantity (Base) | Quantity (Base) | — |
-| 91 | `requestedDeliveryDate` | Requested Delivery Date | Requested Delivery Date | — |
-| 92 | `promisedDeliveryDate` | Promised Delivery Date | Promised Delivery Date | — |
-| 93 | `plannedDeliveryDate` | Planned Delivery Date | Planned Delivery Date | — |
-| 94 | `packageNo` | Package No. | Package No. | — |
-| 95 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | — |
-| 96 | `costCalculationMethod` | Cost Calculation Method | Cost Calculation Method | — |
+| 85 | `reserve` | Reserve | Reserve | ✅ |
+| 86 | `planned` | Planned | Planned | ✅ |
+| 87 | `variantCode` | Variant Code | Variant Code | ✅ |
+| 88 | `binCode` | Bin Code | Bin Code | ✅ |
+| 89 | `qtyPerUnitOfMeasure` | Qty. per Unit of Measure | Qty. per Unit of Measure | ✅ |
+| 90 | `quantityBase` | Quantity (Base) | Quantity (Base) | ✅ |
+| 91 | `requestedDeliveryDate` | Requested Delivery Date | Requested Delivery Date | ✅ |
+| 92 | `promisedDeliveryDate` | Promised Delivery Date | Promised Delivery Date | ✅ |
+| 93 | `plannedDeliveryDate` | Planned Delivery Date | Planned Delivery Date | ✅ |
+| 94 | `packageNo` | Package No. | Package No. | ✅ |
+| 95 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | ✅ |
+| 96 | `costCalculationMethod` | Cost Calculation Method | Cost Calculation Method | ✅ |
 | 97 | `pickQty` | Pick Qty. | Pick Qty. | 🧮 computed |
-| 98 | `qtyPicked` | Qty. Picked | Qty. Picked | — |
-| 99 | `qtyPickedBase` | Qty. Picked (Base) | Qty. Picked (Base) | — |
-| 100 | `completelyPicked` | Completely Picked | Completely Picked | — |
+| 98 | `qtyPicked` | Qty. Picked | Qty. Picked | ✅ |
+| 99 | `qtyPickedBase` | Qty. Picked (Base) | Qty. Picked (Base) | ✅ |
+| 100 | `completelyPicked` | Completely Picked | Completely Picked | ✅ |
 | 101 | `pickQtyBase` | Pick Qty. (Base) | Pick Qty. (Base) | 🧮 computed |
 | 102 | `qtyOnJournal` | Qty. on Journal | Qty. on Journal | 🧮 computed |
 
@@ -10687,6 +10725,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Entity Set Name | `ocpfProjectLedgerEntries` |
 | API Group | `ocpf_projectsAndAssets` |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 82 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -10790,44 +10829,44 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Page Name | `ocpfFixedAssets` |
 | Entity Set Name | `ocpfFixedAssets` |
 | API Group | `ocpf_projectsAndAssets` |
-| Editable | ❌ No (GET only) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 33 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
 | 1 | `systemId` | SystemId | System ID | 🔑 Key |
-| 2 | `no` | No. | No. | — |
-| 3 | `description` | Description | Description | — |
-| 4 | `searchDescription` | Search Description | Search Description | — |
-| 5 | `description2` | Description 2 | Description 2 | — |
-| 6 | `faClassCode` | FA Class Code | FA Class Code | — |
-| 7 | `faSubclassCode` | FA Subclass Code | FA Subclass Code | — |
-| 8 | `globalDimension1Code` | Global Dimension 1 Code | Global Dimension 1 Code | — |
-| 9 | `globalDimension2Code` | Global Dimension 2 Code | Global Dimension 2 Code | — |
-| 10 | `locationCode` | Location Code | Location Code | — |
-| 11 | `faLocationCode` | FA Location Code | FA Location Code | — |
-| 12 | `vendorNo` | Vendor No. | Vendor No. | — |
-| 13 | `mainAssetComponent` | Main Asset/Component | Main Asset/Component | — |
-| 14 | `componentOfMainAsset` | Component of Main Asset | Component of Main Asset | — |
-| 15 | `budgetedAsset` | Budgeted Asset | Budgeted Asset | — |
-| 16 | `warrantyDate` | Warranty Date | Warranty Date | — |
-| 17 | `responsibleEmployee` | Responsible Employee | Responsible Employee | — |
-| 18 | `serialNo` | Serial No. | Serial No. | — |
-| 19 | `lastDateModified` | Last Date Modified | Last Date Modified | — |
+| 2 | `no` | No. | No. | ✅ |
+| 3 | `description` | Description | Description | ✅ |
+| 4 | `searchDescription` | Search Description | Search Description | ✅ |
+| 5 | `description2` | Description 2 | Description 2 | ✅ |
+| 6 | `faClassCode` | FA Class Code | FA Class Code | ✅ |
+| 7 | `faSubclassCode` | FA Subclass Code | FA Subclass Code | ✅ |
+| 8 | `globalDimension1Code` | Global Dimension 1 Code | Global Dimension 1 Code | ✅ |
+| 9 | `globalDimension2Code` | Global Dimension 2 Code | Global Dimension 2 Code | ✅ |
+| 10 | `locationCode` | Location Code | Location Code | ✅ |
+| 11 | `faLocationCode` | FA Location Code | FA Location Code | ✅ |
+| 12 | `vendorNo` | Vendor No. | Vendor No. | ✅ |
+| 13 | `mainAssetComponent` | Main Asset/Component | Main Asset/Component | ✅ |
+| 14 | `componentOfMainAsset` | Component of Main Asset | Component of Main Asset | ✅ |
+| 15 | `budgetedAsset` | Budgeted Asset | Budgeted Asset | ✅ |
+| 16 | `warrantyDate` | Warranty Date | Warranty Date | ✅ |
+| 17 | `responsibleEmployee` | Responsible Employee | Responsible Employee | ✅ |
+| 18 | `serialNo` | Serial No. | Serial No. | ✅ |
+| 19 | `lastDateModified` | Last Date Modified | Last Date Modified | ✅ |
 | 20 | `insured` | Insured | Insured | 🧮 computed |
 | 21 | `comment` | Comment | Comment | 🧮 computed |
-| 22 | `blocked` | Blocked | Blocked | — |
-| 23 | `maintenanceVendorNo` | Maintenance Vendor No. | Maintenance Vendor No. | — |
-| 24 | `underMaintenance` | Under Maintenance | Under Maintenance | — |
-| 25 | `nextServiceDate` | Next Service Date | Next Service Date | — |
-| 26 | `inactive` | Inactive | Inactive | — |
+| 22 | `blocked` | Blocked | Blocked | ✅ |
+| 23 | `maintenanceVendorNo` | Maintenance Vendor No. | Maintenance Vendor No. | ✅ |
+| 24 | `underMaintenance` | Under Maintenance | Under Maintenance | ✅ |
+| 25 | `nextServiceDate` | Next Service Date | Next Service Date | ✅ |
+| 26 | `inactive` | Inactive | Inactive | ✅ |
 | 27 | `faPostingDateFilter` | FA Posting Date Filter | FA Posting Date Filter | 🔍 filter |
-| 28 | `noSeries` | No. Series | No. Series | — |
-| 29 | `faPostingGroup` | FA Posting Group | FA Posting Group | — |
+| 28 | `noSeries` | No. Series | No. Series | ✅ |
+| 29 | `faPostingGroup` | FA Posting Group | FA Posting Group | ✅ |
 | 30 | `acquired` | Acquired | Acquired | 🧮 computed |
-| 31 | `image` | Image | Image | — |
-| 32 | `faLocationId` | FA Location Id | FA Location Id | — |
-| 33 | `responsibleEmployeeId` | Responsible Employee Id | Responsible Employee | — |
+| 31 | `image` | Image | Image | ✅ |
+| 32 | `faLocationId` | FA Location Id | FA Location Id | ✅ |
+| 33 | `responsibleEmployeeId` | Responsible Employee Id | Responsible Employee | ✅ |
 
 
 [↑ Back to top](#table-of-contents)
@@ -10845,42 +10884,42 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Page Name | `ocpfFaPostingGroups` |
 | Entity Set Name | `ocpfFaPostingGroups` |
 | API Group | `ocpf_projectsAndAssets` |
-| Editable | ❌ No (GET only) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 45 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
 | 1 | `systemId` | SystemId | System ID | 🔑 Key |
-| 2 | `code` | Code | Code | — |
-| 3 | `acquisitionCostAccount` | Acquisition Cost Account | Acquisition Cost Account | — |
-| 4 | `accumDepreciationAccount` | Accum. Depreciation Account | Accum. Depreciation Account | — |
-| 5 | `writeDownAccount` | Write-Down Account | Write-Down Account | — |
-| 6 | `appreciationAccount` | Appreciation Account | Appreciation Account | — |
-| 7 | `custom1Account` | Custom 1 Account | Custom 1 Account | — |
-| 8 | `custom2Account` | Custom 2 Account | Custom 2 Account | — |
-| 9 | `acqCostAccOnDisposal` | Acq. Cost Acc. on Disposal | Acq. Cost Acc. on Disposal | — |
-| 10 | `accumDeprAccOnDisposal` | Accum. Depr. Acc. on Disposal | Accum. Depr. Acc. on Disposal | — |
-| 11 | `writeDownAccOnDisposal` | Write-Down Acc. on Disposal | Write-Down Acc. on Disposal | — |
-| 12 | `appreciationAccOnDisposal` | Appreciation Acc. on Disposal | Appreciation Acc. on Disposal | — |
-| 13 | `custom1AccountOnDisposal` | Custom 1 Account on Disposal | Custom 1 Account on Disposal | — |
-| 14 | `custom2AccountOnDisposal` | Custom 2 Account on Disposal | Custom 2 Account on Disposal | — |
-| 15 | `gainsAccOnDisposal` | Gains Acc. on Disposal | Gains Acc. on Disposal | — |
-| 16 | `lossesAccOnDisposal` | Losses Acc. on Disposal | Losses Acc. on Disposal | — |
-| 17 | `bookValAccOnDispGain` | Book Val. Acc. on Disp. (Gain) | Book Val. Acc. on Disp. (Gain) | — |
-| 18 | `salesAccOnDispGain` | Sales Acc. on Disp. (Gain) | Sales Acc. on Disp. (Gain) | — |
-| 19 | `writeDownBalAccOnDisp` | Write-Down Bal. Acc. on Disp. | Write-Down Bal. Acc. on Disp. | — |
-| 20 | `apprecBalAccOnDisp` | Apprec. Bal. Acc. on Disp. | Apprec. Bal. Acc. on Disp. | — |
-| 21 | `custom1BalAccOnDisposal` | Custom 1 Bal. Acc. on Disposal | Custom 1 Bal. Acc. on Disposal | — |
-| 22 | `custom2BalAccOnDisposal` | Custom 2 Bal. Acc. on Disposal | Custom 2 Bal. Acc. on Disposal | — |
-| 23 | `maintenanceExpenseAccount` | Maintenance Expense Account | Maintenance Expense Account | — |
-| 24 | `maintenanceBalAcc` | Maintenance Bal. Acc. | Maintenance Bal. Acc. | — |
-| 25 | `acquisitionCostBalAcc` | Acquisition Cost Bal. Acc. | Acquisition Cost Bal. Acc. | — |
-| 26 | `depreciationExpenseAcc` | Depreciation Expense Acc. | Depreciation Expense Acc. | — |
-| 27 | `writeDownExpenseAcc` | Write-Down Expense Acc. | Write-Down Expense Acc. | — |
-| 28 | `appreciationBalAccount` | Appreciation Bal. Account | Appreciation Bal. Account | — |
-| 29 | `custom1ExpenseAcc` | Custom 1 Expense Acc. | Custom 1 Expense Acc. | — |
-| 30 | `custom2ExpenseAcc` | Custom 2 Expense Acc. | Custom 2 Expense Acc. | — |
-| 31 | `salesBalAcc` | Sales Bal. Acc. | Sales Bal. Acc. | — |
+| 2 | `code` | Code | Code | ✅ |
+| 3 | `acquisitionCostAccount` | Acquisition Cost Account | Acquisition Cost Account | ✅ |
+| 4 | `accumDepreciationAccount` | Accum. Depreciation Account | Accum. Depreciation Account | ✅ |
+| 5 | `writeDownAccount` | Write-Down Account | Write-Down Account | ✅ |
+| 6 | `appreciationAccount` | Appreciation Account | Appreciation Account | ✅ |
+| 7 | `custom1Account` | Custom 1 Account | Custom 1 Account | ✅ |
+| 8 | `custom2Account` | Custom 2 Account | Custom 2 Account | ✅ |
+| 9 | `acqCostAccOnDisposal` | Acq. Cost Acc. on Disposal | Acq. Cost Acc. on Disposal | ✅ |
+| 10 | `accumDeprAccOnDisposal` | Accum. Depr. Acc. on Disposal | Accum. Depr. Acc. on Disposal | ✅ |
+| 11 | `writeDownAccOnDisposal` | Write-Down Acc. on Disposal | Write-Down Acc. on Disposal | ✅ |
+| 12 | `appreciationAccOnDisposal` | Appreciation Acc. on Disposal | Appreciation Acc. on Disposal | ✅ |
+| 13 | `custom1AccountOnDisposal` | Custom 1 Account on Disposal | Custom 1 Account on Disposal | ✅ |
+| 14 | `custom2AccountOnDisposal` | Custom 2 Account on Disposal | Custom 2 Account on Disposal | ✅ |
+| 15 | `gainsAccOnDisposal` | Gains Acc. on Disposal | Gains Acc. on Disposal | ✅ |
+| 16 | `lossesAccOnDisposal` | Losses Acc. on Disposal | Losses Acc. on Disposal | ✅ |
+| 17 | `bookValAccOnDispGain` | Book Val. Acc. on Disp. (Gain) | Book Val. Acc. on Disp. (Gain) | ✅ |
+| 18 | `salesAccOnDispGain` | Sales Acc. on Disp. (Gain) | Sales Acc. on Disp. (Gain) | ✅ |
+| 19 | `writeDownBalAccOnDisp` | Write-Down Bal. Acc. on Disp. | Write-Down Bal. Acc. on Disp. | ✅ |
+| 20 | `apprecBalAccOnDisp` | Apprec. Bal. Acc. on Disp. | Apprec. Bal. Acc. on Disp. | ✅ |
+| 21 | `custom1BalAccOnDisposal` | Custom 1 Bal. Acc. on Disposal | Custom 1 Bal. Acc. on Disposal | ✅ |
+| 22 | `custom2BalAccOnDisposal` | Custom 2 Bal. Acc. on Disposal | Custom 2 Bal. Acc. on Disposal | ✅ |
+| 23 | `maintenanceExpenseAccount` | Maintenance Expense Account | Maintenance Expense Account | ✅ |
+| 24 | `maintenanceBalAcc` | Maintenance Bal. Acc. | Maintenance Bal. Acc. | ✅ |
+| 25 | `acquisitionCostBalAcc` | Acquisition Cost Bal. Acc. | Acquisition Cost Bal. Acc. | ✅ |
+| 26 | `depreciationExpenseAcc` | Depreciation Expense Acc. | Depreciation Expense Acc. | ✅ |
+| 27 | `writeDownExpenseAcc` | Write-Down Expense Acc. | Write-Down Expense Acc. | ✅ |
+| 28 | `appreciationBalAccount` | Appreciation Bal. Account | Appreciation Bal. Account | ✅ |
+| 29 | `custom1ExpenseAcc` | Custom 1 Expense Acc. | Custom 1 Expense Acc. | ✅ |
+| 30 | `custom2ExpenseAcc` | Custom 2 Expense Acc. | Custom 2 Expense Acc. | ✅ |
+| 31 | `salesBalAcc` | Sales Bal. Acc. | Sales Bal. Acc. | ✅ |
 | 32 | `allocatedAcquisitionCostPct` | Allocated Acquisition Cost % | Allocated Acquisition Cost % | 🧮 computed |
 | 33 | `allocatedDepreciationPct` | Allocated Depreciation % | Allocated Depreciation % | 🧮 computed |
 | 34 | `allocatedWriteDownPct` | Allocated Write-Down % | Allocated Write-Down % | 🧮 computed |
@@ -10893,8 +10932,8 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | 41 | `allocatedLossPct` | Allocated Loss % | Allocated Loss % | 🧮 computed |
 | 42 | `allocatedBookValuePctGain` | Allocated Book Value % (Gain) | Allocated Book Value % (Gain) | 🧮 computed |
 | 43 | `allocatedBookValuePctLoss` | Allocated Book Value % (Loss) | Allocated Book Value % (Loss) | 🧮 computed |
-| 44 | `salesAccOnDispLoss` | Sales Acc. on Disp. (Loss) | Sales Acc. on Disp. (Loss) | — |
-| 45 | `bookValAccOnDispLoss` | Book Val. Acc. on Disp. (Loss) | Book Val. Acc. on Disp. (Loss) | — |
+| 44 | `salesAccOnDispLoss` | Sales Acc. on Disp. (Loss) | Sales Acc. on Disp. (Loss) | ✅ |
+| 45 | `bookValAccOnDispLoss` | Book Val. Acc. on Disp. (Loss) | Book Val. Acc. on Disp. (Loss) | ✅ |
 
 
 [↑ Back to top](#table-of-contents)
@@ -10913,6 +10952,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Entity Set Name | `ocpfFaLedgerEntries` |
 | API Group | `ocpf_projectsAndAssets` |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 82 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -11016,26 +11056,26 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Page Name | `ocpfFaDepreciationBooks` |
 | Entity Set Name | `ocpfFaDepreciationBooks` |
 | API Group | `ocpf_projectsAndAssets` |
-| Editable | ❌ No (GET only) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 64 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
 | 1 | `systemId` | SystemId | System ID | 🔑 Key |
-| 2 | `faNo` | FA No. | FA No. | — |
-| 3 | `depreciationBookCode` | Depreciation Book Code | Depreciation Book Code | — |
-| 4 | `depreciationMethod` | Depreciation Method | Depreciation Method | — |
-| 5 | `depreciationStartingDate` | Depreciation Starting Date | Depreciation Starting Date | — |
-| 6 | `straightLinePct` | Straight-Line % | Straight-Line % | — |
-| 7 | `noOfDepreciationYears` | No. of Depreciation Years | No. of Depreciation Years | — |
-| 8 | `noOfDepreciationMonths` | No. of Depreciation Months | No. of Depreciation Months | — |
-| 9 | `fixedDeprAmount` | Fixed Depr. Amount | Fixed Depr. Amount | — |
-| 10 | `decliningBalancePct` | Declining-Balance % | Declining-Balance % | — |
-| 11 | `depreciationTableCode` | Depreciation Table Code | Depreciation Table Code | — |
-| 12 | `finalRoundingAmount` | Final Rounding Amount | Final Rounding Amount | — |
-| 13 | `endingBookValue` | Ending Book Value | Ending Book Value | — |
-| 14 | `faPostingGroup` | FA Posting Group | FA Posting Group | — |
-| 15 | `depreciationEndingDate` | Depreciation Ending Date | Depreciation Ending Date | — |
+| 2 | `faNo` | FA No. | FA No. | ✅ |
+| 3 | `depreciationBookCode` | Depreciation Book Code | Depreciation Book Code | ✅ |
+| 4 | `depreciationMethod` | Depreciation Method | Depreciation Method | ✅ |
+| 5 | `depreciationStartingDate` | Depreciation Starting Date | Depreciation Starting Date | ✅ |
+| 6 | `straightLinePct` | Straight-Line % | Straight-Line % | ✅ |
+| 7 | `noOfDepreciationYears` | No. of Depreciation Years | No. of Depreciation Years | ✅ |
+| 8 | `noOfDepreciationMonths` | No. of Depreciation Months | No. of Depreciation Months | ✅ |
+| 9 | `fixedDeprAmount` | Fixed Depr. Amount | Fixed Depr. Amount | ✅ |
+| 10 | `decliningBalancePct` | Declining-Balance % | Declining-Balance % | ✅ |
+| 11 | `depreciationTableCode` | Depreciation Table Code | Depreciation Table Code | ✅ |
+| 12 | `finalRoundingAmount` | Final Rounding Amount | Final Rounding Amount | ✅ |
+| 13 | `endingBookValue` | Ending Book Value | Ending Book Value | ✅ |
+| 14 | `faPostingGroup` | FA Posting Group | FA Posting Group | ✅ |
+| 15 | `depreciationEndingDate` | Depreciation Ending Date | Depreciation Ending Date | ✅ |
 | 16 | `acquisitionCost` | Acquisition Cost | Acquisition Cost | 🧮 computed |
 | 17 | `depreciation` | Depreciation | Depreciation | 🧮 computed |
 | 18 | `bookValue` | Book Value | Book Value | 🧮 computed |
@@ -11051,40 +11091,40 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | 28 | `maintenance` | Maintenance | Maintenance | 🧮 computed |
 | 29 | `maintenanceCodeFilter` | Maintenance Code Filter | Maintenance Code Filter | 🔍 filter |
 | 30 | `faPostingDateFilter` | FA Posting Date Filter | FA Posting Date Filter | 🔍 filter |
-| 31 | `acquisitionDate` | Acquisition Date | Acquisition Date | — |
-| 32 | `gLAcquisitionDate` | G/L Acquisition Date | G/L Acquisition Date | — |
-| 33 | `disposalDate` | Disposal Date | Disposal Date | — |
-| 34 | `lastAcquisitionCostDate` | Last Acquisition Cost Date | Last Acquisition Cost Date | — |
-| 35 | `lastDepreciationDate` | Last Depreciation Date | Last Depreciation Date | — |
-| 36 | `lastWriteDownDate` | Last Write-Down Date | Last Write-Down Date | — |
-| 37 | `lastAppreciationDate` | Last Appreciation Date | Last Appreciation Date | — |
-| 38 | `lastCustom1Date` | Last Custom 1 Date | Last Custom 1 Date | — |
-| 39 | `lastCustom2Date` | Last Custom 2 Date | Last Custom 2 Date | — |
-| 40 | `lastSalvageValueDate` | Last Salvage Value Date | Last Salvage Value Date | — |
-| 41 | `faExchangeRate` | FA Exchange Rate | FA Exchange Rate | — |
-| 42 | `fixedDeprAmountBelowZero` | Fixed Depr. Amount below Zero | Fixed Depr. Amount below Zero | — |
-| 43 | `lastDateModified` | Last Date Modified | Last Date Modified | — |
-| 44 | `firstUserDefinedDeprDate` | First User-Defined Depr. Date | First User-Defined Depr. Date | — |
-| 45 | `useFaLedgerCheck` | Use FA Ledger Check | Use FA Ledger Check | — |
-| 46 | `lastMaintenanceDate` | Last Maintenance Date | Last Maintenance Date | — |
-| 47 | `deprBelowZeroPct` | Depr. below Zero % | Depr. below Zero % | — |
-| 48 | `projectedDisposalDate` | Projected Disposal Date | Projected Disposal Date | — |
-| 49 | `projectedProceedsOnDisposal` | Projected Proceeds on Disposal | Projected Proceeds on Disposal | — |
-| 50 | `deprStartingDateCustom1` | Depr. Starting Date (Custom 1) | Depr. Starting Date (Custom 1) | — |
-| 51 | `deprEndingDateCustom1` | Depr. Ending Date (Custom 1) | Depr. Ending Date (Custom 1) | — |
-| 52 | `accumDeprPctCustom1` | Accum. Depr. % (Custom 1) | Accum. Depr. % (Custom 1) | — |
-| 53 | `deprThisYearPctCustom1` | Depr. This Year % (Custom 1) | Depr. This Year % (Custom 1) | — |
-| 54 | `propertyClassCustom1` | Property Class (Custom 1) | Property Class (Custom 1) | — |
-| 55 | `description` | Description | Description | — |
-| 56 | `mainAssetComponent` | Main Asset/Component | Main Asset/Component | — |
-| 57 | `componentOfMainAsset` | Component of Main Asset | Component of Main Asset | — |
-| 58 | `faAddCurrencyFactor` | FA Add.-Currency Factor | FA Add.-Currency Factor | — |
-| 59 | `useHalfYearConvention` | Use Half-Year Convention | Use Half-Year Convention | — |
-| 60 | `useDbPctFirstFiscalYear` | Use DB% First Fiscal Year | Use DB% First Fiscal Year | — |
-| 61 | `tempEndingDate` | Temp. Ending Date | Temp. Ending Date | — |
-| 62 | `tempFixedDeprAmount` | Temp. Fixed Depr. Amount | Temp. Fixed Depr. Amount | — |
-| 63 | `ignoreDefEndingBookValue` | Ignore Def. Ending Book Value | Ignore Def. Ending Book Value | — |
-| 64 | `defaultFaDepreciationBook` | Default FA Depreciation Book | Default FA Depreciation Book | — |
+| 31 | `acquisitionDate` | Acquisition Date | Acquisition Date | ✅ |
+| 32 | `gLAcquisitionDate` | G/L Acquisition Date | G/L Acquisition Date | ✅ |
+| 33 | `disposalDate` | Disposal Date | Disposal Date | ✅ |
+| 34 | `lastAcquisitionCostDate` | Last Acquisition Cost Date | Last Acquisition Cost Date | ✅ |
+| 35 | `lastDepreciationDate` | Last Depreciation Date | Last Depreciation Date | ✅ |
+| 36 | `lastWriteDownDate` | Last Write-Down Date | Last Write-Down Date | ✅ |
+| 37 | `lastAppreciationDate` | Last Appreciation Date | Last Appreciation Date | ✅ |
+| 38 | `lastCustom1Date` | Last Custom 1 Date | Last Custom 1 Date | ✅ |
+| 39 | `lastCustom2Date` | Last Custom 2 Date | Last Custom 2 Date | ✅ |
+| 40 | `lastSalvageValueDate` | Last Salvage Value Date | Last Salvage Value Date | ✅ |
+| 41 | `faExchangeRate` | FA Exchange Rate | FA Exchange Rate | ✅ |
+| 42 | `fixedDeprAmountBelowZero` | Fixed Depr. Amount below Zero | Fixed Depr. Amount below Zero | ✅ |
+| 43 | `lastDateModified` | Last Date Modified | Last Date Modified | ✅ |
+| 44 | `firstUserDefinedDeprDate` | First User-Defined Depr. Date | First User-Defined Depr. Date | ✅ |
+| 45 | `useFaLedgerCheck` | Use FA Ledger Check | Use FA Ledger Check | ✅ |
+| 46 | `lastMaintenanceDate` | Last Maintenance Date | Last Maintenance Date | ✅ |
+| 47 | `deprBelowZeroPct` | Depr. below Zero % | Depr. below Zero % | ✅ |
+| 48 | `projectedDisposalDate` | Projected Disposal Date | Projected Disposal Date | ✅ |
+| 49 | `projectedProceedsOnDisposal` | Projected Proceeds on Disposal | Projected Proceeds on Disposal | ✅ |
+| 50 | `deprStartingDateCustom1` | Depr. Starting Date (Custom 1) | Depr. Starting Date (Custom 1) | ✅ |
+| 51 | `deprEndingDateCustom1` | Depr. Ending Date (Custom 1) | Depr. Ending Date (Custom 1) | ✅ |
+| 52 | `accumDeprPctCustom1` | Accum. Depr. % (Custom 1) | Accum. Depr. % (Custom 1) | ✅ |
+| 53 | `deprThisYearPctCustom1` | Depr. This Year % (Custom 1) | Depr. This Year % (Custom 1) | ✅ |
+| 54 | `propertyClassCustom1` | Property Class (Custom 1) | Property Class (Custom 1) | ✅ |
+| 55 | `description` | Description | Description | ✅ |
+| 56 | `mainAssetComponent` | Main Asset/Component | Main Asset/Component | ✅ |
+| 57 | `componentOfMainAsset` | Component of Main Asset | Component of Main Asset | ✅ |
+| 58 | `faAddCurrencyFactor` | FA Add.-Currency Factor | FA Add.-Currency Factor | ✅ |
+| 59 | `useHalfYearConvention` | Use Half-Year Convention | Use Half-Year Convention | ✅ |
+| 60 | `useDbPctFirstFiscalYear` | Use DB% First Fiscal Year | Use DB% First Fiscal Year | ✅ |
+| 61 | `tempEndingDate` | Temp. Ending Date | Temp. Ending Date | ✅ |
+| 62 | `tempFixedDeprAmount` | Temp. Fixed Depr. Amount | Temp. Fixed Depr. Amount | ✅ |
+| 63 | `ignoreDefEndingBookValue` | Ignore Def. Ending Book Value | Ignore Def. Ending Book Value | ✅ |
+| 64 | `defaultFaDepreciationBook` | Default FA Depreciation Book | Default FA Depreciation Book | ✅ |
 
 
 [↑ Back to top](#table-of-contents)
@@ -11102,41 +11142,41 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Page Name | `ocpfGeneralJournalTemplates` |
 | Entity Set Name | `ocpfGeneralJournalTemplates` |
 | API Group | `ocpf_projectsAndAssets` |
-| Editable | ❌ No (GET only) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 30 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
 | 1 | `systemId` | SystemId | System ID | 🔑 Key |
-| 2 | `name` | Name | Name | — |
-| 3 | `description` | Description | Description | — |
-| 4 | `testReportId` | Test Report ID | Test Report ID | — |
-| 5 | `pageId` | Page ID | Page ID | — |
-| 6 | `postingReportId` | Posting Report ID | Posting Report ID | — |
-| 7 | `forcePostingReport` | Force Posting Report | Force Posting Report | — |
-| 8 | `type` | Type | Type | — |
-| 9 | `sourceCode` | Source Code | Source Code | — |
-| 10 | `reasonCode` | Reason Code | Reason Code | — |
-| 11 | `recurring` | Recurring | Recurring | — |
+| 2 | `name` | Name | Name | ✅ |
+| 3 | `description` | Description | Description | ✅ |
+| 4 | `testReportId` | Test Report ID | Test Report ID | ✅ |
+| 5 | `pageId` | Page ID | Page ID | ✅ |
+| 6 | `postingReportId` | Posting Report ID | Posting Report ID | ✅ |
+| 7 | `forcePostingReport` | Force Posting Report | Force Posting Report | ✅ |
+| 8 | `type` | Type | Type | ✅ |
+| 9 | `sourceCode` | Source Code | Source Code | ✅ |
+| 10 | `reasonCode` | Reason Code | Reason Code | ✅ |
+| 11 | `recurring` | Recurring | Recurring | ✅ |
 | 12 | `testReportCaption` | Test Report Caption | Test Report Caption | 🧮 computed |
 | 13 | `pageCaption` | Page Caption | Page Caption | 🧮 computed |
 | 14 | `postingReportCaption` | Posting Report Caption | Posting Report Caption | 🧮 computed |
-| 15 | `forceDocBalance` | Force Doc. Balance | Force Doc. Balance | — |
-| 16 | `balAccountType` | Bal. Account Type | Bal. Account Type | — |
-| 17 | `balAccountNo` | Bal. Account No. | Bal. Account No. | — |
-| 18 | `noSeries` | No. Series | No. Series | — |
-| 19 | `postingNoSeries` | Posting No. Series | Posting No. Series | — |
-| 20 | `copyVatSetupToJnlLines` | Copy VAT Setup to Jnl. Lines | Copy VAT Setup to Jnl. Lines | — |
-| 21 | `allowVatDifference` | Allow VAT Difference | Allow VAT Difference | — |
-| 22 | `custReceiptReportId` | Cust. Receipt Report ID | Cust. Receipt Report ID | — |
+| 15 | `forceDocBalance` | Force Doc. Balance | Force Doc. Balance | ✅ |
+| 16 | `balAccountType` | Bal. Account Type | Bal. Account Type | ✅ |
+| 17 | `balAccountNo` | Bal. Account No. | Bal. Account No. | ✅ |
+| 18 | `noSeries` | No. Series | No. Series | ✅ |
+| 19 | `postingNoSeries` | Posting No. Series | Posting No. Series | ✅ |
+| 20 | `copyVatSetupToJnlLines` | Copy VAT Setup to Jnl. Lines | Copy VAT Setup to Jnl. Lines | ✅ |
+| 21 | `allowVatDifference` | Allow VAT Difference | Allow VAT Difference | ✅ |
+| 22 | `custReceiptReportId` | Cust. Receipt Report ID | Cust. Receipt Report ID | ✅ |
 | 23 | `custReceiptReportCaption` | Cust. Receipt Report Caption | Cust. Receipt Report Caption | 🧮 computed |
-| 24 | `vendorReceiptReportId` | Vendor Receipt Report ID | Vendor Receipt Report ID | — |
+| 24 | `vendorReceiptReportId` | Vendor Receipt Report ID | Vendor Receipt Report ID | ✅ |
 | 25 | `vendorReceiptReportCaption` | Vendor Receipt Report Caption | Vendor Receipt Report Caption | 🧮 computed |
-| 26 | `incrementBatchName` | Increment Batch Name | Increment Batch Name | — |
-| 27 | `copyToPostedJnlLines` | Copy to Posted Jnl. Lines | Copy to Posted Jnl. Lines | — |
-| 28 | `allowPostingDateFrom` | Allow Posting Date From | Allow Posting Date From | — |
-| 29 | `allowPostingDateTo` | Allow Posting Date To | Allow Posting Date To | — |
-| 30 | `unlinkIncDocOnPosting` | Unlink Inc. Doc On Posting | Unlink Incoming Documents On Posting | — |
+| 26 | `incrementBatchName` | Increment Batch Name | Increment Batch Name | ✅ |
+| 27 | `copyToPostedJnlLines` | Copy to Posted Jnl. Lines | Copy to Posted Jnl. Lines | ✅ |
+| 28 | `allowPostingDateFrom` | Allow Posting Date From | Allow Posting Date From | ✅ |
+| 29 | `allowPostingDateTo` | Allow Posting Date To | Allow Posting Date To | ✅ |
+| 30 | `unlinkIncDocOnPosting` | Unlink Inc. Doc On Posting | Unlink Incoming Documents On Posting | ✅ |
 
 
 [↑ Back to top](#table-of-contents)
@@ -11154,31 +11194,31 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Page Name | `ocpfGeneralJournalBatches` |
 | Entity Set Name | `ocpfGeneralJournalBatches` |
 | API Group | `ocpf_projectsAndAssets` |
-| Editable | ❌ No (GET only) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 20 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
 | 1 | `systemId` | SystemId | System ID | 🔑 Key |
-| 2 | `journalTemplateName` | Journal Template Name | Journal Template Name | — |
-| 3 | `name` | Name | Name | — |
-| 4 | `description` | Description | Description | — |
-| 5 | `reasonCode` | Reason Code | Reason Code | — |
-| 6 | `balAccountType` | Bal. Account Type | Bal. Account Type | — |
-| 7 | `balAccountNo` | Bal. Account No. | Bal. Account No. | — |
-| 8 | `noSeries` | No. Series | No. Series | — |
-| 9 | `postingNoSeries` | Posting No. Series | Posting No. Series | — |
-| 10 | `copyVatSetupToJnlLines` | Copy VAT Setup to Jnl. Lines | Copy VAT Setup to Jnl. Lines | — |
-| 11 | `allowVatDifference` | Allow VAT Difference | Allow VAT Difference | — |
-| 12 | `allowPaymentExport` | Allow Payment Export | Allow Payment Export | — |
-| 13 | `bankStatementImportFormat` | Bank Statement Import Format | Bank Statement Import Format | — |
+| 2 | `journalTemplateName` | Journal Template Name | Journal Template Name | ✅ |
+| 3 | `name` | Name | Name | ✅ |
+| 4 | `description` | Description | Description | ✅ |
+| 5 | `reasonCode` | Reason Code | Reason Code | ✅ |
+| 6 | `balAccountType` | Bal. Account Type | Bal. Account Type | ✅ |
+| 7 | `balAccountNo` | Bal. Account No. | Bal. Account No. | ✅ |
+| 8 | `noSeries` | No. Series | No. Series | ✅ |
+| 9 | `postingNoSeries` | Posting No. Series | Posting No. Series | ✅ |
+| 10 | `copyVatSetupToJnlLines` | Copy VAT Setup to Jnl. Lines | Copy VAT Setup to Jnl. Lines | ✅ |
+| 11 | `allowVatDifference` | Allow VAT Difference | Allow VAT Difference | ✅ |
+| 12 | `allowPaymentExport` | Allow Payment Export | Allow Payment Export | ✅ |
+| 13 | `bankStatementImportFormat` | Bank Statement Import Format | Bank Statement Import Format | ✅ |
 | 14 | `templateType` | Template Type | Template Type | 🧮 computed |
 | 15 | `recurring` | Recurring | Recurring | 🧮 computed |
-| 16 | `suggestBalancingAmount` | Suggest Balancing Amount | Suggest Balancing Amount | — |
-| 17 | `pendingApproval` | Pending Approval | Pending Approval | — |
-| 18 | `copyToPostedJnlLines` | Copy to Posted Jnl. Lines | Copy to Posted Jnl. Lines | — |
-| 19 | `lastModifiedDatetime` | Last Modified DateTime | Last Modified DateTime | — |
-| 20 | `balaccountid` | BalAccountId | BalAccountId | — |
+| 16 | `suggestBalancingAmount` | Suggest Balancing Amount | Suggest Balancing Amount | ✅ |
+| 17 | `pendingApproval` | Pending Approval | Pending Approval | ✅ |
+| 18 | `copyToPostedJnlLines` | Copy to Posted Jnl. Lines | Copy to Posted Jnl. Lines | ✅ |
+| 19 | `lastModifiedDatetime` | Last Modified DateTime | Last Modified DateTime | ✅ |
+| 20 | `balaccountid` | BalAccountId | BalAccountId | ✅ |
 
 
 [↑ Back to top](#table-of-contents)
@@ -11431,34 +11471,34 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Page Name | `ocpfPriceListHeaders` |
 | Entity Set Name | `ocpfPriceListHeaders` |
 | API Group | `ocpf_projectsAndAssets` |
-| Editable | ❌ No (GET only) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 23 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
 | 1 | `systemId` | SystemId | System ID | 🔑 Key |
-| 2 | `code` | Code | Code | — |
-| 3 | `description` | Description | Description | — |
-| 4 | `sourceGroup` | Source Group | Assign-to Group | — |
-| 5 | `sourceType` | Source Type | Assign-to Type | — |
-| 6 | `sourceNo` | Source No. | Assign-to No. (custom) | — |
-| 7 | `parentSourceNo` | Parent Source No. | Assign-to Parent No. (projects) | — |
-| 8 | `sourceId` | Source ID | Assign-to ID | — |
-| 9 | `priceType` | Price Type | Price Type | — |
-| 10 | `amountType` | Amount Type | Defines | — |
-| 11 | `currencyCode` | Currency Code | Currency Code | — |
-| 12 | `startingDate` | Starting Date | Starting Date | — |
-| 13 | `endingDate` | Ending Date | Ending Date | — |
-| 14 | `priceIncludesVat` | Price Includes VAT | Price Includes VAT | — |
-| 15 | `vatBusPostingGrPrice` | VAT Bus. Posting Gr. (Price) | VAT Bus. Posting Gr. (Price) | — |
-| 16 | `allowLineDisc` | Allow Line Disc. | Allow Line Disc. | — |
-| 17 | `allowInvoiceDisc` | Allow Invoice Disc. | Allow Invoice Disc. | — |
-| 18 | `noSeries` | No. Series | No. Series | — |
-| 19 | `status` | Status | Status | — |
-| 20 | `filterSourceNo` | Filter Source No. | Filter Source No. | — |
-| 21 | `allowUpdatingDefaults` | Allow Updating Defaults | Allow Updating Defaults | — |
-| 22 | `assignToNo` | Assign-to No. | Assign-to No. | — |
-| 23 | `assignToParentNo` | Assign-to Parent No. | Assign-to Parent No. | — |
+| 2 | `code` | Code | Code | ✅ |
+| 3 | `description` | Description | Description | ✅ |
+| 4 | `sourceGroup` | Source Group | Assign-to Group | ✅ |
+| 5 | `sourceType` | Source Type | Assign-to Type | ✅ |
+| 6 | `sourceNo` | Source No. | Assign-to No. (custom) | ✅ |
+| 7 | `parentSourceNo` | Parent Source No. | Assign-to Parent No. (projects) | ✅ |
+| 8 | `sourceId` | Source ID | Assign-to ID | ✅ |
+| 9 | `priceType` | Price Type | Price Type | ✅ |
+| 10 | `amountType` | Amount Type | Defines | ✅ |
+| 11 | `currencyCode` | Currency Code | Currency Code | ✅ |
+| 12 | `startingDate` | Starting Date | Starting Date | ✅ |
+| 13 | `endingDate` | Ending Date | Ending Date | ✅ |
+| 14 | `priceIncludesVat` | Price Includes VAT | Price Includes VAT | ✅ |
+| 15 | `vatBusPostingGrPrice` | VAT Bus. Posting Gr. (Price) | VAT Bus. Posting Gr. (Price) | ✅ |
+| 16 | `allowLineDisc` | Allow Line Disc. | Allow Line Disc. | ✅ |
+| 17 | `allowInvoiceDisc` | Allow Invoice Disc. | Allow Invoice Disc. | ✅ |
+| 18 | `noSeries` | No. Series | No. Series | ✅ |
+| 19 | `status` | Status | Status | ✅ |
+| 20 | `filterSourceNo` | Filter Source No. | Filter Source No. | ✅ |
+| 21 | `allowUpdatingDefaults` | Allow Updating Defaults | Allow Updating Defaults | ✅ |
+| 22 | `assignToNo` | Assign-to No. | Assign-to No. | ✅ |
+| 23 | `assignToParentNo` | Assign-to Parent No. | Assign-to Parent No. | ✅ |
 
 
 [↑ Back to top](#table-of-contents)
@@ -11476,49 +11516,49 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Page Name | `ocpfPriceListLines` |
 | Entity Set Name | `ocpfPriceListLines` |
 | API Group | `ocpf_projectsAndAssets` |
-| Editable | ❌ No (GET only) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 38 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
 | 1 | `systemId` | SystemId | System ID | 🔑 Key |
-| 2 | `priceListCode` | Price List Code | Price List Code | — |
-| 3 | `lineNo` | Line No. | Line No. | — |
-| 4 | `sourceType` | Source Type | Assign-to Type | — |
-| 5 | `sourceNo` | Source No. | Assign-to No. (custom) | — |
-| 6 | `parentSourceNo` | Parent Source No. | Assign-to Parent No. (custom) | — |
-| 7 | `sourceId` | Source ID | Assign-to ID | — |
-| 8 | `assetType` | Asset Type | Product Type | — |
-| 9 | `assetNo` | Asset No. | Product No. (custom) | — |
-| 10 | `variantCode` | Variant Code | Variant Code (custom) | — |
-| 11 | `currencyCode` | Currency Code | Currency Code | — |
-| 12 | `workTypeCode` | Work Type Code | Work Type Code | — |
-| 13 | `startingDate` | Starting Date | Starting Date | — |
-| 14 | `endingDate` | Ending Date | Ending Date | — |
-| 15 | `minimumQuantity` | Minimum Quantity | Minimum Quantity | — |
-| 16 | `unitOfMeasureCode` | Unit of Measure Code | Unit of Measure Code (custom) | — |
-| 17 | `amountType` | Amount Type | Defines | — |
-| 18 | `unitPrice` | Unit Price | Unit Price | — |
-| 19 | `costFactor` | Cost Factor | Cost Factor | — |
-| 20 | `unitCost` | Unit Cost | Unit Cost | — |
-| 21 | `lineDiscountPct` | Line Discount % | Line Discount % | — |
-| 22 | `allowLineDisc` | Allow Line Disc. | Allow Line Disc. | — |
-| 23 | `allowInvoiceDisc` | Allow Invoice Disc. | Allow Invoice Disc. | — |
-| 24 | `priceIncludesVat` | Price Includes VAT | Price Includes VAT | — |
-| 25 | `vatBusPostingGrPrice` | VAT Bus. Posting Gr. (Price) | VAT Bus. Posting Gr. (Price) | — |
-| 26 | `vatProdPostingGroup` | VAT Prod. Posting Group | VAT Prod. Posting Group | — |
-| 27 | `assetId` | Asset ID | Asset ID | — |
-| 28 | `lineAmount` | Line Amount | Line Amount | — |
-| 29 | `priceType` | Price Type | Price Type | — |
-| 30 | `description` | Description | Description | — |
-| 31 | `status` | Status | Price Status | — |
-| 32 | `directUnitCost` | Direct Unit Cost | Direct Unit Cost | — |
-| 33 | `sourceGroup` | Source Group | Source Group | — |
-| 34 | `productNo` | Product No. | Product No. | — |
-| 35 | `assignToNo` | Assign-to No. | Assign-to No. | — |
-| 36 | `assignToParentNo` | Assign-to Parent No. | Assign-to Parent No. | — |
-| 37 | `variantCodeLookup` | Variant Code Lookup | Variant Code | — |
-| 38 | `unitOfMeasureCodeLookup` | Unit of Measure Code Lookup | Unit of Measure Code | — |
+| 2 | `priceListCode` | Price List Code | Price List Code | ✅ |
+| 3 | `lineNo` | Line No. | Line No. | ✅ |
+| 4 | `sourceType` | Source Type | Assign-to Type | ✅ |
+| 5 | `sourceNo` | Source No. | Assign-to No. (custom) | ✅ |
+| 6 | `parentSourceNo` | Parent Source No. | Assign-to Parent No. (custom) | ✅ |
+| 7 | `sourceId` | Source ID | Assign-to ID | ✅ |
+| 8 | `assetType` | Asset Type | Product Type | ✅ |
+| 9 | `assetNo` | Asset No. | Product No. (custom) | ✅ |
+| 10 | `variantCode` | Variant Code | Variant Code (custom) | ✅ |
+| 11 | `currencyCode` | Currency Code | Currency Code | ✅ |
+| 12 | `workTypeCode` | Work Type Code | Work Type Code | ✅ |
+| 13 | `startingDate` | Starting Date | Starting Date | ✅ |
+| 14 | `endingDate` | Ending Date | Ending Date | ✅ |
+| 15 | `minimumQuantity` | Minimum Quantity | Minimum Quantity | ✅ |
+| 16 | `unitOfMeasureCode` | Unit of Measure Code | Unit of Measure Code (custom) | ✅ |
+| 17 | `amountType` | Amount Type | Defines | ✅ |
+| 18 | `unitPrice` | Unit Price | Unit Price | ✅ |
+| 19 | `costFactor` | Cost Factor | Cost Factor | ✅ |
+| 20 | `unitCost` | Unit Cost | Unit Cost | ✅ |
+| 21 | `lineDiscountPct` | Line Discount % | Line Discount % | ✅ |
+| 22 | `allowLineDisc` | Allow Line Disc. | Allow Line Disc. | ✅ |
+| 23 | `allowInvoiceDisc` | Allow Invoice Disc. | Allow Invoice Disc. | ✅ |
+| 24 | `priceIncludesVat` | Price Includes VAT | Price Includes VAT | ✅ |
+| 25 | `vatBusPostingGrPrice` | VAT Bus. Posting Gr. (Price) | VAT Bus. Posting Gr. (Price) | ✅ |
+| 26 | `vatProdPostingGroup` | VAT Prod. Posting Group | VAT Prod. Posting Group | ✅ |
+| 27 | `assetId` | Asset ID | Asset ID | ✅ |
+| 28 | `lineAmount` | Line Amount | Line Amount | ✅ |
+| 29 | `priceType` | Price Type | Price Type | ✅ |
+| 30 | `description` | Description | Description | ✅ |
+| 31 | `status` | Status | Price Status | ✅ |
+| 32 | `directUnitCost` | Direct Unit Cost | Direct Unit Cost | ✅ |
+| 33 | `sourceGroup` | Source Group | Source Group | ✅ |
+| 34 | `productNo` | Product No. | Product No. | ✅ |
+| 35 | `assignToNo` | Assign-to No. | Assign-to No. | ✅ |
+| 36 | `assignToParentNo` | Assign-to Parent No. | Assign-to Parent No. | ✅ |
+| 37 | `variantCodeLookup` | Variant Code Lookup | Variant Code | ✅ |
+| 38 | `unitOfMeasureCodeLookup` | Unit of Measure Code Lookup | Unit of Measure Code | ✅ |
 
 
 [↑ Back to top](#table-of-contents)
@@ -11543,29 +11583,29 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Page Name | `ocpfDocumentAttachments` |
 | Entity Set Name | `ocpfDocumentAttachments` |
 | API Group | `ocpf_systemAndSetup` |
-| Editable | ❌ No (GET only) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 18 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
 | 1 | `systemId` | SystemId | System ID | 🔑 Key |
-| 2 | `id` | ID | ID | — |
-| 3 | `tableId` | Table ID | Table ID | — |
-| 4 | `no` | No. | No. | — |
-| 5 | `attachedDate` | Attached Date | Attached Date | — |
-| 6 | `fileName` | File Name | Attachment | — |
-| 7 | `fileType` | File Type | File Type | — |
-| 8 | `fileExtension` | File Extension | File Extension | — |
-| 9 | `documentReferenceId` | Document Reference ID | Document Reference ID | — |
-| 10 | `attachedBy` | Attached By | Attached By | — |
+| 2 | `id` | ID | ID | ✅ |
+| 3 | `tableId` | Table ID | Table ID | ✅ |
+| 4 | `no` | No. | No. | ✅ |
+| 5 | `attachedDate` | Attached Date | Attached Date | ✅ |
+| 6 | `fileName` | File Name | Attachment | ✅ |
+| 7 | `fileType` | File Type | File Type | ✅ |
+| 8 | `fileExtension` | File Extension | File Extension | ✅ |
+| 9 | `documentReferenceId` | Document Reference ID | Document Reference ID | ✅ |
+| 10 | `attachedBy` | Attached By | Attached By | ✅ |
 | 11 | `user` | User | User | 🧮 computed |
-| 12 | `documentFlowPurchase` | Document Flow Purchase | Flow to Purch. Trx | — |
-| 13 | `documentFlowSales` | Document Flow Sales | Flow to Sales Trx | — |
-| 14 | `documentType` | Document Type | Document Type | — |
-| 15 | `lineNo` | Line No. | Line No. | — |
-| 16 | `vatReportConfigCode` | VAT Report Config. Code | VAT Report Config. Code | — |
-| 17 | `documentFlowService` | Document Flow Service | Flow to Service Trx | — |
-| 18 | `documentFlowProduction` | Document Flow Production | Flow to Production Trx | — |
+| 12 | `documentFlowPurchase` | Document Flow Purchase | Flow to Purch. Trx | ✅ |
+| 13 | `documentFlowSales` | Document Flow Sales | Flow to Sales Trx | ✅ |
+| 14 | `documentType` | Document Type | Document Type | ✅ |
+| 15 | `lineNo` | Line No. | Line No. | ✅ |
+| 16 | `vatReportConfigCode` | VAT Report Config. Code | VAT Report Config. Code | ✅ |
+| 17 | `documentFlowService` | Document Flow Service | Flow to Service Trx | ✅ |
+| 18 | `documentFlowProduction` | Document Flow Production | Flow to Production Trx | ✅ |
 
 
 [↑ Back to top](#table-of-contents)
@@ -11583,71 +11623,71 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Page Name | `ocpfCompanyInformation` |
 | Entity Set Name | `ocpfCompanyInformation` |
 | API Group | `ocpf_systemAndSetup` |
-| Editable | ❌ No (GET only) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 60 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
 | 1 | `systemId` | SystemId | System ID | 🔑 Key |
-| 2 | `primaryKey` | Primary Key | Primary Key | — |
-| 3 | `name` | Name | Name | — |
-| 4 | `name2` | Name 2 | Name 2 | — |
-| 5 | `address` | Address | Address | — |
-| 6 | `address2` | Address 2 | Address 2 | — |
-| 7 | `city` | City | City | — |
-| 8 | `phoneNo` | Phone No. | Phone No. | — |
-| 9 | `phoneNo2` | Phone No. 2 | Phone No. 2 | — |
-| 10 | `telexNo` | Telex No. | Telex No. | — |
-| 11 | `faxNo` | Fax No. | Fax No. | — |
-| 12 | `giroNo` | Giro No. | Giro No. | — |
-| 13 | `bankName` | Bank Name | Bank Name | — |
-| 14 | `bankBranchNo` | Bank Branch No. | Bank Branch No. | — |
-| 15 | `bankAccountNo` | Bank Account No. | Bank Account No. | — |
-| 16 | `paymentRoutingNo` | Payment Routing No. | Payment Routing No. | — |
-| 17 | `customsPermitNo` | Customs Permit No. | Customs Permit No. | — |
-| 18 | `customsPermitDate` | Customs Permit Date | Customs Permit Date | — |
-| 19 | `vatRegistrationNo` | VAT Registration No. | VAT Registration No. | — |
-| 20 | `registrationNo` | Registration No. | Registration No. | — |
-| 21 | `telexAnswerBack` | Telex Answer Back | Telex Answer Back | — |
-| 22 | `shipToName` | Ship-to Name | Ship-to Name | — |
-| 23 | `shipToName2` | Ship-to Name 2 | Ship-to Name 2 | — |
-| 24 | `shipToAddress` | Ship-to Address | Ship-to Address | — |
-| 25 | `shipToAddress2` | Ship-to Address 2 | Ship-to Address 2 | — |
-| 26 | `shipToCity` | Ship-to City | Ship-to City | — |
-| 27 | `shipToContact` | Ship-to Contact | Ship-to Contact | — |
-| 28 | `locationCode` | Location Code | Location Code | — |
-| 29 | `postCode` | Post Code | Post Code | — |
-| 30 | `county` | County | County | — |
-| 31 | `shipToPostCode` | Ship-to Post Code | Ship-to Post Code | — |
-| 32 | `shipToCounty` | Ship-to County | Ship-to County | — |
-| 33 | `eMail` | E-Mail | Email | — |
-| 34 | `homePage` | Home Page | Home Page | — |
-| 35 | `countryRegionCode` | Country/Region Code | Country/Region Code | — |
-| 36 | `shipToCountryRegionCode` | Ship-to Country/Region Code | Ship-to Country/Region Code | — |
-| 37 | `iban` | IBAN | IBAN | — |
-| 38 | `swiftCode` | SWIFT Code | SWIFT Code | — |
-| 39 | `industrialClassification` | Industrial Classification | Industrial Classification | — |
-| 40 | `systemIndicator` | System Indicator | System Indicator | — |
-| 41 | `customSystemIndicatorText` | Custom System Indicator Text | Custom System Indicator Text | — |
-| 42 | `systemIndicatorStyle` | System Indicator Style | System Indicator Style | — |
-| 43 | `allowBlankPaymentInfo` | Allow Blank Payment Info. | Allow Blank Payment Info. | — |
-| 44 | `contactPerson` | Contact Person | Contact Person | — |
-| 45 | `shipToPhoneNo` | Ship-to Phone No. | Ship-to Phone No. | — |
-| 46 | `gln` | GLN | GLN | — |
-| 47 | `eoriNumber` | EORI Number | EORI Number | — |
-| 48 | `useGlnInElectronicDocument` | Use GLN in Electronic Document | Use GLN in Electronic Documents | — |
-| 49 | `pictureLastModDateTime` | Picture - Last Mod. Date Time | Picture - Last Mod. Date Time | — |
-| 50 | `lastModifiedDateTime` | Last Modified Date Time | Last Modified Date Time | — |
-| 51 | `createdDatetime` | Created DateTime | Created DateTime | — |
-| 52 | `demoCompany` | Demo Company | Demo Company | — |
-| 53 | `alternativeLanguageCode` | Alternative Language Code | Alternative Language Code | — |
-| 54 | `brandColorValue` | Brand Color Value | Brand Color Value | — |
-| 55 | `brandColorCode` | Brand Color Code | Brand Color Code | — |
-| 56 | `responsibilityCenter` | Responsibility Center | Responsibility Center | — |
-| 57 | `checkAvailPeriodCalc` | Check-Avail. Period Calc. | Check-Avail. Period Calc. | — |
-| 58 | `checkAvailTimeBucket` | Check-Avail. Time Bucket | Check-Avail. Time Bucket | — |
-| 59 | `baseCalendarCode` | Base Calendar Code | Base Calendar Code | — |
-| 60 | `calConvergenceTimeFrame` | Cal. Convergence Time Frame | Cal. Convergence Time Frame | — |
+| 2 | `primaryKey` | Primary Key | Primary Key | ✅ |
+| 3 | `name` | Name | Name | ✅ |
+| 4 | `name2` | Name 2 | Name 2 | ✅ |
+| 5 | `address` | Address | Address | ✅ |
+| 6 | `address2` | Address 2 | Address 2 | ✅ |
+| 7 | `city` | City | City | ✅ |
+| 8 | `phoneNo` | Phone No. | Phone No. | ✅ |
+| 9 | `phoneNo2` | Phone No. 2 | Phone No. 2 | ✅ |
+| 10 | `telexNo` | Telex No. | Telex No. | ✅ |
+| 11 | `faxNo` | Fax No. | Fax No. | ✅ |
+| 12 | `giroNo` | Giro No. | Giro No. | ✅ |
+| 13 | `bankName` | Bank Name | Bank Name | ✅ |
+| 14 | `bankBranchNo` | Bank Branch No. | Bank Branch No. | ✅ |
+| 15 | `bankAccountNo` | Bank Account No. | Bank Account No. | ✅ |
+| 16 | `paymentRoutingNo` | Payment Routing No. | Payment Routing No. | ✅ |
+| 17 | `customsPermitNo` | Customs Permit No. | Customs Permit No. | ✅ |
+| 18 | `customsPermitDate` | Customs Permit Date | Customs Permit Date | ✅ |
+| 19 | `vatRegistrationNo` | VAT Registration No. | VAT Registration No. | ✅ |
+| 20 | `registrationNo` | Registration No. | Registration No. | ✅ |
+| 21 | `telexAnswerBack` | Telex Answer Back | Telex Answer Back | ✅ |
+| 22 | `shipToName` | Ship-to Name | Ship-to Name | ✅ |
+| 23 | `shipToName2` | Ship-to Name 2 | Ship-to Name 2 | ✅ |
+| 24 | `shipToAddress` | Ship-to Address | Ship-to Address | ✅ |
+| 25 | `shipToAddress2` | Ship-to Address 2 | Ship-to Address 2 | ✅ |
+| 26 | `shipToCity` | Ship-to City | Ship-to City | ✅ |
+| 27 | `shipToContact` | Ship-to Contact | Ship-to Contact | ✅ |
+| 28 | `locationCode` | Location Code | Location Code | ✅ |
+| 29 | `postCode` | Post Code | Post Code | ✅ |
+| 30 | `county` | County | County | ✅ |
+| 31 | `shipToPostCode` | Ship-to Post Code | Ship-to Post Code | ✅ |
+| 32 | `shipToCounty` | Ship-to County | Ship-to County | ✅ |
+| 33 | `eMail` | E-Mail | Email | ✅ |
+| 34 | `homePage` | Home Page | Home Page | ✅ |
+| 35 | `countryRegionCode` | Country/Region Code | Country/Region Code | ✅ |
+| 36 | `shipToCountryRegionCode` | Ship-to Country/Region Code | Ship-to Country/Region Code | ✅ |
+| 37 | `iban` | IBAN | IBAN | ✅ |
+| 38 | `swiftCode` | SWIFT Code | SWIFT Code | ✅ |
+| 39 | `industrialClassification` | Industrial Classification | Industrial Classification | ✅ |
+| 40 | `systemIndicator` | System Indicator | System Indicator | ✅ |
+| 41 | `customSystemIndicatorText` | Custom System Indicator Text | Custom System Indicator Text | ✅ |
+| 42 | `systemIndicatorStyle` | System Indicator Style | System Indicator Style | ✅ |
+| 43 | `allowBlankPaymentInfo` | Allow Blank Payment Info. | Allow Blank Payment Info. | ✅ |
+| 44 | `contactPerson` | Contact Person | Contact Person | ✅ |
+| 45 | `shipToPhoneNo` | Ship-to Phone No. | Ship-to Phone No. | ✅ |
+| 46 | `gln` | GLN | GLN | ✅ |
+| 47 | `eoriNumber` | EORI Number | EORI Number | ✅ |
+| 48 | `useGlnInElectronicDocument` | Use GLN in Electronic Document | Use GLN in Electronic Documents | ✅ |
+| 49 | `pictureLastModDateTime` | Picture - Last Mod. Date Time | Picture - Last Mod. Date Time | ✅ |
+| 50 | `lastModifiedDateTime` | Last Modified Date Time | Last Modified Date Time | ✅ |
+| 51 | `createdDatetime` | Created DateTime | Created DateTime | ✅ |
+| 52 | `demoCompany` | Demo Company | Demo Company | ✅ |
+| 53 | `alternativeLanguageCode` | Alternative Language Code | Alternative Language Code | ✅ |
+| 54 | `brandColorValue` | Brand Color Value | Brand Color Value | ✅ |
+| 55 | `brandColorCode` | Brand Color Code | Brand Color Code | ✅ |
+| 56 | `responsibilityCenter` | Responsibility Center | Responsibility Center | ✅ |
+| 57 | `checkAvailPeriodCalc` | Check-Avail. Period Calc. | Check-Avail. Period Calc. | ✅ |
+| 58 | `checkAvailTimeBucket` | Check-Avail. Time Bucket | Check-Avail. Time Bucket | ✅ |
+| 59 | `baseCalendarCode` | Base Calendar Code | Base Calendar Code | ✅ |
+| 60 | `calConvergenceTimeFrame` | Cal. Convergence Time Frame | Cal. Convergence Time Frame | ✅ |
 
 
 [↑ Back to top](#table-of-contents)
@@ -11666,6 +11706,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Entity Set Name | `ocpfWarehouseEntries` |
 | API Group | `ocpf_systemAndSetup` |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 45 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -11732,62 +11773,62 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Page Name | `ocpfReminderHeaders` |
 | Entity Set Name | `ocpfReminderHeaders` |
 | API Group | `ocpf_systemAndSetup` |
-| Editable | ❌ No (GET only) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 51 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
 | 1 | `systemId` | SystemId | System ID | 🔑 Key |
-| 2 | `no` | No. | No. | — |
-| 3 | `customerNo` | Customer No. | Customer No. | — |
-| 4 | `name` | Name | Name | — |
-| 5 | `name2` | Name 2 | Name 2 | — |
-| 6 | `address` | Address | Address | — |
-| 7 | `address2` | Address 2 | Address 2 | — |
-| 8 | `postCode` | Post Code | Post Code | — |
-| 9 | `city` | City | City | — |
-| 10 | `county` | County | County | — |
-| 11 | `countryRegionCode` | Country/Region Code | Country/Region Code | — |
-| 12 | `languageCode` | Language Code | Language Code | — |
-| 13 | `currencyCode` | Currency Code | Currency Code | — |
-| 14 | `contact` | Contact | Contact | — |
-| 15 | `yourReference` | Your Reference | Your Reference | — |
-| 16 | `shortcutDimension1Code` | Shortcut Dimension 1 Code | Shortcut Dimension 1 Code | — |
-| 17 | `shortcutDimension2Code` | Shortcut Dimension 2 Code | Shortcut Dimension 2 Code | — |
-| 18 | `customerPostingGroup` | Customer Posting Group | Customer Posting Group | — |
-| 19 | `genBusPostingGroup` | Gen. Bus. Posting Group | Gen. Bus. Posting Group | — |
-| 20 | `vatRegistrationNo` | VAT Registration No. | VAT Registration No. | — |
-| 21 | `reasonCode` | Reason Code | Reason Code | — |
-| 22 | `postingDate` | Posting Date | Posting Date | — |
-| 23 | `documentDate` | Document Date | Document Date | — |
-| 24 | `dueDate` | Due Date | Due Date | — |
-| 25 | `reminderTermsCode` | Reminder Terms Code | Reminder Terms Code | — |
-| 26 | `finChargeTermsCode` | Fin. Charge Terms Code | Fin. Charge Terms Code | — |
-| 27 | `postInterest` | Post Interest | Post Interest | — |
-| 28 | `postAdditionalFee` | Post Additional Fee | Post Additional Fee | — |
-| 29 | `reminderLevel` | Reminder Level | Reminder Level | — |
-| 30 | `postingDescription` | Posting Description | Posting Description | — |
+| 2 | `no` | No. | No. | ✅ |
+| 3 | `customerNo` | Customer No. | Customer No. | ✅ |
+| 4 | `name` | Name | Name | ✅ |
+| 5 | `name2` | Name 2 | Name 2 | ✅ |
+| 6 | `address` | Address | Address | ✅ |
+| 7 | `address2` | Address 2 | Address 2 | ✅ |
+| 8 | `postCode` | Post Code | Post Code | ✅ |
+| 9 | `city` | City | City | ✅ |
+| 10 | `county` | County | County | ✅ |
+| 11 | `countryRegionCode` | Country/Region Code | Country/Region Code | ✅ |
+| 12 | `languageCode` | Language Code | Language Code | ✅ |
+| 13 | `currencyCode` | Currency Code | Currency Code | ✅ |
+| 14 | `contact` | Contact | Contact | ✅ |
+| 15 | `yourReference` | Your Reference | Your Reference | ✅ |
+| 16 | `shortcutDimension1Code` | Shortcut Dimension 1 Code | Shortcut Dimension 1 Code | ✅ |
+| 17 | `shortcutDimension2Code` | Shortcut Dimension 2 Code | Shortcut Dimension 2 Code | ✅ |
+| 18 | `customerPostingGroup` | Customer Posting Group | Customer Posting Group | ✅ |
+| 19 | `genBusPostingGroup` | Gen. Bus. Posting Group | Gen. Bus. Posting Group | ✅ |
+| 20 | `vatRegistrationNo` | VAT Registration No. | VAT Registration No. | ✅ |
+| 21 | `reasonCode` | Reason Code | Reason Code | ✅ |
+| 22 | `postingDate` | Posting Date | Posting Date | ✅ |
+| 23 | `documentDate` | Document Date | Document Date | ✅ |
+| 24 | `dueDate` | Due Date | Due Date | ✅ |
+| 25 | `reminderTermsCode` | Reminder Terms Code | Reminder Terms Code | ✅ |
+| 26 | `finChargeTermsCode` | Fin. Charge Terms Code | Fin. Charge Terms Code | ✅ |
+| 27 | `postInterest` | Post Interest | Post Interest | ✅ |
+| 28 | `postAdditionalFee` | Post Additional Fee | Post Additional Fee | ✅ |
+| 29 | `reminderLevel` | Reminder Level | Reminder Level | ✅ |
+| 30 | `postingDescription` | Posting Description | Posting Description | ✅ |
 | 31 | `comment` | Comment | Comment | 🧮 computed |
 | 32 | `remainingAmount` | Remaining Amount | Remaining Amount | 🧮 computed |
 | 33 | `interestAmount` | Interest Amount | Interest Amount | 🧮 computed |
 | 34 | `additionalFee` | Additional Fee | Additional Fee | 🧮 computed |
 | 35 | `vatAmount` | VAT Amount | VAT Amount | 🧮 computed |
-| 36 | `noSeries` | No. Series | No. Series | — |
-| 37 | `issuingNoSeries` | Issuing No. Series | Issuing No. Series | — |
-| 38 | `issuingNo` | Issuing No. | Issuing No. | — |
-| 39 | `taxAreaCode` | Tax Area Code | Tax Area Code | — |
-| 40 | `taxLiable` | Tax Liable | Tax Liable | — |
-| 41 | `vatBusPostingGroup` | VAT Bus. Posting Group | VAT Bus. Posting Group | — |
-| 42 | `useHeaderLevel` | Use Header Level | Use Header Level | — |
+| 36 | `noSeries` | No. Series | No. Series | ✅ |
+| 37 | `issuingNoSeries` | Issuing No. Series | Issuing No. Series | ✅ |
+| 38 | `issuingNo` | Issuing No. | Issuing No. | ✅ |
+| 39 | `taxAreaCode` | Tax Area Code | Tax Area Code | ✅ |
+| 40 | `taxLiable` | Tax Liable | Tax Liable | ✅ |
+| 41 | `vatBusPostingGroup` | VAT Bus. Posting Group | VAT Bus. Posting Group | ✅ |
+| 42 | `useHeaderLevel` | Use Header Level | Use Header Level | ✅ |
 | 43 | `addFeePerLine` | Add. Fee per Line | Add. Fee per Line | 🧮 computed |
-| 44 | `postAddFeePerLine` | Post Add. Fee per Line | Post Add. Fee per Line | — |
-| 45 | `vatReportingDate` | VAT Reporting Date | VAT Date | — |
-| 46 | `formatRegion` | Format Region | Format Region | — |
-| 47 | `emailText` | Email Text | Email Text | — |
-| 48 | `companyBankAccountCode` | Company Bank Account Code | Company Bank Account Code | — |
-| 49 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | — |
-| 50 | `reminderAutomationCode` | Reminder Automation Code | Reminder Automation Code | — |
-| 51 | `assignedUserId` | Assigned User ID | Assigned User ID | — |
+| 44 | `postAddFeePerLine` | Post Add. Fee per Line | Post Add. Fee per Line | ✅ |
+| 45 | `vatReportingDate` | VAT Reporting Date | VAT Date | ✅ |
+| 46 | `formatRegion` | Format Region | Format Region | ✅ |
+| 47 | `emailText` | Email Text | Email Text | ✅ |
+| 48 | `companyBankAccountCode` | Company Bank Account Code | Company Bank Account Code | ✅ |
+| 49 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | ✅ |
+| 50 | `reminderAutomationCode` | Reminder Automation Code | Reminder Automation Code | ✅ |
+| 51 | `assignedUserId` | Assigned User ID | Assigned User ID | ✅ |
 
 
 [↑ Back to top](#table-of-contents)
@@ -11805,42 +11846,42 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Page Name | `ocpfReminderLines` |
 | Entity Set Name | `ocpfReminderLines` |
 | API Group | `ocpf_systemAndSetup` |
-| Editable | ❌ No (GET only) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 31 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
 | 1 | `systemId` | SystemId | System ID | 🔑 Key |
-| 2 | `reminderNo` | Reminder No. | Reminder No. | — |
-| 3 | `lineNo` | Line No. | Line No. | — |
-| 4 | `attachedToLineNo` | Attached to Line No. | Attached to Line No. | — |
-| 5 | `type` | Type | Type | — |
-| 6 | `entryNo` | Entry No. | Entry No. | — |
-| 7 | `noOfReminders` | No. of Reminders | No. of Reminders | — |
-| 8 | `postingDate` | Posting Date | Posting Date | — |
-| 9 | `documentDate` | Document Date | Document Date | — |
-| 10 | `dueDate` | Due Date | Due Date | — |
-| 11 | `documentType` | Document Type | Document Type | — |
-| 12 | `documentNo` | Document No. | Document No. | — |
-| 13 | `description` | Description | Description | — |
-| 14 | `originalAmount` | Original Amount | Original Amount | — |
-| 15 | `remainingAmount` | Remaining Amount | Remaining Amount | — |
-| 16 | `no` | No. | No. | — |
-| 17 | `amount` | Amount | Amount | — |
-| 18 | `interestRate` | Interest Rate | Interest Rate | — |
-| 19 | `genProdPostingGroup` | Gen. Prod. Posting Group | Gen. Prod. Posting Group | — |
-| 20 | `vatPct` | VAT % | VAT % | — |
-| 21 | `vatCalculationType` | VAT Calculation Type | VAT Calculation Type | — |
-| 22 | `vatAmount` | VAT Amount | VAT Amount | — |
-| 23 | `taxGroupCode` | Tax Group Code | Tax Group Code | — |
-| 24 | `vatProdPostingGroup` | VAT Prod. Posting Group | VAT Prod. Posting Group | — |
-| 25 | `vatIdentifier` | VAT Identifier | VAT Identifier | — |
-| 26 | `lineType` | Line Type | Line Type | — |
-| 27 | `vatClauseCode` | VAT Clause Code | VAT Clause Code | — |
-| 28 | `appliesToDocumentType` | Applies-to Document Type | Applies-to Document Type | — |
-| 29 | `appliesToDocumentNo` | Applies-to Document No. | Applies-to Document No. | — |
-| 30 | `detailedInterestRatesEntry` | Detailed Interest Rates Entry | Detailed Interest Rates Entry | — |
-| 31 | `systemCreatedEntry` | System-Created Entry | System-Created Entry | — |
+| 2 | `reminderNo` | Reminder No. | Reminder No. | ✅ |
+| 3 | `lineNo` | Line No. | Line No. | ✅ |
+| 4 | `attachedToLineNo` | Attached to Line No. | Attached to Line No. | ✅ |
+| 5 | `type` | Type | Type | ✅ |
+| 6 | `entryNo` | Entry No. | Entry No. | ✅ |
+| 7 | `noOfReminders` | No. of Reminders | No. of Reminders | ✅ |
+| 8 | `postingDate` | Posting Date | Posting Date | ✅ |
+| 9 | `documentDate` | Document Date | Document Date | ✅ |
+| 10 | `dueDate` | Due Date | Due Date | ✅ |
+| 11 | `documentType` | Document Type | Document Type | ✅ |
+| 12 | `documentNo` | Document No. | Document No. | ✅ |
+| 13 | `description` | Description | Description | ✅ |
+| 14 | `originalAmount` | Original Amount | Original Amount | ✅ |
+| 15 | `remainingAmount` | Remaining Amount | Remaining Amount | ✅ |
+| 16 | `no` | No. | No. | ✅ |
+| 17 | `amount` | Amount | Amount | ✅ |
+| 18 | `interestRate` | Interest Rate | Interest Rate | ✅ |
+| 19 | `genProdPostingGroup` | Gen. Prod. Posting Group | Gen. Prod. Posting Group | ✅ |
+| 20 | `vatPct` | VAT % | VAT % | ✅ |
+| 21 | `vatCalculationType` | VAT Calculation Type | VAT Calculation Type | ✅ |
+| 22 | `vatAmount` | VAT Amount | VAT Amount | ✅ |
+| 23 | `taxGroupCode` | Tax Group Code | Tax Group Code | ✅ |
+| 24 | `vatProdPostingGroup` | VAT Prod. Posting Group | VAT Prod. Posting Group | ✅ |
+| 25 | `vatIdentifier` | VAT Identifier | VAT Identifier | ✅ |
+| 26 | `lineType` | Line Type | Line Type | ✅ |
+| 27 | `vatClauseCode` | VAT Clause Code | VAT Clause Code | ✅ |
+| 28 | `appliesToDocumentType` | Applies-to Document Type | Applies-to Document Type | ✅ |
+| 29 | `appliesToDocumentNo` | Applies-to Document No. | Applies-to Document No. | ✅ |
+| 30 | `detailedInterestRatesEntry` | Detailed Interest Rates Entry | Detailed Interest Rates Entry | ✅ |
+| 31 | `systemCreatedEntry` | System-Created Entry | System-Created Entry | ✅ |
 
 
 [↑ Back to top](#table-of-contents)
@@ -11858,55 +11899,55 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Page Name | `ocpfFinanceChargeMemoHeaders` |
 | Entity Set Name | `ocpfFinanceChargeMemoHeaders` |
 | API Group | `ocpf_systemAndSetup` |
-| Editable | ❌ No (GET only) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 44 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
 | 1 | `systemId` | SystemId | System ID | 🔑 Key |
-| 2 | `no` | No. | No. | — |
-| 3 | `customerNo` | Customer No. | Customer No. | — |
-| 4 | `name` | Name | Name | — |
-| 5 | `name2` | Name 2 | Name 2 | — |
-| 6 | `address` | Address | Address | — |
-| 7 | `address2` | Address 2 | Address 2 | — |
-| 8 | `postCode` | Post Code | Post Code | — |
-| 9 | `city` | City | City | — |
-| 10 | `county` | County | County | — |
-| 11 | `countryRegionCode` | Country/Region Code | Country/Region Code | — |
-| 12 | `languageCode` | Language Code | Language Code | — |
-| 13 | `currencyCode` | Currency Code | Currency Code | — |
-| 14 | `contact` | Contact | Contact | — |
-| 15 | `yourReference` | Your Reference | Your Reference | — |
-| 16 | `shortcutDimension1Code` | Shortcut Dimension 1 Code | Shortcut Dimension 1 Code | — |
-| 17 | `shortcutDimension2Code` | Shortcut Dimension 2 Code | Shortcut Dimension 2 Code | — |
-| 18 | `customerPostingGroup` | Customer Posting Group | Customer Posting Group | — |
-| 19 | `genBusPostingGroup` | Gen. Bus. Posting Group | Gen. Bus. Posting Group | — |
-| 20 | `vatRegistrationNo` | VAT Registration No. | VAT Registration No. | — |
-| 21 | `reasonCode` | Reason Code | Reason Code | — |
-| 22 | `postingDate` | Posting Date | Posting Date | — |
-| 23 | `documentDate` | Document Date | Document Date | — |
-| 24 | `dueDate` | Due Date | Due Date | — |
-| 25 | `finChargeTermsCode` | Fin. Charge Terms Code | Fin. Charge Terms Code | — |
-| 26 | `postInterest` | Post Interest | Post Interest | — |
-| 27 | `postAdditionalFee` | Post Additional Fee | Post Additional Fee | — |
-| 28 | `postingDescription` | Posting Description | Posting Description | — |
+| 2 | `no` | No. | No. | ✅ |
+| 3 | `customerNo` | Customer No. | Customer No. | ✅ |
+| 4 | `name` | Name | Name | ✅ |
+| 5 | `name2` | Name 2 | Name 2 | ✅ |
+| 6 | `address` | Address | Address | ✅ |
+| 7 | `address2` | Address 2 | Address 2 | ✅ |
+| 8 | `postCode` | Post Code | Post Code | ✅ |
+| 9 | `city` | City | City | ✅ |
+| 10 | `county` | County | County | ✅ |
+| 11 | `countryRegionCode` | Country/Region Code | Country/Region Code | ✅ |
+| 12 | `languageCode` | Language Code | Language Code | ✅ |
+| 13 | `currencyCode` | Currency Code | Currency Code | ✅ |
+| 14 | `contact` | Contact | Contact | ✅ |
+| 15 | `yourReference` | Your Reference | Your Reference | ✅ |
+| 16 | `shortcutDimension1Code` | Shortcut Dimension 1 Code | Shortcut Dimension 1 Code | ✅ |
+| 17 | `shortcutDimension2Code` | Shortcut Dimension 2 Code | Shortcut Dimension 2 Code | ✅ |
+| 18 | `customerPostingGroup` | Customer Posting Group | Customer Posting Group | ✅ |
+| 19 | `genBusPostingGroup` | Gen. Bus. Posting Group | Gen. Bus. Posting Group | ✅ |
+| 20 | `vatRegistrationNo` | VAT Registration No. | VAT Registration No. | ✅ |
+| 21 | `reasonCode` | Reason Code | Reason Code | ✅ |
+| 22 | `postingDate` | Posting Date | Posting Date | ✅ |
+| 23 | `documentDate` | Document Date | Document Date | ✅ |
+| 24 | `dueDate` | Due Date | Due Date | ✅ |
+| 25 | `finChargeTermsCode` | Fin. Charge Terms Code | Fin. Charge Terms Code | ✅ |
+| 26 | `postInterest` | Post Interest | Post Interest | ✅ |
+| 27 | `postAdditionalFee` | Post Additional Fee | Post Additional Fee | ✅ |
+| 28 | `postingDescription` | Posting Description | Posting Description | ✅ |
 | 29 | `comment` | Comment | Comment | 🧮 computed |
 | 30 | `remainingAmount` | Remaining Amount | Remaining Amount | 🧮 computed |
 | 31 | `interestAmount` | Interest Amount | Interest Amount | 🧮 computed |
 | 32 | `additionalFee` | Additional Fee | Additional Fee | 🧮 computed |
 | 33 | `vatAmount` | VAT Amount | VAT Amount | 🧮 computed |
-| 34 | `noSeries` | No. Series | No. Series | — |
-| 35 | `issuingNoSeries` | Issuing No. Series | Issuing No. Series | — |
-| 36 | `issuingNo` | Issuing No. | Issuing No. | — |
-| 37 | `taxAreaCode` | Tax Area Code | Tax Area Code | — |
-| 38 | `taxLiable` | Tax Liable | Tax Liable | — |
-| 39 | `vatBusPostingGroup` | VAT Bus. Posting Group | VAT Bus. Posting Group | — |
-| 40 | `vatReportingDate` | VAT Reporting Date | VAT Date | — |
-| 41 | `formatRegion` | Format Region | Format Region | — |
-| 42 | `companyBankAccountCode` | Company Bank Account Code | Company Bank Account Code | — |
-| 43 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | — |
-| 44 | `assignedUserId` | Assigned User ID | Assigned User ID | — |
+| 34 | `noSeries` | No. Series | No. Series | ✅ |
+| 35 | `issuingNoSeries` | Issuing No. Series | Issuing No. Series | ✅ |
+| 36 | `issuingNo` | Issuing No. | Issuing No. | ✅ |
+| 37 | `taxAreaCode` | Tax Area Code | Tax Area Code | ✅ |
+| 38 | `taxLiable` | Tax Liable | Tax Liable | ✅ |
+| 39 | `vatBusPostingGroup` | VAT Bus. Posting Group | VAT Bus. Posting Group | ✅ |
+| 40 | `vatReportingDate` | VAT Reporting Date | VAT Date | ✅ |
+| 41 | `formatRegion` | Format Region | Format Region | ✅ |
+| 42 | `companyBankAccountCode` | Company Bank Account Code | Company Bank Account Code | ✅ |
+| 43 | `dimensionSetId` | Dimension Set ID | Dimension Set ID | ✅ |
+| 44 | `assignedUserId` | Assigned User ID | Assigned User ID | ✅ |
 
 
 [↑ Back to top](#table-of-contents)
@@ -11924,39 +11965,39 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Page Name | `ocpfFinanceChargeMemoLines` |
 | Entity Set Name | `ocpfFinanceChargeMemoLines` |
 | API Group | `ocpf_systemAndSetup` |
-| Editable | ❌ No (GET only) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 28 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
 | 1 | `systemId` | SystemId | System ID | 🔑 Key |
-| 2 | `financeChargeMemoNo` | Finance Charge Memo No. | Finance Charge Memo No. | — |
-| 3 | `lineNo` | Line No. | Line No. | — |
-| 4 | `attachedToLineNo` | Attached to Line No. | Attached to Line No. | — |
-| 5 | `type` | Type | Type | — |
-| 6 | `entryNo` | Entry No. | Entry No. | — |
-| 7 | `postingDate` | Posting Date | Posting Date | — |
-| 8 | `documentDate` | Document Date | Document Date | — |
-| 9 | `dueDate` | Due Date | Due Date | — |
-| 10 | `documentType` | Document Type | Document Type | — |
-| 11 | `documentNo` | Document No. | Document No. | — |
-| 12 | `description` | Description | Description | — |
-| 13 | `originalAmount` | Original Amount | Original Amount | — |
-| 14 | `remainingAmount` | Remaining Amount | Remaining Amount | — |
-| 15 | `no` | No. | No. | — |
-| 16 | `amount` | Amount | Amount | — |
-| 17 | `interestRate` | Interest Rate | Interest Rate | — |
-| 18 | `genProdPostingGroup` | Gen. Prod. Posting Group | Gen. Prod. Posting Group | — |
-| 19 | `vatPct` | VAT % | VAT % | — |
-| 20 | `vatCalculationType` | VAT Calculation Type | VAT Calculation Type | — |
-| 21 | `vatAmount` | VAT Amount | VAT Amount | — |
-| 22 | `taxGroupCode` | Tax Group Code | Tax Group Code | — |
-| 23 | `vatProdPostingGroup` | VAT Prod. Posting Group | VAT Prod. Posting Group | — |
-| 24 | `vatIdentifier` | VAT Identifier | VAT Identifier | — |
-| 25 | `lineType` | Line Type | Line Type | — |
-| 26 | `vatClauseCode` | VAT Clause Code | VAT Clause Code | — |
-| 27 | `detailedInterestRatesEntry` | Detailed Interest Rates Entry | Detailed Interest Rates Entry | — |
-| 28 | `systemCreatedEntry` | System-Created Entry | System-Created Entry | — |
+| 2 | `financeChargeMemoNo` | Finance Charge Memo No. | Finance Charge Memo No. | ✅ |
+| 3 | `lineNo` | Line No. | Line No. | ✅ |
+| 4 | `attachedToLineNo` | Attached to Line No. | Attached to Line No. | ✅ |
+| 5 | `type` | Type | Type | ✅ |
+| 6 | `entryNo` | Entry No. | Entry No. | ✅ |
+| 7 | `postingDate` | Posting Date | Posting Date | ✅ |
+| 8 | `documentDate` | Document Date | Document Date | ✅ |
+| 9 | `dueDate` | Due Date | Due Date | ✅ |
+| 10 | `documentType` | Document Type | Document Type | ✅ |
+| 11 | `documentNo` | Document No. | Document No. | ✅ |
+| 12 | `description` | Description | Description | ✅ |
+| 13 | `originalAmount` | Original Amount | Original Amount | ✅ |
+| 14 | `remainingAmount` | Remaining Amount | Remaining Amount | ✅ |
+| 15 | `no` | No. | No. | ✅ |
+| 16 | `amount` | Amount | Amount | ✅ |
+| 17 | `interestRate` | Interest Rate | Interest Rate | ✅ |
+| 18 | `genProdPostingGroup` | Gen. Prod. Posting Group | Gen. Prod. Posting Group | ✅ |
+| 19 | `vatPct` | VAT % | VAT % | ✅ |
+| 20 | `vatCalculationType` | VAT Calculation Type | VAT Calculation Type | ✅ |
+| 21 | `vatAmount` | VAT Amount | VAT Amount | ✅ |
+| 22 | `taxGroupCode` | Tax Group Code | Tax Group Code | ✅ |
+| 23 | `vatProdPostingGroup` | VAT Prod. Posting Group | VAT Prod. Posting Group | ✅ |
+| 24 | `vatIdentifier` | VAT Identifier | VAT Identifier | ✅ |
+| 25 | `lineType` | Line Type | Line Type | ✅ |
+| 26 | `vatClauseCode` | VAT Clause Code | VAT Clause Code | ✅ |
+| 27 | `detailedInterestRatesEntry` | Detailed Interest Rates Entry | Detailed Interest Rates Entry | ✅ |
+| 28 | `systemCreatedEntry` | System-Created Entry | System-Created Entry | ✅ |
 
 
 [↑ Back to top](#table-of-contents)
@@ -11975,6 +12016,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Entity Set Name | `ocpfApprovalEntries` |
 | API Group | `ocpf_systemAndSetup` |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 29 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -12026,6 +12068,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Entity Set Name | `ocpfWorkflowStepInstances` |
 | API Group | `ocpf_systemAndSetup` |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 20 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -12413,6 +12456,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | API Group | `ocpf_manufacturing` |
 | API Version | v3.1 only (new in v3.1) |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 17 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -12442,7 +12486,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 
 ### ocpfCalendarAbsenceEntries
 
-**Description:** Calendar Absence Entries — registered capacity downtime (maintenance, holidays) per work/machine center. Read-only.
+**Description:** Calendar Absence Entries — registered capacity downtime (maintenance, holidays) per work/machine center.
 
 | Property | Value |
 |---|---|
@@ -12452,24 +12496,24 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Entity Set Name | `ocpfCalendarAbsenceEntries` |
 | API Group | `ocpf_manufacturing` |
 | API Version | v3.1 only (new in v3.1) |
-| Editable | ❌ No (GET only) |
+| Editable | ✅ Yes (POST/PATCH/DELETE supported) |
 | Field Count | 13 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
 | 1 | `systemId` | SystemId | System ID | 🔑 Key |
-| 2 | `capacityType` | Capacity Type | Capacity Type | — |
-| 3 | `no` | No. | No. | — |
-| 4 | `date` | Date | Date | — |
-| 5 | `startingTime` | Starting Time | Starting Time | — |
-| 6 | `endingTime` | Ending Time | Ending Time | — |
-| 7 | `workCenterNo` | Work Center No. | Work Center No. | — |
-| 8 | `workCenterGroupCode` | Work Center Group Code | Work Center Group Code | — |
-| 9 | `capacity` | Capacity | Capacity | — |
-| 10 | `startingDateTime` | Starting Date-Time | Starting Date-Time | — |
-| 11 | `endingDateTime` | Ending Date-Time | Ending Date-Time | — |
-| 12 | `description` | Description | Description | — |
-| 13 | `updated` | Updated | Updated | — |
+| 2 | `capacityType` | Capacity Type | Capacity Type | ✅ |
+| 3 | `no` | No. | No. | ✅ |
+| 4 | `date` | Date | Date | ✅ |
+| 5 | `startingTime` | Starting Time | Starting Time | ✅ |
+| 6 | `endingTime` | Ending Time | Ending Time | ✅ |
+| 7 | `workCenterNo` | Work Center No. | Work Center No. | ✅ |
+| 8 | `workCenterGroupCode` | Work Center Group Code | Work Center Group Code | ✅ |
+| 9 | `capacity` | Capacity | Capacity | ✅ |
+| 10 | `startingDateTime` | Starting Date-Time | Starting Date-Time | ✅ |
+| 11 | `endingDateTime` | Ending Date-Time | Ending Date-Time | ✅ |
+| 12 | `description` | Description | Description | ✅ |
+| 13 | `updated` | Updated | Updated | ✅ |
 
 
 [↑ Back to top](#table-of-contents)
@@ -13232,6 +13276,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | API Group | `ocpf_manufacturing` |
 | API Version | v3.1 only (new in v3.1) |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 29 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -13284,6 +13329,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | API Group | `ocpf_manufacturing` |
 | API Version | v3.1 only (new in v3.1) |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 40 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -13570,6 +13616,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | API Group | `ocpf_manufacturing` |
 | API Version | v3.1 only (new in v3.1) |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 37 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -13630,6 +13677,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | API Group | `ocpf_manufacturing` |
 | API Version | v3.1 only (new in v3.1) |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 32 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -14111,6 +14159,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | API Group | `ocpf_serviceManagement` |
 | API Version | v3.1 only (new in v3.1) |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 14 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -14736,6 +14785,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | API Group | `ocpf_serviceManagement` |
 | API Version | v3.1 only (new in v3.1) |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 64 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -14823,6 +14873,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | API Group | `ocpf_serviceManagement` |
 | API Version | v3.1 only (new in v3.1) |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 42 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -14888,6 +14939,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | API Group | `ocpf_serviceManagement` |
 | API Version | v3.1 only (new in v3.1) |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 10 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -15135,6 +15187,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | API Group | `ocpf_serviceManagement` |
 | API Version | v3.1 only (new in v3.1) |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 133 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -15291,6 +15344,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | API Group | `ocpf_serviceManagement` |
 | API Version | v3.1 only (new in v3.1) |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 102 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -15416,6 +15470,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | API Group | `ocpf_serviceManagement` |
 | API Version | v3.1 only (new in v3.1) |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 147 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -15586,6 +15641,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | API Group | `ocpf_serviceManagement` |
 | API Version | v3.1 only (new in v3.1) |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 106 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -15715,6 +15771,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | API Group | `ocpf_serviceManagement` |
 | API Version | v3.1 only (new in v3.1) |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 137 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
@@ -15875,6 +15932,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | API Group | `ocpf_serviceManagement` |
 | API Version | v3.1 only (new in v3.1) |
 | Editable | ❌ No (GET only) |
+| Data Access Intent | `ReadOnly` (queries served from the read replica) |
 | Field Count | 99 |
 
 | # | Identifier | BC Field Name | Caption | Editable |

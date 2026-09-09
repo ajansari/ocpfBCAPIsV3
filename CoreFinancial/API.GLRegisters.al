@@ -14,6 +14,7 @@ page 90805 "ocpfGLRegisters"
     SourceTable = "G/L Register";
     ODataKeyFields = SystemId;
     Editable = false;
+    DataAccessIntent = ReadOnly;
 
     layout
     {

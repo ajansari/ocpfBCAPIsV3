@@ -14,6 +14,7 @@ page 90966 "ocpfCapacityLedgerEntries"
     SourceTable = "Capacity Ledger Entry";
     ODataKeyFields = SystemId;
     Editable = false;
+    DataAccessIntent = ReadOnly;
 
     layout
     {

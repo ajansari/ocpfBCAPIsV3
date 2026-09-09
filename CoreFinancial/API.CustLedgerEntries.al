@@ -14,6 +14,7 @@ page 90806 "ocpfCustLedgerEntries"
     SourceTable = "Cust. Ledger Entry";
     ODataKeyFields = SystemId;
     Editable = false;
+    DataAccessIntent = ReadOnly;
 
     layout
     {

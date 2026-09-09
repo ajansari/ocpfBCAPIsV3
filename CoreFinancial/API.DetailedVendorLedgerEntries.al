@@ -14,6 +14,7 @@ page 90809 "ocpfDtldVendorLedgEntries"
     SourceTable = "Detailed Vendor Ledg. Entry";
     ODataKeyFields = SystemId;
     Editable = false;
+    DataAccessIntent = ReadOnly;
 
     layout
     {

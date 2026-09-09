@@ -14,6 +14,7 @@ page 90997 "ocpfServiceInvoiceLines"
     SourceTable = "Service Invoice Line";
     ODataKeyFields = SystemId;
     Editable = false;
+    DataAccessIntent = ReadOnly;
 
     layout
     {

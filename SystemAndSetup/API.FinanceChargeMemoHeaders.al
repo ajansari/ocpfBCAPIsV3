@@ -13,7 +13,7 @@ page 90935 "ocpfFinanceChargeMemoHeaders"
     EntitySetName = 'ocpfFinanceChargeMemoHeaders';
     SourceTable = "Finance Charge Memo Header";
     ODataKeyFields = SystemId;
-    Editable = false;
+    DelayedInsert = true;
 
     layout
     {

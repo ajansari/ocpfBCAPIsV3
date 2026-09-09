@@ -14,6 +14,7 @@ page 90995 "ocpfServiceShipmentLines"
     SourceTable = "Service Shipment Line";
     ODataKeyFields = SystemId;
     Editable = false;
+    DataAccessIntent = ReadOnly;
 
     layout
     {

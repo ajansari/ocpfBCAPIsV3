@@ -14,6 +14,7 @@ page 90808 "ocpfVendorLedgerEntries"
     SourceTable = "Vendor Ledger Entry";
     ODataKeyFields = SystemId;
     Editable = false;
+    DataAccessIntent = ReadOnly;
 
     layout
     {

@@ -14,6 +14,7 @@ page 90965 "ocpfProdOrderCapacityNeeds"
     SourceTable = "Prod. Order Capacity Need";
     ODataKeyFields = SystemId;
     Editable = false;
+    DataAccessIntent = ReadOnly;
 
     layout
     {

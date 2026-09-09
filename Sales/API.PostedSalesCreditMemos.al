@@ -14,6 +14,7 @@ page 90880 "ocpfPostedSalesCreditMemos"
     SourceTable = "Sales Cr.Memo Header";
     ODataKeyFields = SystemId;
     Editable = false;
+    DataAccessIntent = ReadOnly;
 
     layout
     {

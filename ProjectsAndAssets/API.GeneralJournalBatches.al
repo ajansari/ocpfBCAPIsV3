@@ -13,7 +13,7 @@ page 90920 "ocpfGeneralJournalBatches"
     EntitySetName = 'ocpfGeneralJournalBatches';
     SourceTable = "Gen. Journal Batch";
     ODataKeyFields = SystemId;
-    Editable = false;
+    DelayedInsert = true;
 
     layout
     {

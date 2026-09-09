@@ -14,6 +14,7 @@ page 90823 "ocpfDimensionSetEntries"
     SourceTable = "Dimension Set Entry";
     ODataKeyFields = SystemId;
     Editable = false;
+    DataAccessIntent = ReadOnly;
 
     layout
     {

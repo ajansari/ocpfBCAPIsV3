@@ -14,6 +14,7 @@ page 90810 "ocpfEmployeeLedgerEntries"
     SourceTable = "Employee Ledger Entry";
     ODataKeyFields = SystemId;
     Editable = false;
+    DataAccessIntent = ReadOnly;
 
     layout
     {

@@ -14,6 +14,7 @@ page 90917 "ocpfFaLedgerEntries"
     SourceTable = "FA Ledger Entry";
     ODataKeyFields = SystemId;
     Editable = false;
+    DataAccessIntent = ReadOnly;
 
     layout
     {

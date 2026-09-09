@@ -13,7 +13,7 @@ page 90916 "ocpfFaPostingGroups"
     EntitySetName = 'ocpfFaPostingGroups';
     SourceTable = "FA Posting Group";
     ODataKeyFields = SystemId;
-    Editable = false;
+    DelayedInsert = true;
 
     layout
     {

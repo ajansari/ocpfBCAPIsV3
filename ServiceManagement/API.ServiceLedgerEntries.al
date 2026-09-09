@@ -14,6 +14,7 @@ page 90988 "ocpfServiceLedgerEntries"
     SourceTable = "Service Ledger Entry";
     ODataKeyFields = SystemId;
     Editable = false;
+    DataAccessIntent = ReadOnly;
 
     layout
     {

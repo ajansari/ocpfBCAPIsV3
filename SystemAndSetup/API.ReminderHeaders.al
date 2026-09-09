@@ -13,7 +13,7 @@ page 90933 "ocpfReminderHeaders"
     EntitySetName = 'ocpfReminderHeaders';
     SourceTable = "Reminder Header";
     ODataKeyFields = SystemId;
-    Editable = false;
+    DelayedInsert = true;
 
     layout
     {

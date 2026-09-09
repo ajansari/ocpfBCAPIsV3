@@ -14,6 +14,7 @@ page 90996 "ocpfServiceInvoiceHeaders"
     SourceTable = "Service Invoice Header";
     ODataKeyFields = SystemId;
     Editable = false;
+    DataAccessIntent = ReadOnly;
 
     layout
     {

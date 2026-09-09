@@ -14,6 +14,7 @@ page 90989 "ocpfWarrantyLedgerEntries"
     SourceTable = "Warranty Ledger Entry";
     ODataKeyFields = SystemId;
     Editable = false;
+    DataAccessIntent = ReadOnly;
 
     layout
     {

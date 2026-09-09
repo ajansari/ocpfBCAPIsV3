@@ -14,6 +14,7 @@ page 90972 "ocpfPostedAssemblyLines"
     SourceTable = "Posted Assembly Line";
     ODataKeyFields = SystemId;
     Editable = false;
+    DataAccessIntent = ReadOnly;
 
     layout
     {

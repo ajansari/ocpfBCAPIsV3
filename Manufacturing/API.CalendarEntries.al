@@ -14,6 +14,7 @@ page 90947 "ocpfCalendarEntries"
     SourceTable = "Calendar Entry";
     ODataKeyFields = SystemId;
     Editable = false;
+    DataAccessIntent = ReadOnly;
 
     layout
     {

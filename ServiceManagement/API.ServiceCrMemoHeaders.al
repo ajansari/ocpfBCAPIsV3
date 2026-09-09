@@ -14,6 +14,7 @@ page 90998 "ocpfServiceCrMemoHeaders"
     SourceTable = "Service Cr.Memo Header";
     ODataKeyFields = SystemId;
     Editable = false;
+    DataAccessIntent = ReadOnly;
 
     layout
     {

@@ -14,6 +14,7 @@ page 90881 "ocpfPostedSalesCreditMemoLines"
     SourceTable = "Sales Cr.Memo Line";
     ODataKeyFields = SystemId;
     Editable = false;
+    DataAccessIntent = ReadOnly;
 
     layout
     {

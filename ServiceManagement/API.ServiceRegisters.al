@@ -14,6 +14,7 @@ page 90990 "ocpfServiceRegisters"
     SourceTable = "Service Register";
     ODataKeyFields = SystemId;
     Editable = false;
+    DataAccessIntent = ReadOnly;
 
     layout
     {

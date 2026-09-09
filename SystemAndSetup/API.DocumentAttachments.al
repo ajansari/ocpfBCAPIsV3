@@ -13,7 +13,7 @@ page 90930 "ocpfDocumentAttachments"
     EntitySetName = 'ocpfDocumentAttachments';
     SourceTable = "Document Attachment";
     ODataKeyFields = SystemId;
-    Editable = false;
+    DelayedInsert = true;
 
     layout
     {

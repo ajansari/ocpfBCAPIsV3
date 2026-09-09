@@ -13,7 +13,7 @@ page 90923 "ocpfPriceListLines"
     EntitySetName = 'ocpfPriceListLines';
     SourceTable = "Price List Line";
     ODataKeyFields = SystemId;
-    Editable = false;
+    DelayedInsert = true;
 
     layout
     {

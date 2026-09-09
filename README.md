@@ -4,8 +4,9 @@
 
 **Publisher:** OnlyCopilotFans  
 **API Version:** v3.1 (all endpoints also served at v3.0 for existing integrations)  
+**App Version:** 3.1.2.0  
 **BC Version:** Business Central 2025 Wave 2 (v27.5+)  
-**Date:** June 9, 2026 (v3.0) — updated July 7, 2026 (v3.1)
+**Date:** June 9, 2026 (v3.0) — updated July 7, 2026 (v3.1) — updated September 9, 2026 (v3.1.2)  
 **Created by:** AJ Ansari ( [Email](mailto:aj@onlycopilotfans.com) | [LinkedIn](https://linkedin.com/in/ajansari) )
 
 ## Overview
@@ -16,9 +17,17 @@ Each API page maps directly to a standard BC source table and exposes every stan
 
 ## For full documentation, view Documentation.md in the [Documentation](https://github.com/ajansari/ocpfBCAPIsV3/blob/main/Documentation/Documentation.md) folder.
 
-## What changed between v3.0 and v3.1
+## What changed
 
-v3.1 (July 2026) is an **additive, non-breaking** release — all v3.0 endpoints keep working unchanged.
+### v3.1.2 (September 2026)
+
+- **18 pages corrected from read-only to editable** — setup and working-document entities that had been mis-marked as read-only now support POST/PATCH/DELETE: Projects, Project Tasks / Planning Lines / Posting Groups, Fixed Assets, FA Posting Groups, FA Depreciation Books, General Journal Templates & Batches, Price List Headers & Lines, Company Information, Document Attachments, Reminders (header/line), Finance Charge Memos (header/line), and Calendar Absence Entries. Catalog is now **134 editable / 49 read-only**; `OCPF - READ/WRITE` covers 134 pages.
+- **`DataAccessIntent = ReadOnly` on the 49 immutable pages** — ledgers, registers, and posted documents now serve their GET queries from the SQL read-only replica, offloading reporting/extract load from the primary. Non-breaking; the only effect is a few seconds of replication lag on freshly written data. Applies to both `/v3.0/` and `/v3.1/`.
+- **App version** 3.1.1.0 → 3.1.2.0. No endpoint or contract changes.
+
+### v3.0 → v3.1 (July 2026)
+
+v3.1 is an **additive, non-breaking** release — all v3.0 endpoints keep working unchanged.
 
 - **Dual-versioned endpoints** — every existing API page is served at both `/v3.0/` and `/v3.1/` base URLs. New entities are published at v3.1 only, so **new integrations should use `/v3.1/`**.
 - **170 missing standard fields restored on 22 existing entities** — v3.0's generator had skipped every field with parentheses in its name (e.g. `Credit Limit (LCY)` on Customer, `Cost Amount (Actual)` on Value Entry, and the `(LCY)`/`(Qty.)` flow fields on Customer, Vendor, Item, and ledger entities). These appear on both versions, which is additive and safe for existing OData clients.
@@ -32,6 +41,6 @@ The complete field-by-field delta is in [ChangeLog.md](https://github.com/ajansa
 
 - ~~Service Management~~ — ✅ shipped in v3.1
 - ~~Manufacturing (Production)~~ — ✅ shipped in v3.1 (including Assembly)
-- DataAccessIntent to be added to all Read-Only API pages for performance improvement
-- APIs for Permissons related tables
+- ~~`DataAccessIntent = ReadOnly` on read-only pages, for read-replica offload~~ — ✅ shipped in v3.1.2 (also corrected 18 pages that should have been editable)
+- APIs for permission / access-control tables — permission sets, permissions, and permission-set assignments to users and security groups. Planned as a new `ocpf_accessControl` category.
 

@@ -13,7 +13,7 @@ page 90919 "ocpfGeneralJournalTemplates"
     EntitySetName = 'ocpfGeneralJournalTemplates';
     SourceTable = "Gen. Journal Template";
     ODataKeyFields = SystemId;
-    Editable = false;
+    DelayedInsert = true;
 
     layout
     {

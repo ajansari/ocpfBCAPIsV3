@@ -14,6 +14,7 @@ page 90855 "ocpfResourceLedgerEntries"
     SourceTable = "Res. Ledger Entry";
     ODataKeyFields = SystemId;
     Editable = false;
+    DataAccessIntent = ReadOnly;
 
     layout
     {

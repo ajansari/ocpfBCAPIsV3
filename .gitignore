@@ -4,3 +4,6 @@
 .DS_Store
 agenticDevelopmentFramework/
 internalLogs/
+
+# Automated Test Suite — local-only, never sync to remote
+ATS/

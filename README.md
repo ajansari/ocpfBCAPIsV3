@@ -30,5 +30,6 @@ The complete field-by-field delta is in [ChangeLog.md](https://github.com/ajansa
 
 - ~~Service Management~~ — ✅ shipped in v3.1
 - ~~Manufacturing (Production)~~ — ✅ shipped in v3.1 (including Assembly)
-
+- DataAccessIntent to be added to all Read-Only API pages for performance improvement
+- APIs for Permissons related tables
 

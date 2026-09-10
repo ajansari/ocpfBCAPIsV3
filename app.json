@@ -2,9 +2,9 @@
   "id": "855299b2-5650-41ce-80c1-b130b89af4b4",
   "name": "OCPF APIs v3",
   "publisher": "OnlyCopilotFans",
-  "version": "3.1.2.0",
-  "brief": "183 standard Business Central tables as OData v4 API endpoints — a ready-to-use, localization-neutral API layer.",
-  "description": "OCPF APIs v3 exposes 183 standard Business Central tables as OData v4 API endpoints spanning core financials, master data, sales, purchasing, projects, fixed assets, manufacturing, assembly, and service management. Each API page maps one-to-one to a standard BC table and exposes every non-localization field, so the same endpoints and field set behave identically in any country's BC environment. Endpoints are dual-versioned and served at both /v3.0/ and /v3.1/ base URLs (new integrations should use /v3.1/). 134 pages support POST/PATCH/DELETE; the 49 read-only pages (ledger entries, registers, posted documents) run with DataAccessIntent = ReadOnly so their queries are served from the Azure SQL read replica. The OCPF - READ and OCPF - READ/WRITE permission sets are included. Consumers also need the corresponding permissions on the underlying BC base tables.",
+  "version": "3.1.3.0",
+  "brief": "187 standard Business Central tables as OData v4 API endpoints — a ready-to-use, localization-neutral API layer.",
+  "description": "OCPF APIs v3 exposes 187 standard Business Central tables as OData v4 API endpoints spanning core financials, master data, sales, purchasing, projects, fixed assets, manufacturing, assembly, service management, and access control. Each API page maps one-to-one to a standard BC table and exposes every non-localization field, so the same endpoints and field set behave identically in any country's BC environment. Endpoints are dual-versioned and served at both /v3.0/ and /v3.1/ base URLs (new integrations should use /v3.1/). 135 pages support POST/PATCH/DELETE; the 52 read-only pages (ledger entries, registers, posted documents) run with DataAccessIntent = ReadOnly so their queries are served from the Azure SQL read replica. The Access Control pages (permission sets, permissions, users, and permission-set assignments) use object IDs 91000-91003. The OCPF - READ and OCPF - READ/WRITE permission sets are included. Consumers also need the corresponding permissions on the underlying BC base tables.",
   "privacyStatement": "",
   "EULA": "",
   "help": "",
@@ -17,7 +17,7 @@
   "idRanges": [
     {
       "from": 90800,
-      "to": 90999
+      "to": 91099
     }
   ],
   "resourceExposurePolicy": {

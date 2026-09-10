@@ -149,5 +149,7 @@ permissionset 90951 "OCPF - READ/WRITE"
         page "ocpfReminderLines" = X,
         page "ocpfFinanceChargeMemoHeaders" = X,
         page "ocpfFinanceChargeMemoLines" = X,
-        page "ocpfCalendarAbsenceEntries" = X;
+        page "ocpfCalendarAbsenceEntries" = X,
+        // v3.1.3 — Access Control: permission-set assignment (assign/revoke)
+        page "ocpfPermissionSetAssignments" = X;
 }

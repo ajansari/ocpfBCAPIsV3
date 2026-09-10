@@ -2,15 +2,15 @@
 
 **Publisher:** OnlyCopilotFans  
 **API Version:** v3.1 (all endpoints also served at v3.0; see ChangeLog)  
-**App Version:** 3.1.2.0  
+**App Version:** 3.1.3.0  
 **BC Version:** 2025 Wave 2 (v27.5+)  
-**Object Range:** 90800–90999  
-**Date:** June 9, 2026 (v3.0) — updated July 7, 2026 (v3.1) — updated September 9, 2026 (v3.1.2)  
+**Object Range:** 90800–91099  
+**Date:** June 9, 2026 (v3.0) — updated July 7, 2026 (v3.1) — updated September 9, 2026 (v3.1.2, v3.1.3)  
 **Created by:** AJ Ansari ( [Email](mailto:aj@onlycopilotfans.com) | [LinkedIn](https://linkedin.com/in/ajansari) )
 
 ## Overview
 
-**OCPF APIs** is a Business Central extension that exposes over 175 of the most commonly used standard BC tables as OData v4 API endpoints. It is designed to be a comprehensive, ready-to-use API layer for integrations, reporting tools, and external applications that need reliable, structured access to Business Central data without requiring custom development per table.
+**OCPF APIs** is a Business Central extension that exposes 187 standard BC tables as OData v4 API endpoints. It is designed to be a comprehensive, ready-to-use API layer for integrations, reporting tools, and external applications that need reliable, structured access to Business Central data without requiring custom development per table.
 
 Each API page maps directly to a standard BC source table and exposes every standard field from that table, with the deliberate exception of fields that are specific to country/region localizations. This keeps the API surface globally portable — the same endpoints and field set work consistently across any BC environment regardless of the localization installed.
 
@@ -30,7 +30,7 @@ Each API page maps directly to a standard BC source table and exposes every stan
   - *Purchasing* (+2): Purchase Line Discounts (`ocpfPurchaseLineDiscounts`, BC table 7014) and Vendor Invoice Discounts (`ocpfVendorInvoiceDiscounts`, BC table 24) — the purchase-side counterparts.
   - *Pricing note:* the Sales Line Discount and Purchase Line Discount API pages remain available even though the underlying BC tables are marked for deprecation, because the V16 pricing model is still an opt-in feature in BC. We will adjust this in the future once Microsoft enables the new pricing tables by default. In the meantime, both the classic discount pages and the already-published read-only `ocpfPriceListHeaders` / `ocpfPriceListLines` (Projects & Assets group) are exposed; invoice-discount tables (19/24) are not affected by the V16 change.
 - **Tooltip corrections** — several field tooltips that the v3.0 generator had shifted onto neighboring fields were repaired, and tooltips for the added fields are sourced from the BC 27.5 Base Application.
-- **Permission sets** — `OCPF - READ` covers all 183 pages; `OCPF - READ/WRITE` granted write access on 116 editable pages in v3.1.1 (134 as of v3.1.2 — see below).
+- **Permission sets** — `OCPF - READ` covers all 187 pages; `OCPF - READ/WRITE` granted write access on 116 editable pages in v3.1.1 (134 as of v3.1.2 — see below).
 - **App version** — `app.json` 3.0.0.0 → 3.1.0.0 → 3.1.1.0. Git tags `v3.0.0.0` and `v3.1.0.0` mark the earlier releases (`git diff v3.0.0.0 v3.1.0.0` shows the full contract delta).
 
 #### v3.1.2 (September 2026)
@@ -41,15 +41,46 @@ Additive, non-breaking. No contract change on any endpoint.
 - **`DataAccessIntent = ReadOnly` on the 49 read-only pages** — the immutable read-only entities (ledger entries, G/L and service registers, posted sales/purchase/service documents and posted assembly orders, calendar entries, prod. order capacity needs, dimension set entries, warehouse entries, approval entries, workflow step instances) now route their GET queries to the Azure SQL **read-only replica**. This offloads reporting/extract traffic from the primary and improves throughput. The only observable difference is replica lag (typically a few seconds): a client that writes through an editable page and then immediately reads a related read-only entity may briefly see the pre-write state. Editable pages are unchanged. Applies to both the `/v3.0/` and `/v3.1/` endpoints.
 - **App version** — `app.json` 3.1.1.0 → 3.1.2.0.
 
+#### v3.1.3 (September 2026)
+
+Additive, non-breaking. New **Access Control** category (`ocpf_accessControl`), 4 pages, v3.1-only, object IDs 91000–91003.
+
+- **`ocpfPermissionSets`** (read) — every permission set in the environment: system, extension (AppSource/PTE), and tenant-defined, each with `scope` and `appId`.
+- **`ocpfPermissionSetPermissions`** (read) — the fully expanded object-level permissions of any set, from the platform `Expanded Permission` table. The `Security Filter` column is not exposed (unsupported field type on API pages).
+- **`ocpfUsers`** (read) — user accounts, and security-group rows shown for reference (`licenseType` `AAD Group` / `Windows Group`). Provides the `userSecurityId` used to assign a set to a user below.
+- **`ocpfPermissionSetAssignments`** (read/write) — which permission set is granted to which **user**, in which company. POST to assign, DELETE to revoke; `appId` and `scope` in the body must match the values from `ocpfPermissionSets`. Requires SUPER or the SECURITY permission set. Assigning a permission set to a security group is **not** supported here — do it in the Business Central UI.
+
+Creating custom (tenant) permission sets and editing their permission lines is intentionally out of scope for this release. Object IDs are 91000–91003; the app's ID range was extended from 90800–90999 to `90800–91099`. These platform virtual tables are keyed by their natural composite keys rather than `SystemId`. App version `app.json` 3.1.2.0 → 3.1.3.0.
+
 The complete field-by-field delta is recorded in [ChangeLog.md](ChangeLog.md).
 
 ### Key characteristics
 
-- **Broad coverage** — 175+ standard BC tables across core financials, master data, sales, purchasing, projects, fixed assets, manufacturing, assembly, service management, and system setup
+- **Broad coverage** — 187 standard BC tables across core financials, master data, sales, purchasing, projects, fixed assets, manufacturing, assembly, service management, system setup, and access control
 - **Full field exposure** — every non-localization field on each source table is available, including flow fields and filter fields
-- **Consistent shape** — all pages follow the same API group/entity naming convention and use `SystemId` as the OData key
-- **Selective editability** — pages are marked editable (POST/PATCH/DELETE) or read-only (GET only) based on whether the underlying table is safe to write through an API (134 editable, 49 read-only). The 49 read-only pages (immutable ledger/register/posted-document entities) also set `DataAccessIntent = ReadOnly`, so their queries are served from the read-only replica (expect a few seconds of replication lag on freshly written data)
+- **Consistent shape** — all pages follow the same API group/entity naming convention and use `SystemId` as the OData key (the access-control pages are the exception — they key on natural composite keys)
+- **Selective editability** — pages are marked editable (POST/PATCH/DELETE) or read-only (GET only) based on whether the underlying table is safe to write through an API (135 editable, 52 read-only). 49 of the 52 read-only pages (immutable ledger/register/posted-document entities) also set `DataAccessIntent = ReadOnly`, so their queries are served from the read-only replica (expect a few seconds of replication lag on freshly written data)
 - **Localization-neutral** — fields tied to specific country/region localizations are intentionally excluded so the package installs and behaves identically in any market
+
+#### Access control endpoints — what's possible and what isn't
+
+The `ocpf_accessControl` group (`ocpfPermissionSets`, `ocpfPermissionSetPermissions`, `ocpfUsers`, `ocpfPermissionSetAssignments`) is a **read-and-assign** surface, not an authoring one. It is intended for automations, external apps, and agents that need to *discover* the security model and *grant existing permission sets to people*.
+
+**You can:**
+
+- **List every permission set** in the environment via `ocpfPermissionSets` — base application, installed extensions (AppSource and per-tenant/PTE), and tenant-defined sets — each with its `scope` and owning `appId`.
+- **Read the permissions contained in any permission set** via `ocpfPermissionSetPermissions` — the fully expanded object-level grants (Read/Insert/Modify/Delete/Execute per object) for system, extension, and tenant sets alike.
+- **Look up users** via `ocpfUsers` — to resolve names, emails, and the `userSecurityId` needed for an assignment.
+- **Assign an existing permission set to an individual user** — POST to `ocpfPermissionSetAssignments` — and **revoke it** with DELETE, optionally scoped to a single company. Requires the caller to hold `SUPER` or the `SECURITY` permission set.
+
+**You cannot:**
+
+- **Create a new custom (tenant) permission set**, rename one, or delete one. New permission sets must be created in the Business Central UI (or shipped by an extension).
+- **Add, change, or remove individual permissions** in any permission set — including tenant sets. The permission-line pages are read-only.
+- **Assign a permission set to a security group.** Assignments through this API are for individual users only; assigning a set to a security group (so its members inherit it) must be done in the Business Central UI. `ocpfUsers` will show security-group rows (License Type `AAD Group` / `Windows Group`) for reference, but they are not valid assignment targets here.
+- **Modify a permission's security (row-level) filter** — that field is not exposed by the API.
+
+In short: use these endpoints to *understand* the security setup and to *hand an existing permission set to a user*. Anything that authors or restructures the security model itself stays in the BC UI.
 
 ---
 
@@ -76,7 +107,8 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | [System & Setup](#system--setup) | `ocpf_systemAndSetup` | 9 | 6 | 3 |
 | [Manufacturing](#manufacturing) 🆕 | `ocpf_manufacturing` | 34 | 29 | 5 |
 | [Service Management](#service-management) 🆕 | `ocpf_serviceManagement` | 30 | 20 | 10 |
-| **Total** | | **183** | **134** | **49** |
+| [Access Control](#access-control) 🆕 | `ocpf_accessControl` | 4 | 1 | 3 |
+| **Total** | | **187** | **135** | **52** |
 
 <details>
 <summary><b>Core Financial</b> — 25 entities · <code>ocpf_coreFinancial</code></summary>
@@ -322,6 +354,18 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | [ocpfServiceInvoiceLines](#ocpfserviceinvoicelines) | Service Invoice Line | 90997 | 👁 |
 | [ocpfServiceCrMemoHeaders](#ocpfservicecrmemoheaders) | Service Cr.Memo Header | 90998 | 👁 |
 | [ocpfServiceCrMemoLines](#ocpfservicecrmemolines) | Service Cr.Memo Line | 90999 | 👁 |
+
+</details>
+
+<details>
+<summary><b>Access Control</b> — 4 entities · <code>ocpf_accessControl</code> · 🆕 new in v3.1</summary>
+
+| Entity | Source Table | Page ID | Access |
+|---|---|---|:---:|
+| [ocpfPermissionSets](#ocpfpermissionsets) | Aggregate Permission Set | 91000 | 👁 |
+| [ocpfPermissionSetPermissions](#ocpfpermissionsetpermissions) | Expanded Permission | 91001 | 👁 |
+| [ocpfUsers](#ocpfusers) | User | 91002 | 👁 |
+| [ocpfPermissionSetAssignments](#ocpfpermissionsetassignments) | Access Control | 91003 | ✏️ |
 
 </details>
 
@@ -16036,6 +16080,150 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | 97 | `priceCalculationMethod` | Price Calculation Method | Price Calculation Method | — |
 | 98 | `allowLineDisc` | Allow Line Disc. | Allow Line Disc. | — |
 | 99 | `customerDiscGroup` | Customer Disc. Group | Customer Disc. Group | — |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+## Access Control
+
+*Category introduced in API v3.1 (`ocpf_accessControl`), object IDs 91000–91003. Read access to every permission set and its permissions and to the user directory, plus read/write access to permission-set assignments for individual users. All four pages require the caller to hold SUPER or the SECURITY permission set on the underlying platform tables. See [Access control endpoints — what's possible and what isn't](#access-control-endpoints--whats-possible-and-what-isnt) for the full boundary.*
+
+### ocpfPermissionSets
+
+**Description:** Permission Sets — every permission set available in the environment (system, extension/AppSource/PTE, and tenant-defined), from the platform `Aggregate Permission Set` table. Read-only.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Aggregate Permission Set (2000000167) |
+| Page ID | 91000 |
+| Page Name | `ocpfPermissionSets` |
+| Entity Set Name | `ocpfPermissionSets` |
+| API Group | `ocpf_accessControl` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ❌ No (GET only) |
+| OData Key | `scope`, `appId`, `roleId` |
+| Field Count | 5 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `scope` | Scope | Scope | 🔑 Key |
+| 2 | `appId` | App ID | App ID | 🔑 Key |
+| 3 | `appName` | App Name | App Name | — |
+| 4 | `roleId` | Role ID | Role ID | 🔑 Key |
+| 5 | `name` | Name | Name | — |
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfPermissionSetPermissions
+
+**Description:** Permission Set Permissions — the fully expanded object-level permissions granted by each permission set (system, extension, and tenant), from the platform `Expanded Permission` table. Read-only. The `Security Filter` field is not exposed because its type is not supported on API pages.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Expanded Permission (2000000254) |
+| Page ID | 91001 |
+| Page Name | `ocpfPermissionSetPermissions` |
+| Entity Set Name | `ocpfPermissionSetPermissions` |
+| API Group | `ocpf_accessControl` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ❌ No (GET only) |
+| OData Key | `scope`, `appId`, `roleId`, `objectType`, `objectId` |
+| Field Count | 13 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `scope` | Scope | Scope | 🔑 Key |
+| 2 | `appId` | App ID | App ID | 🔑 Key |
+| 3 | `roleId` | Role ID | Role ID | 🔑 Key |
+| 4 | `roleName` | Role Name | Role Name | 🧮 computed |
+| 5 | `objectType` | Object Type | Object Type | 🔑 Key |
+| 6 | `objectId` | Object ID | Object ID | 🔑 Key |
+| 7 | `objectName` | Object Name | Object Name | 🧮 computed |
+| 8 | `alObjectName` | AL Object Name | AL Object Name | 🧮 computed |
+| 9 | `readPermission` | Read Permission | Read Permission | — |
+| 10 | `insertPermission` | Insert Permission | Insert Permission | — |
+| 11 | `modifyPermission` | Modify Permission | Modify Permission | — |
+| 12 | `deletePermission` | Delete Permission | Delete Permission | — |
+| 13 | `executePermission` | Execute Permission | Execute Permission | — |
+
+*`objectType` values: `Table Data`, `Table`, `Report`, `Codeunit`, `XMLport`, `MenuSuite`, `Page`, `Query`, `System`. Each permission field is `" "` (none), `Yes` (direct), or `Indirect`.*
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfUsers
+
+**Description:** Users — BC user accounts, from the platform `User` table. Security groups also appear here, as rows with a `licenseType` of `AAD Group` or `Windows Group`, shown for reference; they are **not** valid targets for `ocpfPermissionSetAssignments` (assignment through this API is for individual users only). Read-only.
+
+| Property | Value |
+|---|---|
+| **Source Table** | User (2000000120) |
+| Page ID | 91002 |
+| Page Name | `ocpfUsers` |
+| Entity Set Name | `ocpfUsers` |
+| API Group | `ocpf_accessControl` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ❌ No (GET only) |
+| OData Key | `userSecurityId` |
+| Field Count | 12 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `userSecurityId` | User Security ID | User Security ID | 🔑 Key |
+| 2 | `userName` | User Name | User Name | — |
+| 3 | `fullName` | Full Name | Full Name | — |
+| 4 | `state` | State | State | — |
+| 5 | `licenseType` | License Type | License Type | — |
+| 6 | `expiryDate` | Expiry Date | Expiry Date | — |
+| 7 | `authenticationEmail` | Authentication Email | Authentication Email | — |
+| 8 | `contactEmail` | Contact Email | Contact Email | — |
+| 9 | `exchangeIdentifier` | Exchange Identifier | Exchange Identifier | — |
+| 10 | `applicationId` | Application ID | Application ID | — |
+| 11 | `changePassword` | Change Password | Change Password | — |
+| 12 | `windowsSecurityId` | Windows Security ID | Windows Security ID | — |
+
+*`state`: `Enabled` / `Disabled`. `licenseType`: `Full User`, `Limited User`, `Device Only User`, `Windows Group`, `External User`, `External Administrator`, `External Accountant`, `Application`, `AAD Group`, `Agent`.*
+
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### ocpfPermissionSetAssignments
+
+**Description:** Permission Set Assignments — which permission set is granted to which **user**, and in which company, from the platform `Access Control` table. POST a record to assign a permission set to a user; DELETE it to revoke. Assigning a permission set to a **security group** is not supported through this API — do that in the Business Central UI. `PATCH` is not meaningful — change an assignment by deleting and re-creating it.
+
+| Property | Value |
+|---|---|
+| **Source Table** | Access Control (2000000053) |
+| Page ID | 91003 |
+| Page Name | `ocpfPermissionSetAssignments` |
+| Entity Set Name | `ocpfPermissionSetAssignments` |
+| API Group | `ocpf_accessControl` |
+| API Version | v3.1 only (new in v3.1) |
+| Editable | ✅ Yes (POST to assign, DELETE to revoke) |
+| OData Key | `appId`, `roleId`, `userSecurityId`, `companyName` |
+| Field Count | 8 |
+
+| # | Identifier | BC Field Name | Caption | Editable |
+|---|---|---|---|---|
+| 1 | `userSecurityId` | User Security ID | User Security ID | 🔑 Key |
+| 2 | `roleId` | Role ID | Role ID | 🔑 Key |
+| 3 | `scope` | Scope | Scope | ✅ |
+| 4 | `appId` | App ID | App ID | 🔑 Key |
+| 5 | `companyName` | Company Name | Company Name | 🔑 Key |
+| 6 | `userName` | User Name | User Name | 🧮 computed |
+| 7 | `roleName` | Role Name | Role Name | 🧮 computed |
+| 8 | `appName` | App Name | App Name | 🧮 computed |
+
+*To assign: POST `{ userSecurityId, roleId, appId, scope, companyName }` — `userSecurityId` must be an individual user from `ocpfUsers`; copy `appId` and `scope` from the matching `ocpfPermissionSets` row (use an empty GUID / `Tenant` scope for tenant sets, the app's GUID / `System` for extension sets). Leave `companyName` blank to grant in all companies.*
 
 
 [↑ Back to top](#table-of-contents)

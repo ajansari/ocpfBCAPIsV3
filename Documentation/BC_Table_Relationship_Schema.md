@@ -7,6 +7,8 @@ This document expands the earlier relationship overview so it includes the full 
 > Scope note: this is a logical schema for the API-backed tables in the catalog. It focuses on the primary parent/child and lookup relationships that matter for integration design, reporting, and downstream joins.
 
 > **Revision note (v3.1, July 2026):** updated for the v3.1 catalog — added the Ship-to Address entity and the new **Manufacturing & Assembly** and **Service Management** categories (65 new entities, families 7 and 8 below). The v3.1 field additions to existing entities (Credit Limit (LCY), Value Entry cost amounts, LCY/Qty flow fields, …) are additive and do not change any relationship keys. Also corrected the entity map: removed a duplicate SKU node and normalized three arrows to the parent → child convention (G/L Register → G/L Entry, Location → Warehouse Entry, Company Information → Document Attachment).
+>
+> **Revision note (v3.1.3, September 2026):** added the **Access Control** category (family 9 below) — the `System.Security.AccessControl` platform tables behind the `ocpf_accessControl` API group. The full entity map (mermaid) above is not extended for these; see family 9 for the relationships.
 
 ## Relationship Notation
 
@@ -529,6 +531,19 @@ flowchart LR
 
 ---
 
+### 9. Access Control *(new in v3.1.3)*
+
+Platform virtual tables in `System.Security.AccessControl`. These are keyed by natural composite keys, not `SystemId`.
+
+| Parent table | Child / related table | Relationship | Driving field(s) |
+|---|---|---|---|
+| Aggregate Permission Set | Expanded Permission | 1:N | Scope + App ID + Role ID |
+| Aggregate Permission Set | Access Control | 1:N | App ID + Role ID (+ Scope) |
+| User | Access Control | 1:N | User Security ID — individual users only (assigning a permission set to a security group is done in the BC UI, not this API) |
+| Access Control | Company (Company Name) | N:1 | Company Name (blank = all companies) |
+
+---
+
 ## Practical Integration View
 
 For API integration, the most valuable join paths are:
@@ -543,6 +558,7 @@ For API integration, the most valuable join paths are:
 8. Customer → Ship-to Address → Sales/Service Header (delivery-address resolution) *(v3.1)*
 9. Item → Routing / Production BOM → Production Order → Prod. Order Lines/Components/Routing Lines → Capacity & Item Ledger Entries *(v3.1)*
 10. Customer → Service Item → Service Order (Item Lines → Lines) → Posted Service Documents, and Service Contract → Service Ledger Entries *(v3.1)*
+11. Permission Set → Permission Set Permissions, and Permission Set → Permission Set Assignment → User *(v3.1.3)*
 
 ## Summary
 

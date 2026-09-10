@@ -4,20 +4,31 @@
 
 **Publisher:** OnlyCopilotFans  
 **API Version:** v3.1 (all endpoints also served at v3.0 for existing integrations)  
-**App Version:** 3.1.2.0  
+**App Version:** 3.1.3.0  
+**Object Range:** 90800–91099  
 **BC Version:** Business Central 2025 Wave 2 (v27.5+)  
-**Date:** June 9, 2026 (v3.0) — updated July 7, 2026 (v3.1) — updated September 9, 2026 (v3.1.2)  
+**Date:** June 9, 2026 (v3.0) — updated July 7, 2026 (v3.1) — updated September 9, 2026 (v3.1.2, v3.1.3)  
 **Created by:** AJ Ansari ( [Email](mailto:aj@onlycopilotfans.com) | [LinkedIn](https://linkedin.com/in/ajansari) )
 
 ## Overview
 
-**OCPF APIs** is a Microsoft Dynamics 365 Business Central extension that exposes over 175 of the most commonly used standard BC tables as OData v4 API endpoints. It is designed to be a comprehensive, ready-to-use API layer for integrations, reporting tools, and external applications that need reliable, structured access to Business Central data without requiring custom development per table.
+**OCPF APIs** is a Microsoft Dynamics 365 Business Central extension that exposes 187 standard BC tables as OData v4 API endpoints. It is designed to be a comprehensive, ready-to-use API layer for integrations, reporting tools, and external applications that need reliable, structured access to Business Central data without requiring custom development per table.
 
 Each API page maps directly to a standard BC source table and exposes every standard field from that table, with the deliberate exception of fields that are specific to country/region localizations. This keeps the API surface globally portable — the same endpoints and field set work consistently across any BC environment regardless of the localization installed.
 
 ## For full documentation, view Documentation.md in the [Documentation](https://github.com/ajansari/ocpfBCAPIsV3/blob/main/Documentation/Documentation.md) folder.
 
 ## What changed
+
+### v3.1.3 (September 2026)
+
+- **New Access Control category** (`ocpf_accessControl`, 4 pages, v3.1-only, object IDs 91000–91003; app ID range extended to 90800–91099) — for automations, external apps, and agents that configure BC security:
+  - `ocpfPermissionSets` (read) — every permission set in the environment: base, extension (AppSource/PTE), and tenant-defined, each with its `scope` and `appId`.
+  - `ocpfPermissionSetPermissions` (read) — the fully expanded object-level permissions of any set.
+  - `ocpfUsers` (read) — users and security groups (groups are the `AAD Group` / `Windows Group` rows; their `userSecurityId` is the group's assignee ID).
+  - `ocpfPermissionSetAssignments` (read/write) — assign an existing permission set to a **user** (POST) or revoke it (DELETE). Requires SUPER or the SECURITY permission set.
+- **What these endpoints can and cannot do** — you can list permission sets and their permissions and assign existing sets to individual users. You **cannot** create or edit custom (tenant) permission sets, add or change individual permissions, or assign a permission set to a **security group**; do those in the Business Central UI. See **Key characteristics → Access control endpoints** in [Documentation.md](https://github.com/ajansari/ocpfBCAPIsV3/blob/main/Documentation/Documentation.md) for the full boundary.
+- Catalog: 187 entities (135 editable / 52 read-only). `OCPF - READ` covers all 187; `OCPF - READ/WRITE` covers 135. App version 3.1.2.0 → 3.1.3.0.
 
 ### v3.1.2 (September 2026)
 
@@ -42,5 +53,5 @@ The complete field-by-field delta is in [ChangeLog.md](https://github.com/ajansa
 - ~~Service Management~~ — ✅ shipped in v3.1
 - ~~Manufacturing (Production)~~ — ✅ shipped in v3.1 (including Assembly)
 - ~~`DataAccessIntent = ReadOnly` on read-only pages, for read-replica offload~~ — ✅ shipped in v3.1.2 (also corrected 18 pages that should have been editable)
-- APIs for permission / access-control tables — permission sets, permissions, and permission-set assignments to users and security groups. Planned as a new `ocpf_accessControl` category.
+- ~~APIs for permission / access-control tables~~ — ✅ shipped in v3.1.3 as the `ocpf_accessControl` category: read access to permission sets, their permissions, and users; read/write assignment of existing permission sets to **individual users**. Creating custom permission sets and assigning to security groups are not included — see the Documentation "Access control endpoints" section.
 

@@ -1,5 +1,47 @@
 # Build Change Log
 
+## v3.1.3 — Access Control category (2026-09-09)
+
+New API group **`ocpf_accessControl`** — 4 pages, `APIVersion = 'v3.1'` only, object IDs **91000–91003**
+(the app's ID range was extended from `90800–90999` to `90800–91099`; `app.json` 3.1.2.0 → 3.1.3.0;
+entity count 183 → 187, editable 134 → 135, read-only 49 → 52).
+All four are plain declarative pages over BC platform tables (`System.Security.AccessControl`); no custom AL.
+
+| Page | ID | Source table | Access |
+|---|---|---|---|
+| `ocpfPermissionSets` | 91000 | Aggregate Permission Set (2000000167) | GET |
+| `ocpfPermissionSetPermissions` | 91001 | Expanded Permission (2000000254) | GET |
+| `ocpfUsers` | 91002 | User (2000000120) | GET |
+| `ocpfPermissionSetAssignments` | 91003 | Access Control (2000000053) | GET / POST / DELETE |
+
+Purpose: let an automation or agent (1) enumerate every permission set — base, extension/AppSource/PTE,
+and tenant — with its `scope` and `appId`; (2) read the expanded object-level permissions of any set;
+(3) resolve users; and (4) assign an existing permission set to an individual user (POST) or revoke it
+(DELETE).
+
+Design notes / limitations:
+- **Read-only for sets and permissions.** Creating tenant permission sets and editing their permission
+  lines is out of scope for this release; only existing sets can be assigned.
+- **Assignment is user-only.** `ocpfPermissionSetAssignments` grants a permission set to an individual
+  user. Assigning a permission set to a **security group** is not supported through this API — do that
+  in the Business Central UI. Security groups do appear in `ocpfUsers` (rows with `licenseType`
+  `AAD Group` / `Windows Group`) for reference; the BC `Security Group` table itself is
+  `Access = Internal` and cannot back an API page.
+- **`Security Filter`** (on `Expanded Permission` / tenant permissions) is a `TableFilter` field and is
+  not exposable on an API page, so it is omitted.
+- **Keys are natural composite keys**, not `SystemId` — these platform virtual tables do not carry a
+  usable `SystemId`. No `DataAccessIntent` (the tables are not on the read replica).
+- **`ocpfPermissionSetAssignments` writes** rely on the platform `Access Control` table's own
+  insert/delete behaviour (the same path the BC "User by Permission Set" page uses). Callers must send
+  `appId` + `scope` matching the target set (from `ocpfPermissionSets`), and hold SUPER or the SECURITY
+  permission set. Runtime behaviour of assignment via an extension API page should be verified on a live
+  v27.5 tenant.
+- Permission sets: all 4 pages added to `OCPF - READ`; `ocpfPermissionSetAssignments` added to
+  `OCPF - READ/WRITE`.
+- **Build:** compiles clean against BC 27.5 symbols (only the two pre-existing `AL0432` warnings).
+
+---
+
 ## v3.1.2 — Editability corrections + `DataAccessIntent = ReadOnly` (2026-09-09)
 
 ### 18 pages reclassified from read-only to editable

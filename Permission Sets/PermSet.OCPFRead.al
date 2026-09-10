@@ -192,5 +192,10 @@ permissionset 90950 "OCPF - READ"
         page "ocpfSalesLineDiscounts" = X,
         page "ocpfCustomerInvoiceDiscounts" = X,
         page "ocpfPurchaseLineDiscounts" = X,
-        page "ocpfVendorInvoiceDiscounts" = X;
+        page "ocpfVendorInvoiceDiscounts" = X,
+        // v3.1.3 — Access Control category
+        page "ocpfPermissionSets" = X,
+        page "ocpfPermissionSetPermissions" = X,
+        page "ocpfUsers" = X,
+        page "ocpfPermissionSetAssignments" = X;
 }

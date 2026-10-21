@@ -354,6 +354,8 @@ export function review({ baseDir, headDir, changedFiles } = {}) {
   }
   const isApi = object => ['page', 'query'].includes(object.type) && scalar(object, object.type === 'query' ? 'querytype' : 'pagetype') === 'api';
   const baseApis = base.objects.filter(isApi), headApis = head.objects.filter(isApi);
+  // A missing route is a negative lookup: unevaluated head branches may hide its replacement.
+  const conditionalHeadFiles = [...conditionalFiles].filter(file => headFiles.has(file));
   const headRoutes = new Map(), headRouteList = new Map();
   for (const api of headApis) {
     const list = routes(api, emit);
@@ -373,7 +375,8 @@ export function review({ baseDir, headDir, changedFiles } = {}) {
       const after = headRoutes.get(`${route.scope}/set/${route.set}`);
       const same = after && headRouteList.get(after).some(item => item.scope === route.scope && item.set === route.set && item.entity === route.entity);
       if (!same) emit('red', identity?.file ?? before.file, identity?.line ?? before.line,
-        `Breaking API contract: removed or renamed route ${route.scope}/${route.set} (EntityName ${route.entity}).`, [before.file, after?.file]);
+        `Breaking API contract: removed or renamed route ${route.scope}/${route.set} (EntityName ${route.entity}).`,
+        [before.file, after?.file, ...conditionalHeadFiles]);
       if (after) candidates.add(after);
     }
     if (!previousRoutes.length && identity) candidates.add(identity);

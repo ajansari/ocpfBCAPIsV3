@@ -157,6 +157,25 @@ test('compatibility influenced by conditional base or head declarations is incom
   }
 });
 
+test('moved API conditional versions cannot falsely confirm removal of a preserved base route', t => {
+  const old = api().replace("'v1', 'v2'", "'v1'");
+  const moved = api().replace('page 50000 "Example"', 'page 50001 "Moved"')
+    .replace("APIVersion = 'v1', 'v2';", "#if LEGACY\n APIVersion = 'v1';\n#else\n APIVersion = 'v2';\n#endif");
+  const f = fixture(t, { 'Old.al': old }, { 'Moved.al': moved });
+  const result = f.result();
+  assert.equal(reds(result).length, 0);
+  assert.ok(result.findings.some(finding => finding.severity === 'yellow' &&
+    /preprocessor evaluation required.*removed or renamed route pub\/group\/v1\/items/.test(finding.message)));
+});
+
+test('conditional PageType can hide a moved replacement from head API discovery', t => {
+  const moved = api().replace('page 50000 "Example"', 'page 50001 "Moved"')
+    .replace('PageType = API;', '#if API_ENABLED\n PageType = API;\n#else\n PageType = List;\n#endif');
+  const f = fixture(t, { 'Old.al': api() }, { 'Moved.al': moved });
+  assert.equal(reds(f.result()).length, 0);
+  assert.match(messages(f.result()), /preprocessor evaluation required.*removed or renamed route/);
+});
+
 test('conditional source table types downgrade cross-file API compatibility findings', t => {
   const f = fixture(t, { 'API.al': api('', 'field(code; Rec.Code) {}'),
     'Table.al': '#if FEATURE\ntable 50003 Item { fields { field(1; Code; Code[20]) {} } }\n#endif' },

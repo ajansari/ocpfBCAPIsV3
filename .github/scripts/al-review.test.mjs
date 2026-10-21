@@ -101,6 +101,78 @@ test('moving a page or changing its object ID does not remove a preserved route'
   assert.equal(reds(f.result()).length, 0);
 });
 
+test('preserved routes take precedence over an old object ID reused for a new version', t => {
+  const old = api('', 'field(id; Rec.SystemId) {} field(code; Rec.Code) {}').replace("'v1', 'v2'", "'v1'");
+  const moved = old.replace('page 50000 "Example"', 'page 50001 "Legacy"');
+  const reused = api('', 'field(id; Rec.SystemId) {}').replace("'v1', 'v2'", "'v2'");
+  const f = fixture(t, { 'Old.al': old }, { 'Legacy.al': moved, 'New.al': reused });
+  assert.equal(reds(f.result()).length, 0);
+  assert.doesNotMatch(messages(f.result()), /removed field code/);
+});
+
+test('a field removed from the route-matched replacement still breaks compatibility', t => {
+  const old = api('', 'field(id; Rec.SystemId) {} field(code; Rec.Code) {}').replace("'v1', 'v2'", "'v1'");
+  const moved = api().replace('page 50000 "Example"', 'page 50001 "Legacy"').replace("'v1', 'v2'", "'v1'");
+  const reused = old.replace("'v1'", "'v2'");
+  const f = fixture(t, { 'Old.al': old }, { 'Legacy.al': moved, 'New.al': reused });
+  assert.equal(reds(f.result()).length, 1);
+  assert.match(messages(f.result()), /removed field code/);
+});
+
+test('conditional object and route duplicates across files are unconfirmed regardless of file ordering', t => {
+  for (const [conditional, unconditional] of [['A.al', 'Z.al'], ['Z.al', 'A.al']]) {
+    const f = fixture(t, { [conditional]: `#if FEATURE\n${api()}\n#endif`, [unconditional]: api() });
+    const result = f.result();
+    assert.equal(reds(result).length, 0);
+    assert.ok(result.findings.some(finding => /Duplicate page object ID/.test(finding.message) &&
+      /preprocessor evaluation required/.test(finding.message) && finding.severity === 'yellow'));
+    assert.ok(result.findings.some(finding => /Conflicting API EntitySetName/.test(finding.message) &&
+      /preprocessor evaluation required/.test(finding.message) && finding.severity === 'yellow'));
+  }
+});
+
+test('conditional fields and range violations are incomplete rather than false blockers', t => {
+  const f = fixture(t, { 'API.al': api('', `
+  #if FEATURE
+  field(id; Rec.SystemId) {}
+  #else
+  field(id; Rec.OtherId) {}
+  #endif
+  `, 70000) });
+  assert.equal(reds(f.result()).length, 0);
+  assert.match(messages(f.result()), /preprocessor evaluation required.*Duplicate field/);
+  assert.match(messages(f.result()), /preprocessor evaluation required.*outside app.json/);
+});
+
+test('compatibility influenced by conditional base or head declarations is incomplete', t => {
+  const old = api('', 'field(id; Rec.SystemId) {} field(code; Rec.Code) {}');
+  for (const [before, after] of [
+    [`#if FEATURE\n${old}\n#endif`, api()],
+    [old, `#if FEATURE\n${api()}\n#endif`],
+    [`#if FEATURE\n${old}\n#endif`, ''],
+  ]) {
+    const f = fixture(t, { 'Old.al': before }, { 'New.al': after });
+    assert.equal(reds(f.result()).length, 0);
+    assert.match(messages(f.result()), /preprocessor evaluation required.*Breaking API contract/);
+  }
+});
+
+test('conditional source table types downgrade cross-file API compatibility findings', t => {
+  const f = fixture(t, { 'API.al': api('', 'field(code; Rec.Code) {}'),
+    'Table.al': '#if FEATURE\ntable 50003 Item { fields { field(1; Code; Code[20]) {} } }\n#endif' },
+  { 'API.al': api('', 'field(code; Rec.Code) {}'),
+    'Table.al': 'table 50003 Item { fields { field(1; Code; Text[50]) {} } }' });
+  assert.equal(reds(f.result()).length, 0);
+  assert.match(messages(f.result()), /preprocessor evaluation required.*locally declared source type changed/);
+});
+
+test('unrelated conditional declarations do not downgrade definitive errors', t => {
+  const f = fixture(t, { 'Conditional.al': '#if FEATURE\ncodeunit 50004 C {}\n#endif',
+    'API.al': api('', '', 70000) });
+  assert.equal(reds(f.result()).length, 1);
+  assert.match(reds(f.result())[0].message, /outside app.json/);
+});
+
 test('field removal is red and source remapping is an explicitly inferred yellow', t => {
   const f = fixture(t, { 'API.al': api('', 'field(id; Rec.SystemId) {} field(code; Rec.Code) {}') },
     { 'API.al': api('', 'field(id; Rec."Other Id") {}') });

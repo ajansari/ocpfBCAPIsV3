@@ -120,12 +120,13 @@ function split(tokens, separator) {
   return parts;
 }
 
-function parse(files, emit, phase) {
+function parse(files, emit, phase, conditionalFiles) {
   const objects = [], unsupported = new Set();
   for (const [file, text] of files) {
     if (!/\.al$/i.test(file)) continue;
     const warn = (line, message) => {
       unsupported.add(file);
+      if (message.startsWith('Preprocessor directive ')) conditionalFiles.add(file);
       emit('yellow', file, line, `Static coverage incomplete (${phase}): ${message}.`);
     };
     const tokens = lex(text, warn), matching = pairs(tokens, warn);
@@ -312,18 +313,21 @@ function compareApi(before, after, emit, baseObjects, headObjects) {
 export function review({ baseDir, headDir, changedFiles } = {}) {
   if (!path.isAbsolute(baseDir ?? '') || !path.isAbsolute(headDir ?? '')) throw new Error('baseDir and headDir must be absolute directories');
   if (!fs.lstatSync(baseDir).isDirectory() || !fs.lstatSync(headDir).isDirectory()) throw new Error('Both inputs must be non-symlink directories');
-  const findings = [], unique = new Set();
-  const emit = (severity, file, line, message) => {
+  const findings = [], unique = new Map(), conditionalFiles = new Set(), influences = new Map();
+  const emit = (severity, file, line, message, relatedFiles = []) => {
     const finding = { severity, file, line: Math.max(1, line), message };
     const key = JSON.stringify(finding);
-    if (!unique.has(key)) { unique.add(key); findings.push(finding); }
+    if (!unique.has(key)) {
+      unique.set(key, finding); findings.push(finding); influences.set(finding, new Set([file]));
+    }
+    for (const related of relatedFiles) influences.get(unique.get(key)).add(related);
   };
   const baseFiles = walk(baseDir), headFiles = walk(headDir);
   const actualChanges = [...new Set([...baseFiles.keys(), ...headFiles.keys()])]
     .filter(file => baseFiles.get(file) !== headFiles.get(file)).sort();
   const changed = changedFiles === undefined ? actualChanges : [...new Set(changedFiles.map(file =>
     typeof file === 'string' ? file.replaceAll('\\', '/') : file.filename))].sort();
-  const base = parse(baseFiles, emit, 'base'), head = parse(headFiles, emit, 'head');
+  const base = parse(baseFiles, emit, 'base', conditionalFiles), head = parse(headFiles, emit, 'head', conditionalFiles);
   let manifest;
   try { manifest = JSON.parse(headFiles.get('app.json') ?? ''); }
   catch { emit('yellow', 'app.json', 1, 'Static coverage incomplete: missing or invalid app.json; object ranges cannot be checked.'); }
@@ -338,7 +342,7 @@ export function review({ baseDir, headDir, changedFiles } = {}) {
   for (const object of head.objects) {
     if (object.id !== null) {
       const key = `${object.type}:${object.id}`;
-      if (ids.has(key)) emit('red', object.file, object.line, `Duplicate ${object.type} object ID ${object.id}; also declared in ${ids.get(key).file}.`);
+      if (ids.has(key)) emit('red', object.file, object.line, `Duplicate ${object.type} object ID ${object.id}; also declared in ${ids.get(key).file}.`, [ids.get(key).file]);
       else ids.set(key, object);
       if (validRanges && !ranges.some(range => object.id >= range.from && object.id <= range.to)) {
         emit('red', object.file, object.line, `${object.type} object ID ${object.id} is outside app.json idRanges.`);
@@ -357,7 +361,7 @@ export function review({ baseDir, headDir, changedFiles } = {}) {
     for (const route of list) for (const kind of ['entity', 'set']) {
       const key = `${route.scope}/${kind}/${route[kind]}`;
       if (headRoutes.has(key) && headRoutes.get(key) !== api) {
-        emit('red', api.file, api.line, `Conflicting API ${kind === 'set' ? 'EntitySetName' : 'EntityName'} route ${route.scope}/${route[kind]} with ${headRoutes.get(key).name}.`);
+        emit('red', api.file, api.line, `Conflicting API ${kind === 'set' ? 'EntitySetName' : 'EntityName'} route ${route.scope}/${route[kind]} with ${headRoutes.get(key).name}.`, [headRoutes.get(key).file]);
       } else headRoutes.set(key, api);
     }
   }
@@ -369,12 +373,25 @@ export function review({ baseDir, headDir, changedFiles } = {}) {
       const after = headRoutes.get(`${route.scope}/set/${route.set}`);
       const same = after && headRouteList.get(after).some(item => item.scope === route.scope && item.set === route.set && item.entity === route.entity);
       if (!same) emit('red', identity?.file ?? before.file, identity?.line ?? before.line,
-        `Breaking API contract: removed or renamed route ${route.scope}/${route.set} (EntityName ${route.entity}).`);
+        `Breaking API contract: removed or renamed route ${route.scope}/${route.set} (EntityName ${route.entity}).`, [before.file, after?.file]);
       if (after) candidates.add(after);
     }
-    if (identity) candidates.add(identity);
+    if (!previousRoutes.length && identity) candidates.add(identity);
     if (!previousRoutes.length && !identity) emit('yellow', before.file, before.line, `Static coverage incomplete: deleted API ${before.name} had an unresolved route.`);
-    for (const after of candidates) compareApi(before, after, emit, base.objects, head.objects);
+    for (const after of candidates) {
+      const relatedFiles = [before.file, after.file];
+      for (const [api, list] of headRouteList) {
+        if (list.some(route => previousRoutes.some(previous => previous.scope === route.scope && previous.set === route.set))) {
+          relatedFiles.push(api.file);
+        }
+      }
+      for (const [api, objects] of [[before, base.objects], [after, head.objects]]) {
+        relatedFiles.push(...objects.filter(object => object.type === 'table' &&
+          [lower(object.name), String(object.id)].includes(scalar(api, 'sourcetable'))).map(object => object.file));
+      }
+      compareApi(before, after, (severity, file, line, message) => emit(severity, file, line, message, relatedFiles),
+        base.objects, head.objects);
+    }
   }
   const baseSets = new Map(base.objects.filter(object => object.type === 'permissionset').map(object => [object.id, object]));
   for (const object of head.objects.filter(object => object.type === 'permissionset')) {
@@ -418,6 +435,13 @@ export function review({ baseDir, headDir, changedFiles } = {}) {
     limitations: ['Static inference only; no AL compilation, dependency symbols, table-field type resolution, or runtime authorization validation.',
       'Symlinks, ATS artifacts, hidden tooling directories (including .github), dependencies and generated packages are excluded.'],
   };
+  // An inactive branch can influence another file's duplicate or compatibility check.
+  for (const finding of findings) {
+    if (finding.severity === 'red' && [...influences.get(finding)].some(file => conditionalFiles.has(file))) {
+      finding.severity = 'yellow';
+      finding.message = `Static coverage incomplete (preprocessor evaluation required): ${finding.message}`;
+    }
+  }
   findings.sort((a, b) => a.file < b.file ? -1 : a.file > b.file ? 1 : a.line - b.line ||
     (a.severity < b.severity ? -1 : a.severity > b.severity ? 1 : a.message < b.message ? -1 : a.message > b.message ? 1 : 0));
   const summary = { red: findings.filter(item => item.severity === 'red').length,

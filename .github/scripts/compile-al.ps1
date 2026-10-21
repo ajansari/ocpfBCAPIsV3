@@ -50,11 +50,33 @@ try {
     # Compile only source/manifest copies; never load PR-supplied analyzer or ruleset configuration.
     $source = Join-Path $work 'source'
     New-Item -ItemType Directory $source | Out-Null
+    $result.compilation = 'failed'
     $manifest = Get-Item -LiteralPath (Join-Path $Project 'app.json')
     if ($manifest.Attributes -band [IO.FileAttributes]::ReparsePoint) {
         throw 'Symlinked manifest is not supported.'
     }
     Copy-Item -LiteralPath $manifest.FullName -Destination $source
+    $metadata = Get-Content -LiteralPath $manifest.FullName -Raw | ConvertFrom-Json
+    if ($metadata.logo) {
+        $root = [IO.Path]::GetFullPath($Project).TrimEnd([IO.Path]::DirectorySeparatorChar) + [IO.Path]::DirectorySeparatorChar
+        $logo = [IO.Path]::GetFullPath((Join-Path $Project $metadata.logo))
+        if (-not $logo.StartsWith($root, [StringComparison]::OrdinalIgnoreCase) -or
+            [IO.Path]::GetExtension($logo) -notin @('.png', '.jpg', '.jpeg', '.bmp')) {
+            throw 'Manifest logo must be an image within the candidate project.'
+        }
+        $relative = [IO.Path]::GetRelativePath($Project, $logo)
+        $current = $Project
+        foreach ($part in $relative.Split([IO.Path]::DirectorySeparatorChar)) {
+            $current = Join-Path $current $part
+            if ((Get-Item -LiteralPath $current -Force).Attributes -band [IO.FileAttributes]::ReparsePoint) {
+                throw 'Symlinked logo paths are not supported.'
+            }
+        }
+        if (-not (Test-Path -LiteralPath $logo -PathType Leaf)) { throw 'Manifest logo is missing.' }
+        $destination = Join-Path $source $relative
+        New-Item -ItemType Directory -Path (Split-Path $destination) -Force | Out-Null
+        Copy-Item -LiteralPath $logo -Destination $destination
+    }
     $queue = [Collections.Generic.Queue[string]]::new()
     $queue.Enqueue($Project)
     while ($queue.Count) {
@@ -103,7 +125,11 @@ try {
     $result.message = "Compiler exit code: $exitCode. CodeCop enabled; distribution: $($result.distribution). Runtime tests unavailable. See compiler diagnostics in the job log."
 }
 catch {
-    $result.message = 'Compilation infrastructure/configuration failed; see the job log. Runtime tests unavailable.'
+    $result.message = if ($result.compilation -eq 'failed') {
+        'Candidate project validation or compilation failed; see the job log. Runtime tests unavailable.'
+    } else {
+        'Compilation infrastructure/configuration failed; see the job log. Runtime tests unavailable.'
+    }
     # Prevent compiler diagnostics or PR-controlled text from becoming workflow commands.
     Write-Output "AL validation error: $($_.Exception.GetType().Name)"
 }

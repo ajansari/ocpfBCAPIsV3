@@ -55,3 +55,51 @@ The complete field-by-field delta is in [ChangeLog.md](https://github.com/ajansa
 - ~~`DataAccessIntent = ReadOnly` on read-only pages, for read-replica offload~~ — ✅ shipped in v3.1.2 (also corrected 18 pages that should have been editable)
 - ~~APIs for permission / access-control tables~~ — ✅ shipped in v3.1.3 as the `ocpf_accessControl` category: read access to permission sets, their permissions, and users; read/write assignment of existing permission sets to **individual users**. Creating custom permission sets and assigning to security groups are not included — see the Documentation "Access control endpoints" section.
 
+## Automated Business Central PR review
+
+The **Business Central PR review** workflow reviews opened, updated, reopened, and ready-for-review PRs. It maintains one report on the PR and publishes an **AL review verdict** check:
+
+- 🟢 **Green:** all required checks and coverage passed; still requires human approval.
+- 🟡 **Yellow:** risks, warnings, or incomplete coverage (including unavailable compilation, AI review, or runtime tests).
+- 🔴 **Red:** a confirmed static blocker, failed compilation/analyzer, or Git merge conflict.
+
+The report separates the contributor's request, static findings, compilation, analyzers, runtime tests, Git mergeability, and optional AI interpretation. Static source analysis checks API contract changes, object IDs/routes, permissions, write flags, triggers, and release-documentation consistency. It is deliberately conservative: it cannot resolve underlying table field types, replace an AL compiler, or establish that runtime behavior is correct. Overlaps with other open PRs are not automatically evaluated.
+
+### Repository configuration
+
+After merging this automation into the PR base branch, configure **Settings → Secrets and variables → Actions → Variables**:
+
+| Variable | Purpose |
+| --- | --- |
+| `AL_REVIEW_SYMBOLS_URL` | HTTPS URL to an administrator-managed ZIP containing trusted BC symbol `.app` files at its root. Include System, System Application, Base Application, Application, and any dependencies for the supported BC target. Use a URL without credentials or access tokens; symbols must be downloadable without secrets. |
+| `AL_REVIEW_SYMBOLS_SHA256` | SHA-256 of that ZIP. Update alongside the URL when the BC target changes. |
+| `AL_REVIEW_DISTRIBUTION` | `PTE`, `AppSource`, or `Both`. CodeCop always runs when compilation is configured; this selects PerTenantExtensionCop, AppSourceCop, or both. Until the deployment target is selected, coverage remains yellow. |
+| `AL_REVIEW_AI_ENABLED` | Set to `true` to opt into GitHub Models analysis of the PR title, description, and bounded diff. Repository/organization policy must permit sending that content to GitHub Models; quotas and model availability apply. Default: disabled. |
+| `AL_REVIEW_AI_MODEL` | Optional GitHub Models model ID; default `openai/gpt-4.1`. Select a model available to the repository. |
+| `AL_REVIEW_NOTIFY_USER` | Optional GitHub username, without `@`, to mention on the initial report and subsequent color changes. |
+
+Compilation uses the pinned Microsoft AL development-tools package `16.2.28.57946` (runtime 16), with its checksum verified before execution. Both compilation and analyzer runs use only the candidate's manifest and AL sources, not its analyzer DLLs, rulesets, scripts, or build configuration. Diagnostics appear in the compilation job log. Keep the compiler and symbol set aligned with the supported application/runtime in `app.json`; this setup validates one configured BC target, not a compatibility matrix. Full AppSource submission validation and prior-release AppSourceCop baselines are not configured.
+
+**Runtime tests are currently unavailable:** this repository has no committed AL test application or BC test-environment integration. The workflow explicitly reports that gap and does not claim to execute the locally excluded `ATS/` suite. As a result, even otherwise clean PRs remain yellow. Enabling compilation or AI alone cannot produce green. A trusted BC test runner and its verified results must be integrated before green is attainable; do not bypass this by marking skipped tests as passed.
+
+AI output is advisory, not an approval or a source of confirmed blocking findings. Large/binary diffs receive an explicit partial-coverage warning. Deterministic findings and coverage determine the traffic light.
+
+### Notifications and safety
+
+Read reports on the PR, its Checks tab, or **github.com/notifications**. For email, verify your address in **Settings → Emails**, enable email delivery under **Settings → Notifications**, and watch this repository or subscribe to the PR. No email address or mail credentials are stored by this automation. Mentions follow GitHub's notification preferences; email delivery is not guaranteed.
+
+The main review comment is updated rather than duplicated. With `AL_REVIEW_NOTIFY_USER` configured, a color change also produces one short mention comment, because editing an existing comment is not a reliable new-notification mechanism. Changes that keep the same color do not repeatedly mention you. Issues are not created automatically: create/link one only for requirements discussions or follow-up work outside the PR.
+
+**Recommendations only; merging stays manual.** During PR review, the agent never edits tracked repository files, creates a remote branch, pushes a commit, or merges into `main` (or any other base branch). Its only GitHub writes are review/notification comments and check results.
+
+**No additional test branch is needed.** Source checks and compilation use GitHub's temporary `refs/pull/<number>/merge` commit in isolated, detached checkouts. That tests the proposed combination of the PR and its base without changing either branch. Both parent SHAs are verified before validation; obsolete snapshots are rejected. If a conflict prevents GitHub from producing a merge snapshot, validation is unavailable and mergeability is reported separately—never green. Testing in a persistent branch would add cleanup and stale-branch risks without improving this isolation. This snapshot validation is compilation/static analysis, not deployment into a BC environment.
+
+The workflow uses `pull_request_target` so fork PRs can receive a report. All executed scripts/workflow definitions come from the trusted base commit; candidate scripts are never executed. Source checks and compilation run on separate GitHub-hosted runners with read-only tokens, no repository secrets, and checkout credential persistence disabled. Only the trusted publishing job can write comments/checks; it has no `contents: write` permission. Treat PR text and model suggestions as untrusted; no auto-merge, auto-fix, deployments, or issue creation occurs. Workflow changes must first be manually reviewed and merged into the base branch before they affect incoming reviews.
+
+The yellow check is **neutral**, not successful: GitHub does not have a native yellow check conclusion. Configure branch protection with care; this advisory review is not a substitute for a required successful build/test gate.
+
+Local regression checks (Node.js 20+; no npm dependencies):
+
+```sh
+node --test .github/scripts/al-review.test.mjs .github/scripts/publish-review.test.cjs
+```

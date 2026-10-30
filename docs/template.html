@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>bcapi.ai · BC API Catalog v3</title>
+<meta name="description" content="OnlyCopilotFans BC API Catalog v3: {{TOTAL}} standard Microsoft Dynamics 365 Business Central tables exposed as OData v4 API endpoints. Free, open source, localization-neutral. Install the extension and read the documentation.">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#201e1d" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f3f2f2" media="(prefers-color-scheme: light)">
+<meta property="og:title" content="bcapi.ai · BC API Catalog v3">
+<meta property="og:description" content="{{TOTAL}} standard Business Central tables as OData v4 API endpoints. Free and open source, by AJ Ansari.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ajansari.github.io/ocpfBCAPIsV3/">
+<meta property="og:image" content="https://bcdev.ai/assets/tools/apis.png">
+<link rel="icon" type="image/png" href="{{IMG_FAVICON}}">
+<link rel="apple-touch-icon" href="{{IMG_OBCF_ICON}}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>
+  // Apply the saved theme before first paint. Night mode is the default.
+  (function () {
+    try {
+      var t = localStorage.getItem('bcapi-theme');
+      if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --bg: #201e1d; --bg-elev: #2d2b2b; --text: #f3f2f2; --muted: #b9b5b3;
+    --line: rgba(243,242,242,0.18); --card: #262423; --shadow: 0 12px 32px rgba(0,0,0,0.45);
+    --c1: #0F6CBD; --c2: #0A7C85; --c3: #6B4FC4; --c4: #C10E72; --go: #2EE59D; --bcteal: #4DD8D4;
+    --copilot: linear-gradient(90deg, var(--c1) 0%, var(--c2) 33%, var(--c3) 66%, var(--c4) 100%);
+    --copilot-diag: linear-gradient(135deg, var(--c1) 0%, var(--c2) 33%, var(--c3) 66%, var(--c4) 100%);
+    color-scheme: dark;
+  }
+  :root[data-theme="light"] {
+    --bg: #f3f2f2; --bg-elev: #eae9e9; --text: #201e1d; --muted: #605d5d;
+    --line: rgba(32,30,29,0.18); --card: #ffffff; --shadow: 0 12px 32px rgba(45,43,43,0.16); --bcteal: #00A99D;
+    color-scheme: light;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; -webkit-font-smoothing: antialiased; min-height: 100dvh; display: flex; flex-direction: column; transition: background-color .25s ease, color .25s ease; }
+  a { color: inherit; }
+  img { display: block; max-width: 100%; }
+  main, #site { overflow-x: clip; }
+  .wrap { width: 100%; max-width: 1200px; margin: 0 auto; padding-left: 16px; padding-right: 16px; }
+  @media (min-width: 720px) { .wrap { padding-left: 32px; padding-right: 32px; } }
+  [hidden] { display: none !important; }
+
+  /* ───────── Header ───────── */
+  header.site { position: sticky; top: 0; z-index: 50; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  .nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 64px; }
+  .brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; opacity: 0; transform: translateY(-6px); pointer-events: none; transition: opacity .25s ease, transform .25s ease; }
+  header.site.scrolled .brand { opacity: 1; transform: none; pointer-events: auto; }
+  .brand .mark { width: 36px; height: 36px; flex: none; }
+  .brand .name { font-weight: 800; font-size: 23px; letter-spacing: -0.03em; color: var(--text); }
+  .brand .name span { font-weight: 400; letter-spacing: -0.01em; }
+  .bc { color: var(--bcteal); font-weight: inherit; }
+  .nav-right { display: flex; align-items: center; gap: 8px 14px; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+  .nav-right a { text-decoration: none; color: var(--text); display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 8px; white-space: nowrap; }
+  .nav-right a:hover { color: var(--muted); }
+  .nav-right a.pill { background: var(--text); color: var(--bg); font-weight: 700; letter-spacing: 0.04em; text-transform: none; font-size: 13px; padding: 8px 14px; transition: transform .2s ease, box-shadow .2s ease; }
+  .nav-right a.pill:hover { color: var(--bg); transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0,0,0,0.35); }
+  .nav-right a.pill svg { width: 17px; height: 17px; }
+  .nav-right .ghlink { font-size: 11px; letter-spacing: 0.08em; padding: 4px 10px; border: 1px solid var(--line); border-radius: 999px; gap: 6px; }
+  .nav-right .ghlink:hover { background: var(--bg-elev); color: var(--text); }
+  .nav-right .ghlink svg { width: 15px; height: 15px; }
+  .theme-toggle { appearance: none; border: 1px solid var(--line); background: var(--bg-elev); color: var(--text); width: 40px; height: 40px; border-radius: 999px; cursor: pointer; display: grid; place-items: center; transition: background .2s ease, transform .2s ease; flex: none; }
+  .theme-toggle:hover { transform: rotate(15deg); }
+  .theme-toggle svg { width: 18px; height: 18px; }
+  .theme-toggle .sun { display: none; }
+  :root[data-theme="light"] .theme-toggle .sun { display: block; }
+  :root[data-theme="light"] .theme-toggle .moon { display: none; }
+  @media (max-width: 760px) { .nav-right .ghlink, .nav-right a.textlink, .brand .name { display: none; } }
+
+  /* ───────── Hero ───────── */
+  .hero { padding-top: clamp(40px, 7vh, 88px); padding-bottom: clamp(20px, 4vh, 40px); }
+  .bar { display: flex; height: 6px; width: min(100%, 420px); margin-bottom: 22px; border-radius: 3px; overflow: hidden; }
+  .bar div { flex: 1; }
+  .hero h1 { display: flex; align-items: center; gap: clamp(12px, 2vw, 24px); font-size: clamp(56px, 9vw, 112px); font-weight: 800; line-height: 1; letter-spacing: -0.045em; color: var(--text); }
+  .hero h1 img { width: clamp(52px, 7.5vw, 96px); height: auto; flex: none; }
+  .hero h1 .wm span { font-weight: 400; letter-spacing: -0.02em; }
+  .hero h2 { margin-top: clamp(14px, 2vh, 22px); font-size: clamp(24px, 3.4vw, 42px); font-weight: 800; line-height: 1.08; letter-spacing: -0.03em; }
+  @media (max-width: 700px) { .hero h2 br { display: none; } }
+  .hero h2 em { font-style: normal; background: var(--copilot); -webkit-background-clip: text; background-clip: text; color: transparent; padding-bottom: .08em; }
+  .hero p.lead { margin-top: 16px; font-size: clamp(16px, 1.5vw, 21px); font-weight: 600; line-height: 1.35; color: var(--muted); max-width: 60ch; }
+  .cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: clamp(22px, 3vh, 34px); align-items: center; }
+  .btn { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; font-weight: 800; letter-spacing: 0.01em; border-radius: 10px; padding: clamp(12px, 1.3vh, 16px) clamp(20px, 2vw, 28px); font-size: clamp(15px, 1.2vw, 18px); transition: transform .2s ease, box-shadow .2s ease, background .2s ease, color .2s ease; }
+  .btn svg { width: 20px; height: 20px; flex: none; }
+  .btn.install { background: var(--text); color: var(--bg); border: 2px solid var(--go); box-shadow: 0 0 10px rgba(46,229,157,0.8), 0 0 24px rgba(46,229,157,0.45); }
+  .btn.install:hover { background: var(--c1); color: #f3f2f2; transform: translateY(-2px); }
+  .btn.docs { background: transparent; color: var(--text); border: 2px solid var(--line); }
+  .btn.docs:hover { border-color: var(--text); transform: translateY(-2px); }
+  .meta { font-size: clamp(12px, 0.95vw, 14px); font-weight: 600; letter-spacing: 0.08em; color: var(--muted); margin-top: clamp(14px, 2vh, 20px); }
+  .meta a { color: var(--go); text-decoration: none; }
+  .meta a:hover { text-decoration: underline; }
+  .designed { display: inline-flex; align-items: center; gap: 14px; margin-top: clamp(22px, 3vh, 34px); padding: 10px 18px 10px 12px; border-radius: 14px; text-decoration: none; background: #ffffff; color: #1b1a19; border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 8px 24px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.9); font-family: 'Segoe UI', 'Segoe UI Variable', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif; transition: transform .25s ease, box-shadow .25s ease; }
+  :root[data-theme="light"] .designed { box-shadow: 0 8px 24px rgba(45,43,43,0.16), inset 0 1px 0 rgba(255,255,255,0.9); }
+  .designed:hover { transform: translateY(-2px); }
+  .designed img { width: 44px; height: 44px; flex: none; }
+  .designed .t { display: flex; flex-direction: column; line-height: 1.15; }
+  .designed .t small { font-size: 11px; font-weight: 600; letter-spacing: 0.02em; color: #605e5c; }
+  .designed .t strong { font-size: 16px; font-weight: 600; letter-spacing: -0.01em; color: #1b1a19; }
+  .designed .t strong b { font-weight: 700; }
+  .designed .sep { width: 1px; align-self: stretch; background: #e1dfdd; }
+
+  /* Stats strip */
+  .stats { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .stats .row { display: grid; grid-template-columns: repeat(5, auto); gap: 0; align-items: center; justify-content: start; }
+  .stats .row > div { padding: clamp(14px, 2vh, 22px) clamp(24px, 3vw, 48px) clamp(14px, 2vh, 22px) 0; border-right: 1px solid var(--line); margin-right: clamp(24px, 3vw, 48px); }
+  .stats .row > div:last-child { border-right: 0; margin-right: 0; }
+  .stats .n { font-size: clamp(26px, 3vw, 44px); font-weight: 800; letter-spacing: -0.03em; line-height: 1; font-variant-numeric: tabular-nums; }
+  .stats .l { font-size: clamp(11px, 0.9vw, 13px); font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
+  @media (max-width: 700px) { .stats .row { grid-template-columns: 1fr 1fr 1fr; } .stats .row > div { padding: 12px 10px 12px 0; margin-right: 10px; } .stats .row > div:nth-child(3) { border-right: 0; } .stats .row > div:nth-child(4), .stats .row > div:nth-child(5) { border-top: 1px solid var(--line); } }
+
+  /* Catalog bars */
+  .catalog { padding-top: clamp(36px, 6vh, 64px); padding-bottom: clamp(40px, 7vh, 80px); }
+  .catalog .head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; border-bottom: 2px solid var(--text); padding-bottom: 14px; margin-bottom: 8px; }
+  .catalog .head .k { font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  .catalog .head .k b { color: var(--text); font-weight: 700; }
+  .catalog .od { display: inline-flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .catalog .od b { color: var(--text); font-size: 15px; letter-spacing: 0; text-transform: none; }
+  .cats { display: grid; grid-template-columns: max-content 1fr auto; column-gap: clamp(14px, 2vw, 28px); align-items: center; }
+  .cats a { display: contents; text-decoration: none; color: inherit; }
+  .cats .cn { font-size: clamp(13px, 1.1vw, 15px); font-weight: 600; padding: 9px 0; white-space: nowrap; }
+  .cats .cn small { display: inline-block; margin-left: 8px; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--go); }
+  .cats .cells { display: flex; gap: 3px; flex-wrap: wrap; padding: 9px 0; }
+  .cats .cells i { width: 9px; height: 9px; border-radius: 2px; display: block; background: var(--cc); opacity: .95; transition: transform .15s ease; }
+  .cats .cells i.ro { opacity: .4; }
+  .cats a:hover .cells i { transform: scale(1.18); }
+  .cats .ct { font-size: 13px; font-weight: 700; color: var(--muted); font-variant-numeric: tabular-nums; padding: 9px 0; }
+  .cats .ct b { color: var(--text); }
+  .legend { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 16px; font-size: 12px; color: var(--muted); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+  .legend span { display: inline-flex; align-items: center; gap: 8px; }
+  .legend i { width: 10px; height: 10px; border-radius: 2px; background: var(--c3); display: block; }
+  .legend i.ro { opacity: .4; }
+  @media (max-width: 560px) { .cats { display: block; } .cats a { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; padding: 6px 0; } .cats .cells { width: 100%; padding: 2px 0 6px; } .cats .cn, .cats .ct { padding: 4px 0; } .catalog .head .k { font-size: 11px; } }
+
+  /* ───────── Section headings (Install) ───────── */
+  section.block { border-top: 1px solid var(--line); }
+  .block .inner { padding-top: clamp(56px, 8vh, 96px); padding-bottom: clamp(56px, 8vh, 96px); }
+  .sec-head { display: grid; gap: 14px; padding-bottom: clamp(20px, 3vh, 32px); border-bottom: 2px solid var(--text); margin-bottom: clamp(28px, 4vh, 44px); }
+  .sec-head .no { display: flex; gap: 14px; align-items: baseline; font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  .sec-head .no span:first-child { color: var(--go); }
+  .sec-head h2 { font-size: clamp(30px, 4vw, 56px); font-weight: 800; line-height: 1; letter-spacing: -0.03em; max-width: 22ch; }
+  .sec-head p { font-size: clamp(16px, 1.3vw, 20px); line-height: 1.4; color: var(--muted); max-width: 62ch; }
+  .install-grid > * { min-width: 0; }
+  .install-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: clamp(28px, 4vw, 64px); align-items: start; }
+  .dl { display: flex; width: 100%; max-width: 720px; align-items: center; gap: 16px; padding: 18px 26px; font-size: clamp(16px, 1.4vw, 20px); font-weight: 800; letter-spacing: 0.01em; border-radius: 12px; background: var(--text); color: var(--bg); text-decoration: none; border: 3px solid var(--go); box-shadow: 0 0 14px rgba(46,229,157,0.8), 0 0 32px rgba(46,229,157,0.45); transition: background .2s ease, color .2s ease, transform .2s ease; }
+  .dl:hover { background: var(--c1); color: #f3f2f2; transform: translateY(-2px); }
+  .dl svg { width: 26px; height: 26px; flex: none; }
+  .dl .v { margin-left: auto; font-weight: 500; font-size: 14px; opacity: .8; white-space: nowrap; }
+  .step { display: grid; grid-template-columns: auto 1fr; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--line); align-items: start; }
+  .step:last-child { border-bottom: 0; }
+  .step .tag { display: inline-flex; align-items: center; justify-content: center; background: var(--go); color: #201e1d; font-size: 11px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; padding: 6px 10px; border-radius: 6px; line-height: 1; white-space: nowrap; margin-top: 3px; }
+  .step h3 { font-size: clamp(17px, 1.4vw, 21px); font-weight: 800; letter-spacing: -0.015em; line-height: 1.2; }
+  .step p { font-size: 15px; line-height: 1.55; color: var(--muted); margin-top: 6px; }
+  .step p strong, .step p code { color: var(--text); }
+  code { font-family: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace; font-size: .9em; }
+  .term { border-radius: 12px; overflow: hidden; background: #1e1e1e; box-shadow: 0 24px 60px rgba(0,0,0,0.35), 0 0 0 1px rgba(0,0,0,0.6); color: #f3f2f2; }
+  .term .bar2 { display: grid; grid-template-columns: auto minmax(0,1fr) auto; align-items: center; gap: 16px; background: #2b2b2b; border-bottom: 1px solid #141414; padding: 11px 16px; }
+  .term .lights { display: flex; gap: 8px; }
+  .term .lights span { width: 12px; height: 12px; border-radius: 50%; display: block; }
+  .term .url { background: #1e1e1e; border-radius: 7px; padding: 6px 14px; font-size: 12px; color: #b9b5b3; text-align: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .term pre { margin: 0; padding: 18px 20px; font-family: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace; font-size: 13px; line-height: 1.65; overflow-x: auto; white-space: pre; color: #e6e3e1; }
+  .term pre .c { color: #8f8b89; }
+  .term pre .g { color: var(--go); }
+  .term pre .k { color: #7fb7ff; }
+  .term pre .m { color: #f5a53a; }
+  .perm { margin-top: 24px; border: 2px solid var(--line); border-left: 12px solid var(--c2); padding: 20px 24px; border-radius: 4px; }
+  .perm h4 { font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--c2); margin-bottom: 10px; }
+  :root[data-theme="dark"] .perm h4 { color: #3fd0da; }
+  .perm p { font-size: 15px; line-height: 1.55; color: var(--muted); }
+  .perm p + p { margin-top: 8px; }
+  .perm code, .perm strong { color: var(--text); }
+  .side-note { font-size: 14px; line-height: 1.6; color: var(--muted); margin-top: 12px; }
+  .side-note a { color: var(--text); font-weight: 700; }
+
+  /* ───────── Footer ───────── */
+  footer.site { margin-top: auto; background: var(--bg); color: var(--text); border-top: 1px solid var(--line); }
+  .foot-inner { padding-top: clamp(36px, 6vh, 64px); padding-bottom: clamp(24px, 4vh, 40px); }
+  .foot-bar { display: flex; height: 6px; width: min(100%, 420px); margin-bottom: 22px; border-radius: 3px; overflow: hidden; }
+  .foot-bar div { flex: 1; }
+  .foot-tag { font-size: clamp(22px, 3vw, 44px); font-weight: 800; line-height: 1.08; letter-spacing: -0.035em; max-width: 22ch; }
+  .foot-sub { font-size: clamp(15px, 1.4vw, 19px); font-weight: 600; line-height: 1.35; color: var(--muted); margin-top: 14px; max-width: 60ch; }
+  .foot-rule { height: 2px; background: var(--text); margin: clamp(28px, 5vh, 56px) 0 24px; opacity: .9; }
+  .foot-grid { display: flex; flex-wrap: wrap; gap: 28px 40px; justify-content: space-between; align-items: flex-end; }
+  .credits { display: flex; flex-direction: column; gap: 10px; }
+  .credits .by { font-size: 16px; font-weight: 600; }
+  .flogos { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 22px; }
+  .flogos a { display: inline-flex; }
+  .flogos img { height: 26px; width: auto; }
+  .flogos .chip { background: #201e1d; border-radius: 8px; padding: 6px 10px; display: inline-flex; }
+  .credits .links { display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: 14px; }
+  .credits .links a { color: var(--muted); text-decoration: none; }
+  .credits .links a:hover { color: var(--text); }
+  .credits .links strong { color: var(--text); }
+  .legal { display: flex; flex-wrap: wrap; gap: 10px 20px; align-items: center; font-size: 13px; letter-spacing: 0.04em; color: var(--muted); }
+  .legal a { color: var(--muted); text-decoration: none; }
+  .legal a:hover { color: var(--text); }
+  .foot-stripe { display: flex; height: 8px; }
+  .foot-stripe div { flex: 1; }
+
+  /* ───────── Documentation view (the help-site look) ───────── */
+  #docs { --d-bg: #f6f5f1; --d-surface: #ffffff; --d-ink: #1f1f1f; --d-soft: #55575b; --d-line: #deddd6; --d-teal: #0f7f80; --d-teal-bg: #d6efee; --d-blue: #1a5fd0; --d-purple: #7a4fc0; --d-magenta: #c2187a; --d-code: #efeee8; --d-radius: 10px; background: var(--d-bg); color: var(--d-ink); font: 16px/1.65 Inter, system-ui, -apple-system, "Segoe UI", sans-serif; flex: 1; }
+  #docs a { color: var(--d-teal); text-underline-offset: 2px; }
+  #docs a:hover { color: var(--d-blue); }
+  #docs .dwrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+  #docs header.top { background: var(--d-surface); border-bottom: 1px solid var(--d-line); }
+  #docs .brandbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 22px 0 18px; flex-wrap: wrap; }
+  #docs .brandbar .back { display: inline-flex; align-items: center; gap: 8px; font: 700 13px Inter, sans-serif; letter-spacing: .06em; text-transform: uppercase; color: var(--d-ink); text-decoration: none; }
+  #docs .brandbar .back:hover { color: var(--d-teal); }
+  #docs .bc { color: #00A99D; }
+  #docs .brandbar .back svg { width: 16px; height: 16px; }
+  #docs .brandbar .right { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  #docs .brandbar img.ocpf { height: 48px; width: auto; display: block; }
+  #docs .gh { display: inline-flex; align-items: center; gap: 8px; font: 700 13px Inter, sans-serif; letter-spacing: .06em; text-transform: uppercase; color: var(--d-ink); text-decoration: none; border: 1px solid var(--d-line); border-radius: 999px; padding: 9px 16px; background: var(--d-surface); }
+  #docs .gh:hover { border-color: var(--d-ink); color: var(--d-ink); }
+  #docs .gh svg { width: 18px; height: 18px; }
+  #docs .hero2 { display: flex; align-items: center; gap: 28px; padding: 18px 0 30px; flex-wrap: wrap; }
+  #docs .hero2 img.app { width: 96px; height: 96px; border-radius: 20px; box-shadow: 0 4px 16px rgba(26,95,208,.25); flex: none; background: #fff; }
+  #docs .hero2 h1 { font: 900 clamp(34px, 6vw, 58px)/1.02 Archivo, Inter, sans-serif; letter-spacing: -.02em; margin: 0 0 10px; }
+  #docs .hero2 p { margin: 0; max-width: 640px; color: var(--d-soft); font-weight: 500; font-size: 17px; }
+  #docs .dbar { height: 5px; width: 340px; max-width: 100%; margin: 14px 0 16px; background: linear-gradient(90deg, var(--d-blue) 0 25%, var(--d-teal) 25% 50%, var(--d-purple) 50% 75%, var(--d-magenta) 75% 100%); }
+  #docs .hl { background: var(--d-teal); color: #fff; padding: 0 .3em; border-radius: 3px; font-weight: 700; }
+  #docs .cta2 { margin-top: 16px !important; }
+  #docs .btn2 { display: inline-flex; align-items: center; gap: 10px; background: var(--d-teal); color: #fff; text-decoration: none; font-weight: 700; padding: 14px 24px; border-radius: 8px; font-size: 18px; }
+  #docs .btn2:hover { background: var(--d-ink); color: #fff; }
+  #docs .btn2 .dlv { font-weight: 500; opacity: .85; font-size: 15px; }
+  #docs .dlnote { display: block; margin-top: 10px; font-size: 14px; color: var(--d-soft); max-width: 560px; }
+  #docs nav.tabs { position: sticky; top: 0; z-index: 10; background: rgba(246,245,241,.94); backdrop-filter: blur(6px); border-bottom: 1px solid var(--d-line); }
+  #docs nav.tabs .dwrap { display: flex; gap: 4px; overflow-x: auto; }
+  #docs .tab { appearance: none; border: 0; background: none; font: 700 13px/1 Inter, sans-serif; letter-spacing: .12em; text-transform: uppercase; color: var(--d-soft); padding: 18px 16px 16px; cursor: pointer; border-bottom: 3px solid transparent; white-space: nowrap; }
+  #docs .tab:hover { color: var(--d-ink); }
+  #docs .tab[aria-selected="true"] { color: var(--d-ink); border-bottom-color: var(--d-teal); }
+  #docs .tab:focus-visible { outline: 2px solid var(--d-blue); outline-offset: -2px; }
+  #docs main { padding: 34px 0 60px; }
+  #docs .panel { background: var(--d-surface); border: 1px solid var(--d-line); border-radius: var(--d-radius); padding: 34px clamp(18px, 4vw, 48px) 40px; }
+  #docs .panel > h1 { font: 900 34px/1.1 Archivo, Inter, sans-serif; letter-spacing: -.01em; margin: 0 0 6px; }
+  #docs .panel > h1::after { content: ""; display: block; height: 4px; width: 120px; margin-top: 12px; background: linear-gradient(90deg, var(--d-blue) 0 25%, var(--d-teal) 25% 50%, var(--d-purple) 50% 75%, var(--d-magenta) 75% 100%); }
+  #docs h2 { font: 800 25px/1.2 Archivo, Inter, sans-serif; margin: 2.2em 0 .5em; padding-top: 1.2em; border-top: 1px solid var(--d-line); scroll-margin-top: 80px; }
+  #docs h2:first-of-type { border-top: 0; }
+  #docs .panel > h1 + h2, #docs .panel > h1 + p + h2 { margin-top: 1em; padding-top: 0; border-top: 0; }
+  #docs h3 { font-size: 18px; margin: 1.8em 0 .4em; scroll-margin-top: 80px; }
+  #docs h4 { font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--d-soft); margin: 1.6em 0 .4em; }
+  #docs p, #docs li { max-width: 78ch; }
+  #docs p { margin: 0 0 1em; }
+  #docs ul, #docs ol { padding-left: 1.4em; margin: 0 0 1em; }
+  #docs li { margin: .25em 0; }
+  #docs code { font: 500 .88em "JetBrains Mono", ui-monospace, Menlo, monospace; background: var(--d-code); padding: .12em .4em; border-radius: 4px; }
+  #docs pre { background: #1f1f1f; color: #f3f3f0; padding: 16px 18px; border-radius: var(--d-radius); overflow-x: auto; line-height: 1.5; margin: 0 0 1.2em; }
+  #docs pre code { background: none; padding: 0; color: inherit; }
+  #docs pre.mermaid { overflow-x: auto; background: var(--d-surface); border: 1px solid var(--d-line); color: var(--d-ink); text-align: center; padding: 18px; }
+  #docs pre.mermaid svg { max-width: none; height: auto; }
+  #docs blockquote { margin: 1.2em 0; padding: 12px 18px; background: var(--d-teal-bg); border-left: 4px solid var(--d-teal); border-radius: 0 var(--d-radius) var(--d-radius) 0; }
+  #docs blockquote p { margin: .3em 0; }
+  #docs .faq { border: 1px solid var(--d-line); border-radius: var(--d-radius); margin: 8px 0; padding: 0 16px; background: #fff; }
+  #docs .faq summary { cursor: pointer; font-weight: 600; padding: 14px 0; }
+  #docs .faq[open] summary { border-bottom: 1px solid var(--d-line); margin-bottom: 8px; }
+  #docs .table-wrap { overflow-x: auto; margin: 1.2em 0; border: 1px solid var(--d-line); border-radius: var(--d-radius); }
+  #docs table { border-collapse: collapse; width: 100%; font-size: 14.5px; }
+  #docs th { text-align: left; background: #efeee8; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--d-soft); }
+  #docs th, #docs td { padding: 10px 14px; border-bottom: 1px solid var(--d-line); vertical-align: top; }
+  #docs tr:last-child td { border-bottom: 0; }
+  #docs hr { border: 0; border-top: 1px solid var(--d-line); margin: 2em 0; }
+  #docs footer.dfoot { border-top: 1px solid var(--d-line); background: var(--d-surface); }
+  #docs footer.dfoot .dwrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 22px 16px; font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--d-soft); }
+  #docs footer.dfoot a { color: inherit; }
+  /* Reference tab */
+  #docs .ref-tools { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin: 18px 0 6px; }
+  #docs .ref-tools input { flex: 1 1 280px; font: 500 15px Inter, sans-serif; padding: 12px 14px; border: 1px solid var(--d-line); border-radius: 8px; background: #fff; color: var(--d-ink); }
+  #docs .ref-tools input:focus { outline: 2px solid var(--d-blue); outline-offset: 0; border-color: transparent; }
+  #docs .ref-tools .cnt { font-size: 13px; color: var(--d-soft); font-weight: 600; }
+  #docs .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 6px; }
+  #docs .chip2 { font: 600 12px Inter, sans-serif; letter-spacing: .04em; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--d-line); background: #fff; color: var(--d-ink); cursor: pointer; }
+  #docs .chip2:hover { border-color: var(--d-ink); }
+  #docs .chip2[aria-pressed="true"] { background: var(--d-ink); color: #fff; border-color: var(--d-ink); }
+  #docs .ent { border: 1px solid var(--d-line); border-radius: var(--d-radius); margin: 8px 0; background: #fff; scroll-margin-top: 84px; }
+  #docs .ent > summary { cursor: pointer; padding: 12px 16px; display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 4px 16px; align-items: center; list-style: none; }
+  #docs .ent > summary::-webkit-details-marker { display: none; }
+  #docs .ent > summary .en { grid-column: 1; grid-row: 1; font: 600 15px "JetBrains Mono", ui-monospace, monospace; color: var(--d-ink); word-break: break-all; }
+  #docs .ent > summary .es { grid-column: 1; grid-row: 2; font-size: 13px; color: var(--d-soft); }
+  #docs .ent > summary .eb { grid-column: 2; grid-row: 1 / span 2; display: flex; gap: 6px; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
+  #docs .b { display: inline-flex; align-items: center; font: 700 10.5px Inter, sans-serif; letter-spacing: .1em; text-transform: uppercase; padding: 4px 8px; border-radius: 999px; white-space: nowrap; }
+  #docs .b.rw { background: #dff3e4; color: #166534; }
+  #docs .b.ro { background: #ececec; color: #4b4b4b; }
+  #docs .b.new { background: #ede7fb; color: #5b3cb0; }
+  #docs .b.rep { background: #e2eefc; color: #1a4fa0; }
+  #docs .b.id { background: var(--d-code); color: var(--d-soft); font-family: "JetBrains Mono", monospace; letter-spacing: 0; text-transform: none; font-size: 11px; }
+  #docs .ent[open] > summary { border-bottom: 1px solid var(--d-line); }
+  #docs .ent .body { padding: 6px 16px 16px; }
+  #docs .ent .desc { margin: 10px 0 12px; }
+  #docs .ent .props { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px 18px; margin: 0 0 14px; font-size: 14px; }
+  #docs .ent .props div { border-bottom: 1px dotted var(--d-line); padding: 6px 0; display: flex; justify-content: space-between; gap: 12px; }
+  #docs .ent .props span { color: var(--d-soft); }
+  #docs .ent .props b { font-weight: 600; text-align: right; }
+  #docs .ent .url { font: 500 13px "JetBrains Mono", monospace; background: #1f1f1f; color: #f3f3f0; padding: 10px 14px; border-radius: 8px; overflow-x: auto; white-space: nowrap; margin: 0 0 14px; }
+  #docs .ent .url span { color: #8f8b89; }
+  #docs .ent .url em { color: #2EE59D; font-style: normal; }
+  #docs .ent .note { font-size: 14px; color: var(--d-soft); margin: 8px 0 0; }
+  #docs .ent table { font-size: 13.5px; }
+  #docs .ent td:first-child { color: var(--d-soft); font-variant-numeric: tabular-nums; width: 3em; }
+  #docs .ent td code { font-size: .92em; }
+  #docs .catsec { scroll-margin-top: 84px; }
+  #docs .catsec h2 { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  #docs .catsec h2 small { font: 500 13px Inter, sans-serif; color: var(--d-soft); }
+  #docs .catsec h2 code { font-size: .6em; vertical-align: middle; }
+  #docs .legend2 { font-size: 13.5px; color: var(--d-soft); margin: 10px 0 0; }
+  #docs .empty { color: var(--d-soft); padding: 18px 0; }
+  @media (max-width: 600px) { #docs .hero2 { gap: 18px; } #docs .hero2 img.app { width: 72px; height: 72px; border-radius: 16px; } }
+  @media print { #docs nav.tabs, #docs footer.dfoot { display: none; } body { background: #fff; } }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════ LANDING ═══════════════════════════ -->
+<div id="site">
+  <header class="site">
+    <div class="wrap nav">
+      <a class="brand" href="#top" aria-label="bcapi.ai home">
+        <img class="mark" src="{{IMG_OBCF_ICON}}" alt="" width="36" height="36">
+        <span class="name">bc<b class="bc">api</b><span>.ai</span></span>
+      </a>
+      <nav class="nav-right" aria-label="Site">
+        <a class="textlink" href="#install">Install</a>
+        <a class="pill" href="#docs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Documentation</a>
+        <a class="ghlink" href="https://github.com/ajansari/ocpfBCAPIsV3" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>Repo</a>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to day mode" title="Switch to day mode">
+          <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="wrap hero">
+      <div class="bar" aria-hidden="true"><div style="background:#0F6CBD"></div><div style="background:#0A7C85"></div><div style="background:#6B4FC4"></div><div style="background:#C10E72"></div></div>
+      <h1><img src="{{IMG_OBCF_ICON}}" alt="" width="96" height="96"><span class="wm">bc<b class="bc">api</b><span>.ai</span></span></h1>
+      <h2>{{TOTAL}} standard Business Central tables,<br> <em>every W1 field, as OData v4 APIs.</em></h2>
+      <p class="lead">A free, open-source extension that exposes {{TOTAL}} standard tables as ready-to-use API endpoints, localization-neutral, no custom development per table. Install it and start integrating.</p>
+      <div class="cta">
+        <a class="btn install" href="#install"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 1.5v9M4.5 7.5 8 11l3.5-3.5M2 14h12"/></svg>Install the extension</a>
+        <a class="btn docs" href="#docs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Documentation</a>
+      </div>
+      <div class="meta">App version {{APP_VERSION}} · API v{{API_VERSION}} · {{DATE}} · <a href="#docs/changelog">What's new →</a></div>
+      <a class="designed" href="https://www.microsoft.com/en-us/dynamics-365/products/business-central" target="_blank" rel="noopener" aria-label="Designed for Microsoft Dynamics 365 Business Central">
+        <img src="{{IMG_BC}}" alt="" width="44" height="44">
+        <span class="sep" aria-hidden="true"></span>
+        <span class="t"><small>Designed for</small><strong>Microsoft Dynamics 365 <b>Business Central</b></strong></span>
+      </a>
+    </section>
+
+    <section class="stats" aria-label="At a glance">
+      <div class="wrap row">
+        <div><div class="n">{{TOTAL}}</div><div class="l">Endpoints</div></div>
+        <div><div class="n">{{NCATS}}</div><div class="l">Categories</div></div>
+        <div><div class="n">{{EDITABLE}}</div><div class="l">Read / write</div></div>
+        <div><div class="n">{{READONLY}}</div><div class="l">Read-only</div></div>
+        <div><div class="n">v4</div><div class="l">OData</div></div>
+      </div>
+    </section>
+
+    <section class="wrap catalog" aria-label="Catalog by category">
+      <div class="head">
+        <div class="k">One cell per API endpoint · <b>{{NCATS}} categories · {{TOTAL}} endpoints</b></div>
+        <div class="od">Exposed via <b>OData v4</b></div>
+      </div>
+      <div class="cats">{{CAT_BARS}}</div>
+      <div class="legend"><span><i></i>Read / write</span><span><i class="ro"></i>Read-only</span><span>Click a category to open its reference</span></div>
+    </section>
+
+    <section class="block" id="install">
+      <div class="wrap inner">
+        <div class="sec-head">
+          <div class="no"><span>01</span><span>Install</span></div>
+          <h2>Download the app. Upload it to Business Central. Assign a permission set.</h2>
+          <p>One .app file, no dependencies, no setup page. Works on Business Central {{BC_VERSION}} and later, in any localization.</p>
+        </div>
+        <div class="install-grid">
+          <div>
+            <a class="dl" href="{{DOWNLOAD_URL}}" download><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 1.5v9M4.5 7.5 8 11l3.5-3.5M2 14h12"/></svg>Download the app<span class="v">v{{APP_VERSION}} · .app</span></a>
+            <p class="side-note">Install it in a sandbox first. The source is on <a href="https://github.com/ajansari/ocpfBCAPIsV3" target="_blank" rel="noopener">GitHub</a> if you prefer to build it yourself.</p>
+            <div style="margin-top:22px">
+              <div class="step"><span class="tag">Step 1</span><div><h3>Upload the extension</h3><p>In Business Central, search for <strong>Extension Management</strong>, choose <strong>Manage → Upload Extension</strong>, pick the .app file, accept the terms and deploy. It takes a few minutes.</p></div></div>
+              <div class="step"><span class="tag">Step 2</span><div><h3>Assign a permission set</h3><p>Give the integration user <code>OCPF - READ</code> (every endpoint, GET) or <code>OCPF - READ/WRITE</code> (adds POST, PATCH and DELETE on the {{EDITABLE}} editable endpoints), plus the standard permissions on the underlying BC tables.</p></div></div>
+              <div class="step"><span class="tag">Step 3</span><div><h3>Call an endpoint</h3><p>Authenticate with OAuth 2.0 (Microsoft Entra app registration) and GET any entity under the <code>/v{{API_VERSION}}/</code> base URL. The <a href="#docs/getting-started" style="color:var(--text);font-weight:700">Getting Started</a> guide has the full URL pattern and examples.</p></div></div>
+            </div>
+          </div>
+          <div>
+            <div class="term">
+              <div class="bar2"><div class="lights"><span style="background:#ff5f57"></span><span style="background:#febc2e"></span><span style="background:#28c840"></span></div><div class="url">api.businesscentral.dynamics.com</div><div style="width:52px"></div></div>
+<pre><span class="c"># Base URL (replace the placeholders)</span>
+<span class="k">https://api.businesscentral.dynamics.com/v2.0/</span>{tenantId}/{environment}
+  <span class="k">/api/OnlyCopilotFans/</span><span class="m">ocpf_masterData</span>/<span class="g">v{{API_VERSION}}</span>
+
+<span class="c"># List customers</span>
+<span class="g">GET</span> {base}/companies({companyId})/<span class="m">ocpfCustomers</span>
+
+<span class="c"># Filter, select, page</span>
+<span class="g">GET</span> {base}/companies({companyId})/<span class="m">ocpfItems</span>
+    ?$filter=inventory gt 0&amp;$select=no,description,inventory&amp;$top=50
+
+<span class="c"># Create a customer (OCPF - READ/WRITE)</span>
+<span class="g">POST</span> {base}/companies({companyId})/<span class="m">ocpfCustomers</span>
+{ "no": "C-1001", "name": "Contoso Ltd." }
+
+<span class="c"># Discover every entity and field in a category</span>
+<span class="g">GET</span> {base}/$metadata</pre>
+            </div>
+            <div class="perm">
+              <h4>Permission sets included</h4>
+              <p><strong><code>OCPF - READ</code></strong> covers all {{TOTAL}} endpoints. <strong><code>OCPF - READ/WRITE</code></strong> covers the {{EDITABLE}} editable ones.</p>
+              <p>Consumers also need the matching permissions on the base tables. The four Access Control endpoints additionally require <code>SUPER</code> or <code>SECURITY</code> to assign permission sets.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site">
+    <div class="wrap foot-inner">
+      <div class="foot-bar" aria-hidden="true"><div style="background:#0F6CBD"></div><div style="background:#0A7C85"></div><div style="background:#6B4FC4"></div><div style="background:#C10E72"></div></div>
+      <p class="foot-tag">Every standard table. One consistent API. No custom development per table.</p>
+      <p class="foot-sub">Built for Microsoft Dynamics 365 Business Central and shared openly with the community under the MIT License.</p>
+      <div class="foot-rule"></div>
+      <div class="foot-grid">
+        <div class="credits">
+          <div class="by">Created by AJ Ansari, Microsoft MVP</div>
+          <div class="flogos">
+            <a href="https://onlycopilotfans.com" target="_blank" rel="noopener"><span class="chip"><img src="{{IMG_OCPF}}" alt="OnlyCopilotFans"></span></a>
+            <a href="https://onlybcfans.com" target="_blank" rel="noopener"><span class="chip"><img src="{{IMG_OBCF}}" alt="OnlyBCFans"></span></a>
+          </div>
+          <div class="links">
+            <a href="https://github.com/ajansari/ocpfBCAPIsV3" target="_blank" rel="noopener">Source on <strong>GitHub</strong></a>
+            <a href="https://bcdev.ai" target="_blank" rel="noopener">More tools at <strong>bcdev.ai</strong></a>
+            <a href="https://AJAnsari.com" target="_blank" rel="noopener">Visit <strong>AJAnsari.com</strong></a>
+            <a href="https://onlycopilotfans.com" target="_blank" rel="noopener">Visit <strong>OnlyCopilotFans</strong></a>
+            <a href="mailto:aj@onlycopilotfans.com">aj@onlycopilotfans.com</a>
+          </div>
+        </div>
+        <div class="legal">
+          <a href="https://github.com/ajansari/ocpfBCAPIsV3/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a>
+          <a href="https://onlycopilotfans.com/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>
+          <a href="https://onlycopilotfans.com/terms-of-service" target="_blank" rel="noopener">Terms of Service</a>
+          <span>© <span id="year">2026</span> OnlyCopilotFans · OnlyBCFans</span>
+        </div>
+      </div>
+    </div>
+    <div class="foot-stripe" aria-hidden="true"><div style="background:#0F6CBD"></div><div style="background:#0A7C85"></div><div style="background:#6B4FC4"></div><div style="background:#C10E72"></div></div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════ DOCUMENTATION ═══════════════════════════ -->
+<div id="docs" hidden>
+  <header class="top">
+    <div class="dwrap">
+      <div class="brandbar">
+        <a class="back" href="#top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg><span>bc<b class="bc">api</b>.ai</span></a>
+        <div class="right">
+          <a href="https://onlycopilotfans.com" target="_blank" rel="noopener" aria-label="OnlyCopilotFans"><img class="ocpf" src="{{IMG_OCPF_DAY}}" alt="OnlyCopilotFans"></a>
+          <a class="gh" href="https://github.com/ajansari/ocpfBCAPIsV3" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>View on GitHub</a>
+        </div>
+      </div>
+      <div class="hero2">
+        <img class="app" src="{{IMG_LOGO}}" alt="OCPF APIs app icon">
+        <div>
+          <h1>BC API Catalog v3</h1>
+          <div class="dbar"></div>
+          <p>Reference, setup and use for the OnlyCopilotFans <span class="hl">Business Central</span> API extension. App version {{APP_VERSION}}, API v{{API_VERSION}}.</p>
+          <p class="cta2"><a class="btn2" href="{{DOWNLOAD_URL}}" download><svg viewBox="0 0 16 16" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1.5v9M4.5 7.5 8 11l3.5-3.5M2 14h12"/></svg>Download the app <span class="dlv">v{{APP_VERSION}} · .app</span></a><span class="dlnote">Install it in a sandbox first: see <a href="#docs/getting-started">Getting Started</a>.</span></p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="tabs" aria-label="Documentation sections"><div class="dwrap" role="tablist">{{TABS}}</div></nav>
+
+  <main><div class="dwrap">{{PANELS}}</div></main>
+
+  <footer class="dfoot">
+    <div class="dwrap">
+      <a href="https://github.com/ajansari/ocpfBCAPIsV3">github.com/ajansari/ocpfBCAPIsV3</a>
+      <span>Created by AJ Ansari · Microsoft MVP</span>
+    </div>
+  </footer>
+</div>
+
+<script type="application/json" id="catalog">{{CATALOG_JSON}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.min.js" defer></script>
+<script>
+(function () {
+  var root = document.documentElement;
+  var site = document.getElementById('site'), docs = document.getElementById('docs');
+  var tabs = Array.prototype.slice.call(docs.querySelectorAll('.tab'));
+  var panels = Array.prototype.slice.call(docs.querySelectorAll('.panel'));
+  var TAB_KEYS = tabs.map(function (t) { return t.dataset.tab; });
+  var API_VERSION = '{{API_VERSION}}';
+
+  /* ── Theme (landing only; the docs view keeps the help-site light look) ── */
+  var btn = document.getElementById('themeToggle');
+  function label() {
+    var dark = root.getAttribute('data-theme') !== 'light';
+    var t = dark ? 'Switch to day mode' : 'Switch to night mode';
+    btn.setAttribute('aria-label', t); btn.setAttribute('title', t);
+  }
+  btn.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('bcapi-theme', next); } catch (e) {}
+    label();
+  });
+  label();
+  document.getElementById('year').textContent = new Date().getFullYear();
+  var header = document.querySelector('header.site'), heroMark = document.querySelector('.hero h1');
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) { header.classList.toggle('scrolled', !entries[0].isIntersecting); }, { rootMargin: '-64px 0px 0px 0px', threshold: 0 }).observe(heroMark);
+  } else { header.classList.add('scrolled'); }
+
+  /* ── Catalog data → Reference tab ── */
+  var data = JSON.parse(document.getElementById('catalog').textContent);
+  var ENT = {}; data.categories.forEach(function (c) { c.entities.forEach(function (e) { e.cat = c; ENT[e.name.toLowerCase()] = e; }); });
+  var refHost = document.getElementById('ref-list'), refSearch = document.getElementById('ref-search'), refCount = document.getElementById('ref-count');
+  var filterCat = '';
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function glyph(g) {
+    return { key: '🔑 Key', rw: '✅ writable', calc: '🧮 computed', filter: '🔍 filter', ro: '— read-only' }[g] || g;
+  }
+  function entityBody(e) {
+    var versions = e.v31only ? 'v3.1 only' : 'v3.0 and v3.1';
+    var h = '<div class="body"><p class="desc">' + esc(e.desc) + '</p>';
+    h += '<div class="props">';
+    h += '<div><span>Source table</span><b>' + esc(e.table) + '</b></div>';
+    h += '<div><span>Page ID</span><b>' + e.id + '</b></div>';
+    h += '<div><span>API group</span><b><code>' + esc(e.cat.group) + '</code></b></div>';
+    h += '<div><span>API versions</span><b>' + versions + '</b></div>';
+    h += '<div><span>Operations</span><b>' + (e.editable ? 'GET · POST · PATCH · DELETE' : 'GET') + '</b></div>';
+    h += '<div><span>OData key</span><b>' + (e.key ? esc(e.key) : '<code>systemId</code>') + '</b></div>';
+    if (e.replica) h += '<div><span>Data access intent</span><b>ReadOnly (SQL read replica)</b></div>';
+    h += '<div><span>Fields</span><b>' + e.fields.length + '</b></div>';
+    h += '</div>';
+    h += '<div class="url"><span>GET {base}/api/OnlyCopilotFans/</span>' + esc(e.cat.group) + '<span>/</span><em>v' + API_VERSION + '</em><span>/companies({companyId})/</span>' + esc(e.name) + '</div>';
+    h += '<div class="table-wrap"><table><thead><tr><th>#</th><th>Identifier</th><th>BC field</th><th>Caption</th><th>Editable</th></tr></thead><tbody>';
+    e.fields.forEach(function (f, i) {
+      h += '<tr><td>' + (i + 1) + '</td><td><code>' + esc(f[0]) + '</code></td><td>' + esc(f[1]) + '</td><td>' + esc(f[2]) + '</td><td>' + glyph(f[3]) + '</td></tr>';
+    });
+    h += '</tbody></table></div>';
+    if (e.notes && e.notes.length) e.notes.forEach(function (n) { h += '<p class="note">' + n + '</p>'; });
+    h += '</div>';
+    return h;
+  }
+  function entityCard(e) {
+    var badges = '<span class="b ' + (e.editable ? 'rw">Read / write' : 'ro">Read-only') + '</span>';
+    if (e.v31only) badges += '<span class="b new">New in v3.1</span>';
+    if (e.replica) badges += '<span class="b rep">Read replica</span>';
+    badges += '<span class="b id">' + e.id + '</span>';
+    return '<details class="ent" id="ref-' + e.name.toLowerCase() + '" data-name="' + esc(e.name) + '"><summary><span class="en">' + esc(e.name) + '</span><span class="eb">' + badges + '</span><span class="es">' + esc(e.table) + ' · ' + e.fields.length + ' fields</span></summary></details>';
+  }
+  function matches(e, q) {
+    if (!q) return true;
+    if (e.name.toLowerCase().indexOf(q) >= 0 || e.table.toLowerCase().indexOf(q) >= 0 || String(e.id) === q) return true;
+    for (var i = 0; i < e.fields.length; i++) if (e.fields[i][0].toLowerCase().indexOf(q) >= 0 || e.fields[i][1].toLowerCase().indexOf(q) >= 0) return true;
+    return false;
+  }
+  function renderRef() {
+    var q = (refSearch.value || '').trim().toLowerCase();
+    var html = '', shown = 0;
+    data.categories.forEach(function (c) {
+      if (filterCat && c.slug !== filterCat) return;
+      var list = c.entities.filter(function (e) { return matches(e, q); });
+      if (!list.length) return;
+      shown += list.length;
+      html += '<section class="catsec" id="ref-cat-' + c.slug + '"><h2>' + esc(c.name) + ' <small><code>' + esc(c.group) + '</code> · ' + c.entities.length + ' entities · ' + c.editable + ' read / write · ' + c.readonly + ' read-only</small></h2>';
+      list.forEach(function (e) { html += entityCard(e); });
+      html += '</section>';
+    });
+    refHost.innerHTML = html || '<p class="empty">Nothing matches. Try an entity name, a BC table name, a page ID or a field identifier.</p>';
+    refCount.textContent = shown + ' of ' + data.total + ' endpoints';
+  }
+  refHost.addEventListener('toggle', function (ev) {
+    var d = ev.target;
+    if (d.classList && d.classList.contains('ent') && d.open && !d.dataset.done) {
+      d.dataset.done = '1';
+      d.insertAdjacentHTML('beforeend', entityBody(ENT[d.dataset.name.toLowerCase()]));
+    }
+  }, true);
+  refSearch.addEventListener('input', renderRef);
+  Array.prototype.forEach.call(docs.querySelectorAll('.chip2'), function (ch) {
+    ch.addEventListener('click', function () {
+      filterCat = (filterCat === ch.dataset.cat) ? '' : ch.dataset.cat;
+      Array.prototype.forEach.call(docs.querySelectorAll('.chip2'), function (o) { o.setAttribute('aria-pressed', String(o.dataset.cat === filterCat)); });
+      renderRef();
+    });
+  });
+  renderRef();
+  function openEntity(name) {
+    var e = ENT[name.toLowerCase()]; if (!e) return false;
+    filterCat = ''; refSearch.value = '';
+    Array.prototype.forEach.call(docs.querySelectorAll('.chip2'), function (o) { o.setAttribute('aria-pressed', 'false'); });
+    renderRef();
+    var d = document.getElementById('ref-' + name.toLowerCase());
+    if (d) { d.open = true; d.scrollIntoView(); }
+    return true;
+  }
+
+  /* ── Mermaid (schema tab), rendered once on first open ── */
+  var diagramsDone = false;
+  function renderDiagrams() {
+    if (diagramsDone || !window.mermaid) return;
+    diagramsDone = true;
+    try {
+      window.mermaid.initialize({ startOnLoad: false, theme: 'neutral', flowchart: { useMaxWidth: false }, er: { useMaxWidth: false } });
+      window.mermaid.run({ querySelector: '#docs pre.mermaid' });
+    } catch (e) { /* the diagram text stays visible */ }
+  }
+
+  /* ── Views & routing: '' / #top / #install → landing; #docs[/tab[/anchor]] → docs ── */
+  function showSite(anchor) {
+    docs.hidden = true; site.hidden = false;
+    document.title = 'bcapi.ai · BC API Catalog v3';
+    if (anchor && anchor !== 'top') { var el = document.getElementById(anchor); if (el) el.scrollIntoView(); }
+    else if (anchor === 'top') window.scrollTo(0, 0);
+  }
+  var initial = true;
+  function showDocs(key, anchor) {
+    if (TAB_KEYS.indexOf(key) < 0) key = TAB_KEYS[0];
+    site.hidden = true; docs.hidden = false;
+    tabs.forEach(function (t) { t.setAttribute('aria-selected', String(t.dataset.tab === key)); });
+    panels.forEach(function (p) { p.hidden = p.id !== 'panel-' + key; });
+    document.title = tabs.filter(function (t) { return t.dataset.tab === key; })[0].textContent + ' · BC API Catalog v3';
+    if (key === 'schema') { if (window.mermaid) renderDiagrams(); else document.querySelector('script[src*="mermaid"]').addEventListener('load', renderDiagrams); }
+    if (anchor) {
+      if (key === 'reference' && openEntity(anchor)) return;
+      var el = document.getElementById(key + '-' + anchor) || document.getElementById('ref-cat-' + anchor) || document.getElementById(anchor);
+      if (el) { el.scrollIntoView(); return; }
+    }
+    if (!initial) window.scrollTo(0, docs.querySelector('nav.tabs').offsetTop);
+    else window.scrollTo(0, 0);
+  }
+  function route() {
+    var h = decodeURIComponent(location.hash.slice(1));
+    if (h.indexOf('docs') === 0) {
+      var parts = h.split('/');
+      showDocs(parts[1] || TAB_KEYS[0], parts.slice(2).join('/'));
+    } else {
+      showSite(h);
+    }
+  }
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () { history.replaceState(null, '', '#docs/' + t.dataset.tab); showDocs(t.dataset.tab); });
+  });
+  window.addEventListener('hashchange', route);
+  route();
+  initial = false;
+
+  /* Every external link opens in a new tab. */
+  Array.prototype.forEach.call(document.querySelectorAll('a[href]'), function (a) {
+    if (a.host && a.host !== location.host && /^https?:/.test(a.protocol)) { a.target = '_blank'; a.rel = (a.rel ? a.rel + ' ' : '') + 'noopener'; }
+  });
+})();
+</script>
+</body>
+</html>

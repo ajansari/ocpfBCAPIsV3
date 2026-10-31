@@ -1,3 +1,5 @@
+# Search engines and AI crawlers are welcome (see /terms-of-service.html).
+# A summary for language models is at /llms.txt.
 User-agent: *
 Allow: /
 

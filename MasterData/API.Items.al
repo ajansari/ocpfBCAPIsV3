@@ -1245,6 +1245,84 @@ page 90846 "ocpfItems"
                     ToolTip = 'Specifies the Prod. Forecast Quantity (Base).';
                     ApplicationArea = All;
                 }
+                field(productionBomNo; Rec."Production BOM No.")
+                {
+                    Caption = 'Production BOM No.';
+                    ToolTip = 'Specifies the number of the production BOM that is used to produce this item.';
+                    ApplicationArea = All;
+                }
+                field(routingNo; Rec."Routing No.")
+                {
+                    Caption = 'Routing No.';
+                    ToolTip = 'Specifies the number of the routing that is used to produce this item.';
+                    ApplicationArea = All;
+                }
+                field(productionBlocked; Rec."Production Blocked")
+                {
+                    Caption = 'Production Blocked';
+                    ToolTip = 'Specifies whether the item is blocked for production: blank (not blocked), Output (cannot be produced), or Consumption and Output (cannot be produced or consumed).';
+                    ApplicationArea = All;
+                }
+                field(costOfOpenProductionOrders; Rec."Cost of Open Production Orders")
+                {
+                    Caption = 'Cost of Open Production Orders';
+                    ToolTip = 'Specifies the cost amount of planned, firm planned, and released production order lines for the item.';
+                    ApplicationArea = All;
+                }
+                field(scheduledReceiptQty; Rec."Scheduled Receipt (Qty.)")
+                {
+                    Caption = 'Scheduled Receipt (Qty.)';
+                    ToolTip = 'Specifies the remaining quantity (base) on firm planned and released production order lines for the item.';
+                    ApplicationArea = All;
+                }
+                field(plannedOrderReceiptQty; Rec."Planned Order Receipt (Qty.)")
+                {
+                    Caption = 'Planned Order Receipt (Qty.)';
+                    ToolTip = 'Specifies the remaining quantity (base) on planned production order lines, filtered by due date.';
+                    ApplicationArea = All;
+                }
+                field(fpOrderReceiptQty; Rec."FP Order Receipt (Qty.)")
+                {
+                    Caption = 'FP Order Receipt (Qty.)';
+                    ToolTip = 'Specifies the remaining quantity (base) on firm planned production order lines, filtered by due date.';
+                    ApplicationArea = All;
+                }
+                field(relOrderReceiptQty; Rec."Rel. Order Receipt (Qty.)")
+                {
+                    Caption = 'Rel. Order Receipt (Qty.)';
+                    ToolTip = 'Specifies the remaining quantity (base) on released production order lines, filtered by due date.';
+                    ApplicationArea = All;
+                }
+                field(plannedOrderReleaseQty; Rec."Planned Order Release (Qty.)")
+                {
+                    Caption = 'Planned Order Release (Qty.)';
+                    ToolTip = 'Specifies the remaining quantity (base) on planned production order lines, filtered by starting date.';
+                    ApplicationArea = All;
+                }
+                field(qtyOnProdOrder; Rec."Qty. on Prod. Order")
+                {
+                    Caption = 'Qty. on Prod. Order';
+                    ToolTip = 'Specifies how many units of the item are on planned, firm planned, and released production orders (output).';
+                    ApplicationArea = All;
+                }
+                field(qtyOnComponentLines; Rec."Qty. on Component Lines")
+                {
+                    Caption = 'Qty. on Component Lines';
+                    ToolTip = 'Specifies how many units of the item are needed as components on planned, firm planned, and released production orders.';
+                    ApplicationArea = All;
+                }
+                field(reservedQtyOnProdOrder; Rec."Reserved Qty. on Prod. Order")
+                {
+                    Caption = 'Reserved Qty. on Prod. Order';
+                    ToolTip = 'Specifies how many units of the item are reserved on production order output lines.';
+                    ApplicationArea = All;
+                }
+                field(resQtyOnProdOrderComp; Rec."Res. Qty. on Prod. Order Comp.")
+                {
+                    Caption = 'Res. Qty. on Prod. Order Comp.';
+                    ToolTip = 'Specifies how many units of the item are reserved on production order component lines.';
+                    ApplicationArea = All;
+                }
             }
         }
     }

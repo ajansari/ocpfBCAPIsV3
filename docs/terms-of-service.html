@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Terms of Service · bcapi.ai</title>
+  <meta name="description" content="Please read these terms before using bcapi.ai and the extension it documents.">
+  <meta name="robots" content="noindex, follow">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f3f2f2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#201e1d" media="(prefers-color-scheme: dark)">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/onlybcfans-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3.1.0/dist/cookieconsent.css">
+  <link rel="stylesheet" href="assets/consent.css">
+  <script>
+    // Apply the saved theme before first paint. Day mode is the default.
+    (function () {
+      try {
+        var t = localStorage.getItem('bcapi-theme');
+        if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    })();
+  </script>
+  <style>
+    :root {
+      --bg: #f3f2f2; --bg-elev: #eae9e9; --text: #201e1d; --muted: #605d5d; --line: rgba(32, 30, 29, 0.18);
+      --card: #ffffff; --shadow: 0 12px 32px rgba(45, 43, 43, 0.16);
+      --c1: #0F6CBD; --c2: #0A7C85; --c3: #6B4FC4; --c4: #C10E72; --bcteal: #00A99D;
+      --copilot: linear-gradient(90deg, var(--c1) 0%, var(--c2) 33%, var(--c3) 66%, var(--c4) 100%);
+      color-scheme: light;
+    }
+    :root[data-theme="dark"] {
+      --bg: #201e1d; --bg-elev: #2d2b2b; --text: #f3f2f2; --muted: #b9b5b3; --line: rgba(243, 242, 242, 0.18);
+      --card: #262423; --shadow: 0 12px 32px rgba(0, 0, 0, 0.45); --bcteal: #4DD8D4;
+      color-scheme: dark;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; -webkit-font-smoothing: antialiased; min-height: 100dvh; display: flex; flex-direction: column; transition: background-color .25s ease, color .25s ease; }
+    a { color: inherit; }
+    img { display: block; max-width: 100%; }
+    .wrap { width: 100%; max-width: 1200px; margin: 0 auto; padding-left: 16px; padding-right: 16px; }
+    @media (min-width: 720px) { .wrap { padding-left: 32px; padding-right: 32px; } }
+
+    /* Header (same as the home page, but the brand is always visible here) */
+    header { position: sticky; top: 0; z-index: 50; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 12px; padding-bottom: 12px; }
+    .brand { display: inline-flex; align-items: center; gap: 0.214em; font-size: 30px; text-decoration: none; }
+    .brand .mark { width: 0.857em; height: 0.857em; flex: none; }
+    .brand .name { font-weight: 800; font-size: 1em; line-height: 1; letter-spacing: -0.045em; color: var(--text); }
+    .brand .name span { font-weight: 300; letter-spacing: -0.02em; }
+    .bc { color: var(--bcteal); font-weight: inherit; }
+    .nav-right { display: flex; align-items: center; gap: 8px 18px; font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+    .nav-right a { text-decoration: none; color: var(--text); display: inline-flex; align-items: center; gap: 8px; }
+    .nav-right .ghlink { font-size: 12px; letter-spacing: 0.06em; text-transform: none; font-weight: 400; padding: 7px 14px 7px 10px; border-radius: 999px; gap: 8px; background: var(--text); color: var(--bg); border: 1px solid var(--text); transition: transform .2s ease, box-shadow .2s ease; }
+    .nav-right .ghlink:hover { color: var(--bg); transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35); }
+    .nav-right .ghlink svg { width: 18px; height: 18px; }
+    .nav-right .ghlink b { font-weight: 800; }
+    .nav-right .ghlink .lbl .on { display: none; }
+    @media (min-width: 560px) { .nav-right .ghlink .lbl .on { display: inline; } }
+    .theme-toggle { appearance: none; border: 1px solid var(--line); background: var(--bg-elev); color: var(--text); width: 40px; height: 40px; border-radius: 999px; cursor: pointer; display: grid; place-items: center; transition: background .2s ease, transform .2s ease; }
+    .theme-toggle:hover { transform: rotate(15deg); }
+    .theme-toggle svg { width: 18px; height: 18px; }
+    .theme-toggle .moon { display: none; }
+    :root[data-theme="dark"] .theme-toggle .moon { display: block; }
+    :root[data-theme="dark"] .theme-toggle .sun { display: none; }
+
+    /* Legal article */
+    .legal-page { padding-top: clamp(36px, 6vh, 64px); padding-bottom: clamp(48px, 8vh, 96px); max-width: 820px; }
+    .bar { display: flex; height: 6px; width: min(100%, 300px); margin-bottom: 18px; border-radius: 3px; overflow: hidden; }
+    .bar div { flex: 1; }
+    .kicker { font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+    .legal-page h1 { margin-top: 8px; font-size: clamp(36px, 5vw, 56px); font-weight: 800; line-height: 1.02; letter-spacing: -0.045em; }
+    .legal-page .lede { margin-top: 12px; font-size: clamp(16px, 1.4vw, 19px); font-weight: 500; line-height: 1.5; color: var(--muted); }
+    .legal-page .updated { margin-top: 10px; font-size: 13px; letter-spacing: 0.04em; color: var(--muted); }
+    .legal-page .rule { height: 2px; background: var(--text); margin: 28px 0; opacity: .9; }
+    .legal-page h2 { margin-top: 34px; font-size: clamp(21px, 2.2vw, 26px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.15; }
+    .legal-page h3 { margin-top: 22px; font-size: 17px; font-weight: 700; letter-spacing: -0.015em; }
+    .legal-page p, .legal-page li { margin-top: 10px; font-size: 16px; line-height: 1.6; color: var(--text); }
+    .legal-page ul { padding-left: 22px; }
+    .legal-page a { color: var(--text); font-weight: 600; text-decoration-color: var(--c3); text-underline-offset: 3px; }
+    .legal-page a:hover { color: var(--c3); }
+    .legal-page table { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 14.5px; }
+    .legal-page th, .legal-page td { text-align: left; padding: 10px 10px; border-bottom: 1px solid var(--line); vertical-align: top; line-height: 1.45; }
+    .legal-page th { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+    .legal-page code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13.5px; background: var(--bg-elev); padding: 2px 6px; border-radius: 6px; }
+    .legal-page .card { margin-top: 18px; background: var(--card); border-radius: 18px; box-shadow: var(--shadow); padding: 20px 22px; }
+    .legal-page .card p { margin-top: 6px; }
+    .legal-page .card p:first-child { margin-top: 0; }
+    .legal-page .nav-legal { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 18px; font-size: 14px; }
+    .legal-page .nav-legal a { color: var(--muted); font-weight: 600; text-decoration: none; }
+    .legal-page .nav-legal a[aria-current] { color: var(--text); text-decoration: underline; text-decoration-color: var(--c3); text-underline-offset: 4px; }
+    .legal-page .nav-legal a:hover { color: var(--text); }
+    @media (max-width: 640px) { .legal-page table, .legal-page thead, .legal-page tbody, .legal-page tr, .legal-page th, .legal-page td { display: block; } .legal-page thead { display: none; } .legal-page tr { padding: 10px 0; border-bottom: 1px solid var(--line); } .legal-page td { border: 0; padding: 2px 0; } }
+
+    /* Footer (same as the home page) */
+    footer { margin-top: auto; background: var(--bg); color: var(--text); border-top: 1px solid var(--line); }
+    .foot-inner { padding-top: clamp(36px, 6vh, 64px); padding-bottom: clamp(24px, 4vh, 40px); }
+    .foot-bar { display: flex; height: 6px; width: min(100%, 420px); margin-bottom: 22px; border-radius: 3px; overflow: hidden; }
+    .foot-bar div { flex: 1; }
+    .foot-tag { font-size: clamp(19px, 2.6vw, 40px); font-weight: 800; line-height: 1.1; letter-spacing: -0.035em; }
+    .foot-tag span { display: block; white-space: nowrap; }
+    .foot-tag span + span { margin-top: 0.2em; }
+    @media (max-width: 420px) { .foot-tag { font-size: clamp(13px, 4.6vw, 17px); } }
+    .foot-sub { font-size: clamp(15px, 1.4vw, 19px); font-weight: 600; line-height: 1.35; color: var(--muted); margin-top: 14px; max-width: 60ch; }
+    .foot-rule { height: 2px; background: var(--text); margin: clamp(28px, 5vh, 56px) 0 24px; opacity: .9; }
+    .foot-grid { display: flex; flex-wrap: wrap; gap: 28px 40px; justify-content: space-between; align-items: flex-end; }
+    .credits { display: flex; flex-direction: column; gap: 10px; }
+    .credits .by { font-size: 16px; font-weight: 600; }
+    .logos { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 22px; }
+    .logos a { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--muted); font-size: 14px; }
+    .logos img { height: 26px; width: auto; }
+    .logos .logo-chip { background: #201e1d; border-radius: 8px; padding: 6px 10px; display: inline-flex; }
+    .credits .links { display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: 14px; }
+    .credits .links a { color: var(--muted); text-decoration: none; }
+    .credits .links a:hover { color: var(--text); }
+    .credits .links strong { color: var(--text); }
+    .legal { display: flex; flex-wrap: wrap; gap: 10px 20px; align-items: center; font-size: 13px; letter-spacing: 0.04em; color: var(--muted); }
+    .legal a { color: var(--muted); text-decoration: none; }
+    .legal a:hover { color: var(--text); }
+    .cookie-btn { appearance: none; cursor: pointer; font: inherit; font-size: 13px; letter-spacing: 0.04em; display: inline-flex; align-items: center; gap: 8px; color: var(--text); background: var(--bg-elev); border: 2px solid transparent; border-radius: 999px; padding: 6px 12px 6px 8px; background-image: linear-gradient(var(--bg-elev), var(--bg-elev)), var(--copilot); background-origin: border-box; background-clip: padding-box, border-box; transition: color .2s ease, transform .2s ease, box-shadow .2s ease; }
+    .cookie-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(107, 79, 196, 0.3); }
+    .cookie-btn svg { width: 18px; height: 18px; }
+    .foot-stripe { display: flex; height: 8px; }
+    .foot-stripe div { flex: 1; }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="index.html" aria-label="bcapi.ai home">
+        <img class="mark" src="assets/onlybcfans-icon.png" alt="" width="36" height="36">
+        <span class="name">bc<b class="bc">api</b><span>.ai</span></span>
+      </a>
+      <nav class="nav-right" aria-label="Site">
+        <a class="ghlink" href="https://github.com/ajansari" target="_blank" rel="noopener" aria-label="AJ Ansari on GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2.17c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.23 2.75.11 3.04.74.81 1.19 1.83 1.19 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.05.78 2.12v3.14c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg><span class="lbl">Follow <span class="on">on <b>GitHub</b></span></span></a>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to day mode" title="Switch to day mode">
+          <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <article class="wrap legal-page">
+      <div class="bar" aria-hidden="true"><div style="background:#0F6CBD"></div><div style="background:#0A7C85"></div><div style="background:#6B4FC4"></div><div style="background:#C10E72"></div></div>
+      <p class="kicker">Legal agreement</p>
+      <h1>Terms of Service</h1>
+      <p class="lede">Please read these terms before using bcapi.ai and the extension it documents.</p>
+      <p class="updated">Last updated: October 31, 2026</p>
+      <nav class="nav-legal" aria-label="Legal pages"><a href="privacy-policy.html">Privacy Policy</a> <a href="terms-of-service.html" aria-current="page">Terms of Service</a> <a href="cookie-policy.html">Cookie Policy</a></nav>
+      <div class="rule"></div>
+      <h2>Agreement to terms</h2>
+      <p>By accessing or using bcapi.ai (the "Site"), operated by AnsariCo, Inc. dba OnlyCopilotFans ("we," "our," or "us"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree with any part of these Terms, you may not use the Site.</p>
+
+      <h2>What the Site provides</h2>
+      <p>The Site is the home page and documentation of the BC API Catalog, a free, open-source Business Central extension created by AJ Ansari and published under the OnlyCopilotFans and OnlyBCFans names. It describes the extension and links to where it lives. The extension itself is hosted on GitHub and is governed by its own license and terms, as described below.</p>
+
+      <h2>Intellectual property</h2>
+      <p>Unless otherwise indicated, the Site and its content, design and functionality are owned by AnsariCo, Inc., its licensors or other providers and are protected by United States and international copyright, trademark and other intellectual property laws. The bcapi.ai, bcdev.ai, bcbuilder.ai, bcapi.ai, bcregistry.ai, bcskills.ai and bcmcp.ai names and the OnlyCopilotFans and OnlyBCFans names and logos are ours. Microsoft, Dynamics 365 and Business Central are trademarks of Microsoft Corporation; the Site is not affiliated with or endorsed by Microsoft.</p>
+
+      <h2>Tools, downloads and GitHub projects</h2>
+      <p>These Terms also apply to the free tools, downloads and open-source projects linked from the Site. Where a project includes its own license, that license governs your right to use, copy, modify and distribute that project and takes precedence over these Terms if the two conflict. At the time of writing:</p>
+      <ul>
+        <li><strong>MIT License</strong>: the BC API Catalog, the AL Development Standards, the AL Patterns Library and the BC Copilot Blueprint</li>
+        <li><strong>PolyForm Shield 1.0.0</strong> (source available): the BC Agentic Dev Framework</li>
+        <li><strong>Hosted services</strong> with their own terms and plans: the BC Object Registry</li>
+      </ul>
+      <p>All tools, downloads and projects are provided "as is", without warranty of any kind. Several are designed to be used with AI software. You are responsible for reviewing and testing anything they help produce, including code, documents and translations, before you rely on it or deploy it. Third-party software you use with them is governed by its provider's own terms.</p>
+
+      <h2>Acceptable use</h2>
+      <p>You may use the Site only for its intended purpose. You agree not to:</p>
+      <ul>
+        <li>Systematically retrieve data or content from the Site to create a collection or database without our written permission</li>
+        <li>Circumvent, disable or interfere with security-related features of the Site or its hosting</li>
+        <li>Frame or mirror the Site, or misrepresent your affiliation with us</li>
+        <li>Use the Site to transmit viruses or other harmful material, or in any way that violates applicable law</li>
+      </ul>
+
+      <h2>Third-party links</h2>
+      <p>The Site links to third-party websites and services that we do not control, including GitHub, Microsoft and the product sites of individual tools. We are not responsible for their content, privacy policies or practices, and a link does not imply endorsement.</p>
+
+      <h2>Disclaimer of warranties</h2>
+      <p>THE SITE IS PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS. YOUR USE OF THE SITE IS AT YOUR SOLE RISK. TO THE FULLEST EXTENT PERMITTED BY LAW, WE DISCLAIM ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT, IN CONNECTION WITH THE SITE AND YOUR USE OF IT.</p>
+
+      <h2>Limitation of liability</h2>
+      <p>In no event will we or our directors, employees or agents be liable to you or any third party for any direct, indirect, consequential, exemplary, incidental, special or punitive damages, including lost profit, lost revenue or loss of data, arising from your use of the Site or of any tool linked from it, even if we have been advised of the possibility of such damages.</p>
+
+      <h2>Governing law</h2>
+      <p>These Terms are governed by and construed in accordance with the laws of the State of Texas, without regard to its conflict of law provisions. Any legal action arising under these Terms shall be brought exclusively in the federal or state courts located in Dallas County, Texas, and you consent to the personal jurisdiction of those courts.</p>
+
+      <h2>Privacy</h2>
+      <p>Please review our <a href="privacy-policy.html">Privacy Policy</a> and <a href="cookie-policy.html">Cookie Policy</a>, which also govern your use of the Site.</p>
+
+      <h2>Changes to these terms</h2>
+      <p>We may change these Terms at any time. We will post the updated Terms on this page and update the "Last updated" date. Your continued use of the Site after a change means you accept the new Terms.</p>
+
+      <h2>Contact us</h2>
+      <div class="card">
+        <p><strong>AnsariCo, Inc. dba OnlyCopilotFans</strong></p>
+        <p>Email: <a href="mailto:aj@onlycopilotfans.com">aj@onlycopilotfans.com</a></p>
+        <p>Websites: <a href="https://bcapi.ai">bcapi.ai</a> · <a href="https://onlycopilotfans.com">onlycopilotfans.com</a></p>
+      </div>
+    </article>
+  </main>
+
+  <footer>
+    <div class="wrap foot-inner">
+      <div class="foot-bar" aria-hidden="true"><div style="background:#0F6CBD"></div><div style="background:#0A7C85"></div><div style="background:#6B4FC4"></div><div style="background:#C10E72"></div></div>
+      <p class="foot-tag"><span>Every standard table.</span><span>One consistent API.</span><span>No custom development per table.</span></p>
+      <p class="foot-sub">Built for Microsoft Dynamics 365 Business Central and shared openly with the community under the MIT License.</p>
+      <div class="foot-rule"></div>
+      <div class="foot-grid">
+        <div class="credits">
+          <div class="by">Created by AJ Ansari, Microsoft MVP</div>
+          <div class="logos">
+            <a href="https://onlybcfans.com" target="_blank" rel="noopener"><span class="logo-chip"><img src="assets/onlybcfans-logo.png" alt="OnlyBCFans"></span></a>
+            <a href="https://onlycopilotfans.com" target="_blank" rel="noopener"><span class="logo-chip"><img src="assets/onlycopilotfans-logo.png" alt="OnlyCopilotFans"></span></a>
+          </div>
+          <div class="links">
+            <a href="https://github.com/ajansari/ocpfBCAPIsV3" target="_blank" rel="noopener" class="gh"><svg style="width:16px;height:16px;vertical-align:-3px;margin-right:6px" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2.17c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.23 2.75.11 3.04.74.81 1.19 1.83 1.19 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.05.78 2.12v3.14c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>Source on <strong>GitHub</strong></a>
+            <a href="https://AJAnsari.com" target="_blank" rel="noopener">Visit <strong>AJAnsari.com</strong></a>
+            <a href="https://onlybcfans.com" target="_blank" rel="noopener">Visit <strong>OnlyBCFans</strong></a>
+            <a href="https://onlycopilotfans.com" target="_blank" rel="noopener">Visit <strong>OnlyCopilotFans</strong></a>
+            <a href="mailto:aj@onlycopilotfans.com">aj@onlycopilotfans.com</a>
+          </div>
+        </div>
+        <div class="legal">
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="terms-of-service.html">Terms of Service</a>
+          <a href="cookie-policy.html">Cookie Policy</a>
+          <button class="cookie-btn" type="button" data-cc="show-preferencesModal" aria-label="Cookie settings">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5z"/><circle cx="8.5" cy="10.5" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="15.5" r="1" fill="currentColor" stroke="none"/><circle cx="15.5" cy="12.5" r="1" fill="currentColor" stroke="none"/></svg>
+            Cookie settings
+          </button>
+          <span>© <span id="year">2026</span> OnlyCopilotFans · OnlyBCFans</span>
+        </div>
+      </div>
+    </div>
+    <div class="foot-stripe" aria-hidden="true"><div style="background:#0F6CBD"></div><div style="background:#0A7C85"></div><div style="background:#6B4FC4"></div><div style="background:#C10E72"></div></div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3.1.0/dist/cookieconsent.umd.js"></script>
+  <script>
+    (function () {
+      var root = document.documentElement, btn = document.getElementById('themeToggle');
+      function label() {
+        var dark = root.getAttribute('data-theme') === 'dark';
+        var t = dark ? 'Switch to day mode' : 'Switch to night mode';
+        btn.setAttribute('aria-label', t); btn.setAttribute('title', t);
+      }
+      btn.addEventListener('click', function () {
+        var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('bcapi-theme', next); } catch (e) {}
+        label();
+      });
+      label();
+      document.getElementById('year').textContent = new Date().getFullYear();
+      document.querySelectorAll('a[href]').forEach(function (a) {
+        if (a.host && a.host !== location.host && /^https?:/.test(a.protocol)) { a.target = '_blank'; a.rel = (a.rel ? a.rel + ' ' : '') + 'noopener'; }
+      });
+    })();
+  </script>
+  <script src="assets/consent.js"></script>
+</body>
+</html>

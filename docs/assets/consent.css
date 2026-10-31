@@ -1,0 +1,48 @@
+/* Cookie consent theme overrides (vanilla-cookieconsent v3). Shared by every page on bcapi.ai. */
+#cc-main {
+  --cc-font-family: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --cc-bg: var(--card);
+  --cc-primary-color: var(--text);
+  --cc-secondary-color: var(--muted);
+  --cc-btn-primary-bg: var(--text);
+  --cc-btn-primary-color: var(--bg);
+  --cc-btn-primary-hover-bg: var(--muted);
+  --cc-btn-primary-hover-color: var(--bg);
+  --cc-btn-secondary-bg: var(--bg-elev);
+  --cc-btn-secondary-color: var(--text);
+  --cc-btn-secondary-hover-bg: color-mix(in srgb, var(--bg-elev) 70%, var(--text));
+  --cc-btn-secondary-hover-color: var(--text);
+  --cc-btn-border-radius: 8px;
+  --cc-modal-border-radius: 20px;
+  --cc-separator-border-color: var(--line);
+  --cc-toggle-on-bg: #6B4FC4;
+  --cc-toggle-off-bg: #605d5d;
+  --cc-toggle-readonly-bg: #0A7C85;
+  --cc-cookie-category-block-bg: var(--bg-elev);
+  --cc-cookie-category-block-border: var(--line);
+  --cc-cookie-category-block-hover-bg: var(--bg-elev);
+  --cc-cookie-category-block-hover-border: var(--muted);
+  --cc-cookie-category-expanded-block-bg: transparent;
+  --cc-cookie-category-expanded-block-hover-bg: var(--bg-elev);
+  --cc-overlay-bg: rgba(0, 0, 0, 0.55);
+  --cc-footer-bg: var(--bg-elev);
+  --cc-footer-color: var(--muted);
+  --cc-footer-border-color: var(--line);
+  --cc-webkit-scrollbar-bg: var(--bg-elev);
+  --cc-webkit-scrollbar-hover-bg: var(--muted);
+}
+#cc-main .cm, #cc-main .pm { box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45); border: 1px solid var(--line); }
+#cc-main .cm--bar { border-radius: 0; border-top: 1px solid var(--line); }
+#cc-main .cm--bar::before { content: ""; display: block; height: 3px; background: var(--copilot); }
+#cc-main .cm--bar .cm__body { padding: 12px 16px; }
+#cc-main .cm--bar .cm__title { font-size: 14px; }
+#cc-main .cm--bar .cm__desc { font-size: 13px; line-height: 1.4; }
+#cc-main .cm--bar .cm__btn { font-size: 13px; padding: 8px 14px; min-width: 0; }
+#cc-main .cm--bar .cm__footer { display: none; }
+@media (max-width: 640px) {
+  #cc-main .cm--bar .cm__btns { flex-direction: row !important; flex-wrap: wrap; gap: 8px; align-items: stretch; }
+  #cc-main .cm--bar .cm__btn-group { flex-direction: row !important; flex: 1; gap: 8px; }
+  #cc-main .cm--bar .cm__btn { flex: 1 !important; min-width: 0; }
+  #cc-main .cm--bar .cm__btn + .cm__btn, #cc-main .cm--bar .cm__btn-group + .cm__btn-group { margin: 0 !important; }
+  #cc-main .cm--bar .cm__btn-group:last-child { flex: 0 0 auto; }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "BC API Catalog v3",
+  "short_name": "bcapi.ai",
+  "description": "Custom Business Central API pages: standard tables as OData v4 endpoints.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#201e1d",
+  "theme_color": "#201e1d",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

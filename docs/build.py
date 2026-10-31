@@ -287,15 +287,74 @@ sections["reference"] = ("Reference", f"""
 tabs = "".join(f'<button class="tab" role="tab" data-tab="{k}" aria-selected="false">{html.escape(t)}</button>' for k, (t, _) in sections.items())
 panels = "".join(f'<section class="panel" id="panel-{k}" role="tabpanel" hidden><h1>{html.escape(t)}</h1>{b}</section>' for k, (t, b) in sections.items())
 
+# ─────────────────────────── SEO files: JSON-LD, sitemap.xml, llms.txt ───────────────────────────
+SITE = "https://bcapi.ai/"
+def plain(t):
+    """Markdown answer -> the plain text a reader sees."""
+    t = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", t)
+    t = re.sub(r"[`*]", "", t)
+    return " ".join(t.split())
+faq_items = [(q.strip(), plain(a)) for q, a in re.findall(r"### (.+?)\n\n(.*?)(?=\n### |\Z)", FAQ, re.S)]
+assert len(faq_items) == 10, len(faq_items)
+JSONLD = json.dumps({"@context": "https://schema.org", "@graph": [
+    {"@type": "WebSite", "@id": SITE + "#website", "name": "bcapi.ai", "url": SITE, "inLanguage": "en",
+     "description": f"BC API Catalog v3: {total} standard Business Central tables as OData v4 API pages.",
+     "publisher": {"@id": SITE + "#author"}},
+    {"@type": "Person", "@id": SITE + "#author", "name": "AJ Ansari", "url": "https://github.com/ajansari"},
+    {"@type": "SoftwareApplication", "@id": SITE + "#app", "name": "BC API Catalog v3 (OCPF APIs v3)", "url": SITE,
+     "description": f"Free, open source Business Central extension that exposes {total} standard tables as OData v4 API pages, localization-neutral.",
+     "softwareVersion": APP_VERSION, "applicationCategory": "DeveloperApplication",
+     "operatingSystem": "Microsoft Dynamics 365 Business Central", "downloadUrl": DOWNLOAD_URL,
+     "license": "https://opensource.org/licenses/MIT", "image": SITE + "assets/og-image.png",
+     "author": {"@id": SITE + "#author"}, "isAccessibleForFree": True,
+     "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}},
+    {"@type": "SoftwareSourceCode", "@id": SITE + "#source", "name": "ocpfBCAPIsV3", "codeRepository": REPO,
+     "programmingLanguage": "AL", "license": "https://opensource.org/licenses/MIT", "author": {"@id": SITE + "#author"},
+     "targetProduct": {"@id": SITE + "#app"}},
+    {"@type": "FAQPage", "@id": SITE + "#faq", "mainEntity": [
+        {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq_items]},
+]}, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+
+import datetime
+TODAY = datetime.date.today().isoformat()
+(HERE / "sitemap.xml").write_text(f'''<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>{SITE}</loc>
+    <lastmod>{TODAY}</lastmod>
+  </url>
+</urlset>
+''')
+llms = [f"# bcapi.ai: BC API Catalog v3", "",
+        f"> Free, open source Business Central extension (MIT) that exposes {total} standard Microsoft Dynamics 365 Business Central tables as OData v4 API pages: {editable} read/write and {readonly} read-only. Every W1 field, localization-neutral, served at /v3.0/ and /v3.1/. Version {APP_VERSION}, by AJ Ansari.", "",
+        "## Key links", "",
+        f"- [Website and documentation]({SITE}): landing page, install steps, full reference of every entity and field",
+        f"- [Getting Started]({SITE}#docs): install, permissions and first request",
+        f"- [Reference]({SITE}#docs/reference): every entity, source table, page ID, key and field",
+        f"- [FAQ]({SITE}#docs/faq)",
+        f"- [Changelog]({SITE}#docs/changelog)",
+        f"- [Source code and issues]({REPO})",
+        f"- [Download the .app]({DOWNLOAD_URL})", "",
+        "## API groups", ""]
+for c in categories:
+    names = ", ".join(e["name"] for e in c["entities"][:4])
+    llms.append(f"- {c['name']} ({c['group']}): {len(c['entities'])} entities, {c['editable']} read/write, e.g. {names}")
+llms += ["", "## Notes", "",
+         f"- URL pattern: https://api.businesscentral.dynamics.com/v2.0/<tenantId>/<environment>/api/OnlyCopilotFans/<apiGroup>/v{API_VERSION}/companies(<companyId>)/<entitySetName>",
+         f"- Requires Business Central {BC_VERSION} or later (SaaS or on-premises). Request $metadata on any API group to discover fields.", ""]
+(HERE / "llms.txt").write_text("\n".join(llms))
+
 page = (HERE / "template.html").read_text()
 for k, v in {
     "{{TOTAL}}": str(total), "{{EDITABLE}}": str(editable), "{{READONLY}}": str(readonly), "{{NCATS}}": str(len(categories)),
     "{{APP_VERSION}}": APP_VERSION, "{{API_VERSION}}": API_VERSION, "{{BC_VERSION}}": BC_VERSION, "{{DATE}}": DATE,
     "{{DOWNLOAD_URL}}": DOWNLOAD_URL, "{{CAT_BARS}}": bars, "{{TABS}}": tabs, "{{PANELS}}": panels, "{{CATALOG_JSON}}": CATALOG_JSON,
-    "{{IMG_LOGO}}": data_uri("app-logo.png"), "{{IMG_FAVICON}}": data_uri("favicon-32.png"), "{{IMG_BC}}": data_uri("bc-icon.png"),
+    "{{JSONLD}}": JSONLD, "{{IMG_LOGO}}": data_uri("app-logo.png"), "{{IMG_BC}}": data_uri("bc-icon.png"),
     "{{IMG_OCPF}}": data_uri("onlycopilotfans-logo.png"), "{{IMG_OBCF}}": data_uri("onlybcfans-logo.png"), "{{IMG_OBCF_ICON}}": data_uri("onlybcfans-icon.png"), "{{IMG_OCPF_DAY}}": data_uri("app-logo.png"),
 }.items():
     page = page.replace(k, v)
 assert "{{" not in page, re.findall(r"\{\{[A-Z_]+\}\}", page)
+desc = re.search(r'<meta name="description" content="([^"]*)"', page).group(1)
+assert len(desc) <= 160, (len(desc), desc)
 (HERE / "index.html").write_text(page)
 print(f"wrote docs/index.html: {len(page):,} bytes · {total} entities · {sum(len(e['fields']) for c in categories for e in c['entities']):,} fields · app {APP_VERSION} · {DATE}")

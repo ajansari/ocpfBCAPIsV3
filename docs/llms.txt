@@ -1,0 +1,30 @@
+# bcapi.ai: BC API Catalog v3
+
+> Free, open source Business Central extension (MIT) that exposes 187 standard Microsoft Dynamics 365 Business Central tables as OData v4 API pages: 135 read/write and 52 read-only. Every W1 field, localization-neutral, served at /v3.0/ and /v3.1/. Version 3.1.3.0, by AJ Ansari.
+
+## Key links
+
+- [Website and documentation](https://bcapi.ai/): landing page, install steps, full reference of every entity and field
+- [Getting Started](https://bcapi.ai/#docs): install, permissions and first request
+- [Reference](https://bcapi.ai/#docs/reference): every entity, source table, page ID, key and field
+- [FAQ](https://bcapi.ai/#docs/faq)
+- [Changelog](https://bcapi.ai/#docs/changelog)
+- [Source code and issues](https://github.com/ajansari/ocpfBCAPIsV3)
+- [Download the .app](https://github.com/ajansari/ocpfBCAPIsV3/raw/main/OnlyCopilotFans_OCPF%20APIs%20v3_3.1.3.0.app)
+
+## API groups
+
+- Core Financial (ocpf_coreFinancial): 25 entities, 17 read/write, e.g. ocpfChartOfAccounts, ocpfGeneralLedgerEntries, ocpfGeneralLedgerSetup, ocpfAccountingPeriods
+- Master Data (ocpf_masterData): 31 entities, 26 read/write, e.g. ocpfBankAccounts, ocpfBankAccountPostingGroups, ocpfBankAccountLedgerEntries, ocpfPaymentTerms
+- Sales (ocpf_sales): 20 entities, 12 read/write, e.g. ocpfSalesQuotes, ocpfSalesQuoteLines, ocpfSalesOrders, ocpfSalesOrderLines
+- Purchasing (ocpf_purchasing): 20 entities, 12 read/write, e.g. ocpfPurchaseOrders, ocpfPurchaseOrderLines, ocpfPurchaseInvoices, ocpfPurchaseInvoiceLines
+- Projects & Assets (ocpf_projectsAndAssets): 14 entities, 12 read/write, e.g. ocpfProjects, ocpfProjectPostingGroups, ocpfProjectTasks, ocpfProjectPlanningLines
+- System & Setup (ocpf_systemAndSetup): 9 entities, 6 read/write, e.g. ocpfDocumentAttachments, ocpfCompanyInformation, ocpfWarehouseEntries, ocpfReminderHeaders
+- Manufacturing (ocpf_manufacturing): 34 entities, 29 read/write, e.g. ocpfManufacturingSetup, ocpfWorkShifts, ocpfShopCalendars, ocpfShopCalendarWorkingDays
+- Service Management (ocpf_serviceManagement): 30 entities, 20 read/write, e.g. ocpfServiceMgtSetup, ocpfServiceOrderTypes, ocpfServiceCosts, ocpfServiceZones
+- Access Control (ocpf_accessControl): 4 entities, 1 read/write, e.g. ocpfPermissionSets, ocpfPermissionSetPermissions, ocpfUsers, ocpfPermissionSetAssignments
+
+## Notes
+
+- URL pattern: https://api.businesscentral.dynamics.com/v2.0/<tenantId>/<environment>/api/OnlyCopilotFans/<apiGroup>/v3.1/companies(<companyId>)/<entitySetName>
+- Requires Business Central 2025 Wave 2 (v27.5) or later (SaaS or on-premises). Request $metadata on any API group to discover fields.

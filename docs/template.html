@@ -3,21 +3,36 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>bcapi.ai · BC API Catalog v3</title>
-<meta name="description" content="OnlyCopilotFans BC API Catalog v3: {{TOTAL}} standard Microsoft Dynamics 365 Business Central tables exposed as OData v4 API endpoints. Free, open source, localization-neutral. Install the extension and read the documentation.">
+<title>BC API Catalog v3 – Custom Business Central API Pages | bcapi.ai</title>
+<meta name="description" content="Free, open source Business Central extension: {{TOTAL}} standard tables as OData v4 API pages. Localization-neutral. Install it and read the docs.">
+<link rel="canonical" href="https://bcapi.ai/">
 <meta name="color-scheme" content="dark light">
 <meta name="theme-color" content="#201e1d" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#f3f2f2" media="(prefers-color-scheme: light)">
-<meta property="og:title" content="bcapi.ai · BC API Catalog v3">
-<meta property="og:description" content="{{TOTAL}} standard Business Central tables as OData v4 API endpoints. Free and open source, by AJ Ansari.">
+<meta property="og:site_name" content="bcapi.ai">
+<meta property="og:title" content="BC API Catalog v3 – Custom Business Central API Pages | bcapi.ai">
+<meta property="og:description" content="Free, open source Business Central extension: {{TOTAL}} standard tables as OData v4 API pages. Localization-neutral. Install it and read the docs.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://ajansari.github.io/ocpfBCAPIsV3/">
-<meta property="og:image" content="https://bcdev.ai/assets/tools/apis.png">
-<link rel="icon" type="image/png" href="{{IMG_FAVICON}}">
-<link rel="apple-touch-icon" href="{{IMG_OBCF_ICON}}">
+<meta property="og:url" content="https://bcapi.ai/">
+<meta property="og:image" content="https://bcapi.ai/assets/og-image.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="bcapi.ai: BC API Catalog v3, custom Business Central API pages">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="BC API Catalog v3 – Custom Business Central API Pages | bcapi.ai">
+<meta name="twitter:description" content="Free, open source Business Central extension: {{TOTAL}} standard tables as OData v4 API pages. Localization-neutral. Install it and read the docs.">
+<meta name="twitter:image" content="https://bcapi.ai/assets/og-image.png">
+<meta name="twitter:image:alt" content="bcapi.ai: BC API Catalog v3, custom Business Central API pages">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<script type="application/ld+json">{{JSONLD}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3.1.0/dist/cookieconsent.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3.1.0/dist/cookieconsent.css" integrity="sha384-9KcNFt4axT+TNOVPHpwGHOm4Kv0UcMjdVya1kl+EPBQG+Vmqtz28cnx0f5PZYcnF" crossorigin="anonymous">
 <link rel="stylesheet" href="assets/consent.css">
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script>
@@ -456,8 +471,8 @@
         <div class="credits">
           <div class="by">Created by AJ Ansari, Microsoft MVP</div>
           <div class="flogos">
-            <a href="https://onlycopilotfans.com" target="_blank" rel="noopener"><span class="chip"><img src="{{IMG_OCPF}}" alt="OnlyCopilotFans"></span></a>
-            <a href="https://onlybcfans.com" target="_blank" rel="noopener"><span class="chip"><img src="{{IMG_OBCF}}" alt="OnlyBCFans"></span></a>
+            <a href="https://onlycopilotfans.com" target="_blank" rel="noopener"><span class="chip"><img src="{{IMG_OCPF}}" alt="OnlyCopilotFans" width="78" height="26"></span></a>
+            <a href="https://onlybcfans.com" target="_blank" rel="noopener"><span class="chip"><img src="{{IMG_OBCF}}" alt="OnlyBCFans" width="99" height="26"></span></a>
           </div>
           <div class="links">
             <a href="https://github.com/ajansari/ocpfBCAPIsV3" target="_blank" rel="noopener">Source on <strong>GitHub</strong></a>
@@ -491,12 +506,12 @@
       <div class="brandbar">
         <a class="back" href="#top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg><span>bc<b class="bc">api</b>.ai</span></a>
         <div class="right">
-          <a href="https://onlycopilotfans.com" target="_blank" rel="noopener" aria-label="OnlyCopilotFans"><img class="ocpf" src="{{IMG_OCPF_DAY}}" alt="OnlyCopilotFans"></a>
+          <a href="https://onlycopilotfans.com" target="_blank" rel="noopener" aria-label="OnlyCopilotFans"><img class="ocpf" src="{{IMG_OCPF_DAY}}" alt="OnlyCopilotFans" width="144" height="48"></a>
           <a class="gh" href="https://github.com/ajansari/ocpfBCAPIsV3" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>View on GitHub</a>
         </div>
       </div>
       <div class="hero2">
-        <img class="app" src="{{IMG_LOGO}}" alt="OCPF APIs app icon">
+        <img class="app" src="{{IMG_LOGO}}" alt="OCPF APIs app icon" width="96" height="96">
         <div>
           <h1>BC API Catalog v3</h1>
           <div class="dbar"></div>
@@ -520,7 +535,7 @@
 </div>
 
 <script type="application/json" id="catalog">{{CATALOG_JSON}}</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.min.js" integrity="sha384-Wm9qzEgq4j1jEnuFK2FxKTlwuhbV2QqtGhcchvjDoKxeJ7WWAW7fysBq+1s6myfX" crossorigin="anonymous" defer></script>
 <script>
 (function () {
   var root = document.documentElement;
@@ -692,7 +707,7 @@
   });
 })();
 </script>
-<script src="https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3.1.0/dist/cookieconsent.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3.1.0/dist/cookieconsent.umd.js" integrity="sha384-xOY5eqzqHsjfa8YYAomICWjVJ3g9q1C1tWgRF09ut5PzRJjLFSpKH7gCsIN3hKcA" crossorigin="anonymous"></script>
 <script src="assets/consent.js"></script>
 </body>
 </html>

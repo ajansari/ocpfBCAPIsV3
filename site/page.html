@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{TITLE}}</title>
+<meta name="description" content="{{DESC}}">
+<link rel="canonical" href="{{URL}}">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#201e1d" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f3f2f2" media="(prefers-color-scheme: light)">
+<meta property="og:site_name" content="bcapi.ai">
+<meta property="og:title" content="{{TITLE}}">
+<meta property="og:description" content="{{DESC}}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{URL}}">
+<meta property="og:image" content="https://bcapi.ai/assets/og-image.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="bcapi.ai: BC API Catalog v3, custom Business Central API pages">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{TITLE}}">
+<meta name="twitter:description" content="{{DESC}}">
+<meta name="twitter:image" content="https://bcapi.ai/assets/og-image.png">
+<meta name="twitter:image:alt" content="bcapi.ai: BC API Catalog v3, custom Business Central API pages">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<script type="application/ld+json">{{JSONLD}}</script>
+<link rel="preload" href="/assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/fonts.css">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/vendor/cookieconsent.css">
+<link rel="stylesheet" href="/assets/consent.css">
+<script>
+  // Apply the saved theme before first paint. Night mode is the default.
+  (function () {
+    try {
+      var t = localStorage.getItem('bcapi-theme');
+      if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+{{HEADER}}
+<div id="docs">
+  <nav class="tabs" aria-label="Documentation sections"><div class="dwrap">{{TABS}}</div></nav>
+  <main><div class="dwrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><ol>{{CRUMBS}}</ol></nav>
+    <article class="panel">
+<h1>{{H1}}</h1>
+{{BODY}}
+    </article>
+  </div></main>
+</div>
+{{FOOTER}}
+{{PAGE_SCRIPTS}}<script src="/assets/site.js" defer></script>
+<script src="/assets/vendor/cookieconsent.umd.js" defer></script>
+<script src="/assets/consent.js" defer></script>
+</body>
+</html>

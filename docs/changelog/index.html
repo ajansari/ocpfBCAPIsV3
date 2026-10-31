@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Changelog: BC API Catalog Release History | bcapi.ai</title>
+<meta name="description" content="Release history of the BC API Catalog: new entities, fields and fixes in every version from v3.0 to the latest release.">
+<link rel="canonical" href="https://bcapi.ai/changelog/">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#201e1d" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f3f2f2" media="(prefers-color-scheme: light)">
+<meta property="og:site_name" content="bcapi.ai">
+<meta property="og:title" content="Changelog: BC API Catalog Release History | bcapi.ai">
+<meta property="og:description" content="Release history of the BC API Catalog: new entities, fields and fixes in every version from v3.0 to the latest release.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bcapi.ai/changelog/">
+<meta property="og:image" content="https://bcapi.ai/assets/og-image.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="bcapi.ai: BC API Catalog v3, custom Business Central API pages">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Changelog: BC API Catalog Release History | bcapi.ai">
+<meta name="twitter:description" content="Release history of the BC API Catalog: new entities, fields and fixes in every version from v3.0 to the latest release.">
+<meta name="twitter:image" content="https://bcapi.ai/assets/og-image.png">
+<meta name="twitter:image:alt" content="bcapi.ai: BC API Catalog v3, custom Business Central API pages">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","@id":"https://bcapi.ai/changelog/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://bcapi.ai/"},{"@type":"ListItem","position":2,"name":"Changelog","item":"https://bcapi.ai/changelog/"}]}]}</script>
+<link rel="preload" href="/assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/fonts.css">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/vendor/cookieconsent.css">
+<link rel="stylesheet" href="/assets/consent.css">
+<script>
+  // Apply the saved theme before first paint. Night mode is the default.
+  (function () {
+    try {
+      var t = localStorage.getItem('bcapi-theme');
+      if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+  <header class="site scrolled">
+    <div class="wrap nav">
+      <a class="brand" href="/" aria-label="bcapi.ai home">
+        <img class="mark" src="/assets/onlybcfans-icon.png" alt="" width="36" height="36">
+        <span class="name">bc<b class="bc">api</b><span>.ai</span></span>
+      </a>
+      <nav class="nav-right" aria-label="Site">
+        <a class="textlink" href="/#install">Install</a>
+        <a class="textlink" href="/reference/">Reference</a>
+        <a class="pill" href="/getting-started/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Documentation</a>
+        <a class="pill repo" href="https://github.com/ajansari/ocpfBCAPIsV3" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>View GitHub Repo</a>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to day mode" title="Switch to day mode">
+          <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+<div id="docs">
+  <nav class="tabs" aria-label="Documentation sections"><div class="dwrap"><a class="tab" href="/getting-started/">Getting Started</a><a class="tab" href="/reference/">Reference</a><a class="tab" href="/access-control/">Access Control</a><a class="tab" href="/schema/">Schema</a><a class="tab" href="/changelog/" aria-current="page">Changelog</a><a class="tab" href="/faq/">FAQ</a></div></nav>
+  <main><div class="dwrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li aria-current="page">Changelog</li></ol></nav>
+    <article class="panel">
+<h1>BC API Catalog Changelog</h1>
+<h2 id="v3-1-3-access-control-category-2026-09-09">v3.1.3 — Access Control category (2026-09-09)</h2>
+<p>New API group <strong><code>ocpf_accessControl</code></strong> — 4 pages, <code>APIVersion = &#39;v3.1&#39;</code> only, object IDs <strong>91000–91003</strong>
+(the app&#39;s ID range was extended from <code>90800–90999</code> to <code>90800–91099</code>; <code>app.json</code> 3.1.2.0 → 3.1.3.0;
+entity count 183 → 187, editable 134 → 135, read-only 49 → 52).
+All four are plain declarative pages over BC platform tables (<code>System.Security.AccessControl</code>); no custom AL.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Page</th>
+<th>ID</th>
+<th>Source table</th>
+<th>Access</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>ocpfPermissionSets</code></td>
+<td>91000</td>
+<td>Aggregate Permission Set (2000000167)</td>
+<td>GET</td>
+</tr>
+<tr>
+<td><code>ocpfPermissionSetPermissions</code></td>
+<td>91001</td>
+<td>Expanded Permission (2000000254)</td>
+<td>GET</td>
+</tr>
+<tr>
+<td><code>ocpfUsers</code></td>
+<td>91002</td>
+<td>User (2000000120)</td>
+<td>GET</td>
+</tr>
+<tr>
+<td><code>ocpfPermissionSetAssignments</code></td>
+<td>91003</td>
+<td>Access Control (2000000053)</td>
+<td>GET / POST / DELETE</td>
+</tr>
+</tbody></table></div>
+<p>Purpose: let an automation or agent (1) enumerate every permission set — base, extension/AppSource/PTE,
+and tenant — with its <code>scope</code> and <code>appId</code>; (2) read the expanded object-level permissions of any set;
+(3) resolve users; and (4) assign an existing permission set to an individual user (POST) or revoke it
+(DELETE).</p>
+<p>Design notes / limitations:</p>
+<ul>
+<li><strong>Read-only for sets and permissions.</strong> Creating tenant permission sets and editing their permission
+lines is out of scope for this release; only existing sets can be assigned.</li>
+<li><strong>Assignment is user-only.</strong> <code>ocpfPermissionSetAssignments</code> grants a permission set to an individual
+user. Assigning a permission set to a <strong>security group</strong> is not supported through this API — do that
+in the Business Central UI. Security groups do appear in <code>ocpfUsers</code> (rows with <code>licenseType</code>
+<code>AAD Group</code> / <code>Windows Group</code>) for reference; the BC <code>Security Group</code> table itself is
+<code>Access = Internal</code> and cannot back an API page.</li>
+<li><strong><code>Security Filter</code></strong> (on <code>Expanded Permission</code> / tenant permissions) is a <code>TableFilter</code> field and is
+not exposable on an API page, so it is omitted.</li>
+<li><strong>Keys are natural composite keys</strong>, not <code>SystemId</code> — these platform virtual tables do not carry a
+usable <code>SystemId</code>. No <code>DataAccessIntent</code> (the tables are not on the read replica).</li>
+<li><strong><code>ocpfPermissionSetAssignments</code> writes</strong> rely on the platform <code>Access Control</code> table&#39;s own
+insert/delete behaviour (the same path the BC &quot;User by Permission Set&quot; page uses). Callers must send
+<code>appId</code> + <code>scope</code> matching the target set (from <code>ocpfPermissionSets</code>), and hold SUPER or the SECURITY
+permission set. Runtime behaviour of assignment via an extension API page should be verified on a live
+v27.5 tenant.</li>
+<li>Permission sets: all 4 pages added to <code>OCPF - READ</code>; <code>ocpfPermissionSetAssignments</code> added to
+<code>OCPF - READ/WRITE</code>.</li>
+<li><strong>Build:</strong> compiles clean against BC 27.5 symbols (only the two pre-existing <code>AL0432</code> warnings).</li>
+</ul>
+<hr>
+<h2 id="v3-1-2-editability-corrections-dataaccessintent-readonly-2026-09-09">v3.1.2 — Editability corrections + <code>DataAccessIntent = ReadOnly</code> (2026-09-09)</h2>
+<h3 id="18-pages-reclassified-from-read-only-to-editable">18 pages reclassified from read-only to editable</h3>
+<p>The v3.0/v3.1 generator had marked these as <code>Editable = false</code>; they are in fact safe to write through
+the API. Each now has <code>Editable = false</code> removed and <code>DelayedInsert = true</code> added, and each is included
+in the <code>OCPF - READ/WRITE</code> permission set (they were already in <code>OCPF - READ</code>).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Pages</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Projects &amp; Assets</td>
+<td><code>ocpfProjects</code>, <code>ocpfProjectTasks</code>, <code>ocpfProjectPlanningLines</code>, <code>ocpfProjectPostingGroups</code>, <code>ocpfFixedAssets</code>, <code>ocpfFaPostingGroups</code>, <code>ocpfFaDepreciationBooks</code>, <code>ocpfGeneralJournalTemplates</code>, <code>ocpfGeneralJournalBatches</code>, <code>ocpfPriceListHeaders</code>, <code>ocpfPriceListLines</code></td>
+</tr>
+<tr>
+<td>System &amp; Setup</td>
+<td><code>ocpfCompanyInformation</code>, <code>ocpfDocumentAttachments</code>, <code>ocpfReminderHeaders</code>, <code>ocpfReminderLines</code>, <code>ocpfFinanceChargeMemoHeaders</code>, <code>ocpfFinanceChargeMemoLines</code></td>
+</tr>
+<tr>
+<td>Manufacturing</td>
+<td><code>ocpfCalendarAbsenceEntries</code> (user-maintained &quot;Registered Absence&quot;; <code>ocpfCalendarEntries</code> stays read-only — system-calculated)</td>
+</tr>
+</tbody></table></div>
+<p>Category access counts change: Projects &amp; Assets 1→12, System &amp; Setup 0→6, Manufacturing 28→29 editable;
+catalog total 116→<strong>134</strong> editable, 67→<strong>49</strong> read-only. Entity count unchanged at 183.</p>
+<p>Per-field <code>Editable</code> glyphs for these 18 pages were regenerated from the BC 27.5 Base Application symbol
+field classes (676 field rows updated): stored → ✅, FlowField → 🧮, FlowFilter → 🔍, key → 🔑.</p>
+<h3 id="dataaccessintent-readonly-on-immutable-read-only-pages"><code>DataAccessIntent = ReadOnly</code> on immutable read-only pages</h3>
+<p>All <strong>49</strong> remaining <code>Editable = false</code> API pages also declare <code>DataAccessIntent = ReadOnly</code>. Their
+GET queries are routed to the Azure SQL read-only replica, which offloads reporting and bulk-extract
+traffic from the primary database and improves overall API throughput.</p>
+<ul>
+<li><strong>Scope (49 pages):</strong> the entities whose data is genuinely immutable once written — G/L / customer /
+vendor / employee / bank / item / value / resource / project / FA / service / warranty / capacity
+ledger entries, G/L and service registers, all posted sales/purchase/service documents and posted
+assembly orders, calendar entries, prod. order capacity needs, dimension set entries, warehouse
+entries, approval entries, workflow step instances.</li>
+<li><strong>Behavior change:</strong> none to the API contract. The only observable effect is read-replica lag
+(typically a few seconds) — a client that writes via an editable page and then immediately reads a
+related read-only entity may briefly see the pre-write state. Consumers that need
+read-your-own-write consistency on those entities should re-read after a short delay.</li>
+<li><strong>Editable pages:</strong> unchanged (<code>DataAccessIntent</code> defaults to <code>Automatic</code> → primary).</li>
+<li><strong>Endpoints:</strong> applies to both <code>/v3.0/</code> and <code>/v3.1/</code> (the read-only page objects are dual-versioned).</li>
+<li><strong>Coupling note for maintainers:</strong> if one of the 49 is ever switched to <code>Editable</code>, its
+<code>DataAccessIntent = ReadOnly</code> line <strong>must</strong> be removed in the same change, or writes through it will fail.</li>
+<li><strong>App version:</strong> <code>app.json</code> 3.1.1.0 → 3.1.2.0.</li>
+<li><strong>Build:</strong> compiles clean against BC 27.5 symbols (only the two pre-existing <code>AL0432</code> obsolete-table
+warnings on Sales/Purchase Line Discount).</li>
+</ul>
+<hr>
+<h2 id="v3-1-1-discount-api-pages-note-2026-07-08">v3.1.1 — Discount API pages note (2026-07-08)</h2>
+<p>The new Sales Line Discount and Purchase Line Discount API pages are included in this release. Although the underlying Business Central tables are currently marked for deprecation, these API pages remain maintained for now because the V16 pricing model is still an opt-in feature in BC. We will revisit and adjust this in the future once Microsoft enables the new pricing tables by default.</p>
+<hr>
+<h2 id="documentation-correction-per-field-editable-column-2026-07-08">Documentation correction — per-field Editable column (2026-07-08)</h2>
+<p>The Editable column in Documentation.md previously reflected only page-level access (✅ on every
+field of an editable page), overstating writability: FlowFields such as Customer <code>Credit Amount</code>
+are computed and can never be written via the API. The column is now derived from the BC 27.5
+symbol field classes for all 178 entities: 🔑 key · ✅ writable stored field · 🧮 computed
+(FlowField) · 🔍 filter (FlowFilter) · — stored field on a read-only page.
+Result across 11,397 field rows: 5,960 writable · 1,036 computed · 190 filters · 4,033 read-only ·
+178 keys. API behavior is unchanged — this was a documentation error only.</p>
+<hr>
+<h2 id="v3-1-new-entities-ship-to-addresses-manufacturing-assembly-service-management-2026-07-07">v3.1 — New Entities: Ship-to Addresses, Manufacturing, Assembly, Service Management (2026-07-07)</h2>
+<p><strong>65 new API pages</strong>, published as <strong>v3.1-only</strong> (<code>APIVersion = &#39;v3.1&#39;;</code>) — they do not exist on
+v3.0 endpoints. This is the reason new integrations should use the <code>/v3.1/</code> base URL.</p>
+<ul>
+<li><code>MasterData</code> (+1): Ship-to Address → <code>ocpfShipToAddresses</code> (Page 90859)</li>
+<li>New category <code>Manufacturing</code> / API group <code>ocpf_manufacturing</code> (+34): pages 90939–90972 —
+manufacturing setup, work/machine centers, shop calendars, capacities, routings, production BOMs,
+families, production orders (incl. components, routing lines, capacity needs), capacity ledger,
+and assembly (setup, BOM components, open + posted assembly orders)</li>
+<li>New category <code>ServiceManagement</code> / API group <code>ocpf_serviceManagement</code> (+30): pages 90924–90926 &amp; 90973–90999 —
+service setup and code tables, service items/components, service documents (headers, item lines, lines),
+contracts, loaners, service/warranty ledgers, registers, and posted service documents</li>
+</ul>
+<p>Field selection follows the catalog rules: all standard fields except localization ranges (10000–29999),
+obsolete fields, and Blob/Media fields. JSON names use the title-case convention (<code>amountLcy</code> style).
+Editability: masters, setups, code tables, and open documents are editable; ledgers, registers, calendar
+entries, capacity needs, and posted documents are read-only.</p>
+<p>Permission sets updated: <code>OCPF - READ</code> now covers 178 pages; <code>OCPF - READ/WRITE</code> grants write on 111.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Page ID</th>
+<th>Entity Set</th>
+<th>Source Table</th>
+<th>Editable</th>
+<th>Fields</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>90859</td>
+<td>ocpfShipToAddresses</td>
+<td>Ship-to Address (222)</td>
+<td>✅</td>
+<td>28</td>
+</tr>
+<tr>
+<td>90924</td>
+<td>ocpfServiceMgtSetup</td>
+<td>Service Mgt. Setup (5911)</td>
+<td>✅</td>
+<td>71</td>
+</tr>
+<tr>
+<td>90925</td>
+<td>ocpfServiceOrderTypes</td>
+<td>Service Order Type (5903)</td>
+<td>✅</td>
+<td>3</td>
+</tr>
+<tr>
+<td>90926</td>
+<td>ocpfServiceCosts</td>
+<td>Service Cost (5905)</td>
+<td>✅</td>
+<td>10</td>
+</tr>
+<tr>
+<td>90939</td>
+<td>ocpfManufacturingSetup</td>
+<td>Manufacturing Setup (99000765)</td>
+<td>✅</td>
+<td>27</td>
+</tr>
+<tr>
+<td>90940</td>
+<td>ocpfWorkShifts</td>
+<td>Work Shift (99000750)</td>
+<td>✅</td>
+<td>3</td>
+</tr>
+<tr>
+<td>90941</td>
+<td>ocpfShopCalendars</td>
+<td>Shop Calendar (99000751)</td>
+<td>✅</td>
+<td>3</td>
+</tr>
+<tr>
+<td>90942</td>
+<td>ocpfShopCalendarWorkingDays</td>
+<td>Shop Calendar Working Days (99000752)</td>
+<td>✅</td>
+<td>6</td>
+</tr>
+<tr>
+<td>90943</td>
+<td>ocpfWorkCenterGroups</td>
+<td>Work Center Group (99000756)</td>
+<td>✅</td>
+<td>9</td>
+</tr>
+<tr>
+<td>90944</td>
+<td>ocpfWorkCenters</td>
+<td>Work Center (99000754)</td>
+<td>✅</td>
+<td>50</td>
+</tr>
+<tr>
+<td>90945</td>
+<td>ocpfMachineCenters</td>
+<td>Machine Center (99000758)</td>
+<td>✅</td>
+<td>54</td>
+</tr>
+<tr>
+<td>90946</td>
+<td>ocpfCapacityUnitsOfMeasure</td>
+<td>Capacity Unit of Measure (99000780)</td>
+<td>✅</td>
+<td>4</td>
+</tr>
+<tr>
+<td>90947</td>
+<td>ocpfCalendarEntries</td>
+<td>Calendar Entry (99000757)</td>
+<td>—</td>
+<td>17</td>
+</tr>
+<tr>
+<td>90948</td>
+<td>ocpfCalendarAbsenceEntries</td>
+<td>Calendar Absence Entry (99000760)</td>
+<td>—</td>
+<td>13</td>
+</tr>
+<tr>
+<td>90949</td>
+<td>ocpfStops</td>
+<td>Stop (99000761)</td>
+<td>✅</td>
+<td>3</td>
+</tr>
+<tr>
+<td>90950</td>
+<td>ocpfScraps</td>
+<td>Scrap (99000762)</td>
+<td>✅</td>
+<td>3</td>
+</tr>
+<tr>
+<td>90951</td>
+<td>ocpfRoutingLinks</td>
+<td>Routing Link (99000777)</td>
+<td>✅</td>
+<td>3</td>
+</tr>
+<tr>
+<td>90952</td>
+<td>ocpfStandardTasks</td>
+<td>Standard Task (99000778)</td>
+<td>✅</td>
+<td>3</td>
+</tr>
+<tr>
+<td>90953</td>
+<td>ocpfRoutingHeaders</td>
+<td>Routing Header (99000763)</td>
+<td>✅</td>
+<td>11</td>
+</tr>
+<tr>
+<td>90954</td>
+<td>ocpfRoutingLines</td>
+<td>Routing Line (99000764)</td>
+<td>✅</td>
+<td>35</td>
+</tr>
+<tr>
+<td>90955</td>
+<td>ocpfRoutingVersions</td>
+<td>Routing Version (99000786)</td>
+<td>✅</td>
+<td>9</td>
+</tr>
+<tr>
+<td>90956</td>
+<td>ocpfProductionBomHeaders</td>
+<td>Production BOM Header (99000771)</td>
+<td>✅</td>
+<td>13</td>
+</tr>
+<tr>
+<td>90957</td>
+<td>ocpfProductionBomLines</td>
+<td>Production BOM Line (99000772)</td>
+<td>✅</td>
+<td>25</td>
+</tr>
+<tr>
+<td>90958</td>
+<td>ocpfProductionBomVersions</td>
+<td>Production BOM Version (99000779)</td>
+<td>✅</td>
+<td>9</td>
+</tr>
+<tr>
+<td>90959</td>
+<td>ocpfFamilies</td>
+<td>Family (99000773)</td>
+<td>✅</td>
+<td>8</td>
+</tr>
+<tr>
+<td>90960</td>
+<td>ocpfFamilyLines</td>
+<td>Family Line (99000774)</td>
+<td>✅</td>
+<td>9</td>
+</tr>
+<tr>
+<td>90961</td>
+<td>ocpfProductionOrders</td>
+<td>Production Order (5405)</td>
+<td>✅</td>
+<td>56</td>
+</tr>
+<tr>
+<td>90962</td>
+<td>ocpfProdOrderLines</td>
+<td>Prod. Order Line (5406)</td>
+<td>✅</td>
+<td>65</td>
+</tr>
+<tr>
+<td>90963</td>
+<td>ocpfProdOrderComponents</td>
+<td>Prod. Order Component (5407)</td>
+<td>✅</td>
+<td>60</td>
+</tr>
+<tr>
+<td>90964</td>
+<td>ocpfProdOrderRoutingLines</td>
+<td>Prod. Order Routing Line (5409)</td>
+<td>✅</td>
+<td>63</td>
+</tr>
+<tr>
+<td>90965</td>
+<td>ocpfProdOrderCapacityNeeds</td>
+<td>Prod. Order Capacity Need (5410)</td>
+<td>—</td>
+<td>29</td>
+</tr>
+<tr>
+<td>90966</td>
+<td>ocpfCapacityLedgerEntries</td>
+<td>Capacity Ledger Entry (5832)</td>
+<td>—</td>
+<td>40</td>
+</tr>
+<tr>
+<td>90967</td>
+<td>ocpfAssemblySetup</td>
+<td>Assembly Setup (905)</td>
+<td>✅</td>
+<td>12</td>
+</tr>
+<tr>
+<td>90968</td>
+<td>ocpfBomComponents</td>
+<td>BOM Component (90)</td>
+<td>✅</td>
+<td>19</td>
+</tr>
+<tr>
+<td>90969</td>
+<td>ocpfAssemblyHeaders</td>
+<td>Assembly Header (900)</td>
+<td>✅</td>
+<td>50</td>
+</tr>
+<tr>
+<td>90970</td>
+<td>ocpfAssemblyLines</td>
+<td>Assembly Line (901)</td>
+<td>✅</td>
+<td>50</td>
+</tr>
+<tr>
+<td>90971</td>
+<td>ocpfPostedAssemblyHeaders</td>
+<td>Posted Assembly Header (910)</td>
+<td>—</td>
+<td>37</td>
+</tr>
+<tr>
+<td>90972</td>
+<td>ocpfPostedAssemblyLines</td>
+<td>Posted Assembly Line (911)</td>
+<td>—</td>
+<td>32</td>
+</tr>
+<tr>
+<td>90973</td>
+<td>ocpfServiceZones</td>
+<td>Service Zone (5957)</td>
+<td>✅</td>
+<td>3</td>
+</tr>
+<tr>
+<td>90974</td>
+<td>ocpfServiceItemGroups</td>
+<td>Service Item Group (5904)</td>
+<td>✅</td>
+<td>7</td>
+</tr>
+<tr>
+<td>90975</td>
+<td>ocpfRepairStatuses</td>
+<td>Repair Status (5927)</td>
+<td>✅</td>
+<td>19</td>
+</tr>
+<tr>
+<td>90976</td>
+<td>ocpfFaultAreas</td>
+<td>Fault Area (5915)</td>
+<td>✅</td>
+<td>3</td>
+</tr>
+<tr>
+<td>90977</td>
+<td>ocpfSymptomCodes</td>
+<td>Symptom Code (5916)</td>
+<td>✅</td>
+<td>3</td>
+</tr>
+<tr>
+<td>90978</td>
+<td>ocpfFaultCodes</td>
+<td>Fault Code (5918)</td>
+<td>✅</td>
+<td>5</td>
+</tr>
+<tr>
+<td>90979</td>
+<td>ocpfFaultReasonCodes</td>
+<td>Fault Reason Code (5917)</td>
+<td>✅</td>
+<td>5</td>
+</tr>
+<tr>
+<td>90980</td>
+<td>ocpfResolutionCodes</td>
+<td>Resolution Code (5919)</td>
+<td>✅</td>
+<td>3</td>
+</tr>
+<tr>
+<td>90981</td>
+<td>ocpfLoaners</td>
+<td>Loaner (5913)</td>
+<td>✅</td>
+<td>14</td>
+</tr>
+<tr>
+<td>90982</td>
+<td>ocpfLoanerEntries</td>
+<td>Loaner Entry (5914)</td>
+<td>—</td>
+<td>14</td>
+</tr>
+<tr>
+<td>90983</td>
+<td>ocpfServiceItems</td>
+<td>Service Item (5940)</td>
+<td>✅</td>
+<td>82</td>
+</tr>
+<tr>
+<td>90984</td>
+<td>ocpfServiceItemComponents</td>
+<td>Service Item Component (5941)</td>
+<td>✅</td>
+<td>14</td>
+</tr>
+<tr>
+<td>90985</td>
+<td>ocpfServiceHeaders</td>
+<td>Service Header (5900)</td>
+<td>✅</td>
+<td>156</td>
+</tr>
+<tr>
+<td>90986</td>
+<td>ocpfServiceItemLines</td>
+<td>Service Item Line (5901)</td>
+<td>✅</td>
+<td>64</td>
+</tr>
+<tr>
+<td>90987</td>
+<td>ocpfServiceLines</td>
+<td>Service Line (5902)</td>
+<td>✅</td>
+<td>157</td>
+</tr>
+<tr>
+<td>90988</td>
+<td>ocpfServiceLedgerEntries</td>
+<td>Service Ledger Entry (5907)</td>
+<td>—</td>
+<td>64</td>
+</tr>
+<tr>
+<td>90989</td>
+<td>ocpfWarrantyLedgerEntries</td>
+<td>Warranty Ledger Entry (5908)</td>
+<td>—</td>
+<td>42</td>
+</tr>
+<tr>
+<td>90990</td>
+<td>ocpfServiceRegisters</td>
+<td>Service Register (5934)</td>
+<td>—</td>
+<td>10</td>
+</tr>
+<tr>
+<td>90991</td>
+<td>ocpfServiceContractHeaders</td>
+<td>Service Contract Header (5965)</td>
+<td>✅</td>
+<td>107</td>
+</tr>
+<tr>
+<td>90992</td>
+<td>ocpfServiceContractLines</td>
+<td>Service Contract Line (5964)</td>
+<td>✅</td>
+<td>32</td>
+</tr>
+<tr>
+<td>90993</td>
+<td>ocpfContractGroups</td>
+<td>Contract Group (5966)</td>
+<td>✅</td>
+<td>6</td>
+</tr>
+<tr>
+<td>90994</td>
+<td>ocpfServiceShipmentHeaders</td>
+<td>Service Shipment Header (5990)</td>
+<td>—</td>
+<td>133</td>
+</tr>
+<tr>
+<td>90995</td>
+<td>ocpfServiceShipmentLines</td>
+<td>Service Shipment Line (5991)</td>
+<td>—</td>
+<td>102</td>
+</tr>
+<tr>
+<td>90996</td>
+<td>ocpfServiceInvoiceHeaders</td>
+<td>Service Invoice Header (5992)</td>
+<td>—</td>
+<td>147</td>
+</tr>
+<tr>
+<td>90997</td>
+<td>ocpfServiceInvoiceLines</td>
+<td>Service Invoice Line (5993)</td>
+<td>—</td>
+<td>106</td>
+</tr>
+<tr>
+<td>90998</td>
+<td>ocpfServiceCrMemoHeaders</td>
+<td>Service Cr.Memo Header (5994)</td>
+<td>—</td>
+<td>137</td>
+</tr>
+<tr>
+<td>90999</td>
+<td>ocpfServiceCrMemoLines</td>
+<td>Service Cr.Memo Line (5995)</td>
+<td>—</td>
+<td>99</td>
+</tr>
+</tbody></table></div>
+<hr>
+<h2 id="v3-1-missing-standard-fields-2026-07-07">v3.1 — Missing Standard Fields (2026-07-07)</h2>
+<p><strong>Root cause fixed:</strong> the v3.0 generator silently skipped every table field whose name contains
+parentheses — e.g. <code>Credit Limit (LCY)</code>, <code>Cost Amount (Actual)</code>, all <code>(LCY)</code>/<code>(Qty.)</code> FlowFields.
+This contradicted the documented contract (&quot;every non-localization field ... including flow fields&quot;).
+Localization-specific fields (IDs 10000–29999) remain excluded by design. Obsolete fields are not added.</p>
+<p><strong>Versioning:</strong> all API pages are now dual-versioned — <code>APIVersion = &#39;v3.0&#39;, &#39;v3.1&#39;;</code>.
+Existing v3.0 endpoints keep working unchanged (the added fields appear there too, which is additive and
+non-breaking for OData clients). New entities introduced from now on will be published as v3.1-only,
+so new integrations should use the <code>/v3.1/</code> base URL. <code>app.json</code> version: 3.0.0.0 → 3.1.0.0.</p>
+<p><strong>Fields added: 170 across 22 pages.</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Entity</th>
+<th>File</th>
+<th>Fields added (JSON name — BC field)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ocpfCustLedgerEntries</td>
+<td>CoreFinancial/API.CustLedgerEntries.al</td>
+<td><code>originalAmtLcy</code> — Original Amt. (LCY)<br><code>remainingAmtLcy</code> — Remaining Amt. (LCY)<br><code>amountLcy</code> — Amount (LCY)<br><code>salesLcy</code> — Sales (LCY)<br><code>profitLcy</code> — Profit (LCY)<br><code>invDiscountLcy</code> — Inv. Discount (LCY)<br><code>pmtDiscGivenLcy</code> — Pmt. Disc. Given (LCY)<br><code>origPmtDiscPossibleLcy</code> — Orig. Pmt. Disc. Possible(LCY)<br><code>closedByAmountLcy</code> — Closed by Amount (LCY)<br><code>debitAmountLcy</code> — Debit Amount (LCY)<br><code>creditAmountLcy</code> — Credit Amount (LCY)<br><code>pmtToleranceLcy</code> — Pmt. Tolerance (LCY)</td>
+</tr>
+<tr>
+<td>ocpfDetailedCustLedgerEntries</td>
+<td>CoreFinancial/API.DetailedCustLedgerEntries.al</td>
+<td><code>amountLcy</code> — Amount (LCY)<br><code>debitAmountLcy</code> — Debit Amount (LCY)<br><code>creditAmountLcy</code> — Credit Amount (LCY)</td>
+</tr>
+<tr>
+<td>ocpfDtldVendorLedgEntries</td>
+<td>CoreFinancial/API.DetailedVendorLedgerEntries.al</td>
+<td><code>amountLcy</code> — Amount (LCY)<br><code>debitAmountLcy</code> — Debit Amount (LCY)<br><code>creditAmountLcy</code> — Credit Amount (LCY)</td>
+</tr>
+<tr>
+<td>ocpfEmployeeLedgerEntries</td>
+<td>CoreFinancial/API.EmployeeLedgerEntries.al</td>
+<td><code>originalAmtLcy</code> — Original Amt. (LCY)<br><code>remainingAmtLcy</code> — Remaining Amt. (LCY)<br><code>amountLcy</code> — Amount (LCY)<br><code>closedByAmountLcy</code> — Closed by Amount (LCY)<br><code>debitAmountLcy</code> — Debit Amount (LCY)<br><code>creditAmountLcy</code> — Credit Amount (LCY)</td>
+</tr>
+<tr>
+<td>ocpfGeneralLedgerSetup</td>
+<td>CoreFinancial/API.GeneralLedgerSetup.al</td>
+<td><code>invRoundingPrecisionLcy</code> — Inv. Rounding Precision (LCY)<br><code>invRoundingTypeLcy</code> — Inv. Rounding Type (LCY)</td>
+</tr>
+<tr>
+<td>ocpfGeneralPostingSetup</td>
+<td>CoreFinancial/API.GeneralPostingSetup.al</td>
+<td><code>invtAccrualAccInterim</code> — Invt. Accrual Acc. (Interim)<br><code>cogsAccountInterim</code> — COGS Account (Interim)</td>
+</tr>
+<tr>
+<td>ocpfVendorLedgerEntries</td>
+<td>CoreFinancial/API.VendorLedgerEntries.al</td>
+<td><code>originalAmtLcy</code> — Original Amt. (LCY)<br><code>remainingAmtLcy</code> — Remaining Amt. (LCY)<br><code>amountLcy</code> — Amount (LCY)<br><code>purchaseLcy</code> — Purchase (LCY)<br><code>invDiscountLcy</code> — Inv. Discount (LCY)<br><code>pmtDiscRcdLcy</code> — Pmt. Disc. Rcd.(LCY)<br><code>origPmtDiscPossibleLcy</code> — Orig. Pmt. Disc. Possible(LCY)<br><code>closedByAmountLcy</code> — Closed by Amount (LCY)<br><code>debitAmountLcy</code> — Debit Amount (LCY)<br><code>creditAmountLcy</code> — Credit Amount (LCY)<br><code>pmtToleranceLcy</code> — Pmt. Tolerance (LCY)</td>
+</tr>
+<tr>
+<td>ocpfBankAccountLedgerEntries</td>
+<td>MasterData/API.BankAccountLedgerEntries.al</td>
+<td><code>amountLcy</code> — Amount (LCY)<br><code>debitAmountLcy</code> — Debit Amount (LCY)<br><code>creditAmountLcy</code> — Credit Amount (LCY)</td>
+</tr>
+<tr>
+<td>ocpfBankAccounts</td>
+<td>MasterData/API.BankAccounts.al</td>
+<td><code>balanceLcy</code> — Balance (LCY)<br><code>netChangeLcy</code> — Net Change (LCY)<br><code>balanceAtDateLcy</code> — Balance at Date (LCY)<br><code>debitAmountLcy</code> — Debit Amount (LCY)<br><code>creditAmountLcy</code> — Credit Amount (LCY)</td>
+</tr>
+<tr>
+<td>ocpfContacts</td>
+<td>MasterData/API.Contacts.al</td>
+<td><code>costLcy</code> — Cost (LCY)<br><code>durationMin</code> — Duration (Min.)<br><code>estimatedValueLcy</code> — Estimated Value (LCY)<br><code>calcdCurrentValueLcy</code> — Calcd. Current Value (LCY)</td>
+</tr>
+<tr>
+<td>ocpfCurrencies</td>
+<td>MasterData/API.Currencies.al</td>
+<td><code>customerBalanceLcy</code> — Customer Balance (LCY)<br><code>vendorBalanceLcy</code> — Vendor Balance (LCY)</td>
+</tr>
+<tr>
+<td>ocpfCustomers</td>
+<td>MasterData/API.Customers.al</td>
+<td><code>creditLimitLcy</code> — Credit Limit (LCY)<br><code>balanceLcy</code> — Balance (LCY)<br><code>netChangeLcy</code> — Net Change (LCY)<br><code>salesLcy</code> — Sales (LCY)<br><code>profitLcy</code> — Profit (LCY)<br><code>invDiscountsLcy</code> — Inv. Discounts (LCY)<br><code>pmtDiscountsLcy</code> — Pmt. Discounts (LCY)<br><code>balanceDueLcy</code> — Balance Due (LCY)<br><code>paymentsLcy</code> — Payments (LCY)<br><code>invAmountsLcy</code> — Inv. Amounts (LCY)<br><code>crMemoAmountsLcy</code> — Cr. Memo Amounts (LCY)<br><code>finChargeMemoAmountsLcy</code> — Fin. Charge Memo Amounts (LCY)<br><code>debitAmountLcy</code> — Debit Amount (LCY)<br><code>creditAmountLcy</code> — Credit Amount (LCY)<br><code>reminderAmountsLcy</code> — Reminder Amounts (LCY)<br><code>outstandingOrdersLcy</code> — Outstanding Orders (LCY)<br><code>shippedNotInvoicedLcy</code> — Shipped Not Invoiced (LCY)<br><code>pmtDiscToleranceLcy</code> — Pmt. Disc. Tolerance (LCY)<br><code>pmtToleranceLcy</code> — Pmt. Tolerance (LCY)<br><code>refundsLcy</code> — Refunds (LCY)<br><code>otherAmountsLcy</code> — Other Amounts (LCY)<br><code>outstandingInvoicesLcy</code> — Outstanding Invoices (LCY)</td>
+</tr>
+<tr>
+<td>ocpfEmployees</td>
+<td>MasterData/API.Employees.al</td>
+<td><code>totalAbsenceBase</code> — Total Absence (Base)<br><code>balanceLcy</code> — Balance (LCY)<br><code>payrollLcy</code> — Payroll (LCY)</td>
+</tr>
+<tr>
+<td>ocpfItemLedgerEntries</td>
+<td>MasterData/API.ItemLedgerEntries.al</td>
+<td><code>costAmountExpected</code> — Cost Amount (Expected)<br><code>costAmountActual</code> — Cost Amount (Actual)<br><code>costAmountNonInvtbl</code> — Cost Amount (Non-Invtbl.)<br><code>costAmountExpectedAcy</code> — Cost Amount (Expected) (ACY)<br><code>costAmountActualAcy</code> — Cost Amount (Actual) (ACY)<br><code>costAmountNonInvtblAcy</code> — Cost Amount (Non-Invtbl.)(ACY)<br><code>purchaseAmountExpected</code> — Purchase Amount (Expected)<br><code>purchaseAmountActual</code> — Purchase Amount (Actual)<br><code>salesAmountExpected</code> — Sales Amount (Expected)<br><code>salesAmountActual</code> — Sales Amount (Actual)</td>
+</tr>
+<tr>
+<td>ocpfItems</td>
+<td>MasterData/API.Items.al</td>
+<td><code>purchasesQty</code> — Purchases (Qty.)<br><code>salesQty</code> — Sales (Qty.)<br><code>positiveAdjmtQty</code> — Positive Adjmt. (Qty.)<br><code>negativeAdjmtQty</code> — Negative Adjmt. (Qty.)<br><code>purchasesLcy</code> — Purchases (LCY)<br><code>salesLcy</code> — Sales (LCY)<br><code>positiveAdjmtLcy</code> — Positive Adjmt. (LCY)<br><code>negativeAdjmtLcy</code> — Negative Adjmt. (LCY)<br><code>cogsLcy</code> — COGS (LCY)<br><code>vatBusPostingGrPrice</code> — VAT Bus. Posting Gr. (Price)<br><code>transferredQty</code> — Transferred (Qty.)<br><code>transferredLcy</code> — Transferred (LCY)<br><code>planningTransferShipQty</code> — Planning Transfer Ship. (Qty).<br><code>planningWorksheetQty</code> — Planning Worksheet (Qty.)<br><code>transOrdReceiptQty</code> — Trans. Ord. Receipt (Qty.)<br><code>transOrdShipmentQty</code> — Trans. Ord. Shipment (Qty.)<br><code>planningIssuesQty</code> — Planning Issues (Qty.)<br><code>planningReceiptQty</code> — Planning Receipt (Qty.)<br><code>planningReleaseQty</code> — Planning Release (Qty.)<br><code>purchReqReceiptQty</code> — Purch. Req. Receipt (Qty.)<br><code>purchReqReleaseQty</code> — Purch. Req. Release (Qty.)<br><code>prodForecastQuantityBase</code> — Prod. Forecast Quantity (Base)</td>
+</tr>
+<tr>
+<td>ocpfResourceGroups</td>
+<td>MasterData/API.ResourceGroups.al</td>
+<td><code>qtyOnOrderJob</code> — Qty. on Order (Job)<br><code>qtyQuotedJob</code> — Qty. Quoted (Job)<br><code>usageQty</code> — Usage (Qty.)<br><code>usageCost</code> — Usage (Cost)<br><code>usagePrice</code> — Usage (Price)<br><code>salesQty</code> — Sales (Qty.)<br><code>salesCost</code> — Sales (Cost)<br><code>salesPrice</code> — Sales (Price)</td>
+</tr>
+<tr>
+<td>ocpfResourceLedgerEntries</td>
+<td>MasterData/API.ResourceLedgerEntries.al</td>
+<td><code>quantityBase</code> — Quantity (Base)</td>
+</tr>
+<tr>
+<td>ocpfResources</td>
+<td>MasterData/API.Resources.al</td>
+<td><code>qtyOnOrderJob</code> — Qty. on Order (Job)<br><code>qtyQuotedJob</code> — Qty. Quoted (Job)<br><code>usageQty</code> — Usage (Qty.)<br><code>usageCost</code> — Usage (Cost)<br><code>usagePrice</code> — Usage (Price)<br><code>salesQty</code> — Sales (Qty.)<br><code>salesCost</code> — Sales (Cost)<br><code>salesPrice</code> — Sales (Price)</td>
+</tr>
+<tr>
+<td>ocpfSalespeople</td>
+<td>MasterData/API.Salespeople.al</td>
+<td><code>estimatedValueLcy</code> — Estimated Value (LCY)<br><code>calcdCurrentValueLcy</code> — Calcd. Current Value (LCY)<br><code>costLcy</code> — Cost (LCY)<br><code>durationMin</code> — Duration (Min.)<br><code>avgEstimatedValueLcy</code> — Avg. Estimated Value (LCY)<br><code>avgCalcdCurrentValueLcy</code> — Avg.Calcd. Current Value (LCY)</td>
+</tr>
+<tr>
+<td>ocpfStockkeepingUnits</td>
+<td>MasterData/API.StockkeepingUnits.al</td>
+<td><code>transOrdReceiptQty</code> — Trans. Ord. Receipt (Qty.)<br><code>transOrdShipmentQty</code> — Trans. Ord. Shipment (Qty.)<br><code>purchReqReceiptQty</code> — Purch. Req. Receipt (Qty.)<br><code>purchReqReleaseQty</code> — Purch. Req. Release (Qty.)</td>
+</tr>
+<tr>
+<td>ocpfValueEntries</td>
+<td>MasterData/API.ValueEntries.al</td>
+<td><code>salesAmountActual</code> — Sales Amount (Actual)<br><code>costAmountActual</code> — Cost Amount (Actual)<br><code>costAmountActualAcy</code> — Cost Amount (Actual) (ACY)<br><code>costPostedToGLAcy</code> — Cost Posted to G/L (ACY)<br><code>costPerUnitAcy</code> — Cost per Unit (ACY)<br><code>purchaseAmountActual</code> — Purchase Amount (Actual)<br><code>purchaseAmountExpected</code> — Purchase Amount (Expected)<br><code>salesAmountExpected</code> — Sales Amount (Expected)<br><code>costAmountExpected</code> — Cost Amount (Expected)<br><code>costAmountNonInvtbl</code> — Cost Amount (Non-Invtbl.)<br><code>costAmountExpectedAcy</code> — Cost Amount (Expected) (ACY)<br><code>costAmountNonInvtblAcy</code> — Cost Amount (Non-Invtbl.)(ACY)<br><code>expCostPostedToGLAcy</code> — Exp. Cost Posted to G/L (ACY)</td>
+</tr>
+<tr>
+<td>ocpfVendors</td>
+<td>MasterData/API.Vendors.al</td>
+<td><code>balanceLcy</code> — Balance (LCY)<br><code>netChangeLcy</code> — Net Change (LCY)<br><code>purchasesLcy</code> — Purchases (LCY)<br><code>invDiscountsLcy</code> — Inv. Discounts (LCY)<br><code>pmtDiscountsLcy</code> — Pmt. Discounts (LCY)<br><code>balanceDueLcy</code> — Balance Due (LCY)<br><code>paymentsLcy</code> — Payments (LCY)<br><code>invAmountsLcy</code> — Inv. Amounts (LCY)<br><code>crMemoAmountsLcy</code> — Cr. Memo Amounts (LCY)<br><code>finChargeMemoAmountsLcy</code> — Fin. Charge Memo Amounts (LCY)<br><code>debitAmountLcy</code> — Debit Amount (LCY)<br><code>creditAmountLcy</code> — Credit Amount (LCY)<br><code>reminderAmountsLcy</code> — Reminder Amounts (LCY)<br><code>outstandingOrdersLcy</code> — Outstanding Orders (LCY)<br><code>amtRcdNotInvoicedLcy</code> — Amt. Rcd. Not Invoiced (LCY)<br><code>pmtDiscToleranceLcy</code> — Pmt. Disc. Tolerance (LCY)<br><code>pmtToleranceLcy</code> — Pmt. Tolerance (LCY)<br><code>refundsLcy</code> — Refunds (LCY)<br><code>otherAmountsLcy</code> — Other Amounts (LCY)<br><code>outstandingInvoicesLcy</code> — Outstanding Invoices (LCY)</td>
+</tr>
+</tbody></table></div>
+<p><strong>Tooltip corrections:</strong> the same generator bug shifted some tooltips onto neighboring fields
+(a skipped field&#39;s tooltip landed on the next emitted field). Fixed:</p>
+<ul>
+<li><code>MasterData/API.Customers.al</code>: <strong>Budgeted Amount</strong> carried the tooltip of <em>Credit Limit (LCY)</em> (fixed in the same pass)</li>
+</ul>
+<p>Tooltips for the newly added fields are sourced from BC 27.5 Base Application symbols (table-level
+tooltips, falling back to standard page-control tooltips, falling back to generic text).</p>
+<hr>
+<h2 id="ocpfapis-v3-0-deviations-from-tdd">OCPFAPIs v3.0 — Deviations from TDD</h2>
+<p>This log records every case where the actual generated AL code deviated from the TDD specification, along with the reason. It is maintained per batch and serves as an audit trail for design decisions made during implementation.</p>
+<hr>
+<h2 id="gap-fill-post-review-additions-7-pages">Gap Fill — Post-Review Additions (7 pages)</h2>
+<p>Following gap analysis comparing FRD, TDD, and as-built implementation, three entities previously marked &quot;out of scope for v3.0&quot; were added. IDs allocated from reserved growth slots per batch.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>File</th>
+<th>Batch</th>
+<th>Entity</th>
+<th>Reason Added</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>90824</td>
+<td>API.InventoryPostingSetup.al</td>
+<td>CoreFinancial</td>
+<td>Inventory Posting Setup (Table 5813)</td>
+<td>GAP-06: maps posting groups to locations for G/L resolution</td>
+</tr>
+<tr>
+<td>90886</td>
+<td>API.SalesBlanketOrders.al</td>
+<td>Sales</td>
+<td>Sales Header / Blanket Order filter</td>
+<td>GAP-07: long-term customer agreements</td>
+</tr>
+<tr>
+<td>90887</td>
+<td>API.SalesBlanketOrderLines.al</td>
+<td>Sales</td>
+<td>Sales Line / Blanket Order filter</td>
+<td>GAP-07</td>
+</tr>
+<tr>
+<td>90904</td>
+<td>API.PurchaseQuotes.al</td>
+<td>Purchasing</td>
+<td>Purchase Header / Quote filter</td>
+<td>GAP-05: vendor pricing requests</td>
+</tr>
+<tr>
+<td>90905</td>
+<td>API.PurchaseQuoteLines.al</td>
+<td>Purchasing</td>
+<td>Purchase Line / Quote filter</td>
+<td>GAP-05</td>
+</tr>
+<tr>
+<td>90906</td>
+<td>API.PurchaseBlanketOrders.al</td>
+<td>Purchasing</td>
+<td>Purchase Header / Blanket Order filter</td>
+<td>GAP-07: long-term vendor agreements</td>
+</tr>
+<tr>
+<td>90907</td>
+<td>API.PurchaseBlanketOrderLines.al</td>
+<td>Purchasing</td>
+<td>Purchase Line / Blanket Order filter</td>
+<td>GAP-07</td>
+</tr>
+</tbody></table></div>
+<p><strong>Notes:</strong></p>
+<ul>
+<li>Inventory Posting Setup table is <strong>5813</strong>, not 457 (which is &quot;Posted Approval Comment Line&quot;). Correct ID sourced from BC v27.5 symbols.</li>
+<li>Sales blanket order files required <code>%→Pct</code> fix (same as Batch 3 CR — cached field JSON predated the fix).</li>
+<li><code>&quot;Blanket Order&quot;</code> is a multi-word enum value — correctly quoted in <code>const()</code>.</li>
+<li>Permission sets regenerated: now cover <strong>113 pages</strong> (62 editable, 51 read-only).</li>
+<li>Library total: <strong>113 API pages</strong> across 6 API groups.</li>
+</ul>
+<hr>
+<h2 id="batch-6-systemandsetup">Batch 6 — SystemAndSetup</h2>
+<p>No corrections. All 9 pages passed pre-flight validation on first run.</p>
+<p><strong>Notes:</strong></p>
+<ul>
+<li><code>Approval Entry</code> and <code>Workflow Step Instance</code> source from <code>System.Automation</code> namespace (not a <code>Microsoft.*</code> namespace) — this is correct for BC system automation tables.</li>
+<li>All 9 pages are read-only (<code>Editable = false</code>) — document attachments, company information, warehouse entries, reminders, finance charges, approvals, and workflow instances are all consumed read-only by API clients in standard integration scenarios.</li>
+</ul>
+<hr>
+<h2 id="batch-5-projectsandassets">Batch 5 — ProjectsAndAssets</h2>
+<h3 id="correction-b5-01-table-index-pattern-updated-to-handle-unquoted-single-word-table-names">CORRECTION B5-01 — Table Index Pattern Updated to Handle Unquoted Single-Word Table Names</h3>
+<p><strong>Problem:</strong> Table 167 (<code>Job</code>) and Table 81 (<code>Gen. Journal Line</code>) initially extracted 0 fields. Root cause was two distinct issues:</p>
+<ol>
+<li><p><strong>Wrong file matched (Tables 1001 and 81):</strong> The original search pattern <code>\btable\s+{id}\b</code> matched table <em>references</em> inside codeunit files (e.g., a codeunit that manipulates Job Task records) before finding the actual table definition file. Fixed by searching for <code>^table\s+{id}\s+</code> anchored to the start of a line — a table <em>declaration</em> pattern, not a reference.</p>
+</li>
+<li><p><strong>Unquoted table name (Table 167):</strong> The declaration in <code>Job.Table.al</code> is <code>table 167 Job</code> — no double-quotes around the name. BC convention for single-word table names in older base tables omits quotes. The index builder pattern <code>table\s+(\d+)\s+&quot;</code> required a quote and therefore never matched. Fixed by accepting both <code>table 167 &quot;Job&quot;</code> and <code>table 167 Job</code>.</p>
+</li>
+</ol>
+<p><strong>Generator rule updated:</strong> Table definition index now uses <code>^table\s+(\d+)\s+(?:&quot;([^&quot;]+)&quot;|(\w+))</code> to handle both quoted and unquoted table names, anchored to line start to avoid codeunit reference matches.</p>
+<p><strong>No AL output files were affected</strong> — the fix was caught during field extraction before any files were written.</p>
+<hr>
+<h2 id="batch-4-purchasing">Batch 4 — Purchasing</h2>
+<h3 id="correction-b4-01-ocpfpostedpurchasecreditmemolines-exceeded-30-character-limit">CORRECTION B4-01 — <code>ocpfPostedPurchaseCreditMemoLines</code> Exceeded 30-Character Limit</h3>
+<p><strong>Names affected:</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Original</th>
+<th>Length</th>
+<th>Shortened</th>
+<th>Length</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>ocpfPostedPurchaseCreditMemoLines</code></td>
+<td>33</td>
+<td><code>ocpfPostedPurchCrMemoLines</code></td>
+<td>26</td>
+</tr>
+<tr>
+<td><code>ocpfPostedPurchaseCreditMemoLine</code></td>
+<td>32</td>
+<td><code>ocpfPostedPurchCrMemoLine</code></td>
+<td>25</td>
+</tr>
+</tbody></table></div>
+<p><strong>Abbreviation applied:</strong> <code>Purchase</code> → <code>Purch</code>, <code>CreditMemo</code> → <code>CrMemo</code> — both are standard BC naming conventions.</p>
+<p><strong>File affected:</strong> <code>API.PostedPurchaseCreditMemoLines.al</code></p>
+<p><strong>Pre-flight check:</strong> Caught by validation script before any compiler involvement. All other 13 Purchasing pages were within the 30-character limit.</p>
+<hr>
+<h2 id="batch-2-masterdata">Batch 2 — MasterData</h2>
+<h3 id="correction-b1-b3-retroactive-all-pages-incorrectly-set-to-editable-false-missing-delayedinsert-true">CORRECTION B1-B3 (RETROACTIVE) — All Pages Incorrectly Set to <code>Editable = false</code>; Missing <code>DelayedInsert = true</code></h3>
+<p><strong>Root cause:</strong> The generator template set <code>Editable = false</code> on every API page unconditionally. This was incorrect — master data and setup tables should be writable via the API. The error was masked in Batches 1 and 2 because <code>Editable = false</code> suppresses the AL compiler requirement for <code>DelayedInsert = true</code>. It only surfaced in Batch 3 when the 8 open-document Sales pages were correctly left without <code>Editable = false</code>.</p>
+<p><strong>Rule:</strong> In BC AL, any API page that is editable (explicitly or by default) <strong>must</strong> declare <code>DelayedInsert = true</code>. This tells the framework to buffer the inserted record until the client explicitly commits it, which is required for the transactional semantics of the OData API.</p>
+<p><strong>Correct pattern:</strong></p>
+<pre><code class="language-al">// Editable page (master data, setup, open documents)
+ODataKeyFields = SystemId;
+DelayedInsert = true;
+
+// Read-only page (posted ledger entries, audit tables, system tables)
+ODataKeyFields = SystemId;
+Editable = false;
+</code></pre>
+<p><strong>Classification applied across all 69 pages:</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Editable</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Master data</td>
+<td>✅ Yes</td>
+<td>Customers, Vendors, Items, Employees, Bank Accounts</td>
+</tr>
+<tr>
+<td>Setup/config</td>
+<td>✅ Yes</td>
+<td>GL Setup, Posting Groups, VAT Setup, Payment Terms</td>
+</tr>
+<tr>
+<td>Open documents</td>
+<td>✅ Yes</td>
+<td>Sales Orders/Lines, Quotes/Lines, Invoices/Lines, Credit Memos/Lines</td>
+</tr>
+<tr>
+<td>Posted ledger entries</td>
+<td>❌ No</td>
+<td>GL Entries, Cust/Vend Ledger Entries, Item Ledger Entries</td>
+</tr>
+<tr>
+<td>Posted documents</td>
+<td>❌ No</td>
+<td>Posted Invoices, Shipments, Credit Memos, Return Receipts</td>
+</tr>
+<tr>
+<td>System/audit tables</td>
+<td>❌ No</td>
+<td>GL Registers, Dimension Set Entries, Item Application Entries</td>
+</tr>
+</tbody></table></div>
+<p><strong>Pages changed:</strong> 48 pages updated to <code>DelayedInsert = true</code> (Editable=false removed); 21 pages confirmed <code>Editable = false</code> (no DelayedInsert). All 69 files affected.</p>
+<p><strong>Going forward:</strong> Generator template updated — editable determination is made per page before writing, not defaulted to read-only.</p>
+<hr>
+<h3 id="correction-b3-02-sourcetableview-const-syntax-single-word-enum-values-must-not-be-quoted">CORRECTION B3-02 — <code>SourceTableView const()</code> Syntax: Single-Word Enum Values Must Not Be Quoted</h3>
+<p><strong>Symptom:</strong> Red squiggly error on <code>PageType = API</code> for all 6 open-document pages using single-word Document Type values (Quote, Order, Invoice). VS Code showed the error at the page declaration because the AL parser failed parsing the <code>SourceTableView</code> property and surfaced the error at the start of the page block.</p>
+<p><strong>Root cause:</strong> In AL, <code>SourceTableView = where(field = const(value))</code> takes an <strong>enum value identifier</strong>, not a string. Single-word enum values must appear without double-quotes. Multi-word enum identifiers (e.g., <code>&quot;Credit Memo&quot;</code>) must keep double-quotes because the space requires quoting in AL. The generator wrapped all values in double-quotes uniformly, which is wrong for single-word values.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Wrong</th>
+<th>Correct</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Quote</td>
+<td><code>const(&quot;Quote&quot;)</code></td>
+<td><code>const(Quote)</code></td>
+</tr>
+<tr>
+<td>Order</td>
+<td><code>const(&quot;Order&quot;)</code></td>
+<td><code>const(Order)</code></td>
+</tr>
+<tr>
+<td>Invoice</td>
+<td><code>const(&quot;Invoice&quot;)</code></td>
+<td><code>const(Invoice)</code></td>
+</tr>
+<tr>
+<td>Credit Memo</td>
+<td><code>const(&quot;Credit Memo&quot;)</code></td>
+<td><code>const(&quot;Credit Memo&quot;)</code> ✓ (unchanged)</td>
+</tr>
+</tbody></table></div>
+<p><strong>Files fixed:</strong> API.SalesQuotes.al, API.SalesQuoteLines.al, API.SalesOrders.al, API.SalesOrderLines.al, API.SalesInvoices.al, API.SalesInvoiceLines.al</p>
+<p><strong>Generator rule added:</strong> When writing <code>const()</code> values for enum/option fields in <code>SourceTableView</code>, quote only if the value contains spaces.</p>
+<hr>
+<h3 id="correction-b3-01-character-in-field-identifiers-all-16-sales-files">CORRECTION B3-01 — <code>%</code> Character in Field Identifiers (All 16 Sales Files)</h3>
+<p><strong>Fields affected:</strong> Any BC field whose name ends with <code>%</code> (e.g., <code>Payment Discount %</code>, <code>VAT %</code>, <code>Prepayment %</code>, <code>Line Discount %</code>, <code>Profit %</code>, <code>VAT Base Discount %</code>, <code>Prepmt. Payment Discount %</code>, <code>Prepayment VAT %</code>)</p>
+<p><strong>Problem:</strong> The <code>to_camel()</code> generator function did not strip the <code>%</code> character. AL identifiers may only contain letters, digits, and underscores — <code>%</code> is illegal and causes a compiler error.</p>
+<p><strong>Fix:</strong> Appended <code>Pct</code> suffix to replace the trailing <code>%</code> in the identifier. Source field reference remains unchanged (still quotes the <code>%</code> in the BC field name).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Before</th>
+<th>After</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>field(paymentDiscount%; Rec.&quot;Payment Discount %&quot;)</code></td>
+<td><code>field(paymentDiscountPct; Rec.&quot;Payment Discount %&quot;)</code></td>
+</tr>
+<tr>
+<td><code>field(vat%; Rec.&quot;VAT %&quot;)</code></td>
+<td><code>field(vatPct; Rec.&quot;VAT %&quot;)</code></td>
+</tr>
+<tr>
+<td><code>field(lineDiscount%; Rec.&quot;Line Discount %&quot;)</code></td>
+<td><code>field(lineDiscountPct; Rec.&quot;Line Discount %&quot;)</code></td>
+</tr>
+</tbody></table></div>
+<p><strong>Files affected:</strong> All 16 Sales API pages</p>
+<p><strong>Generator rule added:</strong> Strip all non-alphanumeric characters from camelCase identifiers. Specifically: <code>%</code> → <code>Pct</code>; apply before the reserved-keyword check.</p>
+<hr>
+<h3 id="correction-b2-01-invoice-copies-field-not-excluded-by-existing-obsolete-filter">CORRECTION B2-01 — <code>Invoice Copies</code> Field Not Excluded by Existing Obsolete Filter</h3>
+<p><strong>Field removed:</strong> <code>Invoice Copies</code> (field 40) from Table 18 <code>Customer</code></p>
+<p><strong>Why it slipped through:</strong> The field uses the <code>#if not CLEAN27</code> conditional compilation pattern:</p>
+<ul>
+<li>Under <code>CLEAN27</code> = not set (default in v27.5 symbol file): <code>ObsoleteState = Pending</code>, <code>ObsoleteTag = &#39;27.0&#39;</code></li>
+<li>Under <code>CLEAN27</code> = set: <code>ObsoleteState = Removed</code>, <code>ObsoleteTag = &#39;30.0&#39;</code></li>
+</ul>
+<p>The existing filter excluded <code>Pending</code> fields only when <code>ObsoleteRemovalVersion</code> was explicitly set and ≤ 28.0. This field has no <code>ObsoleteRemovalVersion</code> property — only <code>ObsoleteTag</code>, which the filter did not check.</p>
+<p><strong>Policy change:</strong> Exclude <strong>all</strong> <code>ObsoleteState = Pending</code> fields regardless of whether <code>ObsoleteRemovalVersion</code> is set. A deprecated field has no place in a new API library irrespective of its scheduled removal version.</p>
+<p><strong>Going forward:</strong> The generator for Batches 3–6 treats any <code>Pending</code> state as an immediate exclusion, no version check required.</p>
+<p><strong>File affected:</strong> <code>API.Customers.al</code></p>
+<hr>
+<h3 id="correction-b2-02-area-field-identifier-conflicts-with-al-page-layout-keyword">CORRECTION B2-02 — <code>Area</code> Field Identifier Conflicts with AL Page Layout Keyword</h3>
+<p><strong>Field fixed:</strong> <code>Area</code> (field 62) on Table 32 <code>Item Ledger Entry</code></p>
+<p><strong>Problem:</strong> The <code>to_camel()</code> generator function produced <code>area</code> as the AL identifier for this field. In BC AL page syntax, <code>area</code> is a layout section keyword (<code>area(content)</code>, <code>area(actions)</code>, <code>area(factboxes)</code>). Using it as a <code>field()</code> identifier inside a repeater causes a compiler error.</p>
+<p><strong>How identified:</strong> User reported compiler error on the field. Diagnosis confirmed <code>area</code> is an AL page-context reserved word. Audit of all 53 Batch 1+2 source tables found this as the only occurrence.</p>
+<p><strong>Fix:</strong> Identifier renamed from <code>area</code> to <code>areaCode</code> in <code>API.ItemLedgerEntries.al</code>.</p>
+<p><strong>Generator rule added:</strong> The following identifiers are treated as reserved page-layout keywords and will be suffixed with their field type (e.g., <code>Code</code>, <code>Option</code>, <code>Boolean</code>) if produced by <code>to_camel()</code>:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Reserved identifier</th>
+<th>AL usage context</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>area</code></td>
+<td><code>area(content)</code>, <code>area(actions)</code> etc.</td>
+</tr>
+<tr>
+<td><code>group</code></td>
+<td><code>group(name)</code> in page layout</td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td><code>value(option)</code> in option definitions</td>
+</tr>
+<tr>
+<td><code>key</code></td>
+<td><code>key(name; fields)</code> in keys section</td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td><code>label</code> keyword</td>
+</tr>
+<tr>
+<td><code>index</code></td>
+<td>key index definitions</td>
+</tr>
+<tr>
+<td><code>trigger</code></td>
+<td><code>trigger OnXxx()</code></td>
+</tr>
+<tr>
+<td><code>field</code></td>
+<td><code>field(id; source)</code> — the declaration keyword itself</td>
+</tr>
+</tbody></table></div>
+<p><strong>File affected:</strong> <code>API.ItemLedgerEntries.al</code></p>
+<hr>
+<h2 id="batch-1-corefinancial">Batch 1 — CoreFinancial</h2>
+<h3 id="correction-b1-01-vat-business-posting-group-wrong-table-number-in-tdd">CORRECTION B1-01 — VAT Business Posting Group: Wrong Table Number in TDD</h3>
+<p><strong>TDD stated:</strong> <code>VAT Business Posting Group (320)</code><br><strong>Actual BC v27 table:</strong> <code>VAT Business Posting Group</code> = <strong>Table 323</strong><br><strong>Table 320 in BC v27:</strong> <code>Tax Jurisdiction</code> — a US Sales Tax localization table, explicitly out of scope per FRD Section 1.1</p>
+<p><strong>How discovered:</strong> Direct inspection of the BC Base Application v27.5 AL source extracted from the <code>.alpackages</code> symbol file. The <code>TaxJurisdiction.Table.al</code> file declared <code>table 320</code>, not a VAT table.</p>
+<p><strong>Impact:</strong> Object 90817 (<code>ocpfVatBusinessPostingGroups</code>) correctly sources from Table 323. Had the TDD number been used, the page would have exposed US localization data in violation of the W1 compatibility requirement.</p>
+<p><strong>TDD/FRD updated:</strong> Yes — both documents corrected from <code>(320)</code> to <code>(323)</code>.</p>
+<hr>
+<h3 id="correction-b1-02-vat-product-posting-group-wrong-table-number-in-tdd">CORRECTION B1-02 — VAT Product Posting Group: Wrong Table Number in TDD</h3>
+<p><strong>TDD stated:</strong> <code>VAT Product Posting Group (321)</code><br><strong>Actual BC v27 table:</strong> <code>VAT Product Posting Group</code> = <strong>Table 324</strong><br><strong>Table 321 in BC v27:</strong> <code>Tax Group</code> — a US Sales Tax localization table, explicitly out of scope per FRD Section 1.1</p>
+<p><strong>How discovered:</strong> Same symbol file inspection as B1-01. The <code>TaxGroup.Table.al</code> file declared <code>table 321</code>.</p>
+<p><strong>Impact:</strong> Object 90818 (<code>ocpfVatProductPostingGroups</code>) correctly sources from Table 324.</p>
+<p><strong>TDD/FRD updated:</strong> Yes — both documents corrected from <code>(321)</code> to <code>(324)</code>.</p>
+<hr>
+<h3 id="notes-not-deviations-confirmed-design-decisions">NOTES (not deviations — confirmed design decisions)</h3>
+<ul>
+<li><p><strong>FlowFilter fields excluded:</strong> All 24 source tables were scanned. Any field with type <code>FlowFilter</code> was excluded from the API pages. FlowFilter fields are virtual filter fields, not real data fields — they cannot be meaningfully returned in an OData response and are not part of the table&#39;s stored data.</p>
+</li>
+<li><p><strong>BLOB fields excluded:</strong> No raw BLOB fields were present in any Batch 1 source table. Policy applied cleanly with nothing to exclude.</p>
+</li>
+<li><p><strong>Obsolete fields:</strong> Several fields across Batch 1 tables carried <code>ObsoleteState = Pending</code> with removal versions ≤ 28.0 and were excluded per TDD Section 7.6 policy. No <code>ObsoleteState = Removed</code> fields were encountered (they no longer exist in the compiled table and cannot be referenced).</p>
+</li>
+<li><p><strong>ToolTip sourcing:</strong> Where the BC source table defined a <code>ToolTip</code> on a field, that tooltip was used directly. Where none was defined, a generic description was generated in the form <em>&quot;Specifies the [field name] for this [table name] record.&quot;</em> This is consistent with BC&#39;s own API library convention.</p>
+</li>
+</ul>
+<h3 id="correction-b1-05-44-localization-specific-fields-removed-across-5-files">CORRECTION B1-05 — 44 Localization-Specific Fields Removed Across 5 Files</h3>
+<p><strong>Root cause:</strong> The field extraction script filtered on <code>ObsoleteState</code> and field type but did not filter on field ID range. In BC, fields with IDs 10000–29999 are reserved for localization-specific content. These fields are physically present in the Base Application <code>.app</code> symbol file (which bundles W1 + NA + MX content) and were extracted alongside W1 fields.</p>
+<p><strong>Localizations affected and fields removed:</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Localization</th>
+<th>Tables Affected</th>
+<th>Example Fields Removed</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CA (Canada)</td>
+<td>G/L Account, G/L Entry, Cust. Ledger Entry</td>
+<td>GIFI Code, STE Transaction ID, GST/HST</td>
+</tr>
+<tr>
+<td>MX (Mexico — CFDI e-invoicing)</td>
+<td>G/L Account, Cust. Ledger Entry, GL Setup, VAT Posting Setup</td>
+<td>SAT Account Code, CFDI Enabled, PAC Code, CFDI VAT Exemption</td>
+</tr>
+<tr>
+<td>NA/US</td>
+<td>Cust. Ledger Entry, GL Setup, Vendor Ledger Entry</td>
+<td>Tax Exemption No., Bank Rec. Adj. Doc. Nos., Deposit Nos.</td>
+</tr>
+</tbody></table></div>
+<p><strong>Total removed:</strong> 44 fields across 5 files (<code>API.ChartOfAccounts.al</code>, <code>API.CustLedgerEntries.al</code>, <code>API.GeneralLedgerEntries.al</code>, <code>API.GeneralLedgerSetup.al</code>, <code>API.VatPostingSetup.al</code>)</p>
+<p><strong>Fields retained from the 10000+ range:</strong> Fields 99000752–99000754 on <code>General Posting Setup</code> (Direct Cost Applied Account, Overhead Applied Account, Purchase Variance Account) are W1 Manufacturing module fields, not localization fields, and were correctly retained.</p>
+<p><strong>Going forward:</strong> All future batch generators will exclude fields with IDs 10000–89999 by default, retaining only the 99000000+ range for W1 Manufacturing fields on a case-by-case basis.</p>
+<hr>
+<h3 id="correction-b1-06-irs-1099-fields-vendor-ledger-entry-separate-entry">CORRECTION B1-06 — IRS 1099 Fields (Vendor Ledger Entry) — Separate Entry</h3>
+<p><em>(These two fields were caught and removed in the same pass as B1-05 above. Documented separately as they were the trigger for the broader audit.)</em></p>
+<p><strong>Fields removed:</strong> <code>IRS 1099 Code</code> (field 10020), <code>IRS 1099 Amount</code> (field 10021) from Table 25.<br>See B1-05 for full context.</p>
+<hr>
+<h3 id="correction-b1-05-original-irs-1099-fields-removed-from-vendor-ledger-entries">CORRECTION B1-05 (original) — IRS 1099 Fields Removed from Vendor Ledger Entries</h3>
+<p><strong>Fields removed:</strong> <code>IRS 1099 Code</code> (field 10020), <code>IRS 1099 Amount</code> (field 10021) from Table 25 <code>Vendor Ledger Entry</code></p>
+<p><strong>Why:</strong> Both fields carry <code>ObsoleteState = Pending</code> with <code>ObsoleteTag = &#39;25.0&#39;</code> and <code>ObsoleteRemovalVersion = &#39;28.0&#39;</code>, placing them squarely within the TDD Section 7.6 exclusion rule (<code>Pending</code> with removal ≤ 28.0 → exclude). They were included by the initial field extraction script because the conditional compilation block (<code>#if not CLEAN25</code>) presented them as Pending rather than Removed in the v27.5 symbol file.</p>
+<p><strong>Additional context:</strong> These are US localization fields (IRS = Internal Revenue Service) that Microsoft has moved to the separate <strong>IRS Forms</strong> app. They were never populated on W1 tenants. On US tenants, Microsoft is actively migrating data to the IRS Forms app. At v28 these fields will be physically removed from the table — keeping them would cause a compile failure at the next major upgrade.</p>
+<p><strong>Decision:</strong> Excluded permanently. US customers needing IRS 1099 data should consume it from the IRS Forms app, not from these deprecated columns. No v3.1 deferral warranted.</p>
+<p><strong>File affected:</strong> <code>API.VendorLedgerEntries.al</code></p>
+<hr>
+<h3 id="correction-b1-03-four-entity-names-exceeded-the-30-character-al-identifier-limit">CORRECTION B1-03 — Four Entity Names Exceeded the 30-Character AL Identifier Limit</h3>
+<p><strong>AL rule:</strong> Object names and identifiers must not exceed 30 characters.</p>
+<p>The following names from the TDD exceeded this limit and were shortened using standard BC abbreviations (Gen = General, Bus = Business, Prod = Product, Dtld = Detailed, Ledg = Ledger):</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Original (TDD)</th>
+<th>Length</th>
+<th>Shortened</th>
+<th>Length</th>
+<th>Used in</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>ocpfGeneralBusinessPostingGroups</code></td>
+<td>32</td>
+<td><code>ocpfGenBusPostingGroups</code></td>
+<td>24</td>
+<td>Page name, EntitySetName</td>
+</tr>
+<tr>
+<td><code>ocpfGeneralBusinessPostingGroup</code></td>
+<td>31</td>
+<td><code>ocpfGenBusPostingGroup</code></td>
+<td>23</td>
+<td>EntityName</td>
+</tr>
+<tr>
+<td><code>ocpfGeneralProductPostingGroups</code></td>
+<td>31</td>
+<td><code>ocpfGenProdPostingGroups</code></td>
+<td>25</td>
+<td>Page name, EntitySetName</td>
+</tr>
+<tr>
+<td><code>ocpfDetailedVendorLedgerEntries</code></td>
+<td>31</td>
+<td><code>ocpfDtldVendorLedgEntries</code></td>
+<td>25</td>
+<td>Page name, EntitySetName</td>
+</tr>
+</tbody></table></div>
+<p><code>ocpfGeneralProductPostingGroup</code> (EntityName, 30 chars) and <code>ocpfDetailedVendorLedgerEntry</code> (EntityName, 29 chars) were within the limit and unchanged.</p>
+<p><strong>Impact:</strong> The OData API URLs for these three endpoints change to use the shortened names. Since this library had no deployed consumers at time of fix, there is no breaking change.</p>
+<p><strong>Files affected:</strong> <code>API.GeneralBusinessPostingGroups.al</code>, <code>API.GeneralProductPostingGroups.al</code>, <code>API.DetailedVendorLedgerEntries.al</code></p>
+<p><strong>Going forward:</strong> All entity names for future batches will be pre-checked against the 30-character limit before code generation.</p>
+<hr>
+<h3 id="correction-b1-04-missing-using-directives-caused-source-table-not-found-errors">CORRECTION B1-04 — Missing <code>using</code> Directives Caused &quot;Source Table Not Found&quot; Errors</h3>
+<ul>
+<li><p><strong><code>using</code> directives required:</strong> The TDD template did not include <code>using</code> directives. Because every AL file declares <code>namespace OnlyCopilotFans.OCPFAPIsv3;</code>, the compiler cannot resolve table names from other namespaces (all Microsoft base app tables) without an explicit <code>using</code> statement. Every generated file now includes one <code>using &lt;Microsoft.Namespace&gt;;</code> line immediately after the namespace declaration, sourced directly from the BC v27.5 symbol files. This is a mandatory AL requirement when namespaces are in use and will apply to all batches. The TDD template has been noted as incomplete in this regard.</p>
+</li>
+<li><p><strong>Folder naming:</strong> TDD Section 5 specified folder name <code>Batch1_CoreFinancial</code>. Changed to <code>CoreFinancial</code> per project owner instruction. All future batch folders will follow the pattern <code>&lt;BatchName&gt;</code> without a numeric prefix.</p>
+</li>
+</ul>
+<hr>
+
+
+    </article>
+  </div></main>
+</div>
+  <footer class="site">
+    <div class="wrap foot-inner">
+      <div class="foot-bar" aria-hidden="true"><div style="background:#0F6CBD"></div><div style="background:#0A7C85"></div><div style="background:#6B4FC4"></div><div style="background:#C10E72"></div></div>
+      <p class="foot-tag"><span>Every standard table.</span><span>One consistent API.</span><span>No custom development per table.</span></p>
+      <p class="foot-sub">Built for Microsoft Dynamics 365 Business Central and shared openly with the community under the MIT License.</p>
+      <nav class="foot-docs" aria-label="Documentation">
+        <a href="/getting-started/">Getting Started</a>
+        <a href="/reference/">Reference</a>
+        <a href="/access-control/">Access Control</a>
+        <a href="/schema/">Schema</a>
+        <a href="/changelog/">Changelog</a>
+        <a href="/faq/">FAQ</a>
+      </nav>
+      <div class="foot-rule"></div>
+      <div class="foot-grid">
+        <div class="credits">
+          <div class="by">Created by AJ Ansari, Microsoft MVP</div>
+          <div class="flogos">
+            <a href="https://onlycopilotfans.com" target="_blank" rel="noopener"><span class="chip"><img src="/assets/onlycopilotfans-logo.png" alt="OnlyCopilotFans" width="78" height="26"></span></a>
+            <a href="https://onlybcfans.com" target="_blank" rel="noopener"><span class="chip"><img src="/assets/onlybcfans-logo.png" alt="OnlyBCFans" width="99" height="26"></span></a>
+          </div>
+          <div class="links">
+            <a href="https://github.com/ajansari/ocpfBCAPIsV3" target="_blank" rel="noopener">Source on <strong>GitHub</strong></a>
+            <a href="https://bcdev.ai" target="_blank" rel="noopener">More tools at <strong>bcdev.ai</strong></a>
+            <a href="https://AJAnsari.com" target="_blank" rel="noopener">Visit <strong>AJAnsari.com</strong></a>
+            <a href="https://onlycopilotfans.com" target="_blank" rel="noopener">Visit <strong>OnlyCopilotFans</strong></a>
+            <a href="mailto:aj@onlycopilotfans.com">aj@onlycopilotfans.com</a>
+          </div>
+        </div>
+        <div class="legal">
+          <a href="https://github.com/ajansari/ocpfBCAPIsV3/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a>
+          <a href="/privacy-policy.html">Privacy Policy</a>
+          <a href="/terms-of-service.html">Terms of Service</a>
+          <a href="/cookie-policy.html">Cookie Policy</a>
+          <button class="cookie-btn" type="button" data-cc="show-preferencesModal" aria-label="Cookie settings">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5z"/><circle cx="8.5" cy="10.5" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="15.5" r="1" fill="currentColor" stroke="none"/><circle cx="15.5" cy="12.5" r="1" fill="currentColor" stroke="none"/></svg>
+            Cookie settings
+          </button>
+          <span>© <span id="year">2026</span> OnlyCopilotFans · OnlyBCFans</span>
+        </div>
+      </div>
+    </div>
+    <div class="foot-stripe" aria-hidden="true"><div style="background:#0F6CBD"></div><div style="background:#0A7C85"></div><div style="background:#6B4FC4"></div><div style="background:#C10E72"></div></div>
+  </footer>
+
+<script src="/assets/site.js" defer></script>
+<script src="/assets/vendor/cookieconsent.umd.js" defer></script>
+<script src="/assets/consent.js" defer></script>
+</body>
+</html>

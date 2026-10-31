@@ -14,11 +14,10 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3.1.0/dist/cookieconsent.css" integrity="sha384-9KcNFt4axT+TNOVPHpwGHOm4Kv0UcMjdVya1kl+EPBQG+Vmqtz28cnx0f5PZYcnF" crossorigin="anonymous">
-  <link rel="stylesheet" href="assets/consent.css">
+  <link rel="preload" href="/assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/fonts.css">
+  <link rel="stylesheet" href="/assets/vendor/cookieconsent.css">
+  <link rel="stylesheet" href="/assets/consent.css">
   <script>
     // Apply the saved theme before first paint. Day mode is the default.
     (function () {
@@ -57,6 +56,13 @@
     .brand .name { font-weight: 800; font-size: 1em; line-height: 1; letter-spacing: -0.045em; color: var(--text); }
     .brand .name span { font-weight: 300; letter-spacing: -0.02em; }
     .bc { color: var(--bcteal); font-weight: inherit; }
+    .nav-docs { display: none; gap: 4px 18px; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+    .nav-docs a { text-decoration: none; color: var(--text); }
+    .nav-docs a:hover { color: var(--muted); }
+    @media (min-width: 900px) { .nav-docs { display: flex; } }
+    .foot-docs { display: flex; flex-wrap: wrap; gap: 6px 22px; margin: clamp(24px, 4vh, 40px) 0 0; }
+    .foot-docs a { font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; text-decoration: none; color: var(--text); }
+    .foot-docs a:hover { color: var(--muted); }
     .nav-right { display: flex; align-items: center; gap: 8px 18px; font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
     .nav-right a { text-decoration: none; color: var(--text); display: inline-flex; align-items: center; gap: 8px; }
     .nav-right .ghlink { font-size: 12px; letter-spacing: 0.06em; text-transform: none; font-weight: 400; padding: 7px 14px 7px 10px; border-radius: 999px; gap: 8px; background: var(--text); color: var(--bg); border: 1px solid var(--text); transition: transform .2s ease, box-shadow .2s ease; }
@@ -136,11 +142,12 @@
 <body>
   <header>
     <div class="wrap nav">
-      <a class="brand" href="index.html" aria-label="bcapi.ai home">
-        <img class="mark" src="assets/onlybcfans-icon.png" alt="" width="36" height="36">
+      <a class="brand" href="/" aria-label="bcapi.ai home">
+        <img class="mark" src="/assets/onlybcfans-icon.png" alt="" width="36" height="36">
         <span class="name">bc<b class="bc">api</b><span>.ai</span></span>
       </a>
       <nav class="nav-right" aria-label="Site">
+        <nav class="nav-docs" aria-label="Documentation"><a href="/getting-started/">Getting Started</a><a href="/reference/">Reference</a><a href="/access-control/">Access Control</a><a href="/schema/">Schema</a><a href="/changelog/">Changelog</a><a href="/faq/">FAQ</a></nav>
         <a class="ghlink" href="https://github.com/ajansari" target="_blank" rel="noopener" aria-label="AJ Ansari on GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2.17c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.23 2.75.11 3.04.74.81 1.19 1.83 1.19 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.05.78 2.12v3.14c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg><span class="lbl">Follow <span class="on">on <b>GitHub</b></span></span></a>
         <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to day mode" title="Switch to day mode">
           <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -157,7 +164,7 @@
       <h1>Terms of Service</h1>
       <p class="lede">Please read these terms before using bcapi.ai and the extension it documents.</p>
       <p class="updated">Last updated: October 31, 2026</p>
-      <nav class="nav-legal" aria-label="Legal pages"><a href="privacy-policy.html">Privacy Policy</a> <a href="terms-of-service.html" aria-current="page">Terms of Service</a> <a href="cookie-policy.html">Cookie Policy</a></nav>
+      <nav class="nav-legal" aria-label="Legal pages"><a href="/privacy-policy.html">Privacy Policy</a> <a href="/terms-of-service.html" aria-current="page">Terms of Service</a> <a href="/cookie-policy.html">Cookie Policy</a></nav>
       <div class="rule"></div>
       <h2>Agreement to terms</h2>
       <p>By accessing or using bcapi.ai (the "Site"), operated by AnsariCo, Inc. dba OnlyCopilotFans ("we," "our," or "us"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree with any part of these Terms, you may not use the Site.</p>
@@ -199,7 +206,7 @@
       <p>These Terms are governed by and construed in accordance with the laws of the State of Texas, without regard to its conflict of law provisions. Any legal action arising under these Terms shall be brought exclusively in the federal or state courts located in Dallas County, Texas, and you consent to the personal jurisdiction of those courts.</p>
 
       <h2>Privacy</h2>
-      <p>Please review our <a href="privacy-policy.html">Privacy Policy</a> and <a href="cookie-policy.html">Cookie Policy</a>, which also govern your use of the Site.</p>
+      <p>Please review our <a href="/privacy-policy.html">Privacy Policy</a> and <a href="/cookie-policy.html">Cookie Policy</a>, which also govern your use of the Site.</p>
 
       <h2>Changes to these terms</h2>
       <p>We may change these Terms at any time. We will post the updated Terms on this page and update the "Last updated" date. Your continued use of the Site after a change means you accept the new Terms.</p>
@@ -218,13 +225,21 @@
       <div class="foot-bar" aria-hidden="true"><div style="background:#0F6CBD"></div><div style="background:#0A7C85"></div><div style="background:#6B4FC4"></div><div style="background:#C10E72"></div></div>
       <p class="foot-tag"><span>Every standard table.</span><span>One consistent API.</span><span>No custom development per table.</span></p>
       <p class="foot-sub">Built for Microsoft Dynamics 365 Business Central and shared openly with the community under the MIT License.</p>
+      <nav class="foot-docs" aria-label="Documentation">
+        <a href="/getting-started/">Getting Started</a>
+        <a href="/reference/">Reference</a>
+        <a href="/access-control/">Access Control</a>
+        <a href="/schema/">Schema</a>
+        <a href="/changelog/">Changelog</a>
+        <a href="/faq/">FAQ</a>
+      </nav>
       <div class="foot-rule"></div>
       <div class="foot-grid">
         <div class="credits">
           <div class="by">Created by AJ Ansari, Microsoft MVP</div>
           <div class="logos">
-            <a href="https://onlybcfans.com" target="_blank" rel="noopener"><span class="logo-chip"><img src="assets/onlybcfans-logo.png" alt="OnlyBCFans"></span></a>
-            <a href="https://onlycopilotfans.com" target="_blank" rel="noopener"><span class="logo-chip"><img src="assets/onlycopilotfans-logo.png" alt="OnlyCopilotFans"></span></a>
+            <a href="https://onlybcfans.com" target="_blank" rel="noopener"><span class="logo-chip"><img src="/assets/onlybcfans-logo.png" alt="OnlyBCFans"></span></a>
+            <a href="https://onlycopilotfans.com" target="_blank" rel="noopener"><span class="logo-chip"><img src="/assets/onlycopilotfans-logo.png" alt="OnlyCopilotFans"></span></a>
           </div>
           <div class="links">
             <a href="https://github.com/ajansari/ocpfBCAPIsV3" target="_blank" rel="noopener" class="gh"><svg style="width:16px;height:16px;vertical-align:-3px;margin-right:6px" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2.17c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.23 2.75.11 3.04.74.81 1.19 1.83 1.19 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.05.78 2.12v3.14c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>Source on <strong>GitHub</strong></a>
@@ -235,9 +250,9 @@
           </div>
         </div>
         <div class="legal">
-          <a href="privacy-policy.html">Privacy Policy</a>
-          <a href="terms-of-service.html">Terms of Service</a>
-          <a href="cookie-policy.html">Cookie Policy</a>
+          <a href="/privacy-policy.html">Privacy Policy</a>
+          <a href="/terms-of-service.html">Terms of Service</a>
+          <a href="/cookie-policy.html">Cookie Policy</a>
           <button class="cookie-btn" type="button" data-cc="show-preferencesModal" aria-label="Cookie settings">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5z"/><circle cx="8.5" cy="10.5" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="15.5" r="1" fill="currentColor" stroke="none"/><circle cx="15.5" cy="12.5" r="1" fill="currentColor" stroke="none"/></svg>
             Cookie settings
@@ -249,7 +264,7 @@
     <div class="foot-stripe" aria-hidden="true"><div style="background:#0F6CBD"></div><div style="background:#0A7C85"></div><div style="background:#6B4FC4"></div><div style="background:#C10E72"></div></div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3.1.0/dist/cookieconsent.umd.js" integrity="sha384-xOY5eqzqHsjfa8YYAomICWjVJ3g9q1C1tWgRF09ut5PzRJjLFSpKH7gCsIN3hKcA" crossorigin="anonymous"></script>
+  <script src="/assets/vendor/cookieconsent.umd.js"></script>
   <script>
     (function () {
       var root = document.documentElement, btn = document.getElementById('themeToggle');
@@ -271,6 +286,6 @@
       });
     })();
   </script>
-  <script src="assets/consent.js"></script>
+  <script src="/assets/consent.js"></script>
 </body>
 </html>

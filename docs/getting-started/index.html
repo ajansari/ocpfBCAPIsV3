@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Getting Started: Install and Call the BC API Catalog | bcapi.ai</title>
+<meta name="description" content="Install the BC API Catalog extension, assign permissions, authenticate and send your first OData v4 request to 187 Business Central tables.">
+<link rel="canonical" href="https://bcapi.ai/getting-started/">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#201e1d" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f3f2f2" media="(prefers-color-scheme: light)">
+<meta property="og:site_name" content="bcapi.ai">
+<meta property="og:title" content="Getting Started: Install and Call the BC API Catalog | bcapi.ai">
+<meta property="og:description" content="Install the BC API Catalog extension, assign permissions, authenticate and send your first OData v4 request to 187 Business Central tables.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bcapi.ai/getting-started/">
+<meta property="og:image" content="https://bcapi.ai/assets/og-image.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="bcapi.ai: BC API Catalog v3, custom Business Central API pages">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Getting Started: Install and Call the BC API Catalog | bcapi.ai">
+<meta name="twitter:description" content="Install the BC API Catalog extension, assign permissions, authenticate and send your first OData v4 request to 187 Business Central tables.">
+<meta name="twitter:image" content="https://bcapi.ai/assets/og-image.png">
+<meta name="twitter:image:alt" content="bcapi.ai: BC API Catalog v3, custom Business Central API pages">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","@id":"https://bcapi.ai/getting-started/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://bcapi.ai/"},{"@type":"ListItem","position":2,"name":"Getting Started","item":"https://bcapi.ai/getting-started/"}]}]}</script>
+<link rel="preload" href="/assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/fonts.css">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/vendor/cookieconsent.css">
+<link rel="stylesheet" href="/assets/consent.css">
+<script>
+  // Apply the saved theme before first paint. Night mode is the default.
+  (function () {
+    try {
+      var t = localStorage.getItem('bcapi-theme');
+      if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+  <header class="site scrolled">
+    <div class="wrap nav">
+      <a class="brand" href="/" aria-label="bcapi.ai home">
+        <img class="mark" src="/assets/onlybcfans-icon.png" alt="" width="36" height="36">
+        <span class="name">bc<b class="bc">api</b><span>.ai</span></span>
+      </a>
+      <nav class="nav-right" aria-label="Site">
+        <a class="textlink" href="/#install">Install</a>
+        <a class="textlink" href="/reference/">Reference</a>
+        <a class="pill" href="/getting-started/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Documentation</a>
+        <a class="pill repo" href="https://github.com/ajansari/ocpfBCAPIsV3" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>View GitHub Repo</a>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to day mode" title="Switch to day mode">
+          <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+<div id="docs">
+  <nav class="tabs" aria-label="Documentation sections"><div class="dwrap"><a class="tab" href="/getting-started/" aria-current="page">Getting Started</a><a class="tab" href="/reference/">Reference</a><a class="tab" href="/access-control/">Access Control</a><a class="tab" href="/schema/">Schema</a><a class="tab" href="/changelog/">Changelog</a><a class="tab" href="/faq/">FAQ</a></div></nav>
+  <main><div class="dwrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li aria-current="page">Getting Started</li></ol></nav>
+    <article class="panel">
+<h1>Getting Started with the BC API Catalog</h1>
+<h2 id="install">Install</h2>
+<ol>
+<li>Download <a href="https://github.com/ajansari/ocpfBCAPIsV3/raw/main/OnlyCopilotFans_OCPF%20APIs%20v3_3.1.3.0.app">OnlyCopilotFans_OCPF APIs v3_3.1.3.0.app</a>, or build it from the <a href="https://github.com/ajansari/ocpfBCAPIsV3">source on GitHub</a>.</li>
+<li>In Business Central, search for <strong>Extension Management</strong>, choose <strong>Manage → Upload Extension</strong>, pick the .app file, accept the terms and choose <strong>Deploy</strong>. Installation takes a few minutes; refresh the page until the extension shows as <em>Installed</em>.</li>
+<li>Assign a permission set to the user or service principal that will call the API (next section).</li>
+</ol>
+<p>The extension has no dependencies, no setup page and no data of its own: it only publishes API pages over standard Business Central tables. It installs and behaves identically in every localization because every country-specific field is deliberately left out.</p>
+<p>Minimum platform: Business Central 2025 Wave 2 (v27.5) or later, SaaS or on-premises.</p>
+<h2 id="permissions">Permissions</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Permission set</th>
+<th>Grants</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>OCPF - READ</code></td>
+<td>GET on all 187 endpoints</td>
+</tr>
+<tr>
+<td><code>OCPF - READ/WRITE</code></td>
+<td>GET, POST, PATCH and DELETE on the 135 editable endpoints</td>
+</tr>
+</tbody></table></div>
+<p>Business Central checks the permission set <em>and</em> the caller&#39;s permissions on the underlying base tables, so an integration user needs both (for example <code>D365 BUS FULL ACCESS</code> or a narrower set covering the tables you read). The Access Control endpoints are special: assigning a permission set through <code>ocpfPermissionSetAssignments</code> requires <code>SUPER</code> or the <code>SECURITY</code> permission set.</p>
+<h2 id="authentication">Authentication</h2>
+<p>Business Central online uses OAuth 2.0. Register an application in Microsoft Entra ID with the <code>Financials.ReadWrite.All</code> (delegated) or <code>API.ReadWrite.All</code> (application) permission for Dynamics 365 Business Central, add it in BC under <strong>Microsoft Entra Applications</strong> with a permission set, and request a token for the <code>https://api.businesscentral.dynamics.com/.default</code> scope. Send it as a <code>Bearer</code> token.</p>
+<p>For a quick test from Postman or a browser you can also use Basic authentication with a <strong>web service access key</strong> on the user card, where your environment still allows it.</p>
+<h2 id="url-pattern">URL pattern</h2>
+<pre><code>https://api.businesscentral.dynamics.com/v2.0/{tenantId}/{environment}/api/OnlyCopilotFans/{apiGroup}/v3.1/companies({companyId})/{entitySetName}
+</code></pre>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>{apiGroup}</code></td>
+<td>One of <code>ocpf_coreFinancial</code>, <code>ocpf_masterData</code>, <code>ocpf_sales</code>, <code>ocpf_purchasing</code>, <code>ocpf_projectsAndAssets</code>, <code>ocpf_systemAndSetup</code>, <code>ocpf_manufacturing</code>, <code>ocpf_serviceManagement</code>, <code>ocpf_accessControl</code></td>
+</tr>
+<tr>
+<td><code>v3.1</code></td>
+<td>The API version. Entities that existed in v3.0 are also served at <code>/v3.0/</code>; use <code>/v3.1/</code> for new integrations</td>
+</tr>
+<tr>
+<td><code>{companyId}</code></td>
+<td>From <code>GET .../api/v2.0/companies</code>, or use <code>companies({id})</code> with the company&#39;s SystemId</td>
+</tr>
+<tr>
+<td><code>{entitySetName}</code></td>
+<td>The entity name from the <a href="/reference/">Reference</a>, for example <code>ocpfCustomers</code></td>
+</tr>
+</tbody></table></div>
+<p>Every API group also serves <code>$metadata</code>, an OData CSDL document that lists each entity and field with its caption and tooltip as descriptions. Tools such as Power BI, Power Query, Power Automate and MCP servers read it to discover the schema.</p>
+<h2 id="reading-data">Reading data</h2>
+<pre><code>GET {base}/ocpfCustomers
+GET {base}/ocpfCustomers({systemId})
+GET {base}/ocpfItems?$filter=inventory gt 0&amp;$select=no,description,inventory&amp;$orderby=no&amp;$top=100
+GET {base}/ocpfGeneralLedgerEntries?$filter=postingDate ge 2026-01-01&amp;$count=true
+</code></pre>
+<p>All standard OData v4 query options work: <code>$filter</code>, <code>$select</code>, <code>$orderby</code>, <code>$top</code>, <code>$skip</code>, <code>$count</code>. Pages are keyed on <code>systemId</code> (the four Access Control pages use natural composite keys). Responses include <code>@odata.etag</code>, which PATCH and DELETE require in the <code>If-Match</code> header.</p>
+<h2 id="writing-data">Writing data</h2>
+<pre><code>POST {base}/ocpfCustomers
+Content-Type: application/json
+
+{ &quot;no&quot;: &quot;C-1001&quot;, &quot;name&quot;: &quot;Contoso Ltd.&quot;, &quot;customerPostingGroup&quot;: &quot;DOMESTIC&quot; }
+
+PATCH {base}/ocpfCustomers({systemId})
+If-Match: *
+
+{ &quot;phoneNo&quot;: &quot;+1 555 0100&quot; }
+
+DELETE {base}/ocpfCustomers({systemId})
+If-Match: *
+</code></pre>
+<p>Writes go through the normal Business Central validation, so field triggers, number series and posting-group checks all apply. In each entity&#39;s field table, ✅ marks a writable stored field, 🧮 a computed FlowField (read-only), 🔍 a FlowFilter (used only to parameterize computed fields) and 🔑 the key.</p>
+<h2 id="read-only-entities-and-the-read-replica">Read-only entities and the read replica</h2>
+<p>The 52 read-only endpoints are ledger entries, registers, posted documents and other data that Business Central never lets you edit. 49 of them set <code>DataAccessIntent = ReadOnly</code>, so their GET requests are served from the Azure SQL read replica. The only visible effect is a few seconds of replication lag: a record you just posted may take a moment to appear. Re-read after a short delay when you need read-your-own-write behaviour.</p>
+<h2 id="versioning">Versioning</h2>
+<p>Every endpoint that existed in v3.0 is served unchanged at both <code>/v3.0/</code> and <code>/v3.1/</code>; the entities added in v3.1 exist at <code>/v3.1/</code> only. Releases are additive: fields are added, never removed or renamed. The <a href="/changelog/">Changelog</a> lists every change by version, and the git tags <code>v3.0.0.0</code> and <code>v3.1.0.0</code> in the repository let you diff the full contract.</p>
+
+
+    </article>
+  </div></main>
+</div>
+  <footer class="site">
+    <div class="wrap foot-inner">
+      <div class="foot-bar" aria-hidden="true"><div style="background:#0F6CBD"></div><div style="background:#0A7C85"></div><div style="background:#6B4FC4"></div><div style="background:#C10E72"></div></div>
+      <p class="foot-tag"><span>Every standard table.</span><span>One consistent API.</span><span>No custom development per table.</span></p>
+      <p class="foot-sub">Built for Microsoft Dynamics 365 Business Central and shared openly with the community under the MIT License.</p>
+      <nav class="foot-docs" aria-label="Documentation">
+        <a href="/getting-started/">Getting Started</a>
+        <a href="/reference/">Reference</a>
+        <a href="/access-control/">Access Control</a>
+        <a href="/schema/">Schema</a>
+        <a href="/changelog/">Changelog</a>
+        <a href="/faq/">FAQ</a>
+      </nav>
+      <div class="foot-rule"></div>
+      <div class="foot-grid">
+        <div class="credits">
+          <div class="by">Created by AJ Ansari, Microsoft MVP</div>
+          <div class="flogos">
+            <a href="https://onlycopilotfans.com" target="_blank" rel="noopener"><span class="chip"><img src="/assets/onlycopilotfans-logo.png" alt="OnlyCopilotFans" width="78" height="26"></span></a>
+            <a href="https://onlybcfans.com" target="_blank" rel="noopener"><span class="chip"><img src="/assets/onlybcfans-logo.png" alt="OnlyBCFans" width="99" height="26"></span></a>
+          </div>
+          <div class="links">
+            <a href="https://github.com/ajansari/ocpfBCAPIsV3" target="_blank" rel="noopener">Source on <strong>GitHub</strong></a>
+            <a href="https://bcdev.ai" target="_blank" rel="noopener">More tools at <strong>bcdev.ai</strong></a>
+            <a href="https://AJAnsari.com" target="_blank" rel="noopener">Visit <strong>AJAnsari.com</strong></a>
+            <a href="https://onlycopilotfans.com" target="_blank" rel="noopener">Visit <strong>OnlyCopilotFans</strong></a>
+            <a href="mailto:aj@onlycopilotfans.com">aj@onlycopilotfans.com</a>
+          </div>
+        </div>
+        <div class="legal">
+          <a href="https://github.com/ajansari/ocpfBCAPIsV3/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a>
+          <a href="/privacy-policy.html">Privacy Policy</a>
+          <a href="/terms-of-service.html">Terms of Service</a>
+          <a href="/cookie-policy.html">Cookie Policy</a>
+          <button class="cookie-btn" type="button" data-cc="show-preferencesModal" aria-label="Cookie settings">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5z"/><circle cx="8.5" cy="10.5" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="15.5" r="1" fill="currentColor" stroke="none"/><circle cx="15.5" cy="12.5" r="1" fill="currentColor" stroke="none"/></svg>
+            Cookie settings
+          </button>
+          <span>© <span id="year">2026</span> OnlyCopilotFans · OnlyBCFans</span>
+        </div>
+      </div>
+    </div>
+    <div class="foot-stripe" aria-hidden="true"><div style="background:#0F6CBD"></div><div style="background:#0A7C85"></div><div style="background:#6B4FC4"></div><div style="background:#C10E72"></div></div>
+  </footer>
+
+<script src="/assets/site.js" defer></script>
+<script src="/assets/vendor/cookieconsent.umd.js" defer></script>
+<script src="/assets/consent.js" defer></script>
+</body>
+</html>

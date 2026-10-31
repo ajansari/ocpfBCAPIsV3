@@ -1,0 +1,1407 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Business Central Table Relationship Schema | bcapi.ai</title>
+<meta name="description" content="Entity-relationship diagrams of the standard Business Central tables behind the BC API Catalog and how they relate to each other.">
+<link rel="canonical" href="https://bcapi.ai/schema/">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#201e1d" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f3f2f2" media="(prefers-color-scheme: light)">
+<meta property="og:site_name" content="bcapi.ai">
+<meta property="og:title" content="Business Central Table Relationship Schema | bcapi.ai">
+<meta property="og:description" content="Entity-relationship diagrams of the standard Business Central tables behind the BC API Catalog and how they relate to each other.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bcapi.ai/schema/">
+<meta property="og:image" content="https://bcapi.ai/assets/og-image.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="bcapi.ai: BC API Catalog v3, custom Business Central API pages">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Business Central Table Relationship Schema | bcapi.ai">
+<meta name="twitter:description" content="Entity-relationship diagrams of the standard Business Central tables behind the BC API Catalog and how they relate to each other.">
+<meta name="twitter:image" content="https://bcapi.ai/assets/og-image.png">
+<meta name="twitter:image:alt" content="bcapi.ai: BC API Catalog v3, custom Business Central API pages">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","@id":"https://bcapi.ai/schema/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://bcapi.ai/"},{"@type":"ListItem","position":2,"name":"Schema","item":"https://bcapi.ai/schema/"}]}]}</script>
+<link rel="preload" href="/assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/fonts.css">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/vendor/cookieconsent.css">
+<link rel="stylesheet" href="/assets/consent.css">
+<script>
+  // Apply the saved theme before first paint. Night mode is the default.
+  (function () {
+    try {
+      var t = localStorage.getItem('bcapi-theme');
+      if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+  <header class="site scrolled">
+    <div class="wrap nav">
+      <a class="brand" href="/" aria-label="bcapi.ai home">
+        <img class="mark" src="/assets/onlybcfans-icon.png" alt="" width="36" height="36">
+        <span class="name">bc<b class="bc">api</b><span>.ai</span></span>
+      </a>
+      <nav class="nav-right" aria-label="Site">
+        <a class="textlink" href="/#install">Install</a>
+        <a class="textlink" href="/reference/">Reference</a>
+        <a class="pill" href="/getting-started/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Documentation</a>
+        <a class="pill repo" href="https://github.com/ajansari/ocpfBCAPIsV3" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>View GitHub Repo</a>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to day mode" title="Switch to day mode">
+          <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+<div id="docs">
+  <nav class="tabs" aria-label="Documentation sections"><div class="dwrap"><a class="tab" href="/getting-started/">Getting Started</a><a class="tab" href="/reference/">Reference</a><a class="tab" href="/access-control/">Access Control</a><a class="tab" href="/schema/" aria-current="page">Schema</a><a class="tab" href="/changelog/">Changelog</a><a class="tab" href="/faq/">FAQ</a></div></nav>
+  <main><div class="dwrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li aria-current="page">Schema</li></ol></nav>
+    <article class="panel">
+<h1>Business Central Table Relationship Schema</h1>
+<h2 id="purpose">Purpose</h2>
+<p>This document expands the earlier relationship overview so it includes the full set of tables exposed by the OCPF API catalog and identifies the Business Central field(s) that drive each relationship. The mappings below are based on standard Business Central table patterns and the common AL relationship design used by the exposed API pages.</p>
+<blockquote>
+<p>Scope note: this is a logical schema for the API-backed tables in the catalog. It focuses on the primary parent/child and lookup relationships that matter for integration design, reporting, and downstream joins.</p>
+</blockquote>
+<blockquote>
+<p><strong>Revision note (v3.1, July 2026):</strong> updated for the v3.1 catalog — added the Ship-to Address entity and the new <strong>Manufacturing &amp; Assembly</strong> and <strong>Service Management</strong> categories (65 new entities, families 7 and 8 below). The v3.1 field additions to existing entities (Credit Limit (LCY), Value Entry cost amounts, LCY/Qty flow fields, …) are additive and do not change any relationship keys. Also corrected the entity map: removed a duplicate SKU node and normalized three arrows to the parent → child convention (G/L Register → G/L Entry, Location → Warehouse Entry, Company Information → Document Attachment).</p>
+<p><strong>Revision note (v3.1.3, September 2026):</strong> added the <strong>Access Control</strong> category (family 9 below) — the <code>System.Security.AccessControl</code> platform tables behind the <code>ocpf_accessControl</code> API group. The full entity map (mermaid) above is not extended for these; see family 9 for the relationships.</p>
+</blockquote>
+<h2 id="relationship-notation">Relationship Notation</h2>
+<ul>
+<li>1:N = one parent record to many child records</li>
+<li>N:1 = many child records to one parent record</li>
+<li>1:1 = one-to-one relationship</li>
+</ul>
+<h2 id="relationship-key-conventions-in-business-central">Relationship Key Conventions in Business Central</h2>
+<p>Most Business Central table relations are driven by a small set of recurring key fields:</p>
+<ul>
+<li>Customer relationships: Customer No., Sell-to Customer No., Bill-to Customer No.</li>
+<li>Vendor relationships: Vendor No., Buy-from Vendor No., Pay-to Vendor No.</li>
+<li>Item relationships: Item No., No.</li>
+<li>Document relationships: Document Type, Document No., Line No., Entry No.</li>
+<li>Financial relationships: G/L Account No., Account No., Posting Group, Dimension Set ID</li>
+<li>Header/line relationships: Document No. on the line points to the header’s No.</li>
+<li>Manufacturing relationships: Routing No., Production BOM No., Work Center No., and the composite Status + Prod. Order No. (+ Prod. Order Line No.) on production order child tables</li>
+<li>Service relationships: Service Item No., Contract Type + Contract No., and Document Type + Document No. on service document child tables</li>
+</ul>
+<p>These are the standard types of fields that connect tables in BC and are the ones used below as the relationship-driving fields.</p>
+<hr>
+<h2 id="full-entity-map-all-tables-in-the-catalog">Full Entity Map (all tables in the catalog)</h2>
+<pre class="mermaid">flowchart LR
+    subgraph CoreFinancial["Core Financial"]
+        GLA["G/L Account"]
+        GLE["G/L Entry"]
+        GLS["General Ledger Setup"]
+        AP["Accounting Period"]
+        GLEB["G/L Budget Entry"]
+        GLR["G/L Register"]
+        CLE["Cust. Ledger Entry"]
+        DCLE["Detailed Cust. Ledg. Entry"]
+        VLE["Vendor Ledger Entry"]
+        DVLE["Detailed Vendor Ledg. Entry"]
+        ELE["Employee Ledger Entry"]
+        GBP["Gen. Business Posting Group"]
+        GPP["Gen. Product Posting Group"]
+        GPS["General Posting Setup"]
+        CPG["Customer Posting Group"]
+        VPG["Vendor Posting Group"]
+        IPG["Inventory Posting Group"]
+        VBP["VAT Business Posting Group"]
+        VPP["VAT Product Posting Group"]
+        VPS["VAT Posting Setup"]
+        DIM["Dimension"]
+        DIV["Dimension Value"]
+        DFD["Default Dimension"]
+        DSE["Dimension Set Entry"]
+        IPS["Inventory Posting Setup"]
+    end
+
+    subgraph MasterData["Master Data"]
+        BA["Bank Account"]
+        BAPG["Bank Account Posting Group"]
+        BALE["Bank Account Ledger Entry"]
+        PT["Payment Terms"]
+        PM["Payment Method"]
+        CUR["Currency"]
+        CR["Country/Region"]
+        UOM["Unit of Measure"]
+        IUOM["Item Unit of Measure"]
+        LOC["Location"]
+        ICAT["Item Category"]
+        SM["Shipment Method"]
+        CUST["Customer"]
+        VEND["Vendor"]
+        CONT["Contact"]
+        CBR["Contact Business Relation"]
+        ITEM["Item"]
+        ILE["Item Ledger Entry"]
+        VE["Value Entry"]
+        IAE["Item Application Entry"]
+        IVC["Item Vendor"]
+        SKU["Stockkeeping Unit"]
+        ITC["Item Tracking Code"]
+        ICH["Item Charge"]
+        RES["Resource"]
+        RLE["Res. Ledger Entry"]
+        RGR["Resource Group"]
+        EMP["Employee"]
+        SP["Salesperson/Purchaser"]
+        STA["Ship-to Address"]
+    end
+
+    subgraph Sales["Sales"]
+        SH["Sales Header"]
+        SL["Sales Line"]
+        SIH["Sales Invoice Header"]
+        SIL["Sales Invoice Line"]
+        SCH["Sales Cr.Memo Header"]
+        SCL["Sales Cr.Memo Line"]
+        SSH["Sales Shipment Header"]
+        SSL["Sales Shipment Line"]
+        RRH["Return Receipt Header"]
+        RRL["Return Receipt Line"]
+        SBO["Sales Blanket Order"]
+        SBOL["Sales Blanket Order Line"]
+    end
+
+    subgraph Purchasing["Purchasing"]
+        PH["Purchase Header"]
+        PL["Purchase Line"]
+        PIH["Purch. Inv. Header"]
+        PIL["Purch. Inv. Line"]
+        PCH["Purch. Cr. Memo Hdr."]
+        PCL["Purch. Cr. Memo Line"]
+        PRH["Purch. Rcpt. Header"]
+        PRL["Purch. Rcpt. Line"]
+        RSH["Return Shipment Header"]
+        RSL["Return Shipment Line"]
+        PQ["Purchase Quote"]
+        PQL["Purchase Quote Line"]
+        PBO["Purchase Blanket Order"]
+        PBOL["Purchase Blanket Order Line"]
+    end
+
+    subgraph ProjectsAssets["Projects & Assets"]
+        JOB["Job"]
+        JTG["Job Task"]
+        JPL["Job Planning Line"]
+        JLE["Job Ledger Entry"]
+        JPG["Job Posting Group"]
+        FA["Fixed Asset"]
+        FAG["FA Posting Group"]
+        FAL["FA Ledger Entry"]
+        FADB["FA Depreciation Book"]
+        GJT["Gen. Journal Template"]
+        GJB["Gen. Journal Batch"]
+        GJL["Gen. Journal Line"]
+        PLH["Price List Header"]
+        PLL["Price List Line"]
+    end
+
+    subgraph Manufacturing["Manufacturing & Assembly (new in v3.1)"]
+        MFS["Manufacturing Setup"]
+        WSH["Work Shift"]
+        SHC["Shop Calendar"]
+        SCWD["Shop Calendar Working Days"]
+        WCG["Work Center Group"]
+        WC["Work Center"]
+        MC["Machine Center"]
+        CUOM["Capacity Unit of Measure"]
+        CE["Calendar Entry"]
+        CAE["Calendar Absence Entry"]
+        STOP["Stop"]
+        SCRAP["Scrap"]
+        RLINK["Routing Link"]
+        STASK["Standard Task"]
+        RTH["Routing Header"]
+        RTL["Routing Line"]
+        RTV["Routing Version"]
+        PBH["Production BOM Header"]
+        PBL["Production BOM Line"]
+        PBV["Production BOM Version"]
+        FAM["Family"]
+        FAML["Family Line"]
+        PO["Production Order"]
+        POL["Prod. Order Line"]
+        POC["Prod. Order Component"]
+        PORL["Prod. Order Routing Line"]
+        POCN["Prod. Order Capacity Need"]
+        CAPLE["Capacity Ledger Entry"]
+        ASU["Assembly Setup"]
+        BOMC["BOM Component"]
+        AH["Assembly Header"]
+        ALN["Assembly Line"]
+        PAH["Posted Assembly Header"]
+        PAL["Posted Assembly Line"]
+    end
+
+    subgraph Service["Service Management (new in v3.1)"]
+        SMS["Service Mgt. Setup"]
+        SOT["Service Order Type"]
+        SCST["Service Cost"]
+        SZ["Service Zone"]
+        SIG["Service Item Group"]
+        RST["Repair Status"]
+        FAR["Fault Area"]
+        SYC["Symptom Code"]
+        FC["Fault Code"]
+        FRC["Fault Reason Code"]
+        RC["Resolution Code"]
+        LON["Loaner"]
+        LONE["Loaner Entry"]
+        SVI["Service Item"]
+        SVIC["Service Item Component"]
+        SVH["Service Header"]
+        SVIL["Service Item Line"]
+        SVL["Service Line"]
+        SLE["Service Ledger Entry"]
+        WLE["Warranty Ledger Entry"]
+        SREG["Service Register"]
+        SCOH["Service Contract Header"]
+        SCOL["Service Contract Line"]
+        CG["Contract Group"]
+        SSHH["Service Shipment Header"]
+        SSHL["Service Shipment Line"]
+        SVIH["Service Invoice Header"]
+        SVIHL["Service Invoice Line"]
+        SCMH["Service Cr.Memo Header"]
+        SCML["Service Cr.Memo Line"]
+    end
+
+    subgraph Setup["System & Setup"]
+        DA["Document Attachment"]
+        CI["Company Information"]
+        WE["Warehouse Entry"]
+        RH["Reminder Header"]
+        RL["Reminder Line"]
+        FCMH["Finance Charge Memo Header"]
+        FCML["Finance Charge Memo Line"]
+        AE["Approval Entry"]
+        WSI["Workflow Step Instance"]
+    end
+
+    GLA --> GLE
+    GLR --> GLE
+    GLE --> DSE
+    GLA --> DFD
+    CUST --> CLE
+    VEND --> VLE
+    ITEM --> ILE
+    ITEM --> VE
+    ITEM --> SKU
+    SH --> SL
+    PH --> PL
+    SH --> SIH
+    PH --> PIH
+    SH --> SCH
+    PH --> PCH
+    SH --> SSH
+    PH --> PRH
+    SH --> RRH
+    PH --> RSH
+    JOB --> JPL
+    JOB --> JLE
+    JOB --> JTG
+    FA --> FAL
+    FA --> FADB
+    GJT --> GJB
+    GJB --> GJL
+    PLH --> PLL
+    RH --> RL
+    FCMH --> FCML
+    CI --> DA
+    LOC --> WE
+    ITEM --> WE
+    CONT --> CBR
+    CBR --> CUST
+    CBR --> VEND
+    CBR --> EMP
+    CBR --> RES
+    BA --> BALE
+    BAPG --> BA
+    CUST --> SH
+    VEND --> PH
+    ITEM --> SL
+    ITEM --> PL
+    ITEM --> PLL
+    SKU --> ILE
+
+    CUST --> STA
+    STA --> SH
+
+    WCG --> WC
+    WC --> MC
+    SHC --> SCWD
+    WSH --> SCWD
+    SHC --> WC
+    CUOM --> WC
+    WC --> CE
+    MC --> CE
+    WC --> CAE
+    MC --> CAE
+    RTH --> RTL
+    RTH --> RTV
+    STASK --> RTL
+    RLINK --> RTL
+    WC --> RTL
+    MC --> RTL
+    PBH --> PBL
+    PBH --> PBV
+    ITEM --> PBL
+    RTH --> ITEM
+    PBH --> ITEM
+    FAM --> FAML
+    ITEM --> FAML
+    PO --> POL
+    POL --> POC
+    POL --> PORL
+    PORL --> POCN
+    ITEM --> POL
+    ITEM --> POC
+    WC --> PORL
+    MC --> PORL
+    PO --> CAPLE
+    WC --> CAPLE
+    ITEM --> BOMC
+    AH --> ALN
+    ITEM --> AH
+    ITEM --> ALN
+    RES --> ALN
+    AH --> PAH
+    PAH --> PAL
+    STOP --> CAPLE
+    SCRAP --> CAPLE
+
+    CUST --> SVI
+    ITEM --> SVI
+    SIG --> SVI
+    SVI --> SVIC
+    SVH --> SVIL
+    SVH --> SVL
+    SVI --> SVIL
+    CUST --> SVH
+    SOT --> SVH
+    STA --> SVH
+    RST --> SVIL
+    FAR --> SVIL
+    SYC --> SVIL
+    FC --> SVIL
+    FRC --> SVIL
+    RC --> SVIL
+    LON --> LONE
+    SVH --> LONE
+    SCOH --> SCOL
+    SVI --> SCOL
+    CUST --> SCOH
+    CG --> SCOH
+    SVI --> SLE
+    SCOH --> SLE
+    SVI --> WLE
+    SREG --> SLE
+    SVH --> SSHH
+    SSHH --> SSHL
+    SVIH --> SVIHL
+    SCMH --> SCML
+    CUST --> SVIH
+    CUST --> SCMH
+    SZ --> STA
+</pre>
+<hr>
+<h2 id="relationship-families-with-driving-fields">Relationship Families with Driving Fields</h2>
+<h3 id="1-core-financial">1. Core Financial</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Parent table</th>
+<th>Child / related table</th>
+<th>Relationship</th>
+<th>Driving field(s)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>G/L Account</td>
+<td>G/L Entry</td>
+<td>1:N</td>
+<td>G/L Account No. on G/L Entry</td>
+</tr>
+<tr>
+<td>G/L Register</td>
+<td>G/L Entry</td>
+<td>1:N</td>
+<td>Entry No. / Register No. pattern</td>
+</tr>
+<tr>
+<td>G/L Entry</td>
+<td>G/L Budget Entry</td>
+<td>N:1</td>
+<td>Budgeted account context is tied to G/L Account No.</td>
+</tr>
+<tr>
+<td>G/L Account</td>
+<td>Default Dimension</td>
+<td>1:N</td>
+<td>No. on Default Dimension points to the G/L Account</td>
+</tr>
+<tr>
+<td>Dimension</td>
+<td>Dimension Value</td>
+<td>1:N</td>
+<td>Dimension Code on Dimension Value</td>
+</tr>
+<tr>
+<td>Dimension Set Entry</td>
+<td>G/L Entry / Sales / Purchase / Job / FA entries</td>
+<td>N:1</td>
+<td>Dimension Set ID</td>
+</tr>
+<tr>
+<td>Customer</td>
+<td>Cust. Ledger Entry</td>
+<td>1:N</td>
+<td>Customer No.</td>
+</tr>
+<tr>
+<td>Vendor</td>
+<td>Vendor Ledger Entry</td>
+<td>1:N</td>
+<td>Vendor No.</td>
+</tr>
+<tr>
+<td>Bank Account</td>
+<td>Bank Account Ledger Entry</td>
+<td>1:N</td>
+<td>Bank Account No.</td>
+</tr>
+<tr>
+<td>General Posting Setup</td>
+<td>G/L Entry / posting documents</td>
+<td>N:1</td>
+<td>Gen. Bus. Posting Group / Gen. Prod. Posting Group / VAT Bus./Prod. Posting Group</td>
+</tr>
+<tr>
+<td>VAT Posting Setup</td>
+<td>VAT Business Posting Group / VAT Product Posting Group</td>
+<td>N:1</td>
+<td>VAT Bus. Posting Group / VAT Prod. Posting Group</td>
+</tr>
+</tbody></table></div>
+<h3 id="2-master-data">2. Master Data</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Parent table</th>
+<th>Child / related table</th>
+<th>Relationship</th>
+<th>Driving field(s)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Customer Posting Group</td>
+<td>Customer</td>
+<td>1:N</td>
+<td>Customer Posting Group Code</td>
+</tr>
+<tr>
+<td>Vendor Posting Group</td>
+<td>Vendor</td>
+<td>1:N</td>
+<td>Vendor Posting Group Code</td>
+</tr>
+<tr>
+<td>Inventory Posting Group</td>
+<td>Item</td>
+<td>1:N</td>
+<td>Inventory Posting Group Code</td>
+</tr>
+<tr>
+<td>Item Category</td>
+<td>Item</td>
+<td>1:N</td>
+<td>Item Category Code</td>
+</tr>
+<tr>
+<td>Unit of Measure</td>
+<td>Item Unit of Measure</td>
+<td>1:N</td>
+<td>Code on Item Unit of Measure</td>
+</tr>
+<tr>
+<td>Location</td>
+<td>Stockkeeping Unit / Item Ledger Entry / Warehouse Entry</td>
+<td>1:N</td>
+<td>Location Code</td>
+</tr>
+<tr>
+<td>Item</td>
+<td>Item Ledger Entry</td>
+<td>1:N</td>
+<td>Item No.</td>
+</tr>
+<tr>
+<td>Item</td>
+<td>Value Entry</td>
+<td>1:N</td>
+<td>Item No.</td>
+</tr>
+<tr>
+<td>Item</td>
+<td>Item Vendor</td>
+<td>1:N</td>
+<td>Item No. and Vendor No.</td>
+</tr>
+<tr>
+<td>Item</td>
+<td>Stockkeeping Unit</td>
+<td>1:N</td>
+<td>Item No. and Location Code</td>
+</tr>
+<tr>
+<td>Contact</td>
+<td>Contact Business Relation</td>
+<td>1:N</td>
+<td>Contact No.</td>
+</tr>
+<tr>
+<td>Contact Business Relation</td>
+<td>Customer / Vendor / Employee / Resource</td>
+<td>N:1</td>
+<td>No. / Contact No. / Related Record No. pattern</td>
+</tr>
+<tr>
+<td>Resource Group</td>
+<td>Resource</td>
+<td>1:N</td>
+<td>Resource Group No.</td>
+</tr>
+<tr>
+<td>Resource</td>
+<td>Res. Ledger Entry</td>
+<td>1:N</td>
+<td>Resource No.</td>
+</tr>
+<tr>
+<td>Bank Account Posting Group</td>
+<td>Bank Account</td>
+<td>1:N</td>
+<td>Bank Account Posting Group Code</td>
+</tr>
+<tr>
+<td>Customer</td>
+<td>Ship-to Address <em>(new in v3.1)</em></td>
+<td>1:N</td>
+<td>Customer No. on Ship-to Address; Code identifies the address within the customer</td>
+</tr>
+<tr>
+<td>Ship-to Address</td>
+<td>Sales Header / Service Header</td>
+<td>1:N</td>
+<td>Sell-to Customer No. + Ship-to Code on the document header</td>
+</tr>
+<tr>
+<td>Vendor</td>
+<td>Vendor Bank Account <em>(new in v3.1.1)</em></td>
+<td>1:N</td>
+<td>Vendor No. on Vendor Bank Account; Code identifies the account within the vendor</td>
+</tr>
+<tr>
+<td>Vendor Bank Account</td>
+<td>Vendor (Preferred Bank Account Code)</td>
+<td>N:1</td>
+<td>Vendor No. + Preferred Bank Account Code on the vendor card</td>
+</tr>
+</tbody></table></div>
+<h3 id="3-sales-documents">3. Sales Documents</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Parent table</th>
+<th>Child / related table</th>
+<th>Relationship</th>
+<th>Driving field(s)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Sales Header</td>
+<td>Sales Line</td>
+<td>1:N</td>
+<td>Document Type + Document No. on Sales Line</td>
+</tr>
+<tr>
+<td>Sales Header</td>
+<td>Sales Invoice Header / Sales Cr.Memo Header / Sales Shipment Header / Return Receipt Header</td>
+<td>1:N</td>
+<td>Document No. / Order No. / Return Order No. patterns</td>
+</tr>
+<tr>
+<td>Sales Header</td>
+<td>Customer</td>
+<td>N:1</td>
+<td>Sell-to Customer No.</td>
+</tr>
+<tr>
+<td>Sales Header</td>
+<td>Currency / Payment Terms / Shipment Method / Location</td>
+<td>N:1</td>
+<td>Currency Code / Payment Terms Code / Shipment Method Code / Location Code</td>
+</tr>
+<tr>
+<td>Sales Line</td>
+<td>Item</td>
+<td>N:1</td>
+<td>No. (Item No.)</td>
+</tr>
+<tr>
+<td>Sales Line</td>
+<td>Unit of Measure</td>
+<td>N:1</td>
+<td>Unit of Measure Code</td>
+</tr>
+<tr>
+<td>Posted Sales Invoice Header</td>
+<td>Posted Sales Invoice Line</td>
+<td>1:N</td>
+<td>Document No. on the line</td>
+</tr>
+<tr>
+<td>Posted Sales Invoice Line</td>
+<td>Item</td>
+<td>N:1</td>
+<td>No. (Item No.)</td>
+</tr>
+<tr>
+<td>Sales Blanket Order</td>
+<td>Sales Blanket Order Line</td>
+<td>1:N</td>
+<td>Document No. on the line</td>
+</tr>
+<tr>
+<td>Sales Blanket Order Line</td>
+<td>Item</td>
+<td>N:1</td>
+<td>No. (Item No.)</td>
+</tr>
+<tr>
+<td>Sales Line Discount <em>(new in v3.1.1)</em></td>
+<td>Customer / Customer Disc. Group / Item / Item Disc. Group</td>
+<td>N:1</td>
+<td>Sales Type + Sales Code (resolves to the discount recipient)</td>
+</tr>
+<tr>
+<td>Cust. Invoice Disc. <em>(new in v3.1.1)</em></td>
+<td>Customer</td>
+<td>N:1</td>
+<td>Code = Customer&#39;s Invoice Disc. Code (customer discount group)</td>
+</tr>
+</tbody></table></div>
+<h3 id="4-purchasing-documents">4. Purchasing Documents</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Parent table</th>
+<th>Child / related table</th>
+<th>Relationship</th>
+<th>Driving field(s)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Purchase Header</td>
+<td>Purchase Line</td>
+<td>1:N</td>
+<td>Document Type + Document No. on Purchase Line</td>
+</tr>
+<tr>
+<td>Purchase Header</td>
+<td>Purch. Inv. Header / Purch. Cr. Memo Hdr. / Purch. Rcpt. Header / Return Shipment Header</td>
+<td>1:N</td>
+<td>Document No. / Order No. pattern</td>
+</tr>
+<tr>
+<td>Purchase Header</td>
+<td>Vendor</td>
+<td>N:1</td>
+<td>Buy-from Vendor No.</td>
+</tr>
+<tr>
+<td>Purchase Header</td>
+<td>Currency / Payment Terms / Shipment Method / Location</td>
+<td>N:1</td>
+<td>Currency Code / Payment Terms Code / Shipment Method Code / Location Code</td>
+</tr>
+<tr>
+<td>Purchase Line</td>
+<td>Item</td>
+<td>N:1</td>
+<td>No. (Item No.)</td>
+</tr>
+<tr>
+<td>Purchase Line</td>
+<td>Unit of Measure</td>
+<td>N:1</td>
+<td>Unit of Measure Code</td>
+</tr>
+<tr>
+<td>Posted Purchase Invoice Header</td>
+<td>Posted Purchase Invoice Line</td>
+<td>1:N</td>
+<td>Document No. on the line</td>
+</tr>
+<tr>
+<td>Posted Purchase Invoice Line</td>
+<td>Item</td>
+<td>N:1</td>
+<td>No. (Item No.)</td>
+</tr>
+<tr>
+<td>Purchase Blanket Order</td>
+<td>Purchase Blanket Order Line</td>
+<td>1:N</td>
+<td>Document No. on the line</td>
+</tr>
+<tr>
+<td>Purchase Blanket Order Line</td>
+<td>Item</td>
+<td>N:1</td>
+<td>No. (Item No.)</td>
+</tr>
+<tr>
+<td>Purchase Line Discount <em>(new in v3.1.1)</em></td>
+<td>Vendor / Item</td>
+<td>N:1</td>
+<td>Vendor No. + Item No. (discount applies to the vendor-item pair)</td>
+</tr>
+<tr>
+<td>Vendor Invoice Disc. <em>(new in v3.1.1)</em></td>
+<td>Vendor</td>
+<td>N:1</td>
+<td>Code = Vendor&#39;s Invoice Disc. Code (vendor discount group)</td>
+</tr>
+</tbody></table></div>
+<h3 id="5-projects-and-assets">5. Projects and Assets</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Parent table</th>
+<th>Child / related table</th>
+<th>Relationship</th>
+<th>Driving field(s)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Job</td>
+<td>Job Task</td>
+<td>1:N</td>
+<td>Job No.</td>
+</tr>
+<tr>
+<td>Job</td>
+<td>Job Planning Line</td>
+<td>1:N</td>
+<td>Job No.</td>
+</tr>
+<tr>
+<td>Job</td>
+<td>Job Ledger Entry</td>
+<td>1:N</td>
+<td>Job No.</td>
+</tr>
+<tr>
+<td>Job Planning Line</td>
+<td>Item</td>
+<td>N:1</td>
+<td>No. (Item No.)</td>
+</tr>
+<tr>
+<td>Job Ledger Entry</td>
+<td>Job Posting Group</td>
+<td>N:1</td>
+<td>Job Posting Group Code</td>
+</tr>
+<tr>
+<td>Fixed Asset</td>
+<td>FA Ledger Entry</td>
+<td>1:N</td>
+<td>Fixed Asset No.</td>
+</tr>
+<tr>
+<td>Fixed Asset</td>
+<td>FA Depreciation Book</td>
+<td>1:N</td>
+<td>Fixed Asset No.</td>
+</tr>
+<tr>
+<td>FA Ledger Entry</td>
+<td>FA Posting Group</td>
+<td>N:1</td>
+<td>FA Posting Group Code</td>
+</tr>
+<tr>
+<td>Price List Header</td>
+<td>Price List Line</td>
+<td>1:N</td>
+<td>Price List Code / Price List No. pattern</td>
+</tr>
+<tr>
+<td>Price List Line</td>
+<td>Item</td>
+<td>N:1</td>
+<td>Item No.</td>
+</tr>
+<tr>
+<td>Gen. Journal Template</td>
+<td>Gen. Journal Batch</td>
+<td>1:N</td>
+<td>Journal Template Name</td>
+</tr>
+<tr>
+<td>Gen. Journal Batch</td>
+<td>Gen. Journal Line</td>
+<td>1:N</td>
+<td>Journal Batch Name</td>
+</tr>
+<tr>
+<td>Gen. Journal Line</td>
+<td>G/L Account / Customer / Vendor / Bank Account / Item</td>
+<td>N:1</td>
+<td>Account No.</td>
+</tr>
+</tbody></table></div>
+<h3 id="6-system-and-setup">6. System and Setup</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Parent table</th>
+<th>Child / related table</th>
+<th>Relationship</th>
+<th>Driving field(s)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Reminder Header</td>
+<td>Reminder Line</td>
+<td>1:N</td>
+<td>No. on Reminder Line</td>
+</tr>
+<tr>
+<td>Finance Charge Memo Header</td>
+<td>Finance Charge Memo Line</td>
+<td>1:N</td>
+<td>No. on Finance Charge Memo Line</td>
+</tr>
+<tr>
+<td>Workflow Step Instance</td>
+<td>Approval Entry</td>
+<td>1:N</td>
+<td>Workflow Step Instance ID</td>
+</tr>
+<tr>
+<td>Document Attachment</td>
+<td>Company Information / Customer / Vendor / Item / Document records</td>
+<td>N:1</td>
+<td>Table ID + No. / Record ID pattern</td>
+</tr>
+<tr>
+<td>Warehouse Entry</td>
+<td>Item / Location</td>
+<td>N:1</td>
+<td>Item No. / Location Code</td>
+</tr>
+</tbody></table></div>
+<h3 id="7-manufacturing-assembly-new-in-v3-1">7. Manufacturing &amp; Assembly <em>(new in v3.1)</em></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Parent table</th>
+<th>Child / related table</th>
+<th>Relationship</th>
+<th>Driving field(s)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Work Center Group</td>
+<td>Work Center</td>
+<td>1:N</td>
+<td>Work Center Group Code on Work Center</td>
+</tr>
+<tr>
+<td>Work Center</td>
+<td>Machine Center</td>
+<td>1:N</td>
+<td>Work Center No. on Machine Center</td>
+</tr>
+<tr>
+<td>Shop Calendar</td>
+<td>Shop Calendar Working Days</td>
+<td>1:N</td>
+<td>Shop Calendar Code</td>
+</tr>
+<tr>
+<td>Work Shift</td>
+<td>Shop Calendar Working Days</td>
+<td>1:N</td>
+<td>Work Shift Code</td>
+</tr>
+<tr>
+<td>Shop Calendar</td>
+<td>Work Center</td>
+<td>1:N</td>
+<td>Shop Calendar Code on Work Center</td>
+</tr>
+<tr>
+<td>Capacity Unit of Measure</td>
+<td>Work Center / Machine Center / Routing Line</td>
+<td>1:N</td>
+<td>Unit of Measure Code</td>
+</tr>
+<tr>
+<td>Work Center / Machine Center</td>
+<td>Calendar Entry / Calendar Absence Entry</td>
+<td>1:N</td>
+<td>Capacity Type + No.</td>
+</tr>
+<tr>
+<td>Routing Header</td>
+<td>Routing Line</td>
+<td>1:N</td>
+<td>Routing No. (+ Version Code for versioned lines)</td>
+</tr>
+<tr>
+<td>Routing Header</td>
+<td>Routing Version</td>
+<td>1:N</td>
+<td>Routing No. + Version Code</td>
+</tr>
+<tr>
+<td>Routing Header</td>
+<td>Item</td>
+<td>1:N</td>
+<td>Routing No. on Item</td>
+</tr>
+<tr>
+<td>Standard Task</td>
+<td>Routing Line</td>
+<td>1:N</td>
+<td>Standard Task Code</td>
+</tr>
+<tr>
+<td>Routing Link</td>
+<td>Routing Line / Prod. Order Component</td>
+<td>1:N</td>
+<td>Routing Link Code (ties components to operations for JIT flushing)</td>
+</tr>
+<tr>
+<td>Work Center / Machine Center</td>
+<td>Routing Line / Prod. Order Routing Line</td>
+<td>1:N</td>
+<td>Type + No. on the routing line</td>
+</tr>
+<tr>
+<td>Production BOM Header</td>
+<td>Production BOM Line</td>
+<td>1:N</td>
+<td>Production BOM No. (+ Version Code for versioned lines)</td>
+</tr>
+<tr>
+<td>Production BOM Header</td>
+<td>Production BOM Version</td>
+<td>1:N</td>
+<td>Production BOM No. + Version Code</td>
+</tr>
+<tr>
+<td>Production BOM Header</td>
+<td>Item</td>
+<td>1:N</td>
+<td>Production BOM No. on Item</td>
+</tr>
+<tr>
+<td>Production BOM Line</td>
+<td>Item</td>
+<td>N:1</td>
+<td>Type = Item + No.</td>
+</tr>
+<tr>
+<td>Family</td>
+<td>Family Line</td>
+<td>1:N</td>
+<td>Family No.</td>
+</tr>
+<tr>
+<td>Family Line</td>
+<td>Item</td>
+<td>N:1</td>
+<td>Item No.</td>
+</tr>
+<tr>
+<td>Production Order</td>
+<td>Prod. Order Line</td>
+<td>1:N</td>
+<td>Status + Prod. Order No.</td>
+</tr>
+<tr>
+<td>Prod. Order Line</td>
+<td>Prod. Order Component</td>
+<td>1:N</td>
+<td>Status + Prod. Order No. + Prod. Order Line No.</td>
+</tr>
+<tr>
+<td>Prod. Order Line</td>
+<td>Prod. Order Routing Line</td>
+<td>1:N</td>
+<td>Status + Prod. Order No. + Routing Reference No.</td>
+</tr>
+<tr>
+<td>Prod. Order Routing Line</td>
+<td>Prod. Order Capacity Need</td>
+<td>1:N</td>
+<td>Status + Prod. Order No. + Routing Reference No. + Operation No.</td>
+</tr>
+<tr>
+<td>Production Order</td>
+<td>Capacity Ledger Entry / Item Ledger Entry</td>
+<td>1:N</td>
+<td>Order Type = Production + Order No.</td>
+</tr>
+<tr>
+<td>Stop / Scrap</td>
+<td>Capacity Ledger Entry</td>
+<td>1:N</td>
+<td>Stop Code / Scrap Code</td>
+</tr>
+<tr>
+<td>Item</td>
+<td>BOM Component</td>
+<td>1:N</td>
+<td>Parent Item No.</td>
+</tr>
+<tr>
+<td>BOM Component</td>
+<td>Item / Resource</td>
+<td>N:1</td>
+<td>Type + No.</td>
+</tr>
+<tr>
+<td>Assembly Header</td>
+<td>Assembly Line</td>
+<td>1:N</td>
+<td>Document Type + Document No.</td>
+</tr>
+<tr>
+<td>Assembly Header</td>
+<td>Item</td>
+<td>N:1</td>
+<td>Item No. (the assembled item)</td>
+</tr>
+<tr>
+<td>Assembly Line</td>
+<td>Item / Resource</td>
+<td>N:1</td>
+<td>Type + No.</td>
+</tr>
+<tr>
+<td>Assembly Header</td>
+<td>Posted Assembly Header</td>
+<td>1:N</td>
+<td>Order No. on Posted Assembly Header</td>
+</tr>
+<tr>
+<td>Posted Assembly Header</td>
+<td>Posted Assembly Line</td>
+<td>1:N</td>
+<td>Document No.</td>
+</tr>
+</tbody></table></div>
+<h3 id="8-service-management-new-in-v3-1">8. Service Management <em>(new in v3.1)</em></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Parent table</th>
+<th>Child / related table</th>
+<th>Relationship</th>
+<th>Driving field(s)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Customer</td>
+<td>Service Item / Service Header / Service Contract Header</td>
+<td>1:N</td>
+<td>Customer No.</td>
+</tr>
+<tr>
+<td>Item</td>
+<td>Service Item</td>
+<td>1:N</td>
+<td>Item No. on Service Item</td>
+</tr>
+<tr>
+<td>Service Item Group</td>
+<td>Service Item</td>
+<td>1:N</td>
+<td>Service Item Group Code</td>
+</tr>
+<tr>
+<td>Service Item</td>
+<td>Service Item Component</td>
+<td>1:N</td>
+<td>Parent Service Item No.</td>
+</tr>
+<tr>
+<td>Service Header</td>
+<td>Service Item Line</td>
+<td>1:N</td>
+<td>Document Type + Document No.</td>
+</tr>
+<tr>
+<td>Service Header</td>
+<td>Service Line</td>
+<td>1:N</td>
+<td>Document Type + Document No. (+ Service Item Line No.)</td>
+</tr>
+<tr>
+<td>Service Item</td>
+<td>Service Item Line</td>
+<td>1:N</td>
+<td>Service Item No.</td>
+</tr>
+<tr>
+<td>Service Order Type</td>
+<td>Service Header</td>
+<td>1:N</td>
+<td>Service Order Type Code</td>
+</tr>
+<tr>
+<td>Ship-to Address</td>
+<td>Service Header</td>
+<td>1:N</td>
+<td>Customer No. + Ship-to Code</td>
+</tr>
+<tr>
+<td>Repair Status</td>
+<td>Service Item Line</td>
+<td>1:N</td>
+<td>Repair Status Code</td>
+</tr>
+<tr>
+<td>Fault Area / Symptom Code / Fault Code / Fault Reason Code / Resolution Code</td>
+<td>Service Item Line</td>
+<td>1:N</td>
+<td>Fault Area Code / Symptom Code / Fault Code / Fault Reason Code / Resolution Code (fault reporting)</td>
+</tr>
+<tr>
+<td>Service Cost</td>
+<td>Service Line</td>
+<td>1:N</td>
+<td>Service Cost Code (Type = Cost)</td>
+</tr>
+<tr>
+<td>Service Zone</td>
+<td>Ship-to Address / Customer</td>
+<td>1:N</td>
+<td>Service Zone Code</td>
+</tr>
+<tr>
+<td>Loaner</td>
+<td>Loaner Entry</td>
+<td>1:N</td>
+<td>Loaner No.</td>
+</tr>
+<tr>
+<td>Service Header</td>
+<td>Loaner Entry</td>
+<td>1:N</td>
+<td>Document Type + Document No.</td>
+</tr>
+<tr>
+<td>Service Contract Header</td>
+<td>Service Contract Line</td>
+<td>1:N</td>
+<td>Contract Type + Contract No.</td>
+</tr>
+<tr>
+<td>Service Item</td>
+<td>Service Contract Line</td>
+<td>1:N</td>
+<td>Service Item No.</td>
+</tr>
+<tr>
+<td>Contract Group</td>
+<td>Service Contract Header</td>
+<td>1:N</td>
+<td>Contract Group Code</td>
+</tr>
+<tr>
+<td>Service Item</td>
+<td>Service Ledger Entry / Warranty Ledger Entry</td>
+<td>1:N</td>
+<td>Service Item No. (Description)</td>
+</tr>
+<tr>
+<td>Service Contract Header</td>
+<td>Service Ledger Entry</td>
+<td>1:N</td>
+<td>Service Contract No.</td>
+</tr>
+<tr>
+<td>Service Register</td>
+<td>Service Ledger Entry</td>
+<td>1:N</td>
+<td>From Entry No. / To Entry No. range</td>
+</tr>
+<tr>
+<td>Service Header</td>
+<td>Service Shipment Header / Service Invoice Header / Service Cr.Memo Header</td>
+<td>1:N</td>
+<td>Order No. / Pre-Assigned No. patterns</td>
+</tr>
+<tr>
+<td>Service Shipment Header</td>
+<td>Service Shipment Line</td>
+<td>1:N</td>
+<td>Document No.</td>
+</tr>
+<tr>
+<td>Service Invoice Header</td>
+<td>Service Invoice Line</td>
+<td>1:N</td>
+<td>Document No.</td>
+</tr>
+<tr>
+<td>Service Cr.Memo Header</td>
+<td>Service Cr.Memo Line</td>
+<td>1:N</td>
+<td>Document No.</td>
+</tr>
+</tbody></table></div>
+<hr>
+<h3 id="9-access-control-new-in-v3-1-3">9. Access Control <em>(new in v3.1.3)</em></h3>
+<p>Platform virtual tables in <code>System.Security.AccessControl</code>. These are keyed by natural composite keys, not <code>SystemId</code>.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Parent table</th>
+<th>Child / related table</th>
+<th>Relationship</th>
+<th>Driving field(s)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Aggregate Permission Set</td>
+<td>Expanded Permission</td>
+<td>1:N</td>
+<td>Scope + App ID + Role ID</td>
+</tr>
+<tr>
+<td>Aggregate Permission Set</td>
+<td>Access Control</td>
+<td>1:N</td>
+<td>App ID + Role ID (+ Scope)</td>
+</tr>
+<tr>
+<td>User</td>
+<td>Access Control</td>
+<td>1:N</td>
+<td>User Security ID — individual users only (assigning a permission set to a security group is done in the BC UI, not this API)</td>
+</tr>
+<tr>
+<td>Access Control</td>
+<td>Company (Company Name)</td>
+<td>N:1</td>
+<td>Company Name (blank = all companies)</td>
+</tr>
+</tbody></table></div>
+<hr>
+<h2 id="practical-integration-view">Practical Integration View</h2>
+<p>For API integration, the most valuable join paths are:</p>
+<ol>
+<li>Customer → Sales Header → Sales Line → Posted Sales Document</li>
+<li>Vendor → Purchase Header → Purchase Line → Posted Purchase Document</li>
+<li>Item → Sales Line / Purchase Line → Item Ledger Entry / Value Entry / Stockkeeping Unit</li>
+<li>G/L Account → G/L Entry → G/L Register</li>
+<li>Dimension Set Entry → Financial / sales / purchasing / project / fixed asset entries</li>
+<li>Job / Fixed Asset → Ledger entries and posting groups</li>
+<li>Document header → line → posted document line</li>
+<li>Customer → Ship-to Address → Sales/Service Header (delivery-address resolution) <em>(v3.1)</em></li>
+<li>Item → Routing / Production BOM → Production Order → Prod. Order Lines/Components/Routing Lines → Capacity &amp; Item Ledger Entries <em>(v3.1)</em></li>
+<li>Customer → Service Item → Service Order (Item Lines → Lines) → Posted Service Documents, and Service Contract → Service Ledger Entries <em>(v3.1)</em></li>
+<li>Permission Set → Permission Set Permissions, and Permission Set → Permission Set Assignment → User <em>(v3.1.3)</em></li>
+</ol>
+<h2 id="summary">Summary</h2>
+<p>The OCPF API catalog exposes a standard Business Central transactional model in which:</p>
+<ul>
+<li>Master data such as Customer, Vendor, Item, Location, and Employee act as the backbone of transactions.</li>
+<li>Sales and purchase documents are header/line structures tied to their parent customer/vendor and item lines.</li>
+<li>Ledger and posting tables capture the financial, inventory, and cost impact of those documents.</li>
+<li>Dimensions and posting groups provide cross-cutting classification and posting context.</li>
+<li>Manufacturing (v3.1) follows the same pattern: Routings and Production BOMs are the master definitions, Production Orders are header/line documents, and Capacity/Item Ledger Entries capture the posted result.</li>
+<li>Service Management (v3.1) centers on the Service Item: service orders (header → item line → line), contracts, and their posted documents and ledgers all key back to Service Item No. and Customer No.</li>
+</ul>
+<p>The relationship-driving fields above are the fields most often used to join these entities in API queries, reporting, and downstream integration logic.</p>
+
+
+    </article>
+  </div></main>
+</div>
+  <footer class="site">
+    <div class="wrap foot-inner">
+      <div class="foot-bar" aria-hidden="true"><div style="background:#0F6CBD"></div><div style="background:#0A7C85"></div><div style="background:#6B4FC4"></div><div style="background:#C10E72"></div></div>
+      <p class="foot-tag"><span>Every standard table.</span><span>One consistent API.</span><span>No custom development per table.</span></p>
+      <p class="foot-sub">Built for Microsoft Dynamics 365 Business Central and shared openly with the community under the MIT License.</p>
+      <nav class="foot-docs" aria-label="Documentation">
+        <a href="/getting-started/">Getting Started</a>
+        <a href="/reference/">Reference</a>
+        <a href="/access-control/">Access Control</a>
+        <a href="/schema/">Schema</a>
+        <a href="/changelog/">Changelog</a>
+        <a href="/faq/">FAQ</a>
+      </nav>
+      <div class="foot-rule"></div>
+      <div class="foot-grid">
+        <div class="credits">
+          <div class="by">Created by AJ Ansari, Microsoft MVP</div>
+          <div class="flogos">
+            <a href="https://onlycopilotfans.com" target="_blank" rel="noopener"><span class="chip"><img src="/assets/onlycopilotfans-logo.png" alt="OnlyCopilotFans" width="78" height="26"></span></a>
+            <a href="https://onlybcfans.com" target="_blank" rel="noopener"><span class="chip"><img src="/assets/onlybcfans-logo.png" alt="OnlyBCFans" width="99" height="26"></span></a>
+          </div>
+          <div class="links">
+            <a href="https://github.com/ajansari/ocpfBCAPIsV3" target="_blank" rel="noopener">Source on <strong>GitHub</strong></a>
+            <a href="https://bcdev.ai" target="_blank" rel="noopener">More tools at <strong>bcdev.ai</strong></a>
+            <a href="https://AJAnsari.com" target="_blank" rel="noopener">Visit <strong>AJAnsari.com</strong></a>
+            <a href="https://onlycopilotfans.com" target="_blank" rel="noopener">Visit <strong>OnlyCopilotFans</strong></a>
+            <a href="mailto:aj@onlycopilotfans.com">aj@onlycopilotfans.com</a>
+          </div>
+        </div>
+        <div class="legal">
+          <a href="https://github.com/ajansari/ocpfBCAPIsV3/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a>
+          <a href="/privacy-policy.html">Privacy Policy</a>
+          <a href="/terms-of-service.html">Terms of Service</a>
+          <a href="/cookie-policy.html">Cookie Policy</a>
+          <button class="cookie-btn" type="button" data-cc="show-preferencesModal" aria-label="Cookie settings">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5z"/><circle cx="8.5" cy="10.5" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="15.5" r="1" fill="currentColor" stroke="none"/><circle cx="15.5" cy="12.5" r="1" fill="currentColor" stroke="none"/></svg>
+            Cookie settings
+          </button>
+          <span>© <span id="year">2026</span> OnlyCopilotFans · OnlyBCFans</span>
+        </div>
+      </div>
+    </div>
+    <div class="foot-stripe" aria-hidden="true"><div style="background:#0F6CBD"></div><div style="background:#0A7C85"></div><div style="background:#6B4FC4"></div><div style="background:#C10E72"></div></div>
+  </footer>
+
+<script src="/assets/vendor/mermaid.min.js" defer></script>
+<script>window.addEventListener("load", function () { if (!window.mermaid) return; try { window.mermaid.initialize({ startOnLoad: false, theme: "neutral", flowchart: { useMaxWidth: false }, er: { useMaxWidth: false } }); window.mermaid.run({ querySelector: "pre.mermaid" }); } catch (e) { /* the diagram text stays visible */ } });</script>
+<script src="/assets/site.js" defer></script>
+<script src="/assets/vendor/cookieconsent.umd.js" defer></script>
+<script src="/assets/consent.js" defer></script>
+</body>
+</html>

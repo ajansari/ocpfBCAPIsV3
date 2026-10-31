@@ -46,3 +46,12 @@
   #cc-main .cm--bar .cm__btn + .cm__btn, #cc-main .cm--bar .cm__btn-group + .cm__btn-group { margin: 0 !important; }
   #cc-main .cm--bar .cm__btn-group:last-child { flex: 0 0 auto; }
 }
+/* Accept and Reject carry the same visual weight (same fill, text and border), in the banner and in the preferences dialog. */
+#cc-main .cm__btn[data-role="all"], #cc-main .cm__btn[data-role="necessary"],
+#cc-main .pm__btn[data-role="all"], #cc-main .pm__btn[data-role="necessary"] {
+  background: var(--cc-btn-primary-bg); color: var(--cc-btn-primary-color); border-color: var(--cc-btn-primary-bg);
+}
+#cc-main .cm__btn[data-role="all"]:hover, #cc-main .cm__btn[data-role="necessary"]:hover,
+#cc-main .pm__btn[data-role="all"]:hover, #cc-main .pm__btn[data-role="necessary"]:hover {
+  background: var(--cc-btn-primary-hover-bg); color: var(--cc-btn-primary-hover-color); border-color: var(--cc-btn-primary-hover-bg);
+}

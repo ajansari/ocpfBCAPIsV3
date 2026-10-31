@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FAQ: BC API Catalog for Business Central | bcapi.ai</title>
+<meta name="description" content="Answers about the BC API Catalog: licensing, localization, v3.0 versus v3.1, writable entities, read replica lag and Access Control limits.">
+<link rel="canonical" href="https://bcapi.ai/faq/">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#201e1d" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f3f2f2" media="(prefers-color-scheme: light)">
+<meta property="og:site_name" content="bcapi.ai">
+<meta property="og:title" content="FAQ: BC API Catalog for Business Central | bcapi.ai">
+<meta property="og:description" content="Answers about the BC API Catalog: licensing, localization, v3.0 versus v3.1, writable entities, read replica lag and Access Control limits.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bcapi.ai/faq/">
+<meta property="og:image" content="https://bcapi.ai/assets/og-image.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="bcapi.ai: BC API Catalog v3, custom Business Central API pages">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FAQ: BC API Catalog for Business Central | bcapi.ai">
+<meta name="twitter:description" content="Answers about the BC API Catalog: licensing, localization, v3.0 versus v3.1, writable entities, read replica lag and Access Control limits.">
+<meta name="twitter:image" content="https://bcapi.ai/assets/og-image.png">
+<meta name="twitter:image:alt" content="bcapi.ai: BC API Catalog v3, custom Business Central API pages">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","@id":"https://bcapi.ai/faq/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://bcapi.ai/"},{"@type":"ListItem","position":2,"name":"FAQ","item":"https://bcapi.ai/faq/"}]},{"@type":"FAQPage","@id":"https://bcapi.ai/faq/#faq","mainEntity":[{"@type":"Question","name":"Is it really free?","acceptedAnswer":{"@type":"Answer","text":"Yes. The extension and its source are published under the MIT License. Use it in personal and commercial projects, modify it, ship it inside your own solutions; keep the copyright notice. There is no warranty."}},{"@type":"Question","name":"Does it work in my country's Business Central?","acceptedAnswer":{"@type":"Answer","text":"Yes. The API pages expose every W1 (worldwide) field of each table and deliberately skip the fields that a localization adds, so the same package installs and returns the same shape in every country version."}},{"@type":"Question","name":"How is this different from the standard Business Central APIs?","acceptedAnswer":{"@type":"Answer","text":"Microsoft's v2.0 APIs cover a curated set of entities with simplified, renamed fields. This catalog exposes 187 standard tables one-to-one, with every field under its own name, including FlowFields and FlowFilters. Use Microsoft's APIs where they fit; use these when you need a table they do not cover or a field they leave out."}},{"@type":"Question","name":"Which version should I call, v3.0 or v3.1?","acceptedAnswer":{"@type":"Answer","text":"Call /v3.1/. Existing v3.0 integrations keep working unchanged; the newer entities (Manufacturing, Service Management, Access Control and a few master-data tables) exist only at v3.1."}},{"@type":"Question","name":"Can I write to every entity?","acceptedAnswer":{"@type":"Answer","text":"135 entities accept POST, PATCH and DELETE; 52 are GET only because the underlying data (ledgers, registers, posted documents, system-calculated tables) is immutable in Business Central itself. Within an editable entity, FlowFields and FlowFilters are still read-only. The reference marks each field."}},{"@type":"Question","name":"Why does a record I just posted not show up?","acceptedAnswer":{"@type":"Answer","text":"The read-only entities are served from the SQL read replica, which lags the primary by a few seconds. Wait a moment and read again."}},{"@type":"Question","name":"Can I create permission sets or assign them to security groups through the Access Control endpoints?","acceptedAnswer":{"@type":"Answer","text":"No. You can list permission sets and their permissions, look up users, and assign or revoke an existing set for an individual user. Creating or editing permission sets and assigning sets to security groups stay in the Business Central UI. See the Access Control section."}},{"@type":"Question","name":"How do I discover fields without reading this site?","acceptedAnswer":{"@type":"Answer","text":"Request $metadata on any API group. The CSDL document carries each page's and field's caption and tooltip as Org.OData.Core.V1.Description annotations, which is what Power Query, Power Automate and AI tools read."}},{"@type":"Question","name":"What object IDs does the extension use?","acceptedAnswer":{"@type":"Answer","text":"Pages 90800 to 91003 and two permission sets, inside the reserved range 90800 to 91099. No tables, codeunits or other objects, so it cannot collide with your business logic."}},{"@type":"Question","name":"Where do I report a problem or ask for a table?","acceptedAnswer":{"@type":"Answer","text":"Open an issue on the GitHub repository. Pull requests are welcome."}}]}]}</script>
+<link rel="preload" href="/assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/fonts.css">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/vendor/cookieconsent.css">
+<link rel="stylesheet" href="/assets/consent.css">
+<script>
+  // Apply the saved theme before first paint. Night mode is the default.
+  (function () {
+    try {
+      var t = localStorage.getItem('bcapi-theme');
+      if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+  <header class="site scrolled">
+    <div class="wrap nav">
+      <a class="brand" href="/" aria-label="bcapi.ai home">
+        <img class="mark" src="/assets/onlybcfans-icon.png" alt="" width="36" height="36">
+        <span class="name">bc<b class="bc">api</b><span>.ai</span></span>
+      </a>
+      <nav class="nav-right" aria-label="Site">
+        <a class="textlink" href="/#install">Install</a>
+        <a class="textlink" href="/reference/">Reference</a>
+        <a class="pill" href="/getting-started/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Documentation</a>
+        <a class="pill repo" href="https://github.com/ajansari/ocpfBCAPIsV3" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>View GitHub Repo</a>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to day mode" title="Switch to day mode">
+          <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+<div id="docs">
+  <nav class="tabs" aria-label="Documentation sections"><div class="dwrap"><a class="tab" href="/getting-started/">Getting Started</a><a class="tab" href="/reference/">Reference</a><a class="tab" href="/access-control/">Access Control</a><a class="tab" href="/schema/">Schema</a><a class="tab" href="/changelog/">Changelog</a><a class="tab" href="/faq/" aria-current="page">FAQ</a></div></nav>
+  <main><div class="dwrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li aria-current="page">FAQ</li></ol></nav>
+    <article class="panel">
+<h1>BC API Catalog FAQ</h1>
+<details class="faq"><summary>Is it really free?</summary><p>Yes. The extension and its source are published under the MIT License. Use it in personal and commercial projects, modify it, ship it inside your own solutions; keep the copyright notice. There is no warranty.</p>
+</details><details class="faq"><summary>Does it work in my country&#39;s Business Central?</summary><p>Yes. The API pages expose every W1 (worldwide) field of each table and deliberately skip the fields that a localization adds, so the same package installs and returns the same shape in every country version.</p>
+</details><details class="faq"><summary>How is this different from the standard Business Central APIs?</summary><p>Microsoft&#39;s <code>v2.0</code> APIs cover a curated set of entities with simplified, renamed fields. This catalog exposes 187 standard tables one-to-one, with every field under its own name, including FlowFields and FlowFilters. Use Microsoft&#39;s APIs where they fit; use these when you need a table they do not cover or a field they leave out.</p>
+</details><details class="faq"><summary>Which version should I call, v3.0 or v3.1?</summary><p>Call <code>/v3.1/</code>. Existing v3.0 integrations keep working unchanged; the newer entities (Manufacturing, Service Management, Access Control and a few master-data tables) exist only at v3.1.</p>
+</details><details class="faq"><summary>Can I write to every entity?</summary><p>135 entities accept POST, PATCH and DELETE; 52 are GET only because the underlying data (ledgers, registers, posted documents, system-calculated tables) is immutable in Business Central itself. Within an editable entity, FlowFields and FlowFilters are still read-only. The reference marks each field.</p>
+</details><details class="faq"><summary>Why does a record I just posted not show up?</summary><p>The read-only entities are served from the SQL read replica, which lags the primary by a few seconds. Wait a moment and read again.</p>
+</details><details class="faq"><summary>Can I create permission sets or assign them to security groups through the Access Control endpoints?</summary><p>No. You can list permission sets and their permissions, look up users, and assign or revoke an <em>existing</em> set for an <em>individual user</em>. Creating or editing permission sets and assigning sets to security groups stay in the Business Central UI. See the <a href="/access-control/">Access Control</a> section.</p>
+</details><details class="faq"><summary>How do I discover fields without reading this site?</summary><p>Request <code>$metadata</code> on any API group. The CSDL document carries each page&#39;s and field&#39;s caption and tooltip as <code>Org.OData.Core.V1.Description</code> annotations, which is what Power Query, Power Automate and AI tools read.</p>
+</details><details class="faq"><summary>What object IDs does the extension use?</summary><p>Pages 90800 to 91003 and two permission sets, inside the reserved range 90800 to 91099. No tables, codeunits or other objects, so it cannot collide with your business logic.</p>
+</details><details class="faq"><summary>Where do I report a problem or ask for a table?</summary><p>Open an issue on the <a href="https://github.com/ajansari/ocpfBCAPIsV3/issues">GitHub repository</a>. Pull requests are welcome.</p>
+
+</details>
+    </article>
+  </div></main>
+</div>
+  <footer class="site">
+    <div class="wrap foot-inner">
+      <div class="foot-bar" aria-hidden="true"><div style="background:#0F6CBD"></div><div style="background:#0A7C85"></div><div style="background:#6B4FC4"></div><div style="background:#C10E72"></div></div>
+      <p class="foot-tag"><span>Every standard table.</span><span>One consistent API.</span><span>No custom development per table.</span></p>
+      <p class="foot-sub">Built for Microsoft Dynamics 365 Business Central and shared openly with the community under the MIT License.</p>
+      <nav class="foot-docs" aria-label="Documentation">
+        <a href="/getting-started/">Getting Started</a>
+        <a href="/reference/">Reference</a>
+        <a href="/access-control/">Access Control</a>
+        <a href="/schema/">Schema</a>
+        <a href="/changelog/">Changelog</a>
+        <a href="/faq/">FAQ</a>
+      </nav>
+      <div class="foot-rule"></div>
+      <div class="foot-grid">
+        <div class="credits">
+          <div class="by">Created by AJ Ansari, Microsoft MVP</div>
+          <div class="flogos">
+            <a href="https://onlycopilotfans.com" target="_blank" rel="noopener"><span class="chip"><img src="/assets/onlycopilotfans-logo.png" alt="OnlyCopilotFans" width="78" height="26"></span></a>
+            <a href="https://onlybcfans.com" target="_blank" rel="noopener"><span class="chip"><img src="/assets/onlybcfans-logo.png" alt="OnlyBCFans" width="99" height="26"></span></a>
+          </div>
+          <div class="links">
+            <a href="https://github.com/ajansari/ocpfBCAPIsV3" target="_blank" rel="noopener">Source on <strong>GitHub</strong></a>
+            <a href="https://bcdev.ai" target="_blank" rel="noopener">More tools at <strong>bcdev.ai</strong></a>
+            <a href="https://AJAnsari.com" target="_blank" rel="noopener">Visit <strong>AJAnsari.com</strong></a>
+            <a href="https://onlycopilotfans.com" target="_blank" rel="noopener">Visit <strong>OnlyCopilotFans</strong></a>
+            <a href="mailto:aj@onlycopilotfans.com">aj@onlycopilotfans.com</a>
+          </div>
+        </div>
+        <div class="legal">
+          <a href="https://github.com/ajansari/ocpfBCAPIsV3/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a>
+          <a href="/privacy-policy.html">Privacy Policy</a>
+          <a href="/terms-of-service.html">Terms of Service</a>
+          <a href="/cookie-policy.html">Cookie Policy</a>
+          <button class="cookie-btn" type="button" data-cc="show-preferencesModal" aria-label="Cookie settings">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5z"/><circle cx="8.5" cy="10.5" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="15.5" r="1" fill="currentColor" stroke="none"/><circle cx="15.5" cy="12.5" r="1" fill="currentColor" stroke="none"/></svg>
+            Cookie settings
+          </button>
+          <span>© <span id="year">2026</span> OnlyCopilotFans · OnlyBCFans</span>
+        </div>
+      </div>
+    </div>
+    <div class="foot-stripe" aria-hidden="true"><div style="background:#0F6CBD"></div><div style="background:#0A7C85"></div><div style="background:#6B4FC4"></div><div style="background:#C10E72"></div></div>
+  </footer>
+
+<script src="/assets/site.js" defer></script>
+<script src="/assets/vendor/cookieconsent.umd.js" defer></script>
+<script src="/assets/consent.js" defer></script>
+</body>
+</html>

@@ -254,6 +254,7 @@ def heading_ids(h):
     def one(m):
         lvl, inner = m.group(1), m.group(2)
         base = slug(html.unescape(re.sub(r"<[^>]+>", "", inner))) or "section"
+        if not base[0].isalpha(): base = "s-" + base   # HTML ids should start with a letter
         seen[base] = seen.get(base, 0) + 1
         sid = base if seen[base] == 1 else f"{base}-{seen[base]}"
         return f'<h{lvl} id="{sid}">{inner}</h{lvl}>'
@@ -268,7 +269,8 @@ def fix_links(h):
     return re.sub(r'href="#table-of-contents"', 'href="/reference/"', h)
 
 def post(h):
-    h = re.sub(r'<pre><code class="language-mermaid">(.*?)</code></pre>', lambda m: '<pre class="mermaid">' + html.unescape(m.group(1)) + "</pre>", h, flags=re.S)
+    h = re.sub(r'<pre><code class="language-mermaid">(.*?)</code></pre>', lambda m: '<pre class="mermaid">' + html.escape(html.unescape(m.group(1)), quote=False) + "</pre>", h, flags=re.S)
+    h = h.replace("<th>", '<th scope="col">')
     h = re.sub(r"<table>", '<div class="table-wrap"><table>', h).replace("</table>", "</table></div>")
     h = re.sub(r"<(/?)h1>", r"<\1h2>", h)
     return heading_ids(fix_links(h))
@@ -296,7 +298,7 @@ def entity_html(c, e):
     h.append("</div>")
     h.append(f'<div class="url"><span>GET {{base}}/api/OnlyCopilotFans/</span>{esc(c["group"])}<span>/</span><em>v{API_VERSION}</em>'
              f'<span>/companies({{companyId}})/</span>{esc(e["name"])}</div>')
-    h.append('<div class="table-wrap"><table><thead><tr><th>#</th><th>Identifier</th><th>BC field</th><th>Caption</th><th>Editable</th></tr></thead><tbody>')
+    h.append('<div class="table-wrap"><table><thead><tr><th scope="col">#</th><th scope="col">Identifier</th><th scope="col">BC field</th><th scope="col">Caption</th><th scope="col">Editable</th></tr></thead><tbody>')
     for i, f in enumerate(e["fields"], 1):
         h.append(f"<tr><td>{i}</td><td><code>{esc(f[0])}</code></td><td>{esc(f[1])}</td><td>{esc(f[2])}</td><td>{GLYPH_LABEL.get(f[3], f[3])}</td></tr>")
     h.append("</tbody></table></div>")
@@ -314,8 +316,18 @@ LEGEND = '<p class="legend2">Field legend: 🔑 key · ✅ writable stored field
 
 # ─────────────────────────── page definitions ───────────────────────────
 pages = []   # path (with trailing slash), title, desc, h1, body, crumbs [(name, path)], tab, extra_ld, scripts
+def cat_title(c):
+    n = len(c["entities"])
+    for t in (f'{c["name"]} API Reference: {n} Business Central Entities | bcapi.ai',
+              f'{c["name"]} API Reference: {n} Business Central APIs | bcapi.ai',
+              f'{c["name"]} Business Central API Reference ({n}) | bcapi.ai',
+              f'{c["name"]} API Reference ({n} entities) | bcapi.ai'):
+        if len(esc(t)) <= 70: return t
+    return t
+
 def add(path, title, desc, h1, body, crumbs, tab, extra_ld=None, scripts=""):
     assert len(desc) <= 160, (path, len(desc), desc)
+    assert len(esc(title)) <= 70, (path, len(title), title)
     pages.append(dict(path=path, title=title, desc=desc, h1=h1, body=body, crumbs=crumbs, tab=tab, extra_ld=extra_ld or [], scripts=scripts))
 
 DOCS_CRUMB = ("Home", "/")
@@ -347,11 +359,11 @@ for c in categories:
             f'Each entity lists its source table, page ID, OData key, supported operations, URL and every field.</p>'
             f'<nav class="catnav" aria-label="API groups">{nav}</nav>{LEGEND}'
             + "".join(entity_html(c, e) for e in c["entities"]))
-    add(f'/reference/{c["slug"]}/', f'{c["name"]} API Reference: {len(c["entities"])} Business Central Entities | bcapi.ai',
+    add(f'/reference/{c["slug"]}/', cat_title(c),
         f'{len(c["entities"])} {c["name"]} tables as OData v4 API pages ({c["editable"]} read/write): source tables, page IDs, keys and every field.',
         f'{c["name"]} API Reference', body, [DOCS_CRUMB, ("Reference", "/reference/"), (c["name"], f'/reference/{c["slug"]}/')], "reference")
 
-add("/access-control/", "Access Control API: Users and Permission Sets in Business Central | bcapi.ai",
+add("/access-control/", "Business Central Access Control API: Users, Permission Sets | bcapi.ai",
     "What the four Access Control API pages can and cannot do: list users and permission sets, and assign or revoke a permission set for a user.",
     "Access Control API", post(md(ac_tab)), [DOCS_CRUMB, ("Access Control", "/access-control/")], "access-control")
 

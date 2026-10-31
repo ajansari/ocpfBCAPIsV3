@@ -195,7 +195,7 @@
         PBOL["Purchase Blanket Order Line"]
     end
 
-    subgraph ProjectsAssets["Projects & Assets"]
+    subgraph ProjectsAssets["Projects &amp; Assets"]
         JOB["Job"]
         JTG["Job Task"]
         JPL["Job Planning Line"]
@@ -212,7 +212,7 @@
         PLL["Price List Line"]
     end
 
-    subgraph Manufacturing["Manufacturing & Assembly (new in v3.1)"]
+    subgraph Manufacturing["Manufacturing &amp; Assembly (new in v3.1)"]
         MFS["Manufacturing Setup"]
         WSH["Work Shift"]
         SHC["Shop Calendar"]
@@ -282,7 +282,7 @@
         SCML["Service Cr.Memo Line"]
     end
 
-    subgraph Setup["System & Setup"]
+    subgraph Setup["System &amp; Setup"]
         DA["Document Attachment"]
         CI["Company Information"]
         WE["Warehouse Entry"]
@@ -294,142 +294,142 @@
         WSI["Workflow Step Instance"]
     end
 
-    GLA --> GLE
-    GLR --> GLE
-    GLE --> DSE
-    GLA --> DFD
-    CUST --> CLE
-    VEND --> VLE
-    ITEM --> ILE
-    ITEM --> VE
-    ITEM --> SKU
-    SH --> SL
-    PH --> PL
-    SH --> SIH
-    PH --> PIH
-    SH --> SCH
-    PH --> PCH
-    SH --> SSH
-    PH --> PRH
-    SH --> RRH
-    PH --> RSH
-    JOB --> JPL
-    JOB --> JLE
-    JOB --> JTG
-    FA --> FAL
-    FA --> FADB
-    GJT --> GJB
-    GJB --> GJL
-    PLH --> PLL
-    RH --> RL
-    FCMH --> FCML
-    CI --> DA
-    LOC --> WE
-    ITEM --> WE
-    CONT --> CBR
-    CBR --> CUST
-    CBR --> VEND
-    CBR --> EMP
-    CBR --> RES
-    BA --> BALE
-    BAPG --> BA
-    CUST --> SH
-    VEND --> PH
-    ITEM --> SL
-    ITEM --> PL
-    ITEM --> PLL
-    SKU --> ILE
+    GLA --&gt; GLE
+    GLR --&gt; GLE
+    GLE --&gt; DSE
+    GLA --&gt; DFD
+    CUST --&gt; CLE
+    VEND --&gt; VLE
+    ITEM --&gt; ILE
+    ITEM --&gt; VE
+    ITEM --&gt; SKU
+    SH --&gt; SL
+    PH --&gt; PL
+    SH --&gt; SIH
+    PH --&gt; PIH
+    SH --&gt; SCH
+    PH --&gt; PCH
+    SH --&gt; SSH
+    PH --&gt; PRH
+    SH --&gt; RRH
+    PH --&gt; RSH
+    JOB --&gt; JPL
+    JOB --&gt; JLE
+    JOB --&gt; JTG
+    FA --&gt; FAL
+    FA --&gt; FADB
+    GJT --&gt; GJB
+    GJB --&gt; GJL
+    PLH --&gt; PLL
+    RH --&gt; RL
+    FCMH --&gt; FCML
+    CI --&gt; DA
+    LOC --&gt; WE
+    ITEM --&gt; WE
+    CONT --&gt; CBR
+    CBR --&gt; CUST
+    CBR --&gt; VEND
+    CBR --&gt; EMP
+    CBR --&gt; RES
+    BA --&gt; BALE
+    BAPG --&gt; BA
+    CUST --&gt; SH
+    VEND --&gt; PH
+    ITEM --&gt; SL
+    ITEM --&gt; PL
+    ITEM --&gt; PLL
+    SKU --&gt; ILE
 
-    CUST --> STA
-    STA --> SH
+    CUST --&gt; STA
+    STA --&gt; SH
 
-    WCG --> WC
-    WC --> MC
-    SHC --> SCWD
-    WSH --> SCWD
-    SHC --> WC
-    CUOM --> WC
-    WC --> CE
-    MC --> CE
-    WC --> CAE
-    MC --> CAE
-    RTH --> RTL
-    RTH --> RTV
-    STASK --> RTL
-    RLINK --> RTL
-    WC --> RTL
-    MC --> RTL
-    PBH --> PBL
-    PBH --> PBV
-    ITEM --> PBL
-    RTH --> ITEM
-    PBH --> ITEM
-    FAM --> FAML
-    ITEM --> FAML
-    PO --> POL
-    POL --> POC
-    POL --> PORL
-    PORL --> POCN
-    ITEM --> POL
-    ITEM --> POC
-    WC --> PORL
-    MC --> PORL
-    PO --> CAPLE
-    WC --> CAPLE
-    ITEM --> BOMC
-    AH --> ALN
-    ITEM --> AH
-    ITEM --> ALN
-    RES --> ALN
-    AH --> PAH
-    PAH --> PAL
-    STOP --> CAPLE
-    SCRAP --> CAPLE
+    WCG --&gt; WC
+    WC --&gt; MC
+    SHC --&gt; SCWD
+    WSH --&gt; SCWD
+    SHC --&gt; WC
+    CUOM --&gt; WC
+    WC --&gt; CE
+    MC --&gt; CE
+    WC --&gt; CAE
+    MC --&gt; CAE
+    RTH --&gt; RTL
+    RTH --&gt; RTV
+    STASK --&gt; RTL
+    RLINK --&gt; RTL
+    WC --&gt; RTL
+    MC --&gt; RTL
+    PBH --&gt; PBL
+    PBH --&gt; PBV
+    ITEM --&gt; PBL
+    RTH --&gt; ITEM
+    PBH --&gt; ITEM
+    FAM --&gt; FAML
+    ITEM --&gt; FAML
+    PO --&gt; POL
+    POL --&gt; POC
+    POL --&gt; PORL
+    PORL --&gt; POCN
+    ITEM --&gt; POL
+    ITEM --&gt; POC
+    WC --&gt; PORL
+    MC --&gt; PORL
+    PO --&gt; CAPLE
+    WC --&gt; CAPLE
+    ITEM --&gt; BOMC
+    AH --&gt; ALN
+    ITEM --&gt; AH
+    ITEM --&gt; ALN
+    RES --&gt; ALN
+    AH --&gt; PAH
+    PAH --&gt; PAL
+    STOP --&gt; CAPLE
+    SCRAP --&gt; CAPLE
 
-    CUST --> SVI
-    ITEM --> SVI
-    SIG --> SVI
-    SVI --> SVIC
-    SVH --> SVIL
-    SVH --> SVL
-    SVI --> SVIL
-    CUST --> SVH
-    SOT --> SVH
-    STA --> SVH
-    RST --> SVIL
-    FAR --> SVIL
-    SYC --> SVIL
-    FC --> SVIL
-    FRC --> SVIL
-    RC --> SVIL
-    LON --> LONE
-    SVH --> LONE
-    SCOH --> SCOL
-    SVI --> SCOL
-    CUST --> SCOH
-    CG --> SCOH
-    SVI --> SLE
-    SCOH --> SLE
-    SVI --> WLE
-    SREG --> SLE
-    SVH --> SSHH
-    SSHH --> SSHL
-    SVIH --> SVIHL
-    SCMH --> SCML
-    CUST --> SVIH
-    CUST --> SCMH
-    SZ --> STA
+    CUST --&gt; SVI
+    ITEM --&gt; SVI
+    SIG --&gt; SVI
+    SVI --&gt; SVIC
+    SVH --&gt; SVIL
+    SVH --&gt; SVL
+    SVI --&gt; SVIL
+    CUST --&gt; SVH
+    SOT --&gt; SVH
+    STA --&gt; SVH
+    RST --&gt; SVIL
+    FAR --&gt; SVIL
+    SYC --&gt; SVIL
+    FC --&gt; SVIL
+    FRC --&gt; SVIL
+    RC --&gt; SVIL
+    LON --&gt; LONE
+    SVH --&gt; LONE
+    SCOH --&gt; SCOL
+    SVI --&gt; SCOL
+    CUST --&gt; SCOH
+    CG --&gt; SCOH
+    SVI --&gt; SLE
+    SCOH --&gt; SLE
+    SVI --&gt; WLE
+    SREG --&gt; SLE
+    SVH --&gt; SSHH
+    SSHH --&gt; SSHL
+    SVIH --&gt; SVIHL
+    SCMH --&gt; SCML
+    CUST --&gt; SVIH
+    CUST --&gt; SCMH
+    SZ --&gt; STA
 </pre>
 <hr>
 <h2 id="relationship-families-with-driving-fields">Relationship Families with Driving Fields</h2>
-<h3 id="1-core-financial">1. Core Financial</h3>
+<h3 id="s-1-core-financial">1. Core Financial</h3>
 <div class="table-wrap"><table>
 <thead>
 <tr>
-<th>Parent table</th>
-<th>Child / related table</th>
-<th>Relationship</th>
-<th>Driving field(s)</th>
+<th scope="col">Parent table</th>
+<th scope="col">Child / related table</th>
+<th scope="col">Relationship</th>
+<th scope="col">Driving field(s)</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -499,14 +499,14 @@
 <td>VAT Bus. Posting Group / VAT Prod. Posting Group</td>
 </tr>
 </tbody></table></div>
-<h3 id="2-master-data">2. Master Data</h3>
+<h3 id="s-2-master-data">2. Master Data</h3>
 <div class="table-wrap"><table>
 <thead>
 <tr>
-<th>Parent table</th>
-<th>Child / related table</th>
-<th>Relationship</th>
-<th>Driving field(s)</th>
+<th scope="col">Parent table</th>
+<th scope="col">Child / related table</th>
+<th scope="col">Relationship</th>
+<th scope="col">Driving field(s)</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -624,14 +624,14 @@
 <td>Vendor No. + Preferred Bank Account Code on the vendor card</td>
 </tr>
 </tbody></table></div>
-<h3 id="3-sales-documents">3. Sales Documents</h3>
+<h3 id="s-3-sales-documents">3. Sales Documents</h3>
 <div class="table-wrap"><table>
 <thead>
 <tr>
-<th>Parent table</th>
-<th>Child / related table</th>
-<th>Relationship</th>
-<th>Driving field(s)</th>
+<th scope="col">Parent table</th>
+<th scope="col">Child / related table</th>
+<th scope="col">Relationship</th>
+<th scope="col">Driving field(s)</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -707,14 +707,14 @@
 <td>Code = Customer&#39;s Invoice Disc. Code (customer discount group)</td>
 </tr>
 </tbody></table></div>
-<h3 id="4-purchasing-documents">4. Purchasing Documents</h3>
+<h3 id="s-4-purchasing-documents">4. Purchasing Documents</h3>
 <div class="table-wrap"><table>
 <thead>
 <tr>
-<th>Parent table</th>
-<th>Child / related table</th>
-<th>Relationship</th>
-<th>Driving field(s)</th>
+<th scope="col">Parent table</th>
+<th scope="col">Child / related table</th>
+<th scope="col">Relationship</th>
+<th scope="col">Driving field(s)</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -790,14 +790,14 @@
 <td>Code = Vendor&#39;s Invoice Disc. Code (vendor discount group)</td>
 </tr>
 </tbody></table></div>
-<h3 id="5-projects-and-assets">5. Projects and Assets</h3>
+<h3 id="s-5-projects-and-assets">5. Projects and Assets</h3>
 <div class="table-wrap"><table>
 <thead>
 <tr>
-<th>Parent table</th>
-<th>Child / related table</th>
-<th>Relationship</th>
-<th>Driving field(s)</th>
+<th scope="col">Parent table</th>
+<th scope="col">Child / related table</th>
+<th scope="col">Relationship</th>
+<th scope="col">Driving field(s)</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -879,14 +879,14 @@
 <td>Account No.</td>
 </tr>
 </tbody></table></div>
-<h3 id="6-system-and-setup">6. System and Setup</h3>
+<h3 id="s-6-system-and-setup">6. System and Setup</h3>
 <div class="table-wrap"><table>
 <thead>
 <tr>
-<th>Parent table</th>
-<th>Child / related table</th>
-<th>Relationship</th>
-<th>Driving field(s)</th>
+<th scope="col">Parent table</th>
+<th scope="col">Child / related table</th>
+<th scope="col">Relationship</th>
+<th scope="col">Driving field(s)</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -920,14 +920,14 @@
 <td>Item No. / Location Code</td>
 </tr>
 </tbody></table></div>
-<h3 id="7-manufacturing-assembly-new-in-v3-1">7. Manufacturing &amp; Assembly <em>(new in v3.1)</em></h3>
+<h3 id="s-7-manufacturing-assembly-new-in-v3-1">7. Manufacturing &amp; Assembly <em>(new in v3.1)</em></h3>
 <div class="table-wrap"><table>
 <thead>
 <tr>
-<th>Parent table</th>
-<th>Child / related table</th>
-<th>Relationship</th>
-<th>Driving field(s)</th>
+<th scope="col">Parent table</th>
+<th scope="col">Child / related table</th>
+<th scope="col">Relationship</th>
+<th scope="col">Driving field(s)</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -1123,14 +1123,14 @@
 <td>Document No.</td>
 </tr>
 </tbody></table></div>
-<h3 id="8-service-management-new-in-v3-1">8. Service Management <em>(new in v3.1)</em></h3>
+<h3 id="s-8-service-management-new-in-v3-1">8. Service Management <em>(new in v3.1)</em></h3>
 <div class="table-wrap"><table>
 <thead>
 <tr>
-<th>Parent table</th>
-<th>Child / related table</th>
-<th>Relationship</th>
-<th>Driving field(s)</th>
+<th scope="col">Parent table</th>
+<th scope="col">Child / related table</th>
+<th scope="col">Relationship</th>
+<th scope="col">Driving field(s)</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -1285,15 +1285,15 @@
 </tr>
 </tbody></table></div>
 <hr>
-<h3 id="9-access-control-new-in-v3-1-3">9. Access Control <em>(new in v3.1.3)</em></h3>
+<h3 id="s-9-access-control-new-in-v3-1-3">9. Access Control <em>(new in v3.1.3)</em></h3>
 <p>Platform virtual tables in <code>System.Security.AccessControl</code>. These are keyed by natural composite keys, not <code>SystemId</code>.</p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
-<th>Parent table</th>
-<th>Child / related table</th>
-<th>Relationship</th>
-<th>Driving field(s)</th>
+<th scope="col">Parent table</th>
+<th scope="col">Child / related table</th>
+<th scope="col">Relationship</th>
+<th scope="col">Driving field(s)</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -1358,7 +1358,7 @@
       <div class="foot-bar" aria-hidden="true"><div style="background:#0F6CBD"></div><div style="background:#0A7C85"></div><div style="background:#6B4FC4"></div><div style="background:#C10E72"></div></div>
       <p class="foot-tag"><span>Every standard table.</span><span>One consistent API.</span><span>No custom development per table.</span></p>
       <p class="foot-sub">Built for Microsoft Dynamics 365 Business Central and shared openly with the community under the MIT License.</p>
-      <nav class="foot-docs" aria-label="Documentation">
+      <nav class="foot-docs" aria-label="Footer documentation">
         <a href="/getting-started/">Getting Started</a>
         <a href="/reference/">Reference</a>
         <a href="/access-control/">Access Control</a>

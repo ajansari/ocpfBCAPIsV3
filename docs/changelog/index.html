@@ -79,10 +79,10 @@ All four are plain declarative pages over BC platform tables (<code>System.Secur
 <div class="table-wrap"><table>
 <thead>
 <tr>
-<th>Page</th>
-<th>ID</th>
-<th>Source table</th>
-<th>Access</th>
+<th scope="col">Page</th>
+<th scope="col">ID</th>
+<th scope="col">Source table</th>
+<th scope="col">Access</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -138,15 +138,15 @@ v27.5 tenant.</li>
 </ul>
 <hr>
 <h2 id="v3-1-2-editability-corrections-dataaccessintent-readonly-2026-09-09">v3.1.2 — Editability corrections + <code>DataAccessIntent = ReadOnly</code> (2026-09-09)</h2>
-<h3 id="18-pages-reclassified-from-read-only-to-editable">18 pages reclassified from read-only to editable</h3>
+<h3 id="s-18-pages-reclassified-from-read-only-to-editable">18 pages reclassified from read-only to editable</h3>
 <p>The v3.0/v3.1 generator had marked these as <code>Editable = false</code>; they are in fact safe to write through
 the API. Each now has <code>Editable = false</code> removed and <code>DelayedInsert = true</code> added, and each is included
 in the <code>OCPF - READ/WRITE</code> permission set (they were already in <code>OCPF - READ</code>).</p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
-<th>Category</th>
-<th>Pages</th>
+<th scope="col">Category</th>
+<th scope="col">Pages</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -222,11 +222,11 @@ entries, capacity needs, and posted documents are read-only.</p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
-<th>Page ID</th>
-<th>Entity Set</th>
-<th>Source Table</th>
-<th>Editable</th>
-<th>Fields</th>
+<th scope="col">Page ID</th>
+<th scope="col">Entity Set</th>
+<th scope="col">Source Table</th>
+<th scope="col">Editable</th>
+<th scope="col">Fields</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -699,9 +699,9 @@ so new integrations should use the <code>/v3.1/</code> base URL. <code>app.json<
 <div class="table-wrap"><table>
 <thead>
 <tr>
-<th>Entity</th>
-<th>File</th>
-<th>Fields added (JSON name — BC field)</th>
+<th scope="col">Entity</th>
+<th scope="col">File</th>
+<th scope="col">Fields added (JSON name — BC field)</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -831,11 +831,11 @@ tooltips, falling back to standard page-control tooltips, falling back to generi
 <div class="table-wrap"><table>
 <thead>
 <tr>
-<th>ID</th>
-<th>File</th>
-<th>Batch</th>
-<th>Entity</th>
-<th>Reason Added</th>
+<th scope="col">ID</th>
+<th scope="col">File</th>
+<th scope="col">Batch</th>
+<th scope="col">Entity</th>
+<th scope="col">Reason Added</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -923,10 +923,10 @@ tooltips, falling back to standard page-control tooltips, falling back to generi
 <div class="table-wrap"><table>
 <thead>
 <tr>
-<th>Original</th>
-<th>Length</th>
-<th>Shortened</th>
-<th>Length</th>
+<th scope="col">Original</th>
+<th scope="col">Length</th>
+<th scope="col">Shortened</th>
+<th scope="col">Length</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -963,9 +963,9 @@ Editable = false;
 <div class="table-wrap"><table>
 <thead>
 <tr>
-<th>Category</th>
-<th>Editable</th>
-<th>Examples</th>
+<th scope="col">Category</th>
+<th scope="col">Editable</th>
+<th scope="col">Examples</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -1008,9 +1008,9 @@ Editable = false;
 <div class="table-wrap"><table>
 <thead>
 <tr>
-<th>Value</th>
-<th>Wrong</th>
-<th>Correct</th>
+<th scope="col">Value</th>
+<th scope="col">Wrong</th>
+<th scope="col">Correct</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -1044,8 +1044,8 @@ Editable = false;
 <div class="table-wrap"><table>
 <thead>
 <tr>
-<th>Before</th>
-<th>After</th>
+<th scope="col">Before</th>
+<th scope="col">After</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -1085,8 +1085,8 @@ Editable = false;
 <div class="table-wrap"><table>
 <thead>
 <tr>
-<th>Reserved identifier</th>
-<th>AL usage context</th>
+<th scope="col">Reserved identifier</th>
+<th scope="col">AL usage context</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -1154,9 +1154,9 @@ Editable = false;
 <div class="table-wrap"><table>
 <thead>
 <tr>
-<th>Localization</th>
-<th>Tables Affected</th>
-<th>Example Fields Removed</th>
+<th scope="col">Localization</th>
+<th scope="col">Tables Affected</th>
+<th scope="col">Example Fields Removed</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -1196,11 +1196,11 @@ Editable = false;
 <div class="table-wrap"><table>
 <thead>
 <tr>
-<th>Original (TDD)</th>
-<th>Length</th>
-<th>Shortened</th>
-<th>Length</th>
-<th>Used in</th>
+<th scope="col">Original (TDD)</th>
+<th scope="col">Length</th>
+<th scope="col">Shortened</th>
+<th scope="col">Length</th>
+<th scope="col">Used in</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -1255,7 +1255,7 @@ Editable = false;
       <div class="foot-bar" aria-hidden="true"><div style="background:#0F6CBD"></div><div style="background:#0A7C85"></div><div style="background:#6B4FC4"></div><div style="background:#C10E72"></div></div>
       <p class="foot-tag"><span>Every standard table.</span><span>One consistent API.</span><span>No custom development per table.</span></p>
       <p class="foot-sub">Built for Microsoft Dynamics 365 Business Central and shared openly with the community under the MIT License.</p>
-      <nav class="foot-docs" aria-label="Documentation">
+      <nav class="foot-docs" aria-label="Footer documentation">
         <a href="/getting-started/">Getting Started</a>
         <a href="/reference/">Reference</a>
         <a href="/access-control/">Access Control</a>

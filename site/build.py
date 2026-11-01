@@ -450,14 +450,17 @@ assert len(desc) <= 160, (len(desc), desc)
 # ─────────────────────────── write everything into docs/ ───────────────────────────
 # Only files this script generates are written; docs/CNAME, the legal pages, robots.txt, icons and the
 # hand-maintained assets (fonts, vendor, logos, consent.*) are never touched.
+# The page folders are overwritten in place rather than deleted and recreated: docs/ lives in an iCloud-synced
+# folder, and deleting a file that iCloud is still syncing brings it back as "index 2.html". Files that this run
+# did not write are removed at the end, and so is any "name 2.html" duplicate iCloud has left anywhere in docs/.
 GENERATED_DIRS = ["getting-started", "reference", "access-control", "schema", "changelog", "faq"]
-for d in GENERATED_DIRS:
-    shutil.rmtree(OUT / d, ignore_errors=True)
+WRITTEN = set()
 
 def write(rel, text):
     p = OUT / rel
     p.parent.mkdir(parents=True, exist_ok=True)
     p.write_text(text)
+    WRITTEN.add(p)
 
 write("index.html", page)
 (OUT / "assets").mkdir(exist_ok=True)
@@ -515,6 +518,14 @@ llms += ["", "## Notes", "",
          f"- URL pattern: https://api.businesscentral.dynamics.com/v2.0/<tenantId>/<environment>/api/OnlyCopilotFans/<apiGroup>/v{API_VERSION}/companies(<companyId>)/<entitySetName>",
          f"- Requires Business Central {BC_VERSION} or later (SaaS or on-premises). Request $metadata on any API group to discover fields.", ""]
 write("llms.txt", "\n".join(llms))
+
+for d in GENERATED_DIRS:
+    for f in (OUT / d).rglob("*"):
+        if f.is_file() and f not in WRITTEN: f.unlink()
+    for e in sorted((OUT / d).rglob("*"), reverse=True):
+        if e.is_dir() and not any(e.iterdir()): e.rmdir()
+for f in OUT.rglob("* [0-9].html"):
+    f.unlink()
 
 print(f"wrote docs/index.html ({len(page):,} bytes) + {len(pages)} pages + catalog.json · {total} entities · "
       f"{sum(len(e['fields']) for c in categories for e in c['entities']):,} fields · app {APP_VERSION} · {DATE}")

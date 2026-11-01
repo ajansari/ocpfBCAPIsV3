@@ -35,7 +35,7 @@ Needs Python 3 and Node (`npx` fetches `marked` 12.0.2 to convert the Markdown s
 | `site/site.css`, `site/site.js` | Styles and scripts, copied to `docs/assets/` |
 | `site/build.py` | Getting Started and FAQ text, the hero ticker (every entity with its verbs), and the build itself |
 
-`build.py` writes into `docs/`: `index.html`, the page folders `getting-started/`, `reference/`, `access-control/`, `schema/`, `changelog/`, `faq/`, `catalog.json` (the search index fetched lazily by `/reference/`), `sitemap.xml` (all pages; the legal pages are left out), `llms.txt`, and `assets/site.css` and `assets/site.js`. It deletes and recreates only those six page folders. It never touches `docs/CNAME`, the legal pages, `robots.txt`, `404.html`, the icons, `site.webmanifest` or the rest of `docs/assets/`.
+`build.py` writes into `docs/`: `index.html`, the page folders `getting-started/`, `reference/`, `access-control/`, `schema/`, `changelog/`, `faq/`, `catalog.json` (the search index fetched lazily by `/reference/`), `sitemap.xml` (all pages; the legal pages are left out), `llms.txt`, and `assets/site.css` and `assets/site.js`. It overwrites those six page folders in place (never delete-and-recreate: the folder is iCloud-synced, and that produced `index 2.html` duplicates), removes any file in them it did not write, and removes any `name 2.html` iCloud duplicate under `docs/`. It never touches `docs/CNAME`, the legal pages, `robots.txt`, `404.html`, the icons, `site.webmanifest` or the rest of `docs/assets/`.
 
 Each page carries one H1, a unique title and description, a self-referencing canonical, Open Graph and Twitter tags, and BreadcrumbList JSON-LD. `/` carries WebSite, Person, SoftwareApplication and SoftwareSourceCode; `/faq/` carries FAQPage.
 

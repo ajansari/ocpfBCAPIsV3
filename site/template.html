@@ -57,7 +57,7 @@
   })();
 </script>
 <script>
-  // Apply the saved theme before first paint. Night mode is the default.
+  // Apply the saved theme before first paint. Day mode is the default.
   (function () {
     try {
       var t = localStorage.getItem('bcapi-theme');
@@ -68,25 +68,27 @@
 </head>
 <body>
 <div id="site">
+  <div class="hero-band" id="top">
+    <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div>
 {{HEADER}}
-  <main id="top">
-    <div class="hero-band">
-    <div class="hero-bg" aria-hidden="true">{{DITHER}}</div>
+    <main>
     <section class="wrap hero">
       <div class="hero-copy">
-      <div class="bar" aria-hidden="true"><div style="background:var(--c1)"></div><div style="background:var(--c2)"></div><div style="background:var(--c3)"></div><div style="background:var(--c4)"></div></div>
-      <h1><span class="wmrow"><img src="/assets/onlybcfans-icon.png" alt="" width="96" height="96"><span class="wm">bc<b class="bc">api</b><span><span class="dot">.</span>ai</span></span></span><span class="h1t">{{TOTAL}} standard Business Central tables,<br> <em>every W1 field, as OData v4 APIs.</em></span></h1>
-      <p class="lead">A free, open-source extension that exposes {{TOTAL}} standard tables as ready-to-use API endpoints, localization-neutral, no custom development per table. Install it and start integrating.</p>
-      <div class="cta">
-        <a class="btn install" href="#install"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 1.5v9M4.5 7.5 8 11l3.5-3.5M2 14h12"/></svg>Install the extension</a>
-        <a class="btn docs" href="/getting-started/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Documentation</a>
-      </div>
-      <div class="meta">App version {{APP_VERSION}} · API v{{API_VERSION}} · {{DATE}} · <a href="/changelog/">What's new →</a></div>
-      <a class="designed" href="https://www.microsoft.com/en-us/dynamics-365/products/business-central" target="_blank" rel="noopener" aria-label="Designed for Microsoft Dynamics 365 Business Central">
-        <img src="/assets/bc-icon.png" alt="" width="44" height="44">
-        <span class="sep" aria-hidden="true"></span>
-        <span class="t"><small>Designed for</small><strong>Microsoft Dynamics 365 <b>Business Central</b></strong></span>
-      </a>
+        <div class="wmrow"><img src="/assets/onlybcfans-icon.png" alt="" width="64" height="64"><span class="wm">bc<b class="bc">api</b><span><span class="dot">.</span>ai</span></span></div>
+        <div class="bar" aria-hidden="true"><div style="background:var(--c1)"></div><div style="background:var(--c2)"></div><div style="background:var(--c3)"></div><div style="background:var(--c4)"></div></div>
+        <h1>{{TOTAL}} Business Central Tables.<br>Every W1 Field Included.<br><em>Get the API app or AL Objects.</em></h1>
+        <p class="lead">A free, open-source extension that exposes {{TOTAL}} standard tables as ready-to-use OData v4 endpoints: localization-neutral, no custom development per table. Install the app, or take the AL source and make it your own.</p>
+        <div class="cta">
+          <a class="btn primary" href="{{DOWNLOAD_URL}}" download><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 1.5v9M4.5 7.5 8 11l3.5-3.5M2 14h12"/></svg>Download app</a>
+          <a class="btn" href="{{SOURCE_ZIP}}"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5.5 4.5-3 3.5 3 3.5M10.5 4.5l3 3.5-3 3.5M9 2.5l-2 11"/></svg>Download source</a>
+          <a class="btn" href="/reference/"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h12M2 8h12M2 13h8"/></svg>Explore Catalog</a>
+        </div>
+        <div class="meta">App version {{APP_VERSION}} · API v{{API_VERSION}} · {{DATE}} · <a href="/changelog/">What's new →</a></div>
+        <a class="designed" href="https://www.microsoft.com/en-us/dynamics-365/products/business-central" target="_blank" rel="noopener" aria-label="Designed for Microsoft Dynamics 365 Business Central">
+          <img src="/assets/bc-icon.png" alt="" width="32" height="32">
+          <span class="sep" aria-hidden="true"></span>
+          <span class="t"><small>Designed for</small><strong>Microsoft Dynamics 365 <b>Business Central</b></strong></span>
+        </a>
       </div>
 
       <div class="stage" id="stage" aria-hidden="true">
@@ -104,49 +106,44 @@
         <div class="ticker mono"><div class="sym"><span>API</span><span class="up">{{TOTAL}}</span></div><div class="tape"><div class="track">{{TICKER}}{{TICKER}}</div></div></div>
       </div>
     </section>
-    </div>
+    </main>
+  </div>
 
-    <section class="stats" aria-label="At a glance">
-      <div class="wrap row">
-        <div><div class="n">{{TOTAL}}</div><div class="l">Endpoints</div></div>
-        <div><div class="n">{{NCATS}}</div><div class="l">Categories</div></div>
-        <div><div class="n">{{EDITABLE}}</div><div class="l">Read / write</div></div>
-        <div><div class="n">{{READONLY}}</div><div class="l">Read-only</div></div>
-        <div><div class="n">v4</div><div class="l">OData</div></div>
-      </div>
-    </section>
-
+  <main class="rest">
     <section class="wrap catalog" aria-label="Catalog by category">
-      <div class="box">
-      <div class="head">
-        <div class="k">One cell per API endpoint · <b>{{NCATS}} categories · {{TOTAL}} endpoints</b></div>
-        <div class="od">Exposed via <b>OData v4</b></div>
+      <div class="sec-head">
+        <div class="no"><span>01</span><span>The catalog</span></div>
+        <h2>{{NCATS}} categories. {{TOTAL}} tables. One consistent API.</h2>
+        <p>Every endpoint maps one-to-one to a standard Business Central table and exposes every W1 field. {{EDITABLE}} endpoints accept writes; the {{READONLY}} read-only ones are ledgers, registers and posted documents.</p>
       </div>
-      <div class="cats">{{CAT_BARS}}</div>
-      <div class="legend"><span><i></i>Read / write</span><span><i class="ro"></i>Read-only</span><span>Click a category to open its reference</span></div>
+      <div class="tbl-wrap">
+      <table class="cattable">
+        <thead><tr><th>Category</th><th class="grp">API group</th><th class="num">Tables</th><th class="num rw">Read / write</th><th class="num ro">Read-only</th><th class="share"><span>Share of the catalog</span></th></tr></thead>
+        <tbody>{{CAT_ROWS}}</tbody>
+        <tfoot><tr><td>Total</td><td class="grp"></td><td class="num">{{TOTAL}}</td><td class="num rw">{{EDITABLE}}</td><td class="num ro">{{READONLY}}</td><td class="share"></td></tr></tfoot>
+      </table>
       </div>
+      <p class="tbl-note">Click a category to open its reference: source table, page ID, key, operations and every field of each entity.</p>
     </section>
 
-    <section class="block" id="install">
-      <div class="wrap inner">
-        <div class="sec-head">
-          <div class="no"><span>01</span><span>Install</span></div>
-          <h2>Download the app. Upload it to Business Central. Assign a permission set.</h2>
-          <p>One .app file, no dependencies, no setup page. Works on Business Central {{BC_VERSION}} and later, in any localization.</p>
-        </div>
-        <div class="install-grid">
-          <div>
-            <a class="dl" href="{{DOWNLOAD_URL}}" download><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 1.5v9M4.5 7.5 8 11l3.5-3.5M2 14h12"/></svg>Download the app<span class="v">v{{APP_VERSION}} · .app</span></a>
-            <p class="side-note">Install it in a sandbox first. The source is on <a href="https://github.com/ajansari/ocpfBCAPIsV3" target="_blank" rel="noopener">GitHub</a> if you prefer to build it yourself.</p>
-            <div style="margin-top:22px">
-              <div class="step"><span class="tag">Step 1</span><div><h3>Upload the extension</h3><p>In Business Central, search for <strong>Extension Management</strong>, choose <strong>Manage → Upload Extension</strong>, pick the .app file, accept the terms and deploy. It takes a few minutes.</p></div></div>
-              <div class="step"><span class="tag">Step 2</span><div><h3>Assign a permission set</h3><p>Give the integration user <code>OCPF - READ</code> (every endpoint, GET) or <code>OCPF - READ/WRITE</code> (adds POST, PATCH and DELETE on the {{EDITABLE}} editable endpoints), plus the standard permissions on the underlying BC tables.</p></div></div>
-              <div class="step"><span class="tag">Step 3</span><div><h3>Call an endpoint</h3><p>Authenticate with OAuth 2.0 (Microsoft Entra app registration) and GET any entity under the <code>/v{{API_VERSION}}/</code> base URL. The <a href="/getting-started/" style="color:var(--text);font-weight:700">Getting Started</a> guide has the full URL pattern and examples.</p></div></div>
-            </div>
-          </div>
-          <div>
-            <div class="term">
-              <div class="bar2"><div class="lights"><span style="background:#ff5f57"></span><span style="background:#febc2e"></span><span style="background:#28c840"></span></div><div class="url">api.businesscentral.dynamics.com</div><div style="width:52px"></div></div>
+    <span id="install"></span>
+    <section class="wrap deploy" id="deploy">
+      <div class="sec-head">
+        <div class="no"><span>02</span><span>How to deploy</span></div>
+        <h2>Two ways in. Both free.</h2>
+        <p>Install the ready-made app and start calling, or take the AL source into your own project.</p>
+      </div>
+      <div class="options">
+        <article class="opt">
+          <div class="opt-head"><span class="tag">Option 1</span><h3>Install the app</h3></div>
+          <ol>
+            <li>Download the <strong>.app</strong> and upload it in Business Central: <strong>Extension Management → Manage → Upload Extension</strong>. No dependencies, no setup page. It uses object IDs <code>{{ID_FROM}}–{{ID_TO}}</code>.</li>
+            <li>Give the integration user <code>OCPF - READ</code> (every endpoint, GET) or <code>OCPF - READ/WRITE</code> (adds POST, PATCH and DELETE on the {{EDITABLE}} editable endpoints), plus the standard permissions on the underlying tables.</li>
+            <li>Authenticate with OAuth 2.0 and call any entity under the <code>/v{{API_VERSION}}/</code> base URL.</li>
+          </ol>
+          <div class="pills"><a class="pill" href="{{DOWNLOAD_URL}}" download><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 1.5v9M4.5 7.5 8 11l3.5-3.5M2 14h12"/></svg>Latest .app · v{{APP_VERSION}}</a><a class="pill ghost" href="/getting-started/">Getting Started guide</a></div>
+          <div class="term">
+            <div class="bar2"><div class="lights"><span style="background:#ff5f57"></span><span style="background:#febc2e"></span><span style="background:#28c840"></span></div><div class="url">api.businesscentral.dynamics.com</div><div style="width:52px"></div></div>
 <pre><span class="c"># Base URL (replace the placeholders)</span>
 <span class="k">https://api.businesscentral.dynamics.com/v2.0/</span>{tenantId}/{environment}
   <span class="k">/api/OnlyCopilotFans/</span><span class="m">ocpf_masterData</span>/<span class="g">v{{API_VERSION}}</span>
@@ -160,18 +157,19 @@
 
 <span class="c"># Create a customer (OCPF - READ/WRITE)</span>
 <span class="g">POST</span> {base}/companies({companyId})/<span class="m">ocpfCustomers</span>
-{ "no": "C-1001", "name": "Contoso Ltd." }
-
-<span class="c"># Discover every entity and field in a category</span>
-<span class="g">GET</span> {base}/$metadata</pre>
-            </div>
-            <div class="perm">
-              <h4>Permission sets included</h4>
-              <p><strong><code>OCPF - READ</code></strong> covers all {{TOTAL}} endpoints. <strong><code>OCPF - READ/WRITE</code></strong> covers the {{EDITABLE}} editable ones.</p>
-              <p>Consumers also need the matching permissions on the base tables. The four Access Control endpoints additionally require <code>SUPER</code> or <code>SECURITY</code> to assign permission sets.</p>
-            </div>
+{ "no": "C-1001", "name": "Contoso Ltd." }</pre>
           </div>
-        </div>
+        </article>
+        <article class="opt">
+          <div class="opt-head"><span class="tag">Option 2</span><h3>Take the AL source</h3></div>
+          <ol>
+            <li>Download one or more of the AL files from the GitHub repository. The API pages live in one folder per category: {{AL_FOLDERS}}; the two permission sets are in <code>Permission Sets</code>.</li>
+            <li>Drop them into your own extension as they are, or extend them with your custom fields. Each page is a plain AL object with no dependency on the others.</li>
+            <li>Renumber the object IDs into your own range if <code>{{ID_FROM}}–{{ID_TO}}</code> collides with something you already have.</li>
+          </ol>
+          <div class="pills"><a class="pill" href="https://github.com/ajansari/ocpfBCAPIsV3" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>GitHub repository</a><a class="pill ghost" href="{{SOURCE_ZIP}}">Download source .zip</a></div>
+          <div class="tree mono" aria-label="Repository folders">{{AL_TREE}}</div>
+        </article>
       </div>
     </section>
   </main>
@@ -179,7 +177,7 @@
 {{FOOTER}}
 </div>
 <script>
-  /* Header links appear once the wordmark has scrolled out of view. */
+  /* The brand appears in the title bar once the hero wordmark has scrolled out of view. */
   (function () {
     var header = document.querySelector('header.site'), mark = document.querySelector('.hero .wmrow');
     if ('IntersectionObserver' in window) {

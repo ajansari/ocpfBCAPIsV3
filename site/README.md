@@ -6,12 +6,12 @@ Pages (directory-index URLs, canonical origin `https://bcapi.ai/`):
 
 | URL | Content |
 |---|---|
-| `/` | Landing page: hero, catalog overview, Install |
+| `/` | Landing page: hero, catalog table, How to deploy |
 | `/getting-started/`, `/access-control/`, `/schema/`, `/changelog/`, `/faq/` | One real page per documentation tab |
 | `/reference/` | Hub: the 9 categories with entity counts, links to every entity, client-side search |
 | `/reference/<category-slug>/` (9) | Every entity of the category, fully rendered in the HTML (description, URL, operations, full field table). Each entity has an anchor id equal to its name, e.g. `/reference/master-data/#ocpfCustomers` |
 
-Old hash links (`#docs`, `#docs/reference/<entity>`, `#docs/reference/<category>`, `#docs/<tab>`) are redirected to these paths by a small script in the head of `/`. `#install` stays on the landing page.
+Old hash links (`#docs`, `#docs/reference/<entity>`, `#docs/reference/<category>`, `#docs/<tab>`) are redirected to these paths by a small script in the head of `/`. `#install` and `#deploy` point at the How to deploy section of the landing page.
 
 ## Rebuilding after a release
 

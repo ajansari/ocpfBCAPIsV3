@@ -395,13 +395,23 @@ add("/faq/", "FAQ: BC API Catalog for Business Central | bcapi.ai",
     "BC API Catalog FAQ", fix_links(faq_html), [DOCS_CRUMB, ("FAQ", "/faq/")], "faq", extra_ld=[faq_ld])
 
 # ─────────────────────────── landing page ───────────────────────────
-COLORS = ["#0F6CBD", "#0A7C85", "#6B4FC4", "#C10E72"]  # the catalog cells keep the original four colours by design
-bars = ""
-for n, c in enumerate(categories):
-    cells = "".join('<i class="ro"></i>' if not e["editable"] else "<i></i>" for e in c["entities"])
-    new = ' <small>new</small>' if all(e["v31only"] for e in c["entities"]) else ""
-    bars += (f'<a href="/reference/{c["slug"]}/" style="--cc:{COLORS[n % 4]}"><span class="cn">{html.escape(c["name"])}{new}</span>'
-             f'<span class="cells">{cells}</span><span class="ct"><b>{len(c["entities"])}</b> · {c["editable"]} rw</span></a>')
+# Catalog table: one row per category, with its share of the catalog as a bar.
+biggest = max(len(c["entities"]) for c in categories)
+rows = ""
+for c in categories:
+    n = len(c["entities"])
+    new = ' <small class="newtag">new in v3.1</small>' if all(e["v31only"] for e in c["entities"]) else ""
+    rows += (f'<tr><td><a href="/reference/{c["slug"]}/">{html.escape(c["name"])}</a>{new}</td>'
+             f'<td class="grp"><code>{html.escape(c["group"])}</code></td><td class="num">{n}</td>'
+             f'<td class="num rw">{c["editable"]}</td><td class="num ro">{c["readonly"] or "–"}</td>'
+             f'<td class="share"><div class="shr"><span class="sb" style="--w:{n / biggest:.3f}"><i style="--f:{c["editable"] / n:.3f}"></i></span><b>{100 * n / total:.0f}%</b></div></td></tr>')
+
+SOURCE_ZIP = f"{REPO}/archive/refs/heads/main.zip"
+ID_FROM, ID_TO = app["idRanges"][0]["from"], app["idRanges"][0]["to"]
+AL_DIRS = sorted(d.name for d in ROOT.iterdir() if d.is_dir() and d.name != "Permission Sets" and not d.name.startswith((".", "_")) and any(d.glob("*.al")) and d.name != "ATS")
+assert (ROOT / "Permission Sets").is_dir() and len(AL_DIRS) == 9, AL_DIRS
+AL_FOLDERS = ", ".join(f"<code>{d}</code>" for d in AL_DIRS)
+AL_TREE = "".join(f'<a href="{REPO}/tree/main/{d.replace(" ", "%20")}" target="_blank" rel="noopener"><span>{d}/</span><small>{sum(1 for _ in (ROOT / d).glob("*.al"))} .al</small></a>' for d in AL_DIRS + ["Permission Sets"])
 
 def ld(graph): return json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
 
@@ -434,42 +444,6 @@ def bust(html):
     return html
 page = bust((HERE / "template.html").read_text())
 
-def dither(W=1920, H=900, start=0.05, peak=0.52, p=2.3, s_left=40, s_mid=26, s_right=40, r_max=0.36, angle=15):
-    """Hero background: a halftone screen. Ink dots on a lattice sheared to `angle` grow from the left edge, slowly,
-    until at `peak` of the width they reach r_max of their spacing (large, still clearly separate); they never touch.
-    Right of the peak an elliptical lobe takes over: the dots shrink away again toward the top, the right edge and the
-    bottom, so the teal fades back into the paper in a rounded, parabolic shape. Spacing is wide where the dots are
-    small and tight where they are large. One <g> holds the geometry; the one-column hero uses it rotated. Fills are
-    inline custom properties, so the pattern follows the theme."""
-    import math
-    shear = math.tan(math.radians(angle))
-    peak_x, cy = W * (start + (1 - start) * peak), H / 2
-    ax, by = W - peak_x, H / 2 * 1.6             # the lobe's semi-axes: to the right edge, and well past the top and bottom
-    def ramp(x): return min(1, max(0, (x / W - start) / (1 - start)))
-    def lobe(x, y, t):
-        dx = max(0.0, x - peak_x) / ax
-        w = min(1, max(0, (t - 0.35) / (peak - 0.35)))   # the vertical fade eases in on the way to the peak, so there is no seam
-        d2 = dx * dx + w * ((y - cy) / by) ** 2
-        return max(0.0, 1 - d2) ** 0.6
-    def spacing(t, x):
-        if t < peak: return s_left - (s_left - s_mid) * (t / peak) ** 0.8
-        return s_mid + (s_right - s_mid) * (max(0.0, x - peak_x) / ax) ** 0.8
-    dots, x, phase = [], 0.0, 0.0
-    while x < W:
-        t = ramp(x); sp = spacing(t, x)
-        if t > 0:
-            base = r_max * sp * (min(t, peak) / peak) ** p
-            y = phase % sp - sp
-            while y < H + sp:
-                r = base * lobe(x, y, t)
-                if r >= 0.6: dots.append(f'<circle cx="{x:.0f}" cy="{y:.0f}" r="{r:.1f}"/>')
-                y += sp
-        phase += sp * shear; x += sp
-    P, I = 'style="fill:var(--paper)"', 'style="fill:var(--ink)"'
-    g = f'<g id="ht"><rect {P} width="{W}" height="{H}"/><g {I}>{"".join(dots)}</g></g>'
-    return (f'<svg class="defs" width="0" height="0" aria-hidden="true"><defs>{g}</defs></svg>'
-            f'<svg class="h" viewBox="0 0 {W} {H}" preserveAspectRatio="xMinYMid slice" aria-hidden="true"><use href="#ht"/></svg>'
-            f'<svg class="v" viewBox="0 0 {H} {W}" preserveAspectRatio="xMidYMin slice" aria-hidden="true"><use href="#ht" transform="rotate(90) translate(0 -{H})"/></svg>')
 # Hero ticker: every entity with its verbs (the same rule as entity_html()).
 def verbs(c, e):
     if not e["editable"]: return '<i class="get">GET</i><i class="ro">READ-ONLY</i>'
@@ -481,10 +455,11 @@ for k, v in {
     "{{HEADER}}": header_tpl.replace("{{HDR_SCROLLED}}", ""), "{{FOOTER}}": footer_tpl,
     "{{TOTAL}}": str(total), "{{EDITABLE}}": str(editable), "{{READONLY}}": str(readonly), "{{NCATS}}": str(len(categories)),
     "{{APP_VERSION}}": APP_VERSION, "{{API_VERSION}}": API_VERSION, "{{BC_VERSION}}": BC_VERSION, "{{DATE}}": DATE,
-    "{{DOWNLOAD_URL}}": DOWNLOAD_URL, "{{CAT_BARS}}": bars, "{{JSONLD}}": ld(LANDING_LD),
+    "{{DOWNLOAD_URL}}": DOWNLOAD_URL, "{{SOURCE_ZIP}}": SOURCE_ZIP, "{{CAT_ROWS}}": rows, "{{JSONLD}}": ld(LANDING_LD),
+    "{{ID_FROM}}": str(ID_FROM), "{{ID_TO}}": str(ID_TO), "{{AL_FOLDERS}}": AL_FOLDERS, "{{AL_TREE}}": AL_TREE,
     "{{CAT_SLUGS_JSON}}": json.dumps([c["slug"] for c in categories]),
     "{{ENTMAP_JSON}}": json.dumps(ENTMAP, separators=(",", ":")),
-    "{{TICKER}}": ticker, "{{DITHER}}": dither(),
+    "{{TICKER}}": ticker,
 }.items():
     page = page.replace(k, v)
 assert "{{" not in page, re.findall(r"\{\{[A-Z_]+\}\}", page)

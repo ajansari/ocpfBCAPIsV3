@@ -40,6 +40,17 @@
     fitBar(); window.addEventListener('resize', fitBar); if (document.fonts) document.fonts.ready.then(fitBar);
   }
 
+  /* A soft light follows the pointer across the hero band (pointer devices only). */
+  var band = document.querySelector('.hero-band');
+  if (band && window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    band.addEventListener('pointermove', function (e) {
+      var r = band.getBoundingClientRect();
+      band.style.setProperty('--mx', (e.clientX - r.left) + 'px'); band.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      band.classList.add('lit');
+    });
+    band.addEventListener('pointerleave', function () { band.classList.remove('lit'); });
+  }
+
   /* Landing hero stage: a record types itself between the braces, the route line and the lit consumer follow it,
      and the wires are drawn from the real positions of the BC icon, the braces and the chips. */
   var stage = document.getElementById('stage');

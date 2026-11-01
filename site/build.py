@@ -395,7 +395,7 @@ add("/faq/", "FAQ: BC API Catalog for Business Central | bcapi.ai",
     "BC API Catalog FAQ", fix_links(faq_html), [DOCS_CRUMB, ("FAQ", "/faq/")], "faq", extra_ld=[faq_ld])
 
 # ─────────────────────────── landing page ───────────────────────────
-COLORS = ["#00858A", "#00A39B", "#36BFB5", "#4DD8D4"]
+COLORS = ["#0F6CBD", "#0A7C85", "#6B4FC4", "#C10E72"]  # the catalog cells keep the original four colours by design
 bars = ""
 for n, c in enumerate(categories):
     cells = "".join('<i class="ro"></i>' if not e["editable"] else "<i></i>" for e in c["entities"])
@@ -427,30 +427,35 @@ footer_tpl = (HERE / "partials" / "footer.html").read_text()
 
 page = (HERE / "template.html").read_text()
 
-def dither(bands=56, cell=9):
-    """Hero background: a halftone that runs from paper with tiny ink dots to ink with tiny paper dots. Every band is a
-    rect filled with its own pattern; the patterns tile in pixels, so the dots stay round at any size, and their fills come
-    from CSS (.paper / .ink), so the pattern follows the theme. Two SVGs share the patterns: one runs left to right for the
-    two-column hero (the copy sits on the clean left third), one top to bottom for the one-column hero (the copy on top)."""
-    defs, h, v = [], [], []
-    for i in range(bands):
-        x = (i + 0.5) / bands
-        for rects, start, end in ((h, 0.3, 0.9), (v, 0.45, 0.95)):
-            t = min(1, max(0, (x - start) / (end - start)))
-            on_paper = t < 0.5
-            r = (t / 0.5 if on_paper else (1 - t) / 0.5) * cell * 0.58
-            bg, dot = ("paper", "ink") if on_paper else ("ink", "paper")
-            pid = f"d{'h' if rects is h else 'v'}{i}"
-            defs.append(f'<pattern id="{pid}" width="{cell * 2}" height="{cell * 2}" patternUnits="userSpaceOnUse">'
-                        f'<rect class="{bg}" width="{cell * 2}" height="{cell * 2}"/>'
-                        f'<circle class="{dot}" cx="{cell / 2}" cy="{cell / 2}" r="{r:.2f}"/><circle class="{dot}" cx="{cell * 1.5}" cy="{cell * 1.5}" r="{r:.2f}"/></pattern>')
-            pos, size = f"{i / bands * 100:.3f}%", f"{100 / bands + 0.2:.3f}%"
-            rects.append(f'<rect x="{pos}" y="0" width="{size}" height="100%" fill="url(#{pid})"/>' if rects is h else
-                         f'<rect x="0" y="{pos}" width="100%" height="{size}" fill="url(#{pid})"/>')
-    # the patterns live in a zero-size SVG of their own: a pattern inside a display:none SVG is not painted by its users
-    return ('<svg class="defs" width="0" height="0" aria-hidden="true"><defs>' + "".join(defs) + '</defs></svg>'
-            '<svg class="h" width="100%" height="100%" aria-hidden="true">' + "".join(h) + '</svg>'
-            '<svg class="v" width="100%" height="100%" aria-hidden="true">' + "".join(v) + '</svg>')
+def dither(W=1920, H=900, s_max=36, s_min=12, start=0.05, end=0.95, mid=0.6, p=2.6, q=2.0):
+    """Hero background: a halftone that runs from paper with tiny, widely spaced ink dots on the left to an ink field
+    with tiny paper dots on the right. Dots sit on a staggered lattice whose spacing shrinks from s_max at the edges to
+    s_min in the middle, and their coverage follows a slow power curve, so the sparse parts are both small and far apart.
+    One <g> holds the geometry; the two-column hero uses it as is and the one-column hero uses it rotated, so the copy
+    always sits on the clean side. Fills come from CSS (.paper / .ink), so the pattern follows the theme."""
+    import math
+    def ramp(x): return min(1, max(0, (x / W - start) / (end - start)))
+    # ink coverage crosses 50% at `mid` of the ramp (the copy sits left of it, the stage right of it) and grows slowly on the way
+    def coverage(t): return 0.5 * (t / mid) ** p if t < mid else 1 - 0.5 * ((1 - t) / (1 - mid)) ** q
+    def spacing(t): return s_max - (s_max - s_min) * (1 - abs(t - mid) / (mid if t < mid else 1 - mid)) ** 0.8
+    ink, paper, x, col = [], [], 0.0, 0
+    while x < W:
+        t = ramp(x); sp = spacing(t); f = coverage(t)
+        if 0 < t < 1:
+            r, dots = (sp * math.sqrt(f / math.pi), ink) if t < mid else (sp * math.sqrt((1 - f) / math.pi), paper)
+            if r >= 0.6:
+                y = sp / 2 if col % 2 else 0.0
+                while y < H + sp:
+                    dots.append(f'<circle cx="{x:.0f}" cy="{y:.0f}" r="{r:.1f}"/>'); y += sp
+        x += sp; col += 1
+    mid = W * (start + (end - start) * mid)
+    # inline fills: a stylesheet class does not reach a <use> clone in every browser, an inherited custom property does
+    P, I = 'style="fill:var(--paper)"', 'style="fill:var(--ink)"'
+    g = (f'<g id="ht"><rect {P} width="{W}" height="{H}"/><rect {I} x="{mid:.0f}" width="{W - mid:.0f}" height="{H}"/>'
+         f'<g {I}>{"".join(ink)}</g><g {P}>{"".join(paper)}</g></g>')
+    return (f'<svg class="defs" width="0" height="0" aria-hidden="true"><defs>{g}</defs></svg>'
+            f'<svg class="h" viewBox="0 0 {W} {H}" preserveAspectRatio="xMinYMid slice" aria-hidden="true"><use href="#ht"/></svg>'
+            f'<svg class="v" viewBox="0 0 {H} {W}" preserveAspectRatio="xMidYMin slice" aria-hidden="true"><use href="#ht" transform="rotate(90) translate(0 -{H})"/></svg>')
 # Hero ticker: every entity with its verbs (the same rule as entity_html()).
 def verbs(c, e):
     if not e["editable"]: return '<i class="get">GET</i><i class="ro">READ-ONLY</i>'

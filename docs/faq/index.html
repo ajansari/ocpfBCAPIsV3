@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -32,7 +32,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","@id":"https://bcapi.ai/faq/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://bcapi.ai/"},{"@type":"ListItem","position":2,"name":"FAQ","item":"https://bcapi.ai/faq/"}]},{"@type":"FAQPage","@id":"https://bcapi.ai/faq/#faq","mainEntity":[{"@type":"Question","name":"Is it really free?","acceptedAnswer":{"@type":"Answer","text":"Yes. The extension and its source are published under the MIT License. Use it in personal and commercial projects, modify it, ship it inside your own solutions; keep the copyright notice. There is no warranty."}},{"@type":"Question","name":"Does it work in my country's Business Central?","acceptedAnswer":{"@type":"Answer","text":"Yes. The API pages expose every W1 (worldwide) field of each table and deliberately skip the fields that a localization adds, so the same package installs and returns the same shape in every country version."}},{"@type":"Question","name":"How is this different from the standard Business Central APIs?","acceptedAnswer":{"@type":"Answer","text":"Microsoft's v2.0 APIs cover a curated set of entities with simplified, renamed fields. This catalog exposes 187 standard tables one-to-one, with every field under its own name, including FlowFields and FlowFilters. Use Microsoft's APIs where they fit; use these when you need a table they do not cover or a field they leave out."}},{"@type":"Question","name":"Which version should I call, v3.0 or v3.1?","acceptedAnswer":{"@type":"Answer","text":"Call /v3.1/. Existing v3.0 integrations keep working unchanged; the newer entities (Manufacturing, Service Management, Access Control and a few master-data tables) exist only at v3.1."}},{"@type":"Question","name":"Can I write to every entity?","acceptedAnswer":{"@type":"Answer","text":"135 entities accept POST, PATCH and DELETE; 52 are GET only because the underlying data (ledgers, registers, posted documents, system-calculated tables) is immutable in Business Central itself. Within an editable entity, FlowFields and FlowFilters are still read-only. The reference marks each field."}},{"@type":"Question","name":"Why does a record I just posted not show up?","acceptedAnswer":{"@type":"Answer","text":"The read-only entities are served from the SQL read replica, which lags the primary by a few seconds. Wait a moment and read again."}},{"@type":"Question","name":"Can I create permission sets or assign them to security groups through the Access Control endpoints?","acceptedAnswer":{"@type":"Answer","text":"No. You can list permission sets and their permissions, look up users, and assign or revoke an existing set for an individual user. Creating or editing permission sets and assigning sets to security groups stay in the Business Central UI. See the Access Control section."}},{"@type":"Question","name":"How do I discover fields without reading this site?","acceptedAnswer":{"@type":"Answer","text":"Request $metadata on any API group. The CSDL document carries each page's and field's caption and tooltip as Org.OData.Core.V1.Description annotations, which is what Power Query, Power Automate and AI tools read."}},{"@type":"Question","name":"What object IDs does the extension use?","acceptedAnswer":{"@type":"Answer","text":"Pages 90800 to 91003 and two permission sets, inside the reserved range 90800 to 91099. No tables, codeunits or other objects, so it cannot collide with your business logic."}},{"@type":"Question","name":"Where do I report a problem or ask for a table?","acceptedAnswer":{"@type":"Answer","text":"Open an issue on the GitHub repository. Pull requests are welcome."}}]}]}</script>
 <link rel="preload" href="/assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/fonts.css">
-<link rel="stylesheet" href="/assets/site.css?v=14b7e212">
+<link rel="stylesheet" href="/assets/site.css?v=21260fbc">
 <link rel="stylesheet" href="/assets/vendor/cookieconsent.css">
 <link rel="stylesheet" href="/assets/consent.css">
 <script>
@@ -131,7 +131,7 @@
     <div class="foot-stripe" aria-hidden="true"><div style="background:var(--c1)"></div><div style="background:var(--c2)"></div><div style="background:var(--c3)"></div><div style="background:var(--c4)"></div></div>
   </footer>
 
-<script src="/assets/site.js?v=764a1231" defer></script>
+<script src="/assets/site.js?v=ec4a1991" defer></script>
 <script src="/assets/vendor/cookieconsent.umd.js" defer></script>
 <script src="/assets/consent.js" defer></script>
 </body>

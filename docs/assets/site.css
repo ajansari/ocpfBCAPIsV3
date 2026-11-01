@@ -1,7 +1,7 @@
   :root {
     --bg: #101819; --bg-elev: #15302E; --text: #EAF3F2; --muted: #9DB5B4;
     --line: #223436; --card: #16211F; --shadow: 0 12px 32px rgba(0,0,0,0.45);
-    --c1: #00A39B; --c2: #36BFB5; --c3: #4DD8D4; --c4: #86D9CF; --go: #2EE59D; --bcteal: #4DD8D4; --paper: #101819; --ink: #CBE8E5; --box-bg: #ffffff; --box-ink: #101819; --box-soft: #605d5d; --box-line: rgba(32,30,29,0.18);
+    --c1: #00A39B; --c2: #36BFB5; --c3: #4DD8D4; --c4: #86D9CF; --go: #2EE59D; --bcteal: #4DD8D4; --paper: #121819; --ink: #203A37; --box-bg: #ffffff; --box-ink: #101819; --box-soft: #605d5d; --box-line: rgba(32,30,29,0.18);
     --copilot: linear-gradient(90deg, var(--c1) 0%, var(--c2) 33%, var(--c3) 66%, var(--c4) 100%);
     --copilot-diag: linear-gradient(135deg, var(--c1) 0%, var(--c2) 33%, var(--c3) 66%, var(--c4) 100%);
     color-scheme: dark;

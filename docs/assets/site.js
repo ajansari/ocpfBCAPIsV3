@@ -33,6 +33,13 @@
   openTarget();
   window.addEventListener('hashchange', openTarget);
 
+  /* The hero bar ends under the full stop of bcapi.ai. */
+  var bar = document.querySelector('.hero .bar'), dot = document.querySelector('.hero .wm .dot');
+  if (bar && dot) {
+    var fitBar = function () { bar.style.width = Math.round(dot.getBoundingClientRect().right - bar.getBoundingClientRect().left) + 'px'; };
+    fitBar(); window.addEventListener('resize', fitBar); if (document.fonts) document.fonts.ready.then(fitBar);
+  }
+
   /* Landing hero stage: a record types itself between the braces, the route line and the lit consumer follow it,
      and the wires are drawn from the real positions of the BC icon, the braces and the chips. */
   var stage = document.getElementById('stage');

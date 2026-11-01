@@ -15,9 +15,9 @@
   --cc-btn-border-radius: 8px;
   --cc-modal-border-radius: 20px;
   --cc-separator-border-color: var(--line);
-  --cc-toggle-on-bg: #6B4FC4;
+  --cc-toggle-on-bg: #00A39B;
   --cc-toggle-off-bg: #605d5d;
-  --cc-toggle-readonly-bg: #0A7C85;
+  --cc-toggle-readonly-bg: #36BFB5;
   --cc-cookie-category-block-bg: var(--bg-elev);
   --cc-cookie-category-block-border: var(--line);
   --cc-cookie-category-block-hover-bg: var(--bg-elev);

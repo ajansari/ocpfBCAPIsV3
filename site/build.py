@@ -395,7 +395,7 @@ add("/faq/", "FAQ: BC API Catalog for Business Central | bcapi.ai",
     "BC API Catalog FAQ", fix_links(faq_html), [DOCS_CRUMB, ("FAQ", "/faq/")], "faq", extra_ld=[faq_ld])
 
 # ─────────────────────────── landing page ───────────────────────────
-COLORS = ["#0F6CBD", "#0A7C85", "#6B4FC4", "#C10E72"]
+COLORS = ["#00858A", "#00A39B", "#36BFB5", "#4DD8D4"]
 bars = ""
 for n, c in enumerate(categories):
     cells = "".join('<i class="ro"></i>' if not e["editable"] else "<i></i>" for e in c["entities"])
@@ -426,6 +426,31 @@ header_tpl = (HERE / "partials" / "header.html").read_text()
 footer_tpl = (HERE / "partials" / "footer.html").read_text()
 
 page = (HERE / "template.html").read_text()
+
+def dither(bands=56, cell=9):
+    """Hero background: a halftone that runs from paper with tiny ink dots to ink with tiny paper dots. Every band is a
+    rect filled with its own pattern; the patterns tile in pixels, so the dots stay round at any size, and their fills come
+    from CSS (.paper / .ink), so the pattern follows the theme. Two SVGs share the patterns: one runs left to right for the
+    two-column hero (the copy sits on the clean left third), one top to bottom for the one-column hero (the copy on top)."""
+    defs, h, v = [], [], []
+    for i in range(bands):
+        x = (i + 0.5) / bands
+        for rects, start, end in ((h, 0.3, 0.9), (v, 0.45, 0.95)):
+            t = min(1, max(0, (x - start) / (end - start)))
+            on_paper = t < 0.5
+            r = (t / 0.5 if on_paper else (1 - t) / 0.5) * cell * 0.58
+            bg, dot = ("paper", "ink") if on_paper else ("ink", "paper")
+            pid = f"d{'h' if rects is h else 'v'}{i}"
+            defs.append(f'<pattern id="{pid}" width="{cell * 2}" height="{cell * 2}" patternUnits="userSpaceOnUse">'
+                        f'<rect class="{bg}" width="{cell * 2}" height="{cell * 2}"/>'
+                        f'<circle class="{dot}" cx="{cell / 2}" cy="{cell / 2}" r="{r:.2f}"/><circle class="{dot}" cx="{cell * 1.5}" cy="{cell * 1.5}" r="{r:.2f}"/></pattern>')
+            pos, size = f"{i / bands * 100:.3f}%", f"{100 / bands + 0.2:.3f}%"
+            rects.append(f'<rect x="{pos}" y="0" width="{size}" height="100%" fill="url(#{pid})"/>' if rects is h else
+                         f'<rect x="0" y="{pos}" width="100%" height="{size}" fill="url(#{pid})"/>')
+    # the patterns live in a zero-size SVG of their own: a pattern inside a display:none SVG is not painted by its users
+    return ('<svg class="defs" width="0" height="0" aria-hidden="true"><defs>' + "".join(defs) + '</defs></svg>'
+            '<svg class="h" width="100%" height="100%" aria-hidden="true">' + "".join(h) + '</svg>'
+            '<svg class="v" width="100%" height="100%" aria-hidden="true">' + "".join(v) + '</svg>')
 # Hero ticker: every entity with its verbs (the same rule as entity_html()).
 def verbs(c, e):
     if not e["editable"]: return '<i class="get">GET</i><i class="ro">READ-ONLY</i>'
@@ -440,7 +465,7 @@ for k, v in {
     "{{DOWNLOAD_URL}}": DOWNLOAD_URL, "{{CAT_BARS}}": bars, "{{JSONLD}}": ld(LANDING_LD),
     "{{CAT_SLUGS_JSON}}": json.dumps([c["slug"] for c in categories]),
     "{{ENTMAP_JSON}}": json.dumps(ENTMAP, separators=(",", ":")),
-    "{{TICKER}}": ticker,
+    "{{TICKER}}": ticker, "{{DITHER}}": dither(),
 }.items():
     page = page.replace(k, v)
 assert "{{" not in page, re.findall(r"\{\{[A-Z_]+\}\}", page)

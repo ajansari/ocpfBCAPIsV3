@@ -426,6 +426,12 @@ header_tpl = (HERE / "partials" / "header.html").read_text()
 footer_tpl = (HERE / "partials" / "footer.html").read_text()
 
 page = (HERE / "template.html").read_text()
+# Hero ticker: every entity with its verbs (the same rule as entity_html()).
+def verbs(c, e):
+    if not e["editable"]: return '<i class="get">GET</i><i class="ro">READ-ONLY</i>'
+    if c["slug"] == "access-control": return '<i class="get">GET</i><i class="post">POST</i><i class="del">DEL</i>'
+    return '<i class="get">GET</i><i class="post">POST</i><i class="patch">PATCH</i><i class="del">DEL</i>'
+ticker = "".join(f'<span class="e">{esc(e["name"])}<span class="v">{verbs(c, e)}</span></span>' for c in categories for e in c["entities"])
 ENTMAP = {k: [c["slug"], e["name"]] for k, (c, e) in ENT.items()}
 for k, v in {
     "{{HEADER}}": header_tpl.replace("{{HDR_SCROLLED}}", ""), "{{FOOTER}}": footer_tpl,
@@ -434,6 +440,7 @@ for k, v in {
     "{{DOWNLOAD_URL}}": DOWNLOAD_URL, "{{CAT_BARS}}": bars, "{{JSONLD}}": ld(LANDING_LD),
     "{{CAT_SLUGS_JSON}}": json.dumps([c["slug"] for c in categories]),
     "{{ENTMAP_JSON}}": json.dumps(ENTMAP, separators=(",", ":")),
+    "{{TICKER}}": ticker,
 }.items():
     page = page.replace(k, v)
 assert "{{" not in page, re.findall(r"\{\{[A-Z_]+\}\}", page)

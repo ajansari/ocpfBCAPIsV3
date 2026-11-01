@@ -33,6 +33,58 @@
   openTarget();
   window.addEventListener('hashchange', openTarget);
 
+  /* Landing hero stage: a record types itself between the braces, the route line and the lit consumer follow it,
+     and the wires are drawn from the real positions of the BC icon, the braces and the chips. */
+  var stage = document.getElementById('stage');
+  if (stage) {
+    var records = [
+      { m: 'GET', e: 'ocpfCustomers', f: [['no', 'C00010'], ['name', 'Adatum Corporation'], ['city', 'Atlanta'], ['balanceLCY', 12480], ['blocked', '']], d: 1 },
+      { m: 'GET', e: 'ocpfItems', f: [['no', '1896-S'], ['description', 'ATHENS Desk'], ['unitPrice', 1000.8], ['inventory', 21], ['routingNo', '1896-S']], d: 0 },
+      { m: 'POST', e: 'ocpfSalesOrders', f: [['no', 'S-ORD101001'], ['orderDate', '2026-10-12'], ['status', 'Open'], ['amountInclVat', 4280]], d: 1 },
+      { m: 'GET', e: 'ocpfGeneralLedgerEntries', f: [['entryNo', 1042], ['gLAccountNo', '6110'], ['postingDate', '2026-10-12'], ['amount', -1250]], d: 2 },
+      { m: 'PATCH', e: 'ocpfVendors', f: [['no', 'V00020'], ['name', 'Fabrikam, Inc.'], ['paymentTerms', '30 DAYS'], ['blocked', '']], d: 1 },
+      { m: 'GET', e: 'ocpfProductionOrders', f: [['no', '101003'], ['status', 'Released'], ['sourceNo', '1896-S'], ['quantity', 40]], d: 0 }
+    ];
+    var rec = document.getElementById('st-rec'), rm = document.getElementById('st-m'), rp = document.getElementById('st-p'),
+        chips = Array.prototype.slice.call(stage.querySelectorAll('.dst .chip')),
+        reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches, n = 0;
+    var recHtml = function (r) {
+      return r.f.map(function (p) {
+        var v = p[1], num = typeof v === 'number';
+        return ' <span class="k">"' + p[0] + '"</span>: <span class="' + (num ? 'n' : 's') + '">' + (num ? v.toFixed(v % 1 ? 2 : 0) : '"' + v.replace(/</g, '&lt;') + '"') + '</span>';
+      }).join(',\n');
+    };
+    var typeOut = function (full, done) {
+      var shown = 0, total = full.replace(/<[^>]+>/g, '').length;
+      (function step() {
+        shown += 2;
+        var out = '', cnt = 0, m, re = /(<[^>]+>)|([^<])/g;
+        while ((m = re.exec(full)) && cnt < shown) { if (m[1]) out += m[1]; else { out += m[2]; cnt++; } }
+        rec.innerHTML = out + '<span class="cur"></span>';
+        if (cnt < total) setTimeout(step, 14); else done();
+      })();
+    };
+    (function next() {
+      var r = records[n++ % records.length];
+      rm.textContent = r.m; rp.innerHTML = rp.innerHTML.replace(/<b>.*<\/b>/, '<b>' + r.e + '</b>');
+      chips.forEach(function (c, k) { c.classList.toggle('on', k === r.d); });
+      if (reduce) { rec.innerHTML = recHtml(r); setTimeout(next, 5000); return; }
+      rec.innerHTML = '<span class="cur"></span>';
+      typeOut(recHtml(r), function () { setTimeout(next, 2600); });
+    })();
+    var wire = function (x1, y1, x2, y2) { var mx = (x1 + x2) / 2; return 'M' + x1 + ' ' + y1 + ' C ' + mx + ' ' + y1 + ', ' + mx + ' ' + y2 + ', ' + x2 + ' ' + y2; };
+    var layout = function () {
+      var flow = stage.querySelector('.flow'), fr = flow.getBoundingClientRect(), src = stage.querySelector('.src .ic');
+      if (!src.offsetParent) return;  /* phones: no wires */
+      var rel = function (el) { var r = el.getBoundingClientRect(); return { l: r.left - fr.left, r: r.right - fr.left, cy: r.top - fr.top + r.height / 2 }; };
+      document.getElementById('st-wires').setAttribute('viewBox', '0 0 ' + fr.width + ' ' + fr.height);
+      var s = rel(src), bl = rel(stage.querySelector('.braces .b.l')), br = rel(stage.querySelector('.braces .b.r'));
+      document.getElementById('st-w0').setAttribute('d', wire(s.r + 4, s.cy, bl.l + 6, bl.cy));
+      chips.forEach(function (c, k) { var d = rel(c); document.getElementById('st-w' + (k + 1)).setAttribute('d', wire(br.r - 6, br.cy, d.l - 2, d.cy)); });
+    };
+    layout(); window.addEventListener('resize', layout); if (document.fonts) document.fonts.ready.then(layout);
+  }
+
   /* Reference hub: search every entity, table, page ID and field. catalog.json is fetched on first use. */
   var input = document.getElementById('ref-search'), list = document.getElementById('ref-results');
   if (input && list) {

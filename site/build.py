@@ -434,37 +434,39 @@ def bust(html):
     return html
 page = bust((HERE / "template.html").read_text())
 
-def dither(W=1920, H=900, start=0.05, end=0.95, touch=0.62, p=2.6, s_left=38, s_mid=12, s_right=26, angle=15):
-    """Hero background: a classic halftone screen, as on a printed can. Ink dots sit on a hexagonal lattice and simply
-    grow from left to right: tiny and widely spaced at the left edge, touching at `touch` of the ramp, then overlapping
-    until only specks of paper survive between them at the right. There is no switch from dots to holes, so there is no
-    seam: the paper specks on the right are the gaps the dots leave. The lattice spacing shrinks from s_left to s_mid at
-    the touching point and widens again to s_right, so both sparse ends are also loosely spaced. One <g> holds the
-    geometry; the one-column hero uses it rotated. Fills are inline custom properties, so the pattern follows the theme."""
+def dither(W=1920, H=900, start=0.05, peak=0.52, p=2.3, s_left=40, s_mid=26, s_right=40, r_max=0.36, angle=15):
+    """Hero background: a halftone screen. Ink dots on a lattice sheared to `angle` grow from the left edge, slowly,
+    until at `peak` of the width they reach r_max of their spacing (large, still clearly separate); they never touch.
+    Right of the peak an elliptical lobe takes over: the dots shrink away again toward the top, the right edge and the
+    bottom, so the teal fades back into the paper in a rounded, parabolic shape. Spacing is wide where the dots are
+    small and tight where they are large. One <g> holds the geometry; the one-column hero uses it rotated. Fills are
+    inline custom properties, so the pattern follows the theme."""
     import math
-    def ramp(x): return min(1, max(0, (x / W - start) / (end - start)))
-    def spacing(t):
-        return s_left - (s_left - s_mid) * (t / touch) ** 0.8 if t < touch else s_mid + (s_right - s_mid) * ((t - touch) / (1 - touch)) ** 0.8
-    # The screen is a square lattice sheared to `angle`, as a printed halftone is, so the specks that survive between
-    # overlapping dots run on a diagonal instead of lining up in columns. Dots touch at r = s/2 and the paper is gone
-    # at the half-diagonal, r = s * sqrt(1 + tan(angle)^2 + ...) / 2, which the right-hand ramp runs up to slowly.
     shear = math.tan(math.radians(angle))
-    gone = math.sqrt(1 + (1 + shear) ** 2) / 2
-    def radius(t, sp):
-        if t < touch: return sp * 0.5 * (t / touch) ** p
-        return sp * (0.5 + (gone - 0.5) * ((t - touch) / (1 - touch)) ** 1.6)
+    peak_x, cy = W * (start + (1 - start) * peak), H / 2
+    ax, by = W - peak_x, H / 2 * 1.6             # the lobe's semi-axes: to the right edge, and well past the top and bottom
+    def ramp(x): return min(1, max(0, (x / W - start) / (1 - start)))
+    def lobe(x, y, t):
+        dx = max(0.0, x - peak_x) / ax
+        w = min(1, max(0, (t - 0.35) / (peak - 0.35)))   # the vertical fade eases in on the way to the peak, so there is no seam
+        d2 = dx * dx + w * ((y - cy) / by) ** 2
+        return max(0.0, 1 - d2) ** 0.6
+    def spacing(t, x):
+        if t < peak: return s_left - (s_left - s_mid) * (t / peak) ** 0.8
+        return s_mid + (s_right - s_mid) * (max(0.0, x - peak_x) / ax) ** 0.8
     dots, x, phase = [], 0.0, 0.0
     while x < W:
-        t = ramp(x); sp = spacing(t)
-        if 0 < t < 1:
-            r = radius(t, sp)
-            if r >= 0.6:
-                y = phase % sp - sp
-                while y < H + sp:
-                    dots.append(f'<circle cx="{x:.0f}" cy="{y:.0f}" r="{r:.1f}"/>'); y += sp
+        t = ramp(x); sp = spacing(t, x)
+        if t > 0:
+            base = r_max * sp * (min(t, peak) / peak) ** p
+            y = phase % sp - sp
+            while y < H + sp:
+                r = base * lobe(x, y, t)
+                if r >= 0.6: dots.append(f'<circle cx="{x:.0f}" cy="{y:.0f}" r="{r:.1f}"/>')
+                y += sp
         phase += sp * shear; x += sp
     P, I = 'style="fill:var(--paper)"', 'style="fill:var(--ink)"'
-    g = f'<g id="ht"><rect {P} width="{W}" height="{H}"/><rect {I} x="{W * end:.0f}" width="{W * (1 - end):.0f}" height="{H}"/><g {I}>{"".join(dots)}</g></g>'
+    g = f'<g id="ht"><rect {P} width="{W}" height="{H}"/><g {I}>{"".join(dots)}</g></g>'
     return (f'<svg class="defs" width="0" height="0" aria-hidden="true"><defs>{g}</defs></svg>'
             f'<svg class="h" viewBox="0 0 {W} {H}" preserveAspectRatio="xMinYMid slice" aria-hidden="true"><use href="#ht"/></svg>'
             f'<svg class="v" viewBox="0 0 {H} {W}" preserveAspectRatio="xMidYMin slice" aria-hidden="true"><use href="#ht" transform="rotate(90) translate(0 -{H})"/></svg>')

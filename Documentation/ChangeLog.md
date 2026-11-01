@@ -1,5 +1,36 @@
 # Build Change Log
 
+## v3.1.4 — Production fields on `ocpfItems` (2026-10-12)
+
+In BC 27 the manufacturing fields moved from the `Item` table to the `Mfg. Item` table extension, so
+`ocpfItems` (page 90846) no longer exposed them. 13 fields are added back (`app.json` 3.1.3.0 → 3.1.4.0;
+`ocpfItems` field count 204 → 217; entity count unchanged at 187).
+
+| Identifier | BC field | Editable |
+|---|---|---|
+| `productionBomNo` | Production BOM No. | ✅ |
+| `routingNo` | Routing No. | ✅ |
+| `productionBlocked` | Production Blocked | ✅ |
+| `costOfOpenProductionOrders` | Cost of Open Production Orders | 🧮 computed |
+| `scheduledReceiptQty` | Scheduled Receipt (Qty.) | 🧮 computed |
+| `plannedOrderReceiptQty` | Planned Order Receipt (Qty.) | 🧮 computed |
+| `fpOrderReceiptQty` | FP Order Receipt (Qty.) | 🧮 computed |
+| `relOrderReceiptQty` | Rel. Order Receipt (Qty.) | 🧮 computed |
+| `plannedOrderReleaseQty` | Planned Order Release (Qty.) | 🧮 computed |
+| `qtyOnProdOrder` | Qty. on Prod. Order | 🧮 computed |
+| `qtyOnComponentLines` | Qty. on Component Lines | 🧮 computed |
+| `reservedQtyOnProdOrder` | Reserved Qty. on Prod. Order | 🧮 computed |
+| `resQtyOnProdOrderComp` | Res. Qty. on Prod. Order Comp. | 🧮 computed |
+
+Purpose: let integrations and agents (such as the Copilot bakery agent) read an item's production BOM,
+routing and production-blocked status, and its open production order and component quantities.
+
+- **Additive only:** no field removed or renamed; the fields are served at both `/v3.0/` and `/v3.1/`,
+  like every other `ocpfItems` field.
+- The three stored fields are writable through POST/PATCH; the ten FlowFields are calculated on read.
+
+---
+
 ## v3.1.3 — Access Control category (2026-09-09)
 
 New API group **`ocpf_accessControl`** — 4 pages, `APIVersion = 'v3.1'` only, object IDs **91000–91003**

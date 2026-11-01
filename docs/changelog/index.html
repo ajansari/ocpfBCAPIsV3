@@ -71,6 +71,92 @@
     <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li aria-current="page">Changelog</li></ol></nav>
     <article class="panel">
 <h1>BC API Catalog Changelog</h1>
+<h2 id="v3-1-4-production-fields-on-ocpfitems-2026-10-12">v3.1.4 — Production fields on <code>ocpfItems</code> (2026-10-12)</h2>
+<p>In BC 27 the manufacturing fields moved from the <code>Item</code> table to the <code>Mfg. Item</code> table extension, so
+<code>ocpfItems</code> (page 90846) no longer exposed them. 13 fields are added back (<code>app.json</code> 3.1.3.0 → 3.1.4.0;
+<code>ocpfItems</code> field count 204 → 217; entity count unchanged at 187).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th scope="col">Identifier</th>
+<th scope="col">BC field</th>
+<th scope="col">Editable</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>productionBomNo</code></td>
+<td>Production BOM No.</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>routingNo</code></td>
+<td>Routing No.</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>productionBlocked</code></td>
+<td>Production Blocked</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>costOfOpenProductionOrders</code></td>
+<td>Cost of Open Production Orders</td>
+<td>🧮 computed</td>
+</tr>
+<tr>
+<td><code>scheduledReceiptQty</code></td>
+<td>Scheduled Receipt (Qty.)</td>
+<td>🧮 computed</td>
+</tr>
+<tr>
+<td><code>plannedOrderReceiptQty</code></td>
+<td>Planned Order Receipt (Qty.)</td>
+<td>🧮 computed</td>
+</tr>
+<tr>
+<td><code>fpOrderReceiptQty</code></td>
+<td>FP Order Receipt (Qty.)</td>
+<td>🧮 computed</td>
+</tr>
+<tr>
+<td><code>relOrderReceiptQty</code></td>
+<td>Rel. Order Receipt (Qty.)</td>
+<td>🧮 computed</td>
+</tr>
+<tr>
+<td><code>plannedOrderReleaseQty</code></td>
+<td>Planned Order Release (Qty.)</td>
+<td>🧮 computed</td>
+</tr>
+<tr>
+<td><code>qtyOnProdOrder</code></td>
+<td>Qty. on Prod. Order</td>
+<td>🧮 computed</td>
+</tr>
+<tr>
+<td><code>qtyOnComponentLines</code></td>
+<td>Qty. on Component Lines</td>
+<td>🧮 computed</td>
+</tr>
+<tr>
+<td><code>reservedQtyOnProdOrder</code></td>
+<td>Reserved Qty. on Prod. Order</td>
+<td>🧮 computed</td>
+</tr>
+<tr>
+<td><code>resQtyOnProdOrderComp</code></td>
+<td>Res. Qty. on Prod. Order Comp.</td>
+<td>🧮 computed</td>
+</tr>
+</tbody></table></div>
+<p>Purpose: let integrations and agents (such as the Copilot bakery agent) read an item&#39;s production BOM,
+routing and production-blocked status, and its open production order and component quantities.</p>
+<ul>
+<li><strong>Additive only:</strong> no field removed or renamed; the fields are served at both <code>/v3.0/</code> and <code>/v3.1/</code>,
+like every other <code>ocpfItems</code> field.</li>
+<li>The three stored fields are writable through POST/PATCH; the ten FlowFields are calculated on read.</li>
+</ul>
+<hr>
 <h2 id="v3-1-3-access-control-category-2026-09-09">v3.1.3 — Access Control category (2026-09-09)</h2>
 <p>New API group <strong><code>ocpf_accessControl</code></strong> — 4 pages, <code>APIVersion = &#39;v3.1&#39;</code> only, object IDs <strong>91000–91003</strong>
 (the app&#39;s ID range was extended from <code>90800–90999</code> to <code>90800–91099</code>; <code>app.json</code> 3.1.2.0 → 3.1.3.0;

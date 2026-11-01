@@ -2,10 +2,10 @@
 
 **Publisher:** OnlyCopilotFans  
 **API Version:** v3.1 (all endpoints also served at v3.0; see ChangeLog)  
-**App Version:** 3.1.3.0  
+**App Version:** 3.1.4.0  
 **BC Version:** 2025 Wave 2 (v27.5+)  
 **Object Range:** 90800–91099  
-**Date:** June 9, 2026 (v3.0) — updated July 7, 2026 (v3.1) — updated September 9, 2026 (v3.1.2, v3.1.3)  
+**Date:** June 9, 2026 (v3.0) — updated July 7, 2026 (v3.1) — updated September 9, 2026 (v3.1.2, v3.1.3) — updated October 12, 2026 (v3.1.4)  
 **Created by:** AJ Ansari ( [Email](mailto:aj@onlycopilotfans.com) | [LinkedIn](https://linkedin.com/in/ajansari) )
 
 ## Overview
@@ -2803,7 +2803,7 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | Entity Set Name | `ocpfItems` |
 | API Group | `ocpf_masterData` |
 | Editable | ✅ Yes (POST/PATCH/DELETE supported) |
-| Field Count | 204 |
+| Field Count | 217 |
 
 | # | Identifier | BC Field Name | Caption | Editable |
 |---|---|---|---|---|
@@ -3011,8 +3011,23 @@ On read-only pages (❌ at page level) every field is read-only regardless of it
 | 202 | `purchReqReceiptQty` | Purch. Req. Receipt (Qty.) | Purch. Req. Receipt (Qty.) | 🧮 computed |
 | 203 | `purchReqReleaseQty` | Purch. Req. Release (Qty.) | Purch. Req. Release (Qty.) | 🧮 computed |
 | 204 | `prodForecastQuantityBase` | Prod. Forecast Quantity (Base) | Prod. Forecast Quantity (Base) | 🧮 computed |
+| 205 | `productionBomNo` | Production BOM No. | Production BOM No. | ✅ |
+| 206 | `routingNo` | Routing No. | Routing No. | ✅ |
+| 207 | `productionBlocked` | Production Blocked | Production Blocked | ✅ |
+| 208 | `costOfOpenProductionOrders` | Cost of Open Production Orders | Cost of Open Production Orders | 🧮 computed |
+| 209 | `scheduledReceiptQty` | Scheduled Receipt (Qty.) | Scheduled Receipt (Qty.) | 🧮 computed |
+| 210 | `plannedOrderReceiptQty` | Planned Order Receipt (Qty.) | Planned Order Receipt (Qty.) | 🧮 computed |
+| 211 | `fpOrderReceiptQty` | FP Order Receipt (Qty.) | FP Order Receipt (Qty.) | 🧮 computed |
+| 212 | `relOrderReceiptQty` | Rel. Order Receipt (Qty.) | Rel. Order Receipt (Qty.) | 🧮 computed |
+| 213 | `plannedOrderReleaseQty` | Planned Order Release (Qty.) | Planned Order Release (Qty.) | 🧮 computed |
+| 214 | `qtyOnProdOrder` | Qty. on Prod. Order | Qty. on Prod. Order | 🧮 computed |
+| 215 | `qtyOnComponentLines` | Qty. on Component Lines | Qty. on Component Lines | 🧮 computed |
+| 216 | `reservedQtyOnProdOrder` | Reserved Qty. on Prod. Order | Reserved Qty. on Prod. Order | 🧮 computed |
+| 217 | `resQtyOnProdOrderComp` | Res. Qty. on Prod. Order Comp. | Res. Qty. on Prod. Order Comp. | 🧮 computed |
 
 > **Added in API v3.1:** fields 183–204 above (previously omitted parenthesized-name standard fields).
+
+> **Added in app 3.1.4:** fields 205–217 above (manufacturing fields that moved from the Item table to the `Mfg. Item` table extension in BC 27).
 
 
 [↑ Back to top](#table-of-contents)

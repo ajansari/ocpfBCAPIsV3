@@ -9,7 +9,7 @@
   :root[data-theme="light"] {
     --bg: #f3f2f2; --bg-elev: #eae9e9; --text: #201e1d; --muted: #605d5d;
     --line: rgba(32,30,29,0.18); --card: #ffffff; --shadow: 0 12px 32px rgba(45,43,43,0.16);
-    --c1: #00666A; --c2: #00858A; --c3: #00A39B; --c4: #36BFB5; --bcteal: #00A99D; --paper: #ffffff; --ink: #CBE8E5; --box-bg: #101819; --box-ink: #EAF3F2; --box-soft: #9DB5B4; --box-line: #223436;
+    --c1: #00666A; --c2: #00858A; --c3: #00A39B; --c4: #36BFB5; --bcteal: #00A99D; --paper: #F3F2F2; --ink: #CBE8E5; --box-bg: #101819; --box-ink: #EAF3F2; --box-soft: #9DB5B4; --box-line: #223436;
     color-scheme: light;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -135,7 +135,7 @@
   .stage .ticker .sym .up { color: var(--go); font-weight: 700; letter-spacing: 0; }
   .stage .ticker .sym .up::before { content: "▲ "; font-size: 9px; }
   .stage .ticker .tape { flex: 1; min-width: 0; overflow: hidden; position: relative; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
-  .stage .ticker .track { position: absolute; top: 0; left: 0; height: 100%; display: flex; align-items: center; gap: 34px; white-space: nowrap; padding-left: 34px; animation: st-tape 300s linear infinite; }
+  .stage .ticker .track { position: absolute; top: 0; left: 0; height: 100%; display: flex; align-items: center; gap: 34px; white-space: nowrap; padding-left: 34px; animation: st-tape 600s linear infinite; }
   .stage .ticker:hover .track { animation-play-state: paused; }
   @keyframes st-tape { to { transform: translateX(-50%); } }
   .stage .ticker .e { display: inline-flex; align-items: center; gap: 8px; color: #e6e3e1; font-weight: 500; }
@@ -146,8 +146,8 @@
   @media (max-width: 1100px) and (min-width: 901px) { .hero { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 24px; } .stage .flow { grid-template-columns: 58px 1fr 100px; column-gap: 8px; padding: 6px 12px 0; } .stage .src .ic { width: 48px; height: 48px; } .stage .src .ic img { width: 34px; height: 34px; } .stage .braces .b { font-size: 150px; } .stage .rec { font-size: 11px; } .stage .dst .chip { font-size: 10.5px; padding: 6px 8px; gap: 6px; } }
   /* Tablet portrait and below: one column, the stage under the text, at its natural height. */
   @media (max-width: 900px) { .hero-bg svg.h { display: none; } .hero-bg svg.v { display: block; } .hero { grid-template-columns: 1fr; gap: 28px; } .hero h1 .wmrow { font-size: clamp(52px, 10vw, 88px); } .hero h1 .wmrow img { width: clamp(48px, 8.5vw, 76px); } .hero h1 .h1t { font-size: clamp(22px, 4.2vw, 34px); } .stage { aspect-ratio: auto; max-height: none; } .stage .braces { min-height: 230px; } .stage .braces .b { font-size: clamp(150px, 26vw, 215px); } }
-  /* Phones: the braces, the record and the ticker only. */
-  @media (max-width: 600px) { .stage { border-radius: 16px; } .stage .flow { grid-template-columns: 1fr; padding: 0 10px; } .stage .src, .stage .dst, .stage .wires { display: none; } .stage .braces { min-height: 200px; } .stage .braces .b { font-size: clamp(120px, 34vw, 150px); } .stage .rec { font-size: 11px; } .stage .route { font-size: 11px; padding: 12px 12px 0; } .stage .ticker { height: 38px; } }
+  /* Phones: no animation at all. */
+  @media (max-width: 600px) { .stage { display: none; } }
 
   /* Stats strip */
   .stats { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }

@@ -72,6 +72,9 @@
       rec.innerHTML = '<span class="cur"></span>';
       typeOut(recHtml(r), function () { setTimeout(next, 2600); });
     })();
+    /* The ticker runs at a reading pace, 32px a second, whatever its length (the track holds every entity twice). */
+    var track = stage.querySelector('.ticker .track');
+    track.style.animationDuration = Math.round(track.scrollWidth / 2 / 32) + 's';
     var wire = function (x1, y1, x2, y2) { var mx = (x1 + x2) / 2; return 'M' + x1 + ' ' + y1 + ' C ' + mx + ' ' + y1 + ', ' + mx + ' ' + y2 + ', ' + x2 + ' ' + y2; };
     var layout = function () {
       var flow = stage.querySelector('.flow'), fr = flow.getBoundingClientRect(), src = stage.querySelector('.src .ic');

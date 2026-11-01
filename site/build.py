@@ -425,7 +425,14 @@ LANDING_LD = [
 header_tpl = (HERE / "partials" / "header.html").read_text()
 footer_tpl = (HERE / "partials" / "footer.html").read_text()
 
-page = (HERE / "template.html").read_text()
+# Stylesheet and script URLs carry a hash of their content, so a browser never pairs a new page with a cached old file.
+import hashlib
+def bust(html):
+    for name in ("site.css", "site.js"):
+        h = hashlib.sha1((HERE / name).read_bytes()).hexdigest()[:8]
+        html = html.replace(f"/assets/{name}\"", f"/assets/{name}?v={h}\"")
+    return html
+page = bust((HERE / "template.html").read_text())
 
 def dither(W=1920, H=900, start=0.05, end=0.95, touch=0.62, p=2.6, s_left=38, s_mid=12, s_right=26, angle=15):
     """Hero background: a classic halftone screen, as on a printed can. Ink dots sit on a hexagonal lattice and simply
@@ -502,7 +509,7 @@ write("index.html", page)
 shutil.copyfile(HERE / "site.css", OUT / "assets" / "site.css")
 shutil.copyfile(HERE / "site.js", OUT / "assets" / "site.js")
 
-page_tpl = (HERE / "page.html").read_text()
+page_tpl = bust((HERE / "page.html").read_text())
 for p in pages:
     url = SITE.rstrip("/") + p["path"]
     crumbs = "".join(

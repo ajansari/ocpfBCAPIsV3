@@ -32,7 +32,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://bcapi.ai/#website","name":"bcapi.ai","url":"https://bcapi.ai/","inLanguage":"en","description":"BC API Catalog v3: 187 standard Business Central tables as OData v4 API pages.","publisher":{"@id":"https://bcapi.ai/#author"}},{"@type":"Person","@id":"https://bcapi.ai/#author","name":"AJ Ansari","url":"https://github.com/ajansari"},{"@type":"SoftwareApplication","@id":"https://bcapi.ai/#app","name":"BC API Catalog v3 (OCPF APIs v3)","url":"https://bcapi.ai/","description":"Free, open source Business Central extension that exposes 187 standard tables as OData v4 API pages, localization-neutral.","softwareVersion":"3.1.4.0","applicationCategory":"DeveloperApplication","operatingSystem":"Microsoft Dynamics 365 Business Central","downloadUrl":"https://github.com/ajansari/ocpfBCAPIsV3/raw/main/OnlyCopilotFans_OCPF%20APIs%20v3_3.1.4.0.app","license":"https://opensource.org/licenses/MIT","image":"https://bcapi.ai/assets/og-image.png","author":{"@id":"https://bcapi.ai/#author"},"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"SoftwareSourceCode","@id":"https://bcapi.ai/#source","name":"ocpfBCAPIsV3","codeRepository":"https://github.com/ajansari/ocpfBCAPIsV3","programmingLanguage":"AL","license":"https://opensource.org/licenses/MIT","author":{"@id":"https://bcapi.ai/#author"},"targetProduct":{"@id":"https://bcapi.ai/#app"}}]}</script>
 <link rel="preload" href="/assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/fonts.css">
-<link rel="stylesheet" href="/assets/site.css?v=570ccaa1">
+<link rel="stylesheet" href="/assets/site.css?v=92bb29fd">
 <link rel="stylesheet" href="/assets/vendor/cookieconsent.css">
 <link rel="stylesheet" href="/assets/consent.css">
 <script>
@@ -121,7 +121,8 @@
   </div>
 
   <main class="rest">
-    <section class="wrap catalog" aria-label="Catalog by category">
+    <section class="band catalog" aria-label="Catalog by category">
+      <div class="wrap">
       <div class="sec-head">
         <div class="no"><span>01</span><span>The catalog</span></div>
         <h2>9 categories. 187 tables. One consistent API.</h2>
@@ -135,10 +136,12 @@
       </table>
       </div>
       <p class="tbl-note">Click a category to open its reference: source table, page ID, key, operations and every field of each entity.</p>
+      </div>
     </section>
 
     <span id="install"></span>
-    <section class="wrap deploy" id="deploy">
+    <section class="deploy" id="deploy">
+      <div class="wrap">
       <div class="sec-head">
         <div class="no"><span>02</span><span>How to deploy</span></div>
         <h2>Two ways in. Both free.</h2>
@@ -179,8 +182,9 @@
             <li>Renumber the object IDs into your own range if <code>90800–91099</code> collides with something you already have.</li>
           </ol>
           <div class="pills"><a class="pill" href="https://github.com/ajansari/ocpfBCAPIsV3" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>GitHub repository</a><a class="pill ghost" href="https://github.com/ajansari/ocpfBCAPIsV3/archive/refs/heads/main.zip">Download source .zip</a></div>
-          <div class="tree mono" aria-label="Repository folders"><a href="https://github.com/ajansari/ocpfBCAPIsV3/tree/main/AccessControl" target="_blank" rel="noopener"><span>AccessControl/</span><small>4 .al</small></a><a href="https://github.com/ajansari/ocpfBCAPIsV3/tree/main/CoreFinancial" target="_blank" rel="noopener"><span>CoreFinancial/</span><small>25 .al</small></a><a href="https://github.com/ajansari/ocpfBCAPIsV3/tree/main/Manufacturing" target="_blank" rel="noopener"><span>Manufacturing/</span><small>34 .al</small></a><a href="https://github.com/ajansari/ocpfBCAPIsV3/tree/main/MasterData" target="_blank" rel="noopener"><span>MasterData/</span><small>31 .al</small></a><a href="https://github.com/ajansari/ocpfBCAPIsV3/tree/main/ProjectsAndAssets" target="_blank" rel="noopener"><span>ProjectsAndAssets/</span><small>14 .al</small></a><a href="https://github.com/ajansari/ocpfBCAPIsV3/tree/main/Purchasing" target="_blank" rel="noopener"><span>Purchasing/</span><small>20 .al</small></a><a href="https://github.com/ajansari/ocpfBCAPIsV3/tree/main/Sales" target="_blank" rel="noopener"><span>Sales/</span><small>20 .al</small></a><a href="https://github.com/ajansari/ocpfBCAPIsV3/tree/main/ServiceManagement" target="_blank" rel="noopener"><span>ServiceManagement/</span><small>30 .al</small></a><a href="https://github.com/ajansari/ocpfBCAPIsV3/tree/main/SystemAndSetup" target="_blank" rel="noopener"><span>SystemAndSetup/</span><small>9 .al</small></a><a href="https://github.com/ajansari/ocpfBCAPIsV3/tree/main/Permission%20Sets" target="_blank" rel="noopener"><span>Permission Sets/</span><small>2 .al</small></a></div>
+          <div class="tree mono" aria-label="Repository folders"><a href="https://github.com/ajansari/ocpfBCAPIsV3/tree/main/AccessControl" target="_blank" rel="noopener"><span>AccessControl/</span><small>4 API pages</small></a><a href="https://github.com/ajansari/ocpfBCAPIsV3/tree/main/CoreFinancial" target="_blank" rel="noopener"><span>CoreFinancial/</span><small>25 API pages</small></a><a href="https://github.com/ajansari/ocpfBCAPIsV3/tree/main/Manufacturing" target="_blank" rel="noopener"><span>Manufacturing/</span><small>34 API pages</small></a><a href="https://github.com/ajansari/ocpfBCAPIsV3/tree/main/MasterData" target="_blank" rel="noopener"><span>MasterData/</span><small>31 API pages</small></a><a href="https://github.com/ajansari/ocpfBCAPIsV3/tree/main/ProjectsAndAssets" target="_blank" rel="noopener"><span>ProjectsAndAssets/</span><small>14 API pages</small></a><a href="https://github.com/ajansari/ocpfBCAPIsV3/tree/main/Purchasing" target="_blank" rel="noopener"><span>Purchasing/</span><small>20 API pages</small></a><a href="https://github.com/ajansari/ocpfBCAPIsV3/tree/main/Sales" target="_blank" rel="noopener"><span>Sales/</span><small>20 API pages</small></a><a href="https://github.com/ajansari/ocpfBCAPIsV3/tree/main/ServiceManagement" target="_blank" rel="noopener"><span>ServiceManagement/</span><small>30 API pages</small></a><a href="https://github.com/ajansari/ocpfBCAPIsV3/tree/main/SystemAndSetup" target="_blank" rel="noopener"><span>SystemAndSetup/</span><small>9 API pages</small></a><a href="https://github.com/ajansari/ocpfBCAPIsV3/tree/main/Permission%20Sets" target="_blank" rel="noopener"><span>Permission Sets/</span><small>2 AL files</small></a></div>
         </article>
+      </div>
       </div>
     </section>
   </main>

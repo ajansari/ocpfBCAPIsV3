@@ -411,7 +411,7 @@ ID_FROM, ID_TO = app["idRanges"][0]["from"], app["idRanges"][0]["to"]
 AL_DIRS = sorted(d.name for d in ROOT.iterdir() if d.is_dir() and d.name != "Permission Sets" and not d.name.startswith((".", "_")) and any(d.glob("*.al")) and d.name != "ATS")
 assert (ROOT / "Permission Sets").is_dir() and len(AL_DIRS) == 9, AL_DIRS
 AL_FOLDERS = ", ".join(f"<code>{d}</code>" for d in AL_DIRS)
-AL_TREE = "".join(f'<a href="{REPO}/tree/main/{d.replace(" ", "%20")}" target="_blank" rel="noopener"><span>{d}/</span><small>{sum(1 for _ in (ROOT / d).glob("*.al"))} .al</small></a>' for d in AL_DIRS + ["Permission Sets"])
+AL_TREE = "".join(f'<a href="{REPO}/tree/main/{d.replace(" ", "%20")}" target="_blank" rel="noopener"><span>{d}/</span><small>{sum(1 for _ in (ROOT / d).glob("*.al"))} {"AL files" if d == "Permission Sets" else "API pages"}</small></a>' for d in AL_DIRS + ["Permission Sets"])
 
 def ld(graph): return json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
 

@@ -427,32 +427,37 @@ footer_tpl = (HERE / "partials" / "footer.html").read_text()
 
 page = (HERE / "template.html").read_text()
 
-def dither(W=1920, H=900, s_max=36, s_min=12, start=0.05, end=0.95, mid=0.6, p=2.6, q=2.0):
-    """Hero background: a halftone that runs from paper with tiny, widely spaced ink dots on the left to an ink field
-    with tiny paper dots on the right. Dots sit on a staggered lattice whose spacing shrinks from s_max at the edges to
-    s_min in the middle, and their coverage follows a slow power curve, so the sparse parts are both small and far apart.
-    One <g> holds the geometry; the two-column hero uses it as is and the one-column hero uses it rotated, so the copy
-    always sits on the clean side. Fills come from CSS (.paper / .ink), so the pattern follows the theme."""
+def dither(W=1920, H=900, start=0.05, end=0.95, touch=0.62, p=2.6, s_left=38, s_mid=12, s_right=26, angle=15):
+    """Hero background: a classic halftone screen, as on a printed can. Ink dots sit on a hexagonal lattice and simply
+    grow from left to right: tiny and widely spaced at the left edge, touching at `touch` of the ramp, then overlapping
+    until only specks of paper survive between them at the right. There is no switch from dots to holes, so there is no
+    seam: the paper specks on the right are the gaps the dots leave. The lattice spacing shrinks from s_left to s_mid at
+    the touching point and widens again to s_right, so both sparse ends are also loosely spaced. One <g> holds the
+    geometry; the one-column hero uses it rotated. Fills are inline custom properties, so the pattern follows the theme."""
     import math
     def ramp(x): return min(1, max(0, (x / W - start) / (end - start)))
-    # ink coverage crosses 50% at `mid` of the ramp (the copy sits left of it, the stage right of it) and grows slowly on the way
-    def coverage(t): return 0.5 * (t / mid) ** p if t < mid else 1 - 0.5 * ((1 - t) / (1 - mid)) ** q
-    def spacing(t): return s_max - (s_max - s_min) * (1 - abs(t - mid) / (mid if t < mid else 1 - mid)) ** 0.8
-    ink, paper, x, col = [], [], 0.0, 0
+    def spacing(t):
+        return s_left - (s_left - s_mid) * (t / touch) ** 0.8 if t < touch else s_mid + (s_right - s_mid) * ((t - touch) / (1 - touch)) ** 0.8
+    # The screen is a square lattice sheared to `angle`, as a printed halftone is, so the specks that survive between
+    # overlapping dots run on a diagonal instead of lining up in columns. Dots touch at r = s/2 and the paper is gone
+    # at the half-diagonal, r = s * sqrt(1 + tan(angle)^2 + ...) / 2, which the right-hand ramp runs up to slowly.
+    shear = math.tan(math.radians(angle))
+    gone = math.sqrt(1 + (1 + shear) ** 2) / 2
+    def radius(t, sp):
+        if t < touch: return sp * 0.5 * (t / touch) ** p
+        return sp * (0.5 + (gone - 0.5) * ((t - touch) / (1 - touch)) ** 1.6)
+    dots, x, phase = [], 0.0, 0.0
     while x < W:
-        t = ramp(x); sp = spacing(t); f = coverage(t)
+        t = ramp(x); sp = spacing(t)
         if 0 < t < 1:
-            r, dots = (sp * math.sqrt(f / math.pi), ink) if t < mid else (sp * math.sqrt((1 - f) / math.pi), paper)
+            r = radius(t, sp)
             if r >= 0.6:
-                y = sp / 2 if col % 2 else 0.0
+                y = phase % sp - sp
                 while y < H + sp:
                     dots.append(f'<circle cx="{x:.0f}" cy="{y:.0f}" r="{r:.1f}"/>'); y += sp
-        x += sp; col += 1
-    mid = W * (start + (end - start) * mid)
-    # inline fills: a stylesheet class does not reach a <use> clone in every browser, an inherited custom property does
+        phase += sp * shear; x += sp
     P, I = 'style="fill:var(--paper)"', 'style="fill:var(--ink)"'
-    g = (f'<g id="ht"><rect {P} width="{W}" height="{H}"/><rect {I} x="{mid:.0f}" width="{W - mid:.0f}" height="{H}"/>'
-         f'<g {I}>{"".join(ink)}</g><g {P}>{"".join(paper)}</g></g>')
+    g = f'<g id="ht"><rect {P} width="{W}" height="{H}"/><rect {I} x="{W * end:.0f}" width="{W * (1 - end):.0f}" height="{H}"/><g {I}>{"".join(dots)}</g></g>'
     return (f'<svg class="defs" width="0" height="0" aria-hidden="true"><defs>{g}</defs></svg>'
             f'<svg class="h" viewBox="0 0 {W} {H}" preserveAspectRatio="xMinYMid slice" aria-hidden="true"><use href="#ht"/></svg>'
             f'<svg class="v" viewBox="0 0 {H} {W}" preserveAspectRatio="xMidYMin slice" aria-hidden="true"><use href="#ht" transform="rotate(90) translate(0 -{H})"/></svg>')

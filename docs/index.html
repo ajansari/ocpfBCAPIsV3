@@ -32,7 +32,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://bcapi.ai/#website","name":"bcapi.ai","url":"https://bcapi.ai/","inLanguage":"en","description":"BC API Catalog v3: 187 standard Business Central tables as OData v4 API pages.","publisher":{"@id":"https://bcapi.ai/#author"}},{"@type":"Person","@id":"https://bcapi.ai/#author","name":"AJ Ansari","url":"https://github.com/ajansari"},{"@type":"SoftwareApplication","@id":"https://bcapi.ai/#app","name":"BC API Catalog v3 (OCPF APIs v3)","url":"https://bcapi.ai/","description":"Free, open source Business Central extension that exposes 187 standard tables as OData v4 API pages, localization-neutral.","softwareVersion":"3.1.4.0","applicationCategory":"DeveloperApplication","operatingSystem":"Microsoft Dynamics 365 Business Central","downloadUrl":"https://github.com/ajansari/ocpfBCAPIsV3/raw/main/OnlyCopilotFans_OCPF%20APIs%20v3_3.1.4.0.app","license":"https://opensource.org/licenses/MIT","image":"https://bcapi.ai/assets/og-image.png","author":{"@id":"https://bcapi.ai/#author"},"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"SoftwareSourceCode","@id":"https://bcapi.ai/#source","name":"ocpfBCAPIsV3","codeRepository":"https://github.com/ajansari/ocpfBCAPIsV3","programmingLanguage":"AL","license":"https://opensource.org/licenses/MIT","author":{"@id":"https://bcapi.ai/#author"},"targetProduct":{"@id":"https://bcapi.ai/#app"}}]}</script>
 <link rel="preload" href="/assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/fonts.css">
-<link rel="stylesheet" href="/assets/site.css?v=92bb29fd">
+<link rel="stylesheet" href="/assets/site.css?v=6a2f4e46">
 <link rel="stylesheet" href="/assets/vendor/cookieconsent.css">
 <link rel="stylesheet" href="/assets/consent.css">
 <script>
@@ -68,25 +68,23 @@
 </head>
 <body>
 <div id="site">
-  <div class="hero-band" id="top">
-    <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div>
   <header class="site">
     <div class="wrap nav">
-      <a class="brand" href="/" aria-label="bcapi.ai home">
-        <img class="mark" src="/assets/onlybcfans-icon.png" alt="" width="36" height="36">
-        <span class="name">bc<b class="bc">api</b><span>.ai</span></span>
+      <a class="brand big" href="/" aria-label="bcapi.ai home">
+        <span class="wmrow"><img src="/assets/onlybcfans-icon.png" alt="" width="64" height="64"><span class="wm">bc<b class="bc">api</b><span><span class="dot">.</span>ai</span></span></span>
+        <span class="bar" aria-hidden="true"><i style="background:var(--c1)"></i><i style="background:var(--c2)"></i><i style="background:var(--c3)"></i><i style="background:var(--c4)"></i></span>
       </a>
       <nav class="nav-right" aria-label="Site">
         <a class="gh" href="https://github.com/ajansari/ocpfBCAPIsV3" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg><span>GitHub Repo</span></a>
       </nav>
     </div>
   </header>
+  <div class="hero-band" id="top">
+    <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div>
 
     <main>
     <section class="wrap hero">
       <div class="hero-copy">
-        <div class="wmrow"><img src="/assets/onlybcfans-icon.png" alt="" width="64" height="64"><span class="wm">bc<b class="bc">api</b><span><span class="dot">.</span>ai</span></span></div>
-        <div class="bar" aria-hidden="true"><div style="background:var(--c1)"></div><div style="background:var(--c2)"></div><div style="background:var(--c3)"></div><div style="background:var(--c4)"></div></div>
         <h1>187 Business Central Tables.<br>Every W1 Field Included.<br><em>Get the API app or AL Objects.</em></h1>
         <p class="lead">A free, open-source extension that exposes 187 standard tables as ready-to-use OData v4 endpoints: localization-neutral, no custom development per table. Install the app, or take the AL source and make it your own.</p>
         <div class="cta">
@@ -220,12 +218,18 @@
 
 </div>
 <script>
-  /* The brand appears in the title bar once the hero wordmark has scrolled out of view. */
+  /* The brand starts large in the title bar and shrinks as the page scrolls (--p goes 0 to 1 over the first 96px).
+     Once fully shrunk, the title bar takes its frosted background. */
   (function () {
-    var header = document.querySelector('header.site'), mark = document.querySelector('.hero .wmrow');
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (e) { header.classList.toggle('scrolled', !e[0].isIntersecting); }, { rootMargin: '-64px 0px 0px 0px', threshold: 0 }).observe(mark);
-    } else { header.classList.add('scrolled'); }
+    var header = document.querySelector('header.site'), RANGE = 96, queued = false;
+    function update() {
+      queued = false;
+      var p = Math.min(1, Math.max(0, (window.scrollY || window.pageYOffset || 0) / RANGE));
+      header.style.setProperty('--p', p.toFixed(3));
+      header.classList.toggle('scrolled', p >= 1);
+    }
+    window.addEventListener('scroll', function () { if (!queued) { queued = true; requestAnimationFrame(update); } }, { passive: true });
+    update();
   })();
 </script>
 <script src="/assets/site.js?v=cdbfec84" defer></script>

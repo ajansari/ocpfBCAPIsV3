@@ -27,14 +27,18 @@
   .mono { font-family: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace; }
 
   /* ───────── Title bar: transparent over the hero, a glass strip once the page scrolls ───────── */
-  header.site { position: sticky; top: 0; z-index: 50; background: transparent; border-bottom: 1px solid transparent; transition: background-color .3s ease, border-color .3s ease; }
+  header.site { --p: 0; position: sticky; top: 0; z-index: 50; background: transparent; border-bottom: 1px solid transparent; transition: background-color .3s ease, border-color .3s ease; }
   header.site.scrolled { background: color-mix(in srgb, var(--bg) 86%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom-color: var(--line); }
   .nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 64px; }
+  /* Wordmark and colour bar: full size at the top of the page, scaled to fit the 64px bar as --p goes to 1. */
   .brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; opacity: 0; transform: translateY(-6px); pointer-events: none; transition: opacity .3s ease, transform .3s ease; }
   header.site.scrolled .brand { opacity: 1; transform: none; pointer-events: auto; }
   .brand .mark { width: 36px; height: 36px; flex: none; }
   .brand .name { font-weight: 800; font-size: 23px; letter-spacing: -0.03em; color: var(--text); }
   .brand .name span { font-weight: 300; letter-spacing: -0.01em; }
+  /* Home page: wordmark and colour bar, full size at the top of the page, scaled to fit the 64px bar as --p goes to 1. */
+  .brand.big, header.site.scrolled .brand.big { flex-direction: column; align-items: flex-start; gap: 0; opacity: 1; pointer-events: auto; transition: none; transform-origin: left center; transform: translateY(calc((1 - var(--p)) * 18px)) scale(calc(1 - var(--p) * .45)); will-change: transform; }
+  .brand.big .bar { margin: 12px 0 0; }
   .bc { color: var(--bcteal); font-weight: inherit; }
   .nav-right { display: flex; align-items: center; gap: 12px; }
   .gh { display: inline-flex; align-items: center; gap: 9px; padding: 9px 16px; border-radius: 999px; background: var(--text); color: var(--bg); text-decoration: none; font-size: 13px; font-weight: 700; letter-spacing: .02em; white-space: nowrap; box-shadow: 0 2px 10px rgba(0,0,0,.12); transition: transform .2s ease, box-shadow .2s ease; }
@@ -58,13 +62,13 @@
   .hero-band.lit::after { opacity: 1; }
   @media (max-width: 600px), (prefers-reduced-motion: reduce) { .aurora i { animation: none !important; } }
 
-  .hero { position: relative; padding-top: clamp(16px, 3vh, 32px); padding-bottom: clamp(32px, 6vh, 64px); display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: clamp(28px, 4vw, 56px); align-items: center; }
+  .hero { position: relative; padding-top: clamp(44px, 7vh, 64px); padding-bottom: clamp(32px, 6vh, 64px); display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: clamp(28px, 4vw, 56px); align-items: center; }
   .hero-copy { min-width: 0; }
   .wmrow { display: flex; align-items: center; gap: clamp(10px, 1.4vw, 16px); font-size: clamp(34px, 3.6vw, 46px); font-weight: 800; line-height: 1; letter-spacing: -0.045em; color: var(--text); }
   .wmrow img { width: clamp(38px, 3.6vw, 46px); height: auto; flex: none; }
   .wm span { font-weight: 300; letter-spacing: -0.02em; }
-  .bar { display: flex; height: 5px; width: 220px; margin: 14px 0 22px; border-radius: 3px; overflow: hidden; }
-  .bar div { flex: 1; }
+  .bar { display: flex; height: 5px; width: 220px; border-radius: 3px; overflow: hidden; }
+  .bar > * { flex: 1; }
   .hero h1 { font-size: clamp(26px, 3vw, 40px); font-weight: 800; line-height: 1.12; letter-spacing: -0.03em; }
   .hero h1 em { font-style: normal; background: var(--copilot); -webkit-background-clip: text; background-clip: text; color: transparent; padding-bottom: .06em; }
   .hero p.lead { margin-top: 14px; font-size: clamp(14.5px, 1.15vw, 16.5px); font-weight: 500; line-height: 1.5; color: var(--muted); max-width: 58ch; }

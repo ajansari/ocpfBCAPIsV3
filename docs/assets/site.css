@@ -37,8 +37,11 @@
   .brand .name { font-weight: 800; font-size: 23px; letter-spacing: -0.03em; color: var(--text); }
   .brand .name span { font-weight: 300; letter-spacing: -0.01em; }
   /* Home page: wordmark and colour bar, full size at the top of the page, scaled to fit the 64px bar as --p goes to 1. */
-  .brand.big, header.site.scrolled .brand.big { flex-direction: column; align-items: flex-start; gap: 0; opacity: 1; pointer-events: auto; transition: none; transform-origin: left center; transform: translateY(calc((1 - var(--p)) * 18px)) scale(calc(1 - var(--p) * .45)); will-change: transform; }
-  .brand.big .bar { margin: 12px 0 0; }
+  .brand.big, header.site.scrolled .brand.big { flex-direction: column; align-items: flex-start; gap: 0; opacity: 1; pointer-events: auto; transition: none; transform-origin: left center; transform: translateY(calc((1 - var(--p)) * 24px)) scale(calc(1 - var(--p) * .577)); will-change: transform; }
+  /* Full size is 1.3x the old hero wordmark; scale .423 at the end keeps the shrunk size it had before. */
+  .brand.big .wmrow { font-size: clamp(44px, 4.68vw, 60px); gap: clamp(13px, 1.8vw, 21px); }
+  .brand.big .wmrow img { width: clamp(49px, 4.68vw, 60px); }
+  .brand.big .bar { width: 286px; height: 6.5px; margin: 16px 0 0; border-radius: 4px; }
   .bc { color: var(--bcteal); font-weight: inherit; }
   .nav-right { display: flex; align-items: center; gap: 12px; }
   .gh { display: inline-flex; align-items: center; gap: 9px; padding: 9px 16px; border-radius: 999px; background: var(--text); color: var(--bg); text-decoration: none; font-size: 13px; font-weight: 700; letter-spacing: .02em; white-space: nowrap; box-shadow: 0 2px 10px rgba(0,0,0,.12); transition: transform .2s ease, box-shadow .2s ease; }
@@ -62,7 +65,7 @@
   .hero-band.lit::after { opacity: 1; }
   @media (max-width: 600px), (prefers-reduced-motion: reduce) { .aurora i { animation: none !important; } }
 
-  .hero { position: relative; padding-top: clamp(44px, 7vh, 64px); padding-bottom: clamp(32px, 6vh, 64px); display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: clamp(28px, 4vw, 56px); align-items: center; }
+  .hero { position: relative; padding-top: clamp(56px, 9vh, 80px); padding-bottom: clamp(32px, 6vh, 64px); display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: clamp(28px, 4vw, 56px); align-items: center; }
   .hero-copy { min-width: 0; }
   .wmrow { display: flex; align-items: center; gap: clamp(10px, 1.4vw, 16px); font-size: clamp(34px, 3.6vw, 46px); font-weight: 800; line-height: 1; letter-spacing: -0.045em; color: var(--text); }
   .wmrow img { width: clamp(38px, 3.6vw, 46px); height: auto; flex: none; }
